@@ -1,0 +1,41 @@
+//
+// non-style imports that are included in all vue lang=scss files
+//
+
+$twitter-blue: #1da1f2;
+
+// $primary: $cc-red;
+// $link: $cc-coral;
+
+//
+// Bulma cusomisations
+//
+$family-sans-serif: acumin-pro, Avenir, -apple-system, system-ui,
+  BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+
+$navbar-height: 3.5rem;
+
+$footer-padding: 1.5rem 1.5rem 2.5rem;
+
+// $z-cookies: 50;
+// $z-appwrapper-tabbar: 20;
+// $z-sessions-tabs: 10;
+
+// buttons
+$button-padding-horizontal: 1.5em !default;
+
+// Radius
+$radius: 8px;
+$radius-small: 6px;
+
+// Layout
+$tabbar-width: 5.5rem;
+
+// Box
+$box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.02),
+  0 0px 0 1px rgba(10, 10, 10, 0.01);
+
+// Import bulma utils too
+@import '~bulma/sass/utilities/_all.sass';
