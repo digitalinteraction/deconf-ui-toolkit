@@ -3,6 +3,13 @@ export interface ConfigFlag {
   visible: boolean;
 }
 
+export interface User {
+  kind: 'auth';
+  sub: number;
+  user_roles: string[];
+  user_lang: string;
+}
+
 export interface AppSettings {
   atrium: ConfigFlag;
   whatsOn: ConfigFlag;
@@ -13,6 +20,11 @@ export interface AppSettings {
   startDate: Date;
   endDate: Date;
   isStatic: boolean;
+
+  availableLanguages: Array<{
+    locale: string;
+    title: string;
+  }>;
 }
 
 export interface AppTheme {

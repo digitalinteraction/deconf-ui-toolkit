@@ -19,9 +19,9 @@ $navbar-height: 3.5rem;
 
 $footer-padding: 1.5rem 1.5rem 2.5rem;
 
-// $z-cookies: 50;
-// $z-appwrapper-tabbar: 20;
-// $z-sessions-tabs: 10;
+$z-cookies: 50;
+$z-appwrapper-tabbar: 40;
+$z-sessions-tabs: 10;
 
 // buttons
 $button-padding-horizontal: 1.5em !default;
@@ -39,3 +39,21 @@ $box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.02),
 
 // Import bulma utils too
 @import '~bulma/sass/utilities/_all.sass';
+
+@mixin insetInlineStart($value) {
+  &:dir(ltr) {
+    left: $value;
+  }
+  &:dir(rtl) {
+    right: $value;
+  }
+}
+
+@mixin insetInlineEnd($value) {
+  &:dir(ltr) {
+    right: $value;
+  }
+  &:dir(rtl) {
+    left: $value;
+  }
+}

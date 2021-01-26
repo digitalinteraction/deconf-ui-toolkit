@@ -9,26 +9,20 @@ process.env.VUE_APP_VERSION = require('./package.json').version;
 
 // Add an extra import to all sass imports
 module.exports = {
-  //   chainWebpack: config => {
-  //     //
-  //     // from: https://cli.vuejs.org/guide/webpack.html#replacing-loaders-of-a-rule
-  //     //
-  //     const svgRule = config.module.rule('svg');
-
-  //     // clear all existing loaders.
-  //     // if you don't do this, the loader below will be appended to
-  //     // existing loaders of the rule.
-  //     svgRule.uses.clear();
-
-  //     // add replacement loader(s)
-  //     svgRule.use('vue-svg-loader').loader('vue-svg-loader');
-
-  //     // Turn on auto fixing
-  //     config.module
-  //       .rule('eslint')
-  //       .use('eslint-loader')
-  //       .options({ fix: true });
-  //   },
+  chainWebpack: config => {
+    //
+    // Use svg-loader
+    // Clear the existing svg rule and load as a component instead
+    //
+    // const svgRule = config.module.rule('svg');
+    // svgRule.uses.clear();
+    // svgRule
+    //   .use('babel-loader')
+    //   .loader('babel-loader')
+    //   .end()
+    //   .use('vue-svg-loader')
+    //   .loader('vue-svg-loader');
+  },
   css: {
     loaderOptions: {
       sass: {
