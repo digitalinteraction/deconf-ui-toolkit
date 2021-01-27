@@ -1,5 +1,5 @@
 <template>
-  <Vue100vh class="appWrapper" :css="{ height: 'calc(100rvh - 3.5rem)' }">
+  <Vue100vh class="appWrapper" :css="{ height: '100rvh' }">
     <div class="appWrapper-header">
       <AppHeader
         :app-settings="appSettings"
@@ -139,7 +139,7 @@ export default Vue.extend<{}, {}, {}, Props>({
     ownerBrand: { type: Object, default: null }
   },
   computed: {
-    appRoutes() {
+    appRoutes(): AppRoute[] {
       return appRoutes(
         this.user,
         this.appSettings,
@@ -147,11 +147,11 @@ export default Vue.extend<{}, {}, {}, Props>({
         this.unavailableText
       );
     },
-    isLoggedIn() {
+    isLoggedIn(): boolean {
       return Boolean(this.user);
     },
-    isInterpreter() {
-      return this.user && this.user.user_roles.includes('interpreter');
+    isInterpreter(): boolean {
+      return Boolean(this.user && this.user.user_roles.includes('interpreter'));
     }
   }
 });

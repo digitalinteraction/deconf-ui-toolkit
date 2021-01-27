@@ -19,15 +19,23 @@
 import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-export default Vue.extend({
+interface Props {
+  kind: string;
+  icon: string | string[];
+  title: string;
+  subtitle: string;
+  href: string | null;
+}
+
+export default Vue.extend<{}, {}, {}, Props>({
   components: { FontAwesomeIcon },
   props: {
     kind: {
       type: String,
-      required: true
-      // validator(v) {
-      //   return ['primary', 'secondary', 'twitter'].includes(v);
-      // }
+      required: true,
+      validator(v) {
+        return ['primary', 'secondary', 'twitter'].includes(v);
+      }
     },
     icon: { type: [String, Array], required: true },
     title: { type: String, required: true },
@@ -35,13 +43,13 @@ export default Vue.extend({
     href: { type: String, default: null }
   },
   computed: {
-    rootComponent() {
+    rootComponent(): string {
       return this.href ? 'a' : 'div';
     },
-    extraArgs() {
+    extraArgs(): object {
       return this.href ? { href: this.href } : {};
     },
-    classes() {
+    classes(): string[] {
       return [`is-${this.kind}`, this.href ? 'is-hoverable' : ''];
     }
   }

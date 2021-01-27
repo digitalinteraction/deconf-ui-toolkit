@@ -17,7 +17,7 @@ export default Vue.extend({
     coverImage: { type: String, required: true }
   },
   computed: {
-    style() {
+    style(): object {
       return { 'background-image': `url(${this.coverImage})` };
     }
   }

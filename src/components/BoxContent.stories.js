@@ -1,6 +1,5 @@
 import BoxContent from './BoxContent.vue';
-import { createTemplate } from '../utils/template';
-import { createContent } from '../utils/content';
+import { createTemplate, createContent } from '@/utils';
 
 export default {
   title: 'Component/BoxContent',

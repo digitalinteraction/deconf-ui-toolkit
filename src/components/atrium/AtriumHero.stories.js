@@ -1,5 +1,5 @@
 import AtriumHero from './AtriumHero.vue';
-import { createTemplate } from '../utils/template';
+import { createTemplate } from '@/utils';
 
 export default {
   title: 'Atrium/AtriumHero',

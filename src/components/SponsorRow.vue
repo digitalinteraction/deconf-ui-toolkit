@@ -32,7 +32,7 @@ export default Vue.extend({
     sponsors: { type: Array as PropType<Sponsor[]>, required: true }
   },
   computed: {
-    classes() {
+    classes(): string {
       return `is-${this.size}`;
     }
   }

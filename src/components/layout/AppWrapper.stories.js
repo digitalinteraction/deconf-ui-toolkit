@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import AppWrapper from './AppWrapper.vue';
-import { createSettings } from '../utils/settings';
-import { createContent } from '../utils/content';
+import { createSettings, createContent } from '@/utils';
 
 export default {
   title: 'Layout/AppWrapper',

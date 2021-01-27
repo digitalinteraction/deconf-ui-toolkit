@@ -1,5 +1,5 @@
 import SideTabs from './SideTabs.vue';
-import { createTemplate } from '../utils/template';
+import { createTemplate } from '@/utils';
 
 import AtriumIcon from '@/icons/AtriumIcon.vue';
 import WhatsOnIcon from '@/icons/WhatsOnIcon.vue';

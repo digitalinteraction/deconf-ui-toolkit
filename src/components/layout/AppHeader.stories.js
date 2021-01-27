@@ -1,6 +1,5 @@
 import AppHeader from './AppHeader.vue';
-import { createTemplate } from '../utils/template';
-import { createSettings } from '../utils/settings';
+import { createTemplate, createSettings } from '@/utils';
 
 export default {
   title: 'Layout/AppHeader',
@@ -55,13 +54,17 @@ Desktop.args = {
     height: 28
   }
 };
+Desktop.parameters = {
+  layout: 'fullscreen'
+};
 
 export const Mobile = Template.bind({});
 Mobile.args = {
   ...Desktop.args
 };
 Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
+  layout: 'fullscreen'
 };
 
 // https://github.com/storybookjs/storybook/blob/master/addons/viewport/src/defaults.ts#L3

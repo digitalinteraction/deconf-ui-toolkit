@@ -1,18 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  <p>{{ appName }} / {{ appVersion }}</p>
+  <div>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <p>{{ appName }} / {{ appVersion }}</p>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Vue from 'vue';
 
-export default defineComponent({
+export default Vue.extend({
   name: 'App',
-  components: {
-    HelloWorld
-  },
+  components: {},
   computed: {
     appName: () => process.env.VUE_APP_NAME,
     appVersion: () => process.env.VUE_APP_VERSION

@@ -1,6 +1,5 @@
 import SponsorRow from './SponsorRow.vue';
-import { createTemplate } from '../utils/template';
-import { createSponsors } from '../utils/sponsors';
+import { createTemplate, createSponsors } from '@/utils';
 
 export default {
   title: 'Component/SponsorRow',

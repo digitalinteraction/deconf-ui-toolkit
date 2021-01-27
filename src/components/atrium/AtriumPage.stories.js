@@ -1,7 +1,5 @@
 import AtriumPage from './AtriumPage.vue';
-import { createTemplate } from '../utils/template';
-import { createSponsors } from '../utils/sponsors';
-import { createContent } from '../utils/content';
+import { createTemplate, createSponsors, createContent } from '@/utils';
 
 export default {
   title: 'Atrium/AtriumPage',

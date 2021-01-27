@@ -1,6 +1,5 @@
 import AtriumWidget from './AtriumWidget.vue';
-import '../utils/fontawesome';
-import { createTemplate } from '../utils/template';
+import { createTemplate } from '@/utils';
 
 export default {
   title: 'Atrium/AtriumWidget',

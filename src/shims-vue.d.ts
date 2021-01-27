@@ -6,7 +6,3 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
-
-declare module "vue-100vh" {
-  export default Component
-}

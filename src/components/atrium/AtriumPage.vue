@@ -28,8 +28,8 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 
-import BoxContent from '../components/BoxContent.vue';
-import SponsorGrid, { SponsorGroup } from '../components/SponsorGrid.vue';
+import BoxContent from '../BoxContent.vue';
+import SponsorGrid, { SponsorGroup } from '../SponsorGrid.vue';
 import AtriumWidget from './AtriumWidget.vue';
 import AtriumHero from './AtriumHero.vue';
 
@@ -53,7 +53,7 @@ export default Vue.extend({
     sponsors: { type: Array as PropType<SponsorGroup[]>, required: true }
   },
   computed: {
-    heroStyle() {
+    heroStyle(): object {
       return { 'background-image': `url(${this.coverImage})` };
     }
   }

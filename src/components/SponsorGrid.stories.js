@@ -1,6 +1,5 @@
 import SponsorGrid from './SponsorGrid.vue';
-import { createTemplate } from '../utils/template';
-import { createSponsors } from '../utils/sponsors';
+import { createTemplate, createSponsors } from '@/utils';
 
 export default {
   title: 'Component/SponsorGrid',

@@ -27,6 +27,7 @@ export interface AppSettings {
   }>;
 }
 
+// IDEA: can we abstract the theme to this object and pass it around?
 export interface AppTheme {
   // #ff6f61
   primaryColor: string;
@@ -41,5 +42,5 @@ export interface AppTheme {
   secondaryColorAlt: string;
 
   // #363636
-  textColor: string; //
+  textColor: string;
 }
