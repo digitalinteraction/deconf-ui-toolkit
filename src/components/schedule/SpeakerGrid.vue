@@ -1,0 +1,73 @@
+<template>
+  <div class="speakerGrid">
+    <div
+      class="speakerGrid-speaker"
+      v-for="speaker in speakers"
+      :key="speaker.id"
+    >
+      <div class="speakerGrid-headshot">
+        <img :src="speaker.headshot" width="42" height="42" />
+      </div>
+      <div class="speakerGrid-speakerInfo">
+        <div class="speakerGrid-name">{{ speaker.name }}</div>
+        <div class="speakerGrid-role">{{ speaker.role }}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { Speaker } from '@/types';
+import Vue, { PropType } from 'vue';
+
+export default Vue.extend({
+  props: {
+    speakers: { type: Array as PropType<Speaker[]>, required: true }
+  }
+});
+</script>
+
+<style lang="scss" scoped>
+.speakerGrid {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: flex-start;
+}
+
+.speakerGrid-speaker {
+  display: flex;
+  flex-basis: 280px;
+  flex-grow: 1;
+  padding-bottom: 15px;
+  vertical-align: top;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+.speakerGrid-headshot {
+  padding-inline-end: 8px;
+
+  img {
+    border-radius: $radius-rounded;
+  }
+}
+
+.speakerGrid-speakerInfo {
+  flex: 1;
+  padding-inline-end: 2rem;
+}
+
+.speakerGrid-name {
+  min-height: 1.5em;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.speakerGrid-role {
+  color: $grey;
+  font-size: $size-7;
+}
+</style>

@@ -51,3 +51,26 @@
     margin-inline-start: 2em;
   }
 }
+
+*[dir='rtl'] {
+  .ltr-only {
+    display: none;
+  }
+}
+*[dir='ltr'] {
+  .rtl-only {
+    display: none;
+  }
+}
+
+//
+// Animations
+//
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

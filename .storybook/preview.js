@@ -2,6 +2,8 @@ import Vue from 'vue';
 import '@/scss/app.scss';
 import { setupFontawesome } from '@/utils';
 
+document.dir = 'ltr';
+
 // Initialize all icons
 setupFontawesome();
 

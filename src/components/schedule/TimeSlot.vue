@@ -7,8 +7,12 @@
       <span :title="startDate | localeDate">
         {{ startDate | shortTime }}
       </span>
-      <FontAwesomeIcon :icon="['fas', 'long-arrow-alt-right']" />
-      <!-- ... -->
+      <span class="icon ltr-only">
+        <FontAwesomeIcon :icon="['fas', 'long-arrow-alt-right']" />
+      </span>
+      <span class="icon rtl-only">
+        <FontAwesomeIcon :icon="['fas', 'long-arrow-alt-left']" />
+      </span>
       <span :title="endDate | localeDate">
         {{ endDate | shortTime }}
       </span>
