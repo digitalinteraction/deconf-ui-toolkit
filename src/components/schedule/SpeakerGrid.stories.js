@@ -14,7 +14,9 @@ Desktop.args = {
 };
 
 export const Mobile = Template.bind({});
-Mobile.args = Desktop.args;
+Mobile.args = {
+  speakers: defaultSpeakers()
+};
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile1' }
 };

@@ -10,7 +10,7 @@ const Template = createTemplate({ BoxContent });
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'Test!',
+  title: 'Lorem ipsum sil dor amet',
   content: createContent()
 };
 Default.parameters = {
