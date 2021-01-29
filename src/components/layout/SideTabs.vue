@@ -11,7 +11,7 @@
     >
       <component :is="item.icon" class="sideTabs-tabIcon" />
       <span class="sideTabs-tabText">
-        {{ item.title }}
+        {{ item.enabled ? item.title : $t('deconf.appWrapper.unavailable') }}
       </span>
     </router-link>
   </div>
@@ -27,6 +27,10 @@ interface Route {
   icon?: Component;
 }
 
+//
+// I18n keys
+// - deconf.appWrapper.unavailable
+//
 export default Vue.extend({
   props: {
     routes: {

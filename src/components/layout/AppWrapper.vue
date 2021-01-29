@@ -6,7 +6,6 @@
         :is-logged-in="isLoggedIn"
         :is-interpreter="isInterpreter"
         :routes="appRoutes"
-        :route-titles="routeTitles"
         :app-brand="appBrand"
         :owner-brand="ownerBrand"
       />
@@ -47,16 +46,6 @@ interface RouteTitles {
   interpret: string;
 }
 
-interface Props {
-  appSettings: AppSettings;
-  user: User | null;
-  routeTitles: RouteTitles;
-  unavailableText: string;
-  showPage: boolean;
-  appBrand: HeaderBrand;
-  ownerBrand: HeaderBrand | null;
-}
-
 import { Routes } from '@/constants';
 
 export interface AppRoute {
@@ -69,14 +58,13 @@ export interface AppRoute {
 function appRoutes(
   user: User | null,
   settings: AppSettings,
-  titles: RouteTitles,
-  unavailableText: string
+  t: (key: string) => string
 ) {
   const routes: AppRoute[] = [];
 
   if (settings.atrium.visible) {
     routes.push({
-      title: titles.atrium,
+      title: t('deconf.appWrapper.atrium'),
       name: Routes.Atrium,
       enabled: settings.atrium.enabled,
       icon: AtriumIcon
@@ -85,7 +73,7 @@ function appRoutes(
 
   if (settings.whatsOn.visible) {
     routes.push({
-      title: titles.whatsOn,
+      title: t('deconf.appWrapper.whatsOn'),
       name: Routes.WhatsOn,
       enabled: settings.whatsOn.enabled,
       icon: WhatsOnIcon
@@ -94,7 +82,7 @@ function appRoutes(
 
   if (settings.schedule.visible) {
     routes.push({
-      title: titles.schedule,
+      title: t('deconf.appWrapper.schedule'),
       name: Routes.Schedule,
       enabled: Boolean(user) && settings.schedule.enabled,
       icon: ScheduleIcon
@@ -103,7 +91,7 @@ function appRoutes(
 
   if (settings.coffeeChat.visible) {
     routes.push({
-      title: titles.coffeeChat,
+      title: t('deconf.appWrapper.coffeeChat'),
       name: Routes.CoffeeChatLobby,
       enabled: Boolean(user) && settings.coffeeChat.enabled,
       icon: CoffeeChatIcon
@@ -112,28 +100,39 @@ function appRoutes(
 
   if (settings.helpDesk.visible) {
     routes.push({
-      title: titles.helpDesk,
+      title: t('deconf.appWrapper.helpDesk'),
       name: Routes.HelpDesk,
       enabled: Boolean(user) && settings.helpDesk.enabled,
       icon: HelpDeskIcon
     });
   }
 
-  for (const r of routes) {
-    if (r.enabled) continue;
-    r.title = r.title + ' ' + unavailableText;
-  }
-
   return routes;
 }
+
+interface Props {
+  appSettings: AppSettings;
+  user: User | null;
+  showPage: boolean;
+  appBrand: HeaderBrand;
+  ownerBrand: HeaderBrand | null;
+}
+
+//
+// I18n keys
+// - deconf.appWrapper.atrium
+// - deconf.appWrapper.whatsOn
+// - deconf.appWrapper.schedule
+// - deconf.appWrapper.coffeeChat
+// - deconf.appWrapper.helpDesk
+// - deconf.appWrapper.unavailable
+//
 
 export default Vue.extend<{}, {}, {}, Props>({
   components: { Vue100vh, AppHeader, SideTabs },
   props: {
     appSettings: { type: Object, required: true },
     user: { type: Object, default: null },
-    routeTitles: { type: Object, required: true },
-    unavailableText: { type: String, required: true },
     showPage: { type: Boolean, required: true },
     appBrand: { type: Object, required: true },
     ownerBrand: { type: Object, default: null }
@@ -143,8 +142,7 @@ export default Vue.extend<{}, {}, {}, Props>({
       return appRoutes(
         this.user,
         this.appSettings,
-        this.routeTitles,
-        this.unavailableText
+        key => this.$i18n.t(key, []) as string
       );
     },
     isLoggedIn(): boolean {

@@ -2,6 +2,8 @@ import { action } from '@storybook/addon-actions';
 import Vue from 'vue';
 import '@/scss/app.scss';
 import { setupFontawesome } from '@/utils';
+import locales from './locale.json';
+import { get } from 'lodash';
 
 document.dir = 'ltr';
 
@@ -28,19 +30,22 @@ Vue.component('router-link', {
 //
 Vue.prototype.$i18n = {
   locale: 'en',
-  translate(key, params) {
+  t(key, params) {
+    const match = get(locales, key);
+    if (match) return match;
+
     if (params) {
       return `{{ ${key}, ${JSON.stringify(params)} }}`;
     } else {
       return `{{ ${key} }}`;
     }
   },
-  translateCount(key, count) {
+  tc(key, count) {
     return `{{ "${key}" count=${count} }}`;
   }
 };
-Vue.prototype.$t = Vue.prototype.$i18n.translate;
-Vue.prototype.$tc = Vue.prototype.$i18n.translateCount;
+Vue.prototype.$t = Vue.prototype.$i18n.t;
+Vue.prototype.$tc = Vue.prototype.$i18n.tc;
 
 //
 // Stub out vuex

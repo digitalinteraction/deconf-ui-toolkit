@@ -37,7 +37,7 @@ Desktop.args = {
     },
     {
       name: 'D',
-      title: 'Route D (Unavailable)',
+      title: 'Route D',
       enabled: false
     }
   ],

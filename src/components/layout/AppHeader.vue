@@ -39,6 +39,10 @@
         >
           <component :is="item.icon" class="navbar-item-icon" />
           <span class="navbar-item-text" v-text="item.title" />
+          <span
+            v-if="!item.enabled"
+            v-text="$t('deconf.appWrapper.unavailable')"
+          />
         </router-link>
       </div>
       <div class="navbar-end">
@@ -70,7 +74,7 @@
             class="button is-secondary is-small"
             :to="interpretRoute"
           >
-            {{ interpretTitle }}
+            {{ $t('deconf.appWrapper.interpret') }}
           </router-link>
         </div>
 
@@ -82,7 +86,7 @@
             <span class="icon">
               <FontAwesomeIcon :icon="['fas', 'user']" />
             </span>
-            <span>{{ profileTitle }}</span>
+            <span>{{ $t('deconf.appWrapper.profile') }}</span>
           </router-link>
         </div>
 
@@ -92,11 +96,11 @@
         <div class="navbar-item" v-if="!isLoggedIn">
           <div class="buttons">
             <router-link class="button is-light is-small" :to="loginRoute">
-              {{ routeTitles.login }}
+              {{ $t('deconf.appWrapper.login') }}
             </router-link>
             <!-- Register button -->
             <router-link class="button is-primary is-small" :to="registerRoute">
-              {{ routeTitles.register }}
+              {{ $t('deconf.appWrapper.register') }}
             </router-link>
           </div>
         </div>
@@ -135,16 +139,25 @@ interface Props {
   appSettings: AppSettings;
   isLoggedIn: boolean;
   isInterpreter: boolean;
-  routeTitles: {
-    profile: string;
-    interpret: string;
-    login: string;
-    register: string;
-  };
+  // routeTitles: {
+  //   profile: string;
+  //   interpret: string;
+  //   login: string;
+  //   register: string;
+  // };
   routes: AppRoute[];
   appBrand: HeaderBrand;
   ownerBrand?: HeaderBrand;
 }
+
+//
+// I18n keys
+// - deconf.appWrapper.unavailable
+// - deconf.appWrapper.login
+// - deconf.appWrapper.profile
+// - deconf.appWrapper.register
+// - deconf.appWrapper.interpret
+//
 
 export default Vue.extend<Data, {}, {}, Props>({
   components: { FontAwesomeIcon },
@@ -157,7 +170,6 @@ export default Vue.extend<Data, {}, {}, Props>({
     appSettings: { type: Object, required: true },
     isLoggedIn: { type: Boolean, required: true },
     isInterpreter: { type: Boolean, required: true },
-    routeTitles: { type: Object, required: true },
     routes: { type: Array, required: true },
     appBrand: { type: Object, required: true },
     ownerBrand: { type: Object, required: true }
@@ -174,14 +186,8 @@ export default Vue.extend<Data, {}, {}, Props>({
     interpretRoute(): Location {
       return { name: Routes.InterpretHome };
     },
-    interpretTitle(): string {
-      return this.routeTitles.interpret;
-    },
     profileRoute(): Location {
       return { name: Routes.Profile };
-    },
-    profileTitle(): string {
-      return this.routeTitles.profile;
     },
     loginRoute(): Location {
       return { name: Routes.Login };

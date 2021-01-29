@@ -1,0 +1,16 @@
+{
+  "deconf": {
+    "appWrapper": {
+      "atrium": "Atrium",
+      "whatsOn": "Whats On",
+      "schedule": "Schedule",
+      "coffeeChat": "Coffee Chat",
+      "helpDesk": "Help Desk",
+      "profile": "Your profile",
+      "login": "Login",
+      "interpret": "Interpret mode",
+      "register": "Register!",
+      "unavailable": "(Unavailable)"
+    }
+  }
+}
