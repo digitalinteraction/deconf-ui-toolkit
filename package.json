@@ -19,8 +19,7 @@
     "bulma": "^0.9.2",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
-    "vue-100vh": "^0.1.1",
-    "vue-router": "^3.5.1"
+    "vue-100vh": "^0.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
@@ -49,8 +48,11 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "typescript": "~3.9.3",
+    "vue-i18n": "^8.22.4",
+    "vue-router": "^3.5.1",
     "vue-svg-loader": "^0.16.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "vuex": "^3.6.2"
   },
   "eslintConfig": {
     "root": true,

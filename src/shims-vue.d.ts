@@ -1,8 +1,19 @@
-import { Component } from 'vue'
+import { ComponentCustomProperties } from 'vue';
+import { Store } from 'vuex';
 
 /* eslint-disable */
 declare module '*.vue' {
-  import type { DefineComponent } from 'vue'
-  const component: DefineComponent<{}, {}, any>
-  export default component
+  import Vue from 'vue';
+  export default Vue;
+}
+
+declare module '@vue/runtime-core' {
+  interface State {
+    // declare your own store states
+  }
+
+  // provide typings for `this.$store`
+  interface ComponentCustomProperties {
+    $store: Store<State>;
+  }
 }

@@ -109,6 +109,7 @@
 import { AppSettings } from '@/types';
 import Vue, { Component } from 'vue';
 import { Routes } from '@/constants';
+import { Location } from 'vue-router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -162,35 +163,35 @@ export default Vue.extend<Data, {}, {}, Props>({
     ownerBrand: { type: Object, required: true }
   },
   computed: {
-    activeClasses() {
+    activeClasses(): object {
       return {
         'is-active': this.isShowingMenu
       };
     },
-    homeRoute() {
-      return Routes.Atrium;
+    homeRoute(): Location {
+      return { name: Routes.Atrium };
     },
-    interpretRoute() {
-      return Routes.InterpretHome;
+    interpretRoute(): Location {
+      return { name: Routes.InterpretHome };
     },
-    interpretTitle() {
+    interpretTitle(): string {
       return this.routeTitles.interpret;
     },
-    profileRoute() {
-      return Routes.Profile;
+    profileRoute(): Location {
+      return { name: Routes.Profile };
     },
-    profileTitle() {
+    profileTitle(): string {
       return this.routeTitles.profile;
     },
-    loginRoute() {
-      return Routes.Login;
+    loginRoute(): Location {
+      return { name: Routes.Login };
     },
-    registerRoute() {
-      return Routes.Register;
+    registerRoute(): Location {
+      return { name: Routes.Register };
     }
   },
   methods: {
-    toggleMenu() {
+    toggleMenu(): void {
       this.isShowingMenu = !this.isShowingMenu;
     }
   }
