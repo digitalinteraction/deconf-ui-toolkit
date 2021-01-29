@@ -25,7 +25,6 @@
 import { AppSettings, User } from '@/types';
 import Vue, { Component } from 'vue';
 import Vue100vh from 'vue-100vh';
-// import { RouteTitles } from '../components/AppHeader.vue';
 
 import AtriumIcon from '@/icons/AtriumIcon.vue';
 import CoffeeChatIcon from '@/icons/CoffeeChatIcon.vue';
@@ -35,16 +34,6 @@ import WhatsOnIcon from '@/icons/WhatsOnIcon.vue';
 
 import AppHeader, { HeaderBrand } from './AppHeader.vue';
 import SideTabs from './SideTabs.vue';
-
-interface RouteTitles {
-  atrium: string;
-  whatsOn: string;
-  schedule: string;
-  coffeeChat: string;
-  helpDesk: string;
-  profile: string;
-  interpret: string;
-}
 
 import { Routes } from '@/constants';
 

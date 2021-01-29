@@ -11,6 +11,19 @@
       "interpret": "Interpret mode",
       "register": "Register!",
       "unavailable": "(Unavailable)"
+    },
+    "session": {
+      "languageWarning": "Please note this session is only available in {0}",
+      "openTeams": "Open Teams meeting",
+      "openZoom": "Open Zoom meeting",
+      "noEmbed": "Something went wrong, there is nothing to show here"
+    },
+    "general": {
+      "hours": "hours | hour | hours",
+      "minutes": "minutes | minute | minutes",
+      "seconds": "seconds | second | seconds",
+      "copy": "copy",
+      "copied": "copied"
     }
   }
 }
