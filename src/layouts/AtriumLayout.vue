@@ -54,7 +54,7 @@ export default Vue.extend({
 
 <style lang="scss">
 .atriumPage {
-  background-color: #f2f2f2;
+  background-color: $background;
   padding: $block-spacing;
   position: relative;
   @include mobile {
