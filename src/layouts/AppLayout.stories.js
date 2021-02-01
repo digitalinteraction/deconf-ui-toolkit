@@ -40,9 +40,11 @@ const Template = (args, { argTypes }) => ({
       />
       <div slot="main" class="container">
         <section class="section">
-          <Content />
-          <Content />
-          <Content />
+          <div class="content">
+            <Content />
+            <Content />
+            <Content />
+          </div>
         </section>
       </div>
     </AppLayout>
