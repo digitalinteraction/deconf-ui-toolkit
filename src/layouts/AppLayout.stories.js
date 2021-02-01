@@ -13,9 +13,6 @@ const user = {
   user_lang: 'en'
 };
 
-const s = createSettings();
-console.log(s);
-
 const Template = (args, { argTypes }) => ({
   components: { AppLayout, Content: createContent() },
   props: ['isLoggedIn'],
