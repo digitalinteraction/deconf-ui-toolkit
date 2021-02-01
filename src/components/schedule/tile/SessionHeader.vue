@@ -3,13 +3,13 @@
     <div class="icon-text">
       <span class="icon">
         <FontAwesomeIcon
-          :icon="[sessionHeader.iconGroup, sessionHeader.iconName]"
+          :icon="[sessionType.iconGroup, sessionType.iconName]"
           size="lg"
           fixed-width
         />
       </span>
       <span>
-        {{ sessionHeader.title.en }}
+        {{ sessionType.title.en }}
       </span>
     </div>
   </div>
@@ -23,7 +23,7 @@ import { SessionType } from '@/types';
 export default Vue.extend({
   components: { FontAwesomeIcon },
   props: {
-    SessionType: { type: Object as PropType<SessionType>, required: true }
+    sessionType: { type: Object as PropType<SessionType>, required: true }
   }
 });
 </script>
