@@ -1,5 +1,9 @@
 <template>
-  <router-link class="button is-small" :class="classes" :to="sessionRoute">
+  <router-link
+    class="joinSession button is-small"
+    :class="classes"
+    :to="sessionRoute"
+  >
     <div class="icon-text">
       <span class="icon rtl-only">
         <FontAwesomeIcon :icon="['fas', 'arrow-left']" />
@@ -48,8 +52,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@include touch {
-  .button {
+@include mobile {
+  .joinSession.button {
     width: 100%;
   }
 }

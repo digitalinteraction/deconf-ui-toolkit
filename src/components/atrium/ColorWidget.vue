@@ -1,6 +1,6 @@
 <template>
   <component
-    class="atriumWidget"
+    class="colorWidget"
     :class="classes"
     :is="rootComponent"
     v-bind="extraArgs"
@@ -57,9 +57,8 @@ export default Vue.extend<{}, {}, {}, Props>({
 </script>
 
 <style lang="scss" scoped>
-.atriumWidget {
+.colorWidget {
   display: block;
-  margin-bottom: 1.5rem;
   border-radius: $radius;
   box-shadow: $box-shadow;
   padding: 1.25rem;
@@ -82,7 +81,7 @@ export default Vue.extend<{}, {}, {}, Props>({
   }
 
   &.is-primary {
-    background-color: royalblue;
+    background-color: $primary;
     &.is-hoverable:hover {
       background-color: darken(royalblue, 7%);
       box-shadow: none;
@@ -94,7 +93,7 @@ export default Vue.extend<{}, {}, {}, Props>({
   }
 
   &.is-secondary {
-    background-color: rebeccapurple;
+    background-color: $secondary;
     &.is-hoverable:hover {
       background-color: darken(rebeccapurple, 7%);
       box-shadow: none;
@@ -108,14 +107,18 @@ export default Vue.extend<{}, {}, {}, Props>({
   &.is-hoverable {
     cursor: pointer;
   }
-}
 
-.title {
-  font-size: 1.8em;
-  font-weight: bold;
-}
-.subtitle {
-  font-size: 1em;
-  font-weight: bold;
+  &:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.8em;
+    font-weight: bold;
+  }
+  .subtitle {
+    font-size: 1em;
+    font-weight: bold;
+  }
 }
 </style>

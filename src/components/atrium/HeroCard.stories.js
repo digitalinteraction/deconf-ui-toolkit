@@ -1,12 +1,12 @@
-import AtriumHero from './AtriumHero.vue';
+import HeroCard from './HeroCard.vue';
 import { createTemplate } from '@/utils';
 
 export default {
-  title: 'Atrium/AtriumHero',
-  component: AtriumHero
+  title: 'Atrium/HeroCard',
+  component: HeroCard
 };
 
-const Template = createTemplate({ AtriumHero });
+const Template = createTemplate({ HeroCard });
 
 export const Default = Template.bind({});
 Default.args = {

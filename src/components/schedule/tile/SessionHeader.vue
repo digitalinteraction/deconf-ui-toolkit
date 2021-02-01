@@ -1,15 +1,15 @@
 <template>
-  <div class="sessionType">
+  <div class="sessionHeader">
     <div class="icon-text">
       <span class="icon">
         <FontAwesomeIcon
-          :icon="[sessionType.iconGroup, sessionType.iconName]"
+          :icon="[sessionHeader.iconGroup, sessionHeader.iconName]"
           size="lg"
           fixed-width
         />
       </span>
       <span>
-        {{ sessionType.title.en }}
+        {{ sessionHeader.title.en }}
       </span>
     </div>
   </div>
@@ -23,13 +23,13 @@ import { SessionType } from '@/types';
 export default Vue.extend({
   components: { FontAwesomeIcon },
   props: {
-    sessionType: { type: Object as PropType<SessionType>, required: true }
+    SessionType: { type: Object as PropType<SessionType>, required: true }
   }
 });
 </script>
 
 <style lang="scss" scoped>
-.sessionType {
+.sessionHeader {
   color: $grey;
   font-size: 0.9em;
   font-weight: $weight-semibold;

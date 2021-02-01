@@ -1,7 +1,7 @@
 <template>
   <div class="sessionTile">
     <div class="sessionTile-header">
-      <SessionType :session-type="sessionType" />
+      <SessionHeader :session-type="sessionType" />
     </div>
     <div class="sessionTile-info">
       <h2 class="sessionTile-title">
@@ -34,14 +34,14 @@ import Vue, { PropType } from 'vue';
 import { Session, SessionSlot, SessionType, Speaker } from '@/types';
 import { Routes } from '@/constants';
 
-import SessionTypeComp from './SessionType.vue';
+import SessionHeader from './SessionHeader.vue';
 import SessionAttributes from './SessionAttributes.vue';
 import SpeakerGrid from '../SpeakerGrid.vue';
 import SessionActions from './SessionActions.vue';
 
 export default Vue.extend({
   components: {
-    SessionType: SessionTypeComp,
+    SessionHeader,
     SessionAttributes,
     SpeakerGrid,
     SessionActions

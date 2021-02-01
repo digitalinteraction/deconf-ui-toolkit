@@ -1,12 +1,12 @@
-import SessionType from './SessionType.vue';
+import SessionHeader from './SessionHeader.vue';
 import { createTemplate } from '@/utils';
 
 export default {
-  title: 'Schedule/SessionType',
-  component: SessionType
+  title: 'Schedule/SessionHeader',
+  component: SessionHeader
 };
 
-const Template = createTemplate({ SessionType });
+const Template = createTemplate({ SessionHeader });
 
 export const Default = Template.bind({});
 Default.args = {

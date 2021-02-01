@@ -22,14 +22,18 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .boxContent {
   background-color: white;
-  border-radius: $radius;
+
   padding: 2.5rem;
-}
 
-.title {
-}
+  @include desktop {
+    border-radius: $radius;
+  }
 
-.content {
-  margin-bottom: $gap;
+  .title {
+  }
+
+  .content {
+    margin-bottom: $gap;
+  }
 }
 </style>

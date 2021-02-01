@@ -1,6 +1,6 @@
 {
   "deconf": {
-    "appWrapper": {
+    "appLayout": {
       "atrium": "Atrium",
       "whatsOn": "Whats On",
       "schedule": "Schedule",

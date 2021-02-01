@@ -11,7 +11,7 @@
     >
       <component :is="item.icon" class="sideTabs-tabIcon" />
       <span class="sideTabs-tabText">
-        {{ item.enabled ? item.title : $t('deconf.appWrapper.unavailable') }}
+        {{ item.enabled ? item.title : $t('deconf.appLayout.unavailable') }}
       </span>
     </router-link>
   </div>
@@ -29,7 +29,7 @@ interface Route {
 
 //
 // I18n keys
-// - deconf.appWrapper.unavailable
+// - deconf.appLayout.unavailable
 //
 export default Vue.extend({
   props: {
@@ -48,7 +48,7 @@ export default Vue.extend({
   // top: 0;
   // bottom: 0;
   width: $tabbar-width;
-  // z-index: $z-appwrapper-tabbar;
+  // z-index: $z-appLayout-tabbar;
 
   padding-top: calc(#{$navbar-height} + 1em);
 

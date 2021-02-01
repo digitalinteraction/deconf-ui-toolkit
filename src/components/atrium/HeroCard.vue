@@ -1,8 +1,10 @@
 <template>
-  <div class="hero" :style="style">
-    <div class="hero-body">
-      <h1 class="title">{{ title }}</h1>
-      <p class="subtitle">{{ subtitle }}</p>
+  <div class="heroCard" :style="style">
+    <div class="hero">
+      <div class="hero-body">
+        <h1 class="title">{{ title }}</h1>
+        <p class="subtitle">{{ subtitle }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,7 +27,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.hero {
+.heroCard {
   background-size: cover;
   background-position: bottom;
   border-bottom: 1px solid $border;
@@ -37,22 +39,22 @@ export default Vue.extend({
     border-radius: 0;
     margin-bottom: 0;
   }
-}
 
-.hero-body {
-  padding: 0 0 10rem 0;
-}
-
-.title {
-  color: $black;
-  font-weight: bold;
-  @include tablet {
-    font-size: $size-2;
+  .hero-body {
+    padding: 0 0 10rem 0;
   }
-}
 
-.subtitle {
-  color: $black;
-  font-weight: bold;
+  .title {
+    color: $black;
+    font-weight: bold;
+    @include tablet {
+      font-size: $size-2;
+    }
+  }
+
+  .subtitle {
+    color: $black;
+    font-weight: bold;
+  }
 }
 </style>

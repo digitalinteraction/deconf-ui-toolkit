@@ -17,7 +17,7 @@ export function createText(index = 0) {
 export function createContent() {
   return Vue.extend({
     template: `
-      <div>${paragraphs.map(text => `<p>${text}</p>`)}</div>
+      <div>${paragraphs.map(text => `<p>${text}</p>`).join('')}</div>
     `
   });
 }
