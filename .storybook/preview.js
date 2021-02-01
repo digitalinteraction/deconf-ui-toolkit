@@ -35,13 +35,12 @@ function templated(template, params) {
   return output;
 }
 function counted(template, count) {
-  const [none, singlur, plural, multi] = template.split('|').map(s => s.trim());
+  const [none, singlur, plural] = template.split('|').map(s => s.trim());
 
   const params = { count, n: count };
   if (count === 0) return templated(none, params);
   if (count === 1) return templated(singlur, params);
-  if (multi) return templated(multi, { count, n: count });
-  return plural;
+  return templated(plural, { count, n: count });
 }
 
 //

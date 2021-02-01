@@ -16,7 +16,10 @@
       "languageWarning": "Please note this session is only available in {0}",
       "openTeams": "Open Teams meeting",
       "openZoom": "Open Zoom meeting",
-      "noEmbed": "Something went wrong, there is nothing to show here"
+      "noEmbed": "Something went wrong, there is nothing to show here",
+      "liveNow": "Live Now",
+      "sessionOver": "Session over",
+      "interest": "no interest | someone is interest | {n} people are interested"
     },
     "general": {
       "hours": "hours | hour | hours",

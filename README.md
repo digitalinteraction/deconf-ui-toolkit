@@ -8,33 +8,39 @@
 
 ### Vue Components
 
-- **atrium**
-  - HeroCard
-  - ColorWidget
-- **app**
-  - NavigationBar
-  - SideTabs
-- **schedule**
-  - **actions**
-    - AddToCalendar
-    - JoinSession
-    - RegisterInterest
-  - **tile**
-    - SessionActions
-    - SessionAttributes
-    - SessionTile
-    - SessionHeader
-  - ScheduleBlock
-  - ScheduleHeader
-  - SpeakerGrid
-  - TimeSlot
-- **session**
-  - Countdown
-  - IframeEmbed
-  - LanguageWarning
-  - SessionEmbed
-  - SessionLink
-  - SidebarItem
+- **components**
+  - BackButton
+  - BoxContent
+  - SponsorGrid
+  - SponsorRow
+  - ToggleContents \*needs stories
+  - **atrium**
+    - HeroCard
+    - ColorWidget
+  - **app**
+    - NavigationBar
+    - SideTabs
+  - **schedule**
+    - **actions**
+      - AddToCalendar
+      - JoinSession
+      - RegisterInterest
+    - **tile**
+      - SessionActions
+      - SessionAttributes
+      - SessionTile
+      - SessionHeader
+    - ScheduleBlock
+    - ScheduleHeader
+    - SpeakerGrid
+    - TimeSlot
+  - **session**
+    - Countdown
+    - IframeEmbed
+    - LanguageWarning
+    - SessionEmbed
+    - SessionLink
+    - SidebarItem
 - **icons**
   - AtriumIcon
   - CoffeeChatIcon
@@ -47,8 +53,6 @@
 
 TODO
 
-- MarkdownContent
-- SessionLayout
 - LanguageControl
 
 ### Sass Styles
@@ -100,6 +104,9 @@ strings set (they are all namespaced under `deconf`):
 | `deconf.session.openTeams`       | The text to open a teams link                              |
 | `deconf.session.openZoom`        | The text to open a zoom link                               |
 | `deconf.session.noEmbed`         | The warning when no embedable option is available          |
+| `deconf.session.liveNow`         | State text when a session is live                          |
+| `deconf.session.sessionOver`     | State text when a session is in the past                   |
+| `deconf.session.interest`        | State text to show registrations (^c)                      |
 | `deconf.general.hours`           | Pluralise hours (^c)                                       |
 | `deconf.general.minutes`         | Pluralise minutes (^c)                                     |
 | `deconf.general.seconds`         | Pluralise seconds (^c)                                     |
@@ -124,5 +131,13 @@ These routes need to be implemented
 | constant | value | page |
 | -------- | ----- | ---- |
 
+
+> WIP
+
+### FontAwesomeIcon
+
+At least these fa icons are needed:
+
+- ...
 
 > WIP

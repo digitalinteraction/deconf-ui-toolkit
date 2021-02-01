@@ -1,16 +1,14 @@
 <template>
-  <router-link class="backButton button is-text" active-class="" :to="to">
-    <div class="icon-text">
-      <span class="icon ltr-only">
-        <FontAwesomeIcon :icon="['fas', 'arrow-left']" />
-      </span>
-      <span class="icon rtl-only">
-        <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
-      </span>
-      <span>
-        <slot />
-      </span>
-    </div>
+  <router-link class="backButton button is-white" active-class="" :to="to">
+    <span class="icon ltr-only">
+      <FontAwesomeIcon :icon="['fas', 'arrow-left']" />
+    </span>
+    <span class="icon rtl-only">
+      <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
+    </span>
+    <span>
+      <slot />
+    </span>
   </router-link>
 </template>
 
