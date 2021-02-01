@@ -47,8 +47,6 @@
 
 TODO
 
-- StaticLayout
-- BackButton
 - MarkdownContent
 - SessionLayout
 - LanguageControl
