@@ -106,3 +106,21 @@ export interface Speaker {
   bio: Localised;
   headshot: string;
 }
+
+//
+// Previously in components/SponsorGrid but moved out for building TypeScript
+// - https://github.com/vuejs/vue-loader/issues/1281
+//
+export type SponsorSize = 'large' | 'medium' | 'regular' | 'small';
+
+export interface SponsorGroup {
+  title: string;
+  size: SponsorSize;
+  sponsors: Sponsor[];
+}
+
+export interface Sponsor {
+  title: string;
+  image: string;
+  href?: string;
+}

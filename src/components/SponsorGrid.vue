@@ -11,17 +11,10 @@
 </template>
 
 <script lang="ts">
+import { SponsorGroup } from '@/types';
 import Vue, { PropType } from 'vue';
 
-import SponsorRow, { Sponsor } from './SponsorRow.vue';
-
-export type SponsorSize = 'large' | 'medium' | 'regular' | 'small';
-
-export interface SponsorGroup {
-  title: string;
-  size: SponsorSize;
-  sponsors: Sponsor[];
-}
+import SponsorRow from './SponsorRow.vue';
 
 export default Vue.extend({
   components: { SponsorRow },
@@ -31,8 +24,10 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
-.sponsorRow:not(:last-child) {
-  margin-bottom: 3em;
+<style lang="scss">
+.sponsorGrid {
+  .sponsorRow:not(:last-child) {
+    margin-bottom: 3em;
+  }
 }
 </style>

@@ -15,13 +15,8 @@
 </template>
 
 <script lang="ts">
+import { Sponsor } from '@/types';
 import Vue, { PropType } from 'vue';
-
-export interface Sponsor {
-  title: string;
-  image: string;
-  href?: string;
-}
 
 const sizes = ['large', 'medium', 'regular', 'small'];
 
@@ -39,7 +34,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .sponsorRow {
   // is-regular is the default
   img {
