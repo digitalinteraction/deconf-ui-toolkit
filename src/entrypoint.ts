@@ -1,6 +1,6 @@
 import _Vue, { PluginFunction } from 'vue';
 
-import * as components from '@/components/index';
+import * as components from './components/index';
 
 interface InstallFunction extends PluginFunction<{}> {
   insalled?: boolean;
@@ -41,5 +41,5 @@ if (process.env.ES_BUILD === 'false') {
 export default plugin;
 
 // Export components for clients
-export * from '@/components';
-export * from '@/types';
+export * from './components';
+export * from './types';
