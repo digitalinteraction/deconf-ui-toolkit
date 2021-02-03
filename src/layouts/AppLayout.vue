@@ -1,5 +1,5 @@
 <template>
-  <Vue100vh class="appLayout" :css="{ height: '100rvh' }">
+  <FullHeight class="appLayout">
     <div class="appLayout-header">
       <NavigationBar
         :app-settings="appSettings"
@@ -19,13 +19,12 @@
     <div class="appLayout-page">
       <slot name="main" />
     </div>
-  </Vue100vh>
+  </FullHeight>
 </template>
 
 <script lang="ts">
 import { AppRoute, AppSettings, User } from '@/types';
 import Vue, { PropType } from 'vue';
-import Vue100vh from 'vue-100vh';
 
 import AtriumIcon from '@/icons/AtriumIcon.vue';
 import CoffeeChatIcon from '@/icons/CoffeeChatIcon.vue';
@@ -33,6 +32,7 @@ import HelpDeskIcon from '@/icons/HelpDeskIcon.vue';
 import ScheduleIcon from '@/icons/ScheduleIcon.vue';
 import WhatsOnIcon from '@/icons/WhatsOnIcon.vue';
 
+import FullHeight from '@/components/FullHeight.vue';
 import NavigationBar from '@/components/app/NavigationBar.vue';
 import SideTabs from '@/components/app/SideTabs.vue';
 
@@ -44,8 +44,6 @@ function appRoutes(
   t: (key: string) => string
 ) {
   const routes: AppRoute[] = [];
-
-  console.log({ user, settings });
 
   if (settings.atrium.visible) {
     routes.push({
@@ -107,7 +105,7 @@ function appRoutes(
 
 export default Vue.extend({
   name: 'AppLayout',
-  components: { Vue100vh, NavigationBar, SideTabs },
+  components: { FullHeight, NavigationBar, SideTabs },
   props: {
     appSettings: { type: Object as PropType<AppSettings>, required: true },
     user: { type: Object as PropType<User>, default: null }
@@ -133,8 +131,9 @@ export default Vue.extend({
 <style lang="scss">
 .appLayout {
   // height fall back for IE
-  min-height: calc(100% - #{$navbar-height});
-  min-height: calc(100vh - #{$navbar-height});
+  // TODO: rollup doesn't like this!?
+  // height: calc(100% - #{$navbar-height});
+  // height: calc(100vh - #{$navbar-height});
 }
 
 .appLayout-page {
@@ -166,6 +165,15 @@ export default Vue.extend({
 }
 
 @include touch {
+  .appLayout {
+    overflow: scroll;
+  }
+  .appLayout-header {
+    position: sticky;
+    top: 0;
+    background: $white;
+    z-index: $z-appwrapper-navbar;
+  }
   .appLayout-tabs {
     display: none;
   }
