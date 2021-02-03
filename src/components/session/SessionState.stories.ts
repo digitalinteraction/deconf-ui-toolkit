@@ -1,13 +1,18 @@
 import { Meta, Story } from '@storybook/vue';
 import SessionState from './SessionState.vue';
-import { createTemplate } from '@/story-utils';
 
 export default {
   title: 'Session/SessionState',
   component: SessionState
 } as Meta;
 
-const Template: Story = createTemplate({ SessionState });
+const Template: Story = (args, { argTypes }) => ({
+  components: { SessionState },
+  props: ['attendance', 'slotState'],
+  template: `
+    <SessionState :attendance="attendance" :slot-state="slotState" />
+  `
+});
 
 const backgrounds = {
   default: 'off-white',

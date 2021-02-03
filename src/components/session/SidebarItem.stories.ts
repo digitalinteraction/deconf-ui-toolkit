@@ -7,7 +7,6 @@ export default {
   component: SidebarItem
 } as Meta;
 
-// const Template = createTemplate({ SidebarItem });
 const Template: Story = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SidebarItem },

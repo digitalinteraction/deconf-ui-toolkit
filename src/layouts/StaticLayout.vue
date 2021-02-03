@@ -6,7 +6,7 @@
           <div class="staticLayout-backButton">
             <slot name="backButton" />
           </div>
-          <div class="staticLayout-languageControl">
+          <div class="staticLayout-languageControl" v-if="showLanguageControl">
             <!-- TODO -->
           </div>
         </div>
@@ -22,13 +22,20 @@
 <script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
-  // ...
+  name: 'StaticLayout',
+  computed: {
+    showLanguageControl(): boolean {
+      return false;
+    }
+  }
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$staticLayout-background: $background !default;
+
 .staticLayout {
-  background-color: $background;
+  background-color: $staticLayout-background;
 }
 .staticLayout-header {
   display: flex;

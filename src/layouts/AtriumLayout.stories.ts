@@ -11,7 +11,6 @@ export default {
   component: AtriumLayout
 } as Meta;
 
-// const Template = createTemplate({ AtriumLayout });
 const Template: Story = (args, { argTypes }) => ({
   components: { AtriumLayout, HeroCard, BoxContent, ColorWidget, SponsorGrid },
   data: () => ({

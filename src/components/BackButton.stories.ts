@@ -10,9 +10,7 @@ const Template: Story = (args, { argTypes }) => ({
   components: { BackButton },
   props: ['text'],
   template: `
-    <div>
-      <BackButton to="/">{{ text }}</BackButton>
-    </div>
+    <BackButton to="/">{{ text }}</BackButton>
   `
 });
 

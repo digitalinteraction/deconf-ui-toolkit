@@ -19,9 +19,8 @@
 <script lang="ts">
 import Vue from 'vue';
 
-// TODO: needs a story
-
 export default Vue.extend({
+  name: 'ToggleContents',
   data() {
     return {
       showContents: false
@@ -32,7 +31,6 @@ export default Vue.extend({
     showButton: { type: String, required: true },
     hideButton: { type: String, required: true }
   },
-
   computed: {
     toggleText(): string {
       return this.showContents ? this.hideButton : this.showButton;
@@ -45,9 +43,12 @@ export default Vue.extend({
   }
 });
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+$toggleContents-background: #f4f4f4 !default;
+$toggleContents-color: $primary !default;
+
 .toggleContents {
-  background-color: #f4f4f4;
+  background-color: $toggleContents-background;
   border-radius: $radius;
 }
 .toggleContents-header {
@@ -58,7 +59,7 @@ export default Vue.extend({
   text-align: left;
 }
 .toggleContents-title {
-  color: $primary;
+  color: $toggleContents-color;
   flex: 1;
   font-size: 0.9em;
   font-weight: $weight-bold;
@@ -66,5 +67,19 @@ export default Vue.extend({
 }
 .toggleContents-contents {
   padding: 20px;
+}
+
+@include mobile {
+  .toggleContents-header {
+    flex-wrap: wrap;
+  }
+  .toggleContents-header .button {
+    width: 100%;
+  }
+  .toggleContents-header .toggleContents-title {
+    width: 100%;
+    margin: 0.5em 0;
+    text-align: center;
+  }
 }
 </style>

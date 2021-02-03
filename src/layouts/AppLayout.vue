@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { AppRoute, AppSettings, User } from '@/types';
-import Vue, { Component } from 'vue';
+import Vue, { PropType } from 'vue';
 import Vue100vh from 'vue-100vh';
 
 import AtriumIcon from '@/icons/AtriumIcon.vue';
@@ -95,14 +95,6 @@ function appRoutes(
   return routes;
 }
 
-interface Props {
-  appSettings: AppSettings;
-  user: User | null;
-  // showPage: boolean;
-  // appBrand: HeaderBrand;
-  // ownerBrand: HeaderBrand | null;
-}
-
 //
 // I18n keys
 // - deconf.appLayout.atrium
@@ -113,14 +105,12 @@ interface Props {
 // - deconf.appLayout.unavailable
 //
 
-export default Vue.extend<{}, {}, {}, Props>({
+export default Vue.extend({
+  name: 'AppLayout',
   components: { Vue100vh, NavigationBar, SideTabs },
   props: {
-    appSettings: { type: Object, required: true },
-    user: { type: Object, default: null }
-    // showPage: { type: Boolean, required: true },
-    // appBrand: { type: Object, required: true },
-    // ownerBrand: { type: Object, default: null }
+    appSettings: { type: Object as PropType<AppSettings>, required: true },
+    user: { type: Object as PropType<User>, default: null }
   },
   computed: {
     appRoutes(): AppRoute[] {
@@ -140,15 +130,11 @@ export default Vue.extend<{}, {}, {}, Props>({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .appLayout {
-  // fall back to 100% on IE
+  // height fall back for IE
   min-height: calc(100% - #{$navbar-height});
   min-height: calc(100vh - #{$navbar-height});
-
-  // position: relative;
-  // display: flex;
-  // flex-direction: column;
 }
 
 .appLayout-page {
@@ -176,7 +162,6 @@ export default Vue.extend<{}, {}, {}, Props>({
   .appLayout-page {
     grid-column: 2 / 2;
     grid-row: 2 / 3;
-    // display: flex;
   }
 }
 

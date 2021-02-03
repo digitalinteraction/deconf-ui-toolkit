@@ -24,6 +24,7 @@ import copy from 'copy-to-clipboard';
 // - deconf.general.copied
 //
 export default Vue.extend({
+  name: 'SessionLink',
   data() {
     return { didCopy: false };
   },
@@ -55,30 +56,35 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$sessionLink-background: $link !default;
+$sessionLink-color: $white !default;
+$sessionLink-radius: $radius-large !default;
+$sessionLink-linkFont: $family-monospace !default;
+
 .sessionLink {
 }
 .sessionLink-title {
-  border-radius: $radius-large $radius-large 0 0;
-  background-color: $link;
-  color: $white;
+  border-radius: $sessionLink-radius $sessionLink-radius 0 0;
+  background-color: $sessionLink-background;
+  color: $sessionLink-color;
   font-size: 1.3em;
   padding: 0.5rem;
   text-align: center;
   font-weight: $weight-bold;
 }
 .sessionLink-link {
-  border-left: 1px solid $link;
-  border-right: 1px solid $link;
-  border-bottom: 1px solid $link;
-  border-radius: 0 0 $radius-large $radius-large;
+  border-left: 1px solid $sessionLink-background;
+  border-right: 1px solid $sessionLink-background;
+  border-bottom: 1px solid $sessionLink-background;
+  border-radius: 0 0 $sessionLink-radius $sessionLink-radius;
   padding: 0.5rem;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  font-family: $family-monospace;
+  font-family: $sessionLink-linkFont;
 }
 .sessionLink-raw {
   text-decoration: underline;

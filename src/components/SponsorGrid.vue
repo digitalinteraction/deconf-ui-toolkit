@@ -17,6 +17,7 @@ import Vue, { PropType } from 'vue';
 import SponsorRow from './SponsorRow.vue';
 
 export default Vue.extend({
+  name: 'SponsorGrid',
   components: { SponsorRow },
   props: {
     groups: { type: Array as PropType<SponsorGroup[]>, required: true }
@@ -25,9 +26,11 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+$sponsorGrid-spacing: 3rem !default;
+
 .sponsorGrid {
   .sponsorRow:not(:last-child) {
-    margin-bottom: 3em;
+    margin-bottom: $sponsorGrid-spacing;
   }
 }
 </style>

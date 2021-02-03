@@ -12,13 +12,14 @@
 <script lang="ts">
 import Vue from 'vue';
 export default Vue.extend({
+  name: 'SidebarItem',
   props: {
     title: { type: String, default: null }
   }
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .sidebarItem {
   &:not(:last-child) {
     margin-bottom: 2em;
@@ -28,7 +29,7 @@ export default Vue.extend({
   font-size: 1.1em;
   font-weight: $weight-bold;
   text-transform: uppercase;
-  color: $grey-dark;
+  color: $text-strong;
 }
 .sidebarItem-content {
 }

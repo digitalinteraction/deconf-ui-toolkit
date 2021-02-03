@@ -1,5 +1,7 @@
 export * from './app/index';
 export * from './atrium/index';
+export * from './schedule/index';
+export * from './session/index';
 
 export { default as BackButton } from './BackButton.vue';
 export { default as BoxContent } from './BoxContent.vue';

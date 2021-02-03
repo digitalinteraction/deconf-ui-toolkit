@@ -1,8 +1,12 @@
 <template>
   <div class="boxContent">
     <div class="container is-small">
-      <h2 class="title">{{ title }}</h2>
-      <component v-if="content" :is="content" class="content" />
+      <h2 class="boxContent-title">{{ title }}</h2>
+      <component
+        v-if="content"
+        :is="content"
+        class="boxContent-content content"
+      />
       <slot name="actions" />
     </div>
   </div>
@@ -12,6 +16,7 @@
 import Vue from 'vue';
 
 export default Vue.extend({
+  name: 'BoxContent',
   props: {
     title: { type: String, required: true },
     content: { type: [Object, Function], default: null }
@@ -19,21 +24,20 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .boxContent {
-  background-color: white;
-
+  background-color: $white;
   padding: 2.5rem;
 
   @include desktop {
     border-radius: $radius;
   }
 
-  .title {
-  }
-
-  .content {
-    margin-bottom: $gap;
+  .boxContent-title {
+    font-weight: $weight-bold;
+    color: $text-strong;
+    font-size: $size-3;
+    margin-bottom: $block-spacing;
   }
 }
 </style>

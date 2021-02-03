@@ -142,8 +142,8 @@ At least these fa icons are needed:
 | -------------------------- | ---------------------------------- |
 | `fas user`                 | NavigationBar                      |
 | `fas calendar-plus`        | AddToCalendar                      |
-| `fas arrow-left`           | JoinSession                        |
-| `fas arrow-right`          | JoinSession                        |
+| `fas arrow-left`           | JoinSession, BackButton            |
+| `fas arrow-right`          | JoinSession, BackButton            |
 | `fas check`                | RegisterInterest                   |
 | `fas user-plus`            | RegisterInterest                   |
 | `fas globe`                | SessionAttributes, LanguageWarning |
@@ -151,6 +151,9 @@ At least these fa icons are needed:
 | `fas long-arrow-alt-right` | TimeSlot                           |
 | `fas long-arrow-alt-left`  | TimeSlot                           |
 | `fas video`                | SessionEmbed                       |
+| `fas circle`               | SessionState                       |
+| `fas exclamation-triangle` | SessionState                       |
+| `fas fire`                 | SessionState                       |
 
 > WIP
 
@@ -174,3 +177,19 @@ are also used, in particular:
 ---
 
 https://www.freecodecamp.org/news/how-to-create-and-publish-a-vue-component-library/
+
+---
+
+components are writen in a specific way:
+
+- MaintainableCss class naming (TODO: link here)
+- Global scss (no scoped)
+  - global variables with !default for overrides
+  - bulma variables where available
+- only default exports from `.vue` files
+- specific import filenames where not ts/js
+- "story" snippet for setting up stories
+- `@/story-utils` for util functions in stories
+- prefer verbosity in stories so they are self-enclosed
+
+> WIP

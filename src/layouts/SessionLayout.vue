@@ -26,12 +26,16 @@
 <script lang="ts">
 import Vue from 'vue';
 
-export default Vue.extend({});
+export default Vue.extend({
+  name: 'SessionLayout'
+});
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$sessionLayout-background: $background !default;
+
 .sessionLayout {
-  background: $background;
+  background: $sessionLayout-background;
 }
 .sessionLayout-header {
   margin-bottom: 1.5rem;

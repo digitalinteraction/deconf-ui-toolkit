@@ -30,9 +30,9 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { Session, SessionSlot, SessionType, Speaker } from '@/types';
+import { Session, SessionSlot, SessionType, SlotState, Speaker } from '@/types';
 import { Routes } from '@/constants';
-import { getSlotState, SlotState } from '@/slot-time';
+import { getSlotState } from '@/utils';
 
 import SessionHeader from './SessionHeader.vue';
 import SessionAttributes from './SessionAttributes.vue';

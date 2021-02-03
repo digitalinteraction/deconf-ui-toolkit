@@ -1,14 +1,17 @@
 /* eslint-disable @typescript-eslint/camelcase */
+
 import { Meta, Story } from '@storybook/vue';
 import AppLayout from './AppLayout.vue';
 import { createSettings, createContent } from '@/story-utils';
+import { User } from '@/types';
 
 export default {
   title: 'Layout/AppLayout',
   component: AppLayout
 } as Meta;
 
-const user = {
+const user: User = {
+  kind: 'auth',
   sub: 1,
   user_roles: ['attendee', 'interpreter'],
   user_lang: 'en'

@@ -29,7 +29,8 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { getSlotState, SlotState } from '@/slot-time';
+import { getSlotState } from '@/utils';
+import { SlotState } from '@/types';
 
 //
 // I18n used:

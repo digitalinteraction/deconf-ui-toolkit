@@ -56,6 +56,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 //
 
 export default Vue.extend({
+  name: 'SessionState',
   components: { FontAwesomeIcon },
   props: {
     attendance: { type: Number, default: null },
@@ -77,7 +78,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .slotState {
   font-size: 0.8em;
   font-weight: $weight-bold;

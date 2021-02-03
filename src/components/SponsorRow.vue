@@ -8,7 +8,12 @@
         :key="sponsor.title"
         :href="sponsor.href || '#'"
       >
-        <img :src="sponsor.image" :alt="sponsor.title" :title="sponsor.title" />
+        <img
+          class="sponsorRow-image"
+          :src="sponsor.image"
+          :alt="sponsor.title"
+          :title="sponsor.title"
+        />
       </a>
     </div>
   </div>
@@ -21,6 +26,7 @@ import Vue, { PropType } from 'vue';
 const sizes = ['large', 'medium', 'regular', 'small'];
 
 export default Vue.extend({
+  name: 'SponsorRow',
   props: {
     title: { type: String, required: true },
     size: { type: String, required: true, validator: v => sizes.includes(v) },
@@ -35,25 +41,30 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+$sponsorRow-regularHeight: 36px !default;
+$sponsorRow-largeHeight: 54px !default;
+$sponsorRow-mediumHeight: 42px !default;
+$sponsorRow-smallHeight: 28px !default;
+
 .sponsorRow {
   // is-regular is the default
-  img {
-    height: 36px;
+  .sponsorRow-image {
+    height: $sponsorRow-regularHeight;
   }
 
-  &.is-large .sponsorRow-sponsor img {
-    height: 54px;
+  &.is-large .sponsorRow-sponsor .sponsorRow-image {
+    height: $sponsorRow-largeHeight;
   }
-  &.is-medium .sponsorRow-sponsor img {
-    height: 42px;
+  &.is-medium .sponsorRow-sponsor .sponsorRow-image {
+    height: $sponsorRow-mediumHeight;
   }
-  &.is-small .sponsorRow-sponsor img {
-    height: 28px;
+  &.is-small .sponsorRow-sponsor .sponsorRow-image {
+    height: $sponsorRow-smallHeight;
   }
 }
 
 .sponsorRow-title {
-  font-weight: bold;
+  font-weight: $weight-bold;
   font-size: $size-6;
   color: $text-light;
   text-align: center;

@@ -17,14 +17,10 @@ import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export default Vue.extend({
+  name: 'BackButton',
   components: { FontAwesomeIcon },
   props: {
     to: { type: [String, Object], required: true }
   }
 });
 </script>
-
-<style lang="scss" scoped>
-.backButton {
-}
-</style>

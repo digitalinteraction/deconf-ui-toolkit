@@ -1,6 +1,4 @@
-export type SlotState = 'future' | 'soon' | 'present' | 'past';
-
-// TODO: find a better place for this
+import { SlotState } from '@/types';
 
 const oneHour = 60 * 60 * 1000;
 
