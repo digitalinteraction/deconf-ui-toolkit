@@ -1,4 +1,5 @@
 const path = require('path');
+const applySassExtract = require('../sass-extractor');
 
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -24,6 +25,10 @@ module.exports = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, '../src')
     };
+
+    if (configType === 'PRODUCTION') {
+      applySassExtract(config);
+    }
 
     return config;
   }
