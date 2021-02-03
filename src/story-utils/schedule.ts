@@ -1,8 +1,10 @@
-export function createSpeaker(id, name, role) {
+import { Session, Speaker } from '@/types';
+
+export function createSpeaker(id: string, name: string, role: string): Speaker {
   return {
     id: id,
     name: name,
-    role: role,
+    role: { en: role },
     bio: {
       en: ` Just my luck, no ice. You really think you can fly that thing? Eventually, you do plan to have dinosaurs on your dinosaur tour, right? You really think you can fly that thing? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.`
     },
@@ -12,7 +14,7 @@ export function createSpeaker(id, name, role) {
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-export function createSponsors(n) {
+export function createSponsors(n: number) {
   const s = [];
   for (let i = 0; i < n; i++) {
     s.push({
@@ -57,7 +59,12 @@ export function defaultSpeakers() {
   ];
 }
 
-export function createSession(id, title, type, speakers) {
+export function createSession(
+  id: string,
+  title: string,
+  type: string,
+  speakers: string[]
+): Partial<Session> {
   return {
     id: id,
     type: type,
@@ -67,7 +74,7 @@ export function createSession(id, title, type, speakers) {
     content: {
       en: `We gotta burn the rain forest, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.`
     },
-    language: ['EN', 'FR'],
+    hostLanguage: ['EN', 'FR'],
     isRecorded: true,
     speakers: speakers
   };

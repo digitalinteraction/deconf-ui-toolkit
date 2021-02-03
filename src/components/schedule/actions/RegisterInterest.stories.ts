@@ -1,11 +1,12 @@
+import { Meta, Story } from '@storybook/vue';
 import RegisterInterest from './RegisterInterest.vue';
 
 export default {
   title: 'Schedule/RegisterInterest',
   component: RegisterInterest
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { RegisterInterest },
   props: ['isWorking', 'isRegistered'],
   template: `

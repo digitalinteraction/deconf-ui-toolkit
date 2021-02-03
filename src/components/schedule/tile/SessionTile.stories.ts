@@ -1,12 +1,13 @@
+import { Meta, Story } from '@storybook/vue';
 import SessionTile from './SessionTile.vue';
-import { defaultSpeakers, dates, createSession } from '@/utils';
+import { defaultSpeakers, dates, createSession } from '@/story-utils';
 
 export default {
   title: 'Schedule/SessionTile',
   component: SessionTile
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { SessionTile },
   props: ['currentDate', 'sessionSlot'],
   data: () => ({

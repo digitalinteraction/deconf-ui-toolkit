@@ -1,12 +1,13 @@
+import { Meta, Story } from '@storybook/vue';
 import Countdown from './Countdown.vue';
-import { dates } from '@/utils';
+import { dates } from '@/story-utils';
 
 export default {
   title: 'Session/Countdown',
   component: Countdown
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { Countdown },
   props: ['currentDate', 'targetDate'],
   template: `

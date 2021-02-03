@@ -1,3 +1,4 @@
+import { Meta, Story } from '@storybook/vue';
 import SideTabs from './SideTabs.vue';
 
 import AtriumIcon from '@/icons/AtriumIcon.vue';
@@ -9,9 +10,9 @@ import HelpDeskIcon from '@/icons/HelpDeskIcon.vue';
 export default {
   title: 'App/SideTabs',
   component: SideTabs
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { SideTabs },
   props: [],
   data: () => ({

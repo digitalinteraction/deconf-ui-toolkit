@@ -1,11 +1,12 @@
+import { Meta, Story } from '@storybook/vue';
 import IframeEmbed from './IframeEmbed.vue';
 
 export default {
   title: 'Session/IframeEmbed',
   component: IframeEmbed
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { IframeEmbed },
   props: ['src', 'allow'],
   template: `

@@ -1,12 +1,13 @@
+import { Meta, Story } from '@storybook/vue';
 import NavigationBar from './NavigationBar.vue';
-import { createSettings } from '@/utils';
+import { createSettings } from '@/story-utils';
 
 export default {
   title: 'App/NavigationBar',
   component: NavigationBar
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   props: ['isLoggedIn', 'isInterpreter'],
   components: { NavigationBar },
   data: () => ({

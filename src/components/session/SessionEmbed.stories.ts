@@ -1,3 +1,4 @@
+import { Meta, Story } from '@storybook/vue';
 import SessionEmbed from './SessionEmbed.vue';
 
 export default {
@@ -6,9 +7,9 @@ export default {
   decorators: [
     () => ({ template: `<div style="max-width: 720px"><story/></div>` })
   ]
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { SessionEmbed },
   props: ['link'],
   template: `

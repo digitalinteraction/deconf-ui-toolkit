@@ -10,7 +10,7 @@
       </div>
       <div class="speakerGrid-speakerInfo">
         <div class="speakerGrid-name">{{ speaker.name }}</div>
-        <div class="speakerGrid-role">{{ speaker.role }}</div>
+        <div class="speakerGrid-role">{{ speaker.role.en }}</div>
       </div>
     </div>
   </div>

@@ -1,12 +1,13 @@
+import { Meta, Story } from '@storybook/vue';
 import SponsorGrid from './SponsorGrid.vue';
-import { createTemplate, createSponsors } from '@/utils';
+import { createTemplate, createSponsors } from '@/story-utils';
 
 export default {
   title: 'Component/SponsorGrid',
   component: SponsorGrid
-};
+} as Meta;
 
-const Template = createTemplate({ SponsorGrid });
+const Template: Story = createTemplate({ SponsorGrid });
 
 export const Default = Template.bind({});
 Default.args = {

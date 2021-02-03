@@ -1,12 +1,13 @@
+import { Meta, Story } from '@storybook/vue';
 import BoxContent from './BoxContent.vue';
-import { createTemplate, createContent } from '@/utils';
+import { createTemplate, createContent } from '@/story-utils';
 
 export default {
   title: 'Component/BoxContent',
   component: BoxContent
-};
+} as Meta;
 
-const Template = createTemplate({ BoxContent });
+const Template: Story = createTemplate({ BoxContent });
 
 export const Default = Template.bind({});
 Default.args = {

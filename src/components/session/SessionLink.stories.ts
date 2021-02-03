@@ -1,5 +1,6 @@
+import { Meta, Story } from '@storybook/vue';
 import SessionLink from './SessionLink.vue';
-import { createTemplate } from '@/utils';
+import { createTemplate } from '@/story-utils';
 
 export default {
   title: 'Session/SessionLink',
@@ -7,9 +8,9 @@ export default {
   decorators: [
     () => ({ template: `<div style="max-width: 420px"><story/></div>` })
   ]
-};
+} as Meta;
 
-const Template = createTemplate({ SessionLink });
+const Template: Story = createTemplate({ SessionLink });
 
 export const Default = Template.bind({});
 Default.args = {

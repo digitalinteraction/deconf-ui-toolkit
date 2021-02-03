@@ -1,11 +1,12 @@
+import { Meta, Story } from '@storybook/vue';
 import BackButton from './BackButton.vue';
 
 export default {
   title: 'Component/BackButton',
   component: BackButton
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { BackButton },
   props: ['text'],
   template: `

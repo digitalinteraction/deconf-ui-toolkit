@@ -1,11 +1,12 @@
+import { Meta, Story } from '@storybook/vue';
 import ScheduleHeader from './ScheduleHeader.vue';
 
 export default {
   title: 'Schedule/ScheduleHeader',
   component: ScheduleHeader
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { ScheduleHeader },
   template: `

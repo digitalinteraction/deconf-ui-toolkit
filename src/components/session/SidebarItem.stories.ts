@@ -1,13 +1,14 @@
+import { Meta, Story } from '@storybook/vue';
 import SidebarItem from './SidebarItem.vue';
-import { createText } from '@/utils';
+import { createText } from '@/story-utils';
 
 export default {
   title: 'Session/SidebarItem',
   component: SidebarItem
-};
+} as Meta;
 
 // const Template = createTemplate({ SidebarItem });
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
   components: { SidebarItem },
   template: `

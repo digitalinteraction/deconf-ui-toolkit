@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import Vue from 'vue';
 import '@/scss/app.scss';
-import { setupFontawesome } from '@/utils';
+import { setupFontawesome } from '@/story-utils';
 import locales from './locale.json';
 import { get } from 'lodash';
 

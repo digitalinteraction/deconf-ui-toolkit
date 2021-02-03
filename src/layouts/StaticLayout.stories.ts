@@ -1,14 +1,15 @@
+import { Meta, Story } from '@storybook/vue';
 import StaticLayout from './StaticLayout.vue';
-import { createContent } from '@/utils';
+import { createContent } from '@/story-utils';
 
 export default {
   title: 'Layout/StaticLayout',
   component: StaticLayout
-};
+} as Meta;
 
 const Content = createContent();
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { StaticLayout, Content },
   template: `
     <StaticLayout>

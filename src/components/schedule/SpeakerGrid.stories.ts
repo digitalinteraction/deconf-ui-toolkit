@@ -1,10 +1,11 @@
+import { Meta, Story } from '@storybook/vue';
 import SpeakerGrid from './SpeakerGrid.vue';
-import { defaultSpeakers } from '@/utils';
+import { defaultSpeakers } from '@/story-utils';
 
 export default {
   title: 'Schedule/SpeakerGrid',
   component: SpeakerGrid
-};
+} as Meta;
 
 /**
  * A utility to slice/repeat an array upto a count using modulo logic
@@ -21,7 +22,7 @@ function repeatSlice(arr, count) {
   return output;
 }
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { SpeakerGrid },
   props: ['speakerCount'],
   computed: {

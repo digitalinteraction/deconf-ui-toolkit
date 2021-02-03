@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/camelcase */
+import { Meta, Story } from '@storybook/vue';
 import AppLayout from './AppLayout.vue';
-import { createSettings, createContent } from '@/utils';
+import { createSettings, createContent } from '@/story-utils';
 
 export default {
   title: 'Layout/AppLayout',
   component: AppLayout
-};
+} as Meta;
 
 const user = {
   sub: 1,
@@ -13,7 +14,7 @@ const user = {
   user_lang: 'en'
 };
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { AppLayout, Content: createContent() },
   props: ['isLoggedIn'],
   data: () => ({

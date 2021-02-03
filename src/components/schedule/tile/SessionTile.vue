@@ -15,7 +15,7 @@
     </div>
     <div class="sessionTile-attributes">
       <SessionAttributes
-        :languages="session.language"
+        :languages="session.hostLanguage"
         :is-recorded="session.isRecorded"
       />
     </div>

@@ -1,11 +1,12 @@
+import { Meta, Story } from '@storybook/vue';
 import HeroCard from './HeroCard.vue';
 
 export default {
   title: 'Atrium/HeroCard',
   component: HeroCard
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { HeroCard },
   props: ['title', 'subtitle', 'coverImage'],
   template: `

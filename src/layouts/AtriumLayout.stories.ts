@@ -1,17 +1,18 @@
+import { Meta, Story } from '@storybook/vue';
 import AtriumLayout from '@/layouts/AtriumLayout.vue';
 import HeroCard from '@/components/atrium/HeroCard.vue';
 import BoxContent from '@/components/BoxContent.vue';
 import ColorWidget from '@/components/atrium/ColorWidget.vue';
 import SponsorGrid from '@/components/SponsorGrid.vue';
-import { createSponsors, createContent } from '@/utils';
+import { createSponsors, createContent } from '@/story-utils';
 
 export default {
   title: 'Layout/AtriumLayout',
   component: AtriumLayout
-};
+} as Meta;
 
 // const Template = createTemplate({ AtriumLayout });
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { AtriumLayout, HeroCard, BoxContent, ColorWidget, SponsorGrid },
   data: () => ({
     sponsors: [

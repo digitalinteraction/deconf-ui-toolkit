@@ -1,11 +1,12 @@
+import { Meta, Story } from '@storybook/vue';
 import SessionAttributes from './SessionAttributes.vue';
 
 export default {
   title: 'Schedule/SessionAttributes',
   component: SessionAttributes
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { SessionAttributes },
   props: ['languages', 'isRecorded'],
   template: `

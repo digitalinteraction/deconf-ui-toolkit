@@ -1,17 +1,18 @@
+import { Meta, Story } from '@storybook/vue';
 import ScheduleBlock from './ScheduleBlock.vue';
 import {
   createSession,
   defaultSpeakers,
   dates,
   defaultSessionTypes
-} from '@/utils';
+} from '@/story-utils';
 
 export default {
   title: 'Schedule/ScheduleBlock',
   component: ScheduleBlock
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { ScheduleBlock },
   props: ['currentDate', 'sessionSlot'],
   data: () => ({

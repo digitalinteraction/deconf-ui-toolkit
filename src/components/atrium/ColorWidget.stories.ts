@@ -1,11 +1,12 @@
+import { Meta, Story } from '@storybook/vue';
 import ColorWidget from './ColorWidget.vue';
 
 export default {
   title: 'Atrium/ColorWidget',
   component: 'ColorWidget'
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { ColorWidget },
   props: ['kind', 'title', 'subtitle', 'icon', 'href'],
   template: `

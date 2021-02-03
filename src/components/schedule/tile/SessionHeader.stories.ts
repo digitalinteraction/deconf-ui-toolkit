@@ -1,11 +1,12 @@
+import { Meta, Story } from '@storybook/vue';
 import SessionHeader from './SessionHeader.vue';
 
 export default {
   title: 'Schedule/SessionHeader',
   component: SessionHeader
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { SessionHeader },
   props: ['iconGroup', 'iconName', 'title'],
   computed: {

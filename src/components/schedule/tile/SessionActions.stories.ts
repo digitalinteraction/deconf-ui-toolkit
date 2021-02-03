@@ -1,15 +1,16 @@
+import { Meta, Story } from '@storybook/vue';
 import SessionActions from './SessionActions.vue';
 
 export default {
   title: 'Schedule/SessionActions',
   component: SessionActions
-};
+} as Meta;
 
 const session = {
   id: '1'
 };
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { SessionActions },
   props: ['slotState'],
   data: () => ({

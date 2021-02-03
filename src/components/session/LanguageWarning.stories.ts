@@ -1,11 +1,12 @@
+import { Meta, Story } from '@storybook/vue';
 import LanguageWarning from './LanguageWarning.vue';
 
 export default {
   title: 'Session/LanguageWarning',
   component: LanguageWarning
-};
+} as Meta;
 
-const Template = (args, { argTypes }) => ({
+const Template: Story = (args, { argTypes }) => ({
   components: { LanguageWarning },
   props: ['availableLanguages'],
   template: `

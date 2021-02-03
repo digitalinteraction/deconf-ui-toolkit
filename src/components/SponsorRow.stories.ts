@@ -1,12 +1,13 @@
+import { Meta, Story } from '@storybook/vue';
 import SponsorRow from './SponsorRow.vue';
-import { createTemplate, createSponsors } from '@/utils';
+import { createTemplate, createSponsors } from '@/story-utils';
 
 export default {
   title: 'Component/SponsorRow',
   component: SponsorRow
-};
+} as Meta;
 
-const Template = createTemplate({ SponsorRow });
+const Template: Story = createTemplate({ SponsorRow });
 
 export const Regular = Template.bind({});
 Regular.args = {
