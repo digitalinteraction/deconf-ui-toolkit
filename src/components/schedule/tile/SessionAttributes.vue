@@ -23,7 +23,9 @@
           <FontAwesomeIcon :icon="['fas', 'save']" fixed-width />
         </span>
         <span class="is-uppercase">
-          {{ isRecorded ? 'Recorded' : 'Not recorded' }}
+          {{
+            $t(`deconf.session.${isRecorded ? 'isRecorded' : 'isNotRecorded'}`)
+          }}
         </span>
       </span>
     </span>
@@ -34,7 +36,14 @@
 import Vue, { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+//
+// I18n used:
+// - deconf.session.isRecorded
+// - deconf.session.isNotRecorded
+//
+
 export default Vue.extend({
+  name: 'SessionAttributes',
   components: { FontAwesomeIcon },
   props: {
     languages: { type: Array as PropType<string[]>, required: true },
@@ -43,22 +52,22 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$sessionAttributes-color: #999 !default;
+$sessionAttributes-strong: #444 !default;
+
 .sessionAttributes {
-  // display: flex;
+  line-height: 2;
 }
 
 .sessionAttributes-attribute {
-  // font-size: 1em;
-  // padding: 0;
-  // margin: 10px;
-  color: #999;
-  fill: #999;
+  color: $sessionAttributes-color;
+  fill: $sessionAttributes-color;
   font-weight: $weight-bold;
 
   &.is-bold {
-    color: #444;
-    fill: #444;
+    color: $sessionAttributes-strong;
+    fill: $sessionAttributes-strong;
   }
 
   &:not(:last-child) {

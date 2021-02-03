@@ -1,5 +1,4 @@
 import SessionEmbed from './SessionEmbed.vue';
-import { createTemplate } from '@/utils';
 
 export default {
   title: 'Session/SessionEmbed',
@@ -9,7 +8,13 @@ export default {
   ]
 };
 
-const Template = createTemplate({ SessionEmbed });
+const Template = (args, { argTypes }) => ({
+  components: { SessionEmbed },
+  props: ['link'],
+  template: `
+    <SessionEmbed :link="link" />
+  `
+});
 
 export const YoutubeFull = Template.bind({});
 YoutubeFull.args = {

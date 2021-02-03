@@ -49,15 +49,15 @@
           </div>
 
           <!-- 
-          Language control
-        -->
+            Language control
+          -->
           <!-- <div class="navbar-item">
-          <LanguageControl />
-        </div> -->
+            <LanguageControl />
+          </div> -->
 
           <!-- 
-          Interpret mode button
-        -->
+            Interpret mode button
+          -->
           <div v-if="isLoggedIn && isInterpreter" class="navbar-item">
             <router-link
               class="button is-secondary is-small"
@@ -68,8 +68,8 @@
           </div>
 
           <!-- 
-          Profile button
-        -->
+            Profile button
+          -->
           <div v-if="isLoggedIn" class="navbar-item">
             <router-link class="button is-small has-addons" :to="profileRoute">
               <span class="icon">
@@ -80,8 +80,8 @@
           </div>
 
           <!-- 
-          Login Button
-        -->
+            Login Button
+          -->
           <div class="navbar-item" v-if="!isLoggedIn">
             <div class="buttons">
               <router-link class="button is-light is-small" :to="loginRoute">
@@ -103,26 +103,12 @@
 </template>
 
 <script lang="ts">
-import { AppSettings } from '@/types';
-import Vue, { Component } from 'vue';
+import { AppRoute, AppSettings } from '@/types';
+import Vue from 'vue';
 import { Routes } from '@/constants';
 import { Location } from 'vue-router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-// export interface HeaderBrand {
-//   image: string;
-//   title: string;
-//   width: number;
-//   height: number;
-// }
-
-export interface AppRoute {
-  title: string;
-  name: string;
-  enabled: boolean;
-  icon?: Component;
-}
 
 interface Data {
   isShowingMenu: boolean;
@@ -145,6 +131,7 @@ interface Props {
 //
 
 export default Vue.extend<Data, {}, {}, Props>({
+  name: 'NavigationBar',
   components: { FontAwesomeIcon },
   data() {
     return {
@@ -187,7 +174,12 @@ export default Vue.extend<Data, {}, {}, Props>({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$navigationBar-activeColor: $primary !default;
+$navigationBar-activeBackground: $white !default;
+$navigationBar-mobileBackground: $black-ter !default;
+$navigationBar-mobileColor: $white !default;
+
 .navigationBar {
   .navbar {
     &:after {
@@ -211,7 +203,7 @@ export default Vue.extend<Data, {}, {}, Props>({
   @include touch {
     .navbar-menu {
       padding: 0;
-      background: $black;
+      background: $navigationBar-mobileBackground;
       padding: 12px 0;
     }
     .navbar-end {
@@ -219,7 +211,7 @@ export default Vue.extend<Data, {}, {}, Props>({
       padding-top: 12px;
     }
     .navbar-menu .navbar-item {
-      color: $white;
+      color: $navigationBar-mobileColor;
       margin: 0 12px 0;
       border-radius: $radius;
       font-weight: bold;
@@ -229,8 +221,8 @@ export default Vue.extend<Data, {}, {}, Props>({
       }
 
       &.is-active {
-        color: $primary;
-        background-color: $white;
+        color: $navigationBar-activeColor;
+        background-color: $navigationBar-mobileColor;
       }
 
       &[disabled] {
@@ -258,8 +250,8 @@ export default Vue.extend<Data, {}, {}, Props>({
     }
 
     &.is-active {
-      color: $primary;
-      background-color: white;
+      color: $navigationBar-activeColor;
+      background-color: $white;
     }
   }
   .navbar-item-icon {

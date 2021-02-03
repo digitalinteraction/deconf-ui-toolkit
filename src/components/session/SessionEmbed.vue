@@ -148,6 +148,7 @@ function parseLink(link: string): Parsed | null {
 //
 
 export default Vue.extend({
+  name: 'SessionEmbed',
   components: { IframeEmbed, FontAwesomeIcon },
   props: {
     link: { type: String, required: true }
@@ -171,7 +172,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .sessionEmbed {
 }
 .sessionEmbed-video {

@@ -10,17 +10,24 @@
         <FontAwesomeIcon :icon="icon" />
       </span>
       <span>
-        {{ isRegistered ? 'Registered' : 'Register now' }}
+        {{ $t(`deconf.session.${isRegistered ? 'registered' : 'register'}`) }}
       </span>
     </div>
   </button>
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+//
+// I18n usage:
+// - deconf.session.registered
+// - deconf.session.register
+//
+
 export default Vue.extend({
+  name: 'RegisterInterest',
   components: { FontAwesomeIcon },
   props: {
     isWorking: { type: Boolean, required: true },

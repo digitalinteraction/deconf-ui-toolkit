@@ -32,6 +32,7 @@ interface Route {
 // - deconf.appLayout.unavailable
 //
 export default Vue.extend({
+  name: 'SideTabs',
   props: {
     routes: {
       type: Array as PropType<Route[]>,
@@ -41,14 +42,14 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$sideTabs-background: #252525 !default;
+$sideTabs-color: $white !default;
+$sideTabs-active: $primary !default;
+
 .sideTabs {
-  background-color: #252525;
-  // position: fixed;
-  // top: 0;
-  // bottom: 0;
+  background-color: $sideTabs-background;
   width: $tabbar-width;
-  // z-index: $z-appLayout-tabbar;
 
   padding-top: calc(#{$navbar-height} + 1em);
 
@@ -74,7 +75,7 @@ export default Vue.extend({
   flex-direction: column;
   align-items: center;
 
-  color: $white;
+  color: $sideTabs-color;
 
   margin: 6px;
   padding: 6px 0;
@@ -103,7 +104,7 @@ export default Vue.extend({
   &.is-active,
   &:hover {
     cursor: pointer !important;
-    color: white;
+    color: $sideTabs-color;
     .sideTabs-tabText {
       opacity: 1;
     }
@@ -113,10 +114,8 @@ export default Vue.extend({
   }
 
   &.is-active {
-    background-color: white;
-    color: $primary;
-    border-inline-start-color: white;
-    border-inline-start-color: $primary;
+    background-color: $sideTabs-color;
+    color: $sideTabs-active;
   }
 }
 </style>

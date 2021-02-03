@@ -1,12 +1,20 @@
 import RegisterInterest from './RegisterInterest.vue';
-import { createTemplate } from '@/utils';
 
 export default {
   title: 'Schedule/RegisterInterest',
   component: RegisterInterest
 };
 
-const Template = createTemplate({ RegisterInterest });
+const Template = (args, { argTypes }) => ({
+  components: { RegisterInterest },
+  props: ['isWorking', 'isRegistered'],
+  template: `
+    <RegisterInterest
+      :is-working="isWorking"
+      :is-registered="isRegistered"
+    />
+  `
+});
 
 export const NotRegistered = Template.bind({});
 NotRegistered.args = {

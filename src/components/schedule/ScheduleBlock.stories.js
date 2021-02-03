@@ -1,6 +1,5 @@
 import ScheduleBlock from './ScheduleBlock.vue';
 import {
-  createTemplate,
   createSession,
   defaultSpeakers,
   dates,
@@ -12,21 +11,35 @@ export default {
   component: ScheduleBlock
 };
 
-const Template = createTemplate({ ScheduleBlock });
-
-const baseArgs = {
-  sessions: [
-    createSession('1', 'Topical Session Alpha', 'plenary', ['1', '2', '3']),
-    createSession('2', 'Incredible Session Beta', 'workshop', ['4', '5', '6']),
-    createSession('3', 'Random Session Charlie', 'workshop', ['7', '6'])
-  ],
-  speakers: defaultSpeakers(),
-  sessionTypes: defaultSessionTypes()
-};
+const Template = (args, { argTypes }) => ({
+  components: { ScheduleBlock },
+  props: ['currentDate', 'sessionSlot'],
+  data: () => ({
+    sessions: [
+      createSession('1', 'Topical Session Alpha', 'plenary', ['1', '2', '3']),
+      createSession('2', 'Incredible Session Beta', 'workshop', [
+        '4',
+        '5',
+        '6'
+      ]),
+      createSession('3', 'Random Session Charlie', 'workshop', ['7', '6'])
+    ],
+    speakers: defaultSpeakers(),
+    sessionTypes: defaultSessionTypes()
+  }),
+  template: `
+    <ScheduleBlock
+      :sessions="sessions"
+      :session-types="sessionTypes"
+      :session-slot="sessionSlot"
+      :speakers="speakers"
+      :current-date="currentDate"
+    />
+  `
+});
 
 export const Default = Template.bind({});
 Default.args = {
-  ...baseArgs,
   currentDate: dates.now,
   sessionSlot: {
     id: '1',
@@ -38,12 +51,12 @@ Default.args = {
 export const Mobile = Template.bind({});
 Mobile.args = Default.args;
 Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
+  layout: 'fullscreen'
 };
 
 export const Present = Template.bind({});
 Present.args = {
-  ...baseArgs,
   currentDate: dates.now,
   sessionSlot: {
     id: '1',

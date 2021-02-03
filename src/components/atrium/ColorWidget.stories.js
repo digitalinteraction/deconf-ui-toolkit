@@ -1,12 +1,23 @@
 import ColorWidget from './ColorWidget.vue';
-import { createTemplate } from '@/utils';
 
 export default {
   title: 'Atrium/ColorWidget',
   component: 'ColorWidget'
 };
 
-const Template = createTemplate({ ColorWidget });
+const Template = (args, { argTypes }) => ({
+  components: { ColorWidget },
+  props: ['kind', 'title', 'subtitle', 'icon', 'href'],
+  template: `
+    <ColorWidget
+      :kind="kind"
+      :title="title"
+      :subtitle="subtitle"
+      :icon="icon"
+      :href="href"
+    />
+  `
+});
 
 export const Primary = Template.bind({});
 Primary.args = {

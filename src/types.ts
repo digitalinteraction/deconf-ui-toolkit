@@ -1,3 +1,5 @@
+import { Component } from 'vue';
+
 export interface ConfigFlag {
   enabled: boolean;
   visible: boolean;
@@ -108,7 +110,7 @@ export interface Speaker {
 }
 
 //
-// Previously in components/SponsorGrid but moved out for building TypeScript
+// Previously in components/SponsorGrid.vue but moved out for building TypeScript
 // - https://github.com/vuejs/vue-loader/issues/1281
 //
 export type SponsorSize = 'large' | 'medium' | 'regular' | 'small';
@@ -123,4 +125,14 @@ export interface Sponsor {
   title: string;
   image: string;
   href?: string;
+}
+
+//
+// Previously in components/app/NavigationBar.vue
+//
+export interface AppRoute {
+  title: string;
+  name: string;
+  enabled: boolean;
+  icon?: Component;
 }

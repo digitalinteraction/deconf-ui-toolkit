@@ -1,5 +1,5 @@
 import TimeSlot from './TimeSlot.vue';
-import { createTemplate } from '@/utils';
+import { dates } from '@/utils';
 
 export default {
   title: 'Schedule/TimeSlot',
@@ -12,29 +12,35 @@ function addMinutes(original, minutes) {
   return date;
 }
 
-const now = new Date();
-const past = new Date('1970-01-01T00:00:00.000Z');
-const future = new Date('2100-01-01T00:00:00.000Z');
-
-const Template = createTemplate({ TimeSlot });
+const Template = (args, { argTypes }) => ({
+  components: { TimeSlot },
+  props: ['currentDate', 'startDate', 'endDate'],
+  template: `
+    <TimeSlot
+      :current-date="currentDate"
+      :start-date="startDate"
+      :end-date="endDate"
+    />
+  `
+});
 
 export const Past = Template.bind({});
 Past.args = {
-  currentDate: now,
-  startDate: addMinutes(past, 0),
-  endDate: addMinutes(past, 30)
+  currentDate: dates.now,
+  startDate: addMinutes(dates.past, 0),
+  endDate: addMinutes(dates.past, 30)
 };
 
 export const Present = Template.bind({});
 Present.args = {
-  currentDate: now,
-  startDate: addMinutes(now, -15),
-  endDate: addMinutes(now, 15)
+  currentDate: dates.now,
+  startDate: addMinutes(dates.now, -15),
+  endDate: addMinutes(dates.now, 15)
 };
 
 export const Future = Template.bind({});
 Future.args = {
-  currentDate: now,
-  startDate: addMinutes(future, 0),
-  endDate: addMinutes(future, 30)
+  currentDate: dates.now,
+  startDate: addMinutes(dates.future, 0),
+  endDate: addMinutes(dates.future, 30)
 };

@@ -138,6 +138,39 @@ These routes need to be implemented
 
 At least these fa icons are needed:
 
-- ...
+| Icon                       | Usage                              |
+| -------------------------- | ---------------------------------- |
+| `fas user`                 | NavigationBar                      |
+| `fas calendar-plus`        | AddToCalendar                      |
+| `fas arrow-left`           | JoinSession                        |
+| `fas arrow-right`          | JoinSession                        |
+| `fas check`                | RegisterInterest                   |
+| `fas user-plus`            | RegisterInterest                   |
+| `fas globe`                | SessionAttributes, LanguageWarning |
+| `fas save`                 | SessionAttributes                  |
+| `fas long-arrow-alt-right` | TimeSlot                           |
+| `fas long-arrow-alt-left`  | TimeSlot                           |
+| `fas video`                | SessionEmbed                       |
 
 > WIP
+
+### Scss Variables
+
+Some components expose variables to control how they are styled and coloured.
+See the vue component in question for more.
+
+All of [bulma's variables](https://bulma.io/documentation/customize/variables/)
+are also used, in particular:
+
+- `$text-strong` - for heavy text
+- `$text-light` - for light text
+- `$weight-bold` - to make things bold
+- `$size-{n}` - to size text
+- `$block-spacing` - to space elements apart
+- `$background` - to colour the background
+
+> WIP
+
+---
+
+https://www.freecodecamp.org/news/how-to-create-and-publish-a-vue-component-library/

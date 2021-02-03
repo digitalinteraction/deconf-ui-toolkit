@@ -21,13 +21,17 @@ import { Speaker } from '@/types';
 import Vue, { PropType } from 'vue';
 
 export default Vue.extend({
+  name: 'SpeakerGrid',
   props: {
     speakers: { type: Array as PropType<Speaker[]>, required: true }
   }
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$speakerGrid-rounding: $radius-rounded !default;
+$speakerGrid-cellWidth: 280px !default;
+
 .speakerGrid {
   display: flex;
   flex-wrap: wrap;
@@ -37,7 +41,7 @@ export default Vue.extend({
 
 .speakerGrid-speaker {
   display: flex;
-  flex-basis: 280px;
+  flex-basis: $speakerGrid-cellWidth;
   flex-grow: 1;
   padding-bottom: 15px;
   vertical-align: top;
@@ -51,7 +55,7 @@ export default Vue.extend({
   padding-inline-end: 8px;
 
   img {
-    border-radius: $radius-rounded;
+    border-radius: $speakerGrid-rounding;
   }
 }
 
@@ -63,11 +67,12 @@ export default Vue.extend({
 .speakerGrid-name {
   min-height: 1.5em;
   margin-bottom: 0;
-  font-weight: bold;
+  font-weight: $weight-bold;
+  color: $text-strong;
 }
 
 .speakerGrid-role {
-  color: $grey;
+  color: $text-light;
   font-size: $size-7;
 }
 </style>

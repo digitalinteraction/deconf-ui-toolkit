@@ -32,6 +32,7 @@ import Vue, { PropType } from 'vue';
 //
 
 export default Vue.extend({
+  name: 'Countdown',
   props: {
     currentDate: { type: Date as PropType<Date>, required: true },
     targetDate: { type: Date as PropType<Date>, required: true }
@@ -68,7 +69,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .countdown {
   display: flex;
   background-color: $success;

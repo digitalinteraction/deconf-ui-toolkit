@@ -1,7 +1,5 @@
 <template>
   <div class="iframeEmbed">
-    <!-- {{ src }}
-    {{ allow }} -->
     <iframe
       class="iframeEmbed-iframe"
       width="100%"
@@ -18,20 +16,23 @@
 import Vue from 'vue';
 
 export default Vue.extend({
+  name: 'IframeEmbed',
   props: {
     src: { type: String, required: true },
-    allow: { type: String, required: true }
+    allow: { type: String, default: '' }
   }
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$iframeEmbed-ratio: percentage(9 / 16) !default;
+$iframeEmbed-background: #fafafa !default;
+
 .iframeEmbed {
   height: 0;
-  padding-bottom: percentage(9 / 16);
-  margin-bottom: 1rem;
+  padding-bottom: $iframeEmbed-ratio;
 
-  background-color: #fafafa;
+  background-color: $iframeEmbed-background;
   border-radius: $radius;
   overflow: hidden;
   position: relative;

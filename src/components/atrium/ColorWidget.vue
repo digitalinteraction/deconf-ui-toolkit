@@ -5,11 +5,11 @@
     :is="rootComponent"
     v-bind="extraArgs"
   >
-    <h2 class="title">
+    <h2 class="colorWidget-title">
       <FontAwesomeIcon :icon="icon" class="fa-fw" />
       {{ title }}
     </h2>
-    <p class="subtitle">
+    <p class="colorWidget-subtitle">
       {{ subtitle }}
     </p>
   </component>
@@ -28,6 +28,7 @@ interface Props {
 }
 
 export default Vue.extend<{}, {}, {}, Props>({
+  name: 'ColorWidget',
   components: { FontAwesomeIcon },
   props: {
     kind: {
@@ -56,7 +57,7 @@ export default Vue.extend<{}, {}, {}, Props>({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .colorWidget {
   display: block;
   border-radius: $radius;
@@ -74,33 +75,33 @@ export default Vue.extend<{}, {}, {}, Props>({
       background-color: darken($twitter-blue, 7%);
       box-shadow: none;
     }
-    .title,
-    .subtitle {
-      color: white;
+    .colorWidget-title,
+    .colorWidget-subtitle {
+      color: $white;
     }
   }
 
   &.is-primary {
     background-color: $primary;
     &.is-hoverable:hover {
-      background-color: darken(royalblue, 7%);
+      background-color: darken($primary, 7%);
       box-shadow: none;
     }
-    .title,
-    .subtitle {
-      color: white;
+    .colorWidget-title,
+    .colorWidget-subtitle {
+      color: $white;
     }
   }
 
   &.is-secondary {
     background-color: $secondary;
     &.is-hoverable:hover {
-      background-color: darken(rebeccapurple, 7%);
+      background-color: darken($secondary, 7%);
       box-shadow: none;
     }
-    .title,
-    .subtitle {
-      color: white;
+    .colorWidget-title,
+    .colorWidget-subtitle {
+      color: $white;
     }
   }
 
@@ -112,13 +113,16 @@ export default Vue.extend<{}, {}, {}, Props>({
     margin-bottom: 1.5rem;
   }
 
-  .title {
+  .colorWidget-title {
     font-size: 1.8em;
-    font-weight: bold;
+    font-weight: $weight-bold;
   }
-  .subtitle {
+  .colorWidget-subtitle {
     font-size: 1em;
-    font-weight: bold;
+    font-weight: $weight-bold;
   }
+}
+a.colorWidget .title {
+  text-decoration: underline;
 }
 </style>

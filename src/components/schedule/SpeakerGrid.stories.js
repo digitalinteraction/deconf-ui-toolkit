@@ -1,21 +1,47 @@
 import SpeakerGrid from './SpeakerGrid.vue';
-import { createTemplate, defaultSpeakers } from '@/utils';
+import { defaultSpeakers } from '@/utils';
 
 export default {
   title: 'Schedule/SpeakerGrid',
   component: SpeakerGrid
 };
 
-const Template = createTemplate({ SpeakerGrid });
+/**
+ * A utility to slice/repeat an array upto a count using modulo logic
+ * and ensuring unique ids
+ */
+function repeatSlice(arr, count) {
+  const output = [];
+  for (let i = 0; i < count; i++) {
+    output.push({
+      ...arr[i % arr.length],
+      id: i.toString()
+    });
+  }
+  return output;
+}
+
+const Template = (args, { argTypes }) => ({
+  components: { SpeakerGrid },
+  props: ['speakerCount'],
+  computed: {
+    speakers() {
+      return repeatSlice(defaultSpeakers(), this.speakerCount);
+    }
+  },
+  template: `
+    <SpeakerGrid :speakers="speakers" />
+  `
+});
 
 export const Desktop = Template.bind({});
 Desktop.args = {
-  speakers: defaultSpeakers()
+  speakerCount: 10
 };
 
 export const Mobile = Template.bind({});
 Mobile.args = {
-  speakers: defaultSpeakers()
+  speakerCount: 10
 };
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile1' }

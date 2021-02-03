@@ -1,35 +1,45 @@
 import SessionTile from './SessionTile.vue';
-import { createTemplate, defaultSpeakers, dates, createSession } from '@/utils';
+import { defaultSpeakers, dates, createSession } from '@/utils';
 
 export default {
   title: 'Schedule/SessionTile',
   component: SessionTile
 };
 
-const Template = createTemplate({ SessionTile });
-
-const baseArgs = {
-  session: createSession('1234', 'Lorem ipsum sil dor amet', 'plenary', [
-    '1',
-    '3',
-    '5',
-    '7'
-  ]),
-  sessionType: {
-    id: 'plenary',
-    iconGroup: 'fab',
-    iconName: 'youtube',
-    layout: 'plenary',
-    title: {
-      en: 'Plenary'
+const Template = (args, { argTypes }) => ({
+  components: { SessionTile },
+  props: ['currentDate', 'sessionSlot'],
+  data: () => ({
+    session: createSession('1234', 'Lorem ipsum sil dor amet', 'plenary', [
+      '1',
+      '3',
+      '5',
+      '7'
+    ]),
+    speakers: defaultSpeakers(),
+    sessionType: {
+      id: 'plenary',
+      iconGroup: 'fab',
+      iconName: 'youtube',
+      layout: 'plenary',
+      title: {
+        en: 'Plenary'
+      }
     }
-  },
-  speakers: defaultSpeakers()
-};
+  }),
+  template: `
+    <SessionTile
+      :session="session"
+      :session-type="sessionType"
+      :session-slot="sessionSlot"
+      :speakers="speakers"
+      :current-date="currentDate"
+    />
+  `
+});
 
 export const Future = Template.bind({});
 Future.args = {
-  ...baseArgs,
   currentDate: dates.now,
   sessionSlot: {
     id: '1',
@@ -40,7 +50,6 @@ Future.args = {
 
 export const Soon = Template.bind({});
 Soon.args = {
-  ...baseArgs,
   currentDate: dates.now,
   sessionSlot: {
     id: '1',
@@ -51,7 +60,6 @@ Soon.args = {
 
 export const Present = Template.bind({});
 Present.args = {
-  ...baseArgs,
   currentDate: dates.now,
   sessionSlot: {
     id: '1',
@@ -62,7 +70,6 @@ Present.args = {
 
 export const Past = Template.bind({});
 Past.args = {
-  ...baseArgs,
   currentDate: dates.now,
   sessionSlot: {
     id: '1',

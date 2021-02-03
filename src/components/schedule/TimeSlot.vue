@@ -1,7 +1,7 @@
 <template>
   <div class="timeSlot">
-    <div class="timeSlot-tag" v-if="tagText" :class="tagClasses">
-      {{ tagText }}
+    <div class="timeSlot-tag" v-if="tagI18nKey" :class="tagClasses">
+      {{ $t(tagI18nKey) }}
     </div>
     <h3 class="timeSlot-time">
       <span :title="startDate | localeDate">
@@ -29,21 +29,21 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { getSlotState, SlotState } from '@/slot-time';
 
-// interface Props {
-//   currentDate: Date;
-//   startDate: Date;
-//   endDate: Date;
-// }
+//
+// I18n used:
+// - deconf.schedule.past
+// - deconf.schedule.live
+//
 
 export default Vue.extend({
+  name: 'TimeSlot',
   components: { FontAwesomeIcon },
   props: {
     currentDate: { type: Date as PropType<Date>, required: true },
     startDate: { type: Date as PropType<Date>, required: true },
     endDate: { type: Date as PropType<Date>, required: true }
-    // isPadded: { type: Boolean, default: false },
-    // forceActiveSessionState: { type: Boolean, default: false },
   },
   filters: {
     shortTime(date: Date): string {
@@ -57,29 +57,21 @@ export default Vue.extend({
     },
     localeDateShort(date: Date): string {
       return new Date(date).toLocaleDateString([], {
-        // weekday: 'long',
-        // year: 'numeric',
         month: 'long',
         day: 'numeric'
       });
     }
   },
   computed: {
-    timeState(): 'past' | 'present' | 'future' {
-      if (this.currentDate.getTime() < this.startDate.getTime()) {
-        return 'future';
-      }
-      if (this.currentDate.getTime() > this.endDate.getTime()) {
-        return 'past';
-      }
-      return 'present';
+    slotState(): SlotState {
+      return getSlotState(this.currentDate, this.startDate, this.endDate);
     },
     tagClasses(): string {
-      return `is-${this.timeState}`;
+      return `is-${this.slotState}`;
     },
-    tagText(): string | null {
-      if (this.timeState === 'past') return 'Past';
-      if (this.timeState === 'present') return 'Live';
+    tagI18nKey(): string | null {
+      if (this.slotState === 'past') return 'deconf.schedule.past';
+      if (this.slotState === 'present') return 'deconf.schedule.live';
       return null;
     },
     timezone() {
@@ -90,7 +82,13 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$timeSlot-presentColor: $red !default;
+$timeSlot-presentBackground: $white !default;
+
+$timeSlot-pastColor: #ddd !default;
+$timeSlot-pastBackground: #999 !default;
+
 .timeSlot {
   &.is-large {
     font-size: 1.3em;
@@ -106,29 +104,28 @@ export default Vue.extend({
   text-transform: uppercase;
 
   &.is-present {
-    background-color: $red;
-    color: $white;
+    background-color: $timeSlot-presentColor;
+    color: $timeSlot-presentBackground;
   }
   &.is-past {
-    background-color: #ddd;
-    color: #999;
+    background-color: $timeSlot-pastColor;
+    color: $timeSlot-pastBackground;
   }
 }
 .timeSlot-time {
-  color: $black;
+  color: $text-strong;
   font-size: 1.3em;
   font-weight: $weight-bold;
   line-height: 1.5rem;
 }
 .timeSlot-timezone {
-  color: #757a8a;
+  color: $text-light;
   font-size: 0.9em;
   font-weight: $weight-bold;
   line-height: 1.25rem;
 }
 .timeSlot-date {
   color: $text-light;
-  color: #999;
   font-size: 0.9em;
   font-weight: $weight-normal;
 }

@@ -21,6 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { SessionType } from '@/types';
 
 export default Vue.extend({
+  name: 'SessionHeader',
   components: { FontAwesomeIcon },
   props: {
     sessionType: { type: Object as PropType<SessionType>, required: true }
@@ -28,11 +29,14 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$sessionHeader-color: $grey !default;
+$sessionHeader-weight: $weight-semibold !default;
+
 .sessionHeader {
-  color: $grey;
+  color: $sessionHeader-color;
   font-size: 0.9em;
-  font-weight: $weight-semibold;
+  font-weight: $sessionHeader-weight;
   letter-spacing: 0.05em;
   line-height: 1.25rem;
   text-transform: uppercase;

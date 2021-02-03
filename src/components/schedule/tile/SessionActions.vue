@@ -2,8 +2,8 @@
   <div class="sessionActions">
     <div class="buttons is-right">
       <!-- 
-      Register Interest
-     -->
+        Register Interest
+      -->
       <template v-if="canRegisterInterest">
         <RegisterInterest
           @click="registerInterest"
@@ -13,15 +13,15 @@
       </template>
 
       <!-- 
-      Add to calendar
-     -->
+        Add to calendar
+      -->
       <template v-if="canAddToCalendar">
         <AddToCalendar calendar-link="todo" @click="trackCalendar" />
       </template>
 
       <!-- 
-      Join session
-     -->
+        Join session
+      -->
       <template v-if="canJoin">
         <JoinSession :slot-state="slotState" :session-id="session.id" />
       </template>
@@ -39,6 +39,7 @@ import JoinSession from '@/components/schedule/actions/JoinSession.vue';
 type SlotState = 'past' | 'soon' | 'present' | 'future';
 
 export default Vue.extend({
+  name: 'SessionActions',
   components: { RegisterInterest, AddToCalendar, JoinSession },
   props: {
     session: { type: Object as PropType<Session>, required: true },
@@ -66,9 +67,3 @@ export default Vue.extend({
   }
 });
 </script>
-
-<style lang="scss" scoped>
-.sessionActions {
-  // ...
-}
-</style>

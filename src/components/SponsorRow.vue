@@ -55,7 +55,7 @@ export default Vue.extend({
 .sponsorRow-title {
   font-weight: bold;
   font-size: $size-6;
-  color: $grey;
+  color: $text-light;
   text-align: center;
   padding-bottom: 2em;
   margin: 0;

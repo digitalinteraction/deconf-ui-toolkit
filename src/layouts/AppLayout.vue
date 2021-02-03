@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import { AppSettings, User } from '@/types';
+import { AppRoute, AppSettings, User } from '@/types';
 import Vue, { Component } from 'vue';
 import Vue100vh from 'vue-100vh';
 
@@ -37,13 +37,6 @@ import NavigationBar from '@/components/app/NavigationBar.vue';
 import SideTabs from '@/components/app/SideTabs.vue';
 
 import { Routes } from '@/constants';
-
-export interface AppRoute {
-  title: string;
-  name: string;
-  enabled: boolean;
-  icon?: Component;
-}
 
 function appRoutes(
   user: User | null,

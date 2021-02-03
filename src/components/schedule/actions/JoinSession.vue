@@ -9,7 +9,7 @@
         <FontAwesomeIcon :icon="['fas', 'arrow-left']" />
       </span>
       <span>
-        {{ action }}
+        {{ $t(action) }}
       </span>
       <span class="icon ltr-only">
         <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
@@ -24,12 +24,20 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Routes } from '@/constants';
 
 const actions: Record<string, string> = {
-  past: 'View session',
-  present: 'Join session',
-  future: 'Preview session'
+  past: 'deconf.session.joinInPast',
+  present: 'deconf.session.joinInPresent',
+  future: 'deconf.session.joinInFuture'
 };
 
+//
+// I18n used:
+// - deconf.session.joinInPast
+// - deconf.session.joinInPresent
+// - deconf.session.joinInFuture
+//
+
 export default Vue.extend({
+  name: 'JoinSession',
   components: { FontAwesomeIcon },
   props: {
     slotState: { type: String, required: true },
@@ -51,7 +59,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @include mobile {
   .joinSession.button {
     width: 100%;

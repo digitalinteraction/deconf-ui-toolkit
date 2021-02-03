@@ -25,16 +25,18 @@
       </div>
       <div class="scheduleBlock-session">
         <div class="scheduleBlock-workshopInfo">
-          <h3 class="scheduleBlock-workshopTitle">Interactive workshops</h3>
+          <h3 class="scheduleBlock-workshopTitle">
+            {{ $t('deconf.schedule.workshopTitle') }}
+          </h3>
           <p class="scheduleBlock-workshopDescription">
-            Participate in one of the following interactive workshops.
+            {{ $t('deconf.schedule.workshopDescription') }}
           </p>
         </div>
 
         <ToggleContents
-          :title="workshopTitle"
-          show-button="Show all"
-          hide-button="Hide all"
+          :title="$tc('deconf.schedule.workshops', otherSessions.length)"
+          :show-button="$t('deconf.schedule.showWorkshops')"
+          :hide-button="$t('deconf.schedule.hideWorkshops')"
         >
           <div
             class="scheduleBlock-session"
@@ -63,7 +65,17 @@ import TimeSlot from './TimeSlot.vue';
 import SessionTile from './tile/SessionTile.vue';
 import ToggleContents from '../ToggleContents.vue';
 
+//
+// I18n used:
+// - deconf.schedule.workshopTitle
+// - deconf.schedule.workshopDescription
+// - deconf.schedule.workshops
+// - deconf.schedule.showWorkshops
+// - deconf.schedule.hideWorkshops
+//
+
 export default Vue.extend({
+  name: 'ScheduleBlock',
   components: { TimeSlot, SessionTile, ToggleContents },
   data() {
     return {
@@ -102,14 +114,7 @@ export default Vue.extend({
     },
     otherSessions(): Session[] {
       return this.sessions.filter(s => !this.plenaryTypes.has(s.type));
-    },
-    workshopTitle(): string {
-      const plural = this.sessions.length === 1 ? '' : 's';
-      return `${this.sessions.length} workshop${plural}`;
     }
-    // toggleText(): string {
-    //   return this.showContents ? 'Show all' : 'Hide all';
-    // }
   },
   methods: {
     getSessionType(session: Session): SessionType {
@@ -126,7 +131,9 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$scheduleBlock-background: $background !default;
+
 @include desktop {
   .scheduleBlock {
     display: flex;
@@ -144,17 +151,19 @@ export default Vue.extend({
   }
 }
 @include touch {
+  .scheduleBlock {
+    padding-bottom: $block-spacing;
+  }
   .scheduleBlock-sessions {
     margin: 0 6px;
   }
 }
 
 .scheduleBlock {
-  background-color: #f4f4f4;
+  background-color: $scheduleBlock-background;
 
   &.is-present {
     background: $white;
-    // border-radius: $radius;
     box-shadow: $box-shadow;
   }
 }
@@ -192,15 +201,13 @@ export default Vue.extend({
   margin-bottom: 12px;
 }
 .scheduleBlock-workshopTitle {
-  color: $black;
+  color: $text-strong;
   font-size: $size-5;
   font-weight: $weight-bold;
   line-height: 20px;
-  // margin: 10px 0 0;
 }
 .scheduleBlock-workshopDescription {
-  color: #757a8a;
+  color: $text-light;
   font-size: 0.9em;
-  // margin: 10px 0 0;
 }
 </style>

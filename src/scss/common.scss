@@ -6,42 +6,39 @@
 
 $secondary: royalblue !default;
 
-$twitter-blue: #1da1f2;
-$zoom-blue: #498af7;
-$teams-purple: #4f53a7;
-
-// $primary: $cc-red;
-// $link: $cc-coral;
+$twitter-blue: #1da1f2 !default;
+$zoom-blue: #498af7 !default;
+$teams-purple: #4f53a7 !default;
 
 //
 // Bulma cusomisations
 //
-$family-sans-serif: acumin-pro, Avenir, -apple-system, system-ui,
-  BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif,
-  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-$family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+$family-sans-serif: Avenir, -apple-system, system-ui, BlinkMacSystemFont,
+  'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+$family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !default;
 
-$navbar-height: 3.5rem;
+$navbar-height: 3.5rem !default;
 
-$footer-padding: 1.5rem 1.5rem 2.5rem;
+$footer-padding: 1.5rem 1.5rem 2.5rem !default;
 
-$z-cookies: 50;
-$z-appwrapper-tabbar: 40;
-$z-sessions-tabs: 10;
+$z-cookies: 50 !default;
+$z-appwrapper-tabbar: 40 !default;
+$z-sessions-tabs: 10 !default;
 
 // buttons
 $button-padding-horizontal: 1.5em !default;
 
 // Radius
-$radius: 8px;
-$radius-small: 6px;
+$radius: 8px !default;
+$radius-small: 6px !default;
 
 // Layout
-$tabbar-width: 5.5rem;
+$tabbar-width: 5.5rem !default;
 
 // Box
 $box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.02),
-  0 0px 0 1px rgba(10, 10, 10, 0.01);
+  0 0px 0 1px rgba(10, 10, 10, 0.01) !default;
 
 // Import bulma utils too
 @import '~bulma/sass/utilities/_all.sass';

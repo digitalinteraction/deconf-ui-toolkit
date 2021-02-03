@@ -1,12 +1,11 @@
 import NavigationBar from './NavigationBar.vue';
-import { createTemplate, createSettings } from '@/utils';
+import { createSettings } from '@/utils';
 
 export default {
   title: 'App/NavigationBar',
   component: NavigationBar
 };
 
-// const Template = createTemplate({ NavigationBar });
 const Template = (args, { argTypes }) => ({
   props: ['isLoggedIn', 'isInterpreter'],
   components: { NavigationBar },
@@ -75,5 +74,3 @@ Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
   layout: 'fullscreen'
 };
-
-// https://github.com/storybookjs/storybook/blob/master/addons/viewport/src/defaults.ts#L3

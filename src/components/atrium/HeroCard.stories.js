@@ -1,12 +1,21 @@
 import HeroCard from './HeroCard.vue';
-import { createTemplate } from '@/utils';
 
 export default {
   title: 'Atrium/HeroCard',
   component: HeroCard
 };
 
-const Template = createTemplate({ HeroCard });
+const Template = (args, { argTypes }) => ({
+  components: { HeroCard },
+  props: ['title', 'subtitle', 'coverImage'],
+  template: `
+    <HeroCard
+      :title="title"
+      :subtitle="subtitle"
+      :coverImage="coverImage"
+    />
+  `
+});
 
 export const Default = Template.bind({});
 Default.args = {

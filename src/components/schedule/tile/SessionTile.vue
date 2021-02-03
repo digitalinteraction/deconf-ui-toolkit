@@ -30,9 +30,9 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Session, SessionSlot, SessionType, Speaker } from '@/types';
 import { Routes } from '@/constants';
+import { getSlotState, SlotState } from '@/slot-time';
 
 import SessionHeader from './SessionHeader.vue';
 import SessionAttributes from './SessionAttributes.vue';
@@ -40,6 +40,7 @@ import SpeakerGrid from '../SpeakerGrid.vue';
 import SessionActions from './SessionActions.vue';
 
 export default Vue.extend({
+  name: 'SessionTile',
   components: {
     SessionHeader,
     SessionAttributes,
@@ -68,36 +69,35 @@ export default Vue.extend({
         .map(id => this.speakers.find(s => s.id === id) as Speaker)
         .filter(s => Boolean(s));
     },
-    slotState(): string {
-      const now = this.currentDate.getTime();
-      const start = this.sessionSlot.start.getTime();
-      const end = this.sessionSlot.end.getTime();
-
-      const oneHour = 60 * 60 * 1000;
-
-      if (now < start && now > start - oneHour) return 'soon';
-
-      if (now < start) return 'future';
-      if (now > end) return 'past';
-
-      return 'present';
+    slotState(): SlotState {
+      return getSlotState(
+        this.currentDate,
+        this.sessionSlot.start,
+        this.sessionSlot.end
+      );
     }
   }
 });
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+$sessionTile-titleWeight: $weight-bold !default;
+$sessionTile-titleSize: $size-5 !default;
+$sessionTile-titleColor: $text-strong !default;
+$sessionTile-descriptionColor: $grey !default;
+$sessionTile-textWidth: 720px !default;
+
 .sessionTile-header,
 .sessionTile-info,
 .sessionTile-attributes {
   margin-bottom: 0.5em;
 }
 .sessionTile-title {
-  font-weight: $weight-bold;
-  font-size: $size-5;
+  font-weight: $sessionTile-titleWeight;
+  font-size: $sessionTile-titleSize;
 
   a {
-    color: $black;
+    color: $sessionTile-titleColor;
   }
   a:hover {
     text-decoration: underline;
@@ -105,8 +105,8 @@ export default Vue.extend({
 }
 
 .sessionTile-description {
-  color: $grey;
+  color: $sessionTile-descriptionColor;
   font-size: 0.9em;
-  max-width: 800px;
+  max-width: $sessionTile-textWidth;
 }
 </style>

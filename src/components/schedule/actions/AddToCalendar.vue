@@ -11,7 +11,7 @@
         <FontAwesomeIcon :icon="['fas', 'calendar-plus']" />
       </span>
       <span>
-        Add to calendar
+        {{ $t('deconf.session.addToCalendar') }}
       </span>
     </div>
   </a>
@@ -21,7 +21,13 @@
 import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+//
+// I18n used:
+// - deconf.session.addToCalendar
+//
+
 export default Vue.extend({
+  name: 'AddToCalendar',
   components: { FontAwesomeIcon },
   props: {
     calendarLink: { type: String, required: true }
