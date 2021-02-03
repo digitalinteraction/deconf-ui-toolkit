@@ -74,7 +74,8 @@ const external = [
   // list external dependencies, exactly the way it is written in the import statement.
   // eg. 'jquery'
   'vue',
-  '@fortawesome/vue-fontawesome'
+  '@fortawesome/vue-fontawesome',
+  'copy-to-clipboard'
 ];
 
 // UMD/IIFE shared settings: output.globals
@@ -83,7 +84,8 @@ const globals = {
   // Provide global variable names to replace your external imports
   // eg. jquery: '$'
   vue: 'Vue',
-  '@fortawesome/vue-fontawesome': 'vue-fontawesome'
+  '@fortawesome/vue-fontawesome': 'vue-fontawesome',
+  'copy-to-clipboard': 'copyToClipboard'
 };
 
 // Customize configs for individual targets

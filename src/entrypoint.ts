@@ -3,6 +3,7 @@ import _Vue, { PluginFunction } from 'vue';
 import * as components from './components/index';
 import * as types from './types';
 import * as utils from './utils';
+import * as constants from './constants';
 
 interface InstallFunction extends PluginFunction<{}> {
   insalled?: boolean;
@@ -18,12 +19,6 @@ const install: InstallFunction = (Vue: typeof _Vue) => {
 };
 
 const plugin = { install };
-
-// function getGlobalVue() {
-//   return (window ?? globalThis ?? global)?.Vue
-//   if (typeof window !== 'undefined') return window.Vue
-//   if (typeof global !== 'undefined') return (global as any).Vue
-// }
 
 // Auto-register if added as a script tag?
 if (process.env.ES_BUILD === 'false') {
@@ -46,4 +41,4 @@ export default plugin;
 export * from './components';
 export * from './icons';
 export * from './layouts';
-export { types, utils };
+export { types, utils, constants };

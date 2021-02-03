@@ -3,12 +3,15 @@
 // file to be imported by clients
 //
 
-import fs from 'fs';
 import { createFilter } from 'rollup-pluginutils';
 
 const sassSeperator = '\n\n\n';
 const sassBlock = (name, inner) =>
-  [`/* START ${name} */`, inner, `/* END ${name} */`].join('\n');
+  [`/*\n  START ${name}\n*/`, inner, `/*\n  END ${name}\n*/`].join('\n');
+
+// function stripComments(scss) {
+//   return scss.replace(/^\/\/.*\n/gm, '').replace(/^\n/gm, '');
+// }
 
 /** @returns {import("rollup").PluginHooks} */
 export default function(options = {}) {
@@ -31,10 +34,7 @@ export default function(options = {}) {
 
       styles.set(id, code);
 
-      return {
-        code: ``,
-        mappings: ''
-      };
+      return '';
     },
     generateBundle(options) {
       if (options.output === false) return;

@@ -129,13 +129,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.appLayout {
-  // height fall back for IE
-  // TODO: rollup doesn't like this!?
-  // height: calc(100% - #{$navbar-height});
-  // height: calc(100vh - #{$navbar-height});
-}
-
 .appLayout-page {
   position: relative;
   overflow-y: scroll;
