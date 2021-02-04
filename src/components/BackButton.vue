@@ -13,14 +13,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-export default Vue.extend({
+export default {
   name: 'BackButton',
   components: { FontAwesomeIcon },
   props: {
     to: { type: [String, Object], required: true }
   }
-});
+};
 </script>

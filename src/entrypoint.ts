@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import _Vue, { PluginFunction } from 'vue';
 
-import * as components from './components/index';
-import * as types from './types';
-import * as utils from './utils';
-import * as constants from './constants';
+// import * as components from '@/components/index';
+// import * as types from '@/types';
+// import * as utils from '@/utils';
+// import * as constants from '@/constants';
 
 interface InstallFunction extends PluginFunction<{}> {
   insalled?: boolean;
@@ -12,10 +13,11 @@ interface InstallFunction extends PluginFunction<{}> {
 // Auto-register components ?
 const install: InstallFunction = (Vue: typeof _Vue) => {
   if (install.insalled) return;
-  install.insalled = true;
-  for (const [componentName, component] of Object.entries(components)) {
-    Vue.component(componentName, component);
-  }
+
+  // install.insalled = true;
+  // for (const [componentName, component] of Object.entries(components)) {
+  //   Vue.component(componentName, component);
+  // }
 };
 
 const plugin = { install };
@@ -38,7 +40,10 @@ if (process.env.ES_BUILD === 'false') {
 export default plugin;
 
 // Export components for clients
-export * from './components';
-export * from './icons';
-export * from './layouts';
-export { types, utils, constants };
+// export * from '@/components';
+// export * from '@/icons';
+// export * from '@/layouts';
+// export { types, utils, constants };
+
+export { default as BackButton } from '@/components/BackButton.vue';
+export { default as ToggleContents } from '@/components/ToggleContents.vue';

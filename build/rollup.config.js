@@ -4,15 +4,23 @@
 //
 import fs from 'fs';
 import path from 'path';
-import typescript from '@rollup/plugin-typescript';
 import vue from 'rollup-plugin-vue';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
-import sass from './sass-plugin';
+// import scss from 'rollup-plugin-scss';
+// import sass from './sass-plugin';
+// import bundleScss from 'rollup-plugin-bundle-scss';
+
+const projectRoot = path.resolve(__dirname, '..');
+
+function readSync(filename) {
+  return fs.readFileSync(path.join(projectRoot, filename), 'utf8');
+}
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = JSON.parse(
@@ -21,52 +29,58 @@ const esbrowserslist = JSON.parse(
 
 const argv = minimist(process.argv.slice(2));
 
-const projectRoot = path.resolve(__dirname, '..');
-
 const moduleName = 'DeconfUI';
 const fileName = 'dist/deconf-ui';
 const sorucemap = true;
+const sassPrepend = [
+  readSync('src/scss/common.scss'),
+  readSync('src/scss/app.scss')
+].join('\n');
 
-const readSync = filename => {
-  return fs.readFileSync(path.join(__dirname, '../', filename), 'utf8');
-};
+vue({});
 
 const baseConfig = {
   input: 'src/entrypoint.ts',
   plugins: {
     preVue: [
       alias({
-        resolve: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
-        entries: {
-          '@': path.resolve(projectRoot, 'src')
-        }
+        entries: [
+          {
+            find: '@',
+            replacement: `${path.resolve(projectRoot, 'src')}`
+          }
+        ],
+        customResolver: resolve({
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue']
+        })
       })
+      // bundleScss()
+      // sass({ prependData: sassPrepend })
+      // scss({ output: false })
     ],
     replace: {
-      'process.env.NODE_ENV': JSON.stringify('production'),
-      'process.env.ES_BUILD': JSON.stringify('false')
+      'process.env.NODE_ENV': JSON.stringify('production')
     },
     vue: {
-      css: false,
+      // css: false,
       template: {
         isProduction: true
       }
+      // customBlocks: ['!theme'],
+      // styleInjector: 'myFunction'
     },
+    postVue: [],
     babel: {
-      exclude: ['node_modules/**', 'tests/**'],
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue']
-    },
-    typescript: {
-      exclude: ['tests/**']
-    },
-    sass: {
-      prependData: [
-        readSync('src/scss/common.scss'),
-        readSync('src/scss/app.scss')
-      ].join('\n')
+      exclude: 'node_modules/**',
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
+      babelHelpers: 'bundled'
     }
   }
 };
+
+// global.myFunction = (...args) => {
+//   console.log('myFunction', ...args);
+// };
 
 // ESM/UMD/IIFE shared settings: externals
 // Refer to https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency
@@ -101,105 +115,86 @@ if (!argv.format || argv.format === 'es') {
       sourcemap: sorucemap
     },
     plugins: [
-      replace({
-        ...baseConfig.plugins.replace,
-        'process.env.ES_BUILD': JSON.stringify('true')
-      }),
+      replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
+      ...baseConfig.plugins.postVue,
       babel({
         ...baseConfig.plugins.babel,
-        presets: [
-          [
-            '@babel/preset-env',
-            {
-              targets: esbrowserslist
-            }
-          ]
-        ]
+        presets: [['@babel/preset-env', { targets: esbrowserslist }]]
       }),
-      commonjs(),
-      typescript({
-        ...baseConfig.plugins.typescript
-      }),
-      sass({
-        ...baseConfig.plugins.sass
-      })
+      commonjs()
     ]
   };
   buildFormats.push(esConfig);
 }
 
 if (!argv.format || argv.format === 'cjs') {
-  const umdConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: true,
-      file: `${fileName}.ssr.js`,
-      format: 'cjs',
-      name: moduleName,
-      exports: 'named',
-      globals,
-      sourcemap: sorucemap
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue({
-        ...baseConfig.plugins.vue,
-        template: {
-          ...baseConfig.plugins.vue.template,
-          optimizeSSR: true
-        }
-      }),
-      babel(baseConfig.plugins.babel),
-      commonjs(),
-      typescript({
-        ...baseConfig.plugins.typescript
-      }),
-      sass({
-        ...baseConfig.plugins.sass
-      })
-    ]
-  };
-  buildFormats.push(umdConfig);
+  // const umdConfig = {
+  //   ...baseConfig,
+  //   external,
+  //   output: {
+  //     compact: true,
+  //     file: `${fileName}.ssr.js`,
+  //     format: 'cjs',
+  //     name: moduleName,
+  //     exports: 'auto',
+  //     globals,
+  //     sourcemap: sorucemap
+  //   },
+  //   plugins: [
+  //     replace(baseConfig.plugins.replace),
+  //     ...baseConfig.plugins.preVue,
+  //     vue({
+  //       ...baseConfig.plugins.vue,
+  //       template: {
+  //         ...baseConfig.plugins.vue.template,
+  //         optimizeSSR: true
+  //       }
+  //     }),
+  //     ...baseConfig.plugins.postVue,
+  //     babel(baseConfig.plugins.babel),
+  //     commonjs()
+  //   ]
+  // };
+  // buildFormats.push(umdConfig);
 }
 
 if (!argv.format || argv.format === 'iife') {
-  const unpkgConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      compact: true,
-      file: `${fileName}.min.js`,
-      format: 'iife',
-      name: moduleName,
-      exports: 'named',
-      globals,
-      sourcemap: sorucemap
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      babel(baseConfig.plugins.babel),
-      commonjs(),
-      terser({
-        output: {
-          ecma: 5
-        }
-      }),
-      typescript({
-        ...baseConfig.plugins.typescript
-      }),
-      sass({
-        ...baseConfig.plugins.sass
-      })
-    ]
-  };
-  buildFormats.push(unpkgConfig);
+  // const unpkgConfig = {
+  //   ...baseConfig,
+  //   external,
+  //   output: {
+  //     compact: true,
+  //     file: `${fileName}.min.js`,
+  //     format: 'iife',
+  //     name: moduleName,
+  //     exports: 'auto',
+  //     globals,
+  //     sourcemap: sorucemap
+  //   },
+  //   plugins: [
+  //     replace(baseConfig.plugins.replace),
+  //     ...baseConfig.plugins.preVue,
+  //     vue(baseConfig.plugins.vue),
+  //     ...baseConfig.plugins.postVue,
+  //     babel(baseConfig.plugins.babel),
+  //     commonjs(),
+  //     terser({
+  //       output: {
+  //         ecma: 5
+  //       }
+  //     })
+  //   ]
+  // };
+  // buildFormats.push(unpkgConfig);
 }
 
 // Export config
 export default buildFormats;
+
+//
+//
+//
+
+// https://stackoverflow.com/questions/64438777/trying-to-build-vue-component-library-using-rollup-and-vuejs-3

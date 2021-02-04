@@ -17,9 +17,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-
-export default Vue.extend({
+export default {
   name: 'ToggleContents',
   data() {
     return {
@@ -41,9 +39,12 @@ export default Vue.extend({
       this.showContents = !this.showContents;
     }
   }
-});
+};
 </script>
+
 <style lang="scss">
+@import '~@/scss/common.scss';
+
 $toggleContents-background: #f4f4f4 !default;
 $toggleContents-color: $primary !default;
 
