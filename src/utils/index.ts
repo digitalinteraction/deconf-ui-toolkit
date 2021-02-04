@@ -1,1 +1,1 @@
-export * from '@/utils/slot-utils';
+export * from './slot-utils';

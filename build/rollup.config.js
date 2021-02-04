@@ -37,8 +37,6 @@ const sassPrepend = [
   readSync('src/scss/app.scss')
 ].join('\n');
 
-vue({});
-
 const baseConfig = {
   input: 'src/entrypoint.ts',
   plugins: {
@@ -51,7 +49,7 @@ const baseConfig = {
           }
         ],
         customResolver: resolve({
-          extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue']
+          extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'] // .scss here ?
         })
       }),
       // bundleScss()
@@ -77,7 +75,6 @@ const baseConfig = {
           scss: {
             importer: [
               (url, prev) => {
-                console.log('preprocessOptions', url, prev);
                 return {
                   file: url
                     .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
@@ -146,7 +143,9 @@ if (!argv.format || argv.format === 'es') {
         ...baseConfig.plugins.babel,
         presets: [['@babel/preset-env', { targets: esbrowserslist }]]
       }),
-      commonjs()
+      commonjs({
+        extensions: ['.js', '.ts', '.vue']
+      })
     ]
   };
   buildFormats.push(esConfig);

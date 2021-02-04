@@ -191,5 +191,7 @@ components are writen in a specific way:
 - "story" snippet for setting up stories
 - `@/story-utils` for util functions in stories
 - prefer verbosity in stories so they are self-enclosed
+- don't use `Vue.extend` because it ends up with a different global `vue`
+  which has different routes.
 
 > WIP
