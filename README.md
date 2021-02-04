@@ -182,7 +182,7 @@ https://www.freecodecamp.org/news/how-to-create-and-publish-a-vue-component-libr
 
 components are writen in a specific way:
 
-- MaintainableCss class naming (TODO: link here)
+- MaintainableCss class naming [#](https://maintainablecss.com)
 - Global scss (no scoped)
   - global variables with !default for overrides
   - bulma variables where available
@@ -195,3 +195,27 @@ components are writen in a specific way:
   which has different routes.
 
 > WIP
+
+---
+
+how does the bundler work?
+
+- `rollup` is used to compile vue components together into `dist/deconf-ui.{esm}.{js,map}`
+  - scss
+    - it currently ignores scss output right now
+    - as of rollup-plugin-vue@5 vue processes the sass internally which we can't hook into
+    - `build/sass-plugin`
+      - was originally for taking sass requests for rollup
+        and combining into a single file. This works with rollup-plugin-vue@6 but not **@5**
+      - it is now responsible for handling rollup sass requests and completely ignoring everything
+  - types
+    - I couldn't find a way to get this to output TypeScript types either
+- `tsc` is used to generate type definitions into `dist/types`, not bundled
+- `build/pull-theme` is used to read in vue files, extract the scss contents into `dist/theme.scss`
+  and combine into a single file
+  - this relies on having **no** `scoped` vue styles + [MaintainableCss](https://maintainablecss.com) class names
+  - it also allows scss variables to be exposed
+
+other notes
+
+- we're using vue2 which storybookjs supports (02/02/2021)

@@ -53,7 +53,7 @@ const baseConfig = {
         })
       }),
       // bundleScss()
-      extractSass({ prependData: sassPrepend })
+      extractSass({ prependData: sassPrepend, filename: null })
       // scss()
     ],
     replace: {
@@ -74,7 +74,7 @@ const baseConfig = {
           // https://www.npmjs.com/package/sass
           scss: {
             importer: [
-              (url, prev) => {
+              url => {
                 return {
                   file: url
                     .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
@@ -85,9 +85,6 @@ const baseConfig = {
           }
         }
       }
-
-      // customBlocks: ['!theme'],
-      // styleInjector: 'myFunction'
     },
     postVue: [],
     babel: {
