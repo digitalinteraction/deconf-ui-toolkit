@@ -18,7 +18,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
@@ -26,7 +25,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - deconf.session.addToCalendar
 //
 
-export default Vue.extend({
+export default {
   name: 'AddToCalendar',
   components: { FontAwesomeIcon },
   props: {
@@ -37,5 +36,5 @@ export default Vue.extend({
       this.$emit('click', event);
     }
   }
-});
+};
 </script>

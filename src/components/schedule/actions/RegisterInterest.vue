@@ -17,7 +17,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
@@ -26,7 +25,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - deconf.session.register
 //
 
-export default Vue.extend({
+export default {
   name: 'RegisterInterest',
   components: { FontAwesomeIcon },
   props: {
@@ -50,5 +49,5 @@ export default Vue.extend({
       this.$emit('click', e);
     }
   }
-});
+};
 </script>

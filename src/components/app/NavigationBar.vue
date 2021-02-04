@@ -104,22 +104,11 @@
 
 <script lang="ts">
 import { AppRoute, AppSettings } from '@/types';
-import Vue from 'vue';
+import { PropType } from 'vue';
 import { Routes } from '@/constants';
 import { Location } from 'vue-router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-
-interface Data {
-  isShowingMenu: boolean;
-}
-
-interface Props {
-  appSettings: AppSettings;
-  isLoggedIn: boolean;
-  isInterpreter: boolean;
-  routes: AppRoute[];
-}
 
 //
 // I18n keys
@@ -130,7 +119,7 @@ interface Props {
 // - deconf.appLayout.interpret
 //
 
-export default Vue.extend<Data, {}, {}, Props>({
+export default {
   name: 'NavigationBar',
   components: { FontAwesomeIcon },
   data() {
@@ -139,10 +128,10 @@ export default Vue.extend<Data, {}, {}, Props>({
     };
   },
   props: {
-    appSettings: { type: Object, required: true },
+    appSettings: { type: Object as PropType<AppSettings>, required: true },
     isLoggedIn: { type: Boolean, required: true },
     isInterpreter: { type: Boolean, required: true },
-    routes: { type: Array, required: true }
+    routes: { type: Array as PropType<AppRoute[]>, required: true }
   },
   computed: {
     activeClasses(): object {
@@ -171,7 +160,7 @@ export default Vue.extend<Data, {}, {}, Props>({
       this.isShowingMenu = !this.isShowingMenu;
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

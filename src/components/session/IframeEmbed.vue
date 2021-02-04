@@ -13,15 +13,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-
-export default Vue.extend({
+export default {
   name: 'IframeEmbed',
   props: {
     src: { type: String, required: true },
     allow: { type: String, default: '' }
   }
-});
+};
 </script>
 
 <style lang="scss">

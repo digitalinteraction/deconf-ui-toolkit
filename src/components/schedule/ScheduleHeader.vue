@@ -7,13 +7,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-
+//
 // TODO: should this take a theme prop rather than use classes?
+//
 
-export default Vue.extend({
+export default {
   name: 'ScheduleHeader'
-});
+};
 </script>
 
 <style lang="scss">

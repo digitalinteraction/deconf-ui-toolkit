@@ -13,15 +13,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-
-export default Vue.extend({
+export default {
   name: 'BoxContent',
   props: {
     title: { type: String, required: true },
     content: { type: [Object, Function], default: null }
   }
-});
+};
 </script>
 
 <style lang="scss">

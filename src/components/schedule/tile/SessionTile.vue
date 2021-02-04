@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 import { Session, SessionSlot, SessionType, SlotState, Speaker } from '@/types';
 import { Routes } from '@/constants';
 import { getSlotState } from '@/utils';
@@ -39,7 +39,7 @@ import SessionAttributes from './SessionAttributes.vue';
 import SpeakerGrid from '../SpeakerGrid.vue';
 import SessionActions from './SessionActions.vue';
 
-export default Vue.extend({
+export default {
   name: 'SessionTile',
   components: {
     SessionHeader,
@@ -77,7 +77,7 @@ export default Vue.extend({
       );
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

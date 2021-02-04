@@ -24,7 +24,7 @@
 
 <script lang="ts">
 import { AppRoute, AppSettings, User } from '@/types';
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 
 import AtriumIcon from '@/icons/AtriumIcon.vue';
 import CoffeeChatIcon from '@/icons/CoffeeChatIcon.vue';
@@ -103,7 +103,7 @@ function appRoutes(
 // - deconf.appLayout.unavailable
 //
 
-export default Vue.extend({
+export default {
   name: 'AppLayout',
   components: { FullHeight, NavigationBar, SideTabs },
   props: {
@@ -125,7 +125,7 @@ export default Vue.extend({
       return Boolean(this.user && this.user.user_roles.includes('interpreter'));
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

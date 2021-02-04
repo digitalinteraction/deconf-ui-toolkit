@@ -152,6 +152,10 @@ if (!argv.format || argv.format === 'es') {
 }
 
 if (!argv.format || argv.format === 'cjs') {
+  //
+  // NOTE: "unpkg" has been removed from the package.json
+  // - "main": "dist/deconf-ui.ssr.js",
+  //
   // const umdConfig = {
   //   ...baseConfig,
   //   external,
@@ -183,6 +187,10 @@ if (!argv.format || argv.format === 'cjs') {
 }
 
 if (!argv.format || argv.format === 'iife') {
+  //
+  // NOTE: "unpkg" has been removed from the package.json
+  // - "unpkg": "dist/deconf-ui.min.js",
+  //
   // const unpkgConfig = {
   //   ...baseConfig,
   //   external,

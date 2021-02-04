@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 
 //
 // I18n used:
@@ -31,7 +31,7 @@ import Vue, { PropType } from 'vue';
 // - deconf.general.seconds
 //
 
-export default Vue.extend({
+export default {
   name: 'Countdown',
   props: {
     currentDate: { type: Date as PropType<Date>, required: true },
@@ -66,7 +66,7 @@ export default Vue.extend({
       return this.remaingin.seconds;
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

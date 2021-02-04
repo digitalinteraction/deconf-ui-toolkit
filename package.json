@@ -1,10 +1,8 @@
 {
   "name": "@openlab/deconf-ui-toolkit",
   "version": "0.1.0",
-  "main": "dist/deconf-ui.ssr.js",
   "browser": "dist/deconf-ui.esm.js",
   "module": "dist/deconf-ui.esm.js",
-  "unpkg": "dist/deconf-ui.min.js",
   "types": "dist/types/entrypoint.d.ts",
   "repository": "digitalinteraction/deconf-ui-toolkit",
   "license": "MIT",

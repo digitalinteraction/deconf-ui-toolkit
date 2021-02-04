@@ -59,7 +59,7 @@
 
 <script lang="ts">
 import { Session, SessionSlot, SessionType, Speaker } from '@/types';
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 
 import TimeSlot from './TimeSlot.vue';
 import SessionTile from './tile/SessionTile.vue';
@@ -74,7 +74,7 @@ import ToggleContents from '../ToggleContents.vue';
 // - deconf.schedule.hideWorkshops
 //
 
-export default Vue.extend({
+export default {
   name: 'ScheduleBlock',
   components: { TimeSlot, SessionTile, ToggleContents },
   data() {
@@ -128,7 +128,7 @@ export default Vue.extend({
         .filter(s => Boolean(s));
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

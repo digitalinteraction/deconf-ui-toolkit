@@ -16,17 +16,17 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { SessionType } from '@/types';
 
-export default Vue.extend({
+export default {
   name: 'SessionHeader',
   components: { FontAwesomeIcon },
   props: {
     sessionType: { type: Object as PropType<SessionType>, required: true }
   }
-});
+};
 </script>
 
 <style lang="scss">

@@ -10,13 +10,12 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-export default Vue.extend({
+export default {
   name: 'SidebarItem',
   props: {
     title: { type: String, default: null }
   }
-});
+};
 </script>
 
 <style lang="scss">

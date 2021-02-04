@@ -16,18 +16,9 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-interface Props {
-  kind: string;
-  icon: string | string[];
-  title: string;
-  subtitle: string;
-  href: string | null;
-}
-
-export default Vue.extend<{}, {}, {}, Props>({
+export default {
   name: 'ColorWidget',
   components: { FontAwesomeIcon },
   props: {
@@ -54,7 +45,7 @@ export default Vue.extend<{}, {}, {}, Props>({
       return [`is-${this.kind}`, this.href ? 'is-hoverable' : ''];
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

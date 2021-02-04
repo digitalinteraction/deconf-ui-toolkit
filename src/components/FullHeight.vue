@@ -5,8 +5,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-export default Vue.extend({
+export default {
   name: 'FullHeight',
   data() {
     return {
@@ -31,5 +30,5 @@ export default Vue.extend({
       this.windowHeight = window.innerHeight;
     }
   }
-});
+};
 </script>

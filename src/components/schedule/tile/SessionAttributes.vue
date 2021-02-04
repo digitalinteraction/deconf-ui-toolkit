@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
@@ -42,14 +42,14 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - deconf.session.isNotRecorded
 //
 
-export default Vue.extend({
+export default {
   name: 'SessionAttributes',
   components: { FontAwesomeIcon },
   props: {
     languages: { type: Array as PropType<string[]>, required: true },
     isRecorded: { type: Boolean, required: true }
   }
-});
+};
 </script>
 
 <style lang="scss">

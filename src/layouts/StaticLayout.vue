@@ -20,15 +20,14 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-export default Vue.extend({
+export default {
   name: 'StaticLayout',
   computed: {
     showLanguageControl(): boolean {
       return false;
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

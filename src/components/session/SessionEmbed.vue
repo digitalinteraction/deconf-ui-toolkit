@@ -73,7 +73,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import IframeEmbed from './IframeEmbed.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -147,7 +146,7 @@ function parseLink(link: string): Parsed | null {
 // - deconf.session.openZoom
 //
 
-export default Vue.extend({
+export default {
   name: 'SessionEmbed',
   components: { IframeEmbed, FontAwesomeIcon },
   props: {
@@ -169,7 +168,7 @@ export default Vue.extend({
       return `https://player.vimeo.com/video/${data}`;
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

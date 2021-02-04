@@ -9,7 +9,7 @@ process.env.VUE_APP_VERSION = require('./package.json').version;
 
 // Add an extra import to all sass imports
 module.exports = {
-  chainWebpack: config => {
+  chainWebpack: () => {
     //
     // Use svg-loader
     // Clear the existing svg rule and load as a component instead

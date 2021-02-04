@@ -21,11 +21,11 @@
 
 <script lang="ts">
 import { Sponsor } from '@/types';
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 
 const sizes = ['large', 'medium', 'regular', 'small'];
 
-export default Vue.extend({
+export default {
   name: 'SponsorRow',
   props: {
     title: { type: String, required: true },
@@ -37,7 +37,7 @@ export default Vue.extend({
       return `is-${this.size}`;
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

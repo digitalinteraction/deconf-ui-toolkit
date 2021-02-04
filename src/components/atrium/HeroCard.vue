@@ -10,9 +10,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-
-export default Vue.extend({
+export default {
   name: 'HeroCard',
   props: {
     title: { type: String, required: true },
@@ -24,7 +22,7 @@ export default Vue.extend({
       return { 'background-image': `url(${this.coverImage})` };
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

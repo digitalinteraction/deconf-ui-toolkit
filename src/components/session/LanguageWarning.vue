@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
@@ -29,7 +29,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - deconf.session.languageWarning
 //
 
-export default Vue.extend({
+export default {
   name: 'LanguageWarning',
   components: { FontAwesomeIcon },
   data() {
@@ -45,7 +45,7 @@ export default Vue.extend({
       this.isDismissed = true;
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

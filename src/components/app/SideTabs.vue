@@ -18,28 +18,22 @@
 </template>
 
 <script lang="ts">
-import Vue, { Component, PropType } from 'vue';
-
-interface Route {
-  name: string;
-  title: string;
-  enabled: boolean;
-  icon?: Component;
-}
+import { PropType } from 'vue';
+import { AppRoute } from '@/types';
 
 //
 // I18n keys
 // - deconf.appLayout.unavailable
 //
-export default Vue.extend({
+export default {
   name: 'SideTabs',
   props: {
     routes: {
-      type: Array as PropType<Route[]>,
+      type: Array as PropType<AppRoute[]>,
       required: true
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

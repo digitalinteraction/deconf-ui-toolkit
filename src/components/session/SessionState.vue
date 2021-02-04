@@ -45,7 +45,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
@@ -55,7 +54,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - deconf.session.interest
 //
 
-export default Vue.extend({
+export default {
   name: 'SessionState',
   components: { FontAwesomeIcon },
   props: {
@@ -75,7 +74,7 @@ export default Vue.extend({
       );
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

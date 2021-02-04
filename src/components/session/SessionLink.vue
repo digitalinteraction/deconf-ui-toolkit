@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import copy from 'copy-to-clipboard';
 
 //
@@ -23,7 +22,7 @@ import copy from 'copy-to-clipboard';
 // - deconf.general.copy
 // - deconf.general.copied
 //
-export default Vue.extend({
+export default {
   name: 'SessionLink',
   data() {
     return { didCopy: false };
@@ -53,7 +52,7 @@ export default Vue.extend({
       setTimeout(() => (this.didCopy = false), 5000);
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

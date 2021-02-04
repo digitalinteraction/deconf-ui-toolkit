@@ -31,14 +31,14 @@
 
 <script lang="ts">
 import { Session } from '@/types';
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 import RegisterInterest from '@/components/schedule/actions/RegisterInterest.vue';
 import AddToCalendar from '@/components/schedule/actions/AddToCalendar.vue';
 import JoinSession from '@/components/schedule/actions/JoinSession.vue';
 
 type SlotState = 'past' | 'soon' | 'present' | 'future';
 
-export default Vue.extend({
+export default {
   name: 'SessionActions',
   components: { RegisterInterest, AddToCalendar, JoinSession },
   props: {
@@ -65,5 +65,5 @@ export default Vue.extend({
       // ...
     }
   }
-});
+};
 </script>

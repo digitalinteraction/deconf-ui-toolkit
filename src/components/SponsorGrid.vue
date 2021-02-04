@@ -12,17 +12,17 @@
 
 <script lang="ts">
 import { SponsorGroup } from '@/types';
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 
 import SponsorRow from './SponsorRow.vue';
 
-export default Vue.extend({
+export default {
   name: 'SponsorGrid',
   components: { SponsorRow },
   props: {
     groups: { type: Array as PropType<SponsorGroup[]>, required: true }
   }
-});
+};
 </script>
 
 <style lang="scss">

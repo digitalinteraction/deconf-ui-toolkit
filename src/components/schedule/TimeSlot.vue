@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { getSlotState } from '@/utils';
 import { SlotState } from '@/types';
@@ -38,7 +38,7 @@ import { SlotState } from '@/types';
 // - deconf.schedule.live
 //
 
-export default Vue.extend({
+export default {
   name: 'TimeSlot',
   components: { FontAwesomeIcon },
   props: {
@@ -80,7 +80,7 @@ export default Vue.extend({
       return intl.timeZoneName || intl.timeZone;
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

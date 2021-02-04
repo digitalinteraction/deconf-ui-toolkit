@@ -18,14 +18,14 @@
 
 <script lang="ts">
 import { Speaker } from '@/types';
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 
-export default Vue.extend({
+export default {
   name: 'SpeakerGrid',
   props: {
     speakers: { type: Array as PropType<Speaker[]>, required: true }
   }
-});
+};
 </script>
 
 <style lang="scss">

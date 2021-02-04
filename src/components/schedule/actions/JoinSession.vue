@@ -19,7 +19,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Routes } from '@/constants';
 
@@ -36,7 +35,7 @@ const actions: Record<string, string> = {
 // - deconf.session.joinInFuture
 //
 
-export default Vue.extend({
+export default {
   name: 'JoinSession',
   components: { FontAwesomeIcon },
   props: {
@@ -56,7 +55,7 @@ export default Vue.extend({
       return { name: Routes.Session, params: { sessionId: this.sessionId } };
     }
   }
-});
+};
 </script>
 
 <style lang="scss">
