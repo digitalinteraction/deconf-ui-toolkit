@@ -9,7 +9,8 @@ const fs = require('fs');
 const glob = require('globby');
 const debug = require('debug')('theme');
 
-const regex = /<theme>\s*([\s\S]*)\s*<\/theme>/g;
+const themeRegex = /<theme>\s*([\s\S]*)\s*<\/theme>/g;
+const sassRegex = /<style\s+lang="scss">([\w\W]*)<\/style>/g;
 
 // Files to import first (in order)
 const prependFiles = ['src/scss/common.scss', 'src/scss/app.scss'];
@@ -43,7 +44,7 @@ async function main() {
       debug('read %o', filepath);
       const file = await fs.promises.readFile(filepath, 'utf8');
 
-      const result = regex.exec(file);
+      const result = sassRegex.exec(file);
       if (!result) return;
 
       components.push(wrapSass(filepath, result[1].trim()));

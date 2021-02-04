@@ -10,10 +10,10 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import babel from '@rollup/plugin-babel';
-import { terser } from 'rollup-plugin-terser';
+// import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
 // import scss from 'rollup-plugin-scss';
-// import sass from './sass-plugin';
+import extractSass from './sass-plugin';
 // import bundleScss from 'rollup-plugin-bundle-scss';
 
 const projectRoot = path.resolve(__dirname, '..');
@@ -53,19 +53,42 @@ const baseConfig = {
         customResolver: resolve({
           extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue']
         })
-      })
+      }),
       // bundleScss()
-      // sass({ prependData: sassPrepend })
-      // scss({ output: false })
+      extractSass({ prependData: sassPrepend })
+      // scss()
     ],
     replace: {
       'process.env.NODE_ENV': JSON.stringify('production')
     },
     vue: {
-      // css: false,
+      css: false,
       template: {
         isProduction: true
+      },
+
+      // https://github.com/vuejs/rollup-plugin-vue/issues/300
+      data: {
+        scss: '@import "@/scss/common.scss";\n'
+      },
+      style: {
+        preprocessOptions: {
+          // https://www.npmjs.com/package/sass
+          scss: {
+            importer: [
+              (url, prev) => {
+                console.log('preprocessOptions', url, prev);
+                return {
+                  file: url
+                    .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
+                    .replace(/^@/, path.join(projectRoot, 'src'))
+                };
+              }
+            ]
+          }
+        }
       }
+
       // customBlocks: ['!theme'],
       // styleInjector: 'myFunction'
     },

@@ -43,8 +43,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~@/scss/common.scss';
-
 $toggleContents-background: #f4f4f4 !default;
 $toggleContents-color: $primary !default;
 

@@ -34,7 +34,7 @@ export default function(options = {}) {
 
       styles.set(id, code);
 
-      return '';
+      return '// redacted scss';
     },
     generateBundle(options) {
       if (options.output === false) return;
