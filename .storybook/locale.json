@@ -10,7 +10,7 @@
       "login": "Login",
       "interpret": "Interpret mode",
       "register": "Register!",
-      "unavailable": "(Unavailable)"
+      "unavailable": " (Unavailable)"
     },
     "session": {
       "languageWarning": "Please note this session is only available in {0}",
