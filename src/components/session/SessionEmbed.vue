@@ -122,6 +122,13 @@ function parseLink(link: string): Parsed | null {
     };
   }
 
+  if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/j/')) {
+    return {
+      kind: 'zoom',
+      data: url.pathname.replace('/k/', '')
+    };
+  }
+
   if (isDomain(url, 'teams.microsoft.com')) {
     return {
       kind: 'teams',
