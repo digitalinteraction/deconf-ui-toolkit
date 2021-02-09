@@ -65,3 +65,25 @@ Present.args = {
     end: dates.addMinutes(dates.now, 15)
   }
 };
+
+export const NoWorkshops: Story = (args, { argTypes }) => ({
+  components: { ScheduleBlock },
+  props: ['currentDate', 'sessionSlot'],
+  data: () => ({
+    sessions: [
+      createSession('1', 'Topical Session Alpha', 'plenary', ['1', '2', '3'])
+    ],
+    speakers: defaultSpeakers(),
+    sessionTypes: defaultSessionTypes()
+  }),
+  template: `
+    <ScheduleBlock
+      :sessions="sessions"
+      :session-types="sessionTypes"
+      :session-slot="sessionSlot"
+      :speakers="speakers"
+      :current-date="currentDate"
+    />
+  `
+});
+NoWorkshops.args = Default.args;

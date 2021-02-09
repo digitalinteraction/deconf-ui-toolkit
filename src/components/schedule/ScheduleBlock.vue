@@ -23,7 +23,7 @@
           :speakers="getSessionSpeakers(session)"
         />
       </div>
-      <div class="scheduleBlock-session">
+      <div class="scheduleBlock-session" v-if="otherSessions.length > 0">
         <div class="scheduleBlock-workshopInfo">
           <h3 class="scheduleBlock-workshopTitle">
             {{ $t('deconf.schedule.workshopTitle') }}
@@ -34,7 +34,6 @@
         </div>
 
         <ToggleContents
-          v-if="otherSessions.length > 0"
           :title="$tc('deconf.schedule.workshops', otherSessions.length)"
           :show-button="$t('deconf.schedule.showWorkshops')"
           :hide-button="$t('deconf.schedule.hideWorkshops')"
@@ -149,6 +148,8 @@ $scheduleBlock-background: $background !default;
   .scheduleBlock-sessions {
     flex: 1;
     margin: 24px 0;
+    max-width: 960px;
+    margin-inline-end: auto;
   }
 }
 @include touch {
