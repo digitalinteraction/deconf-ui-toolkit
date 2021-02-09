@@ -5,7 +5,7 @@
         :app-settings="appSettings"
         :is-logged-in="isLoggedIn"
         :is-interpreter="isInterpreter"
-        :routes="appRoutes"
+        :routes="routes"
       >
         <slot name="brandA" slot="brandA" />
         <slot name="brandB" slot="brandB" />
@@ -13,7 +13,9 @@
     </div>
 
     <div class="appLayout-tabs">
-      <SideTabs :routes="appRoutes" />
+      <SideTabs :routes="routes">
+        <slot name="brandC" slot="brand" />
+      </SideTabs>
     </div>
 
     <div class="appLayout-page">
@@ -23,75 +25,12 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, AppSettings, User } from '@/types';
+import { AppRoute, ConfigSettings, AuthToken } from '@/types';
 import { PropType } from 'vue';
-
-import AtriumIcon from '@/icons/AtriumIcon.vue';
-import CoffeeChatIcon from '@/icons/CoffeeChatIcon.vue';
-import HelpDeskIcon from '@/icons/HelpDeskIcon.vue';
-import ScheduleIcon from '@/icons/ScheduleIcon.vue';
-import WhatsOnIcon from '@/icons/WhatsOnIcon.vue';
 
 import FullHeight from '@/components/FullHeight.vue';
 import NavigationBar from '@/components/app/NavigationBar.vue';
 import SideTabs from '@/components/app/SideTabs.vue';
-
-import { Routes } from '@/constants';
-
-function appRoutes(
-  user: User | null,
-  settings: AppSettings,
-  t: (key: string) => string
-) {
-  const routes: AppRoute[] = [];
-
-  if (settings.atrium.visible) {
-    routes.push({
-      title: t('deconf.appLayout.atrium'),
-      name: Routes.Atrium,
-      enabled: settings.atrium.enabled,
-      icon: AtriumIcon
-    });
-  }
-
-  if (settings.whatsOn.visible) {
-    routes.push({
-      title: t('deconf.appLayout.whatsOn'),
-      name: Routes.WhatsOn,
-      enabled: settings.whatsOn.enabled,
-      icon: WhatsOnIcon
-    });
-  }
-
-  if (settings.schedule.visible) {
-    routes.push({
-      title: t('deconf.appLayout.schedule'),
-      name: Routes.Schedule,
-      enabled: Boolean(user) && settings.schedule.enabled,
-      icon: ScheduleIcon
-    });
-  }
-
-  if (settings.coffeeChat.visible) {
-    routes.push({
-      title: t('deconf.appLayout.coffeeChat'),
-      name: Routes.CoffeeChatLobby,
-      enabled: Boolean(user) && settings.coffeeChat.enabled,
-      icon: CoffeeChatIcon
-    });
-  }
-
-  if (settings.helpDesk.visible) {
-    routes.push({
-      title: t('deconf.appLayout.helpDesk'),
-      name: Routes.HelpDesk,
-      enabled: Boolean(user) && settings.helpDesk.enabled,
-      icon: HelpDeskIcon
-    });
-  }
-
-  return routes;
-}
 
 //
 // I18n keys
@@ -107,17 +46,11 @@ export default {
   name: 'AppLayout',
   components: { FullHeight, NavigationBar, SideTabs },
   props: {
-    appSettings: { type: Object as PropType<AppSettings>, required: true },
-    user: { type: Object as PropType<User>, default: null }
+    appSettings: { type: Object as PropType<ConfigSettings>, required: true },
+    user: { type: Object as PropType<AuthToken>, default: null },
+    routes: { type: Array as PropType<AppRoute[]>, required: true }
   },
   computed: {
-    appRoutes(): AppRoute[] {
-      return appRoutes(
-        this.user,
-        this.appSettings,
-        key => this.$i18n.t(key, []) as string
-      );
-    },
     isLoggedIn(): boolean {
       return Boolean(this.user);
     },

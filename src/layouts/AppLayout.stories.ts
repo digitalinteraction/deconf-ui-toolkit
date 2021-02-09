@@ -3,14 +3,21 @@
 import { Meta, Story } from '@storybook/vue';
 import AppLayout from './AppLayout.vue';
 import { createSettings, createContent } from '@/story-utils';
-import { User } from '@/types';
+import { AuthToken } from '@/types';
+import {
+  AtriumIcon,
+  CoffeeChatIcon,
+  HelpDeskIcon,
+  ScheduleIcon,
+  WhatsOnIcon
+} from '@/icons';
 
 export default {
   title: 'Layout/AppLayout',
   component: AppLayout
 } as Meta;
 
-const user: User = {
+const user: AuthToken = {
   kind: 'auth',
   sub: 1,
   user_roles: ['attendee', 'interpreter'],
@@ -21,7 +28,39 @@ const Template: Story = (args, { argTypes }) => ({
   components: { AppLayout, Content: createContent() },
   props: ['isLoggedIn'],
   data: () => ({
-    appSettings: createSettings()
+    appSettings: createSettings(),
+    routes: [
+      {
+        title: 'Atrium',
+        name: 'Atrium',
+        enabled: true,
+        icon: AtriumIcon
+      },
+      {
+        title: 'Whats On',
+        name: 'WhatsOn',
+        enabled: true,
+        icon: WhatsOnIcon
+      },
+      {
+        title: 'Schedule',
+        name: 'Schedule',
+        enabled: true,
+        icon: ScheduleIcon
+      },
+      {
+        title: 'CoffeeChat',
+        name: 'CoffeeChat',
+        enabled: false,
+        icon: CoffeeChatIcon
+      },
+      {
+        title: 'HelpDesk',
+        name: 'HelpDesk',
+        enabled: false,
+        icon: HelpDeskIcon
+      }
+    ]
   }),
   computed: {
     user() {
@@ -29,7 +68,7 @@ const Template: Story = (args, { argTypes }) => ({
     }
   },
   template: `
-    <AppLayout :appSettings="appSettings" :user="user">
+    <AppLayout :appSettings="appSettings" :user="user" :routes="routes">
       <img
         slot="brandA"
         src="/brand.svg"
@@ -41,6 +80,12 @@ const Template: Story = (args, { argTypes }) => ({
         src="/openlab.svg"
         width="110"
         height="28"
+      />
+      <img
+        slot="brandC"
+        src="/square-brand.svg"
+        width="64"
+        height="64"
       />
       <div slot="main" class="container">
         <section class="section">
