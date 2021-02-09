@@ -34,6 +34,7 @@
         </div>
 
         <ToggleContents
+          v-if="otherSessions.length > 0"
           :title="$tc('deconf.schedule.workshops', otherSessions.length)"
           :show-button="$t('deconf.schedule.showWorkshops')"
           :hide-button="$t('deconf.schedule.hideWorkshops')"
