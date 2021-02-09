@@ -23,6 +23,8 @@ export default {
 </script>
 
 <style lang="scss">
+$boxContent-titleFamily: $family-sans-serif !default;
+
 .boxContent {
   background-color: $white;
   padding: 2.5rem;
@@ -32,7 +34,7 @@ export default {
   }
 
   .boxContent-title {
-    font-family: $title-family;
+    font-family: $boxContent-titleFamily;
     font-weight: $weight-bold;
     color: $text-strong;
     font-size: $size-3;
