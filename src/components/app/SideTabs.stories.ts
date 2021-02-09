@@ -55,7 +55,14 @@ const Template: Story = (args, { argTypes }) => ({
     ]
   }),
   template: `
-    <SideTabs :routes="routes" />
+    <SideTabs :routes="routes">
+      <img
+        slot="brand"
+        src="/square-brand.svg"
+        width="64"
+        height="64"
+      />
+    </SideTabs>
   `
 });
 

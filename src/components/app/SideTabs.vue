@@ -1,5 +1,8 @@
 <template>
   <div class="sideTabs">
+    <div class="sideTabs-tab" v-if="$slots.brand">
+      <slot name="brand" />
+    </div>
     <router-link
       v-for="item in routes"
       :key="item.name"
@@ -45,7 +48,7 @@ $sideTabs-active: $primary !default;
   background-color: $sideTabs-background;
   width: $tabbar-width;
 
-  padding-top: calc(#{$navbar-height} + 1em);
+  // padding-top: calc(#{$navbar-height} + 1em);
 
   @include insetInlineStart(0);
 
