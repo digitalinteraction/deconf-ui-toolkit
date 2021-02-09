@@ -149,5 +149,8 @@
   },
   "prettier": {
     "singleQuote": true
+  },
+  "dependencies": {
+    "@openlab/deconf-shared": "^1.0.1"
   }
 }

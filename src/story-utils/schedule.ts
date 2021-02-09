@@ -74,7 +74,7 @@ export function createSession(
     content: {
       en: `We gotta burn the rain forest, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.`
     },
-    hostLanguage: ['EN', 'FR'],
+    hostLanguages: ['EN', 'FR'],
     isRecorded: true,
     speakers: speakers
   };

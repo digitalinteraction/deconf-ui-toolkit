@@ -46,6 +46,3 @@ export * from './components/index';
 export * from './icons/index';
 export * from './layouts/index';
 export { types, utils, constants };
-
-// export { default as BackButton } from '@/components/BackButton.vue';
-// export { default as ToggleContents } from '@/components/ToggleContents.vue';
