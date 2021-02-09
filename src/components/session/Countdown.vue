@@ -38,9 +38,8 @@ export default {
     targetDate: { type: Date as PropType<Date>, required: true }
   },
   computed: {
-    remaingin(): { hours: number; minutes: number; seconds: number } {
+    remaining(): { hours: number; minutes: number; seconds: number } {
       let remaining = this.targetDate.getTime() - this.currentDate.getTime();
-      console.log(this);
 
       // Remaining hours
       const hours = Math.floor(remaining / 3600000);
@@ -57,19 +56,21 @@ export default {
       return { hours, minutes, seconds };
     },
     hoursRemaining(): number {
-      return this.remaingin.hours;
+      return this.remaining.hours;
     },
     minutesRemaining(): number {
-      return this.remaingin.minutes;
+      return this.remaining.minutes;
     },
     secondsRemaining(): number {
-      return this.remaingin.seconds;
+      return this.remaining.seconds;
     }
   }
 };
 </script>
 
 <style lang="scss">
+$countdown-color: $success !default;
+
 .countdown {
   display: flex;
   background-color: $success;
