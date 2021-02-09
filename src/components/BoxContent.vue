@@ -32,6 +32,7 @@ export default {
   }
 
   .boxContent-title {
+    font-family: $title-family;
     font-weight: $weight-bold;
     color: $text-strong;
     font-size: $size-3;
