@@ -28,7 +28,8 @@ export default {
   font-size: 1.1em;
   font-weight: $weight-bold;
   text-transform: uppercase;
-  color: $text-strong;
+  color: $text-light;
+  margin-bottom: 0.3em;
 }
 .sidebarItem-content {
 }
