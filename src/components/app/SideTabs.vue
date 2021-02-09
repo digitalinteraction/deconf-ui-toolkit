@@ -7,7 +7,7 @@
       :disabled="!item.enabled"
       :title="item.title"
       class="sideTabs-tab"
-      :class="{ 'is-active': item.active }"
+      active-class="is-active"
     >
       <component :is="item.icon" class="sideTabs-tabIcon" />
       <span class="sideTabs-tabText">
