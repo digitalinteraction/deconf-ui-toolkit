@@ -1,22 +1,22 @@
 <template>
-  <div class="atriumPage">
+  <div class="atriumLayout">
     <div class="container">
-      <div class="atriumPage-top">
+      <div class="atriumLayout-top">
         <slot name="top" />
       </div>
       <div class="columns">
         <div class="column is-two-thirds">
-          <div class="atriumPage-left">
+          <div class="atriumLayout-left">
             <slot name="left" />
           </div>
         </div>
         <div class="column is-one-third">
-          <div class="atriumPage-right">
+          <div class="atriumLayout-right">
             <slot name="right" />
           </div>
         </div>
       </div>
-      <div class="atriumPage-bottom">
+      <div class="atriumLayout-bottom">
         <slot name="bottom" />
       </div>
     </div>
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss">
-.atriumPage {
+.atriumLayout {
   background-color: $background;
   padding: $block-spacing;
   position: relative;
@@ -39,11 +39,11 @@ export default {
   }
 }
 @include desktop {
-  .atriumPage-top {
+  .atriumLayout-top {
     margin-bottom: $block-spacing;
   }
 }
-.atriumPage-bottom {
+.atriumLayout-bottom {
   margin-top: 7em;
 }
 </style>
