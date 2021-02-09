@@ -59,7 +59,7 @@ export default {
 $sessionLink-background: $link !default;
 $sessionLink-color: $white !default;
 $sessionLink-radius: $radius-large !default;
-$sessionLink-linkFont: $family-monospace !default;
+$sessionLink-linkFont: $family-sans-serif !default;
 
 .sessionLink {
 }
