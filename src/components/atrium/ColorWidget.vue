@@ -26,7 +26,7 @@ export default {
       type: String,
       required: true,
       validator(v) {
-        return ['primary', 'secondary', 'twitter'].includes(v);
+        return ['primary', 'secondary', 'twitter', 'custom'].includes(v);
       }
     },
     icon: { type: [String, Array], required: true },

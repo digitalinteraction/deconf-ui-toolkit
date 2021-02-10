@@ -44,6 +44,13 @@ Twitter.args = {
   href: 'https://duck.com'
 };
 
+export const Custom = Template.bind({});
+Custom.args = {
+  ...Primary.args,
+  kind: 'custom',
+  icon: ['fas', 'apple-alt']
+};
+
 export const List = () => ({
   components: { ColorWidget },
   template: `
