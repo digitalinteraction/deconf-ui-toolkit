@@ -9,7 +9,7 @@
         />
       </span>
       <span>
-        {{ sessionType.title.en }}
+        {{ localeTitle }}
       </span>
     </div>
   </div>
@@ -19,12 +19,18 @@
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { SessionType } from '@/types';
+import { localiseFromObject } from '@/utils';
 
 export default {
   name: 'SessionHeader',
   components: { FontAwesomeIcon },
   props: {
     sessionType: { type: Object as PropType<SessionType>, required: true }
+  },
+  computed: {
+    localeTitle(): string | null {
+      return localiseFromObject(this.$i18n.locale, this.sessionType.title);
+    }
   }
 };
 </script>

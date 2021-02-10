@@ -6,11 +6,11 @@
     <div class="sessionTile-info">
       <h2 class="sessionTile-title">
         <router-link :to="sessionRoute">
-          {{ session.title.en }}
+          {{ localeTitle }}
         </router-link>
       </h2>
       <p class="sessionTile-description">
-        {{ session.content.en | trim(300) }}
+        {{ localeContent }}
       </p>
     </div>
     <div class="sessionTile-attributes">
@@ -32,7 +32,7 @@
 import { PropType } from 'vue';
 import { Session, SessionSlot, SessionType, SlotState, Speaker } from '@/types';
 import { Routes } from '@/constants';
-import { getSlotState } from '@/utils';
+import { getSlotState, localiseFromObject } from '@/utils';
 
 import SessionHeader from './SessionHeader.vue';
 import SessionAttributes from './SessionAttributes.vue';
@@ -46,12 +46,6 @@ export default {
     SessionAttributes,
     SpeakerGrid,
     SessionActions
-  },
-  filters: {
-    trim(value: string, length: number) {
-      if (value.length < length) return value;
-      return `${value.substring(0, length)}…`;
-    }
   },
   props: {
     currentDate: { type: Date as PropType<Date>, required: true },
@@ -75,6 +69,22 @@ export default {
         this.sessionSlot.start,
         this.sessionSlot.end
       );
+    },
+    localeTitle(): string | null {
+      return localiseFromObject(this.$i18n.locale, this.session.title);
+    },
+    localeContent(): string | null {
+      const content = localiseFromObject(
+        this.$i18n.locale,
+        this.session.content
+      );
+      return content && this.trim(content, 300);
+    }
+  },
+  methods: {
+    trim(value: string, length: number): string {
+      if (value.length < length) return value;
+      return `${value.substring(0, length)}…`;
     }
   }
 };

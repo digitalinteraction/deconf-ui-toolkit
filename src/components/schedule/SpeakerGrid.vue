@@ -10,7 +10,7 @@
       </div>
       <div class="speakerGrid-speakerInfo">
         <div class="speakerGrid-name">{{ speaker.name }}</div>
-        <div class="speakerGrid-role">{{ speaker.role.en }}</div>
+        <div class="speakerGrid-role">{{ localiseRole(speaker) }}</div>
       </div>
     </div>
   </div>
@@ -19,11 +19,17 @@
 <script lang="ts">
 import { Speaker } from '@/types';
 import { PropType } from 'vue';
+import { localiseFromObject } from '@/utils';
 
 export default {
   name: 'SpeakerGrid',
   props: {
     speakers: { type: Array as PropType<Speaker[]>, required: true }
+  },
+  methods: {
+    localiseRole(speaker: Speaker): string | null {
+      return localiseFromObject(this.$i18n.locale, speaker.role);
+    }
   }
 };
 </script>
