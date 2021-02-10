@@ -62,6 +62,10 @@ async function main() {
     .join(sassSeperator);
 
   await fs.promises.writeFile('dist/theme.scss', scss);
+
+  // Copy the common.scss too
+  const commonSass = await fs.promises.readFile('src/scss/common.scss');
+  await fs.promises.writeFile('dist/common.scss', commonSass);
 }
 
 //

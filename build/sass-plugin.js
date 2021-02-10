@@ -4,6 +4,7 @@
 //
 
 import { createFilter } from 'rollup-pluginutils';
+import fs from 'fs';
 
 const sassSeperator = '\n\n\n';
 const sassBlock = (name, inner) =>
@@ -20,6 +21,7 @@ export default function(options = {}) {
     include = ['/**/*.css', '/**/*.scss', '/**/*.sass'],
     exclude,
     prependData = null,
+    copyFiles = [],
     appendData = null
   } = options;
 
@@ -44,6 +46,21 @@ export default function(options = {}) {
 
       if (prependData) {
         components.push(sassBlock('PREPEND_DATA', prependData));
+      }
+
+      if (Array.isArray(copyFiles)) {
+        for (const { input, output } of copyFiles) {
+          if (typeof input !== 'string' || typeof output !== 'string') {
+            console.error('Invalid copyFiles %o', { input, output });
+            continue;
+          }
+
+          this.emitFile({
+            type: 'asset',
+            fileName: output,
+            source: fs.readFileSync(input, 'utf8')
+          });
+        }
       }
 
       // Compose sass into blocks

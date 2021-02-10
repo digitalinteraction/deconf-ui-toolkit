@@ -32,10 +32,6 @@ const argv = minimist(process.argv.slice(2));
 const moduleName = 'DeconfUI';
 const fileName = 'dist/deconf-ui';
 const sorucemap = true;
-const sassPrepend = [
-  readSync('src/scss/common.scss'),
-  readSync('src/scss/app.scss')
-].join('\n');
 
 const baseConfig = {
   input: 'src/entrypoint.ts',
@@ -53,7 +49,19 @@ const baseConfig = {
         })
       }),
       // bundleScss()
-      extractSass({ prependData: sassPrepend, filename: null })
+      extractSass({
+        prependData: [
+          readSync('src/scss/common.scss'),
+          readSync('src/scss/app.scss')
+        ].join('\n'),
+        copyFiles: [
+          {
+            input: path.resolve(projectRoot, 'src/scss/common.scss'),
+            output: 'common.scss'
+          }
+        ],
+        filename: null
+      })
       // scss()
     ],
     replace: {
