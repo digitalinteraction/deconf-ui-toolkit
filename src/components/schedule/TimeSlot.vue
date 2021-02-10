@@ -29,7 +29,6 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { getSlotState } from '@/utils';
 import { SlotState } from '@/types';
 
 //
@@ -42,7 +41,7 @@ export default {
   name: 'TimeSlot',
   components: { FontAwesomeIcon },
   props: {
-    currentDate: { type: Date as PropType<Date>, required: true },
+    slotState: { type: String as PropType<SlotState>, required: true },
     startDate: { type: Date as PropType<Date>, required: true },
     endDate: { type: Date as PropType<Date>, required: true }
   },
@@ -64,9 +63,6 @@ export default {
     }
   },
   computed: {
-    slotState(): SlotState {
-      return getSlotState(this.currentDate, this.startDate, this.endDate);
-    },
     tagClasses(): string {
       return `is-${this.slotState}`;
     },

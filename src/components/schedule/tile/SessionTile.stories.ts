@@ -9,7 +9,7 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionTile },
-  props: ['currentDate', 'sessionSlot'],
+  props: ['slotState', 'sessionSlot'],
   data: () => ({
     session: createSession('1234', 'Lorem ipsum sil dor amet', 'plenary', [
       '1',
@@ -34,14 +34,14 @@ const Template: Story = (args, { argTypes }) => ({
       :session-type="sessionType"
       :session-slot="sessionSlot"
       :speakers="speakers"
-      :current-date="currentDate"
+      :slot-state="slotState"
     />
   `
 });
 
 export const Future = Template.bind({});
 Future.args = {
-  currentDate: dates.now,
+  slotState: 'future',
   sessionSlot: {
     id: '1',
     start: dates.addMinutes(dates.future, -30),
@@ -51,7 +51,7 @@ Future.args = {
 
 export const Soon = Template.bind({});
 Soon.args = {
-  currentDate: dates.now,
+  slotState: 'soon',
   sessionSlot: {
     id: '1',
     start: dates.addMinutes(dates.now, 15),
@@ -61,7 +61,7 @@ Soon.args = {
 
 export const Present = Template.bind({});
 Present.args = {
-  currentDate: dates.now,
+  slotState: 'present',
   sessionSlot: {
     id: '1',
     start: dates.addMinutes(dates.now, -15),
@@ -71,7 +71,7 @@ Present.args = {
 
 export const Past = Template.bind({});
 Past.args = {
-  currentDate: dates.now,
+  slotState: 'past',
   sessionSlot: {
     id: '1',
     start: dates.addMinutes(dates.past, 0),

@@ -32,7 +32,7 @@
 import { PropType } from 'vue';
 import { Session, SessionSlot, SessionType, SlotState, Speaker } from '@/types';
 import { Routes } from '@/constants';
-import { getSlotState, localiseFromObject } from '@/utils';
+import { localiseFromObject } from '@/utils';
 
 import SessionHeader from './SessionHeader.vue';
 import SessionAttributes from './SessionAttributes.vue';
@@ -48,7 +48,7 @@ export default {
     SessionActions
   },
   props: {
-    currentDate: { type: Date as PropType<Date>, required: true },
+    slotState: { type: String as PropType<SlotState>, required: true },
     session: { type: Object as PropType<Session>, required: true },
     sessionType: { type: Object as PropType<SessionType>, required: true },
     sessionSlot: { type: Object as PropType<SessionSlot>, required: true },
@@ -62,13 +62,6 @@ export default {
       return this.session.speakers
         .map(id => this.speakers.find(s => s.id === id) as Speaker)
         .filter(s => Boolean(s));
-    },
-    slotState(): SlotState {
-      return getSlotState(
-        this.currentDate,
-        this.sessionSlot.start,
-        this.sessionSlot.end
-      );
     },
     localeTitle(): string | null {
       return localiseFromObject(this.$i18n.locale, this.session.title);

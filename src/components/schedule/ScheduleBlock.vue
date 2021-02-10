@@ -3,7 +3,7 @@
     <div class="scheduleBlock-slotColumn">
       <div class="scheduleBlock-slot">
         <TimeSlot
-          :current-date="currentDate"
+          :slot-state="slotState"
           :start-date="sessionSlot.start"
           :end-date="sessionSlot.end"
         />
@@ -16,7 +16,7 @@
         :key="session.id"
       >
         <SessionTile
-          :current-date="currentDate"
+          :slot-state="slotState"
           :session="session"
           :session-slot="sessionSlot"
           :session-type="getSessionType(session)"
@@ -44,7 +44,7 @@
             :key="session.id"
           >
             <SessionTile
-              :current-date="currentDate"
+              :slot-state="slotState"
               :session="session"
               :session-slot="sessionSlot"
               :session-type="getSessionType(session)"
@@ -58,8 +58,9 @@
 </template>
 
 <script lang="ts">
-import { Session, SessionSlot, SessionType, Speaker } from '@/types';
+import { Session, SessionSlot, SessionType, SlotState, Speaker } from '@/types';
 import { PropType } from 'vue';
+import { getSlotState } from '@/utils';
 
 import TimeSlot from './TimeSlot.vue';
 import SessionTile from './tile/SessionTile.vue';
@@ -114,6 +115,13 @@ export default {
     },
     otherSessions(): Session[] {
       return this.sessions.filter(s => !this.plenaryTypes.has(s.type));
+    },
+    slotState(): SlotState {
+      return getSlotState(
+        this.currentDate,
+        this.sessionSlot.start,
+        this.sessionSlot.end
+      );
     }
   },
   methods: {
