@@ -1,6 +1,6 @@
 <template>
   <a
-    class="addToCalendar button is-small is-link"
+    class="addToCalendar button"
     :href="calendarLink"
     target="_blank"
     rel="noopener"

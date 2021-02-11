@@ -1,9 +1,5 @@
 <template>
-  <router-link
-    class="joinSession button is-small"
-    :class="classes"
-    :to="sessionRoute"
-  >
+  <router-link class="joinSession button" :class="classes" :to="sessionRoute">
     <div class="icon-text">
       <span class="icon rtl-only">
         <FontAwesomeIcon :icon="['fas', 'arrow-left']" />

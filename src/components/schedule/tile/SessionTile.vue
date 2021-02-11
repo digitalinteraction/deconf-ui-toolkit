@@ -28,13 +28,21 @@
           Add to calendar
         -->
         <template v-if="canAddToCalendar">
-          <AddToCalendar :calendar-link="calendarLink" @click="trackCalendar" />
+          <AddToCalendar
+            class="is-small"
+            :calendar-link="calendarLink"
+            @click="trackCalendar"
+          />
         </template>
         <!-- 
           Join session
         -->
         <template v-if="canJoinSession">
-          <JoinSession :slot-state="slotState" :session-id="session.id" />
+          <JoinSession
+            class="is-small"
+            :slot-state="slotState"
+            :session-id="session.id"
+          />
         </template>
       </div>
     </div>
