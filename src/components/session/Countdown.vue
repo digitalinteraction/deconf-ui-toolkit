@@ -69,12 +69,13 @@ export default {
 </script>
 
 <style lang="scss">
-$countdown-color: $success !default;
+$countdown-background: $success !default;
+$countdown-color: $white !default;
 
 .countdown {
   display: flex;
-  background-color: $success;
-  color: $white;
+  background-color: $countdown-background;
+  color: $countdown-color;
   border-radius: $radius-large;
 }
 .countdown-component {
