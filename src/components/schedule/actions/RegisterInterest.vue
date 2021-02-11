@@ -20,10 +20,18 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
+// @deprecated TO_BE_REMOVED
+//
+
+//
 // I18n usage:
 // - deconf.session.registered
 // - deconf.session.register
 //
+
+interface Data {
+  isWorking: boolean;
+}
 
 export default {
   name: 'RegisterInterest',

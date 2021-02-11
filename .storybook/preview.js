@@ -70,12 +70,15 @@ Vue.prototype.$tc = Vue.prototype.$i18n.tc;
 //
 Vue.prototype.$store = {
   state: {},
-  getters: {},
+  getters: {
+    'api/calendarLink': session => `/ical/${session.id}`
+  },
   commit(key, value) {
     action('[Vuex] commit')(key, value);
   },
-  async dispatch(key, value) {
+  dispatch(key, value) {
     action('[Vuex] dispatch')(key, value);
+    return new Promise(resolve, setTimeout(resolve, 2000));
   }
 };
 

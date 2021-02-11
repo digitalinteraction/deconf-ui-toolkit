@@ -1,6 +1,6 @@
 <template>
   <a
-    class="button is-small is-secondary"
+    class="addToCalendar button is-small is-link"
     :href="calendarLink"
     target="_blank"
     rel="noopener"
@@ -38,3 +38,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+@include mobile {
+  .addToCalendar.button {
+    width: 100%;
+  }
+}
+</style>

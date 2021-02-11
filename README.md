@@ -73,6 +73,10 @@ $family-sans-serif: Helvetica, Avenir;
 You provide your own vuex module when importing the toolkit which implements
 the below mutations and actions:
 
+**getters**
+
+- `api/calendarLink` (session: Session) => string | null
+
 **mutations**
 
 - ...

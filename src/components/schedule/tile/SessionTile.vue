@@ -23,7 +23,20 @@
       <SpeakerGrid :speakers="sessionSpeakers" />
     </div>
     <div class="sessionTile-actions">
-      <SessionActions :session="session" :slot-state="slotState" />
+      <div class="buttons is-right">
+        <!-- 
+          Add to calendar
+        -->
+        <template v-if="canAddToCalendar">
+          <AddToCalendar :calendar-link="calendarLink" @click="trackCalendar" />
+        </template>
+        <!-- 
+          Join session
+        -->
+        <template v-if="canJoinSession">
+          <JoinSession :slot-state="slotState" :session-id="session.id" />
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -37,7 +50,8 @@ import { localiseFromObject } from '@/utils';
 import SessionHeader from './SessionHeader.vue';
 import SessionAttributes from './SessionAttributes.vue';
 import SpeakerGrid from '../SpeakerGrid.vue';
-import SessionActions from './SessionActions.vue';
+import AddToCalendar from '../actions/AddToCalendar.vue';
+import JoinSession from '../actions/JoinSession.vue';
 
 export default {
   name: 'SessionTile',
@@ -45,7 +59,8 @@ export default {
     SessionHeader,
     SessionAttributes,
     SpeakerGrid,
-    SessionActions
+    AddToCalendar,
+    JoinSession
   },
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
@@ -72,12 +87,24 @@ export default {
         this.session.content
       );
       return content && this.trim(content, 300);
+    },
+    canAddToCalendar(): boolean {
+      return ['soon', 'future'].includes(this.slotState);
+    },
+    canJoinSession(): boolean {
+      return true;
+    },
+    calendarLink(): string | null {
+      return this.$store.getters['api/calendarLink'](this.session) || null;
     }
   },
   methods: {
     trim(value: string, length: number): string {
       if (value.length < length) return value;
       return `${value.substring(0, length)}…`;
+    },
+    trackCalendar(): void {
+      // Track the clicking of a calendar
     }
   }
 };

@@ -21,7 +21,7 @@
     "build:types": "cross-env NODE_ENV=production tsc --emitDeclarationOnly",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "storybook": "start-storybook -s ./static -p 6006",
+    "storybook": "start-storybook -s ./static -p 6006 --ci",
     "build-storybook": "build-storybook -s ./static"
   },
   "peerDependencies": {
