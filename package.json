@@ -22,7 +22,10 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -s ./static -p 6006 --ci",
-    "build-storybook": "build-storybook -s ./static"
+    "build-storybook": "build-storybook -s ./static",
+    "preversion": "npm run build-storybook",
+    "postversion": "git push --follow-tags",
+    "prepublish": "npm run build-storybook"
   },
   "peerDependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
