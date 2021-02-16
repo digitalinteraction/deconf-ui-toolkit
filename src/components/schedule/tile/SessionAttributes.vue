@@ -29,12 +29,28 @@
         </span>
       </span>
     </span>
+
+    <!--
+      Track
+    -->
+    <span class="sessionAttributes-attribute" v-if="track">
+      <span class="icon-text">
+        <span class="icon">
+          <FontAwesomeIcon :icon="['fas', 'tag']" fixed-width />
+        </span>
+        <span class="is-uppercase">
+          {{ localise(track.title) }}
+        </span>
+      </span>
+    </span>
   </div>
 </template>
 
 <script lang="ts">
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { Track } from '@openlab/deconf-shared/dist';
+import { localiseFromObject } from '@/utils';
 
 //
 // I18n used:
@@ -47,7 +63,13 @@ export default {
   components: { FontAwesomeIcon },
   props: {
     languages: { type: Array as PropType<string[]>, required: true },
-    isRecorded: { type: Boolean, required: true }
+    isRecorded: { type: Boolean, required: true },
+    track: { type: Object as PropType<Track>, default: null }
+  },
+  methods: {
+    localise(object: Record<string, string>): string | null {
+      return localiseFromObject(this.$i18n.locale, object);
+    }
   }
 };
 </script>

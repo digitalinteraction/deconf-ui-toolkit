@@ -9,10 +9,14 @@ export default {
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionAttributes },
   props: ['languages', 'isRecorded'],
+  data: () => ({
+    track: { id: 1, title: { en: 'AI and Agriculture' } }
+  }),
   template: `
     <SessionAttributes
       :languages="languages"
       :is-recorded="isRecorded"
+      :track="track"
     />
   `
 });
