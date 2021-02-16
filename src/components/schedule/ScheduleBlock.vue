@@ -21,6 +21,7 @@
           :session-slot="sessionSlot"
           :session-type="getSessionType(session)"
           :speakers="getSessionSpeakers(session)"
+          :track="getSessionTrack(session)"
         />
       </div>
       <div class="scheduleBlock-session" v-if="otherSessions.length > 0">
@@ -49,6 +50,7 @@
               :session-slot="sessionSlot"
               :session-type="getSessionType(session)"
               :speakers="getSessionSpeakers(session)"
+              :track="getSessionTrack(session)"
             />
           </div>
         </ToggleContents>
@@ -58,7 +60,14 @@
 </template>
 
 <script lang="ts">
-import { Session, SessionSlot, SessionType, SlotState, Speaker } from '@/types';
+import {
+  Session,
+  SessionSlot,
+  SessionType,
+  SlotState,
+  Speaker,
+  Track
+} from '@/types';
 import { PropType } from 'vue';
 import { getSlotState } from '@/utils';
 
@@ -88,7 +97,8 @@ export default {
     sessionSlot: { type: Object as PropType<SessionSlot>, required: true },
     sessions: { type: Array as PropType<Session[]>, required: true },
     speakers: { type: Array as PropType<Speaker[]>, required: true },
-    sessionTypes: { type: Array as PropType<SessionType[]>, required: true }
+    sessionTypes: { type: Array as PropType<SessionType[]>, required: true },
+    tracks: { type: Array as PropType<Track[]>, required: true }
   },
   computed: {
     classes(): string {
@@ -102,6 +112,9 @@ export default {
     },
     sessionTypeMap(): Map<string, SessionType> {
       return new Map(this.sessionTypes.map(s => [s.id, s]));
+    },
+    trackMap(): Map<string, Track> {
+      return new Map(this.tracks.map(t => [t.id, t]));
     },
     plenaryTypes(): Set<string> {
       const types = new Set<string>();
@@ -134,6 +147,10 @@ export default {
       return session.speakers
         .map(id => this.speakerMap.get(id) as Speaker)
         .filter(s => Boolean(s));
+    },
+    getSessionTrack(session: Session): Track {
+      // TODO: handle not found better too
+      return this.trackMap.get(session.track) as Track;
     }
   }
 };

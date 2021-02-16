@@ -17,6 +17,7 @@
       <SessionAttributes
         :languages="session.hostLanguages"
         :is-recorded="session.isRecorded"
+        :track="track"
       />
     </div>
     <div class="sessionTile-speakers">
@@ -51,7 +52,14 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Session, SessionSlot, SessionType, SlotState, Speaker } from '@/types';
+import {
+  Session,
+  SessionSlot,
+  SessionType,
+  SlotState,
+  Speaker,
+  Track
+} from '@/types';
 import { Routes } from '@/constants';
 import { localiseFromObject } from '@/utils';
 
@@ -75,6 +83,7 @@ export default {
     session: { type: Object as PropType<Session>, required: true },
     sessionType: { type: Object as PropType<SessionType>, required: true },
     sessionSlot: { type: Object as PropType<SessionSlot>, required: true },
+    track: { type: Object as PropType<Track>, required: true },
     speakers: { type: Array as PropType<Speaker[]>, required: true }
   },
   computed: {

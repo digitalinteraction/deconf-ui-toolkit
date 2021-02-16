@@ -14,6 +14,10 @@ export function createSpeaker(id: string, name: string, role: string): Speaker {
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
+function randomElement<T>(array: T[]) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
 export function createSponsors(n: number) {
   const s = [];
   for (let i = 0; i < n; i++) {
@@ -24,6 +28,10 @@ export function createSponsors(n: number) {
     });
   }
   return s;
+}
+
+export function createTrack(id: string, name: string) {
+  return { id, title: { en: name } };
 }
 
 export function defaultSessionTypes() {
@@ -59,6 +67,14 @@ export function defaultSpeakers() {
   ];
 }
 
+export function defaultTracks() {
+  return [
+    createTrack('1', 'AI and Agriculture'),
+    createTrack('2', 'Machine Learning with Fish'),
+    createTrack('3', 'Block Chain Horoscopes')
+  ];
+}
+
 export function createSession(
   id: string,
   title: string,
@@ -71,6 +87,7 @@ export function createSession(
     title: {
       en: title
     },
+    track: randomElement(['1', '2', '3']),
     content: {
       en: `We gotta burn the rain forest, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.`
     },

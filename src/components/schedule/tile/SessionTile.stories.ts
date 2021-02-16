@@ -1,6 +1,11 @@
 import { Meta, Story } from '@storybook/vue';
 import SessionTile from './SessionTile.vue';
-import { defaultSpeakers, dates, createSession } from '@/story-utils';
+import {
+  defaultSpeakers,
+  dates,
+  createSession,
+  createTrack
+} from '@/story-utils';
 
 export default {
   title: 'Schedule/SessionTile',
@@ -26,7 +31,8 @@ const Template: Story = (args, { argTypes }) => ({
       title: {
         en: 'Plenary'
       }
-    }
+    },
+    track: createTrack('1', 'AI and Agriculture')
   }),
   template: `
     <SessionTile
@@ -34,6 +40,7 @@ const Template: Story = (args, { argTypes }) => ({
       :session-type="sessionType"
       :session-slot="sessionSlot"
       :speakers="speakers"
+      :track="track"
       :slot-state="slotState"
     />
   `
