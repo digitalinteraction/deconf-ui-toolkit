@@ -8,3 +8,4 @@ export { default as BoxContent } from './BoxContent.vue';
 export { default as SponsorGrid } from './SponsorGrid.vue';
 export { default as SponsorRow } from './SponsorRow.vue';
 export { default as ToggleContents } from './ToggleContents.vue';
+export { default as FullHeight } from './FullHeight.vue';
