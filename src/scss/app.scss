@@ -73,3 +73,10 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+//
+// Scroll-top offset
+//
+html {
+  scroll-padding-top: $navbar-height;
+}

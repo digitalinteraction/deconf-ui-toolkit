@@ -90,9 +90,11 @@ const Template: Story = (args, { argTypes }) => ({
       <div slot="main" class="container">
         <section class="section">
           <div class="content">
+            <a id="top" href="#bottom">Bottom</a>
             <Content />
             <Content />
             <Content />
+            <a id="bottom" href="#top">Top</a>
           </div>
         </section>
       </div>

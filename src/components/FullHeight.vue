@@ -15,7 +15,7 @@ export default {
   computed: {
     styles(): object {
       return {
-        height: `${this.windowHeight}px`
+        'min-height': `${this.windowHeight}px`
       };
     }
   },

@@ -62,44 +62,37 @@ export default {
 </script>
 
 <style lang="scss">
+$appLayout-navbarBackground: $white !default;
+
+.appLayout {
+  scroll-padding-top: $navbar-height;
+}
+
 .appLayout-page {
   position: relative;
-  overflow-y: scroll;
+}
+
+.appLayout-header {
+  position: sticky;
+  top: 0;
+  z-index: $z-appwrapper-navbar;
+  background: $appLayout-navbarBackground;
 }
 
 @include desktop {
   .appLayout {
-    display: grid;
-    grid: $navbar-height auto / $tabbar-width auto;
+    margin-left: $tabbar-width;
   }
-
-  .appLayout-header {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-  }
-
   .appLayout-tabs {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
     display: flex;
-  }
-
-  .appLayout-page {
-    grid-column: 2 / 2;
-    grid-row: 2 / 3;
   }
 }
 
 @include touch {
-  .appLayout {
-    overflow: scroll;
-  }
-  .appLayout-header {
-    position: sticky;
-    top: 0;
-    background: $white;
-    z-index: $z-appwrapper-navbar;
-  }
   .appLayout-tabs {
     display: none;
   }
