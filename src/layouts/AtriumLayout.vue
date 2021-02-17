@@ -4,7 +4,7 @@
       <div class="atriumLayout-top">
         <slot name="top" />
       </div>
-      <div class="columns">
+      <div class="columns is-multiline">
         <div class="column is-two-thirds">
           <div class="atriumLayout-left">
             <slot name="left" />
