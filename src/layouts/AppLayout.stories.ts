@@ -26,7 +26,7 @@ const user: AuthToken = {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { AppLayout, Content: createContent() },
-  props: ['isLoggedIn'],
+  props: ['isLoggedIn', 'contentSize'],
   data: () => ({
     appSettings: createSettings(),
     routes: [
@@ -65,6 +65,9 @@ const Template: Story = (args, { argTypes }) => ({
   computed: {
     user() {
       return this.isLoggedIn ? user : null;
+    },
+    contentLines() {
+      return new Array(this.contentSize as number).fill(0).map((v, k) => k);
     }
   },
   template: `
@@ -87,16 +90,20 @@ const Template: Story = (args, { argTypes }) => ({
         width="64"
         height="64"
       />
-      <div slot="main" class="container">
-        <section class="section">
-          <div class="content">
-            <a id="top" href="#bottom">Bottom</a>
-            <Content />
-            <Content />
-            <Content />
-            <a id="bottom" href="#top">Top</a>
-          </div>
-        </section>
+      <div slot="main" style="background: #fafafa; flex: 1">
+        <div class="container">
+          <section class="section">
+            <div class="content">
+              <p>
+                <a id="top" href="#bottom">Bottom</a>
+              </p>
+              <Content v-for="line in contentLines" :key="line" />
+              <p>
+                <a id="bottom" href="#top">Top</a>
+              </p>
+            </div>
+          </section>
+        </div>
       </div>
     </AppLayout>
   `
@@ -104,15 +111,26 @@ const Template: Story = (args, { argTypes }) => ({
 
 export const Desktop = Template.bind({});
 Desktop.args = {
-  isLoggedIn: true
+  isLoggedIn: true,
+  contentSize: 3
 };
 Desktop.parameters = {
   layout: 'fullscreen'
 };
 
+export const Short = Template.bind({});
+Short.args = {
+  isLoggedIn: true,
+  contentSize: 0
+};
+Short.parameters = {
+  layout: 'fullscreen'
+};
+
 export const Mobile = Template.bind({});
 Mobile.args = {
-  isLoggedIn: true
+  isLoggedIn: true,
+  contentSize: 3
 };
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },

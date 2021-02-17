@@ -65,11 +65,16 @@ export default {
 $appLayout-navbarBackground: $white !default;
 
 .appLayout {
+  display: flex;
+  flex-direction: column;
   scroll-padding-top: $navbar-height;
 }
 
 .appLayout-page {
   position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .appLayout-header {
