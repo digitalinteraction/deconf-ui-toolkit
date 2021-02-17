@@ -3,7 +3,13 @@ function isDomain(url: URL, ...domains: string[]) {
 }
 
 export interface ParsedEmbedLink {
-  kind: 'youtube-video' | 'youtube-channel' | 'zoom' | 'vimeo' | 'teams';
+  kind:
+    | 'youtube-video'
+    | 'youtube-channel'
+    | 'zoom'
+    | 'vimeo'
+    | 'teams'
+    | 'panopto';
   data: string;
 }
 
@@ -62,6 +68,17 @@ export function parseEmbedLink(link: string): ParsedEmbedLink | null {
     return {
       kind: 'vimeo',
       data: url.pathname.replace('/video/', '')
+    };
+  }
+
+  if (
+    isDomain(url, 'hosted.panopto.com') &&
+    url.pathname === '/Panopto/Pages/Embed.aspx' &&
+    url.searchParams.has('id')
+  ) {
+    return {
+      kind: 'panopto',
+      data: url.toString()
     };
   }
 
