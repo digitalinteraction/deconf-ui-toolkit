@@ -38,6 +38,12 @@ YoutubeLiveStream.args = {
     'https://www.youtube.com/embed/live_stream?channel=UC7v2Rs4f_UlIQNuNKUjmtgA'
 };
 
+export const Panopto = Template.bind({});
+Panopto.args = {
+  link:
+    'https://mozilla.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=312c3b08-71b6-401f-8ee6-acc300fa774b&autoplay=false&offerviewer=false&showtitle=false&showbrand=false&start=0&interactivity=all'
+};
+
 export const Zoom = Template.bind({});
 Zoom.args = {
   link: 'https://zoom.us/my/abcdef'
