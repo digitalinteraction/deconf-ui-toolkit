@@ -153,6 +153,6 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@openlab/deconf-shared": "^1.0.1"
+    "@openlab/deconf-shared": "^2.0.1"
   }
 }
