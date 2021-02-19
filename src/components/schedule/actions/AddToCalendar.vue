@@ -6,14 +6,12 @@
     rel="noopener"
     @click="onClick"
   >
-    <div class="icon-text">
-      <span class="icon">
-        <FontAwesomeIcon :icon="['fas', 'calendar-plus']" />
-      </span>
-      <span>
-        {{ $t('deconf.session.addToCalendar') }}
-      </span>
-    </div>
+    <span class="icon">
+      <FontAwesomeIcon :icon="['fas', 'calendar-plus']" />
+    </span>
+    <span>
+      {{ $t('deconf.session.addToCalendar') }}
+    </span>
   </a>
 </template>
 

@@ -48,7 +48,7 @@ $speakerGrid-cellWidth: 280px !default;
 .speakerGrid-speaker {
   display: flex;
   flex-basis: $speakerGrid-cellWidth;
-  flex-grow: 1;
+  flex-grow: 0;
   padding-bottom: 15px;
   vertical-align: top;
 

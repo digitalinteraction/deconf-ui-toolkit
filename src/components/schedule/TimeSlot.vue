@@ -3,7 +3,7 @@
     <div class="timeSlot-tag" v-if="tagI18nKey" :class="tagClasses">
       {{ $t(tagI18nKey) }}
     </div>
-    <h3 class="timeSlot-time">
+    <h3 class="timeSlot-time icon-text">
       <span :title="startDate | localeDate">
         {{ startDate | shortTime }}
       </span>

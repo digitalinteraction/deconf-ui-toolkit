@@ -38,7 +38,7 @@ export default {
     padding: 0;
   }
 }
-@include desktop {
+@include tablet {
   .atriumLayout-top {
     margin-bottom: $block-spacing;
   }

@@ -3,20 +3,18 @@
     <div class="sideTabs-tab" v-if="$slots.brand">
       <slot name="brand" />
     </div>
-    <router-link
+    <component
       v-for="item in routes"
       :key="item.name"
-      :to="{ name: item.name }"
-      :disabled="!item.enabled"
-      :title="item.title"
+      :is="item.enabled ? 'router-link' : 'span'"
       class="sideTabs-tab"
-      active-class="is-active"
+      v-bind="routeArgs(item)"
     >
       <component :is="item.icon" class="sideTabs-tabIcon" />
       <span class="sideTabs-tabText">
-        {{ item.enabled ? item.title : $t('deconf.appLayout.unavailable') }}
+        {{ item.title }}
       </span>
-    </router-link>
+    </component>
   </div>
 </template>
 
@@ -35,6 +33,21 @@ export default {
       type: Array as PropType<AppRoute[]>,
       required: true
     }
+  },
+  methods: {
+    routeArgs(item: AppRoute): object {
+      if (item.enabled) {
+        return {
+          to: { name: item.name },
+          'active-class': 'is-active'
+        };
+      } else {
+        return {
+          disabled: true,
+          title: this.$t('deconf.appLayout.unavailable')
+        };
+      }
+    }
   }
 };
 </script>
@@ -47,8 +60,6 @@ $sideTabs-active: $primary !default;
 .sideTabs {
   background-color: $sideTabs-background;
   width: $tabbar-width;
-
-  // padding-top: calc(#{$navbar-height} + 1em);
 
   @include insetInlineStart(0);
 
@@ -63,7 +74,7 @@ $sideTabs-active: $primary !default;
 }
 
 .sideTabs-tab {
-  transition: 'background-color' 0.3s ease;
+  transition: background-color 0.3s ease;
 
   font-size: $size-7;
   font-weight: bold;
@@ -80,7 +91,9 @@ $sideTabs-active: $primary !default;
 
   &[disabled] {
     opacity: 0.3;
-    pointer-events: none;
+    &:hover {
+      cursor: not-allowed;
+    }
   }
 
   .sideTabs-tabText,
@@ -100,7 +113,7 @@ $sideTabs-active: $primary !default;
 
   &.is-active,
   &:hover {
-    cursor: pointer !important;
+    cursor: pointer;
     color: $sideTabs-color;
     .sideTabs-tabText {
       opacity: 1;

@@ -87,6 +87,9 @@ $sessionLink-linkFont: $family-sans-serif !default;
 }
 .sessionLink-raw {
   text-decoration: underline;
+  word-break: break-all;
+  margin-right: 0.5em;
+  font-size: 0.9em;
   &:hover {
     text-decoration: none;
   }

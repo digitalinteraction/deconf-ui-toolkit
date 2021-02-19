@@ -30,7 +30,7 @@
         -->
         <template v-if="canAddToCalendar">
           <AddToCalendar
-            class="is-small"
+            class="is-small is-link"
             :calendar-link="calendarLink"
             @click="trackCalendar"
           />
