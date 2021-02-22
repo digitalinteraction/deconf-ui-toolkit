@@ -22,6 +22,7 @@
           :session-type="getSessionType(session)"
           :speakers="getSessionSpeakers(session)"
           :track="getSessionTrack(session)"
+          @track-ical="trackIcal"
         />
       </div>
       <div class="scheduleBlock-session" v-if="otherSessions.length > 0">
@@ -51,6 +52,7 @@
               :session-type="getSessionType(session)"
               :speakers="getSessionSpeakers(session)"
               :track="getSessionTrack(session)"
+              @track-ical="trackIcal"
             />
           </div>
         </ToggleContents>
@@ -151,6 +153,9 @@ export default {
     getSessionTrack(session: Session): Track {
       // TODO: handle not found better too
       return this.trackMap.get(session.track) as Track;
+    },
+    trackIcal(sessionId: string) {
+      this.$emit('track-ical', sessionId);
     }
   }
 };

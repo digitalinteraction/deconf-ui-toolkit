@@ -2,7 +2,9 @@
   <div class="sessionLink">
     <div class="sessionLink-title">{{ title }}</div>
     <div class="sessionLink-link">
-      <a class="sessionLink-raw" :href="link">{{ link | cleanUrl }}</a>
+      <a class="sessionLink-raw" :href="link" @click="onClick">
+        {{ link | cleanUrl }}
+      </a>
       <button
         class="sessionLink-copy button is-small is-dark"
         :class="buttonClasses"
@@ -45,11 +47,16 @@ export default {
     }
   },
   methods: {
+    onClick(): void {
+      this.$emit('click', this.link);
+    },
     copyLink(): void {
       copy(this.link, { message: 'done' });
 
       this.didCopy = true;
       setTimeout(() => (this.didCopy = false), 5000);
+
+      this.$emit('copy', this.link);
     }
   }
 };

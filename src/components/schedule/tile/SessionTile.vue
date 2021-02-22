@@ -122,6 +122,7 @@ export default {
     },
     trackCalendar(): void {
       // Track the clicking of a calendar
+      this.$emit('track-ical', this.session.id);
     }
   }
 };

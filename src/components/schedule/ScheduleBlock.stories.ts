@@ -61,8 +61,19 @@ Present.args = {
   currentDate: dates.now,
   sessionSlot: {
     id: '1',
-    start: dates.addMinutes(dates.now, -15),
-    end: dates.addMinutes(dates.now, 15)
+    start: dates.addMinutes(dates.now, 0),
+    end: dates.addMinutes(dates.now, 30)
+  }
+};
+
+export const Future = Template.bind({});
+Future.args = {
+  ...Default.args,
+  currentDate: dates.now,
+  sessionSlot: {
+    id: '1',
+    start: dates.addMinutes(dates.future, -30),
+    end: dates.addMinutes(dates.future, 0)
   }
 };
 
