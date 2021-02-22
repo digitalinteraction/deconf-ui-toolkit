@@ -1,16 +1,14 @@
 <template>
   <router-link class="joinSession button" :class="classes" :to="sessionRoute">
-    <div class="icon-text">
-      <span class="icon rtl-only">
-        <FontAwesomeIcon :icon="['fas', 'arrow-left']" />
-      </span>
-      <span>
-        {{ $t(action) }}
-      </span>
-      <span class="icon ltr-only">
-        <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
-      </span>
-    </div>
+    <span class="icon rtl-only">
+      <FontAwesomeIcon :icon="['fas', 'arrow-left']" />
+    </span>
+    <span>
+      {{ $t(action) }}
+    </span>
+    <span class="icon ltr-only">
+      <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
+    </span>
   </router-link>
 </template>
 
