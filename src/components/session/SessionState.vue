@@ -79,12 +79,11 @@ export default {
 
 <style lang="scss">
 .slotState {
-  font-size: 0.8em;
   font-weight: $weight-bold;
   text-transform: uppercase;
 
   > .tag {
-    padding: 18px;
+    padding: 1.1em;
   }
 }
 </style>
