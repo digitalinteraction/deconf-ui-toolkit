@@ -18,6 +18,7 @@
         :languages="session.hostLanguages"
         :is-recorded="session.isRecorded"
         :track="track"
+        :highlight="['locale']"
       />
     </div>
     <div class="sessionTile-speakers">
