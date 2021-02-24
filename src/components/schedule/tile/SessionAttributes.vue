@@ -82,7 +82,7 @@ export default {
     languages: { type: Array as PropType<string[]>, required: true },
     isRecorded: { type: Boolean, required: true },
     track: { type: Object as PropType<Track>, default: null },
-    highlight: { type: Array as PropType<string[]>, default: [] }
+    highlight: { type: Array as PropType<string[]>, default: () => [] }
   },
   computed: {
     highlightSet(): Set<string> {
