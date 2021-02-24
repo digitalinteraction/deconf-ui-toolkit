@@ -80,3 +80,12 @@
 html {
   scroll-padding-top: $navbar-height;
 }
+
+//
+// Make sections smaller on mobile
+//
+@include mobile {
+  .section {
+    padding: 1.5rem 0.75rem;
+  }
+}
