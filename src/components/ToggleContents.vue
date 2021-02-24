@@ -36,7 +36,7 @@ export default {
     }
   },
   methods: {
-    toggle() {
+    toggle(): void {
       this.showContents = !this.showContents;
       this.$emit('toggle', this.showContents);
     }
