@@ -21,13 +21,14 @@ export default {
   name: 'ToggleContents',
   data() {
     return {
-      showContents: false
+      showContents: this.initiallyOpen
     };
   },
   props: {
     title: { type: String, required: true },
     showButton: { type: String, required: true },
-    hideButton: { type: String, required: true }
+    hideButton: { type: String, required: true },
+    initiallyOpen: { type: Boolean, default: false }
   },
   computed: {
     toggleText(): string {
@@ -37,6 +38,7 @@ export default {
   methods: {
     toggle() {
       this.showContents = !this.showContents;
+      this.$emit('toggle', this.showContents);
     }
   }
 };
@@ -66,6 +68,12 @@ $toggleContents-color: $primary !default;
 }
 .toggleContents-contents {
   padding: 20px;
+  border-top: 1px solid $border;
+
+  @include mobile {
+    padding: 15px;
+    margin-top: 10px;
+  }
 }
 
 @include mobile {
