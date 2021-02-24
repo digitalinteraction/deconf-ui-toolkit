@@ -2,7 +2,13 @@
   <div class="sessionLink">
     <div class="sessionLink-title">{{ title }}</div>
     <div class="sessionLink-link">
-      <a class="sessionLink-raw" :href="link" @click="onClick">
+      <a
+        class="sessionLink-raw"
+        :href="link"
+        @click="onClick"
+        target="_blank"
+        rel="noopener"
+      >
         {{ link | cleanUrl }}
       </a>
       <button
