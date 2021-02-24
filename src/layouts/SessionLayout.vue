@@ -49,6 +49,9 @@ $sessionLayout-background: $background !default;
     display: flex;
     justify-content: stretch;
   }
+  @include mobile {
+    margin: 0 -0.75rem;
+  }
 }
 .sessionLayout-main {
   flex-grow: 1;
@@ -67,5 +70,17 @@ $sessionLayout-background: $background !default;
 .sessionLayout-main,
 .sessionLayout-sidebar {
   padding: 1.5rem;
+
+  @include mobile {
+    padding: 0.75rem;
+  }
+}
+
+.sessionLayout-back {
+  @include mobile {
+    > .button {
+      font-size: 0.75em;
+    }
+  }
 }
 </style>
