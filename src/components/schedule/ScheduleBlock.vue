@@ -206,6 +206,10 @@ $scheduleBlock-background: $background !default;
 
 .scheduleBlock-sessions {
   padding: 24px;
+
+  @include mobile {
+    padding: 15px;
+  }
 }
 
 .scheduleBlock:not(.is-present) .scheduleBlock-sessions {
