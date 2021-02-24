@@ -3,7 +3,10 @@
     <!-- 
       Language
     -->
-    <span class="sessionAttributes-attribute is-bold">
+    <span
+      class="sessionAttributes-attribute"
+      :class="attributeClasses('locale')"
+    >
       <span class="icon-text">
         <span class="icon">
           <FontAwesomeIcon :icon="['fas', 'globe']" fixed-width />
@@ -17,12 +20,15 @@
     <!-- 
       Recorded
     -->
-    <span class="sessionAttributes-attribute">
+    <span
+      class="sessionAttributes-attribute"
+      :class="attributeClasses('recorded')"
+    >
       <span class="icon-text">
         <span class="icon">
           <FontAwesomeIcon :icon="['fas', 'save']" fixed-width />
         </span>
-        <span class="is-uppercase">
+        <span>
           {{
             $t(`deconf.session.${isRecorded ? 'isRecorded' : 'isNotRecorded'}`)
           }}
@@ -33,12 +39,16 @@
     <!--
       Track
     -->
-    <span class="sessionAttributes-attribute" v-if="track">
+    <span
+      class="sessionAttributes-attribute"
+      :class="attributeClasses('track')"
+      v-if="track"
+    >
       <span class="icon-text">
         <span class="icon">
           <FontAwesomeIcon :icon="['fas', 'tag']" fixed-width />
         </span>
-        <span class="is-uppercase">
+        <span>
           {{ localise(track.title) }}
         </span>
       </span>
@@ -58,17 +68,35 @@ import { localiseFromObject } from '@/utils';
 // - deconf.session.isNotRecorded
 //
 
+//
+// makeBold options:
+// - locale
+// - recorded
+// - track
+//
+
 export default {
   name: 'SessionAttributes',
   components: { FontAwesomeIcon },
   props: {
     languages: { type: Array as PropType<string[]>, required: true },
     isRecorded: { type: Boolean, required: true },
-    track: { type: Object as PropType<Track>, default: null }
+    track: { type: Object as PropType<Track>, default: null },
+    highlight: { type: Array as PropType<string[]>, default: [] }
+  },
+  computed: {
+    highlightSet(): Set<string> {
+      return new Set(this.highlight);
+    }
   },
   methods: {
     localise(object: Record<string, string>): string | null {
       return localiseFromObject(this.$i18n.locale, object);
+    },
+    attributeClasses(key: string) {
+      return {
+        'is-bold': this.highlightSet.has(key)
+      };
     }
   }
 };

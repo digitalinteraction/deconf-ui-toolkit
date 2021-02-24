@@ -8,7 +8,7 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionAttributes },
-  props: ['languages', 'isRecorded'],
+  props: ['languages', 'isRecorded', 'highlight'],
   data: () => ({
     track: { id: 1, title: { en: 'AI and Agriculture' } }
   }),
@@ -17,6 +17,7 @@ const Template: Story = (args, { argTypes }) => ({
       :languages="languages"
       :is-recorded="isRecorded"
       :track="track"
+      :highlight="highlight"
     />
   `
 });
@@ -24,5 +25,6 @@ const Template: Story = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   languages: ['en', 'fr', 'es', 'ar'],
-  isRecorded: true
+  isRecorded: true,
+  highlight: ['locale']
 };
