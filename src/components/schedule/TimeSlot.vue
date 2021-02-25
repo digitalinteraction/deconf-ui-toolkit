@@ -87,6 +87,10 @@ $timeSlot-pastColor: #ddd !default;
 $timeSlot-pastBackground: #999 !default;
 
 .timeSlot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
   &.is-large {
     font-size: 1.3em;
   }
