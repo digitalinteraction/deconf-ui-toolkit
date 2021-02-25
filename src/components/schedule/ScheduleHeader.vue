@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss">
 .scheduleHeader {
-  padding: 0.75em 1.5em;
+  padding: 0.75em 1.5rem;
 
   &.is-primary {
     color: $white;
@@ -28,6 +28,10 @@ export default {
   &.is-dark {
     color: $white-bis;
     background-color: $black-ter;
+  }
+
+  @include mobile {
+    font-size: $size-7;
   }
 }
 

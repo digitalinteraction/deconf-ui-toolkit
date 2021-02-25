@@ -25,3 +25,11 @@ export const Dark = Template.bind({});
 Dark.args = {
   classes: 'is-dark'
 };
+
+export const Mobile = Template.bind({});
+Mobile.args = {
+  ...Primary.args
+};
+Mobile.parameters = {
+  viewport: { defaultViewport: 'mobile2' }
+};
