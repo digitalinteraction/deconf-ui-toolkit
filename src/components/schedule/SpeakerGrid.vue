@@ -61,6 +61,9 @@ $speakerGrid-cellWidth: 280px !default;
   padding-inline-end: 8px;
 
   img {
+    width: 42px;
+    height: 42px;
+    object-fit: cover;
     border-radius: $speakerGrid-rounding;
   }
 }
