@@ -72,21 +72,6 @@ $toggleContents-color: $primary !default;
 
   @include mobile {
     padding: 15px;
-    margin-top: 10px;
-  }
-}
-
-@include mobile {
-  .toggleContents-header {
-    flex-wrap: wrap;
-  }
-  .toggleContents-header .button {
-    width: 100%;
-  }
-  .toggleContents-header .toggleContents-title {
-    width: 100%;
-    margin: 0.5em 0;
-    text-align: center;
   }
 }
 </style>

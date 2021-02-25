@@ -26,17 +26,17 @@ const Template: Story = (args, { argTypes }) => ({
 
 export const Desktop = Template.bind({});
 Desktop.args = {
-  title: 'Some awesome hidden content',
-  showButton: 'Show me now!',
-  hideButton: 'Take it away',
+  title: '5 things',
+  showButton: 'Show',
+  hideButton: 'Hide',
   isOpen: false
 };
 
 export const Mobile = Template.bind({});
 Mobile.args = {
-  title: 'Some awesome hidden content',
-  showButton: 'Show me now!',
-  hideButton: 'Take it away',
+  title: '5 things',
+  showButton: 'Show',
+  hideButton: 'Hide',
   isOpen: false
 };
 Mobile.parameters = {
