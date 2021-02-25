@@ -7,6 +7,7 @@ import {
   defaultSessionTypes,
   defaultTracks
 } from '@/story-utils';
+import { Desktop } from '../ToggleContents.stories';
 
 export default {
   title: 'Schedule/ScheduleBlock',
@@ -15,7 +16,7 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { ScheduleBlock },
-  props: ['sessions', 'currentDate', 'sessionSlot'],
+  props: ['sessions', 'currentDate', 'sessionSlot', 'showOthers'],
   data: () => ({
     speakers: defaultSpeakers(),
     sessionTypes: defaultSessionTypes(),
@@ -29,6 +30,7 @@ const Template: Story = (args, { argTypes }) => ({
       :speakers="speakers"
       :current-date="currentDate"
       :tracks="tracks"
+      :initially-show-others="showOthers"
     />
   `
 });
@@ -45,7 +47,8 @@ Default.args = {
     createSession('1', 'Topical Session Alpha', 'plenary', ['1', '2', '3']),
     createSession('2', 'Incredible Session Beta', 'workshop', ['4', '5', '6']),
     createSession('3', 'Random Session Charlie', 'workshop', ['7', '6'])
-  ]
+  ],
+  showOthers: false
 };
 
 export const Mobile = Template.bind({});
@@ -83,4 +86,10 @@ NoWorkshops.args = {
   sessions: [
     createSession('1', 'Topical Session Alpha', 'plenary', ['1', '2', '3'])
   ]
+};
+
+export const OpenOthers = Template.bind({});
+OpenOthers.args = {
+  ...Default.args,
+  showOthers: true
 };

@@ -39,6 +39,7 @@
           :title="$tc('deconf.schedule.workshops', otherSessions.length)"
           :show-button="$t('deconf.schedule.showWorkshops')"
           :hide-button="$t('deconf.schedule.hideWorkshops')"
+          :initially-open="initiallyShowOthers || shouldOpenWorkshops"
         >
           <div
             class="scheduleBlock-session"
@@ -89,18 +90,14 @@ import ToggleContents from '../ToggleContents.vue';
 export default {
   name: 'ScheduleBlock',
   components: { TimeSlot, SessionTile, ToggleContents },
-  data() {
-    return {
-      showOthers: false
-    };
-  },
   props: {
     currentDate: { type: Date as PropType<Date>, required: true },
     sessionSlot: { type: Object as PropType<SessionSlot>, required: true },
     sessions: { type: Array as PropType<Session[]>, required: true },
     speakers: { type: Array as PropType<Speaker[]>, required: true },
     sessionTypes: { type: Array as PropType<SessionType[]>, required: true },
-    tracks: { type: Array as PropType<Track[]>, required: true }
+    tracks: { type: Array as PropType<Track[]>, required: true },
+    initiallyShowOthers: { type: Boolean, default: false }
   },
   computed: {
     classes(): string {
@@ -137,6 +134,10 @@ export default {
         this.sessionSlot.start,
         this.sessionSlot.end
       );
+    },
+    shouldOpenWorkshops(): boolean {
+      if (this.slotState === 'present') return true;
+      return false;
     }
   },
   methods: {
