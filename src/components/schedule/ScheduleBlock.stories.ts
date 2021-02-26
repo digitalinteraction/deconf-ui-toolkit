@@ -30,7 +30,7 @@ const Template: Story = (args, { argTypes }) => ({
       :speakers="speakers"
       :current-date="currentDate"
       :tracks="tracks"
-      :initially-show-others="showOthers"
+      :show-other-sessions="showOthers"
     />
   `
 });
