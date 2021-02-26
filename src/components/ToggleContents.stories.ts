@@ -11,13 +11,13 @@ const Content = createContent();
 
 const Template: Story = (args, { argTypes }) => ({
   components: { ToggleContents, Content },
-  props: ['title', 'showButton', 'hideButton', 'isOpen'],
+  props: ['title', 'showButton', 'hideButton', 'forceOpen'],
   template: `
     <ToggleContents
       :title="title"
       :show-button="showButton"
       :hide-button="hideButton"
-      :initially-open="isOpen"
+      :force-open="forceOpen"
     >
       <Content />
     </ToggleContents>
@@ -29,7 +29,7 @@ Desktop.args = {
   title: '5 things',
   showButton: 'Show',
   hideButton: 'Hide',
-  isOpen: false
+  forceOpen: false
 };
 
 export const Mobile = Template.bind({});
@@ -37,7 +37,7 @@ Mobile.args = {
   title: '5 things',
   showButton: 'Show',
   hideButton: 'Hide',
-  isOpen: false
+  forceOpen: false
 };
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' }
@@ -46,5 +46,5 @@ Mobile.parameters = {
 export const Opened = Template.bind({});
 Opened.args = {
   ...Desktop.args,
-  isOpen: true
+  forceOpen: true
 };

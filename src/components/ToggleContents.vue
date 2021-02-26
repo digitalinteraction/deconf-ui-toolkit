@@ -1,6 +1,6 @@
 <template>
   <div class="toggleContents">
-    <div class="toggleContents-header">
+    <div class="toggleContents-header" v-if="!forceOpen">
       <span class="toggleContents-title">
         {{ title }}
       </span>
@@ -9,7 +9,7 @@
       </button>
     </div>
     <transition name="fade">
-      <div class="toggleContents-contents" v-if="showContents">
+      <div class="toggleContents-contents" v-if="showContents || forceOpen">
         <slot />
       </div>
     </transition>
@@ -21,14 +21,14 @@ export default {
   name: 'ToggleContents',
   data() {
     return {
-      showContents: this.initiallyOpen
+      showContents: false
     };
   },
   props: {
     title: { type: String, required: true },
     showButton: { type: String, required: true },
     hideButton: { type: String, required: true },
-    initiallyOpen: { type: Boolean, default: false }
+    forceOpen: { type: Boolean, default: false }
   },
   computed: {
     toggleText(): string {
@@ -68,10 +68,12 @@ $toggleContents-color: $primary !default;
 }
 .toggleContents-contents {
   padding: 20px;
-  border-top: 1px solid $border;
 
   @include mobile {
     padding: 15px;
   }
+}
+.toggleContents-header + .toggleContents-contents {
+  border-top: 1px solid $border;
 }
 </style>
