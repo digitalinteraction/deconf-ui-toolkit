@@ -39,7 +39,7 @@
           :title="$tc('deconf.schedule.workshops', otherSessions.length)"
           :show-button="$t('deconf.schedule.showWorkshops')"
           :hide-button="$t('deconf.schedule.hideWorkshops')"
-          :initially-open="initiallyShowOthers || shouldOpenWorkshops"
+          :force-open="showOtherSessions || shouldOpenWorkshops"
         >
           <div
             class="scheduleBlock-session"
@@ -97,7 +97,7 @@ export default {
     speakers: { type: Array as PropType<Speaker[]>, required: true },
     sessionTypes: { type: Array as PropType<SessionType[]>, required: true },
     tracks: { type: Array as PropType<Track[]>, required: true },
-    initiallyShowOthers: { type: Boolean, default: false }
+    showOtherSessions: { type: Boolean, default: false }
   },
   computed: {
     classes(): string {
