@@ -158,6 +158,9 @@ At least these fa icons are needed:
 | `fas circle`               | SessionState                       |
 | `fas exclamation-triangle` | SessionState                       |
 | `fas fire`                 | SessionState                       |
+| `fas code-branch`          | SessionHeader                      |
+| `fas tags`                 | SessionHeader                      |
+| `fas tag`                  | SessionAttributes                  |
 
 > WIP
 

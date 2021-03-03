@@ -9,8 +9,28 @@
             fixed-width
           />
         </span>
-        <span>
+        <span class="text">
           {{ localise(sessionType.title) }}
+        </span>
+      </template>
+      <template v-if="track">
+        <span class="icon">
+          <FontAwesomeIcon
+            :icon="['fas', 'code-branch']"
+            size="lg"
+            fixed-width
+          />
+        </span>
+        <span class="text">
+          {{ localise(track.title) }}
+        </span>
+      </template>
+      <template v-if="themes && themes.length > 0">
+        <span class="icon">
+          <FontAwesomeIcon :icon="['fas', 'tags']" size="lg" fixed-width />
+        </span>
+        <span class="text">
+          {{ themes.map(t => localise(t.title)).join(', ') }}
         </span>
       </template>
     </div>
@@ -20,7 +40,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { SessionType, Track } from '@/types';
+import { SessionType, Theme, Track } from '@/types';
 import { localiseFromObject } from '@/utils';
 
 export default {
@@ -28,7 +48,8 @@ export default {
   components: { FontAwesomeIcon },
   props: {
     sessionType: { type: Object as PropType<SessionType>, default: null },
-    sessionTrack: { type: Object as PropType<Track>, default: null }
+    track: { type: Object as PropType<Track>, default: null },
+    themes: { type: Array as PropType<Theme[]>, default: null }
   },
   methods: {
     localise(object: Record<string, string>): string | null {
@@ -49,5 +70,9 @@ $sessionHeader-weight: $weight-semibold !default;
   letter-spacing: 0.05em;
   line-height: 1.25rem;
   text-transform: uppercase;
+
+  .icon-text > .text:not(:last-child) {
+    margin-right: $block-spacing;
+  }
 }
 </style>
