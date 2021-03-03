@@ -23,6 +23,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
+import { CountdownComponents, getCountdown } from '@/utils';
 
 //
 // I18n used:
@@ -38,22 +39,8 @@ export default {
     targetDate: { type: Date as PropType<Date>, required: true }
   },
   computed: {
-    remaining(): { hours: number; minutes: number; seconds: number } {
-      let remaining = this.targetDate.getTime() - this.currentDate.getTime();
-
-      // Remaining hours
-      const hours = Math.floor(remaining / 3600000);
-      remaining = remaining - hours * 3600000;
-
-      // Remaining minutes
-      const minutes = Math.floor(remaining / 60000);
-      remaining = remaining - minutes * 60000;
-
-      // Remaining seconds
-      const seconds = Math.floor(remaining / 1000);
-      remaining = remaining - seconds * 1000;
-
-      return { hours, minutes, seconds };
+    remaining(): CountdownComponents {
+      return getCountdown(this.currentDate, this.targetDate);
     },
     hoursRemaining(): number {
       return this.remaining.hours;
