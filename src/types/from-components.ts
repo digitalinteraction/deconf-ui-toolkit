@@ -3,6 +3,13 @@
 // - https://github.com/vuejs/vue-loader/issues/1281
 //
 
+import {
+  SessionSlot,
+  SessionType,
+  Speaker,
+  Theme,
+  Track
+} from '@openlab/deconf-shared';
 import { Component } from 'vue';
 
 //
@@ -33,4 +40,20 @@ export interface AppRoute {
   name: string;
   enabled: boolean;
   icon?: Component;
+}
+
+//
+// WIP
+//
+export interface ScheduleRecord {
+  speakers: Speaker[];
+  sessionSlots: SessionSlot[];
+  sessionTypes: SessionType[];
+  tracks: Track[];
+  themes: Theme[];
+}
+
+export interface ScheduleConfig {
+  tileHeader: Array<'type' | 'track' | 'themes'>;
+  tileAttributes: Array<'languages' | 'recorded' | 'track' | 'themes'>;
 }

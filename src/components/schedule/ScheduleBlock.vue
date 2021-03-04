@@ -18,10 +18,8 @@
         <SessionTile
           :slot-state="slotState"
           :session="session"
-          :session-slot="sessionSlot"
-          :session-type="getSessionType(session)"
-          :speakers="getSessionSpeakers(session)"
-          :track="getSessionTrack(session)"
+          :schedule="schedule"
+          :config="config"
           @track-ical="trackIcal"
         />
       </div>
@@ -49,10 +47,8 @@
             <SessionTile
               :slot-state="slotState"
               :session="session"
-              :session-slot="sessionSlot"
-              :session-type="getSessionType(session)"
-              :speakers="getSessionSpeakers(session)"
-              :track="getSessionTrack(session)"
+              :schedule="schedule"
+              :config="config"
               @track-ical="trackIcal"
             />
           </div>
@@ -64,11 +60,14 @@
 
 <script lang="ts">
 import {
+  ScheduleConfig,
+  ScheduleRecord,
   Session,
   SessionSlot,
   SessionType,
   SlotState,
   Speaker,
+  Theme,
   Track
 } from '@/types';
 import { PropType } from 'vue';
@@ -94,10 +93,9 @@ export default {
     currentDate: { type: Date as PropType<Date>, required: true },
     sessionSlot: { type: Object as PropType<SessionSlot>, required: true },
     sessions: { type: Array as PropType<Session[]>, required: true },
-    speakers: { type: Array as PropType<Speaker[]>, required: true },
-    sessionTypes: { type: Array as PropType<SessionType[]>, required: true },
-    tracks: { type: Array as PropType<Track[]>, required: true },
-    showOtherSessions: { type: Boolean, default: false }
+    showOtherSessions: { type: Boolean, default: false },
+    schedule: { type: Object as PropType<ScheduleRecord>, required: true },
+    config: { type: Object as PropType<ScheduleConfig>, required: true }
   },
   computed: {
     classes(): string {
@@ -107,20 +105,23 @@ export default {
       return isNow ? 'is-present' : '';
     },
     speakerMap(): Map<string, Speaker> {
-      return new Map(this.speakers.map(s => [s.id, s]));
+      return new Map(this.schedule.speakers.map(s => [s.id, s]));
     },
     sessionTypeMap(): Map<string, SessionType> {
-      return new Map(this.sessionTypes.map(s => [s.id, s]));
+      return new Map(this.schedule.sessionTypes.map(s => [s.id, s]));
     },
     trackMap(): Map<string, Track> {
-      return new Map(this.tracks.map(t => [t.id, t]));
+      return new Map(this.schedule.tracks.map(t => [t.id, t]));
+    },
+    themeMap(): Map<string, Theme> {
+      return new Map(this.schedule.themes.map(t => [t.id, t]));
     },
     plenaryTypes(): Set<string> {
-      const types = new Set<string>();
-      for (const type of this.sessionTypes) {
-        if (type.layout === 'plenary') types.add(type.id);
-      }
-      return types;
+      return new Set<string>(
+        this.schedule.sessionTypes
+          .filter(t => t.layout === 'plenary')
+          .map(t => t.id)
+      );
     },
     plenarySessions(): Session[] {
       return this.sessions.filter(s => this.plenaryTypes.has(s.type));
@@ -154,6 +155,11 @@ export default {
     getSessionTrack(session: Session): Track {
       // TODO: handle not found better too
       return this.trackMap.get(session.track) as Track;
+    },
+    getSessionThemes(session: Session): Theme[] {
+      return session.themes
+        .map(t => this.themeMap.get(t) as Theme)
+        .filter(t => Boolean(t));
     },
     trackIcal(sessionId: string) {
       this.$emit('track-ical', sessionId);

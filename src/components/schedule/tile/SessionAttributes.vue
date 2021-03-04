@@ -4,8 +4,8 @@
       Language
     -->
     <span
-      class="sessionAttributes-attribute"
-      :class="attributeClasses('locale')"
+      class="sessionAttributes-attribute sessionAttributes-attribute-languages"
+      v-if="languages !== null"
     >
       <span class="icon-text">
         <span class="icon">
@@ -21,8 +21,8 @@
       Recorded
     -->
     <span
-      class="sessionAttributes-attribute"
-      :class="attributeClasses('recorded')"
+      class="sessionAttributes-attribute sessionAttributes-attribute-isRecorded"
+      v-if="isRecorded !== null"
     >
       <span class="icon-text">
         <span class="icon">
@@ -40,16 +40,32 @@
       Track
     -->
     <span
-      class="sessionAttributes-attribute"
-      :class="attributeClasses('track')"
-      v-if="track"
+      class="sessionAttributes-attribute sessionAttributes-attribute-track"
+      v-if="track !== null"
     >
       <span class="icon-text">
         <span class="icon">
-          <FontAwesomeIcon :icon="['fas', 'tag']" fixed-width />
+          <FontAwesomeIcon :icon="['fas', 'code-branch']" fixed-width />
         </span>
         <span>
           {{ localise(track.title) }}
+        </span>
+      </span>
+    </span>
+
+    <!--
+      Themes
+    -->
+    <span
+      class="sessionAttributes-attribute sessionAttributes-attribute-themes"
+      v-if="themes !== null"
+    >
+      <span class="icon-text">
+        <span class="icon">
+          <FontAwesomeIcon :icon="['fas', 'tags']" fixed-width />
+        </span>
+        <span>
+          {{ themes.map(t => localise(t.title)).join(', ') }}
         </span>
       </span>
     </span>
@@ -59,7 +75,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { Track } from '@openlab/deconf-shared/dist';
+import { Theme, Track } from '@openlab/deconf-shared/dist';
 import { localiseFromObject } from '@/utils';
 
 //
@@ -79,24 +95,14 @@ export default {
   name: 'SessionAttributes',
   components: { FontAwesomeIcon },
   props: {
-    languages: { type: Array as PropType<string[]>, required: true },
-    isRecorded: { type: Boolean, required: true },
-    track: { type: Object as PropType<Track>, default: null },
-    highlight: { type: Array as PropType<string[]>, default: () => [] }
-  },
-  computed: {
-    highlightSet(): Set<string> {
-      return new Set(this.highlight);
-    }
+    languages: { type: Array as PropType<string[] | null>, default: null },
+    isRecorded: { type: Boolean as PropType<boolean | null>, default: null },
+    track: { type: Object as PropType<Track | null>, default: null },
+    themes: { type: Array as PropType<Theme[] | null>, default: null }
   },
   methods: {
     localise(object: Record<string, string>): string | null {
       return localiseFromObject(this.$i18n.locale, object);
-    },
-    attributeClasses(key: string) {
-      return {
-        'is-bold': this.highlightSet.has(key)
-      };
     }
   }
 };

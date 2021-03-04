@@ -1,11 +1,7 @@
 import { Meta, Story } from '@storybook/vue';
 import SessionTile from './SessionTile.vue';
-import {
-  defaultSpeakers,
-  dates,
-  createSession,
-  createTrack
-} from '@/story-utils';
+import { createSchedule, createSessionFromSchedule } from '@/story-utils';
+import { ScheduleConfig, ScheduleRecord } from '@/types';
 
 export default {
   title: 'Schedule/SessionTile',
@@ -14,74 +10,80 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionTile },
-  props: ['slotState', 'sessionSlot'],
+  props: [
+    'slotState',
+    'sessionSlot',
+    'headerType',
+    'headerTrack',
+    'headerThemes',
+    'attrLangs',
+    'attrRecorded',
+    'attrTrack',
+    'attrThemes'
+  ],
   data: () => ({
-    session: createSession('1234', 'Lorem ipsum sil dor amet', 'plenary', [
-      '1',
-      '3',
-      '5',
-      '7'
-    ]),
-    speakers: defaultSpeakers(),
-    sessionType: {
-      id: 'plenary',
-      iconGroup: 'fab',
-      iconName: 'youtube',
-      layout: 'plenary',
-      title: {
-        en: 'Plenary'
-      }
-    },
-    track: createTrack('1', 'AI and Agriculture')
+    schedule: createSchedule()
   }),
+  computed: {
+    config(): ScheduleConfig {
+      const config: ScheduleConfig = { tileHeader: [], tileAttributes: [] };
+
+      if (this.headerType) config.tileHeader.push('type');
+      if (this.headerTrack) config.tileHeader.push('track');
+      if (this.headerThemes) config.tileHeader.push('themes');
+
+      if (this.attrLangs) config.tileAttributes.push('languages');
+      if (this.attrRecorded) config.tileAttributes.push('recorded');
+      if (this.attrTrack) config.tileAttributes.push('track');
+      if (this.attrThemes) config.tileAttributes.push('themes');
+
+      return config;
+    },
+    session() {
+      return createSessionFromSchedule(this.schedule as ScheduleRecord);
+    }
+  },
   template: `
     <SessionTile
       :session="session"
-      :session-type="sessionType"
-      :session-slot="sessionSlot"
-      :speakers="speakers"
-      :track="track"
+      :schedule="schedule"
+      :config="config"
       :slot-state="slotState"
+      :header="['type', 'track', 'theme']"
     />
   `
 });
 
+const baseArgs = {
+  headerType: true,
+  headerTrack: true,
+  headerThemes: true,
+  attrLangs: true,
+  attrRecorded: true,
+  attrTrack: true,
+  attrThemes: true
+};
+
 export const Future = Template.bind({});
 Future.args = {
-  slotState: 'future',
-  sessionSlot: {
-    id: '1',
-    start: dates.addMinutes(dates.future, -30),
-    end: dates.addMinutes(dates.future, 0)
-  }
+  ...baseArgs,
+  slotState: 'future'
 };
 
 export const Soon = Template.bind({});
 Soon.args = {
-  slotState: 'soon',
-  sessionSlot: {
-    id: '1',
-    start: dates.addMinutes(dates.now, 15),
-    end: dates.addMinutes(dates.now, 45)
-  }
+  ...baseArgs,
+  slotState: 'soon'
 };
 
 export const Present = Template.bind({});
 Present.args = {
-  slotState: 'present',
-  sessionSlot: {
-    id: '1',
-    start: dates.addMinutes(dates.now, -15),
-    end: dates.addMinutes(dates.now, 15)
-  }
+  ...baseArgs,
+  slotState: 'present'
 };
 
 export const Past = Template.bind({});
 Past.args = {
-  slotState: 'past',
-  sessionSlot: {
-    id: '1',
-    start: dates.addMinutes(dates.past, 0),
-    end: dates.addMinutes(dates.past, 30)
-  }
+  ...baseArgs,
+  slotState: 'past'
 };

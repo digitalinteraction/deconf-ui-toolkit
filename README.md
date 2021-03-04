@@ -161,6 +161,7 @@ At least these fa icons are needed:
 | `fas code-branch`          | SessionHeader                      |
 | `fas tags`                 | SessionHeader                      |
 | `fas tag`                  | SessionAttributes                  |
+| `fas chevron-right`        | ColorWidget                        |
 
 > WIP
 

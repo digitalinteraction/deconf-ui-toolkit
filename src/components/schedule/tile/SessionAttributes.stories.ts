@@ -10,14 +10,18 @@ const Template: Story = (args, { argTypes }) => ({
   components: { SessionAttributes },
   props: ['languages', 'isRecorded', 'highlight'],
   data: () => ({
-    track: { id: 1, title: { en: 'AI and Agriculture' } }
+    track: { id: 1, title: { en: 'AI and Agriculture' } },
+    themes: [
+      { id: '1', title: { en: 'OSS' } },
+      { id: '2', title: { en: 'Microservices' } }
+    ]
   }),
   template: `
     <SessionAttributes
       :languages="languages"
       :is-recorded="isRecorded"
       :track="track"
-      :highlight="highlight"
+      :themes="themes"
     />
   `
 });

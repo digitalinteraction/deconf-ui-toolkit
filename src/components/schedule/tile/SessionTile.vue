@@ -1,7 +1,7 @@
 <template>
   <div class="sessionTile">
     <div class="sessionTile-header">
-      <SessionHeader :session-type="sessionType" />
+      <SessionHeader v-bind="headerAttributes" />
     </div>
     <div class="sessionTile-info">
       <h2 class="sessionTile-title">
@@ -14,12 +14,7 @@
       </p>
     </div>
     <div class="sessionTile-attributes">
-      <SessionAttributes
-        :languages="session.hostLanguages"
-        :is-recorded="session.isRecorded"
-        :track="track"
-        :highlight="['locale']"
-      />
+      <SessionAttributes v-bind="attributesAttributes" />
     </div>
     <div class="sessionTile-speakers">
       <SpeakerGrid :speakers="sessionSpeakers" />
@@ -54,11 +49,14 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import {
+  ScheduleConfig,
+  ScheduleRecord,
   Session,
   SessionSlot,
   SessionType,
   SlotState,
   Speaker,
+  Theme,
   Track
 } from '@/types';
 import { Routes } from '@/constants';
@@ -69,6 +67,14 @@ import SessionAttributes from './SessionAttributes.vue';
 import SpeakerGrid from '../SpeakerGrid.vue';
 import AddToCalendar from '../actions/AddToCalendar.vue';
 import JoinSession from '../actions/JoinSession.vue';
+
+function mapById<T extends { id: string }>(records: T[]): Map<string, T> {
+  return new Map(records.map(r => [r.id, r]));
+}
+
+function lookup<T extends { id: string }>(records: T[], query: string) {
+  return records.find(r => r.id === query) as T;
+}
 
 export default {
   name: 'SessionTile',
@@ -82,12 +88,33 @@ export default {
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
     session: { type: Object as PropType<Session>, required: true },
-    sessionType: { type: Object as PropType<SessionType>, required: true },
-    sessionSlot: { type: Object as PropType<SessionSlot>, required: true },
-    track: { type: Object as PropType<Track>, required: true },
-    speakers: { type: Array as PropType<Speaker[]>, required: true }
+    schedule: { type: Object as PropType<ScheduleRecord>, required: true },
+    config: { type: Object as PropType<ScheduleConfig>, required: true }
   },
   computed: {
+    speakers(): Speaker[] {
+      const map = mapById(this.schedule.speakers);
+      return this.session.speakers
+        .map(id => map.get(id) as Speaker)
+        .filter(s => Boolean(s));
+    },
+    themes(): Theme[] {
+      const map = mapById(this.schedule.themes);
+      return this.session.themes
+        .map(id => map.get(id) as Theme)
+        .filter(t => Boolean(t));
+    },
+    // TODO: handle this failing
+    sessionType(): SessionType {
+      return lookup(this.schedule.sessionTypes, this.session.type);
+    },
+    // TODO: handle this failing
+    sessionSlot(): SessionSlot {
+      return lookup(this.schedule.sessionSlots, this.session.slot as string);
+    },
+    track(): Track {
+      return lookup(this.schedule.tracks, this.session.track);
+    },
     sessionRoute(): object {
       return { name: Routes.Session, params: { sessionId: this.session.id } };
     },
@@ -114,6 +141,25 @@ export default {
     },
     calendarLink(): string | null {
       return this.$store.getters['api/calendarLink'](this.session) || null;
+    },
+    headerAttributes(): object {
+      const set = new Set(this.config.tileHeader);
+
+      return {
+        sessionType: set.has('type') ? this.sessionType : null,
+        track: set.has('track') ? this.track : null,
+        themes: set.has('themes') ? this.themes : null
+      };
+    },
+    attributesAttributes(): object {
+      const set = new Set(this.config.tileAttributes);
+
+      return {
+        languages: set.has('languages') ? this.session.hostLanguages : null,
+        isRecorded: set.has('recorded') ? this.session.isRecorded : null,
+        track: set.has('track') ? this.track : null,
+        themes: set.has('themes') ? this.themes : null
+      };
     }
   },
   methods: {

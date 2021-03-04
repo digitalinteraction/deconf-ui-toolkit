@@ -1,4 +1,5 @@
-import { Session, Speaker } from '@/types';
+import { ScheduleRecord, Session, Speaker, Theme, Track } from '@/types';
+import { dates } from './dates';
 
 export function createSpeaker(id: string, name: string, role: string): Speaker {
   return {
@@ -30,7 +31,11 @@ export function createSponsors(n: number) {
   return s;
 }
 
-export function createTrack(id: string, name: string) {
+export function createTrack(id: string, name: string): Track {
+  return { id, title: { en: name } };
+}
+
+export function createTheme(id: string, name: string): Theme {
   return { id, title: { en: name } };
 }
 
@@ -79,7 +84,9 @@ export function createSession(
   id: string,
   title: string,
   type: string,
-  speakers: string[]
+  speakers: string[],
+  themes: string[],
+  track: string
 ): Partial<Session> {
   return {
     id: id,
@@ -87,12 +94,66 @@ export function createSession(
     title: {
       en: title
     },
-    track: randomElement(['1', '2', '3']),
+    track: track,
     content: {
       en: `We gotta burn the rain forest, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.`
     },
+    themes: themes,
     hostLanguages: ['EN', 'FR'],
     isRecorded: true,
     speakers: speakers
+  };
+}
+
+export function createSchedule(): ScheduleRecord {
+  return {
+    speakers: defaultSpeakers().slice(0, 4),
+    sessionSlots: [
+      {
+        id: '1',
+        start: dates.addMinutes(dates.now, -15),
+        end: dates.addMinutes(dates.now, 15)
+      }
+    ],
+    tracks: [createTrack('1', 'AI and Agriculture')],
+    themes: [createTheme('a', 'OSS'), createTheme('b', 'Micro services')],
+    sessionTypes: [
+      {
+        id: 'plenary',
+        iconGroup: 'fab',
+        iconName: 'youtube',
+        layout: 'plenary',
+        title: { en: 'Plenary' }
+      },
+      {
+        id: 'workshop',
+        iconGroup: 'fas',
+        iconName: 'users',
+        layout: 'workshop',
+        title: { en: 'Workshop' }
+      }
+    ]
+  };
+}
+
+export function createSessionFromSchedule(
+  schedule: ScheduleRecord
+): Partial<Session> {
+  const title = 'Lorem ipsum sil dor amet';
+
+  return {
+    id: '1',
+    type: schedule.sessionTypes[0].id,
+    title: {
+      en: title
+    },
+    track: schedule.tracks[0].id,
+    content: {
+      en: `We gotta burn the rain forest, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.`
+    },
+    themes: schedule.themes.map(t => t.id),
+    hostLanguages: ['EN', 'FR'],
+    isRecorded: true,
+    speakers: schedule.speakers.map(s => s.id)
   };
 }

@@ -5,9 +5,11 @@ import {
   defaultSpeakers,
   dates,
   defaultSessionTypes,
-  defaultTracks
+  defaultTracks,
+  createSchedule,
+  createSessionFromSchedule
 } from '@/story-utils';
-import { Desktop } from '../ToggleContents.stories';
+import { ScheduleConfig, ScheduleRecord } from '@/types';
 
 export default {
   title: 'Schedule/ScheduleBlock',
@@ -16,80 +18,84 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { ScheduleBlock },
-  props: ['sessions', 'currentDate', 'sessionSlot', 'showOthers'],
+  props: ['currentDate', 'sessionSlot', 'showOthers', 'toCreate'],
   data: () => ({
-    speakers: defaultSpeakers(),
-    sessionTypes: defaultSessionTypes(),
-    tracks: defaultTracks()
+    schedule: createSchedule(),
+    config: {
+      tileHeader: ['type'],
+      tileAttributes: ['languages', 'recorded', 'themes', 'type']
+    } as ScheduleConfig
   }),
+  computed: {
+    sessions() {
+      return (this.toCreate as string[]).map((type, index) => ({
+        ...createSessionFromSchedule(this.schedule as ScheduleRecord),
+        id: index.toString(),
+        type: type
+      }));
+    }
+  },
   template: `
     <ScheduleBlock
       :sessions="sessions"
-      :session-types="sessionTypes"
       :session-slot="sessionSlot"
-      :speakers="speakers"
+      :schedule="schedule"
+      :config="config"
       :current-date="currentDate"
-      :tracks="tracks"
       :show-other-sessions="showOthers"
     />
   `
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  currentDate: dates.now,
+const baseArgs = {
   sessionSlot: {
     id: '1',
-    start: dates.addMinutes(dates.past, 0),
-    end: dates.addMinutes(dates.past, 30)
+    start: dates.addMinutes(dates.now, -15),
+    end: dates.addMinutes(dates.now, 15)
   },
-  sessions: [
-    createSession('1', 'Topical Session Alpha', 'plenary', ['1', '2', '3']),
-    createSession('2', 'Incredible Session Beta', 'workshop', ['4', '5', '6']),
-    createSession('3', 'Random Session Charlie', 'workshop', ['7', '6'])
-  ],
+  toCreate: ['plenary', 'workshop', 'workshop'],
   showOthers: false
 };
 
-export const Mobile = Template.bind({});
-Mobile.args = Default.args;
-Mobile.parameters = {
+export const Future = Template.bind({});
+Future.args = {
+  ...baseArgs,
+  currentDate: dates.past
+};
+
+export const FutureMobile = Template.bind({});
+FutureMobile.args = Future.args;
+FutureMobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
   layout: 'fullscreen'
 };
 
 export const Present = Template.bind({});
 Present.args = {
-  ...Default.args,
-  currentDate: dates.now,
-  sessionSlot: {
-    id: '1',
-    start: dates.addMinutes(dates.now, 0),
-    end: dates.addMinutes(dates.now, 30)
-  }
+  ...baseArgs,
+  currentDate: dates.now
 };
 
-export const Future = Template.bind({});
-Future.args = {
-  ...Default.args,
-  currentDate: dates.now,
-  sessionSlot: {
-    id: '1',
-    start: dates.addMinutes(dates.future, -30),
-    end: dates.addMinutes(dates.future, 0)
-  }
+export const PresentMobile = Template.bind({});
+PresentMobile.args = Present.args;
+PresentMobile.parameters = FutureMobile.parameters;
+
+export const Past = Template.bind({});
+Past.args = {
+  ...baseArgs,
+  currentDate: dates.future
 };
 
 export const NoWorkshops = Template.bind({});
 NoWorkshops.args = {
-  ...Default.args,
-  sessions: [
-    createSession('1', 'Topical Session Alpha', 'plenary', ['1', '2', '3'])
-  ]
+  ...baseArgs,
+  currentDate: dates.past,
+  toCreate: ['plenary']
 };
 
 export const OpenOthers = Template.bind({});
 OpenOthers.args = {
-  ...Default.args,
+  ...baseArgs,
+  currentDate: dates.past,
   showOthers: true
 };
