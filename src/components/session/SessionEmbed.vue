@@ -43,6 +43,13 @@
       <IframeEmbed :src="panoptoVideoLink(parsed.data)" allow="autoplay" />
     </div>
 
+    <!--
+      Twitch
+     -->
+    <div class="sessionEmbed-video" v-else-if="parsed.kind === 'twitch'">
+      <IframeEmbed :src="twitchVideoLink(parsed.data)" allow="autoplay" />
+    </div>
+
     <!-- 
       Microsoft Teams links
      -->
@@ -73,6 +80,46 @@
         <div class="icon-text">
           <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
           <span>{{ $t('deconf.session.openZoom') }}</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- 
+      Mozilla Hub links
+     -->
+    <div
+      class="sessionEmbed-link is-mozillaHubs"
+      v-else-if="parsed.kind === 'mozilla-hubs'"
+    >
+      <a
+        class="button is-medium"
+        :href="parsed.data"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="icon-text">
+          <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+          <span>{{ $t('deconf.session.openHubs') }}</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- 
+      Spatial Chat links
+     -->
+    <div
+      class="sessionEmbed-link is-spatialChat"
+      v-else-if="parsed.kind === 'spatial-chat'"
+    >
+      <a
+        class="button is-medium"
+        :href="parsed.data"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="icon-text">
+          <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+          <span>{{ $t('deconf.session.openSpatial') }}</span>
         </div>
       </a>
     </div>
@@ -114,6 +161,9 @@ export default {
     },
     panoptoVideoLink(data: string) {
       return data;
+    },
+    twitchVideoLink(data: string) {
+      return `https://player.twitch.tv/?channel=${data}&parent=${location.hostname}`;
     }
   }
 };
@@ -152,6 +202,29 @@ export default {
 
     .button {
       background: $teams-purple;
+      color: $white;
+    }
+  }
+
+  &.is-mozillaHubs {
+    border: 2px dashed $hubs-blue;
+    background-color: lighten($hubs-blue, 45%);
+
+    .button {
+      background: $hubs-blue;
+      color: $white;
+      border-radius: $radius-rounded;
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  &.is-spatialChat {
+    border: 2px dashed $spatial-blue;
+    background-color: lighten($spatial-blue, 40%);
+
+    .button {
+      background: $spatial-blue;
       color: $white;
     }
   }

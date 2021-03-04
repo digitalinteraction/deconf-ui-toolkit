@@ -107,6 +107,8 @@ strings set (they are all namespaced under `deconf`):
 | `deconf.session.languageWarning` | The warning when a session is in a different language (^1) |
 | `deconf.session.openTeams`       | The text to open a teams link                              |
 | `deconf.session.openZoom`        | The text to open a zoom link                               |
+| `deconf.session.openHubs`        | The text to open a Mozilla Hubs link                       |
+| `deconf.session.openSpatial`     | The text to open a Spatial Chat link                       |
 | `deconf.session.noEmbed`         | The warning when no embedable option is available          |
 | `deconf.session.liveNow`         | State text when a session is live                          |
 | `deconf.session.sessionOver`     | State text when a session is in the past                   |

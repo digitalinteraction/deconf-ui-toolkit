@@ -44,6 +44,21 @@ Panopto.args = {
     'https://mozilla.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=312c3b08-71b6-401f-8ee6-acc300fa774b&autoplay=false&offerviewer=false&showtitle=false&showbrand=false&start=0&interactivity=all'
 };
 
+export const Vimeo = Template.bind({});
+Vimeo.args = {
+  link: 'https://vimeo.com/336812660'
+};
+
+export const VimeoPlayer = Template.bind({});
+VimeoPlayer.args = {
+  link: 'https://player.vimeo.com/video/336812660'
+};
+
+export const Twitch = Template.bind({});
+Twitch.args = {
+  link: 'https://www.twitch.tv/bobross'
+};
+
 export const Zoom = Template.bind({});
 Zoom.args = {
   link: 'https://zoom.us/my/abcdef'
@@ -55,9 +70,19 @@ Teams.args = {
     'https://teams.microsoft.com/l/meetup-join/19%3ameeting_MzliMDhmNDUtZjAwNS00NjQ5LWJkYzMtNTE2NTNhOTY0ZTAw%40thread.v2/0?context=%7b%22Tid%22%3a%229c5012c9-b616-44c2-a917-66814fbe3e87%22%2c%22Oid%22%3a%22ce849a55-9a39-48ec-a3a5-c2371bbc5c68%22%7d'
 };
 
-export const Vimeo = Template.bind({});
-Vimeo.args = {
-  link: 'https://player.vimeo.com/video/336812660'
+export const MozHubs = Template.bind({});
+MozHubs.args = {
+  link: 'https://hubs.mozilla.com/abcdefg/lorem-ipsum-sil-dor-amet/'
+};
+
+export const MozHubsShort = Template.bind({});
+MozHubsShort.args = {
+  link: 'https://hub.link/abcdefg'
+};
+
+export const SpatialChat = Template.bind({});
+SpatialChat.args = {
+  link: 'https://spatial.chat/s/MozFest2021'
 };
 
 export const NoEmbed = Template.bind({});

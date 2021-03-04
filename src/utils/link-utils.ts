@@ -2,6 +2,10 @@ function isDomain(url: URL, ...domains: string[]) {
   return domains.some(d => url.hostname.endsWith(d));
 }
 
+function splitPath(url: URL): string[] {
+  return url.pathname.split(/\/+/).filter(p => p);
+}
+
 export interface ParsedEmbedLink {
   kind:
     | 'youtube-video'
@@ -9,7 +13,10 @@ export interface ParsedEmbedLink {
     | 'zoom'
     | 'vimeo'
     | 'teams'
-    | 'panopto';
+    | 'panopto'
+    | 'mozilla-hubs'
+    | 'spatial-chat'
+    | 'twitch';
   data: string;
 }
 
@@ -71,6 +78,16 @@ export function parseEmbedLink(link: string): ParsedEmbedLink | null {
     };
   }
 
+  if (isDomain(url, 'vimeo.com')) {
+    const segments = splitPath(url);
+    if (segments.length === 1) {
+      return {
+        kind: 'vimeo',
+        data: segments[0]
+      };
+    }
+  }
+
   if (
     isDomain(url, 'hosted.panopto.com') &&
     url.pathname === '/Panopto/Pages/Embed.aspx' &&
@@ -79,6 +96,29 @@ export function parseEmbedLink(link: string): ParsedEmbedLink | null {
     return {
       kind: 'panopto',
       data: url.toString()
+    };
+  }
+
+  if (isDomain(url, 'twitch.tv')) {
+    const [username] = splitPath(url);
+    return {
+      kind: 'twitch',
+      data: username
+    };
+  }
+
+  if (isDomain(url, 'hubs.mozilla.com') || isDomain(url, 'hub.link')) {
+    return {
+      kind: 'mozilla-hubs',
+      data: url.toString()
+    };
+  }
+
+  if (isDomain(url, 'spatial.chat') && url.pathname.startsWith('/s/')) {
+    const [, id] = splitPath(url);
+    return {
+      kind: 'spatial-chat',
+      data: id
     };
   }
 
