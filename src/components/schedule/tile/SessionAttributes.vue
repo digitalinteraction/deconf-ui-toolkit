@@ -58,7 +58,7 @@
     -->
     <span
       class="sessionAttributes-attribute sessionAttributes-attribute-themes"
-      v-if="themes !== null"
+      v-if="themes !== null && themes.length > 0"
     >
       <span class="icon-text">
         <span class="icon">
