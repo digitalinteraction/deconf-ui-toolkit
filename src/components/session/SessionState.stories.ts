@@ -3,7 +3,15 @@ import SessionState from './SessionState.vue';
 
 export default {
   title: 'Session/SessionState',
-  component: SessionState
+  component: SessionState,
+  argTypes: {
+    slotState: {
+      control: {
+        type: 'select',
+        options: ['future', 'soon', 'past', 'present']
+      }
+    }
+  }
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -45,4 +53,11 @@ Past.parameters = { backgrounds };
 Past.args = {
   attendance: 11,
   slotState: 'past'
+};
+
+export const NoAttendance = Template.bind({});
+NoAttendance.parameters = { backgrounds };
+NoAttendance.args = {
+  attendance: null,
+  slotState: 'present'
 };
