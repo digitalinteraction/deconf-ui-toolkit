@@ -60,10 +60,8 @@
         target="_blank"
         rel="noopener"
       >
-        <div class="icon-text">
-          <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
-          <span>{{ $t('deconf.session.openTeams') }}</span>
-        </div>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span>{{ $t('deconf.session.openTeams') }}</span>
       </a>
     </div>
 
@@ -77,10 +75,8 @@
         target="_blank"
         rel="noopener"
       >
-        <div class="icon-text">
-          <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
-          <span>{{ $t('deconf.session.openZoom') }}</span>
-        </div>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span>{{ $t('deconf.session.openZoom') }}</span>
       </a>
     </div>
 
@@ -97,10 +93,8 @@
         target="_blank"
         rel="noopener"
       >
-        <div class="icon-text">
-          <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
-          <span>{{ $t('deconf.session.openHubs') }}</span>
-        </div>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span>{{ $t('deconf.session.openHubs') }}</span>
       </a>
     </div>
 
@@ -117,10 +111,8 @@
         target="_blank"
         rel="noopener"
       >
-        <div class="icon-text">
-          <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
-          <span>{{ $t('deconf.session.openSpatial') }}</span>
-        </div>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span>{{ $t('deconf.session.openSpatial') }}</span>
       </a>
     </div>
   </div>
