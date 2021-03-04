@@ -12,6 +12,9 @@
     <p class="colorWidget-subtitle">
       {{ subtitle }}
     </p>
+    <span class="colorWidget-arrow" v-if="href">
+      <FontAwesomeIcon :icon="['fas', 'chevron-right']" />
+    </span>
   </component>
 </template>
 
@@ -54,6 +57,8 @@ export default {
   border-radius: $radius;
   box-shadow: $box-shadow;
   padding: 1.25rem;
+  padding-right: 2rem;
+  position: relative;
 
   @include mobile {
     margin-inline-start: $block-spacing;
@@ -67,7 +72,8 @@ export default {
       box-shadow: none;
     }
     .colorWidget-title,
-    .colorWidget-subtitle {
+    .colorWidget-subtitle,
+    .colorWidget-arrow {
       color: $white;
     }
   }
@@ -79,7 +85,8 @@ export default {
       box-shadow: none;
     }
     .colorWidget-title,
-    .colorWidget-subtitle {
+    .colorWidget-subtitle,
+    .colorWidget-arrow {
       color: $white;
     }
   }
@@ -91,7 +98,8 @@ export default {
       box-shadow: none;
     }
     .colorWidget-title,
-    .colorWidget-subtitle {
+    .colorWidget-subtitle,
+    .colorWidget-arrow {
       color: $white;
     }
   }
@@ -111,6 +119,16 @@ export default {
   .colorWidget-subtitle {
     font-size: 1em;
     font-weight: $weight-bold;
+  }
+  .colorWidget-arrow {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    bottom: 1.25rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 a.colorWidget .title {
