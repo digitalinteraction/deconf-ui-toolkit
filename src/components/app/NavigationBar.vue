@@ -103,7 +103,7 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, AppSettings } from '@/types';
+import { AppRoute, ConfigSettings } from '@/types';
 import { PropType } from 'vue';
 import { Routes } from '@/constants';
 import { Location } from 'vue-router';
@@ -128,7 +128,7 @@ export default {
     };
   },
   props: {
-    appSettings: { type: Object as PropType<AppSettings>, required: true },
+    appSettings: { type: Object as PropType<ConfigSettings>, required: true },
     isLoggedIn: { type: Boolean, required: true },
     isInterpreter: { type: Boolean, required: true },
     routes: { type: Array as PropType<AppRoute[]>, required: true }
