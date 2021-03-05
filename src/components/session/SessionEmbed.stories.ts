@@ -59,9 +59,14 @@ Twitch.args = {
   link: 'https://www.twitch.tv/bobross'
 };
 
-export const Zoom = Template.bind({});
-Zoom.args = {
+export const ZoomPersonal = Template.bind({});
+ZoomPersonal.args = {
   link: 'https://zoom.us/my/abcdef'
+};
+
+export const ZoomJoin = Template.bind({});
+ZoomJoin.args = {
+  link: 'https://zoom.us/j/123456789'
 };
 
 export const Teams = Template.bind({});

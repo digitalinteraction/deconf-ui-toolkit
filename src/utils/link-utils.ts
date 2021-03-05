@@ -22,9 +22,13 @@ export interface ParsedEmbedLink {
 
 export function parseEmbedLink(link: string): ParsedEmbedLink | null {
   const url = new URL(link);
+  const pathSegments = splitPath(url);
 
   const isYouTube = isDomain(url, 'youtube.com', 'youtube-nocookie.com');
 
+  //
+  // Actual embeds
+  //
   if (isYouTube && url.searchParams.has('v')) {
     return {
       kind: 'youtube-video',
@@ -43,49 +47,29 @@ export function parseEmbedLink(link: string): ParsedEmbedLink | null {
     };
   }
 
-  if (isDomain(url, 'youtu.be')) {
+  if (isDomain(url, 'youtu.be') && pathSegments.length === 1) {
     return {
       kind: 'youtube-video',
-      data: url.pathname.replace(/\//g, '')
+      data: pathSegments[0]
     };
   }
 
-  if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/my/')) {
-    return {
-      kind: 'zoom',
-      data: url.pathname.replace('/my/', '')
-    };
-  }
-
-  if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/j/')) {
-    return {
-      kind: 'zoom',
-      data: url.pathname.replace('/k/', '')
-    };
-  }
-
-  if (isDomain(url, 'teams.microsoft.com')) {
-    return {
-      kind: 'teams',
-      data: url.toString()
-    };
-  }
-
-  if (isDomain(url, 'player.vimeo.com') && url.pathname.startsWith('/video/')) {
+  if (
+    isDomain(url, 'player.vimeo.com') &&
+    pathSegments.length === 2 &&
+    pathSegments[0] === 'video'
+  ) {
     return {
       kind: 'vimeo',
-      data: url.pathname.replace('/video/', '')
+      data: pathSegments[1]
     };
   }
 
-  if (isDomain(url, 'vimeo.com')) {
-    const segments = splitPath(url);
-    if (segments.length === 1) {
-      return {
-        kind: 'vimeo',
-        data: segments[0]
-      };
-    }
+  if (isDomain(url, 'vimeo.com') && pathSegments.length === 1) {
+    return {
+      kind: 'vimeo',
+      data: pathSegments[0]
+    };
   }
 
   if (
@@ -99,11 +83,34 @@ export function parseEmbedLink(link: string): ParsedEmbedLink | null {
     };
   }
 
-  if (isDomain(url, 'twitch.tv')) {
-    const [username] = splitPath(url);
+  if (isDomain(url, 'twitch.tv') && pathSegments.length === 1) {
     return {
       kind: 'twitch',
-      data: username
+      data: pathSegments[0]
+    };
+  }
+
+  //
+  // Links out
+  //
+  if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/my/')) {
+    return {
+      kind: 'zoom',
+      data: url.toString()
+    };
+  }
+
+  if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/j/')) {
+    return {
+      kind: 'zoom',
+      data: url.toString()
+    };
+  }
+
+  if (isDomain(url, 'teams.microsoft.com')) {
+    return {
+      kind: 'teams',
+      data: url.toString()
     };
   }
 
@@ -114,11 +121,14 @@ export function parseEmbedLink(link: string): ParsedEmbedLink | null {
     };
   }
 
-  if (isDomain(url, 'spatial.chat') && url.pathname.startsWith('/s/')) {
-    const [, id] = splitPath(url);
+  if (
+    isDomain(url, 'spatial.chat') &&
+    pathSegments.length === 2 &&
+    pathSegments[0] === 's'
+  ) {
     return {
       kind: 'spatial-chat',
-      data: id
+      data: url.toString()
     };
   }
 
