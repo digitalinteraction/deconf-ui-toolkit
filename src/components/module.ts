@@ -1,7 +1,7 @@
-export * from './app/index';
-export * from './atrium/index';
-export * from './schedule/index';
-export * from './session/index';
+export * from './app/module';
+export * from './atrium/module';
+export * from './schedule/module';
+export * from './session/module';
 
 export { default as BackButton } from './BackButton.vue';
 export { default as BoxContent } from './BoxContent.vue';

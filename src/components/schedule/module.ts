@@ -1,5 +1,5 @@
-export * from './actions/index';
-export * from './tile/index';
+export * from './actions/module';
+export * from './tile/module';
 
 export { default as ScheduleBlock } from './ScheduleBlock.vue';
 export { default as ScheduleHeader } from './ScheduleHeader.vue';

@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import Countdown from './Countdown.vue';
-import { dates } from '@/story-utils';
+import { dates } from '../../story-utils';
 
 export default {
   title: 'Session/Countdown',

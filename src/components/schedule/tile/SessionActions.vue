@@ -19,10 +19,10 @@
 </template>
 
 <script lang="ts">
-import { Session, SlotState } from '@/types';
+import { Session, SlotState } from '../../../types';
 import { PropType } from 'vue';
-import AddToCalendar from '@/components/schedule/actions/AddToCalendar.vue';
-import JoinSession from '@/components/schedule/actions/JoinSession.vue';
+import AddToCalendar from '../actions/AddToCalendar.vue';
+import JoinSession from '../actions/JoinSession.vue';
 
 //
 // @deprecated TO_BE_REMOVED

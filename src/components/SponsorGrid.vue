@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { SponsorGroup } from '@/types';
+import { SponsorGroup } from '../types';
 import { PropType } from 'vue';
 
 import SponsorRow from './SponsorRow.vue';

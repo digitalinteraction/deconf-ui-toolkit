@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { Sponsor } from '@/types';
+import { Sponsor } from '../types';
 import { PropType } from 'vue';
 
 const sizes = ['large', 'medium', 'regular', 'small'];

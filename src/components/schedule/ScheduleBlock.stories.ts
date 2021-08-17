@@ -1,15 +1,11 @@
 import { Meta, Story } from '@storybook/vue';
 import ScheduleBlock from './ScheduleBlock.vue';
 import {
-  createSession,
-  defaultSpeakers,
   dates,
-  defaultSessionTypes,
-  defaultTracks,
   createSchedule,
   createSessionFromSchedule
-} from '@/story-utils';
-import { ScheduleConfig, ScheduleRecord } from '@/types';
+} from '../../story-utils';
+import { ScheduleConfig, ScheduleRecord } from '../../types';
 
 export default {
   title: 'Schedule/ScheduleBlock',

@@ -14,22 +14,8 @@
     "baseUrl": ".",
     "allowJs": true,
     "checkJs": true,
-    "types": [
-      "node",
-      "vue",
-      "jest"
-    ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ],
+    "types": ["node", "vue", "jest"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "typeRoots": ["./node_modules/@types", "./src/typings"]
   },
   "include": [
@@ -39,8 +25,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

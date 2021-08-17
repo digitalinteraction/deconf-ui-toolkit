@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import ToggleContents from './ToggleContents.vue';
-import { createContent } from '@/story-utils';
+import { createContent } from '../story-utils';
 
 export default {
   title: 'Component/ToggleContents',

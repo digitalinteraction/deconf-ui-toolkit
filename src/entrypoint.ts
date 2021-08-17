@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _Vue, { PluginFunction } from 'vue';
 
-import * as components from './components/index';
-import * as layouts from './layouts/index';
-import * as icons from './icons/index';
+import * as components from './components/module';
+import * as layouts from './layouts/module';
+import * as icons from './icons/module';
 import * as types from './types/index';
 import * as utils from './utils/index';
 import * as constants from './constants';
@@ -42,7 +42,7 @@ if (process.env.ES_BUILD === 'false') {
 export default plugin;
 
 // Export components for clients
-export * from './components/index';
-export * from './icons/index';
-export * from './layouts/index';
+export * from './components/module';
+export * from './icons/module';
+export * from './layouts/module';
 export { types, utils, constants };

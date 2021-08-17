@@ -1,6 +1,6 @@
 import { Story } from '@storybook/vue';
 import TimeSlot from './TimeSlot.vue';
-import { dates } from '@/story-utils';
+import { dates } from '../../story-utils';
 
 export default {
   title: 'Schedule/TimeSlot',

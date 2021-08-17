@@ -58,9 +58,9 @@ import {
   Speaker,
   Theme,
   Track
-} from '@/types';
-import { Routes } from '@/constants';
-import { localiseFromObject } from '@/utils';
+} from '../../../types';
+import { Routes } from '../../../constants';
+import { localiseFromObject } from '../../../utils';
 
 import SessionHeader from './SessionHeader.vue';
 import SessionAttributes from './SessionAttributes.vue';

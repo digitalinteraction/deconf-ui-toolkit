@@ -103,9 +103,9 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, ConfigSettings } from '@/types';
+import { AppRoute, ConfigSettings } from '../../types';
 import { PropType } from 'vue';
-import { Routes } from '@/constants';
+import { Routes } from '../../constants';
 import { Location } from 'vue-router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';

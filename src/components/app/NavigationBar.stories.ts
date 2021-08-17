@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import NavigationBar from './NavigationBar.vue';
-import { createSettings } from '@/story-utils';
+import { createSettings } from '../../story-utils';
 
 export default {
   title: 'App/NavigationBar',

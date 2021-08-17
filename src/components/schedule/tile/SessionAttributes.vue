@@ -75,8 +75,8 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { Theme, Track } from '@openlab/deconf-shared/dist';
-import { localiseFromObject } from '@/utils';
+import { Theme, Track } from '@openlab/deconf-shared';
+import { localiseFromObject } from '../../../utils';
 
 //
 // I18n used:

@@ -69,9 +69,9 @@ import {
   Speaker,
   Theme,
   Track
-} from '@/types';
+} from '../../types';
 import { PropType } from 'vue';
-import { getSlotState } from '@/utils';
+import { getSlotState } from '../../utils';
 
 import TimeSlot from './TimeSlot.vue';
 import SessionTile from './tile/SessionTile.vue';

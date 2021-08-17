@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { AppRoute } from '@/types';
+import { AppRoute } from '../../types';
 
 //
 // I18n keys

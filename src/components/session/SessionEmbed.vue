@@ -121,7 +121,7 @@
 <script lang="ts">
 import IframeEmbed from './IframeEmbed.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { parseEmbedLink, ParsedEmbedLink } from '@/utils';
+import { parseEmbedLink, ParsedEmbedLink } from '../../utils';
 
 //
 // Used I18n:

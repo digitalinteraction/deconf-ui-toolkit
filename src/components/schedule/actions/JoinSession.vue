@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { Routes } from '@/constants';
+import { Routes } from '../../../constants';
 
 const actions: Record<string, string> = {
   past: 'deconf.session.joinInPast',

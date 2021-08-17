@@ -2,15 +2,15 @@
 
 import { Meta, Story } from '@storybook/vue';
 import AppLayout from './AppLayout.vue';
-import { createSettings, createContent } from '@/story-utils';
-import { AuthToken } from '@/types';
+import { createSettings, createContent } from '../story-utils';
+import { AuthToken } from '../types';
 import {
   AtriumIcon,
   CoffeeChatIcon,
   HelpDeskIcon,
   ScheduleIcon,
   WhatsOnIcon
-} from '@/icons';
+} from '../icons/module';
 
 export default {
   title: 'Layout/AppLayout',

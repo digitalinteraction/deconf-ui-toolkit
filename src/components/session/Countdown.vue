@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { CountdownComponents, getCountdown } from '@/utils';
+import { CountdownComponents, getCountdown } from '../../utils';
 
 //
 // I18n used:

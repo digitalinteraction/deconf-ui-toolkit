@@ -20,6 +20,7 @@ const Template: Story = (args, { argTypes }) => ({
     <SessionActions
       :session="session"
       :slot-state="slotState"
+      :actions="['register', 'calendar', 'join']"
     />
   `
 });

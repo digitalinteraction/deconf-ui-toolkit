@@ -25,12 +25,10 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, ConfigSettings, AuthToken } from '@/types';
+import { AppRoute, ConfigSettings, AuthToken } from '../types';
 import { PropType } from 'vue';
 
-import FullHeight from '@/components/FullHeight.vue';
-import NavigationBar from '@/components/app/NavigationBar.vue';
-import SideTabs from '@/components/app/SideTabs.vue';
+import { FullHeight, NavigationBar, SideTabs } from '../components/module';
 
 //
 // I18n keys
