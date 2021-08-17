@@ -24,6 +24,7 @@ import UtilLayout from '../../layouts/UtilLayout.vue';
 //
 // TODO:
 // - better i18n countdown
+// - migrate to lib's getCountdown
 //
 
 interface Data {

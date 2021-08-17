@@ -54,6 +54,14 @@
       "seconds": "seconds | second | seconds",
       "copy": "copy",
       "copied": "copied"
+    },
+    "miniSession": {
+      "view": "View",
+      "live": "Live!"
+    },
+    "featuredSessions": {
+      "title": "Featured Sessions",
+      "action": "View Schedule"
     }
   }
 }

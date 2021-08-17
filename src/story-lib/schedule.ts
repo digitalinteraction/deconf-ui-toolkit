@@ -1,4 +1,13 @@
-import { ScheduleRecord, Session, Speaker, Theme, Track } from '../lib/module';
+import {
+  ScheduleRecord,
+  Session,
+  SessionSlot,
+  SessionState,
+  SessionVisibility,
+  Speaker,
+  Theme,
+  Track
+} from '../lib/module';
 import { dates } from './dates';
 
 export function createSpeaker(id: string, name: string, role: string): Speaker {
@@ -157,3 +166,37 @@ export function createSessionFromSchedule(
     speakers: schedule.speakers.map(s => s.id)
   };
 }
+
+function makeFixture<T>(base: T) {
+  return (options: Partial<T> = {}): T => ({ ...base, ...options });
+}
+
+export const mockSession = makeFixture<Session>({
+  id: 'session-a',
+  type: 'plenary',
+  slot: undefined,
+  track: 'track-a',
+  themes: ['theme-a', 'theme-b'],
+  coverImage: undefined,
+  title: { en: 'Session Title' },
+  content: { en: 'Session Info' },
+  links: [{ type: 'video', url: 'https://youtu.be', language: 'en' }],
+  hostLanguages: ['en'],
+  enableInterpretation: false,
+  speakers: ['speaker-a', 'speaker-b', 'speaker-c'],
+  hostOrganisation: { en: 'Host Organisation' },
+  isRecorded: false,
+  isOfficial: false,
+  isFeatured: false,
+  visibility: SessionVisibility.public,
+  state: SessionState.confirmed,
+  participantCap: null,
+  proxyUrl: undefined,
+  hideFromSchedule: false
+});
+
+export const mockSessionSlot = makeFixture<SessionSlot>({
+  id: 'slot-a',
+  start: dates.future,
+  end: dates.past
+});

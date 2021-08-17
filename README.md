@@ -122,6 +122,10 @@ strings set (they are all namespaced under `deconf`):
 | `deconf.apiError.content`        | Text if an the API is unreachable                          |
 | `deconf.apiError.retry`          | Message for retrying if the API is unreachable (^1)        |
 | `deconf.appLoading.message`      | Message when data is being initially fetched               |
+| `deconf.miniSession.view`        | Action to view a mini session                              |
+| `deconf.miniSession.live`        | Live tag on a mini session                                 |
+| `deconf.featuredSessions.title`  | Title of featured sessions section                         |
+| `deconf.featuredSessions.action` | Action of featured sessions section                        |
 
 **key**
 
@@ -169,6 +173,7 @@ At least these fa icons are needed:
 | `fas tag`                  | SessionAttributes                  |
 | `fas chevron-right`        | ColorWidget                        |
 | `fas sync`                 | AppLoading                         |
+| `fas arrow-right`          | MiniSession                        |
 
 > WIP
 
