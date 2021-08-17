@@ -118,6 +118,10 @@ strings set (they are all namespaced under `deconf`):
 | `deconf.general.seconds`         | Pluralise seconds (^c)                                     |
 | `deconf.general.copy`            | Text to copy a link                                        |
 | `deconf.general.copied`          | Text when a link has been copied                           |
+| `deconf.apiError.title`          | Title if the API is unreachable                            |
+| `deconf.apiError.content`        | Text if an the API is unreachable                          |
+| `deconf.apiError.retry`          | Message for retrying if the API is unreachable (^1)        |
+| `deconf.appLoading.message`      | Message when data is being initially fetched               |
 
 **key**
 
@@ -164,6 +168,7 @@ At least these fa icons are needed:
 | `fas tags`                 | SessionHeader                      |
 | `fas tag`                  | SessionAttributes                  |
 | `fas chevron-right`        | ColorWidget                        |
+| `fas sync`                 | AppLoading                         |
 
 > WIP
 

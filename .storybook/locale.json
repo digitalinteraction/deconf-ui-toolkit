@@ -12,6 +12,14 @@
       "register": "Register!",
       "unavailable": " (Unavailable)"
     },
+    "apiError": {
+      "title": "Something went wrong",
+      "content": "We're having a bit of trouble, try refresing or coming back later.",
+      "retry": "Retrying in {0}"
+    },
+    "appLoading": {
+      "message": "Loading..."
+    },
     "session": {
       "languageWarning": "Please note this session is only available in {0}",
       "openTeams": "Open Teams meeting",
