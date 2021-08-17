@@ -4,8 +4,8 @@ import {
   dates,
   createSchedule,
   createSessionFromSchedule
-} from '../../story-utils';
-import { ScheduleConfig, ScheduleRecord } from '../../types';
+} from '../../story-lib/module';
+import { ScheduleConfig, ScheduleRecord } from '../../lib/module';
 
 export default {
   title: 'Schedule/ScheduleBlock',

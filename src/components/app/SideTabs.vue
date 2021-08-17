@@ -20,12 +20,13 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { AppRoute } from '../../types';
+import { AppRoute } from '../../lib/module';
 
 //
 // I18n keys
 // - deconf.appLayout.unavailable
 //
+
 export default {
   name: 'SideTabs',
   props: {

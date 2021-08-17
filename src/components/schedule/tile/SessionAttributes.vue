@@ -76,7 +76,7 @@
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Theme, Track } from '@openlab/deconf-shared';
-import { localiseFromObject } from '../../../utils';
+import { localiseFromObject } from '../../../lib/module';
 
 //
 // I18n used:

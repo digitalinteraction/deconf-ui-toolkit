@@ -1,4 +1,4 @@
-import { ScheduleRecord, Session, Speaker, Theme, Track } from '../types';
+import { ScheduleRecord, Session, Speaker, Theme, Track } from '../lib/module';
 import { dates } from './dates';
 
 export function createSpeaker(id: string, name: string, role: string): Speaker {

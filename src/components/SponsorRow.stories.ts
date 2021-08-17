@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import SponsorRow from './SponsorRow.vue';
-import { createSponsors } from '../story-utils';
+import { createSponsors } from '../story-lib/module';
 
 export default {
   title: 'Component/SponsorRow',

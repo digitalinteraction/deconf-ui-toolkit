@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import SidebarItem from './SidebarItem.vue';
-import { createText } from '../../story-utils';
+import { createText } from '../../story-lib/module';
 
 export default {
   title: 'Session/SidebarItem',

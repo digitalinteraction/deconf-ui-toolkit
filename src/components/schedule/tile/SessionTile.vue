@@ -57,10 +57,10 @@ import {
   SlotState,
   Speaker,
   Theme,
-  Track
-} from '../../../types';
-import { Routes } from '../../../constants';
-import { localiseFromObject } from '../../../utils';
+  Track,
+  Routes,
+  localiseFromObject
+} from '../../../lib/module';
 
 import SessionHeader from './SessionHeader.vue';
 import SessionAttributes from './SessionAttributes.vue';

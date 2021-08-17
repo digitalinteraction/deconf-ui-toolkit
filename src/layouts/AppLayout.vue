@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, ConfigSettings, AuthToken } from '../types';
+import { AppRoute, ConfigSettings, AuthToken } from '../lib/module';
 import { PropType } from 'vue';
 
 import { FullHeight, NavigationBar, SideTabs } from '../components/module';

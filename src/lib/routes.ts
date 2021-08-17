@@ -1,4 +1,3 @@
-import { Routes } from '../constants';
 import {
   AtriumIcon,
   CoffeeChatIcon,
@@ -7,7 +6,7 @@ import {
   WhatsOnIcon
 } from '../icons/module';
 
-import { AppRoute, ConfigSettings, AuthToken } from '../types';
+import { Routes, AppRoute, ConfigSettings, AuthToken } from '../lib/module';
 
 export function composeDefaultRoutes(
   user: AuthToken | null,

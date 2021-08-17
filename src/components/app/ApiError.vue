@@ -11,7 +11,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import countdown from 'countdown';
 import UtilLayout from '../../layouts/UtilLayout.vue';
 

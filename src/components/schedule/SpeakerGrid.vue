@@ -18,8 +18,8 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Speaker } from '../../types';
-import { localiseFromObject } from '../../utils';
+
+import { Speaker, localiseFromObject } from '../../lib/module';
 
 export default {
   name: 'SpeakerGrid',

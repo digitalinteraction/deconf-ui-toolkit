@@ -68,10 +68,10 @@ import {
   SlotState,
   Speaker,
   Theme,
-  Track
-} from '../../types';
+  Track,
+  getSlotState
+} from '../../lib/module';
 import { PropType } from 'vue';
-import { getSlotState } from '../../utils';
 
 import TimeSlot from './TimeSlot.vue';
 import SessionTile from './tile/SessionTile.vue';

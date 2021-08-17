@@ -8,7 +8,7 @@ import {
   SponsorGrid
 } from '../components/module';
 
-import { createSponsors, createContent } from '../story-utils';
+import { createSponsors, createContent } from '../story-lib/module';
 
 export default {
   title: 'Layout/UtilLayout',

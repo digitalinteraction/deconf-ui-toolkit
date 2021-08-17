@@ -4,9 +4,8 @@ import _Vue, { PluginFunction } from 'vue';
 import * as components from './components/module';
 import * as layouts from './layouts/module';
 import * as icons from './icons/module';
-import * as types from './types/index';
-import * as utils from './utils/index';
-import * as constants from './constants';
+
+import * as lib from './lib/module';
 
 interface InstallFunction extends PluginFunction<{}> {
   insalled?: boolean;
@@ -45,4 +44,4 @@ export default plugin;
 export * from './components/module';
 export * from './icons/module';
 export * from './layouts/module';
-export { types, utils, constants };
+export { lib };

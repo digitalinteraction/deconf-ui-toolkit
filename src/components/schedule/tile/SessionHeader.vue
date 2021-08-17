@@ -40,8 +40,12 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { SessionType, Theme, Track } from '../../../types';
-import { localiseFromObject } from '../../../utils';
+import {
+  SessionType,
+  Theme,
+  Track,
+  localiseFromObject
+} from '../../../lib/module';
 
 export default {
   name: 'SessionHeader',

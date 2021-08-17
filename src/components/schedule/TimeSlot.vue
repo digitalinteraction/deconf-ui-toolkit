@@ -29,7 +29,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { SlotState } from '../../types';
+import { SlotState } from '../../lib/module';
 
 //
 // I18n used:

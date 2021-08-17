@@ -20,7 +20,7 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
-// @deprecated TO_BE_REMOVED
+// @deprecated TO_BE_UPDATED
 //
 
 //

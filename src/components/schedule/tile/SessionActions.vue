@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { Session, SlotState } from '../../../types';
+import { Session, SlotState } from '../../../lib/module';
 import { PropType } from 'vue';
 import AddToCalendar from '../actions/AddToCalendar.vue';
 import JoinSession from '../actions/JoinSession.vue';
