@@ -62,6 +62,20 @@
     "featuredSessions": {
       "title": "Featured Sessions",
       "action": "View Schedule"
+    },
+    "scheduleFilters": {
+      "query": "Search",
+      "showFilters": "Show filters",
+      "hideFilters": "Hide filters",
+      "clearFilters": "Clear filters",
+      "dateFilter": "Date",
+      "typeFilter": "Type",
+      "trackFilter": "Track",
+      "themeFilter": "Theme",
+      "recordedFilter": "Is Recorded",
+      "offLabel": "All",
+      "yes": "Yes",
+      "no": "No"
     }
   }
 }

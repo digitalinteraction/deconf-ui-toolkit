@@ -1,4 +1,4 @@
-import { SlotState } from '../lib/module';
+import { SlotState } from './types';
 
 const oneHour = 60 * 60 * 1000;
 

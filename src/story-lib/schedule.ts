@@ -3,6 +3,7 @@ import {
   Session,
   SessionSlot,
   SessionState,
+  SessionType,
   SessionVisibility,
   Speaker,
   Theme,
@@ -89,6 +90,14 @@ export function defaultTracks() {
   ];
 }
 
+export function defaultThemes() {
+  return [
+    createTheme('1', 'Inclusivity'),
+    createTheme('2', 'Awareness'),
+    createTheme('3', 'Engagement')
+  ];
+}
+
 export function createSession(
   id: string,
   title: string,
@@ -167,6 +176,10 @@ export function createSessionFromSchedule(
   };
 }
 
+//
+// V2
+//
+
 function makeFixture<T>(base: T) {
   return (options: Partial<T> = {}): T => ({ ...base, ...options });
 }
@@ -199,4 +212,12 @@ export const mockSessionSlot = makeFixture<SessionSlot>({
   id: 'slot-a',
   start: dates.future,
   end: dates.past
+});
+
+export const mockSessionType = makeFixture<SessionType>({
+  id: 'plenary',
+  iconGroup: 'fab',
+  iconName: 'youtube',
+  layout: 'plenary',
+  title: { en: 'Plenary' }
 });

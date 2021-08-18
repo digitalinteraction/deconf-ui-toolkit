@@ -1,0 +1,304 @@
+<template>
+  <div class="scheduleFilters">
+    <div class="scheduleFilters-row">
+      <!-- Query -->
+      <div class="field has-addons" v-if="isEnabled('query')">
+        <div class="control">
+          <div class="button is-static">
+            {{ $t('deconf.scheduleFilters.query') }}
+          </div>
+        </div>
+        <div class="control">
+          <input
+            type="text"
+            class="input"
+            :value="filters.query"
+            :placeholder="$t('deconf.scheduleFilters.query')"
+            @input="onQuery"
+          />
+        </div>
+      </div>
+
+      <!-- Show / hide filters -->
+      <div class="field" v-if="!showExtraFilters">
+        <div class="control">
+          <button class="button is-primary is-light" @click="toggleFilters">
+            <span>
+              {{ $t('deconf.scheduleFilters.showFilters') }}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Clear filters -->
+      <div class="field" v-if="hasFilters">
+        <div class="control">
+          <div class="button is-danger" @click="clearFilters">
+            <span> {{ $t('deconf.scheduleFilters.clearFilters') }} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scheduleFilters-row" v-if="showExtraFilters">
+      <!-- Date  -->
+      <InlineFilter
+        class="scheduleFilters-date"
+        v-if="isEnabled('date')"
+        v-model="filters.date"
+        :label="$t('deconf.scheduleFilters.dateFilter')"
+        :off-label="$t('deconf.scheduleFilters.offLabel')"
+        :options="dateOptions"
+      />
+
+      <!-- Session Type  -->
+      <InlineFilter
+        v-if="isEnabled('sessionType')"
+        class="scheduleFilters-type"
+        v-model="filters.sessionType"
+        :label="$t('deconf.scheduleFilters.typeFilter')"
+        :off-label="$t('deconf.scheduleFilters.offLabel')"
+        :options="sessionTypeOptions"
+      />
+
+      <!-- Track -->
+      <InlineFilter
+        class="scheduleFilters-track"
+        v-if="isEnabled('track')"
+        v-model="filters.track"
+        :label="$t('deconf.scheduleFilters.trackFilter')"
+        :off-label="$t('deconf.scheduleFilters.offLabel')"
+        :options="trackOptions"
+      />
+
+      <!-- Theme -->
+      <InlineFilter
+        class="scheduleFilters-theme"
+        v-if="isEnabled('theme')"
+        v-model="filters.theme"
+        :label="$t('deconf.scheduleFilters.themeFilter')"
+        :off-label="$t('deconf.scheduleFilters.offLabel')"
+        :options="themeOptions"
+      />
+
+      <!-- Recorded -->
+      <InlineFilter
+        class="scheduleFilters-recorded"
+        v-if="isEnabled('isRecorded')"
+        v-model="filters.isRecorded"
+        :label="$t('deconf.scheduleFilters.recordedFilter')"
+        :off-label="$t('deconf.scheduleFilters.offLabel')"
+        :options="recordedOptions"
+      />
+
+      <div class="field" v-if="showExtraFilters">
+        <div class="control">
+          <button class="button is-primary is-light" @click="toggleFilters">
+            <span>
+              {{ $t('deconf.scheduleFilters.hideFilters') }}
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { PropType } from 'vue';
+import debounce from 'lodash.debounce';
+
+import {
+  SessionSlot,
+  SessionType,
+  Theme,
+  Track,
+  startOfDay,
+  friendlyDate,
+  localiseFromObject
+} from '../../../lib/module';
+import InlineFilter from './InlineFilter.vue';
+import { ScheduleFilterRecord } from './ScheduleFilterRecord';
+import { FilterOption } from './FilterOption';
+
+const QUERY_DEBOUNCE = 300;
+
+interface Data {
+  showExtraFilters: boolean;
+  queryHandler: null | ((newQuery: string) => void);
+}
+
+//
+// I18n
+// - deconf.scheduleFilters.query
+// - deconf.scheduleFilters.showFilters
+// - deconf.scheduleFilters.clearFilters
+// - deconf.scheduleFilters.dateFilter
+// - deconf.scheduleFilters.typeFilter
+// - deconf.scheduleFilters.trackFilter
+// - deconf.scheduleFilters.themeFilter
+// - deconf.scheduleFilters.recordedFilter
+// - deconf.scheduleFilters.offLabel
+// - deconf.scheduleFilters.hideFilters
+// - deconf.scheduleFilters.yes
+// - deconf.scheduleFilters.no
+
+type FilterKey = keyof ScheduleFilterRecord;
+
+const DEFAULT_FILTERS: FilterKey[] = [
+  'query',
+  'sessionType',
+  'track',
+  'theme',
+  'date',
+  'isRecorded'
+];
+
+export default {
+  components: { InlineFilter },
+  props: {
+    sessionTypes: {
+      type: Array as PropType<SessionType[]>,
+      required: true
+    },
+    tracks: { type: Array as PropType<Track[]>, required: true },
+    themes: { type: Array as PropType<Theme[]>, required: true },
+    sessionSlots: {
+      type: Array as PropType<SessionSlot[]>,
+      required: true
+    },
+    filters: {
+      type: Object as PropType<ScheduleFilterRecord>,
+      required: true
+    },
+    enabledFilters: {
+      type: Array as PropType<FilterKey[]>,
+      default: () => DEFAULT_FILTERS
+    }
+  },
+  data(): Data {
+    return {
+      showExtraFilters: false,
+      queryHandler: null
+    };
+  },
+  computed: {
+    dateOptions(): FilterOption[] {
+      const dates = new Map(
+        this.sessionSlots.map(s => [startOfDay(s.start).toISOString(), s.start])
+      );
+      return [...dates.values()].map(date => ({
+        value: date,
+        text: friendlyDate(date)
+      }));
+    },
+    sessionTypeOptions(): FilterOption[] {
+      return this.sessionTypes.map(t => ({
+        value: t.id,
+        text: this.localise(t.title) as string
+      }));
+    },
+    trackOptions(): FilterOption[] {
+      return this.tracks.map(t => ({
+        value: t.id,
+        text: this.localise(t.title) as string
+      }));
+    },
+    themeOptions(): FilterOption[] {
+      return this.themes.map(t => ({
+        value: t.id,
+        text: this.localise(t.title) as string
+      }));
+    },
+    recordedOptions(): FilterOption[] {
+      return [
+        { value: true, text: this.$t('deconf.scheduleFilters.yes') as string },
+        { value: false, text: this.$t('deconf.scheduleFilters.no') as string }
+      ];
+    },
+    hasFilters(): boolean {
+      return Object.keys(this.filters)
+        .filter(k => k !== 'viewMode')
+        .some(k => Boolean(this.filters[k as keyof ScheduleFilterRecord]));
+    },
+    enabledFiltersSet(): Set<FilterKey> {
+      return new Set(this.enabledFilters);
+    }
+  },
+  watch: {
+    filters: {
+      deep: true,
+      handler(newValue: ScheduleFilterRecord) {
+        this.$emit('filter', newValue);
+      }
+    }
+  },
+  mounted() {
+    this.showExtraFilters = this.showExtraFilters || this.hasFilters;
+
+    this.queryHandler = debounce((value: string) => {
+      this.filters.query = value;
+    }, QUERY_DEBOUNCE);
+  },
+  destroyed() {
+    this.queryHandler = null;
+  },
+  methods: {
+    localise(object: Record<string, string>): string | null {
+      return localiseFromObject(this.$i18n.locale, object);
+    },
+    toggleFilters(): void {
+      this.showExtraFilters = !this.showExtraFilters;
+    },
+    clearFilters(): void {
+      this.showExtraFilters = false;
+      this.filters.query = '';
+      this.filters.sessionType = null;
+      this.filters.track = null;
+      this.filters.theme = null;
+      this.filters.date = null;
+      this.filters.isRecorded = null;
+    },
+    onQuery(e: InputEvent): void {
+      if (!this.queryHandler) return;
+      this.queryHandler((e.target as HTMLInputElement).value);
+    },
+    isEnabled(filterName: FilterKey) {
+      return this.enabledFiltersSet.has(filterName);
+    }
+  }
+};
+</script>
+
+<style lang="scss">
+.scheduleFilters {
+}
+
+.scheduleFilters-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 0;
+
+  > * {
+    margin-block-end: 12px;
+  }
+  > *:not(:last-child) {
+    margin-inline-end: 12px;
+  }
+
+  @include mobile {
+    margin-bottom: 12px;
+  }
+
+  &:last-child {
+    margin-bottom: -12px;
+    // margin-bottom: $block-spacing;
+  }
+}
+
+@include tablet {
+  .scheduleFilters-fieldGap {
+    flex: 1;
+  }
+}
+</style>

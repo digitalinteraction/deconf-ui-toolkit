@@ -92,42 +92,7 @@ strings set (they are all namespaced under `deconf`):
 
 > You can skip strings for sections you aren't using
 
-| key                              | usage                                                      |
-| -------------------------------- | ---------------------------------------------------------- |
-| `deconf.appLayout.atrium`        | The title of the Atrium tab                                |
-| `deconf.appLayout.whatsOn`       | The title of the What's On tab                             |
-| `deconf.appLayout.schedule`      | The title of the Schedule tab                              |
-| `deconf.appLayout.coffeeChat`    | The title of the Coffee Chat tab                           |
-| `deconf.appLayout.helpDesk`      | The title of the Help Desk tab                             |
-| `deconf.appLayout.profile`       | The title of the Profile menu item                         |
-| `deconf.appLayout.login`         | The title of the Log In menu item                          |
-| `deconf.appLayout.register`      | The title of the Register menu item                        |
-| `deconf.appLayout.interpret`     | The title of the Interpret menu item                       |
-| `deconf.appLayout.unavailable`   | The title of the Unavailable string in the menu            |
-| `deconf.session.languageWarning` | The warning when a session is in a different language (^1) |
-| `deconf.session.openTeams`       | The text to open a teams link                              |
-| `deconf.session.openZoom`        | The text to open a zoom link                               |
-| `deconf.session.openHubs`        | The text to open a Mozilla Hubs link                       |
-| `deconf.session.openSpatial`     | The text to open a Spatial Chat link                       |
-| `deconf.session.noEmbed`         | The warning when no embedable option is available          |
-| `deconf.session.liveNow`         | State text when a session is live                          |
-| `deconf.session.sessionOver`     | State text when a session is in the past                   |
-| `deconf.session.interest`        | State text to show registrations (^c)                      |
-| `deconf.general.hours`           | Pluralise hours (^c)                                       |
-| `deconf.general.minutes`         | Pluralise minutes (^c)                                     |
-| `deconf.general.seconds`         | Pluralise seconds (^c)                                     |
-| `deconf.general.copy`            | Text to copy a link                                        |
-| `deconf.general.copied`          | Text when a link has been copied                           |
-| `deconf.apiError.title`          | Title if the API is unreachable                            |
-| `deconf.apiError.content`        | Text if an the API is unreachable                          |
-| `deconf.apiError.retry`          | Message for retrying if the API is unreachable (^1)        |
-| `deconf.appLoading.message`      | Message when data is being initially fetched               |
-| `deconf.miniSession.view`        | Action to view a mini session                              |
-| `deconf.miniSession.live`        | Live tag on a mini session                                 |
-| `deconf.featuredSessions.title`  | Title of featured sessions section                         |
-| `deconf.featuredSessions.action` | Action of featured sessions section                        |
-
-**key**
+_key_
 
 - ^1 - 1 parameter (e.g. `{0}`)
 - ^2 - 2 parameters (e.g. `{0} {1}`)
@@ -137,6 +102,74 @@ strings set (they are all namespaced under `deconf`):
 - ^c - count key (e.g. `apples | apple | apples`) to pluralise based on a count/number
 
 > WIP, for full keys used see [.storybook/locale.json](./.storybook/locale.json)
+
+**AppLayout**
+
+- `deconf.appLayout.atrium` - The title of the Atrium tab
+- `deconf.appLayout.whatsOn` - The title of the What's On tab
+- `deconf.appLayout.schedule` - The title of the Schedule tab
+- `deconf.appLayout.coffeeChat` - The title of the Coffee Chat tab
+- `deconf.appLayout.helpDesk` - The title of the Help Desk tab
+- `deconf.appLayout.profile` - The title of the Profile menu item
+- `deconf.appLayout.login` - The title of the Log In menu item
+- `deconf.appLayout.register` - The title of the Register menu item
+- `deconf.appLayout.interpret` - The title of the Interpret menu item
+- `deconf.appLayout.unavailable` - The title of the Unavailable string in the menu
+
+**Session**
+
+- `deconf.session.languageWarning` - The warning when a session is in a different language (^1)
+- `deconf.session.openTeams` - The text to open a teams link
+- `deconf.session.openZoom` - The text to open a zoom link
+- `deconf.session.openHubs` - The text to open a Mozilla Hubs link
+- `deconf.session.openSpatial` - The text to open a Spatial Chat link
+- `deconf.session.noEmbed` - The warning when no embedable option is available
+- `deconf.session.liveNow` - State text when a session is live
+- `deconf.session.sessionOver` - State text when a session is in the past
+- `deconf.session.interest` - State text to show registrations (^c)
+
+**General**
+
+- `deconf.general.hours` - Pluralise hours (^c)
+- `deconf.general.minutes` - Pluralise minutes (^c)
+- `deconf.general.seconds` - Pluralise seconds (^c)
+- `deconf.general.copy` - Text to copy a link
+- `deconf.general.copied` - Text when a link has been copied
+
+**ApiError**
+
+- `deconf.apiError.title` - Title if the API is unreachable
+- `deconf.apiError.content` - Text if an the API is unreachable
+- `deconf.apiError.retry` - Message for retrying if the API is unreachable (^1)
+
+**AppLoading**
+
+- `deconf.appLoading.message` - Message when data is being initially fetched
+
+**MiniSession**
+
+- `deconf.miniSession.view` - Action to view a mini session
+- `deconf.miniSession.live` - Live tag on a mini session
+
+**FeaturedSessions**
+
+- `deconf.featuredSessions.title` - Title of featured sessions section
+- `deconf.featuredSessions.action` - Action of featured sessions section
+
+**ScheduleFilters**
+
+- `deconf.scheduleFilters.query` - The label of the search field
+- `deconf.scheduleFilters.showFilters` - Button to show the extra filters
+- `deconf.scheduleFilters.hideFilters` - Button to hide the extra filters
+- `deconf.scheduleFilters.clearFilters` - Button to reset filtering
+- `deconf.scheduleFilters.dateFilter` - The label of the date filter
+- `deconf.scheduleFilters.typeFilter` - The label of the type filter
+- `deconf.scheduleFilters.trackFilter` - The label of the track filter
+- `deconf.scheduleFilters.themeFilter` - The label of the theme filter
+- `deconf.scheduleFilters.recordedFilter` - The label of the "is recorded" filter
+- `deconf.scheduleFilters.offLabel` - The label when no value is applied, e.g. "All"
+- `deconf.scheduleFilters.yes` - Yes option
+- `deconf.scheduleFilters.no` - No option
 
 ### Routes
 
