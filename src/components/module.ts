@@ -9,3 +9,4 @@ export { default as SponsorGrid } from './SponsorGrid.vue';
 export { default as SponsorRow } from './SponsorRow.vue';
 export { default as ToggleContents } from './ToggleContents.vue';
 export { default as FullHeight } from './FullHeight.vue';
+export { default as NoResults } from './NoResults.vue';

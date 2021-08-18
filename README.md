@@ -207,6 +207,7 @@ At least these fa icons are needed:
 | `fas chevron-right`        | ColorWidget                        |
 | `fas sync`                 | AppLoading                         |
 | `fas arrow-right`          | MiniSession                        |
+| `fas search`               | NoResults                          |
 
 > WIP
 
