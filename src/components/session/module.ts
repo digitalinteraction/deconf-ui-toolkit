@@ -1,3 +1,4 @@
+export { default as AttendanceSection } from './AttendanceSection.vue';
 export { default as Countdown } from './Countdown.vue';
 export { default as IframeEmbed } from './IframeEmbed.vue';
 export { default as LanguageWarning } from './LanguageWarning.vue';

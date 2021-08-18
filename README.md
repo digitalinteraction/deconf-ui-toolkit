@@ -171,6 +171,16 @@ _key_
 - `deconf.scheduleFilters.yes` - Yes option
 - `deconf.scheduleFilters.no` - No option
 
+**AttendanceSection**
+
+- `deconf.attendanceSection.loading` - When attendance is being loaded
+- `deconf.attendanceSection.processing` - When attendance is being changed
+- `deconf.attendanceSection.registered` - Message when registered for a session
+- `deconf.attendanceSection.full` - Message when a session is full
+- `deconf.attendanceSection.spacesLeft` - How many seats are available ^2
+- `deconf.attendanceSection.registerButton` - Action to take a seat
+- `deconf.attendanceSection.unregisterButton` - Action to release a seat
+
 ### Routes
 
 These routes need to be implemented
@@ -208,6 +218,8 @@ At least these fa icons are needed:
 | `fas sync`                 | AppLoading                         |
 | `fas arrow-right`          | MiniSession                        |
 | `fas search`               | NoResults                          |
+| `fas times`                | AttendanceSection                  |
+| `fas user-plus`            | AttendanceSection                  |
 
 > WIP
 
@@ -243,7 +255,8 @@ components are writen in a specific way:
 - only default exports from `.vue` files
 - specific import filenames where not ts/js
 - "story" snippet for setting up stories
-- `@/story-utils` for util functions in stories
+- `../lib/module` for common logic in components
+- `../story-lib/module` for common logic in stories
 - prefer verbosity in stories so they are self-enclosed
 - don't use `Vue.extend` because it ends up with a different global `vue`
   which has different routes.

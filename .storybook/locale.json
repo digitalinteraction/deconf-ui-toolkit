@@ -76,6 +76,15 @@
       "offLabel": "All",
       "yes": "Yes",
       "no": "No"
+    },
+    "attendanceSection": {
+      "loading": "Fetching attendance",
+      "processing": "Processing",
+      "registered": "You are registered for this session",
+      "full": "This session is full",
+      "spacesLeft": "{0}/{1} seats remaining.",
+      "registerButton": "Register now",
+      "unregisterButton": "Release my seat"
     }
   }
 }
