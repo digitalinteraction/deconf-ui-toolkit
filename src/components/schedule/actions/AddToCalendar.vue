@@ -19,6 +19,10 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
+// TODO:
+// Refactor away from api/calendarLink
+
+//
 // I18n used:
 // - deconf.session.addToCalendar
 //

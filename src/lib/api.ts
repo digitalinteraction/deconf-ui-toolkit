@@ -1,10 +1,12 @@
-import { Attendance, Registration } from '@openlab/deconf-shared';
-
-export enum ApiState {
-  init = 'init',
-  ready = 'ready',
-  error = 'error'
-}
+import { Session, Speaker } from '../types';
+import {
+  Attendance,
+  ConfigSettings,
+  Registration,
+  SessionSlot,
+  Theme,
+  Track
+} from './types';
 
 //
 // TODO: move these to @openlab/deconf-shared
@@ -24,4 +26,12 @@ export interface SessionAttendanceJson {
 }
 export interface ProfileResponse {
   profile: Registration;
+}
+export interface FullSchedule {
+  slots: SessionSlot[];
+  settings: ConfigSettings[];
+  themes: Theme[];
+  tracks: Track[];
+  speakers: Speaker[];
+  session: Session[];
 }
