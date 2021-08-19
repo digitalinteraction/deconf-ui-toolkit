@@ -4,7 +4,6 @@ import _Vue, { PluginFunction } from 'vue';
 import * as components from './components/module';
 import * as layouts from './layouts/module';
 import * as icons from './icons/module';
-
 import * as lib from './lib/module';
 
 interface InstallFunction extends PluginFunction<{}> {
@@ -44,4 +43,7 @@ export default plugin;
 export * from './components/module';
 export * from './icons/module';
 export * from './layouts/module';
+export * from './store/module';
 export { lib };
+
+// TODO: review what is exported with respect to code-splitting

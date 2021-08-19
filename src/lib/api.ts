@@ -1,4 +1,4 @@
-import { Session, Speaker } from '../types';
+import { Session, SessionType, Speaker } from '../types';
 import {
   Attendance,
   ConfigSettings,
@@ -28,10 +28,11 @@ export interface ProfileResponse {
   profile: Registration;
 }
 export interface FullSchedule {
+  sessions: Session[];
+  settings: ConfigSettings;
   slots: SessionSlot[];
-  settings: ConfigSettings[];
+  speakers: Speaker[];
   themes: Theme[];
   tracks: Track[];
-  speakers: Speaker[];
-  session: Session[];
+  types: SessionType[];
 }

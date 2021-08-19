@@ -1,29 +1,14 @@
 import { Module } from 'vuex';
-import ky from 'ky';
 import {
-  AuthenticateOptions,
   AuthToken,
-  ConfigSettings,
-  Registration,
-  Session,
-  SessionSlot,
-  SessionType,
-  Speaker,
-  Theme,
-  Track
+  deepSeal,
+  FullSchedule,
+  Registration
 } from '../../lib/module';
-import { ApiState } from './ApiState';
+import { ApiState } from './api-state';
 
 export interface ApiModuleState {
-  schedule: null | {
-    sessions: Session[];
-    settings: ConfigSettings;
-    slots: SessionSlot[];
-    speakers: Speaker[];
-    themes: Theme[];
-    tracks: Track[];
-    types: SessionType[];
-  };
+  schedule: null | FullSchedule;
   apiState: ApiState;
   user: AuthToken | null;
   siteVisitors: number | null;
@@ -37,7 +22,9 @@ export type ApiModule = Module<ApiModuleState, {}>;
 type NotNull<T> = T extends null ? never : T;
 
 /** This function processes data before it is put into the store */
-function deserialiseData(data: NotNull<ApiModuleState['schedule']>) {
+function deserialiseData(data: ApiModuleState['schedule']) {
+  if (data === null) return null;
+
   data.settings.startDate = new Date(data.settings.startDate);
   data.settings.endDate = new Date(data.settings.endDate);
   data.settings.endDate.setHours(23, 59, 59);
@@ -49,54 +36,18 @@ function deserialiseData(data: NotNull<ApiModuleState['schedule']>) {
   for (const speaker of data.speakers) {
     if (!speaker.headshot) speaker.headshot = '/default-headshot.png';
   }
+
+  return deepSeal(data);
 }
 
-/** A method to seal javascript objects to improve Vue performance */
-export function deepSeal<T>(input: T): T {
-  Object.seal(input);
-  if (Array.isArray(input)) {
-    for (const item of input) deepSeal(item);
-  }
-  if (typeof input === 'object') {
-    for (const key in input) deepSeal(input[key]);
-  }
-  return input;
-}
+//
+// NOTE:
+// I'm not sure what value this can add without concrete routes
+//
 
-/** Decode a base64 JWT */
-function decodeJwt(token: string) {
-  return JSON.parse(window.atob(token.split('.')[1]));
-}
-
-interface ApiStoreModuleOptions {
-  apiBaseUrl: string;
-  getAuthorization: () => string;
-}
-
-interface ApiClient {
-  getSchedule(): Promise<void>;
-  getSessionLinks(sessionId: string): Promise<void>;
-}
-
-export function createApiStoreModule({
-  apiBaseUrl,
-  getAuthorization
-}: ApiStoreModuleOptions): ApiModule {
-  const agent = ky.extend({
-    prefixUrl: apiBaseUrl,
-    hooks: {
-      beforeRequest: [
-        request => {
-          const token = getAuthorization();
-          if (token) {
-            request.headers.set('Authorization', `Bearer ${token}`);
-          }
-        }
-      ]
-    }
-  });
-
+export function createApiStoreModule(): ApiModule {
   return {
+    namespaced: true,
     state: {
       schedule: null,
       apiState: ApiState.init,
@@ -106,6 +57,7 @@ export function createApiStoreModule({
       carbon: null,
       userSessions: null
     },
+    // TODO: Are these useful?
     getters: {
       user: s => s.user,
       sessions: s => (s.schedule ? s.schedule.sessions : []),
@@ -120,42 +72,24 @@ export function createApiStoreModule({
     },
     mutations: {
       schedule: (state, schedule: ApiModuleState['schedule']) => {
-        if (schedule) deserialiseData(schedule);
-        state.schedule = schedule;
+        state.schedule = deserialiseData(schedule);
+        state.apiState = schedule ? ApiState.ready : ApiState.error;
       },
       state: (state, apiState: ApiState) => {
         state.apiState = apiState;
       },
       user: (state, user: AuthToken) => {
-        state.user = user;
+        state.user = deepSeal(user);
       },
       profile: (state, profile: Registration) => {
-        state.profile = profile;
+        state.profile = deepSeal(profile);
       },
       userSessions: (state, userSessions: string[]) => {
-        state.userSessions = userSessions;
+        state.userSessions = deepSeal(userSessions);
       }
     },
     actions: {
-      async authenticate({ commit, dispatch }, { token }: AuthenticateOptions) {
-        const user = decodeJwt(token);
-        commit('user', user);
-
-        dispatch('fetchUserAttendance');
-      },
-      async fetchData({ commit }): Promise<boolean> {
-        try {
-          const data = await agent.get('schedule').json();
-          commit('data', deepSeal(data));
-          commit('state', ApiState.ready);
-          return true;
-        } catch (error) {
-          console.error(error);
-          commit('data', null);
-          commit('state', ApiState.error);
-          return false;
-        }
-      }
+      // Let library-users provide the actions?
     }
   };
 }
