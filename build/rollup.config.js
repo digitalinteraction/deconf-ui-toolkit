@@ -34,7 +34,7 @@ const fileName = 'dist/deconf-ui';
 const sorucemap = true;
 
 const baseConfig = {
-  input: 'src/entrypoint.ts',
+  input: 'src/module.ts',
   plugins: {
     preVue: [
       alias({
@@ -115,7 +115,9 @@ const external = [
   // eg. 'jquery'
   'vue',
   '@fortawesome/vue-fontawesome',
-  'copy-to-clipboard'
+  'copy-to-clipboard',
+  '@openlab/deconf-shared',
+  'lodash.debounce'
 ];
 
 // UMD/IIFE shared settings: output.globals

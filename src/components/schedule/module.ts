@@ -10,9 +10,9 @@ export { default as SessionHeader } from './tile/SessionHeader.vue';
 export { default as SessionTile } from './tile/SessionTile.vue';
 
 // filtering/
-export { FilterOption } from './filtering/FilterOption';
+export type { FilterOption } from './filtering/FilterOption';
+export type { ScheduleFilterRecord } from './filtering/ScheduleFilterRecord';
 export { default as InlineFilter } from './filtering/InlineFilter.vue';
-export { ScheduleFilterRecord } from './filtering/ScheduleFilterRecord';
 export { default as ScheduleFilters } from './filtering/ScheduleFilters.vue';
 
 export { default as ScheduleBlock } from './ScheduleBlock.vue';

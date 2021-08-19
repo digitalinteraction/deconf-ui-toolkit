@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import InlineFilter from './InlineFilter.vue';
-import { FilterOption } from './FilterOption';
+import type { FilterOption } from './FilterOption';
 
 export default {
   title: 'Schedule/InlineFilter',

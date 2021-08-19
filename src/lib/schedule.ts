@@ -1,5 +1,5 @@
 import { TranslateResult } from 'vue-i18n';
-import { ScheduleFilterRecord } from '../components/schedule/module';
+import { ScheduleFilterRecord } from '../components/schedule/filtering/ScheduleFilterRecord';
 import { FullSchedule } from './api';
 import { friendlyDate, isSameDay, startOfDay } from './dates';
 import { localiseFromObject } from './locales';
