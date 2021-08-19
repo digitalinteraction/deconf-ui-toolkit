@@ -28,13 +28,14 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { InlineFilterOption, localiseFromObject } from '../../../lib/module';
+import { localiseFromObject } from '../../../lib/module';
+import { FilterOption } from './FilterOption';
 
 export default {
   props: {
     label: { type: String, required: true },
     offLabel: { type: String, required: true },
-    options: { type: Array as PropType<InlineFilterOption[]>, required: true },
+    options: { type: Array as PropType<FilterOption[]>, required: true },
     value: { required: true }
   },
   methods: {

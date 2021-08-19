@@ -23,7 +23,8 @@ export default {
 </script>
 
 <style lang="scss">
-$iframeEmbed-ratio: percentage(9 / 16) !default;
+// 9 / 16
+$iframeEmbed-ratio: 56.25% !default;
 $iframeEmbed-background: #fafafa !default;
 
 .iframeEmbed {

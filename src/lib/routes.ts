@@ -6,7 +6,8 @@ import {
   WhatsOnIcon
 } from '../icons/module';
 
-import { Routes, AppRoute, ConfigSettings, AuthToken } from './module';
+import { Routes } from './constants';
+import { AppRoute, ConfigSettings, AuthToken } from './types';
 
 export function composeDefaultRoutes(
   user: AuthToken | null,

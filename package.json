@@ -157,7 +157,6 @@
   },
   "dependencies": {
     "@openlab/deconf-shared": "^2.0.1",
-    "countdown": "^2.6.0",
     "lodash.debounce": "^4.0.8"
   }
 }

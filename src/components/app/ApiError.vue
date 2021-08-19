@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import countdown from 'countdown';
+import { getCountdown } from '../../lib/module';
 import UtilLayout from '../../layouts/UtilLayout.vue';
 
 //
@@ -21,48 +21,60 @@ import UtilLayout from '../../layouts/UtilLayout.vue';
 // - deconf.apiError.retry
 //
 
-//
-// TODO:
-// - better i18n countdown
-// - migrate to lib's getCountdown
-//
+const TICK_INTERVAL = 500;
 
 interface Data {
   timerId: number | null;
   retryDate: Date;
-  timeLeft: number;
+  currentDate: Date;
 }
 
 export default {
   components: { UtilLayout },
   props: {
-    homeRoute: { type: Object }
+    homeRoute: { type: Object, required: true },
+    retry: { type: Number, default: 1 }
   },
   data(): Data {
     const retryDate = new Date();
-    retryDate.setMinutes(retryDate.getMinutes() + 1);
+    retryDate.setMinutes(retryDate.getMinutes() + this.retry);
 
     return {
       timerId: null,
       retryDate,
-      timeLeft: retryDate.getTime() - Date.now()
+      currentDate: new Date()
     };
   },
   computed: {
     timeMessage(): string {
-      return countdown(Date.now() + this.timeLeft).toString();
+      const { hours, minutes, seconds } = getCountdown(
+        this.currentDate,
+        this.retryDate
+      );
+      const tc = (value: number, unit: string) => {
+        if (!value) return null;
+        return `${value} ${this.$tc(`deconf.general.${unit}`, value)}`;
+      };
+      return [
+        tc(hours, 'hours'),
+        tc(minutes, 'minutes'),
+        tc(seconds, 'seconds')
+      ]
+        .filter(t => Boolean(t))
+        .join(' ');
     }
   },
   mounted(): void {
-    this.timerId = setInterval(() => {
-      this.timeLeft = Math.max(0, this.retryDate.getTime() - Date.now());
+    this.timerId = window.setInterval(() => {
+      this.currentDate = new Date();
+      const timeLeft = this.retryDate.getTime() - this.currentDate.getTime();
 
-      if (this.timeLeft === 0) window.location.reload();
-    }, 100);
+      if (timeLeft <= 1) window.location.reload();
+    }, TICK_INTERVAL);
   },
   destroyed(): void {
     if (this.timerId) {
-      clearInterval(this.timerId);
+      window.clearInterval(this.timerId);
     }
   }
 };
