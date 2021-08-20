@@ -21,4 +21,9 @@ const Template: Story = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
-Default.parameters = { layout: 'fullscreen' };
+Default.parameters = {
+  layout: 'fullscreen',
+  controls: {
+    exclude: ['homeRoute', 'retry', 'brand', 'footer']
+  }
+};
