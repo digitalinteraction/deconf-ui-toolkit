@@ -4,16 +4,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 //
 // A reusable component to quickly flex between items without needing styles
 //
 
 /** Create a Vue enum-based prop w/ validation  */
-function enumProp(values) {
+function enumProp(values: string[]) {
   return {
     type: String,
-    validator: v => values.includes(v),
+    validator: (v: string) => values.includes(v),
     required: true
   };
 }
@@ -25,7 +25,7 @@ export default {
     align: enumProp(['start', 'end', 'center', 'stretch'])
   },
   computed: {
-    classes() {
+    classes(): string[] {
       return [
         `is-${this.gap}`,
         `is-${this.direction}`,
