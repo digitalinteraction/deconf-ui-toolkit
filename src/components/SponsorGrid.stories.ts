@@ -40,3 +40,8 @@ const Template: Story = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
+Default.parameters = {
+  controls: {
+    exclude: ['groups']
+  }
+};
