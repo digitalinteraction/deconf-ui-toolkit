@@ -18,3 +18,8 @@ export const Default = Template.bind({});
 Default.args = {
   text: 'Go home'
 };
+Default.parameters = {
+  controls: {
+    exclude: ['to', 'default']
+  }
+};
