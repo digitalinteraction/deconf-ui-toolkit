@@ -54,7 +54,11 @@ Vertical.args = {
   gap: 'regular',
   align: 'center'
 };
-Vertical.parameters = {};
+Vertical.parameters = {
+  controls: {
+    exclude: ['default']
+  }
+};
 
 export const Horizontal = Template.bind({});
 Horizontal.args = {
@@ -62,4 +66,8 @@ Horizontal.args = {
   gap: 'regular',
   align: 'center'
 };
-Horizontal.parameters = {};
+Horizontal.parameters = {
+  controls: {
+    exclude: ['default']
+  }
+};
