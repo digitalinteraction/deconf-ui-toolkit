@@ -16,3 +16,10 @@ const Template: Story = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {};
 Default.parameters = { layout: 'fullscreen' };
+
+export const Mobile = Template.bind({});
+Mobile.args = {};
+Mobile.parameters = {
+  layout: 'fullscreen',
+  viewport: { defaultViewport: 'mobile2' }
+};
