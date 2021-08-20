@@ -16,7 +16,9 @@ const Template: Story = (args, { argTypes }) => ({
     content: createContent()
   }),
   template: `
-    <BoxContent :title="title" :content="content" />
+    <BoxContent :title="title">
+      <component :is="content" />
+    </BoxContent>
   `
 });
 
@@ -25,5 +27,8 @@ Default.args = {
   title: 'Lorem ipsum sil dor amet'
 };
 Default.parameters = {
-  backgrounds: { default: 'dark' }
+  backgrounds: { default: 'dark' },
+  controls: {
+    exclude: ['default']
+  }
 };
