@@ -213,7 +213,7 @@ export default {
 
   &.is-spatialChat {
     border: 2px dashed $spatial-blue;
-    background-color: lighten($spatial-blue, 40%);
+    background-color: lighten($spatial-blue, 35%);
 
     .button {
       background: $spatial-blue;

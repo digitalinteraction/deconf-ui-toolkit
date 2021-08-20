@@ -1,5 +1,5 @@
 <template>
-  <div class="devControl" v-if="devPlugin.isEnabled">
+  <div class="devControl" v-if="devPlugin.isEnabled || forceEnable">
     <button
       class="button devControl-toggle"
       @click="toggleExpanded"
@@ -165,7 +165,8 @@ export default {
     };
   },
   props: {
-    devPlugin: { type: Object as PropType<DevPlugin>, required: true }
+    devPlugin: { type: Object as PropType<DevPlugin>, required: true },
+    forceEnable: { type: Boolean, default: false }
   },
   computed: {
     scheduleDate(): DateTimeObject {

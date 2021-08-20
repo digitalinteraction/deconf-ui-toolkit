@@ -34,6 +34,7 @@ const Template: Story = (args, { argTypes }) => ({
       <pre>{{ devData }}</pre>
       <DevControl
         :dev-plugin="plugin.dev"
+        :force-enable="true"
       />
     </div>
   `

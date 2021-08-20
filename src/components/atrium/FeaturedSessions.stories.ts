@@ -13,18 +13,18 @@ const Template: Story = (args, { argTypes }) => ({
     currentDate: dates.now,
     featured: [
       {
-        session: mockSession(),
+        session: mockSession({ id: 'session-a' }),
         slot: mockSessionSlot({
           start: dates.addMinutes(dates.now, -15),
           end: dates.addMinutes(dates.now, 15)
         })
       },
       {
-        session: mockSession(),
+        session: mockSession({ id: 'session-b' }),
         slot: mockSessionSlot({ start: dates.addMinutes(dates.now, 91) })
       },
       {
-        session: mockSession(),
+        session: mockSession({ id: 'session-c' }),
         slot: mockSessionSlot({ start: dates.addMinutes(dates.now, 291) })
       }
     ]
