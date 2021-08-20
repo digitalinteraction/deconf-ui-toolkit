@@ -12,12 +12,9 @@ const Content = createContent();
 const Template: Story = (args, { argTypes }) => ({
   components: { BoxContent, Content },
   props: ['title'],
-  data: () => ({
-    content: createContent()
-  }),
   template: `
     <BoxContent :title="title">
-      <component :is="content" />
+      <Content />
     </BoxContent>
   `
 });
