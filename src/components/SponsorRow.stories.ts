@@ -4,7 +4,15 @@ import { createSponsors } from '../story-lib/module';
 
 export default {
   title: 'Component/SponsorRow',
-  component: SponsorRow
+  component: SponsorRow,
+  argTypes: {
+    size: {
+      control: {
+        type: 'select',
+        options: ['large', 'medium', 'regular', 'small']
+      }
+    }
+  }
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -30,12 +38,22 @@ Regular.args = {
   size: 'regular',
   numSponsors: 5
 };
+Regular.parameters = {
+  controls: {
+    exclude: ['sponsors']
+  }
+};
 
 export const Large = Template.bind({});
 Large.args = {
   title: 'Platinum Sponsors',
   size: 'large',
   numSponsors: 5
+};
+Large.parameters = {
+  controls: {
+    exclude: ['sponsors']
+  }
 };
 
 export const Medium = Template.bind({});
@@ -44,10 +62,20 @@ Medium.args = {
   size: 'medium',
   numSponsors: 10
 };
+Medium.parameters = {
+  controls: {
+    exclude: ['sponsors']
+  }
+};
 
 export const Small = Template.bind({});
 Small.args = {
   title: 'More Sponsors',
   size: 'small',
   numSponsors: 20
+};
+Small.parameters = {
+  controls: {
+    exclude: ['sponsors']
+  }
 };
