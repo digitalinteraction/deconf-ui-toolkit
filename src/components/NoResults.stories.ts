@@ -17,4 +17,8 @@ const Template: Story = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
-Default.parameters = {};
+Default.parameters = {
+  controls: {
+    exclude: ['default']
+  }
+};

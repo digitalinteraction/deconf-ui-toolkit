@@ -26,3 +26,11 @@ export default {
   components: { FontAwesomeIcon }
 };
 </script>
+
+<style lang="scss">
+.noResults {
+  .notification {
+    line-height: 1;
+  }
+}
+</style>
