@@ -10,6 +10,18 @@
 </template>
 
 <script lang="ts">
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - $heroCard-color
+// - $heroCard-family
+//
+
 export default {
   name: 'HeroCard',
   props: {

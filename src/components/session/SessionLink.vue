@@ -16,7 +16,11 @@
         :class="buttonClasses"
         @click="copyLink"
       >
-        {{ $t(didCopy ? 'deconf.general.copied' : 'deconf.general.copy') }}
+        {{
+          didCopy
+            ? $t('deconf.sessionLink.copied')
+            : $t('deconf.sessionLink.copy')
+        }}
       </button>
     </div>
   </div>
@@ -26,10 +30,20 @@
 import copy from 'copy-to-clipboard';
 
 //
-// I18n used:
-// - deconf.general.copy
-// - deconf.general.copied
+// i18n
+// - deconf.sessionLink.copy - Text to copy a link
+// - deconf.sessionLink.copied - Text when a link has been copied
 //
+// icons
+// - n/a
+//
+// sass
+// - $sessionLink-background
+// - $sessionLink-color
+// - $sessionLink-radius
+// - $sessionLink-linkFont
+//
+
 export default {
   name: 'SessionLink',
   data() {

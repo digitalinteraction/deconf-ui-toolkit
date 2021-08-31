@@ -11,14 +11,23 @@
 </template>
 
 <script lang="ts">
-import { getCountdown } from '../../lib/module';
+import { getCountdown, getCountdownMessage } from '../../lib/module';
 import UtilLayout from '../../layouts/UtilLayout.vue';
 
 //
-// I18n keys
-// - deconf.apiError.title
-// - deconf.apiError.content
-// - deconf.apiError.retry
+// i18n
+// - deconf.apiError.title - Title if the API is unreachable
+// - deconf.apiError.content - Text if an the API is unreachable
+// - deconf.apiError.retry - Message for retrying if the API is unreachable (^1)
+// - deconf.general.hours
+// - deconf.general.minutes
+// - deconf.general.seconds
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
 //
 
 const TICK_INTERVAL = 500;
@@ -30,6 +39,7 @@ interface Data {
 }
 
 export default {
+  name: 'ApiError',
   components: { UtilLayout },
   props: {
     homeRoute: { type: Object, required: true },
@@ -47,21 +57,10 @@ export default {
   },
   computed: {
     timeMessage(): string {
-      const { hours, minutes, seconds } = getCountdown(
-        this.currentDate,
-        this.retryDate
+      return getCountdownMessage(
+        getCountdown(this.currentDate, this.retryDate),
+        (key, value) => this.$tc(key, value)
       );
-      const tc = (value: number, unit: string) => {
-        if (!value) return null;
-        return `${value} ${this.$tc(`deconf.general.${unit}`, value)}`;
-      };
-      return [
-        tc(hours, 'hours'),
-        tc(minutes, 'minutes'),
-        tc(seconds, 'seconds')
-      ]
-        .filter(t => Boolean(t))
-        .join(' ');
     }
   },
   mounted(): void {

@@ -11,6 +11,17 @@
 // TODO: should this take a theme prop rather than use classes?
 //
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
+//
+
 export default {
   name: 'ScheduleHeader'
 };

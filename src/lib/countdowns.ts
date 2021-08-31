@@ -24,3 +24,22 @@ export function getCountdown(
 
   return { hours, minutes, seconds };
 }
+
+export function getCountdownMessage(
+  { hours, minutes, seconds }: CountdownComponents,
+  tc: (key: string, value: number) => string,
+  seperator = ' '
+) {
+  const convert = (value: number, unit: string) => {
+    if (!value) return null;
+    return `${value} ${tc(`deconf.general.${unit}`, value)}`;
+  };
+
+  return [
+    convert(hours, 'hours'),
+    convert(minutes, 'minutes'),
+    convert(seconds, 'seconds')
+  ]
+    .filter(str => Boolean(str))
+    .join(seperator);
+}

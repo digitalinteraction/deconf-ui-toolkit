@@ -26,14 +26,26 @@
 </template>
 
 <script>
+import FullHeight from '../components/FullHeight.vue';
+
 //
 // A wrapper for utility-like pages on the site, like login or privacy
 // - configure whether to show a language control or not
 //
 
-import FullHeight from '../components/FullHeight.vue';
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
+//
 
 export default {
+  name: 'UtilLayout',
   components: { FullHeight },
   props: {
     homeRoute: { type: Object, required: true }

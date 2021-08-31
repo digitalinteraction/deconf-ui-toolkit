@@ -9,6 +9,20 @@
 // A reusable component to quickly flex between items without needing styles
 //
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - $stack-smallGap
+// - $stack-regularGap
+// - $stack-mediumGap
+// - $stack-largeGap
+//
+
 /** Create a Vue enum-based prop w/ validation  */
 function enumProp(values: string[]) {
   return {
@@ -19,6 +33,7 @@ function enumProp(values: string[]) {
 }
 
 export default {
+  name: 'Stack',
   props: {
     direction: enumProp(['horizontal', 'vertical']),
     gap: enumProp(['none', 'small', 'regular', 'medium', 'large']),

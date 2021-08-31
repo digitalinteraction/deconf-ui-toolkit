@@ -22,7 +22,19 @@
 <script lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - fas search
+//
+// sass
+// - n/a
+//
+
 export default {
+  name: 'NoResults',
   components: { FontAwesomeIcon }
 };
 </script>

@@ -25,7 +25,20 @@
 //
 // Wraps a bulma input field
 //
+
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
+//
+
 export default {
+  name: 'TextField',
   props: {
     name: { type: String, required: true },
     label: { type: String, required: true },

@@ -25,16 +25,23 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 import { Location } from 'vue-router';
 import { Session, SessionSlot, Routes } from '../../lib/module';
 
 import MiniSession from './MiniSession.vue';
 
 //
-// I18n
-// - deconf.featuredSessions.title
-// - deconf.featuredSessions.action
+// i18n
+// - deconf.featuredSessions.title - Title of featured sessions section
+// - deconf.featuredSessions.action - Action of featured sessions section
+//
+// icons
+// - n/a
+//
+// sass
+// - $featuredSessions-titleSize
+// - $featuredSessions-titleWeight
 //
 
 interface SessionAndSlot {
@@ -42,7 +49,8 @@ interface SessionAndSlot {
   slot: SessionSlot;
 }
 
-export default Vue.extend({
+export default {
+  name: 'FeaturedSessions',
   components: { MiniSession },
   props: {
     featured: { type: Array as PropType<SessionAndSlot[]>, required: true },
@@ -53,7 +61,7 @@ export default Vue.extend({
       return { name: Routes.Schedule };
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

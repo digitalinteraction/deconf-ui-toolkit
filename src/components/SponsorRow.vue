@@ -23,6 +23,20 @@
 import { Sponsor } from '../lib/module';
 import { PropType } from 'vue';
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - fas search
+//
+// sass
+// - $sponsorRow-regularHeight
+// - $sponsorRow-largeHeight
+// - $sponsorRow-mediumHeight
+// - $sponsorRow-smallHeight
+//
+
 const sizes = ['large', 'medium', 'regular', 'small'];
 
 export default {

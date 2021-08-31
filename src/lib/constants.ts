@@ -16,7 +16,7 @@ export enum Routes {
   Faqs = 'Faqs',
   Error = 'Error',
 
-  Session = 'Session',
+  Session = 'Session', // { sessionId }
   Login = 'Login',
   Register = 'Register',
   TokenCapture = 'TokenCapture',

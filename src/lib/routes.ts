@@ -9,7 +9,7 @@ import {
 import { Routes } from './constants';
 import { AppRoute, ConfigSettings, AuthToken } from './types';
 
-export function composeDefaultRoutes(
+export function getDefaultRoutes(
   user: AuthToken | null,
   settings: ConfigSettings,
   t: (key: string) => string

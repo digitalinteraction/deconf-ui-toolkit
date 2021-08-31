@@ -129,19 +129,26 @@ interface Data {
 }
 
 //
-// I18n
-// - deconf.scheduleFilters.query
-// - deconf.scheduleFilters.showFilters
-// - deconf.scheduleFilters.clearFilters
-// - deconf.scheduleFilters.dateFilter
-// - deconf.scheduleFilters.typeFilter
-// - deconf.scheduleFilters.trackFilter
-// - deconf.scheduleFilters.themeFilter
-// - deconf.scheduleFilters.recordedFilter
-// - deconf.scheduleFilters.offLabel
-// - deconf.scheduleFilters.hideFilters
-// - deconf.scheduleFilters.yes
-// - deconf.scheduleFilters.no
+// i18n
+// - deconf.scheduleFilters.query - Label of the search field
+// - deconf.scheduleFilters.showFilters - Button to show the extra filters
+// - deconf.scheduleFilters.hideFilters - Button to hide the extra filters
+// - deconf.scheduleFilters.clearFilters - Button to reset filtering
+// - deconf.scheduleFilters.dateFilter - The label of the date filter
+// - deconf.scheduleFilters.typeFilter - The label of the type filter
+// - deconf.scheduleFilters.trackFilter - The label of the track filter
+// - deconf.scheduleFilters.themeFilter - The label of the theme filter
+// - deconf.scheduleFilters.recordedFilter - The label of the "is recorded" filter
+// - deconf.scheduleFilters.offLabel - The label when no value is applied, e.g. "All"
+// - deconf.scheduleFilters.yes - "Yes" option
+// - deconf.scheduleFilters.no - "No" option
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
+//
 
 type FilterKey = keyof ScheduleFilterRecord;
 
@@ -155,6 +162,7 @@ const DEFAULT_FILTERS: FilterKey[] = [
 ];
 
 export default {
+  name: 'ScheduleFilters',
   components: { InlineFilter },
   props: {
     sessionTypes: {

@@ -10,7 +10,7 @@
       <FontAwesomeIcon :icon="['fas', 'calendar-plus']" />
     </span>
     <span>
-      {{ $t('deconf.session.addToCalendar') }}
+      {{ $t('deconf.addToCalendar.action') }}
     </span>
   </a>
 </template>
@@ -19,12 +19,14 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
-// TODO:
-// Refactor away from api/calendarLink
-
+// i18n
+// - deconf.addToCalendar.action - Button to add to calendar
 //
-// I18n used:
-// - deconf.session.addToCalendar
+// icons
+// - fas calendar-plus
+//
+// sass
+// - n/a
 //
 
 export default {

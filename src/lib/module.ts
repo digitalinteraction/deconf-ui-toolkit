@@ -12,7 +12,7 @@ export * from './links';
 export * from './locales';
 export * from './metrics';
 export * from './routes';
-export * from './slots';
 export * from './schedule';
+export * from './slots';
 export * from './temporal-plugin';
 export * from './types';

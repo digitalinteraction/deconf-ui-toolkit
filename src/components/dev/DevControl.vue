@@ -121,6 +121,18 @@ import { PropType } from 'vue';
 import { DevPlugin, SlotState } from '../../lib/module';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - fas terminal
+// - fas clcok
+//
+// sass
+// - n/a
+//
+
 interface DateTimeObject {
   date: string;
   time: string;
@@ -158,6 +170,7 @@ interface Data {
 }
 
 export default {
+  name: 'DevControl',
   components: { FontAwesomeIcon },
   data(): Data {
     return {

@@ -68,6 +68,21 @@ import SpeakerGrid from '../SpeakerGrid.vue';
 import AddToCalendar from '../actions/AddToCalendar.vue';
 import JoinSession from '../actions/JoinSession.vue';
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - $sessionTile-titleWeight
+// - $sessionTile-titleSize
+// - $sessionTile-titleColor
+// - $sessionTile-descriptionColor
+// - $sessionTile-textWidth
+//
+
 function mapById<T extends { id: string }>(records: T[]): Map<string, T> {
   return new Map(records.map(r => [r.id, r]));
 }

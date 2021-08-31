@@ -47,6 +47,20 @@ import {
   localiseFromObject
 } from '../../../lib/module';
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - fas code-branch
+// - fas tags
+// - [from SessionType prop]
+//
+// sass
+// - $sessionHeader-color
+// - $sessionHeader-weight
+//
+
 export default {
   name: 'SessionHeader',
   components: { FontAwesomeIcon },

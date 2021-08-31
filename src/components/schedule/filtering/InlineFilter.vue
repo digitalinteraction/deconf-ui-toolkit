@@ -31,7 +31,19 @@ import { PropType } from 'vue';
 import { localiseFromObject } from '../../../lib/module';
 import { FilterOption } from './FilterOption';
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
+//
+
 export default {
+  name: 'InlineFilter',
   props: {
     label: { type: String, required: true },
     offLabel: { type: String, required: true },

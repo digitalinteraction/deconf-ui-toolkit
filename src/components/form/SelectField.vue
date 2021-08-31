@@ -35,12 +35,24 @@ import { PropType } from 'vue';
 // Wraps a bulma select field
 //
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
+//
+
 interface SelectOption {
   text: unknown;
   value: unknown;
 }
 
 export default {
+  name: 'SelectField',
   props: {
     name: { type: String, required: true },
     label: { type: String, default: null },

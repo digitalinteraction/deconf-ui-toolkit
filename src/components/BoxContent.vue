@@ -8,6 +8,17 @@
 </template>
 
 <script lang="ts">
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - $boxContent-titleFamily
+//
+
 export default {
   name: 'BoxContent',
   props: {

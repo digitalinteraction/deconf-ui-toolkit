@@ -15,8 +15,14 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
-// I18n Keys:
-// - deconf.appLoading.message
+// i18n
+// - deconf.appLoading.message - Message when data is being initially fetched
+//
+// icons
+// - fas sync
+//
+// sass
+// - n/a
 //
 
 interface Data {
@@ -27,6 +33,7 @@ interface Data {
 const DEBOUNCE_MS = 500;
 
 export default {
+  name: 'AppLoading',
   components: { FontAwesomeIcon },
   data(): Data {
     return { hasWaited: false, timerId: null };
@@ -35,7 +42,10 @@ export default {
     //
     // Only show loading after 500ms
     //
-    this.timerId = setTimeout(() => (this.hasWaited = true), DEBOUNCE_MS);
+    this.timerId = window.setTimeout(
+      () => (this.hasWaited = true),
+      DEBOUNCE_MS
+    );
   },
   destroyed() {
     if (this.timerId) clearInterval(this.timerId);

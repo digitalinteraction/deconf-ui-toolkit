@@ -31,13 +31,14 @@ import { PropType } from 'vue';
 import { FullHeight, NavigationBar, SideTabs } from '../components/module';
 
 //
-// I18n keys
-// - deconf.appLayout.atrium
-// - deconf.appLayout.whatsOn
-// - deconf.appLayout.schedule
-// - deconf.appLayout.coffeeChat
-// - deconf.appLayout.helpDesk
-// - deconf.appLayout.unavailable
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
 //
 
 export default {

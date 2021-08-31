@@ -18,7 +18,20 @@
 //
 // Wraps a bulma checkbox field
 //
+
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
+//
+
 export default {
+  name: 'CheckboxField',
   props: {
     name: { type: String, required: true },
     value: { type: Boolean, required: true },

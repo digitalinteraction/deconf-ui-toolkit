@@ -1,9 +1,11 @@
-import { Session, SessionType, Speaker } from '../types';
 import {
   Attendance,
   ConfigSettings,
   Registration,
+  Session,
   SessionSlot,
+  SessionType,
+  Speaker,
   Theme,
   Track
 } from './types';

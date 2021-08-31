@@ -9,7 +9,7 @@
           </span>
           <span>
             {{
-              $t('deconf.session.languageWarning', [
+              $t('deconf.languageWarning.message', [
                 availableLanguages.join('/')
               ])
             }}
@@ -25,8 +25,14 @@ import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
-// I18n keys
-// - deconf.session.languageWarning
+// i18n
+// - deconf.languageWarning.message - The warning when a session is in a different language (^1)
+//
+// icons
+// - fas globe
+//
+// sass
+// - n/a
 //
 
 export default {

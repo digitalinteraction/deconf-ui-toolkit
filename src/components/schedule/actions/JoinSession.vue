@@ -13,27 +13,37 @@
 </template>
 
 <script lang="ts">
+import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { Routes } from '../../../lib/module';
 
-const actions: Record<string, string> = {
-  past: 'deconf.session.joinInPast',
-  present: 'deconf.session.joinInPresent',
-  future: 'deconf.session.joinInFuture'
+import { Routes, SlotState } from '../../../lib/module';
+
+const actions: Record<SlotState, string> = {
+  future: 'deconf.joinSession.future',
+  soon: 'deconf.joinSession.present',
+  present: 'deconf.joinSession.present',
+  past: 'deconf.joinSession.past'
 };
 
 //
-// I18n used:
-// - deconf.session.joinInPast
-// - deconf.session.joinInPresent
-// - deconf.session.joinInFuture
+// i18n
+// - deconf.joinSession.past - Button for a session in the past
+// - deconf.joinSession.present - Button for a session thats live
+// - deconf.joinSession.future - Button for a session in the future
+//
+// icons
+// - fas arrow-left
+// - fas arrow-right
+//
+// sass
+// - n/a
 //
 
 export default {
   name: 'JoinSession',
   components: { FontAwesomeIcon },
   props: {
-    slotState: { type: String, required: true },
+    slotState: { type: String as PropType<SlotState>, required: true },
     sessionId: { type: String, required: true }
   },
   computed: {

@@ -1,59 +1,12 @@
 # deconf-ui-toolkit
 
-> Coming soon
+A UI Library for building decentralised conference platforms.
+Designed to provide a central homepage for virtual events happening on lots of other services and platforms
+like YouTube, Zoom, Vimeo or Twitch.
 
 ---
 
 ## Contents
-
-### Vue Components
-
-- **components**
-  - BackButton
-  - BoxContent
-  - SponsorGrid
-  - SponsorRow
-  - ToggleContents \*needs stories
-  - **atrium**
-    - HeroCard
-    - ColorWidget
-  - **app**
-    - NavigationBar
-    - SideTabs
-  - **schedule**
-    - **actions**
-      - AddToCalendar
-      - JoinSession
-      - RegisterInterest
-    - **tile**
-      - SessionActions
-      - SessionAttributes
-      - SessionTile
-      - SessionHeader
-    - ScheduleBlock
-    - ScheduleHeader
-    - SpeakerGrid
-    - TimeSlot
-  - **session**
-    - Countdown
-    - IframeEmbed
-    - LanguageWarning
-    - SessionEmbed
-    - SessionLink
-    - SidebarItem
-- **icons**
-  - AtriumIcon
-  - CoffeeChatIcon
-  - HelpDeskIcon
-  - ScheduleIcon
-  - WhatsOnIcon
-- **layouts**
-  - AtriumLayout
-  - AppLayout
-
-TODO
-
-- LanguageControl
 
 ### Sass Styles
 
@@ -67,23 +20,6 @@ $family-sans-serif: Helvetica, Avenir;
 
 @import '~@openlab/deconf-ui-toolkit/toolkit.scss';
 ```
-
-### Vuex
-
-You provide your own vuex module when importing the toolkit which implements
-the below mutations and actions:
-
-**getters**
-
-- `api/calendarLink` (session: Session) => string | null
-
-**mutations**
-
-- ...
-
-**actions**
-
-- ...
 
 ### I18n
 
@@ -103,125 +39,33 @@ _key_
 
 > WIP, for full keys used see [.storybook/locale.json](./.storybook/locale.json)
 
-**AppLayout**
-
-- `deconf.appLayout.atrium` - The title of the Atrium tab
-- `deconf.appLayout.whatsOn` - The title of the What's On tab
-- `deconf.appLayout.schedule` - The title of the Schedule tab
-- `deconf.appLayout.coffeeChat` - The title of the Coffee Chat tab
-- `deconf.appLayout.helpDesk` - The title of the Help Desk tab
-- `deconf.appLayout.profile` - The title of the Profile menu item
-- `deconf.appLayout.login` - The title of the Log In menu item
-- `deconf.appLayout.register` - The title of the Register menu item
-- `deconf.appLayout.interpret` - The title of the Interpret menu item
-- `deconf.appLayout.unavailable` - The title of the Unavailable string in the menu
-
-**Session**
-
-- `deconf.session.languageWarning` - The warning when a session is in a different language (^1)
-- `deconf.session.openTeams` - The text to open a teams link
-- `deconf.session.openZoom` - The text to open a zoom link
-- `deconf.session.openHubs` - The text to open a Mozilla Hubs link
-- `deconf.session.openSpatial` - The text to open a Spatial Chat link
-- `deconf.session.noEmbed` - The warning when no embedable option is available
-- `deconf.session.liveNow` - State text when a session is live
-- `deconf.session.sessionOver` - State text when a session is in the past
-- `deconf.session.interest` - State text to show registrations (^c)
-
 **General**
 
 - `deconf.general.hours` - Pluralise hours (^c)
 - `deconf.general.minutes` - Pluralise minutes (^c)
 - `deconf.general.seconds` - Pluralise seconds (^c)
-- `deconf.general.copy` - Text to copy a link
-- `deconf.general.copied` - Text when a link has been copied
 
-**ApiError**
+Each component to use has a doc comment like this in it.
+It lets you know what i18n and FontAwesome icons are required,
+along with what sass variables can be customized.
 
-- `deconf.apiError.title` - Title if the API is unreachable
-- `deconf.apiError.content` - Text if an the API is unreachable
-- `deconf.apiError.retry` - Message for retrying if the API is unreachable (^1)
-
-**AppLoading**
-
-- `deconf.appLoading.message` - Message when data is being initially fetched
-
-**MiniSession**
-
-- `deconf.miniSession.view` - Action to view a mini session
-- `deconf.miniSession.live` - Live tag on a mini session
-
-**FeaturedSessions**
-
-- `deconf.featuredSessions.title` - Title of featured sessions section
-- `deconf.featuredSessions.action` - Action of featured sessions section
-
-**ScheduleFilters**
-
-- `deconf.scheduleFilters.query` - The label of the search field
-- `deconf.scheduleFilters.showFilters` - Button to show the extra filters
-- `deconf.scheduleFilters.hideFilters` - Button to hide the extra filters
-- `deconf.scheduleFilters.clearFilters` - Button to reset filtering
-- `deconf.scheduleFilters.dateFilter` - The label of the date filter
-- `deconf.scheduleFilters.typeFilter` - The label of the type filter
-- `deconf.scheduleFilters.trackFilter` - The label of the track filter
-- `deconf.scheduleFilters.themeFilter` - The label of the theme filter
-- `deconf.scheduleFilters.recordedFilter` - The label of the "is recorded" filter
-- `deconf.scheduleFilters.offLabel` - The label when no value is applied, e.g. "All"
-- `deconf.scheduleFilters.yes` - Yes option
-- `deconf.scheduleFilters.no` - No option
-
-**AttendanceSection**
-
-- `deconf.attendanceSection.loading` - When attendance is being loaded
-- `deconf.attendanceSection.processing` - When attendance is being changed
-- `deconf.attendanceSection.registered` - Message when registered for a session
-- `deconf.attendanceSection.full` - Message when a session is full
-- `deconf.attendanceSection.spacesLeft` - How many seats are available ^2
-- `deconf.attendanceSection.registerButton` - Action to take a seat
-- `deconf.attendanceSection.unregisterButton` - Action to release a seat
+```ts
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
+//
+```
 
 ### Routes
 
-These routes need to be implemented
-
-| constant | value | page |
-| -------- | ----- | ---- |
-
-
-> WIP
-
-### FontAwesomeIcon
-
-At least these fa icons are needed:
-
-| Icon                       | Usage                              |
-| -------------------------- | ---------------------------------- |
-| `fas user`                 | NavigationBar                      |
-| `fas calendar-plus`        | AddToCalendar                      |
-| `fas arrow-left`           | JoinSession, BackButton            |
-| `fas arrow-right`          | JoinSession, BackButton            |
-| `fas check`                | RegisterInterest                   |
-| `fas user-plus`            | RegisterInterest                   |
-| `fas globe`                | SessionAttributes, LanguageWarning |
-| `fas save`                 | SessionAttributes                  |
-| `fas long-arrow-alt-right` | TimeSlot                           |
-| `fas long-arrow-alt-left`  | TimeSlot                           |
-| `fas video`                | SessionEmbed                       |
-| `fas circle`               | SessionState                       |
-| `fas exclamation-triangle` | SessionState                       |
-| `fas fire`                 | SessionState                       |
-| `fas code-branch`          | SessionHeader                      |
-| `fas tags`                 | SessionHeader                      |
-| `fas tag`                  | SessionAttributes                  |
-| `fas chevron-right`        | ColorWidget                        |
-| `fas sync`                 | AppLoading                         |
-| `fas arrow-right`          | MiniSession                        |
-| `fas search`               | NoResults                          |
-| `fas times`                | AttendanceSection                  |
-| `fas user-plus`            | AttendanceSection                  |
-
-> WIP
+The routes that need to be implemented are defined by `Routes` in
+[src/lib/constants.ts](/src/lib/constants.ts)
 
 ### Scss Variables
 
@@ -242,10 +86,6 @@ are also used, in particular:
 
 ---
 
-https://www.freecodecamp.org/news/how-to-create-and-publish-a-vue-component-library/
-
----
-
 components are writen in a specific way:
 
 - MaintainableCss class naming [#](https://maintainablecss.com)
@@ -254,14 +94,12 @@ components are writen in a specific way:
   - bulma variables where available
 - only default exports from `.vue` files
 - specific import filenames where not ts/js
-- "story" snippet for setting up stories
+- VSCode "story" snippet for setting up stories
 - `../lib/module` for common logic in components
 - `../story-lib/module` for common logic in stories
 - prefer verbosity in stories so they are self-enclosed
 - don't use `Vue.extend` because it ends up with a different global `vue`
   which has different routes.
-
-> WIP
 
 ---
 

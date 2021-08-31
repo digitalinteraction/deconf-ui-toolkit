@@ -18,8 +18,19 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-
 import { Speaker, localiseFromObject } from '../../lib/module';
+
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - $speakerGrid-rounding
+// - $speakerGrid-cellWidth
+//
 
 export default {
   name: 'SpeakerGrid',

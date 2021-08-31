@@ -44,18 +44,31 @@ import {
   SessionSlot,
   localiseFromObject,
   Routes,
-  getCountdown
+  getCountdown,
+  getCountdownMessage
 } from '../../lib/module';
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Location } from 'vue-router';
 
 //
-// I18n
-// - deconf.miniSession.view
+// i18n
+// - deconf.miniSession.live - Live tag on a mini session
+// - deconf.miniSession.view - Action to view a mini session
+// - deconf.general.hours
+// - deconf.general.minutes
+// - deconf.general.seconds
+//
+// icons
+// - fas arrow-right
+//
+// sass
+// - $miniSession-titleSize
+// - $miniSession-titleWeight
 //
 
 export default {
+  name: 'MiniSession',
   components: { FontAwesomeIcon },
   props: {
     session: { type: Object as PropType<Session>, required: true },
@@ -91,16 +104,10 @@ export default {
       );
     },
     localeCountdown(): string {
-      const { hours, minutes, seconds } = getCountdown(
-        this.currentDate,
-        this.sessionSlot.start
+      return getCountdownMessage(
+        getCountdown(this.currentDate, this.sessionSlot.start),
+        (key, value) => this.$tc(key, value)
       );
-
-      return [
-        hours + ' ' + this.$tc('deconf.general.hours', hours),
-        minutes + ' ' + this.$tc('deconf.general.minutes', minutes),
-        seconds + ' ' + this.$tc('deconf.general.seconds', seconds)
-      ].join(', ');
     }
   }
 };

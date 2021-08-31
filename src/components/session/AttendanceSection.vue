@@ -20,30 +20,32 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 import { TranslateResult } from 'vue-i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import { Session, SessionAttendance } from '../../lib/module';
 
 //
-// I18n
-// - deconf.attendanceSection.loading
-// - deconf.attendanceSection.processing
-// - deconf.attendanceSection.registered
-// - deconf.attendanceSection.full
-// - deconf.attendanceSection.spacesLeft
-// - deconf.attendanceSection.unregisterButton
-// - deconf.attendanceSection.registerButton
+// i18n
+// - deconf.attendanceSection.loading - Message when attendance is being loaded
+// - deconf.attendanceSection.processing - Message when attendance is being changed
+// - deconf.attendanceSection.registered - Message when registered for a session
+// - deconf.attendanceSection.full - Message when a session is full
+// - deconf.attendanceSection.spacesLeft - How many seats are available ^2
+// - deconf.attendanceSection.registerButton - Action to take a seat
+// - deconf.attendanceSection.unregisterButton - Action to release a seat
 //
-
-//
-// Icons
+// icons
 // - fas times
 // - fas user-plus
 //
+// sass
+// - n/a
+//
 
-export default Vue.extend({
+export default {
+  name: 'AttendanceSection',
   components: { FontAwesomeIcon },
   props: {
     session: { type: Object as PropType<Session>, required: true },
@@ -113,7 +115,7 @@ export default Vue.extend({
       this.$emit(this.isRegistered ? 'unattend' : 'attend');
     }
   }
-});
+};
 </script>
 
 <style lang="scss">

@@ -32,9 +32,19 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { SlotState } from '../../lib/module';
 
 //
-// I18n used:
-// - deconf.schedule.past
-// - deconf.schedule.live
+// i18n
+// - deconf.timeSlot.past - Label when in the past
+// - deconf.timeSlot.live - Label when happening now
+//
+// icons
+// - fas long-arrow-alt-right
+// - long-arrow-alt-left
+//
+// sass
+// - $timeSlot-presentColor
+// - $timeSlot-presentBackground
+// - $timeSlot-pastColor
+// - $timeSlot-pastBackground
 //
 
 export default {
@@ -67,8 +77,8 @@ export default {
       return `is-${this.slotState}`;
     },
     tagI18nKey(): string | null {
-      if (this.slotState === 'past') return 'deconf.schedule.past';
-      if (this.slotState === 'present') return 'deconf.schedule.live';
+      if (this.slotState === 'past') return 'deconf.timeSlot.past';
+      if (this.slotState === 'present') return 'deconf.timeSlot.live';
       return null;
     },
     timezone() {

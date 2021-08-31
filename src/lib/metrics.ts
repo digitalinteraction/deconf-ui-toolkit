@@ -68,3 +68,16 @@ export function createLogoutEvent(): MetricsEvent {
     payload: {}
   };
 }
+
+export function createPageViewEvent(
+  routeName: string,
+  params: any
+): MetricsEvent {
+  return {
+    eventName: 'general/pageView',
+    payload: {
+      routeName,
+      params
+    }
+  };
+}
