@@ -16,6 +16,8 @@ export type MetricsModule = Module<MetricsModuleState, {}>;
 //
 // NOTE:
 // I'm not sure what value this can add without concrete routes
+// - siteVisitors is useful
+// - authenticate not so much ~ data is related from the socket id
 //
 
 export function createMetricsStoreModule(): MetricsModule {
