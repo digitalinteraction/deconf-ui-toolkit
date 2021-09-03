@@ -11,7 +11,7 @@ interface Data {
  *
  * It uses an internal Vue instance to with object getters to provide reactivity.
  */
-export default class TemporalPlugin {
+export class TemporalPlugin {
   static install(Vue: typeof _Vue, interval: number) {
     Vue.prototype.$temporal = new TemporalPlugin(Vue, interval);
   }
