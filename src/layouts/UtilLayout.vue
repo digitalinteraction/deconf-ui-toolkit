@@ -14,7 +14,7 @@
     <div class="utilLayout-page">
       <section class="section">
         <div class="buttons">
-          <slot name="back-button" />
+          <slot name="backButton" />
         </div>
         <div class="box">
           <slot name="main" />
@@ -63,6 +63,7 @@ export default {
     flex: 1;
     max-width: $tablet;
     margin: 0 auto;
+    width: 100%;
   }
 }
 </style>
