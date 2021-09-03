@@ -4,6 +4,9 @@ A UI Library for building decentralised conference platforms.
 Designed to provide a central homepage for virtual events happening on lots of other services and platforms
 like YouTube, Zoom, Vimeo or Twitch.
 
+- [storybook](https://deconf.openlab.dev)
+- [npm package](https://www.npmjs.com/@openlab/deconf-ui-toolkit)
+
 ---
 
 ## Contents
