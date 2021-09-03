@@ -21,6 +21,18 @@
 <script lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - fas chevron-right
+// - [or by prop]
+//
+// sass
+// - n/a
+//
+
 export default {
   name: 'ColorWidget',
   components: { FontAwesomeIcon },

@@ -1,10 +1,14 @@
 import { Meta, Story } from '@storybook/vue';
-import AtriumLayout from '@/layouts/AtriumLayout.vue';
-import HeroCard from '@/components/atrium/HeroCard.vue';
-import BoxContent from '@/components/BoxContent.vue';
-import ColorWidget from '@/components/atrium/ColorWidget.vue';
-import SponsorGrid from '@/components/SponsorGrid.vue';
-import { createSponsors, createContent } from '@/story-utils';
+
+import AtriumLayout from './AtriumLayout.vue';
+import {
+  HeroCard,
+  BoxContent,
+  ColorWidget,
+  SponsorGrid
+} from '../components/module';
+
+import { createSponsors, createContent } from '../story-lib/module';
 
 export default {
   title: 'Layout/AtriumLayout',

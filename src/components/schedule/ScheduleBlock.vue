@@ -26,17 +26,17 @@
       <div class="scheduleBlock-session" v-if="otherSessions.length > 0">
         <div class="scheduleBlock-workshopInfo">
           <h3 class="scheduleBlock-workshopTitle">
-            {{ $t('deconf.schedule.workshopTitle') }}
+            {{ $t('deconf.scheduleBlock.workshopTitle') }}
           </h3>
           <p class="scheduleBlock-workshopDescription">
-            {{ $t('deconf.schedule.workshopDescription') }}
+            {{ $t('deconf.scheduleBlock.workshopDescription') }}
           </p>
         </div>
 
         <ToggleContents
-          :title="$tc('deconf.schedule.workshops', otherSessions.length)"
-          :show-button="$t('deconf.schedule.showWorkshops')"
-          :hide-button="$t('deconf.schedule.hideWorkshops')"
+          :title="$tc('deconf.scheduleBlock.workshops', otherSessions.length)"
+          :show-button="$t('deconf.scheduleBlock.showWorkshops')"
+          :hide-button="$t('deconf.scheduleBlock.hideWorkshops')"
           :force-open="showOtherSessions || shouldOpenWorkshops"
         >
           <div
@@ -68,22 +68,28 @@ import {
   SlotState,
   Speaker,
   Theme,
-  Track
-} from '@/types';
+  Track,
+  getSlotState
+} from '../../lib/module';
 import { PropType } from 'vue';
-import { getSlotState } from '@/utils';
 
 import TimeSlot from './TimeSlot.vue';
 import SessionTile from './tile/SessionTile.vue';
 import ToggleContents from '../ToggleContents.vue';
 
 //
-// I18n used:
-// - deconf.schedule.workshopTitle
-// - deconf.schedule.workshopDescription
-// - deconf.schedule.workshops
-// - deconf.schedule.showWorkshops
-// - deconf.schedule.hideWorkshops
+// i18n
+// - deconf.scheduleBlock.workshopTitle - Heading for workshops
+// - deconf.scheduleBlock.workshopDescription - Subtitle for workshops
+// - deconf.scheduleBlock.workshops - Number of workshops (^c)
+// - deconf.scheduleBlock.showWorkshops - Button to show workshops
+// - deconf.scheduleBlock.hideWorkshops - Button to hide workshops
+//
+// icons
+// - n/a
+//
+// sass
+// - $scheduleBlock-background
 //
 
 export default {

@@ -11,10 +11,21 @@
 </template>
 
 <script lang="ts">
-import { SponsorGroup } from '@/types';
+import { SponsorGroup } from '../lib/module';
 import { PropType } from 'vue';
 
 import SponsorRow from './SponsorRow.vue';
+
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - $sponsorGrid-spacing
+//
 
 export default {
   name: 'SponsorGrid',

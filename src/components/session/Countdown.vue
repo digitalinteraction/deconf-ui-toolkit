@@ -23,13 +23,20 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { CountdownComponents, getCountdown } from '@/utils';
+import { CountdownComponents, getCountdown } from '../../lib/module';
 
 //
-// I18n used:
+// i18n
 // - deconf.general.hours
 // - deconf.general.minutes
 // - deconf.general.seconds
+//
+// icons
+// - n/a
+//
+// sass
+// - $countdown-background
+// - $countdown-color
 //
 
 export default {

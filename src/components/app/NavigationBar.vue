@@ -34,10 +34,10 @@
           >
             <component :is="item.icon" class="navbar-item-icon" />
             <span class="navbar-item-text" v-text="item.title" />
-            <span
-              v-if="!item.enabled"
-              v-text="$t('deconf.appLayout.unavailable')"
-            />
+            <span v-if="!item.enabled">
+              &nbsp;
+              {{ $t('deconf.navigationBar.unavailable') }}
+            </span>
           </router-link>
         </div>
         <div class="navbar-end">
@@ -63,7 +63,7 @@
               class="button is-secondary is-small"
               :to="interpretRoute"
             >
-              {{ $t('deconf.appLayout.interpret') }}
+              {{ $t('deconf.navigationBar.interpret') }}
             </router-link>
           </div>
 
@@ -75,7 +75,7 @@
               <span class="icon">
                 <FontAwesomeIcon :icon="['fas', 'user']" />
               </span>
-              <span>{{ $t('deconf.appLayout.profile') }}</span>
+              <span>{{ $t('deconf.navigationBar.profile') }}</span>
             </router-link>
           </div>
 
@@ -85,14 +85,14 @@
           <div class="navbar-item" v-if="!isLoggedIn">
             <div class="buttons">
               <router-link class="button is-light is-small" :to="loginRoute">
-                {{ $t('deconf.appLayout.login') }}
+                {{ $t('deconf.navigationBar.login') }}
               </router-link>
               <!-- Register button -->
               <router-link
                 class="button is-primary is-small"
                 :to="registerRoute"
               >
-                {{ $t('deconf.appLayout.register') }}
+                {{ $t('deconf.navigationBar.register') }}
               </router-link>
             </div>
           </div>
@@ -103,20 +103,29 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, ConfigSettings } from '@/types';
+import { AppRoute, ConfigSettings } from '../../lib/module';
 import { PropType } from 'vue';
-import { Routes } from '@/constants';
+import { Routes } from '../../lib/constants';
 import { Location } from 'vue-router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
-// I18n keys
-// - deconf.appLayout.unavailable
-// - deconf.appLayout.login
-// - deconf.appLayout.profile
-// - deconf.appLayout.register
-// - deconf.appLayout.interpret
+// i18n
+// - deconf.navigationBar.unavailable - Unavailable string in the menu
+// - deconf.navigationBar.login - The title of the Log In menu item
+// - deconf.navigationBar.profile - The title of the Profile menu item
+// - deconf.navigationBar.register - The title of the Register menu item
+// - deconf.navigationBar.interpret - The title of the Interpret menu item
+//
+// icons
+// - fas user
+//
+// sass
+// - $navigationBar-activeColor
+// - $navigationBar-activeBackground
+// - $navigationBar-mobileBackground
+// - $navigationBar-mobileColor
 //
 
 export default {

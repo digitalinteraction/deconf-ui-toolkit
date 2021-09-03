@@ -25,21 +25,20 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, ConfigSettings, AuthToken } from '@/types';
+import { AppRoute, ConfigSettings, AuthToken } from '../lib/module';
 import { PropType } from 'vue';
 
-import FullHeight from '@/components/FullHeight.vue';
-import NavigationBar from '@/components/app/NavigationBar.vue';
-import SideTabs from '@/components/app/SideTabs.vue';
+import { FullHeight, NavigationBar, SideTabs } from '../components/module';
 
 //
-// I18n keys
-// - deconf.appLayout.atrium
-// - deconf.appLayout.whatsOn
-// - deconf.appLayout.schedule
-// - deconf.appLayout.coffeeChat
-// - deconf.appLayout.helpDesk
-// - deconf.appLayout.unavailable
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
 //
 
 export default {

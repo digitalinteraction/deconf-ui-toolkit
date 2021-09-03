@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import NavigationBar from './NavigationBar.vue';
-import { createSettings } from '@/story-utils';
+import { createSettings } from '../../story-lib/module';
 
 export default {
   title: 'App/NavigationBar',
@@ -38,9 +38,9 @@ const Template: Story = (args, { argTypes }) => ({
   template: `
     <NavigationBar
       :app-settings="appSettings"
+      :routes="routes"
       :is-logged-in="isLoggedIn"
       :is-interpreter="isInterpreter"
-      :routes="routes"
     >
       <img
         slot="brandA"
@@ -64,7 +64,10 @@ Desktop.args = {
   isInterpreter: true
 };
 Desktop.parameters = {
-  layout: 'fullscreen'
+  layout: 'fullscreen',
+  controls: {
+    exclude: ['appSettings', 'routes', 'brandA', 'brandB']
+  }
 };
 
 export const Mobile = Template.bind({});
@@ -73,5 +76,8 @@ Mobile.args = {
 };
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
-  layout: 'fullscreen'
+  layout: 'fullscreen',
+  controls: {
+    exclude: ['appSettings', 'routes', 'brandA', 'brandB']
+  }
 };

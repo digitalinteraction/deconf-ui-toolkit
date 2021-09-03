@@ -2,7 +2,7 @@
   <div class="sessionEmbed">
     <template v-if="!parsed">
       <div class="notification is-warning">
-        {{ $t('deconf.session.noEmbed') }}
+        {{ $t('deconf.sessionEmbed.noEmbed') }}
       </div>
     </template>
 
@@ -61,7 +61,7 @@
         rel="noopener"
       >
         <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
-        <span>{{ $t('deconf.session.openTeams') }}</span>
+        <span>{{ $t('deconf.sessionEmbed.openTeams') }}</span>
       </a>
     </div>
 
@@ -76,7 +76,7 @@
         rel="noopener"
       >
         <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
-        <span>{{ $t('deconf.session.openZoom') }}</span>
+        <span>{{ $t('deconf.sessionEmbed.openZoom') }}</span>
       </a>
     </div>
 
@@ -94,7 +94,7 @@
         rel="noopener"
       >
         <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
-        <span>{{ $t('deconf.session.openHubs') }}</span>
+        <span>{{ $t('deconf.sessionEmbed.openHubs') }}</span>
       </a>
     </div>
 
@@ -112,7 +112,7 @@
         rel="noopener"
       >
         <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
-        <span>{{ $t('deconf.session.openSpatial') }}</span>
+        <span>{{ $t('deconf.sessionEmbed.openSpatial') }}</span>
       </a>
     </div>
   </div>
@@ -121,13 +121,21 @@
 <script lang="ts">
 import IframeEmbed from './IframeEmbed.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { parseEmbedLink, ParsedEmbedLink } from '@/utils';
+import { parseEmbedLink, ParsedEmbedLink } from '../../lib/module';
 
 //
-// Used I18n:
-// - deconf.session.noEmbed
-// - deconf.session.openTeams
-// - deconf.session.openZoom
+// i18n
+// - deconf.sessionEmbed.noEmbed - The warning when no embedable option is available
+// - deconf.sessionEmbed.openTeams - Button to open a teams link
+// - deconf.sessionEmbed.openZoom - Button to open a zoom link
+// - deconf.sessionEmbed.openHubs - Button to open a Mozilla Hubs link
+// - deconf.sessionEmbed.openSpatial - Button to open a Spatial Chat link
+//
+// icons
+// - fas video
+//
+// sass
+// - n/a
 //
 
 export default {
@@ -213,7 +221,7 @@ export default {
 
   &.is-spatialChat {
     border: 2px dashed $spatial-blue;
-    background-color: lighten($spatial-blue, 40%);
+    background-color: lighten($spatial-blue, 35%);
 
     .button {
       background: $spatial-blue;

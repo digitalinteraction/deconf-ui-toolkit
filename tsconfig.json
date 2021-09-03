@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es2020",
+    "module": "es2020",
     "strict": true,
     "declaration": true,
     "declarationDir": "dist/types",
@@ -11,25 +11,10 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": ".",
-    "allowJs": true,
-    "checkJs": true,
-    "types": [
-      "node",
-      "vue",
-      "jest"
-    ],
-    "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ],
+    // "allowJs": true,
+    // "checkJs": true,
+    "types": ["node", "vue"],
+    "lib": ["esnext", "dom", "dom.iterable"],
     "typeRoots": ["./node_modules/@types", "./src/typings"]
   },
   "include": [
@@ -39,8 +24,5 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

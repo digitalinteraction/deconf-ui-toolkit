@@ -1,5 +1,5 @@
 <template>
-  <div class="slotState">
+  <div class="sessionState">
     <!-- 
       Live now
     -->
@@ -9,7 +9,7 @@
           <FontAwesomeIcon :icon="['fas', 'circle']" />
         </span>
         <span>
-          {{ $t('deconf.session.liveNow') }}
+          {{ $t('deconf.sessionState.liveNow') }}
         </span>
       </span>
     </span>
@@ -23,7 +23,7 @@
           <FontAwesomeIcon :icon="['fas', 'exclamation-triangle']" />
         </span>
         <span>
-          {{ $t('deconf.session.sessionOver') }}
+          {{ $t('deconf.sessionState.sessionOver') }}
         </span>
       </span>
     </span>
@@ -37,7 +37,7 @@
           <FontAwesomeIcon :icon="['fas', 'fire']" />
         </span>
         <span>
-          {{ $tc('deconf.session.interest', attendance) }}
+          {{ $tc('deconf.sessionState.interest', attendance) }}
         </span>
       </span>
     </span>
@@ -48,10 +48,18 @@
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
-// I18n Strings
-// - deconf.session.liveNow
-// - deconf.session.sessionOver
-// - deconf.session.interest
+// i18n
+// - deconf.sessionState.liveNow - State text when a session is live
+// - deconf.sessionState.sessionOver - State text when a session is in the past
+// - deconf.sessionState.interest - State text to show registrations (^c)
+//
+// icons
+// - fas circle
+// - fas exclamation-triangle
+// - fas fire
+//
+// sass
+// - n/a
 //
 
 export default {
@@ -78,7 +86,7 @@ export default {
 </script>
 
 <style lang="scss">
-.slotState {
+.sessionState {
   font-weight: $weight-bold;
   text-transform: uppercase;
 

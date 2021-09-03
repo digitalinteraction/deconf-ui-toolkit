@@ -3,12 +3,17 @@ import SessionAttributes from './SessionAttributes.vue';
 
 export default {
   title: 'Schedule/SessionAttributes',
-  component: SessionAttributes
+  component: SessionAttributes,
+  argTypes: {
+    isRecorded: {
+      control: { type: 'boolean' }
+    }
+  }
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionAttributes },
-  props: ['languages', 'isRecorded', 'highlight'],
+  props: ['languages', 'isRecorded'],
   data: () => ({
     track: { id: 1, title: { en: 'AI and Agriculture' } },
     themes: [
@@ -29,6 +34,6 @@ const Template: Story = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   languages: ['en', 'fr', 'es', 'ar'],
-  isRecorded: true,
-  highlight: ['locale']
+  isRecorded: true
 };
+Default.parameters = {};

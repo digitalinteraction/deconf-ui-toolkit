@@ -28,10 +28,11 @@
         <span class="icon">
           <FontAwesomeIcon :icon="['fas', 'save']" fixed-width />
         </span>
-        <span>
-          {{
-            $t(`deconf.session.${isRecorded ? 'isRecorded' : 'isNotRecorded'}`)
-          }}
+        <span v-if="isRecorded">
+          {{ $t('deconf.sessionAttributes.isRecorded') }}
+        </span>
+        <span v-else>
+          {{ $t('deconf.sessionAttributes.notRecorded') }}
         </span>
       </span>
     </span>
@@ -75,17 +76,24 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { Theme, Track } from '@openlab/deconf-shared/dist';
-import { localiseFromObject } from '@/utils';
+import { localiseFromObject, Theme, Track } from '../../../lib/module';
 
 //
-// I18n used:
-// - deconf.session.isRecorded
-// - deconf.session.isNotRecorded
+// i18n
+// - deconf.sessionAttributes.isRecorded
+// - deconf.sessionAttributes.notRecorded
 //
-
+// icons
+// - fas globe
+// - fas save
+// - fas code-branch
+// - fas tags
 //
-// makeBold options:
+// sass
+// - $sessionAttributes-color
+// - $sessionAttributes-strong
+//
+// makeBold enum:
 // - locale
 // - recorded
 // - track

@@ -20,12 +20,21 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { AppRoute } from '@/types';
+import { AppRoute } from '../../lib/module';
 
 //
-// I18n keys
-// - deconf.appLayout.unavailable
+// i18n
+// - deconf.sideTabs.unavailable - The title when a tab isn't available
 //
+// icons
+// - n/a
+//
+// sass
+// - $sideTabs-background
+// - $sideTabs-color
+// - $sideTabs-active
+//
+
 export default {
   name: 'SideTabs',
   props: {
@@ -44,7 +53,7 @@ export default {
       } else {
         return {
           disabled: true,
-          title: this.$t('deconf.appLayout.unavailable')
+          title: this.$t('deconf.sideTabs.unavailable')
         };
       }
     }

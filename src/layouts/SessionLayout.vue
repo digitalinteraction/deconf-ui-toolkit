@@ -24,6 +24,17 @@
 </template>
 
 <script lang="ts">
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - $sessionLayout-background
+//
+
 export default {
   name: 'SessionLayout'
 };

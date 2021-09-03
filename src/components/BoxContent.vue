@@ -1,23 +1,28 @@
 <template>
   <div class="boxContent">
     <div class="container is-small">
-      <h2 class="boxContent-title">{{ title }}</h2>
-      <component
-        v-if="content"
-        :is="content"
-        class="boxContent-content content"
-      />
-      <slot name="actions" />
+      <h2 class="boxContent-title" v-if="title">{{ title }}</h2>
+      <slot />
     </div>
   </div>
 </template>
 
 <script lang="ts">
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - $boxContent-titleFamily
+//
+
 export default {
   name: 'BoxContent',
   props: {
-    title: { type: String, required: true },
-    content: { type: [Object, Function], default: null }
+    title: { type: String, default: '' }
   }
 };
 </script>

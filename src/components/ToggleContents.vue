@@ -17,6 +17,18 @@
 </template>
 
 <script lang="ts">
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - $toggleContents-background
+// - $toggleContents-color
+//
+
 export default {
   name: 'ToggleContents',
   data() {

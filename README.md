@@ -1,59 +1,12 @@
 # deconf-ui-toolkit
 
-> Coming soon
+A UI Library for building decentralised conference platforms.
+Designed to provide a central homepage for virtual events happening on lots of other services and platforms
+like YouTube, Zoom, Vimeo or Twitch.
 
 ---
 
 ## Contents
-
-### Vue Components
-
-- **components**
-  - BackButton
-  - BoxContent
-  - SponsorGrid
-  - SponsorRow
-  - ToggleContents \*needs stories
-  - **atrium**
-    - HeroCard
-    - ColorWidget
-  - **app**
-    - NavigationBar
-    - SideTabs
-  - **schedule**
-    - **actions**
-      - AddToCalendar
-      - JoinSession
-      - RegisterInterest
-    - **tile**
-      - SessionActions
-      - SessionAttributes
-      - SessionTile
-      - SessionHeader
-    - ScheduleBlock
-    - ScheduleHeader
-    - SpeakerGrid
-    - TimeSlot
-  - **session**
-    - Countdown
-    - IframeEmbed
-    - LanguageWarning
-    - SessionEmbed
-    - SessionLink
-    - SidebarItem
-- **icons**
-  - AtriumIcon
-  - CoffeeChatIcon
-  - HelpDeskIcon
-  - ScheduleIcon
-  - WhatsOnIcon
-- **layouts**
-  - AtriumLayout
-  - AppLayout
-
-TODO
-
-- LanguageControl
 
 ### Sass Styles
 
@@ -68,23 +21,6 @@ $family-sans-serif: Helvetica, Avenir;
 @import '~@openlab/deconf-ui-toolkit/toolkit.scss';
 ```
 
-### Vuex
-
-You provide your own vuex module when importing the toolkit which implements
-the below mutations and actions:
-
-**getters**
-
-- `api/calendarLink` (session: Session) => string | null
-
-**mutations**
-
-- ...
-
-**actions**
-
-- ...
-
 ### I18n
 
 You provide your own I18n module when importing the toolkit which has these
@@ -92,34 +28,7 @@ strings set (they are all namespaced under `deconf`):
 
 > You can skip strings for sections you aren't using
 
-| key                              | usage                                                      |
-| -------------------------------- | ---------------------------------------------------------- |
-| `deconf.appLayout.atrium`        | The title of the Atrium tab                                |
-| `deconf.appLayout.whatsOn`       | The title of the What's On tab                             |
-| `deconf.appLayout.schedule`      | The title of the Schedule tab                              |
-| `deconf.appLayout.coffeeChat`    | The title of the Coffee Chat tab                           |
-| `deconf.appLayout.helpDesk`      | The title of the Help Desk tab                             |
-| `deconf.appLayout.profile`       | The title of the Profile menu item                         |
-| `deconf.appLayout.login`         | The title of the Log In menu item                          |
-| `deconf.appLayout.register`      | The title of the Register menu item                        |
-| `deconf.appLayout.interpret`     | The title of the Interpret menu item                       |
-| `deconf.appLayout.unavailable`   | The title of the Unavailable string in the menu            |
-| `deconf.session.languageWarning` | The warning when a session is in a different language (^1) |
-| `deconf.session.openTeams`       | The text to open a teams link                              |
-| `deconf.session.openZoom`        | The text to open a zoom link                               |
-| `deconf.session.openHubs`        | The text to open a Mozilla Hubs link                       |
-| `deconf.session.openSpatial`     | The text to open a Spatial Chat link                       |
-| `deconf.session.noEmbed`         | The warning when no embedable option is available          |
-| `deconf.session.liveNow`         | State text when a session is live                          |
-| `deconf.session.sessionOver`     | State text when a session is in the past                   |
-| `deconf.session.interest`        | State text to show registrations (^c)                      |
-| `deconf.general.hours`           | Pluralise hours (^c)                                       |
-| `deconf.general.minutes`         | Pluralise minutes (^c)                                     |
-| `deconf.general.seconds`         | Pluralise seconds (^c)                                     |
-| `deconf.general.copy`            | Text to copy a link                                        |
-| `deconf.general.copied`          | Text when a link has been copied                           |
-
-**key**
+_key_
 
 - ^1 - 1 parameter (e.g. `{0}`)
 - ^2 - 2 parameters (e.g. `{0} {1}`)
@@ -130,42 +39,33 @@ strings set (they are all namespaced under `deconf`):
 
 > WIP, for full keys used see [.storybook/locale.json](./.storybook/locale.json)
 
+**General**
+
+- `deconf.general.hours` - Pluralise hours (^c)
+- `deconf.general.minutes` - Pluralise minutes (^c)
+- `deconf.general.seconds` - Pluralise seconds (^c)
+
+Each component to use has a doc comment like this in it.
+It lets you know what i18n and FontAwesome icons are required,
+along with what sass variables can be customized.
+
+```ts
+//
+// i18n
+// - n/a
+//
+// icons
+// - n/a
+//
+// sass
+// - n/a
+//
+```
+
 ### Routes
 
-These routes need to be implemented
-
-| constant | value | page |
-| -------- | ----- | ---- |
-
-
-> WIP
-
-### FontAwesomeIcon
-
-At least these fa icons are needed:
-
-| Icon                       | Usage                              |
-| -------------------------- | ---------------------------------- |
-| `fas user`                 | NavigationBar                      |
-| `fas calendar-plus`        | AddToCalendar                      |
-| `fas arrow-left`           | JoinSession, BackButton            |
-| `fas arrow-right`          | JoinSession, BackButton            |
-| `fas check`                | RegisterInterest                   |
-| `fas user-plus`            | RegisterInterest                   |
-| `fas globe`                | SessionAttributes, LanguageWarning |
-| `fas save`                 | SessionAttributes                  |
-| `fas long-arrow-alt-right` | TimeSlot                           |
-| `fas long-arrow-alt-left`  | TimeSlot                           |
-| `fas video`                | SessionEmbed                       |
-| `fas circle`               | SessionState                       |
-| `fas exclamation-triangle` | SessionState                       |
-| `fas fire`                 | SessionState                       |
-| `fas code-branch`          | SessionHeader                      |
-| `fas tags`                 | SessionHeader                      |
-| `fas tag`                  | SessionAttributes                  |
-| `fas chevron-right`        | ColorWidget                        |
-
-> WIP
+The routes that need to be implemented are defined by `Routes` in
+[src/lib/constants.ts](/src/lib/constants.ts)
 
 ### Scss Variables
 
@@ -186,10 +86,6 @@ are also used, in particular:
 
 ---
 
-https://www.freecodecamp.org/news/how-to-create-and-publish-a-vue-component-library/
-
----
-
 components are writen in a specific way:
 
 - MaintainableCss class naming [#](https://maintainablecss.com)
@@ -198,13 +94,12 @@ components are writen in a specific way:
   - bulma variables where available
 - only default exports from `.vue` files
 - specific import filenames where not ts/js
-- "story" snippet for setting up stories
-- `@/story-utils` for util functions in stories
+- VSCode "story" snippet for setting up stories
+- `../lib/module` for common logic in components
+- `../story-lib/module` for common logic in stories
 - prefer verbosity in stories so they are self-enclosed
 - don't use `Vue.extend` because it ends up with a different global `vue`
   which has different routes.
-
-> WIP
 
 ---
 

@@ -1,11 +1,11 @@
 import { Meta, Story } from '@storybook/vue';
 import SideTabs from './SideTabs.vue';
 
-import AtriumIcon from '@/icons/AtriumIcon.vue';
-import WhatsOnIcon from '@/icons/WhatsOnIcon.vue';
-import ScheduleIcon from '@/icons/ScheduleIcon.vue';
-import CoffeeChatIcon from '@/icons/CoffeeChatIcon.vue';
-import HelpDeskIcon from '@/icons/HelpDeskIcon.vue';
+import AtriumIcon from '../../icons/AtriumIcon.vue';
+import WhatsOnIcon from '../../icons/WhatsOnIcon.vue';
+import ScheduleIcon from '../../icons/ScheduleIcon.vue';
+import CoffeeChatIcon from '../../icons/CoffeeChatIcon.vue';
+import HelpDeskIcon from '../../icons/HelpDeskIcon.vue';
 
 export default {
   title: 'App/SideTabs',
@@ -68,3 +68,8 @@ const Template: Story = (args, { argTypes }) => ({
 
 export const Default = Template.bind({});
 Default.args = {};
+Default.parameters = {
+  controls: {
+    exclude: ['routes', 'brand']
+  }
+};

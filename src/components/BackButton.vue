@@ -15,6 +15,18 @@
 <script lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+//
+// i18n
+// - n/a
+//
+// icons
+// - fas arrow-left
+// - fas arrow-right
+//
+// sass
+// - n/a
+//
+
 export default {
   name: 'BackButton',
   components: { FontAwesomeIcon },

@@ -1,8 +1,7 @@
 import { Meta, Story } from '@storybook/vue';
 import SessionLayout from './SessionLayout.vue';
-import BackButton from '@/components/BackButton.vue';
-import SessionState from '@/components/session/SessionState.vue';
-import { createContent } from '@/story-utils';
+import { BackButton, SessionState } from '../components/module';
+import { createContent } from '../story-lib/module';
 
 export default {
   title: 'Layout/SessionLayout',

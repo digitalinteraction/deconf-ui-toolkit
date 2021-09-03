@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import SpeakerGrid from './SpeakerGrid.vue';
-import { defaultSpeakers } from '@/story-utils';
+import { defaultSpeakers } from '../../story-lib/module';
 
 export default {
   title: 'Schedule/SpeakerGrid',

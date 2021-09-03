@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import ToggleContents from './ToggleContents.vue';
-import { createContent } from '@/story-utils';
+import { createContent } from '../story-lib/module';
 
 export default {
   title: 'Component/ToggleContents',
@@ -31,6 +31,11 @@ Desktop.args = {
   hideButton: 'Hide',
   forceOpen: false
 };
+Desktop.parameters = {
+  controls: {
+    exclude: ['default']
+  }
+};
 
 export const Mobile = Template.bind({});
 Mobile.args = {
@@ -40,11 +45,19 @@ Mobile.args = {
   forceOpen: false
 };
 Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
+  controls: {
+    exclude: ['default']
+  }
 };
 
 export const Opened = Template.bind({});
 Opened.args = {
   ...Desktop.args,
   forceOpen: true
+};
+Opened.parameters = {
+  controls: {
+    exclude: ['default']
+  }
 };

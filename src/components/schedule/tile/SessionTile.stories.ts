@@ -1,7 +1,10 @@
 import { Meta, Story } from '@storybook/vue';
 import SessionTile from './SessionTile.vue';
-import { createSchedule, createSessionFromSchedule } from '@/story-utils';
-import { ScheduleConfig, ScheduleRecord } from '@/types';
+import {
+  createSchedule,
+  createSessionFromSchedule
+} from '../../../story-lib/module';
+import { ScheduleConfig, ScheduleRecord } from '../../../lib/module';
 
 export default {
   title: 'Schedule/SessionTile',
