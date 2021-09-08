@@ -5,6 +5,7 @@
         :id="name"
         type="checkbox"
         class="checkbox"
+        :disabled="disabled"
         :value="value"
         @change="onInput"
       />
@@ -37,7 +38,8 @@ export default {
     value: { type: Boolean, required: true },
     text: { type: String, required: true },
     hasError: { type: Boolean, default: false },
-    help: { type: String, default: null }
+    help: { type: String, default: null },
+    disabled: { type: Boolean, default: false }
   },
   computed: {
     labelClass(): unknown {

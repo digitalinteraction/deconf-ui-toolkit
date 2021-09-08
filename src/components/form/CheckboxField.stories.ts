@@ -8,21 +8,23 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { CheckboxField },
-  props: ['hasError'],
+  props: ['hasError', 'disabled'],
   template: `
     <CheckboxField
       name="test-checkbox-field"
       :value="false"
       text="This is a checkbox field"
       help="This is some help"
-      :hasError="hasError"
+      :has-error="hasError"
+      :disabled="disabled"
     />
   `
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  hasError: false
+  hasError: false,
+  disabled: false
 };
 Default.parameters = {
   controls: {
