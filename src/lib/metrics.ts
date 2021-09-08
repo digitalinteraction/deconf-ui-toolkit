@@ -1,3 +1,5 @@
+// TODO: review use of this against new Metrics structs
+
 export interface MetricsEvent {
   eventName: string;
   payload: unknown;
