@@ -16,7 +16,7 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { TextField },
-  props: ['hasError', 'type'],
+  props: ['hasError', 'type', 'disabled'],
   template: `
     <TextField
       name="text-text-field"
@@ -25,7 +25,8 @@ const Template: Story = (args, { argTypes }) => ({
       value=""
       placeholder="This is a placeholder"
       help="This is some help text"
-      :hasError="hasError"
+      :has-error="hasError"
+      :disabled="disabled"
     />
   `
 });
@@ -33,7 +34,8 @@ const Template: Story = (args, { argTypes }) => ({
 export const Default = Template.bind({});
 Default.args = {
   hasError: false,
-  type: 'text'
+  type: 'text',
+  disabled: false
 };
 Default.parameters = {
   controls: {

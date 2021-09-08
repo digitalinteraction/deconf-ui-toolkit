@@ -13,6 +13,7 @@
         @input="onInput"
         @keyup.enter="onEnter"
         :placeholder="placeholder"
+        :disabled="disabled"
       />
     </div>
     <div class="help" v-if="help" :class="inputClass">
@@ -46,7 +47,8 @@ export default {
     placeholder: { type: String, default: '' },
     help: { type: String, default: null },
     hasError: { type: Boolean, default: false },
-    type: { type: String, default: 'text' }
+    type: { type: String, default: 'text' },
+    disabled: { type: Boolean, default: false }
   },
   computed: {
     inputClass(): unknown {
