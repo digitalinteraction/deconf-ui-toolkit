@@ -1,5 +1,5 @@
 import { Module } from 'vuex';
-import { createStateMapper } from '../../module';
+import { createStateMapper } from '../../lib/module';
 
 export interface MetricsModuleState {
   userId: number | null;

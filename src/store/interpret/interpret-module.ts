@@ -1,6 +1,6 @@
 import { Interpreter } from '@openlab/deconf-shared';
 import { Module } from 'vuex';
-import { createStateMapper } from '../../module';
+import { createStateMapper } from '../../lib/module';
 
 interface Booth {
   sessionId: string;
