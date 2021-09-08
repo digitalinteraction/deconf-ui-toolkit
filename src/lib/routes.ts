@@ -7,11 +7,12 @@ import {
 } from '../icons/module';
 
 import { Routes } from './constants';
-import { AppRoute, ConfigSettings, AuthToken } from './types';
+import { AppRoute } from './types';
+import { ConferenceConfig, AuthToken } from '@openlab/deconf-shared';
 
 export function getDefaultRoutes(
   user: AuthToken | null,
-  settings: ConfigSettings,
+  settings: ConferenceConfig,
   t: (key: string) => string
 ) {
   const routes: AppRoute[] = [];

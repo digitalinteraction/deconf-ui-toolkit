@@ -140,7 +140,7 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@openlab/deconf-shared": "^2.0.1",
+    "@openlab/deconf-shared": "^3.1.0",
     "lodash.debounce": "^4.0.8"
   }
 }

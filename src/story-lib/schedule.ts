@@ -1,5 +1,4 @@
 import {
-  ScheduleRecord,
   Session,
   SessionSlot,
   SessionState,
@@ -8,7 +7,8 @@ import {
   Speaker,
   Theme,
   Track
-} from '../lib/module';
+} from '@openlab/deconf-shared';
+import { ScheduleRecord } from '../lib/module';
 import { dates } from './dates';
 
 export function createSpeaker(id: string, name: string, role: string): Speaker {

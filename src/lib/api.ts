@@ -1,6 +1,6 @@
 import {
   Attendance,
-  ConfigSettings,
+  ConferenceConfig,
   Registration,
   Session,
   SessionSlot,
@@ -8,7 +8,7 @@ import {
   Speaker,
   Theme,
   Track
-} from './types';
+} from '@openlab/deconf-shared';
 
 //
 // TODO: move these to @openlab/deconf-shared
@@ -31,7 +31,7 @@ export interface ProfileResponse {
 }
 export interface FullSchedule {
   sessions: Session[];
-  settings: ConfigSettings;
+  settings: ConferenceConfig;
   slots: SessionSlot[];
   speakers: Speaker[];
   themes: Theme[];

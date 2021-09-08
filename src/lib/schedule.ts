@@ -3,7 +3,7 @@ import { ScheduleFilterRecord } from '../components/schedule/filtering/ScheduleF
 import { FullSchedule } from './api';
 import { friendlyDate, isSameDay, startOfDay } from './dates';
 import { localiseFromObject } from './locales';
-import { ConfigSettings, Session, SessionSlot } from './types';
+import { ConferenceConfig, Session, SessionSlot } from '@openlab/deconf-shared';
 
 // TODO:
 // - Add test coverage
@@ -219,7 +219,7 @@ export function createFilterPredicate(
 /** Determine if the cofference is happening right now or not */
 export function isDuringConference(
   scheduleDate: Date,
-  appSettings: ConfigSettings | null
+  appSettings: ConferenceConfig | null
 ): boolean {
   if (!appSettings) return false;
   return (

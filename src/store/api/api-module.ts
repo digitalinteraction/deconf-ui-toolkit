@@ -1,10 +1,6 @@
 import { Module } from 'vuex';
-import {
-  AuthToken,
-  deepSeal,
-  FullSchedule,
-  Registration
-} from '../../lib/module';
+import { deepSeal, FullSchedule } from '../../lib/module';
+import { AuthToken, Registration } from '@openlab/deconf-shared';
 import { ApiState } from './api-state';
 
 export interface ApiModuleState {

@@ -1,4 +1,4 @@
-import { Interpreter } from '@openlab/deconf-shared/dist';
+import { Interpreter } from '@openlab/deconf-shared';
 import { Module } from 'vuex';
 
 interface Booth {

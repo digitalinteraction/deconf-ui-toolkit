@@ -1,5 +1,3 @@
-export * from '@openlab/deconf-shared';
-
 //
 // TODO: move types next to their respective components
 //
