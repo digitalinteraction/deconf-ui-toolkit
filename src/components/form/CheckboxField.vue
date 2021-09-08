@@ -37,7 +37,7 @@ export default {
     value: { type: Boolean, required: true },
     text: { type: String, required: true },
     hasError: { type: Boolean, default: false },
-    help: { type: String, required: true }
+    help: { type: String, default: null }
   },
   computed: {
     labelClass(): unknown {
