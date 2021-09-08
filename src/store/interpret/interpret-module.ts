@@ -1,5 +1,6 @@
 import { Interpreter } from '@openlab/deconf-shared';
 import { Module } from 'vuex';
+import { createStateMapper } from '../../module';
 
 interface Booth {
   sessionId: string;
@@ -30,6 +31,8 @@ export interface InterpretModuleState {
 }
 
 export type InterpretStoreModule = Module<InterpretModuleState, {}>;
+
+export const mapInterpretState = createStateMapper<InterpretModuleState>();
 
 export function createInterpretStoreModule(): InterpretStoreModule {
   return {

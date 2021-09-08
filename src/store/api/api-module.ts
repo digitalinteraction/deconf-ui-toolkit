@@ -1,24 +1,25 @@
 import { Module } from 'vuex';
-import { deepSeal, FullSchedule } from '../../lib/module';
-import { AuthToken, Registration } from '@openlab/deconf-shared';
+import { deepSeal, FullSchedule, createStateMapper } from '../../lib/module';
+import {
+  AuthToken,
+  CarbonCalculation,
+  Registration
+} from '@openlab/deconf-shared';
 import { ApiState } from './api-state';
 
 export interface ApiModuleState {
   schedule: null | FullSchedule;
   apiState: ApiState;
   user: AuthToken | null;
-  siteVisitors: number | null;
   profile: null | Registration;
-  carbon: null;
+  carbon: null | CarbonCalculation;
   userSessions: null | string[];
 }
 
-export type ApiModule = Module<ApiModuleState, {}>;
-
-type NotNull<T> = T extends null ? never : T;
+export type ApiStoreModule = Module<ApiModuleState, {}>;
 
 /** This function processes data before it is put into the store */
-function deserialiseData(data: ApiModuleState['schedule']) {
+function hydrateSchedule(data: ApiModuleState['schedule']) {
   if (data === null) return null;
 
   data.settings.startDate = new Date(data.settings.startDate);
@@ -36,56 +37,57 @@ function deserialiseData(data: ApiModuleState['schedule']) {
   return deepSeal(data);
 }
 
+function hydrateProfile(profile: Registration | null) {
+  if (profile === null) return null;
+
+  return deepSeal({
+    ...profile,
+    created: new Date(profile.created)
+  });
+}
+
 //
 // NOTE:
 // I'm not sure what value this can add without concrete routes
 //
 
-export function createApiStoreModule(): ApiModule {
+export const mapApiState = createStateMapper<ApiModuleState>();
+
+export function createApiStoreModule(): ApiStoreModule {
   return {
     namespaced: true,
     state: {
       schedule: null,
       apiState: ApiState.init,
       user: null,
-      siteVisitors: 0,
       profile: null,
       carbon: null,
       userSessions: null
     },
-    // TODO: Are these useful?
-    getters: {
-      user: s => s.user,
-      sessions: s => (s.schedule ? s.schedule.sessions : []),
-      slots: s => (s.schedule ? s.schedule.slots : []),
-      speakers: s => (s.schedule ? s.schedule.speakers : []),
-      themes: s => (s.schedule ? s.schedule.themes : []),
-      tracks: s => (s.schedule ? s.schedule.tracks : []),
-      types: s => (s.schedule ? s.schedule.types : []),
-      settings: s => (s.schedule ? s.schedule.settings : null),
-      profile: s => (s.schedule ? s.profile : null),
-      userSessions: s => (s.schedule ? s.userSessions : [])
-    },
+    getters: {},
     mutations: {
       schedule: (state, schedule: ApiModuleState['schedule']) => {
-        state.schedule = deserialiseData(schedule);
+        state.schedule = hydrateSchedule(schedule);
         state.apiState = schedule ? ApiState.ready : ApiState.error;
       },
       state: (state, apiState: ApiState) => {
         state.apiState = apiState;
       },
-      user: (state, user: AuthToken) => {
+      user: (state, user: AuthToken | null) => {
         state.user = deepSeal(user);
       },
-      profile: (state, profile: Registration) => {
-        state.profile = deepSeal(profile);
+      profile: (state, profile: Registration | null) => {
+        state.profile = hydrateProfile(profile);
+      },
+      carbon: (state, carbon: CarbonCalculation) => {
+        state.carbon = deepSeal(carbon);
       },
       userSessions: (state, userSessions: string[]) => {
         state.userSessions = deepSeal(userSessions);
       }
     },
     actions: {
-      // Let library-users provide the actions?
+      // Let library-users provide the actions
     }
   };
 }

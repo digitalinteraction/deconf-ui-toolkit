@@ -14,5 +14,6 @@ export * from './metrics';
 export * from './routes';
 export * from './schedule';
 export * from './slots';
+export * from './store';
 export * from './temporal-plugin';
 export * from './types';

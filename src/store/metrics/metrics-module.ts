@@ -1,4 +1,5 @@
 import { Module } from 'vuex';
+import { createStateMapper } from '../../module';
 
 export interface MetricsModuleState {
   userId: number | null;
@@ -11,7 +12,9 @@ export interface MetricsAuthenticateOptions {
   socketId: string | null;
 }
 
-export type MetricsModule = Module<MetricsModuleState, {}>;
+export type MetricsStoreModule = Module<MetricsModuleState, {}>;
+
+export const mapMetricsState = createStateMapper<MetricsModuleState>();
 
 //
 // NOTE:
@@ -20,7 +23,7 @@ export type MetricsModule = Module<MetricsModuleState, {}>;
 // - authenticate not so much ~ data is related from the socket id
 //
 
-export function createMetricsStoreModule(): MetricsModule {
+export function createMetricsStoreModule(): MetricsStoreModule {
   return {
     namespaced: true,
     state: {
