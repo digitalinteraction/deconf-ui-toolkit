@@ -37,7 +37,7 @@ $sessionBoard-background: $white !default;
 .sessionBoard {
   columns: $sessionBoard-columns;
   column-gap: $sessionBoard-spacing;
-  margin: $sessionBoard-spacing;
+  padding: $sessionBoard-spacing;
 }
 
 .sessionBoard > * {
