@@ -3,7 +3,7 @@
 import { Meta, Story } from '@storybook/vue';
 import AppLayout from './AppLayout.vue';
 import {
-  createSettings,
+  mockSettings,
   createContent,
   BrandC,
   BrandB,
@@ -37,7 +37,7 @@ const Template: Story = (args, { argTypes }) => ({
   components: { AppLayout, Content, BrandA, BrandB, BrandC, LanguageControl },
   props: ['isLoggedIn', 'contentSize'],
   data: () => ({
-    appSettings: createSettings(),
+    appSettings: mockSettings(),
     routes: [
       {
         title: 'Atrium',

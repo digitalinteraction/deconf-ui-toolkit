@@ -1,10 +1,7 @@
 import { Meta, Story } from '@storybook/vue';
 import SessionTile from './SessionTile.vue';
-import {
-  createSchedule,
-  createSessionFromSchedule
-} from '../../../story-lib/module';
-import { ScheduleConfig, ScheduleRecord } from '../../../lib/module';
+import { createSchedule, randomSession } from '../../../story-lib/module';
+import { ScheduleConfig, FullSchedule } from '../../../lib/module';
 
 export default {
   title: 'Schedule/SessionTile',
@@ -43,7 +40,7 @@ const Template: Story = (args, { argTypes }) => ({
       return config;
     },
     session() {
-      return createSessionFromSchedule(this.schedule as ScheduleRecord);
+      return randomSession(this.schedule as FullSchedule);
     }
   },
   template: `
@@ -52,7 +49,6 @@ const Template: Story = (args, { argTypes }) => ({
       :schedule="schedule"
       :config="config"
       :slot-state="slotState"
-      :header="['type', 'track', 'theme']"
     />
   `
 });
@@ -60,10 +56,10 @@ const Template: Story = (args, { argTypes }) => ({
 const baseArgs = {
   headerType: true,
   headerTrack: true,
-  headerThemes: true,
+  headerThemes: false,
   attrLangs: true,
   attrRecorded: true,
-  attrTrack: true,
+  attrTrack: false,
   attrThemes: true
 };
 

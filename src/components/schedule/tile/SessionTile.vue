@@ -50,10 +50,11 @@
 import { PropType } from 'vue';
 import {
   ScheduleConfig,
-  ScheduleRecord,
   SlotState,
   Routes,
-  localiseFromObject
+  localiseFromObject,
+  createICalEvent,
+  FullSchedule
 } from '../../../lib/module';
 
 import SessionHeader from './SessionHeader.vue';
@@ -105,7 +106,7 @@ export default {
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
     session: { type: Object as PropType<Session>, required: true },
-    schedule: { type: Object as PropType<ScheduleRecord>, required: true },
+    schedule: { type: Object as PropType<FullSchedule>, required: true },
     config: { type: Object as PropType<ScheduleConfig>, required: true }
   },
   computed: {
@@ -121,13 +122,13 @@ export default {
         .map(id => map.get(id) as Theme)
         .filter(t => Boolean(t));
     },
-    // TODO: handle this failing
     sessionType(): SessionType {
-      return lookup(this.schedule.sessionTypes, this.session.type);
+      // TODO: handle this failing
+      return lookup(this.schedule.types, this.session.type);
     },
-    // TODO: handle this failing
     sessionSlot(): SessionSlot {
-      return lookup(this.schedule.sessionSlots, this.session.slot as string);
+      // TODO: handle this failing
+      return lookup(this.schedule.slots, this.session.slot as string);
     },
     track(): Track {
       return lookup(this.schedule.tracks, this.session.track);
@@ -157,7 +158,7 @@ export default {
       return true;
     },
     calendarLink(): string | null {
-      return this.$store.getters['api/calendarLink'](this.session) || null;
+      return this.$deconf.getCalendarLink(this.session);
     },
     headerAttributes(): object {
       const set = new Set(this.config.tileHeader);
@@ -186,7 +187,7 @@ export default {
     },
     trackCalendar(): void {
       // Track the clicking of a calendar
-      this.$emit('track-ical', this.session.id);
+      this.$deconf.trackMetric(createICalEvent(this.session.id));
     }
   }
 };

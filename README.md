@@ -7,6 +7,26 @@ like YouTube, Zoom, Vimeo or Twitch.
 - [storybook](https://deconf.openlab.dev)
 - [npm package](https://www.npmjs.com/@openlab/deconf-ui-toolkit)
 
+## Deconf Plugin
+
+Clients **must** implement a plugin to provide logic to components.
+It should implement [DeconfPlugin](./src/lib/deconf-plugin.ts)
+and be mounted onto `Vue.prototype.$deconf`
+You could implement it like this:
+
+```ts
+import _Vue from 'vue';
+import { DeconfPlugin } from '@openlab/deconf-ui-toolkit';
+
+class BespokeDeconfPlugin implements DeconfPlugin {
+  static install(Vue: typeof _Vue) {
+    Vue.prototype.$deconf = new BespokeDeconfPlugin();
+  }
+
+  // Then implement DeconfPlugin methods
+}
+```
+
 ---
 
 ## Contents

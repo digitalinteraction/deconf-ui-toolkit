@@ -4,7 +4,7 @@ import {
   BrandA,
   BrandB,
   LanguageControl,
-  createSettings
+  mockSettings
 } from '../../story-lib/module';
 
 export default {
@@ -16,7 +16,7 @@ const Template: Story = (args, { argTypes }) => ({
   props: ['isLoggedIn', 'isInterpreter'],
   components: { NavigationBar, BrandA, BrandB, LanguageControl },
   data: () => ({
-    appSettings: createSettings(),
+    appSettings: mockSettings(),
     routes: [
       {
         name: 'A',

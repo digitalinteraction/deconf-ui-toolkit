@@ -20,7 +20,6 @@
           :session="session"
           :schedule="schedule"
           :config="config"
-          @track-ical="trackIcal"
         />
       </div>
       <div class="scheduleBlock-session" v-if="otherSessions.length > 0">
@@ -49,7 +48,6 @@
               :session="session"
               :schedule="schedule"
               :config="config"
-              @track-ical="trackIcal"
             />
           </div>
         </ToggleContents>
@@ -62,9 +60,9 @@
 import { PropType } from 'vue';
 import {
   ScheduleConfig,
-  ScheduleRecord,
   SlotState,
-  getSlotState
+  getSlotState,
+  FullSchedule
 } from '../../lib/module';
 
 import {
@@ -103,7 +101,7 @@ export default {
     sessionSlot: { type: Object as PropType<SessionSlot>, required: true },
     sessions: { type: Array as PropType<Session[]>, required: true },
     showOtherSessions: { type: Boolean, default: false },
-    schedule: { type: Object as PropType<ScheduleRecord>, required: true },
+    schedule: { type: Object as PropType<FullSchedule>, required: true },
     config: { type: Object as PropType<ScheduleConfig>, required: true }
   },
   computed: {
@@ -117,7 +115,7 @@ export default {
       return new Map(this.schedule.speakers.map(s => [s.id, s]));
     },
     sessionTypeMap(): Map<string, SessionType> {
-      return new Map(this.schedule.sessionTypes.map(s => [s.id, s]));
+      return new Map(this.schedule.types.map(s => [s.id, s]));
     },
     trackMap(): Map<string, Track> {
       return new Map(this.schedule.tracks.map(t => [t.id, t]));
@@ -127,9 +125,7 @@ export default {
     },
     plenaryTypes(): Set<string> {
       return new Set<string>(
-        this.schedule.sessionTypes
-          .filter(t => t.layout === 'plenary')
-          .map(t => t.id)
+        this.schedule.types.filter(t => t.layout === 'plenary').map(t => t.id)
       );
     },
     plenarySessions(): Session[] {
@@ -169,9 +165,6 @@ export default {
       return session.themes
         .map(t => this.themeMap.get(t) as Theme)
         .filter(t => Boolean(t));
-    },
-    trackIcal(sessionId: string) {
-      this.$emit('track-ical', sessionId);
     }
   }
 };

@@ -16,7 +16,7 @@ const Template: Story = (args, { argTypes }) => ({
     plugin: Object.freeze({ dev })
   }),
   computed: {
-    devData(): any {
+    devData(): unknown {
       return JSON.stringify(
         {
           isEnabled: dev.isEnabled,

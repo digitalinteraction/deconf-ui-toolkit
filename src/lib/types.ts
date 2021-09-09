@@ -8,13 +8,6 @@ export type SlotState = 'future' | 'soon' | 'present' | 'past';
 // - https://github.com/vuejs/vue-loader/issues/1281
 //
 
-import {
-  SessionSlot,
-  SessionType,
-  Speaker,
-  Theme,
-  Track
-} from '@openlab/deconf-shared';
 import { Component } from 'vue';
 
 //
@@ -48,15 +41,8 @@ export interface AppRoute {
 }
 
 //
-// WIP
 //
-export interface ScheduleRecord {
-  speakers: Speaker[];
-  sessionSlots: SessionSlot[];
-  sessionTypes: SessionType[];
-  tracks: Track[];
-  themes: Theme[];
-}
+//
 
 export interface ScheduleConfig {
   tileHeader: Array<'type' | 'track' | 'themes'>;

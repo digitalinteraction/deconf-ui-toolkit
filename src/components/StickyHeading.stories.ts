@@ -1,8 +1,7 @@
 import { Meta, Story } from '@storybook/vue';
-import { createContent, createSettings, BrandA } from '../story-lib/module';
+import { createContent, BrandA, mockSettings } from '../story-lib/module';
 
 import StickyHeading from './StickyHeading.vue';
-// import AppLayout from './layouts/AppLayout.vue';
 import AppLayout from '../layouts/AppLayout.vue';
 
 export default {
@@ -25,7 +24,7 @@ const Template: Story = (args, { argTypes }) => ({
   props: ['title', 'titleClass'],
   data() {
     return {
-      appSettings: createSettings()
+      appSettings: mockSettings()
     };
   },
   template: `

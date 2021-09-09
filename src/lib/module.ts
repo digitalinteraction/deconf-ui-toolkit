@@ -5,6 +5,7 @@ export * from './api';
 export * from './constants';
 export * from './countdowns';
 export * from './dates';
+export * from './deconf-plugin';
 export * from './deep-seal';
 export * from './dev-plugin';
 export * from './jwt';

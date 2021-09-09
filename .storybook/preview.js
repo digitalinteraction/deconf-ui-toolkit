@@ -7,6 +7,8 @@ import { get } from 'lodash';
 
 document.dir = 'ltr';
 
+// TODO: our use of `action` will be dropped in storybook 7.x
+
 //
 // Initialize all icons
 //
@@ -20,7 +22,8 @@ Vue.component('router-link', {
   template: `<a href="#" @click.prevent="log"><slot/></a>`,
   methods: {
     log() {
-      action('RouterLink')(this.to);
+      const route = this.to;
+      action(`[router] ${route.name}`)(route);
     }
   }
 });
@@ -74,11 +77,24 @@ Vue.prototype.$store = {
     'api/calendarLink': session => `/ical/${session.id}`
   },
   commit(key, value) {
-    action('[Vuex] commit')(key, value);
+    action(`[vuex commit] ${key}`)(value);
   },
   dispatch(key, value) {
-    action('[Vuex] dispatch')(key, value);
-    return new Promise(resolve, setTimeout(resolve, 2000));
+    action(`[vuex dispatch] ${key}`)(value);
+    return new Promise(resolve, setTimeout(resolve, 1000));
+  }
+};
+
+//
+// Stub out $deconf
+//
+Vue.prototype.$deconf = {
+  getCalendarLink(session) {
+    return `/session/${session.id}/ics`;
+  },
+  trackMetric(metric) {
+    const { eventName, ...payload } = metric;
+    action(`[metric] ${eventName}`)(payload);
   }
 };
 
