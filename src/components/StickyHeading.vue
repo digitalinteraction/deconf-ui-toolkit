@@ -33,6 +33,7 @@ import ScheduleHeader from './schedule/ScheduleHeader.vue';
 //
 
 export default {
+  name: 'StickyHeading',
   components: { ScheduleHeader },
   props: {
     title: { type: String, required: true },

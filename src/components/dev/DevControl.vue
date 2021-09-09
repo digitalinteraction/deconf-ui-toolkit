@@ -166,7 +166,7 @@ function makeDate(date: string, time: string): Date | undefined {
 // Not translated
 
 interface Data {
-  fastForward: null | { timerId: any };
+  fastForward: null | { timerId: number };
 }
 
 export default {
@@ -223,7 +223,7 @@ export default {
     startFastForward() {
       let lastTick = Date.now();
 
-      const timerId = setInterval(() => {
+      const timerId = window.setInterval(() => {
         const date = this.devPlugin.scheduleDate;
         if (!date) {
           this.stopFastForward();
@@ -240,7 +240,7 @@ export default {
     stopFastForward() {
       if (!this.fastForward) return;
 
-      clearInterval(this.fastForward.timerId);
+      window.clearInterval(this.fastForward.timerId);
       this.fastForward = null;
     }
   },

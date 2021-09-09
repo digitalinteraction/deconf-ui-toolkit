@@ -109,10 +109,6 @@ import { PropType } from 'vue';
 import debounce from 'lodash.debounce';
 
 import {
-  SessionSlot,
-  SessionType,
-  Theme,
-  Track,
   startOfDay,
   friendlyDate,
   localiseFromObject
@@ -120,6 +116,13 @@ import {
 import InlineFilter from './InlineFilter.vue';
 import { ScheduleFilterRecord } from './ScheduleFilterRecord';
 import { FilterOption } from './FilterOption';
+import {
+  Localised,
+  SessionSlot,
+  SessionType,
+  Theme,
+  Track
+} from '@openlab/deconf-shared';
 
 const QUERY_DEBOUNCE = 300;
 
@@ -252,7 +255,7 @@ export default {
     this.queryHandler = null;
   },
   methods: {
-    localise(object: Record<string, string>): string | null {
+    localise(object: Localised): string | null {
       return localiseFromObject(this.$i18n.locale, object);
     },
     toggleFilters(): void {

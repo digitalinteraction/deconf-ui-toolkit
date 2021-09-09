@@ -51,13 +51,7 @@ import { PropType } from 'vue';
 import {
   ScheduleConfig,
   ScheduleRecord,
-  Session,
-  SessionSlot,
-  SessionType,
   SlotState,
-  Speaker,
-  Theme,
-  Track,
   Routes,
   localiseFromObject
 } from '../../../lib/module';
@@ -67,6 +61,14 @@ import SessionAttributes from './SessionAttributes.vue';
 import SpeakerGrid from '../SpeakerGrid.vue';
 import AddToCalendar from '../actions/AddToCalendar.vue';
 import JoinSession from '../actions/JoinSession.vue';
+import {
+  Session,
+  SessionSlot,
+  SessionType,
+  Speaker,
+  Theme,
+  Track
+} from '@openlab/deconf-shared';
 
 //
 // i18n

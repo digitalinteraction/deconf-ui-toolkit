@@ -26,9 +26,10 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, ConfigSettings, AuthToken } from '../lib/module';
 import { PropType } from 'vue';
+import { ConferenceConfig, AuthToken } from '@openlab/deconf-shared';
 
+import { AppRoute } from '../lib/module';
 import { FullHeight, NavigationBar, SideTabs } from '../components/module';
 
 //
@@ -46,7 +47,7 @@ export default {
   name: 'AppLayout',
   components: { FullHeight, NavigationBar, SideTabs },
   props: {
-    appSettings: { type: Object as PropType<ConfigSettings>, required: true },
+    appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
     user: { type: Object as PropType<AuthToken>, default: null },
     routes: { type: Array as PropType<AppRoute[]>, required: true }
   },

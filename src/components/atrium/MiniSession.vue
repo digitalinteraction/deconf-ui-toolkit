@@ -40,8 +40,6 @@
 
 <script lang="ts">
 import {
-  Session,
-  SessionSlot,
   localiseFromObject,
   Routes,
   getCountdown,
@@ -50,6 +48,7 @@ import {
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Location } from 'vue-router';
+import { Session, SessionSlot } from '@openlab/deconf-shared';
 
 //
 // i18n

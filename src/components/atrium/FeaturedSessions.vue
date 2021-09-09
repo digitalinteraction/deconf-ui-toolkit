@@ -27,9 +27,10 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Location } from 'vue-router';
-import { Session, SessionSlot, Routes } from '../../lib/module';
+import { Routes } from '../../lib/module';
 
 import MiniSession from './MiniSession.vue';
+import { Session, SessionSlot } from '@openlab/deconf-shared';
 
 //
 // i18n

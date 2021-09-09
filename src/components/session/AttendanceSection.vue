@@ -24,7 +24,8 @@ import { PropType } from 'vue';
 import { TranslateResult } from 'vue-i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import { Session, SessionAttendance } from '../../lib/module';
+import { SessionAttendance } from '../../lib/module';
+import { Session } from '@openlab/deconf-shared';
 
 //
 // i18n

@@ -23,7 +23,9 @@
 // - $sessionBoard-background
 //
 
-export default {};
+export default {
+  name: 'SessionBoard'
+};
 </script>
 
 <style lang="scss">

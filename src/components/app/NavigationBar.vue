@@ -103,13 +103,14 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, ConfigSettings } from '../../lib/module';
+import { AppRoute } from '../../lib/module';
 import { PropType } from 'vue';
 import { Routes } from '../../lib/constants';
 import { Location } from 'vue-router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { SelectOption } from '../form/select-option';
+import { ConferenceConfig } from '@openlab/deconf-shared/dist/conference';
 
 //
 // i18n
@@ -138,7 +139,7 @@ export default {
     };
   },
   props: {
-    appSettings: { type: Object as PropType<ConfigSettings>, required: true },
+    appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
     isLoggedIn: { type: Boolean, required: true },
     isInterpreter: { type: Boolean, required: true },
     routes: { type: Array as PropType<AppRoute[]>, required: true },

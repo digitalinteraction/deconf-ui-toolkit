@@ -25,10 +25,6 @@ export function createSpeaker(id: string, name: string, role: string): Speaker {
 
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-function randomElement<T>(array: T[]) {
-  return array[Math.floor(Math.random() * array.length)];
-}
-
 export function createSponsors(n: number) {
   const s = [];
   for (let i = 0; i < n; i++) {

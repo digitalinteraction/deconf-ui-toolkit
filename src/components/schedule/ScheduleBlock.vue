@@ -59,19 +59,22 @@
 </template>
 
 <script lang="ts">
+import { PropType } from 'vue';
 import {
   ScheduleConfig,
   ScheduleRecord,
-  Session,
-  SessionSlot,
-  SessionType,
   SlotState,
+  getSlotState
+} from '../../lib/module';
+
+import {
   Speaker,
   Theme,
   Track,
-  getSlotState
-} from '../../lib/module';
-import { PropType } from 'vue';
+  Session,
+  SessionSlot,
+  SessionType
+} from '@openlab/deconf-shared';
 
 import TimeSlot from './TimeSlot.vue';
 import SessionTile from './tile/SessionTile.vue';

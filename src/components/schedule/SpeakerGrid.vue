@@ -18,7 +18,8 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { Speaker, localiseFromObject } from '../../lib/module';
+import { localiseFromObject } from '../../lib/module';
+import { Speaker } from '@openlab/deconf-shared';
 
 //
 // i18n

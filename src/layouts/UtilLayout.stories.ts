@@ -1,12 +1,7 @@
 import { Meta, Story } from '@storybook/vue';
 
 import UtilLayout from './UtilLayout.vue';
-import {
-  HeroCard,
-  BoxContent,
-  ColorWidget,
-  SponsorGrid
-} from '../components/module';
+import { BoxContent } from '../components/module';
 
 import { createContent, BrandA } from '../story-lib/module';
 

@@ -1,7 +1,6 @@
 //
-// TODO: move types next to their respective components
+// Normalised relative time to a slot
 //
-
 export type SlotState = 'future' | 'soon' | 'present' | 'past';
 
 //

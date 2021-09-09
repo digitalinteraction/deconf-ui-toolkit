@@ -1,5 +1,3 @@
-// TODO: be exported in the module
-
 export interface ScheduleFilterRecord {
   query: string;
   sessionType: string | null;
