@@ -8,7 +8,7 @@
 
 <script lang="ts">
 //
-// TODO: should this take a theme prop rather than use classes?
+// TODO: should this be ScheduleHeading?
 //
 
 //
@@ -32,13 +32,13 @@ export default {
   padding: 0.75em 1.5rem;
 
   &.is-primary {
-    color: $white;
+    color: $primary-invert;
     background-color: $primary;
   }
 
   &.is-dark {
-    color: $white-bis;
-    background-color: $black-ter;
+    color: $dark-invert;
+    background-color: $dark;
   }
 
   @include mobile {

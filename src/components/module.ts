@@ -12,4 +12,5 @@ export { default as NoResults } from './NoResults.vue';
 export { default as SponsorGrid } from './SponsorGrid.vue';
 export { default as SponsorRow } from './SponsorRow.vue';
 export { default as Stack } from './Stack.vue';
+export { default as StickyHeading } from './StickyHeading.vue';
 export { default as ToggleContents } from './ToggleContents.vue';
