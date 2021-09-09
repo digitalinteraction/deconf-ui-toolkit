@@ -133,12 +133,17 @@ export function filtersAreSet(filters: ScheduleFilterRecord): boolean {
 /** A method used to yes/no a session based on some unknown logic */
 export type SessionPredicate = (session: Session) => boolean;
 
-/** Create a SessionPredicate based on a text query an a locale */
+/**
+ * Create a SessionPredicate based on a text query an a locale
+ * Returns null when no query should be applied
+ */
 export function createQueryPredicate(
   locale: string,
-  query: string,
+  query: string | undefined,
   schedule: FullSchedule
 ): SessionPredicate | null {
+  if (!query || !query.trim()) return null;
+
   // A little method to trim down a string, removing excess whitespace and casing
   const trim = (input: string) => input.toLowerCase().replace(/\s+/g, ' ');
 
@@ -168,7 +173,10 @@ export function createQueryPredicate(
   };
 }
 
-/** Create a SessionPredicate based on a set of relational filters */
+/**
+ * Create a SessionPredicate based on a set of relational filters.
+ * With null meaning "no filters apply"
+ */
 export function createFilterPredicate(
   locale: string,
   filters: ScheduleFilterRecord,
@@ -182,9 +190,7 @@ export function createFilterPredicate(
   const sessionSlotMap = new Map(schedule.slots.map(s => [s.id, s]));
 
   // Cache a text-based query predicate
-  const queryPredicate = filters.query
-    ? createQueryPredicate(locale, filters.query, schedule)
-    : null;
+  const queryPredicate = createQueryPredicate(locale, filters.query, schedule);
 
   // Create a predicate based on cached values to determine if a session
   // matches the set filters.
