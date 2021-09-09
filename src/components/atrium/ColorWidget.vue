@@ -13,7 +13,8 @@
       {{ subtitle }}
     </p>
     <span class="colorWidget-arrow" v-if="href">
-      <FontAwesomeIcon :icon="['fas', 'chevron-right']" />
+      <FontAwesomeIcon :icon="['fas', 'chevron-right']" class="ltr-only" />
+      <FontAwesomeIcon :icon="['fas', 'chevron-left']" class="rtl-only" />
     </span>
   </component>
 </template>
@@ -27,6 +28,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 //
 // icons
 // - fas chevron-right
+// - fas chevron-left
 // - [or by prop]
 //
 // sass
@@ -69,8 +71,9 @@ export default {
   border-radius: $radius;
   box-shadow: $box-shadow;
   padding: 1.25rem;
-  padding-right: 2rem;
-  position: relative;
+
+  display: grid;
+  grid-template-columns: 1fr auto;
 
   @include mobile {
     margin-inline-start: $block-spacing;
@@ -127,20 +130,16 @@ export default {
   .colorWidget-title {
     font-size: 1.8em;
     font-weight: $weight-bold;
+    grid-row: 1 / 2;
   }
   .colorWidget-subtitle {
     font-size: 1em;
     font-weight: $weight-bold;
+    grid-row: 2 / 3;
   }
   .colorWidget-arrow {
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    bottom: 1.25rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    grid-row: 1 / 3;
+    align-self: center;
   }
 }
 a.colorWidget .title {
