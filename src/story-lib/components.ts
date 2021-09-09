@@ -1,5 +1,7 @@
 import Vue from 'vue';
 
+// TODO: refactor `Content = createContent()` to a component here
+
 export const BrandA = Vue.extend({
   template: `
     <img
@@ -27,5 +29,18 @@ export const BrandC = Vue.extend({
       width="64"
       height="64"
     />
+  `
+});
+
+export const LanguageControl = Vue.extend({
+  template: `
+    <div class="select is-small">
+      <select>
+        <option>EN</option>
+        <option>FR</option>
+        <option>ES</option>
+        <option>AR</option>
+      </select>
+    </div>
   `
 });

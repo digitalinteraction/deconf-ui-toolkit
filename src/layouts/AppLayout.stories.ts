@@ -7,7 +7,8 @@ import {
   createContent,
   BrandC,
   BrandB,
-  BrandA
+  BrandA,
+  LanguageControl
 } from '../story-lib/module';
 import { AuthToken } from '@openlab/deconf-shared';
 import {
@@ -33,7 +34,7 @@ const user: AuthToken = {
 const Content = createContent();
 
 const Template: Story = (args, { argTypes }) => ({
-  components: { AppLayout, Content, BrandA, BrandB, BrandC },
+  components: { AppLayout, Content, BrandA, BrandB, BrandC, LanguageControl },
   props: ['isLoggedIn', 'contentSize'],
   data: () => ({
     appSettings: createSettings(),
@@ -83,6 +84,7 @@ const Template: Story = (args, { argTypes }) => ({
       <BrandA slot="brandA" />
       <BrandB slot="brandB" />
       <BrandC slot="brandC" />
+      <LanguageControl slot="languageControl" />
       <div slot="main" style="background: #fafafa; flex: 1">
         <div class="container">
           <section class="section">

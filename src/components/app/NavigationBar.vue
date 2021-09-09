@@ -51,9 +51,9 @@
           <!-- 
             Language control
           -->
-          <!-- <div class="navbar-item">
-            <LanguageControl />
-          </div> -->
+          <div class="navbar-item" v-if="$slots.languageControl">
+            <slot name="languageControl" />
+          </div>
 
           <!-- 
             Interpret mode button
@@ -109,6 +109,7 @@ import { Routes } from '../../lib/constants';
 import { Location } from 'vue-router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { SelectOption } from '../form/select-option';
 
 //
 // i18n
@@ -140,7 +141,8 @@ export default {
     appSettings: { type: Object as PropType<ConfigSettings>, required: true },
     isLoggedIn: { type: Boolean, required: true },
     isInterpreter: { type: Boolean, required: true },
-    routes: { type: Array as PropType<AppRoute[]>, required: true }
+    routes: { type: Array as PropType<AppRoute[]>, required: true },
+    languages: { type: Array as PropType<SelectOption[]>, default: null }
   },
   computed: {
     activeClasses(): object {

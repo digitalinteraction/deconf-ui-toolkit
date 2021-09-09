@@ -9,6 +9,7 @@
       >
         <slot name="brandA" slot="brandA" />
         <slot name="brandB" slot="brandB" />
+        <slot name="languageControl" slot="languageControl" />
       </NavigationBar>
     </div>
 

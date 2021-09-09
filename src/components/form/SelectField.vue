@@ -30,6 +30,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
+import { SelectOption } from './select-option';
 
 //
 // Wraps a bulma select field
@@ -45,11 +46,6 @@ import { PropType } from 'vue';
 // sass
 // - n/a
 //
-
-interface SelectOption {
-  text: unknown;
-  value: unknown;
-}
 
 export default {
   name: 'SelectField',
