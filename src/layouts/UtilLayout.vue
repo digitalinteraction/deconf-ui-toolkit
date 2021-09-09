@@ -10,6 +10,11 @@
           <slot name="brand" />
         </router-link>
       </div>
+      <div class="navbar-end">
+        <div class="navbar-item" v-if="$slots.languageControl">
+          <slot name="languageControl" />
+        </div>
+      </div>
     </nav>
     <div class="utilLayout-page">
       <section class="section">

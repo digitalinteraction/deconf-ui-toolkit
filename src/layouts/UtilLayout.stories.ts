@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/vue';
 import UtilLayout from './UtilLayout.vue';
 import { BoxContent } from '../components/module';
 
-import { createContent, BrandA } from '../story-lib/module';
+import { createContent, BrandA, LanguageControl } from '../story-lib/module';
 
 export default {
   title: 'Layout/UtilLayout',
@@ -11,7 +11,7 @@ export default {
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
-  components: { UtilLayout, BoxContent, BrandA },
+  components: { UtilLayout, BoxContent, BrandA, LanguageControl },
   data: () => ({
     content: createContent(),
     homeRoute: { name: 'HOME' }
@@ -23,6 +23,7 @@ const Template: Story = (args, { argTypes }) => ({
       <div slot="footer" class="footer">
         <p>This is a footer</p>
       </div>
+      <LanguageControl slot="languageControl" />
     </UtilLayout>
   `
 });
