@@ -2,7 +2,13 @@
 
 import { Meta, Story } from '@storybook/vue';
 import AppLayout from './AppLayout.vue';
-import { createSettings, createContent } from '../story-lib/module';
+import {
+  createSettings,
+  createContent,
+  BrandC,
+  BrandB,
+  BrandA
+} from '../story-lib/module';
 import { AuthToken } from '@openlab/deconf-shared';
 import {
   AtriumIcon,
@@ -24,8 +30,10 @@ const user: AuthToken = {
   user_lang: 'en'
 };
 
+const Content = createContent();
+
 const Template: Story = (args, { argTypes }) => ({
-  components: { AppLayout, Content: createContent() },
+  components: { AppLayout, Content, BrandA, BrandB, BrandC },
   props: ['isLoggedIn', 'contentSize'],
   data: () => ({
     appSettings: createSettings(),
@@ -72,24 +80,9 @@ const Template: Story = (args, { argTypes }) => ({
   },
   template: `
     <AppLayout :appSettings="appSettings" :user="user" :routes="routes">
-      <img
-        slot="brandA"
-        src="/brand.svg"
-        width="160"
-        height="28"
-      />
-      <img
-        slot="brandB"
-        src="/openlab.svg"
-        width="110"
-        height="28"
-      />
-      <img
-        slot="brandC"
-        src="/square-brand.svg"
-        width="64"
-        height="64"
-      />
+      <BrandA slot="brandA" />
+      <BrandB slot="brandB" />
+      <BrandC slot="brandC" />
       <div slot="main" style="background: #fafafa; flex: 1">
         <div class="container">
           <section class="section">

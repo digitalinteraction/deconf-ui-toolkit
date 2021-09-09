@@ -8,7 +8,7 @@ import {
   SponsorGrid
 } from '../components/module';
 
-import { createSponsors, createContent } from '../story-lib/module';
+import { createContent, BrandA } from '../story-lib/module';
 
 export default {
   title: 'Layout/UtilLayout',
@@ -16,7 +16,7 @@ export default {
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
-  components: { UtilLayout, BoxContent },
+  components: { UtilLayout, BoxContent, BrandA },
   data: () => ({
     content: createContent(),
     homeRoute: { name: 'HOME' }
@@ -24,16 +24,10 @@ const Template: Story = (args, { argTypes }) => ({
   template: `
     <UtilLayout :home-route="homeRoute">
       <component :is="content" slot="main" />
-      <img
-        slot="brand"
-        src="/brand.svg"
-        width="160"
-        height="28"
-      />
+      <BrandA slot="brand" />
       <div slot="footer" class="footer">
         <p>This is a footer</p>
       </div>
-
     </UtilLayout>
   `
 });

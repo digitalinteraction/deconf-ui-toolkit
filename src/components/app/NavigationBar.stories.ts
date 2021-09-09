@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import NavigationBar from './NavigationBar.vue';
-import { createSettings } from '../../story-lib/module';
+import { BrandA, BrandB, createSettings } from '../../story-lib/module';
 
 export default {
   title: 'App/NavigationBar',
@@ -9,7 +9,7 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   props: ['isLoggedIn', 'isInterpreter'],
-  components: { NavigationBar },
+  components: { NavigationBar, BrandA, BrandB },
   data: () => ({
     appSettings: createSettings(),
     routes: [
@@ -42,19 +42,9 @@ const Template: Story = (args, { argTypes }) => ({
       :is-logged-in="isLoggedIn"
       :is-interpreter="isInterpreter"
     >
-      <img
-        slot="brandA"
-        src="/brand.svg"
-        width="160"
-        height="28"
-      />
-      <img
-        slot="brandB"
-        src="/openlab.svg"
-        width="110"
-        height="28"
-      />
-    </NavigationBar>
+      <BrandA slot="brandA" />
+      <BrandB slot="brandB" />
+     </NavigationBar>
   `
 });
 

@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/vue';
+import { BrandA } from '../../story-lib/module';
 import ApiError from './ApiError.vue';
 
 export default {
@@ -7,13 +8,13 @@ export default {
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
-  components: { ApiError },
+  components: { ApiError, BrandA },
   data: () => ({
     homeRoute: { name: 'HomeRoute' }
   }),
   template: `
     <ApiError :home-route="homeRoute">
-      <img slot="brand" src="/brand.svg">
+      <BrandA slot="brand" />
       <p class="footer" slot="footer">This is a footer</p>
     </ApiError>
   `

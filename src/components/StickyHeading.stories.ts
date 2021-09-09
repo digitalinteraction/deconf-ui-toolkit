@@ -1,6 +1,9 @@
 import { Meta, Story } from '@storybook/vue';
-import { createContent } from '../story-lib/module';
+import { createContent, createSettings, BrandA } from '../story-lib/module';
+
 import StickyHeading from './StickyHeading.vue';
+// import AppLayout from './layouts/AppLayout.vue';
+import AppLayout from '../layouts/AppLayout.vue';
 
 export default {
   title: 'Component/StickyHeading',
@@ -18,32 +21,48 @@ export default {
 const Content = createContent();
 
 const Template: Story = (args, { argTypes }) => ({
-  components: { StickyHeading, Content },
-  props: ['title', 'titleClass', 'navbarHeight'],
+  components: { StickyHeading, Content, AppLayout, BrandA },
+  props: ['title', 'titleClass'],
+  data() {
+    return {
+      appSettings: createSettings()
+    };
+  },
   template: `
-    <StickyHeading
-      :title="title"
-      :title-class="titleClass"
-      :navbar-height="navbarHeight"
-    >
-      <section class="section">
-        <div class="content">
-          <Content />
-          <Content />
-          <Content />
-          <Content />
-        </div>
-      </section>
-    </StickyHeading>
+    <div>
+      <AppLayout
+        :app-settings="appSettings"
+        :routes="[]"
+        :user="null"
+      >
+        <BrandA slot="brandA" />
+        <StickyHeading
+          :title="title"
+          :title-class="titleClass"
+          slot="main"
+        >
+          <section class="section">
+            <div class="content">
+              <Content />
+              <Content />
+              <Content />
+              <Content />
+            </div>
+          </section>
+        </StickyHeading>
+      </AppLayout>
+    </div>
   `
 });
 
 export const Default = Template.bind({});
 Default.args = {
   title: 'This is a title',
-  titleClass: 'is-primary',
-  navbarHeight: '0'
+  titleClass: 'is-primary'
 };
 Default.parameters = {
-  layout: 'fullscreen'
+  layout: 'fullscreen',
+  controls: {
+    exclude: ['default']
+  }
 };
