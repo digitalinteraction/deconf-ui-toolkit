@@ -66,14 +66,15 @@ export class AudioBroadcaster {
       sampleRate: this.options.audioTransportRate
     });
 
+    // TODO: work out why `noiseSuppression` isn't working
     this.stream = await navigator.mediaDevices.getUserMedia({
       video: false,
       audio: {
         deviceId: { ideal: previousDeviceId },
         sampleRate: { ideal: this.options.audioTransportRate },
-        echoCancellation: true,
-        noiseSuppression: true
-      }
+        echoCancellation: { ideal: true },
+        noiseSuppression: { ideal: true }
+      } as any
     });
     // TODO: what if the user manually closes the stream?
 
