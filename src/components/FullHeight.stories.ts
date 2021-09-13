@@ -11,6 +11,7 @@ const Template: Story = (args, { argTypes }) => ({
   template: `
     <FullHeight>
       <div style="width: 100%; height: 100%; background: #fafafa; position: absolute;">
+      </div>
     </FullHeight>
   `
 });

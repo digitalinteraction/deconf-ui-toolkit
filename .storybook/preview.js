@@ -71,19 +71,31 @@ Vue.prototype.$tc = Vue.prototype.$i18n.tc;
 //
 // Stub out vuex
 //
+const attendance = new Set();
 const actions = {
   'api/login': payload => payload.includes('@'),
   'api/register': payload => payload.email.includes('@'),
   'api/unregister': payload => true,
-  'api/fetchLinks': payload => [
-    { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
-    { type: '', url: 'https://miro.com/', language: 'en' },
-    { type: '', url: 'https://docs.google.com/abcdef', language: 'en' }
-  ],
+  'api/fetchLinks': sessionId => {
+    if (!attendance.has(sessionId)) return null;
+    return [
+      { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
+      { type: '', url: 'https://miro.com/', language: 'en' },
+      { type: '', url: 'https://docs.google.com/abcdef', language: 'en' }
+    ];
+  },
   'api/fetchSessionAttendance': sessionId => ({
-    session: sessionId,
-    count: 14
-  })
+    isAttending: attendance.has(sessionId),
+    sessionCount: 14
+  }),
+  'api/attend': sessionId => {
+    attendance.add(sessionId);
+    console.log(attendance);
+  },
+  'api/unattend': sessionId => {
+    attendance.delete(sessionId);
+    console.log(attendance);
+  }
 };
 Vue.prototype.$store = {
   state: {},

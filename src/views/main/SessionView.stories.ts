@@ -48,10 +48,19 @@ Future.parameters = {
   layout: 'fullscreen'
 };
 
+export const Countdown = Template.bind({});
+Countdown.args = {
+  loggedIn: true,
+  scheduleDate: dates.addMinutes(dates.now, -46, -23)
+};
+Countdown.parameters = {
+  layout: 'fullscreen'
+};
+
 export const Soon = Template.bind({});
 Soon.args = {
   loggedIn: true,
-  scheduleDate: dates.addMinutes(dates.now, -46, -23)
+  scheduleDate: dates.addMinutes(dates.now, -17, -23)
 };
 Soon.parameters = {
   layout: 'fullscreen'
@@ -69,8 +78,7 @@ Present.parameters = {
 export const Past = Template.bind({});
 Past.args = {
   loggedIn: true,
-  scheduleDate: dates.future,
-  slotState: 'past'
+  scheduleDate: dates.future
 };
 Past.parameters = {
   layout: 'fullscreen'

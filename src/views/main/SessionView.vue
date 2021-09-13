@@ -351,10 +351,12 @@ export default {
       );
     },
     async attend() {
-      this.$store.dispatch(`${this.apiModule}/attend`);
+      this.$store.dispatch(`${this.apiModule}/attend`, this.session.id);
+      this.fetchSessionData();
     },
     async unattend() {
-      this.$store.dispatch(`${this.apiModule}/attend`);
+      this.$store.dispatch(`${this.apiModule}/unattend`, this.session.id);
+      this.fetchSessionData();
     },
     guessLinkName(link: string) {
       if (link.includes('zoom')) return this.$t('deconf.session.zoomLink');
