@@ -337,12 +337,12 @@ export default {
       this.isLoading = false;
     },
     async fetchLinks() {
-      console.log('fetchLinks', this.loggedIn);
       if (!this.loggedIn) return;
-      this.links = await this.$store.dispatch(
+      const result = await this.$store.dispatch(
         `${this.apiModule}/fetchLinks`,
         this.session.id
       );
+      this.links = result.links;
     },
     async fetchAttendance() {
       this.attendance = await this.$store.dispatch(
