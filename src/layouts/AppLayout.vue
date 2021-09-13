@@ -42,6 +42,9 @@ import { FullHeight, NavigationBar, SideTabs } from '../components/module';
 // sass
 // - n/a
 //
+// notes:
+// - slot=main is flexed so you can flex:1 to make it fill height
+//
 
 export default {
   name: 'AppLayout',
