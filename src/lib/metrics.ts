@@ -71,6 +71,13 @@ export function createLogoutEvent(): MetricsEvent {
   };
 }
 
+export function createUnregisterEvent(confirmed: boolean): MetricsEvent {
+  return {
+    eventName: 'login/unregister',
+    payload: { confirmed }
+  };
+}
+
 export function createPageViewEvent(
   routeName: string,
   params: any
@@ -81,5 +88,16 @@ export function createPageViewEvent(
       routeName,
       params
     }
+  };
+}
+
+export function createSessionLinkEvent(
+  sessionId: string,
+  action: 'click' | 'copy',
+  link: string
+): MetricsEvent {
+  return {
+    eventName: 'session/linkAction',
+    payload: { sessionId, action, link }
   };
 }

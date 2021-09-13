@@ -53,7 +53,7 @@ export default {
   name: 'UtilLayout',
   components: { FullHeight },
   props: {
-    homeRoute: { type: Object, required: true }
+    homeRoute: { type: [Object, String], required: true }
   }
 };
 </script>

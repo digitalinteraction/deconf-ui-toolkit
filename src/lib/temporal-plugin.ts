@@ -51,3 +51,7 @@ export class TemporalPlugin {
     this.timerId = null;
   }
 }
+
+export function pause(ms: number): Promise<void> {
+  return new Promise(resolve => window.setTimeout(resolve, ms));
+}

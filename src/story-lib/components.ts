@@ -44,3 +44,19 @@ export const LanguageControl = Vue.extend({
     </div>
   `
 });
+
+export const MockAppLayout = Vue.extend({
+  components: { BrandA },
+  template: `
+    <div class="position: relative">
+      <nav class="navbar" style="position: sticky; top: 0; border-bottom: 1px solid #dbdbdb;">
+        <div class="navbar-item">
+          <BrandA />
+        </div>
+      </nav>
+      <div style="display: flex; min-height: 100vh; flex-direction: column">
+        <slot />
+      </div>
+    </div>
+  `
+});

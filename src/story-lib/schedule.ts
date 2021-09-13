@@ -35,7 +35,9 @@ export const mockSession = makeFixture<Session>({
   coverImage: undefined,
   title: localise('Session Title'),
   content: localise(loremIpsum),
-  links: [{ type: 'video', url: 'https://youtu.be', language: 'en' }],
+  links: [
+    { type: 'video', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' }
+  ],
   hostLanguages: ['en'],
   enableInterpretation: false,
   speakers: ['speaker-a', 'speaker-b', 'speaker-c'],
@@ -205,9 +207,19 @@ export function createSchedule(): FullSchedule {
     speakers: defaultSpeakers().slice(0, 4),
     slots: [
       {
-        id: '1',
+        id: 'slot-a',
+        start: dates.addMinutes(dates.now, -45),
+        end: dates.addMinutes(dates.now, -15)
+      },
+      {
+        id: 'slot-b',
         start: dates.addMinutes(dates.now, -15),
         end: dates.addMinutes(dates.now, 15)
+      },
+      {
+        id: 'slot-c',
+        start: dates.addMinutes(dates.now, 15),
+        end: dates.addMinutes(dates.now, 75)
       }
     ],
     tracks: defaultTracks(),
@@ -228,15 +240,22 @@ export function randomElement<T>(array: T[]): T {
 
 export function randomElements<T>(array: T[], max = array.length): T[] {
   const count = randomNumber(1, Math.min(max, array.length));
-  return Array.from({ length: count }, () => randomElement(array));
+  return array.slice(0, count).sort(() => (Math.random() > 0.5 ? -1 : 1));
 }
 
-export function randomSession(schedule: FullSchedule) {
+let randomId = 1;
+
+export function randomSession(
+  schedule: FullSchedule,
+  options: Partial<Session> = {}
+) {
   return mockSession({
+    id: `session-${randomId++}`,
     type: randomElement(schedule.types).id,
     slot: randomElement(schedule.slots).id,
     track: randomElement(schedule.tracks).id,
     themes: randomElements(schedule.themes, 3).map(t => t.id),
-    speakers: randomElements(schedule.speakers, 5).map(t => t.id)
+    speakers: randomElements(schedule.speakers, 5).map(t => t.id),
+    ...options
   });
 }

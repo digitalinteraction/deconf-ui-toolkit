@@ -121,10 +121,6 @@ export default {
 $sessionAttributes-color: #999 !default;
 $sessionAttributes-strong: #444 !default;
 
-.sessionAttributes {
-  line-height: 2;
-}
-
 .sessionAttributes-attribute {
   color: $sessionAttributes-color;
   fill: $sessionAttributes-color;

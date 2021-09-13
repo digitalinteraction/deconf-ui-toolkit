@@ -186,7 +186,6 @@ $scheduleBlock-background: $background !default;
   }
   .scheduleBlock-sessions {
     flex: 1;
-    margin: 24px 0;
     max-width: 960px;
     margin-inline-end: auto;
   }
@@ -196,16 +195,25 @@ $scheduleBlock-background: $background !default;
     padding-bottom: $block-spacing;
   }
   .scheduleBlock-sessions {
-    margin: 0 6px;
   }
 }
 
 .scheduleBlock {
   background-color: $scheduleBlock-background;
 
+  padding: 12px 0;
+
+  &:first-child {
+    padding-top: 24px;
+  }
+  &:last-child {
+    padding-bottom: 24px;
+  }
+
   &.is-present {
     background: $white;
     box-shadow: $box-shadow;
+    padding: 0;
   }
 }
 

@@ -94,8 +94,8 @@ $sessionLink-linkFont: $family-sans-serif !default;
   border-radius: $sessionLink-radius $sessionLink-radius 0 0;
   background-color: $sessionLink-background;
   color: $sessionLink-color;
-  font-size: 1.3em;
-  padding: 0.5rem;
+  font-size: $size-6;
+  padding: 0.25rem;
   text-align: center;
   font-weight: $weight-bold;
 }

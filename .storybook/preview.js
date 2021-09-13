@@ -71,6 +71,20 @@ Vue.prototype.$tc = Vue.prototype.$i18n.tc;
 //
 // Stub out vuex
 //
+const actions = {
+  'api/login': payload => payload.includes('@'),
+  'api/register': payload => payload.email.includes('@'),
+  'api/unregister': payload => true,
+  'api/fetchLinks': payload => [
+    { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
+    { type: '', url: 'https://miro.com/', language: 'en' },
+    { type: '', url: 'https://docs.google.com/abcdef', language: 'en' }
+  ],
+  'api/fetchSessionAttendance': sessionId => ({
+    session: sessionId,
+    count: 14
+  })
+};
 Vue.prototype.$store = {
   state: {},
   getters: {
@@ -81,7 +95,9 @@ Vue.prototype.$store = {
   },
   dispatch(key, value) {
     action(`[vuex dispatch] ${key}`)(value);
-    return new Promise(resolve, setTimeout(resolve, 1000));
+    const result = actions[key] ? actions[key](value) : undefined;
+
+    return new Promise(resolve => setTimeout(() => resolve(result)), 1000);
   }
 };
 
@@ -93,7 +109,7 @@ Vue.prototype.$deconf = {
     return `/session/${session.id}/ics`;
   },
   trackMetric(metric) {
-    const { eventName, ...payload } = metric;
+    const { eventName, payload } = metric;
     action(`[metric] ${eventName}`)(payload);
   }
 };
