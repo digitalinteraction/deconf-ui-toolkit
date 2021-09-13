@@ -53,7 +53,8 @@ import { createLogoutEvent, createUnregisterEvent } from '../../lib/metrics';
 // - n/a
 //
 // sass
-// - n/a
+// - $profileView-headingWeight
+// - $profileView-headingSize
 //
 // events
 // - logout – When the user logged out
@@ -98,3 +99,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+$profileView-headingWeight: bold !default;
+$profileView-headingSize: $size-5 !default;
+
+.profileView-heading {
+  font-weight: $profileView-headingWeight;
+  font-size: $profileView-headingSize;
+  margin-bottom: 0.3em;
+}
+</style>
