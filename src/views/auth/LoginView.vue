@@ -77,6 +77,7 @@ interface Data {
 }
 
 export default {
+  name: 'LoginView',
   components: { TextField },
   props: {
     apiModule: { type: String, required: true }

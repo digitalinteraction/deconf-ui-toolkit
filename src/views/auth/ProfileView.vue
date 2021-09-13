@@ -67,6 +67,7 @@ interface ProfileField {
 }
 
 export default {
+  name: 'ProfileView',
   props: {
     apiModule: { type: String, required: true },
     fields: { type: Array as PropType<ProfileField[]>, required: true }

@@ -68,6 +68,7 @@ interface Data {
 // TODO: should $i18n.locale be a prop?
 
 export default {
+  name: 'WhatsOnView',
   components: { ScheduleFilters, SessionTile, SessionBoard },
   props: {
     schedule: { type: Object as PropType<FullSchedule>, required: true },

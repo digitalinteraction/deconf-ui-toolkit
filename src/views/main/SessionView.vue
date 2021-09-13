@@ -199,6 +199,7 @@ interface Data {
 }
 
 export default {
+  name: 'SessionView',
   components: {
     SessionLayout,
     SessionAttributes,

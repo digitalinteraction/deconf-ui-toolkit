@@ -132,6 +132,7 @@ interface Data {
 }
 
 export default {
+  name: 'ScheduleView',
   components: { ScheduleFilters, StickyHeading, ScheduleBlock, NoResults },
   props: {
     schedule: { type: Object as PropType<FullSchedule>, required: true },
