@@ -104,6 +104,10 @@
       "register": "Register!",
       "unavailable": " (Unavailable)"
     },
+    "whatsOn": {
+      "title": "What's On",
+      "infoText": "Here is an overview of events are happening at this conference"
+    },
     "login": {
       "title": "Log in",
       "infoText": "Use this form to log in to the conference.",
@@ -125,10 +129,6 @@
       "dangerLabel": "Danger zone",
       "deleteButton": "Delete account",
       "deleteText": "This is permenant, are you sure?"
-    },
-    "whatsOn": {
-      "title": "What's On",
-      "infoText": "Here is an overview of events are happening at this conference"
     },
     "schedule": {
       "title": "Schedule",
