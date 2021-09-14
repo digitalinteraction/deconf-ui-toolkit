@@ -77,12 +77,14 @@ const actions = {
   'api/register': payload => payload.email.includes('@'),
   'api/unregister': payload => true,
   'api/fetchLinks': sessionId => {
-    if (!attendance.has(sessionId)) return null;
-    return [
-      { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
-      { type: '', url: 'https://miro.com/', language: 'en' },
-      { type: '', url: 'https://docs.google.com/abcdef', language: 'en' }
-    ];
+    if (!attendance.has(sessionId)) return { links: null };
+    return {
+      links: [
+        { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
+        { type: '', url: 'https://miro.com/', language: 'en' },
+        { type: '', url: 'https://docs.google.com/abcdef', language: 'en' }
+      ]
+    };
   },
   'api/fetchSessionAttendance': sessionId => ({
     isAttending: attendance.has(sessionId),
@@ -90,11 +92,9 @@ const actions = {
   }),
   'api/attend': sessionId => {
     attendance.add(sessionId);
-    console.log(attendance);
   },
   'api/unattend': sessionId => {
     attendance.delete(sessionId);
-    console.log(attendance);
   }
 };
 Vue.prototype.$store = {
