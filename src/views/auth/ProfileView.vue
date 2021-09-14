@@ -58,7 +58,7 @@ import { createLogoutEvent, createUnregisterEvent } from '../../lib/metrics';
 //
 // events
 // - logout – When the user logged out
-// - unregister – When the user fully unregistered
+// - unregister – When the user unregistered
 //
 
 interface ProfileField {
@@ -106,6 +106,7 @@ $profileView-headingWeight: bold !default;
 $profileView-headingSize: $size-5 !default;
 
 .profileView-heading {
+  // TODO: font-family
   font-weight: $profileView-headingWeight;
   font-size: $profileView-headingSize;
   margin-bottom: 0.3em;

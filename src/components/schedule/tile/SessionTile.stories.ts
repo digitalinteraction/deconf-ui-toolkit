@@ -13,6 +13,7 @@ const Template: Story = (args, { argTypes }) => ({
   props: [
     'slotState',
     'sessionSlot',
+    'showActions',
     'headerType',
     'headerTrack',
     'headerThemes',
@@ -49,11 +50,13 @@ const Template: Story = (args, { argTypes }) => ({
       :schedule="schedule"
       :config="config"
       :slot-state="slotState"
+      :show-actions="showActions"
     />
   `
 });
 
 const baseArgs = {
+  showActions: true,
   headerType: true,
   headerTrack: true,
   headerThemes: false,

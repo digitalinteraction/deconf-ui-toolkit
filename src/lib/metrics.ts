@@ -1,4 +1,15 @@
 // TODO: review use of this against new Metrics structs
+// - could they be classes?
+
+// class MetricsEvent {
+//   constructor(public eventName: string, public payload: unknown) {}
+// }
+//
+// class CalendarMetric extends MetricsEvent {
+//   constructor(sessionId: string) {
+//     super('session/ical', { sessionId })
+//   }
+// }
 
 export interface MetricsEvent {
   eventName: string;

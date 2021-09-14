@@ -119,10 +119,14 @@ import { TranslateResult } from 'vue-i18n';
 // - n/a
 //
 // sass
-// - n/a
+// - $scheduleView-titleSize
+// - $scheduleView-titleWeight
+// - $scheduleView-headingHeight
+// - $scheduleView-background
 //
 // TODO:
 // - refactor to one v-for
+// - user sessions toggle
 //
 
 interface Data {
@@ -197,13 +201,18 @@ export default {
 </script>
 
 <style lang="scss">
+$scheduleView-titleSize: $size-3 !default;
+$scheduleView-titleWeight: bold !default;
+$scheduleView-headingHeight: 42px !default;
+$scheduleView-background: $background !default;
+
 .scheduleView {
   flex: 1; // Fill AppLayout
-  background: $background;
+  background: $scheduleView-background;
   padding-bottom: $block-spacing * 5;
 
   .scheduleBlock-slot {
-    top: calc(#{$navbar-height} + 42px);
+    top: calc(#{$navbar-height} + $scheduleView-headingHeight);
   }
 }
 .scheduleView-header {
@@ -212,13 +221,12 @@ export default {
   border-bottom: 1px solid $border;
 }
 .scheduleView-toggleHistory {
-  background: $background;
+  background: $scheduleView-background;
   padding: $block-spacing 0;
 }
 .scheduleView-title {
-  // TODO: what happened to this? wasn't there a mixin?
-  // font-family: $title-font;
-  font-size: $size-3;
-  font-weight: bold;
+  // TODO: font-family
+  font-size: $scheduleView-titleSize;
+  font-weight: $scheduleView-titleWeight;
 }
 </style>

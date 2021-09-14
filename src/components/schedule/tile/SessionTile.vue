@@ -19,7 +19,7 @@
     <div class="sessionTile-speakers">
       <SpeakerGrid :speakers="sessionSpeakers" />
     </div>
-    <div class="sessionTile-actions">
+    <div class="sessionTile-actions" v-if="showActions">
       <div class="buttons is-right">
         <!-- 
           Add to calendar
@@ -107,7 +107,8 @@ export default {
     slotState: { type: String as PropType<SlotState>, required: true },
     session: { type: Object as PropType<Session>, required: true },
     schedule: { type: Object as PropType<FullSchedule>, required: true },
-    config: { type: Object as PropType<ScheduleConfig>, required: true }
+    config: { type: Object as PropType<ScheduleConfig>, required: true },
+    showActions: { type: Boolean, default: true }
   },
   computed: {
     speakers(): Speaker[] {

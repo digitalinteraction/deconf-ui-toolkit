@@ -26,6 +26,7 @@
           :session="session"
           :schedule="schedule"
           :config="config"
+          :show-actions="false"
         />
       </SessionBoard>
     </div>
@@ -64,8 +65,6 @@ import {
 interface Data {
   filters: ScheduleFilterRecord;
 }
-
-// TODO: should $i18n.locale be a prop?
 
 export default {
   name: 'WhatsOnView',
@@ -113,9 +112,13 @@ export default {
 </script>
 
 <style lang="scss">
+$whatsOn-background: $background !default;
+$whatsOn-titleSize: $size-3 !default;
+$whatsOn-titleWeight: bold !default;
+
 .whatsOnView {
   flex: 1; // Fill AppLayout
-  background: $background;
+  background: $whatsOn-background;
   padding-bottom: $block-spacing * 5;
 }
 
@@ -126,19 +129,12 @@ export default {
 }
 
 .whatsOnView-title {
-  // TODO: what happened to this? wasn't there a mixin?
-  // font-family: $title-font;
-  font-size: $size-3;
-  font-weight: bold;
+  // TODO: font-family
+  font-size: $whatsOn-titleSize;
+  font-weight: $whatsOn-titleWeight;
 }
 
-// TODO: update SessionBoard component
-.whatsOnView .sessionBoard {
-  margin: 0;
-  padding: 1.5rem;
-}
-
-// TODO: move to deconf as a configuration
+// TODO: move to SessionTile as a configuration
 .whatsOnView .sessionTile-actions {
   display: none;
 }

@@ -185,10 +185,11 @@ const LINKS_INTERVAL = 60 * 1000;
 // - deconf.session.generalLink
 //
 // icons
-// - fas calendar-plus
+// - n/a
 //
 // sass
-// - n/a
+// - $sessionView-titleSize
+// - $sessionView-titleWeight
 //
 
 interface Data {
@@ -383,16 +384,17 @@ export default {
 </script>
 
 <style lang="scss">
+$sessionView-titleSize: $size-3 !default;
+$sessionView-titleWeight: bold !default;
+
 .sessionView {
   flex: 1; // Fill AppLayout
 }
 
-.sessionView-header {
-}
 .sessionView-title {
-  // TODO: @include title-font
-  font-size: $size-3;
-  font-weight: bold;
+  // TODO: font-family
+  font-size: $sessionView-titleSize;
+  font-weight: $sessionView-titleWeight;
   line-height: 1;
 }
 
