@@ -23,7 +23,7 @@ Vue.component('router-link', {
   methods: {
     log() {
       const route = this.to;
-      action(`[router] ${route.name}`)(route);
+      action(`[router] ${route.name || route}`)(route.params);
     }
   }
 });
