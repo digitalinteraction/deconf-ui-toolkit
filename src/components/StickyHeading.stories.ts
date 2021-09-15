@@ -1,8 +1,8 @@
-import { Meta, Story } from '@storybook/vue';
-import { createContent, BrandA, mockSettings } from '../story-lib/module';
+import { Meta, Story } from '@storybook/vue3'
+import { createContent, BrandA, mockSettings } from '../story-lib/module'
 
-import StickyHeading from './StickyHeading.vue';
-import AppLayout from '../layouts/AppLayout.vue';
+import StickyHeading from './StickyHeading.vue'
+import AppLayout from '../layouts/AppLayout.vue'
 
 export default {
   title: 'Component/StickyHeading',
@@ -11,21 +11,21 @@ export default {
     titleClass: {
       control: {
         type: 'select',
-        options: ['is-primary', 'is-dark']
-      }
-    }
-  }
-} as Meta;
+        options: ['is-primary', 'is-dark'],
+      },
+    },
+  },
+} as Meta
 
-const Content = createContent();
+const Content = createContent()
 
 const Template: Story = (args, { argTypes }) => ({
   components: { StickyHeading, Content, AppLayout, BrandA },
   props: ['title', 'titleClass'],
   data() {
     return {
-      appSettings: mockSettings()
-    };
+      appSettings: mockSettings(),
+    }
   },
   template: `
     <div>
@@ -51,17 +51,17 @@ const Template: Story = (args, { argTypes }) => ({
         </StickyHeading>
       </AppLayout>
     </div>
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   title: 'This is a title',
-  titleClass: 'is-primary'
-};
+  titleClass: 'is-primary',
+}
 Default.parameters = {
   layout: 'fullscreen',
   controls: {
-    exclude: ['default']
-  }
-};
+    exclude: ['default'],
+  },
+}

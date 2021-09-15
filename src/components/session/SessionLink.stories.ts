@@ -1,10 +1,10 @@
-import { Meta, Story } from '@storybook/vue';
-import SessionLink from './SessionLink.vue';
+import { Meta, Story } from '@storybook/vue3'
+import SessionLink from './SessionLink.vue'
 
 export default {
   title: 'Session/SessionLink',
-  component: SessionLink
-} as Meta;
+  component: SessionLink,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionLink },
@@ -13,11 +13,11 @@ const Template: Story = (args, { argTypes }) => ({
     <div style="max-width: 420px">
       <SessionLink :title="title" :link="link" />
     </div>
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   title: 'Join the zoom',
-  link: 'https://zoom.us/u/123456789'
-};
+  link: 'https://zoom.us/u/123456789',
+}

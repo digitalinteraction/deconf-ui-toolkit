@@ -1,13 +1,13 @@
-import { Meta, Story } from '@storybook/vue';
-import StaticLayout from './StaticLayout.vue';
-import { createContent } from '../story-lib/module';
+import { Meta, Story } from '@storybook/vue3'
+import StaticLayout from './StaticLayout.vue'
+import { createContent } from '../story-lib/module'
 
 export default {
   title: 'Layout/StaticLayout',
-  component: StaticLayout
-} as Meta;
+  component: StaticLayout,
+} as Meta
 
-const Content = createContent();
+const Content = createContent()
 
 const Template: Story = (args, { argTypes }) => ({
   components: { StaticLayout, Content },
@@ -21,19 +21,19 @@ const Template: Story = (args, { argTypes }) => ({
         <Content />
       </div>
     </StaticLayout>
-  `
-});
-Template.args = {};
+  `,
+})
+Template.args = {}
 
-export const Desktop = Template.bind({});
-Desktop.args = {};
+export const Desktop = Template.bind({})
+Desktop.args = {}
 Desktop.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Mobile = Template.bind({});
-Mobile.args = {};
+export const Mobile = Template.bind({})
+Mobile.args = {}
 Mobile.parameters = {
   layout: 'fullscreen',
-  viewport: { defaultViewport: 'mobile2' }
-};
+  viewport: { defaultViewport: 'mobile2' },
+}

@@ -1,13 +1,13 @@
-import { Meta, Story } from '@storybook/vue';
-import BoxContent from './BoxContent.vue';
-import { createContent } from '../story-lib/module';
+import { Meta, Story } from '@storybook/vue3'
+import BoxContent from './BoxContent.vue'
+import { createContent } from '../story-lib/module'
 
 export default {
   title: 'Component/BoxContent',
-  component: BoxContent
-} as Meta;
+  component: BoxContent,
+} as Meta
 
-const Content = createContent();
+const Content = createContent()
 
 const Template: Story = (args, { argTypes }) => ({
   components: { BoxContent, Content },
@@ -16,16 +16,16 @@ const Template: Story = (args, { argTypes }) => ({
     <BoxContent :title="title">
       <Content />
     </BoxContent>
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
-  title: 'Lorem ipsum sil dor amet'
-};
+  title: 'Lorem ipsum sil dor amet',
+}
 Default.parameters = {
   backgrounds: { default: 'dark' },
   controls: {
-    exclude: ['default']
-  }
-};
+    exclude: ['default'],
+  },
+}

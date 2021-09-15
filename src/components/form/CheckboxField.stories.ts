@@ -1,10 +1,10 @@
-import { Meta, Story } from '@storybook/vue';
-import CheckboxField from './CheckboxField.vue';
+import { Meta, Story } from '@storybook/vue3'
+import CheckboxField from './CheckboxField.vue'
 
 export default {
   title: 'Form/CheckboxField',
-  component: CheckboxField
-} as Meta;
+  component: CheckboxField,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { CheckboxField },
@@ -18,16 +18,16 @@ const Template: Story = (args, { argTypes }) => ({
       :has-error="hasError"
       :disabled="disabled"
     />
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   hasError: false,
-  disabled: false
-};
+  disabled: false,
+}
 Default.parameters = {
   controls: {
-    exclude: ['name', 'value', 'text', 'help']
-  }
-};
+    exclude: ['name', 'value', 'text', 'help'],
+  },
+}

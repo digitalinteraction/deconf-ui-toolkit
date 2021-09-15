@@ -1,38 +1,38 @@
-import Vue from 'vue';
+import { defineComponent } from 'vue'
 
 // TODO: refactor `Content = createContent()` to a component here
 
-export const BrandA = Vue.extend({
+export const BrandA = defineComponent({
   template: `
     <img
       src="/brand.svg"
       width="160"
       height="28"
     />
-  `
-});
+  `,
+})
 
-export const BrandB = Vue.extend({
+export const BrandB = defineComponent({
   template: `
     <img
       src="/openlab.svg"
       width="110"
       height="28"
     />
-  `
-});
+  `,
+})
 
-export const BrandC = Vue.extend({
+export const BrandC = defineComponent({
   template: `
     <img
       src="/square-brand.svg"
       width="64"
       height="64"
     />
-  `
-});
+  `,
+})
 
-export const LanguageControl = Vue.extend({
+export const LanguageControl = defineComponent({
   template: `
     <div class="select is-small">
       <select>
@@ -42,10 +42,10 @@ export const LanguageControl = Vue.extend({
         <option>AR</option>
       </select>
     </div>
-  `
-});
+  `,
+})
 
-export const MockAppLayout = Vue.extend({
+export const MockAppLayout = defineComponent({
   components: { BrandA },
   template: `
     <div class="position: relative">
@@ -58,5 +58,5 @@ export const MockAppLayout = Vue.extend({
         <slot />
       </div>
     </div>
-  `
-});
+  `,
+})

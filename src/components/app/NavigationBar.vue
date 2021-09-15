@@ -141,7 +141,6 @@ export default defineComponent({
     isLoggedIn: { type: Boolean, required: true },
     isInterpreter: { type: Boolean, required: true },
     routes: { type: Array as PropType<AppRoute[]>, required: true },
-    languages: { type: Array as PropType<SelectOption[]>, default: null },
   },
   computed: {
     activeClasses(): object {

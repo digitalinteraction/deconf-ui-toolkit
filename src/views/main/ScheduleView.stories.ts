@@ -1,22 +1,22 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta, Story } from '@storybook/vue3'
 import {
   createSchedule,
   dates,
   MockAppLayout,
-  randomSession
-} from '../../story-lib/module';
-import ScheduleView from './ScheduleView.vue';
+  randomSession,
+} from '../../story-lib/module'
+import ScheduleView from './ScheduleView.vue'
 
 export default {
   title: 'View/ScheduleView',
-  component: ScheduleView
-} as Meta;
+  component: ScheduleView,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { MockAppLayout, ScheduleView },
   props: ['isDuringConference', 'scheduleDate'],
   data() {
-    const schedule = createSchedule();
+    const schedule = createSchedule()
     return {
       schedule,
       sessions: [
@@ -29,13 +29,13 @@ const Template: Story = (args, { argTypes }) => ({
         randomSession(schedule),
         randomSession(schedule),
         randomSession(schedule),
-        randomSession(schedule)
+        randomSession(schedule),
       ],
       config: {
         tileHeader: ['type', 'track'],
-        tileAttributes: ['languages', 'themes', 'recorded']
-      }
-    };
+        tileAttributes: ['languages', 'themes', 'recorded'],
+      },
+    }
   },
   template: `
     <MockAppLayout>
@@ -48,32 +48,32 @@ const Template: Story = (args, { argTypes }) => ({
         :is-during-conference="isDuringConference"
       />
     </MockAppLayout>
-  `
-});
+  `,
+})
 
-export const Future = Template.bind({});
+export const Future = Template.bind({})
 Future.args = {
   scheduleDate: dates.past,
-  isDuringConference: true
-};
+  isDuringConference: true,
+}
 Future.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Present = Template.bind({});
+export const Present = Template.bind({})
 Present.args = {
   scheduleDate: dates.now,
-  isDuringConference: true
-};
+  isDuringConference: true,
+}
 Present.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Past = Template.bind({});
+export const Past = Template.bind({})
 Past.args = {
   scheduleDate: dates.future,
-  isDuringConference: false
-};
+  isDuringConference: false,
+}
 Past.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}

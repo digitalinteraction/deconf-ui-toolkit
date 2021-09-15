@@ -1,20 +1,20 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta, Story } from '@storybook/vue3'
 
-import UtilLayout from './UtilLayout.vue';
-import { BoxContent } from '../components/module';
+import UtilLayout from './UtilLayout.vue'
+import { BoxContent } from '../components/module'
 
-import { createContent, BrandA, LanguageControl } from '../story-lib/module';
+import { createContent, BrandA, LanguageControl } from '../story-lib/module'
 
 export default {
   title: 'Layout/UtilLayout',
-  component: UtilLayout
-} as Meta;
+  component: UtilLayout,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { UtilLayout, BoxContent, BrandA, LanguageControl },
   data: () => ({
     content: createContent(),
-    homeRoute: { name: 'HOME' }
+    homeRoute: { name: 'HOME' },
   }),
   template: `
     <UtilLayout :home-route="homeRoute">
@@ -25,16 +25,16 @@ const Template: Story = (args, { argTypes }) => ({
       </div>
       <LanguageControl slot="languageControl" />
     </UtilLayout>
-  `
-});
+  `,
+})
 
-export const Desktop = Template.bind({});
-Desktop.args = {};
-Desktop.parameters = { layout: 'fullscreen' };
+export const Desktop = Template.bind({})
+Desktop.args = {}
+Desktop.parameters = { layout: 'fullscreen' }
 
-export const Mobile = Template.bind({});
-Mobile.args = {};
+export const Mobile = Template.bind({})
+Mobile.args = {}
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}

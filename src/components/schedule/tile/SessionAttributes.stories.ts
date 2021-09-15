@@ -1,15 +1,15 @@
-import { Meta, Story } from '@storybook/vue';
-import SessionAttributes from './SessionAttributes.vue';
+import { Meta, Story } from '@storybook/vue3'
+import SessionAttributes from './SessionAttributes.vue'
 
 export default {
   title: 'Schedule/SessionAttributes',
   component: SessionAttributes,
   argTypes: {
     isRecorded: {
-      control: { type: 'boolean' }
-    }
-  }
-} as Meta;
+      control: { type: 'boolean' },
+    },
+  },
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionAttributes },
@@ -18,8 +18,8 @@ const Template: Story = (args, { argTypes }) => ({
     track: { id: 1, title: { en: 'AI and Agriculture' } },
     themes: [
       { id: '1', title: { en: 'OSS' } },
-      { id: '2', title: { en: 'Microservices' } }
-    ]
+      { id: '2', title: { en: 'Microservices' } },
+    ],
   }),
   template: `
     <SessionAttributes
@@ -28,12 +28,12 @@ const Template: Story = (args, { argTypes }) => ({
       :track="track"
       :themes="themes"
     />
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   languages: ['en', 'fr', 'es', 'ar'],
-  isRecorded: true
-};
-Default.parameters = {};
+  isRecorded: true,
+}
+Default.parameters = {}

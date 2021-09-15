@@ -1,17 +1,17 @@
-import { Meta, Story } from '@storybook/vue';
-import InlineFilter from './InlineFilter.vue';
-import type { FilterOption } from './FilterOption';
+import { Meta, Story } from '@storybook/vue3'
+import InlineFilter from './InlineFilter.vue'
+import type { FilterOption } from './FilterOption'
 
 export default {
   title: 'Schedule/InlineFilter',
-  component: InlineFilter
-} as Meta;
+  component: InlineFilter,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { InlineFilter },
   props: ['label', 'offLabel', 'options'],
   data: () => ({
-    value: null
+    value: null,
   }),
   template: `
     <InlineFilter
@@ -20,17 +20,17 @@ const Template: Story = (args, { argTypes }) => ({
       :off-label="offLabel"
       :options="options"
     />
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   label: 'This is a label',
   offLabel: 'All Selected',
   options: [
     { text: 'Option A', value: 'OptionA' },
     { text: 'Option B', value: 'OptionB' },
-    { text: 'Option C', value: 'OptionC' }
-  ] as FilterOption[]
-};
-Default.parameters = {};
+    { text: 'Option C', value: 'OptionC' },
+  ] as FilterOption[],
+}
+Default.parameters = {}

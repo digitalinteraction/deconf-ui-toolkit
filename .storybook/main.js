@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -9,22 +9,22 @@ module.exports = {
       name: '@storybook/preset-scss',
       options: {
         sassLoaderOptions: {
-          prependData: `
+          additionalData: `
             @import "~@/scss/common.scss";
-          `
-        }
-      }
-    }
+          `,
+        },
+      },
+    },
   ],
   webpackFinal: async (config, { configType }) => {
     //
-    // Add @ alias
+    // Add @ alias for above sass
     //
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname, '../src')
-    };
+      '@': path.resolve(__dirname, '../src'),
+    }
 
-    return config;
-  }
-};
+    return config
+  },
+}

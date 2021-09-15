@@ -1,10 +1,10 @@
-import { Meta, Story } from '@storybook/vue';
-import SelectField from './SelectField.vue';
+import { Meta, Story } from '@storybook/vue3'
+import SelectField from './SelectField.vue'
 
 export default {
   title: 'Form/SelectField',
-  component: SelectField
-} as Meta;
+  component: SelectField,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SelectField },
@@ -14,8 +14,8 @@ const Template: Story = (args, { argTypes }) => ({
       { value: 'option-a', text: 'Option A' },
       { value: 'option-b', text: 'Option B' },
       { value: 'option-c', text: 'Option C' },
-      { value: 'option-d', text: 'Option D' }
-    ]
+      { value: 'option-d', text: 'Option D' },
+    ],
   }),
   template: `
     <SelectField
@@ -29,17 +29,17 @@ const Template: Story = (args, { argTypes }) => ({
       :fullwidth="fullwidth"
       not-selected="Please select an option..."
     />
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   hasError: false,
   disabled: false,
-  fullwidth: false
-};
+  fullwidth: false,
+}
 Default.parameters = {
   controls: {
-    exclude: ['name', 'label', 'value', 'help', 'options', 'notSelected']
-  }
-};
+    exclude: ['name', 'label', 'value', 'help', 'options', 'notSelected'],
+  },
+}

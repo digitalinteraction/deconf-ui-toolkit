@@ -1,13 +1,13 @@
-import { Meta, Story } from '@storybook/vue';
-import ToggleContents from './ToggleContents.vue';
-import { createContent } from '../story-lib/module';
+import { Meta, Story } from '@storybook/vue3'
+import ToggleContents from './ToggleContents.vue'
+import { createContent } from '../story-lib/module'
 
 export default {
   title: 'Component/ToggleContents',
-  component: ToggleContents
-} as Meta;
+  component: ToggleContents,
+} as Meta
 
-const Content = createContent();
+const Content = createContent()
 
 const Template: Story = (args, { argTypes }) => ({
   components: { ToggleContents, Content },
@@ -21,43 +21,43 @@ const Template: Story = (args, { argTypes }) => ({
     >
       <Content />
     </ToggleContents>
-  `
-});
+  `,
+})
 
-export const Desktop = Template.bind({});
+export const Desktop = Template.bind({})
 Desktop.args = {
   title: '5 things',
   showButton: 'Show',
   hideButton: 'Hide',
-  forceOpen: false
-};
+  forceOpen: false,
+}
 Desktop.parameters = {
   controls: {
-    exclude: ['default']
-  }
-};
+    exclude: ['default'],
+  },
+}
 
-export const Mobile = Template.bind({});
+export const Mobile = Template.bind({})
 Mobile.args = {
   title: '5 things',
   showButton: 'Show',
   hideButton: 'Hide',
-  forceOpen: false
-};
+  forceOpen: false,
+}
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
   controls: {
-    exclude: ['default']
-  }
-};
+    exclude: ['default'],
+  },
+}
 
-export const Opened = Template.bind({});
+export const Opened = Template.bind({})
 Opened.args = {
   ...Desktop.args,
-  forceOpen: true
-};
+  forceOpen: true,
+}
 Opened.parameters = {
   controls: {
-    exclude: ['default']
-  }
-};
+    exclude: ['default'],
+  },
+}

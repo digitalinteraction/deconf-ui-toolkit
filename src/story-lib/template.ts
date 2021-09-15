@@ -7,19 +7,19 @@
 // and conformant to other storybooks
 //
 
-import { Story } from '@storybook/vue';
-import { Component } from 'vue';
+import { Story } from '@storybook/vue3'
+import { Component } from 'vue'
 
 export function createTemplate<T extends Record<string, Component>>(
   components: T
 ): Story {
-  const name = Object.keys(components)[0];
+  const name = Object.keys(components)[0]
 
   return (args, { argTypes }) => ({
     props: Object.keys(argTypes),
     components: components,
     template: `
       <${name} v-bind="{ ${Object.keys(argTypes).join(', ')} }" />
-    `
-  });
+    `,
+  })
 }

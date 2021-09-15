@@ -1,28 +1,28 @@
-import { Meta, Story } from '@storybook/vue';
-import { BackButton } from '../../components/module';
+import { Meta, Story } from '@storybook/vue3'
+import { BackButton } from '../../components/module'
 import {
   createSchedule,
   dates,
   MockAppLayout,
-  randomSession
-} from '../../story-lib/module';
-import SessionView from './SessionView.vue';
+  randomSession,
+} from '../../story-lib/module'
+import SessionView from './SessionView.vue'
 
 export default {
   title: 'View/SessionView',
-  component: SessionView
-} as Meta;
+  component: SessionView,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionView, MockAppLayout, BackButton },
   props: ['loggedIn', 'scheduleDate'],
   data() {
-    const schedule = createSchedule();
+    const schedule = createSchedule()
     const session = randomSession(schedule, {
       slot: 'slot-b',
-      participantCap: 50
-    });
-    return { schedule, session };
+      participantCap: 50,
+    })
+    return { schedule, session }
   },
   template: `
     <MockAppLayout>
@@ -36,50 +36,50 @@ const Template: Story = (args, { argTypes }) => ({
         <BackButton slot="backButton" to="/">Go back</BackButton>
       </SessionView>
     </MockAppLayout>
-  `
-});
+  `,
+})
 
-export const Future = Template.bind({});
+export const Future = Template.bind({})
 Future.args = {
   loggedIn: true,
-  scheduleDate: dates.past
-};
+  scheduleDate: dates.past,
+}
 Future.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Countdown = Template.bind({});
+export const Countdown = Template.bind({})
 Countdown.args = {
   loggedIn: true,
-  scheduleDate: dates.addMinutes(dates.now, -46, -23)
-};
+  scheduleDate: dates.addMinutes(dates.now, -46, -23),
+}
 Countdown.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Soon = Template.bind({});
+export const Soon = Template.bind({})
 Soon.args = {
   loggedIn: true,
-  scheduleDate: dates.addMinutes(dates.now, -17, -23)
-};
+  scheduleDate: dates.addMinutes(dates.now, -17, -23),
+}
 Soon.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Present = Template.bind({});
+export const Present = Template.bind({})
 Present.args = {
   loggedIn: true,
-  scheduleDate: dates.now
-};
+  scheduleDate: dates.now,
+}
 Present.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Past = Template.bind({});
+export const Past = Template.bind({})
 Past.args = {
   loggedIn: true,
-  scheduleDate: dates.future
-};
+  scheduleDate: dates.future,
+}
 Past.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}

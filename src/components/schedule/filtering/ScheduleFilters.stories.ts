@@ -1,17 +1,17 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta, Story } from '@storybook/vue3'
 import {
   dates,
   defaultSessionTypes,
   defaultThemes,
   defaultTracks,
-  mockSessionSlot
-} from '../../../story-lib/module';
-import ScheduleFilters from './ScheduleFilters.vue';
+  mockSessionSlot,
+} from '../../../story-lib/module'
+import ScheduleFilters from './ScheduleFilters.vue'
 
 export default {
   title: 'Schedule/ScheduleFilters',
-  component: ScheduleFilters
-} as Meta;
+  component: ScheduleFilters,
+} as Meta
 
 const ALL_FILTERS = [
   'queryFilter',
@@ -19,8 +19,8 @@ const ALL_FILTERS = [
   'trackFilter',
   'themeFilter',
   'dateFilter',
-  'isRecordedFilter'
-];
+  'isRecordedFilter',
+]
 
 const Template: Story = (args, { argTypes }) => ({
   components: { ScheduleFilters },
@@ -32,7 +32,7 @@ const Template: Story = (args, { argTypes }) => ({
     sessionSlots: [
       mockSessionSlot({ start: dates.addMinutes(dates.now, 0) }),
       mockSessionSlot({ start: dates.addMinutes(dates.now, 24 * 60) }),
-      mockSessionSlot({ start: dates.addMinutes(dates.now, 48 * 60) })
+      mockSessionSlot({ start: dates.addMinutes(dates.now, 48 * 60) }),
     ],
     filters: {
       query: '',
@@ -41,15 +41,15 @@ const Template: Story = (args, { argTypes }) => ({
       theme: null,
       date: null,
       isRecorded: null,
-      viewMode: 'all'
-    }
+      viewMode: 'all',
+    },
   }),
   computed: {
     enabledFilters(): unknown[] {
-      return ALL_FILTERS.map(k =>
+      return ALL_FILTERS.map((k) =>
         this[k] ? k.replace(/Filter$/, '') : undefined
-      ).filter(v => Boolean(v));
-    }
+      ).filter((v) => Boolean(v))
+    },
   },
   template: `
     <ScheduleFilters
@@ -60,10 +60,10 @@ const Template: Story = (args, { argTypes }) => ({
       :filters="filters"
       :enabled-filters="enabledFilters"
     />
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   queryFilter: true,
   sessionTypeFilter: true,
@@ -71,6 +71,6 @@ Default.args = {
   themeFilter: true,
   dateFilter: true,
   isRecordedFilter: true,
-  viewModeFilter: true
-};
-Default.parameters = {};
+  viewModeFilter: true,
+}
+Default.parameters = {}

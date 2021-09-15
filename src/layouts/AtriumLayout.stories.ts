@@ -1,19 +1,19 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta, Story } from '@storybook/vue3'
 
-import AtriumLayout from './AtriumLayout.vue';
+import AtriumLayout from './AtriumLayout.vue'
 import {
   HeroCard,
   BoxContent,
   ColorWidget,
-  SponsorGrid
-} from '../components/module';
+  SponsorGrid,
+} from '../components/module'
 
-import { createSponsors, createContent } from '../story-lib/module';
+import { createSponsors, createContent } from '../story-lib/module'
 
 export default {
   title: 'Layout/AtriumLayout',
-  component: AtriumLayout
-} as Meta;
+  component: AtriumLayout,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { AtriumLayout, HeroCard, BoxContent, ColorWidget, SponsorGrid },
@@ -22,25 +22,25 @@ const Template: Story = (args, { argTypes }) => ({
       {
         size: 'large',
         title: 'Platinum Sponsors',
-        sponsors: createSponsors(3)
+        sponsors: createSponsors(3),
       },
       {
         size: 'medium',
         title: 'Gold Sponsors',
-        sponsors: createSponsors(5)
+        sponsors: createSponsors(5),
       },
       {
         size: 'regular',
         title: 'Bronze Sponsors',
-        sponsors: createSponsors(10)
+        sponsors: createSponsors(10),
       },
       {
         size: 'small',
         title: 'Other Sponsors',
-        sponsors: createSponsors(20)
-      }
+        sponsors: createSponsors(20),
+      },
     ],
-    content: createContent()
+    content: createContent(),
   }),
   template: `
     <AtriumLayout>
@@ -78,15 +78,15 @@ const Template: Story = (args, { argTypes }) => ({
         </div>
       <SponsorGrid slot="bottom" :groups="sponsors" />
     </AtriumLayout>
-  `
-});
+  `,
+})
 
-export const Desktop = Template.bind({});
-Desktop.args = {};
+export const Desktop = Template.bind({})
+Desktop.args = {}
 
-export const Mobile = Template.bind({});
-Mobile.args = {};
+export const Mobile = Template.bind({})
+Mobile.args = {}
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}

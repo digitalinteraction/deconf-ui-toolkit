@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/vue';
-import JoinSession from './JoinSession.vue';
+import { Meta, Story } from '@storybook/vue3'
+import JoinSession from './JoinSession.vue'
 
 export default {
   title: 'Schedule/JoinSession',
@@ -8,11 +8,11 @@ export default {
     slotState: {
       control: {
         type: 'select',
-        options: ['future', 'soon', 'present', 'past']
-      }
-    }
-  }
-} as Meta;
+        options: ['future', 'soon', 'present', 'past'],
+      },
+    },
+  },
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { JoinSession },
@@ -22,12 +22,12 @@ const Template: Story = (args, { argTypes }) => ({
       :slot-state="slotState"
       :session-id="sessionId"
     />
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   slotState: 'future',
-  sessionId: 'abcdef'
-};
-Default.parameters = {};
+  sessionId: 'abcdef',
+}
+Default.parameters = {}

@@ -1,7 +1,7 @@
-import { Meta, Story } from '@storybook/vue';
-import SessionLayout from './SessionLayout.vue';
-import { BackButton, SessionState } from '../components/module';
-import { createContent } from '../story-lib/module';
+import { Meta, Story } from '@storybook/vue3'
+import SessionLayout from './SessionLayout.vue'
+import { BackButton, SessionState } from '../components/module'
+import { createContent } from '../story-lib/module'
 
 export default {
   title: 'Layout/SessionLayout',
@@ -10,13 +10,13 @@ export default {
     slotState: {
       control: {
         type: 'select',
-        options: ['future', 'soon', 'past', 'present']
-      }
-    }
-  }
-} as Meta;
+        options: ['future', 'soon', 'past', 'present'],
+      },
+    },
+  },
+} as Meta
 
-const Content = createContent();
+const Content = createContent()
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionLayout, BackButton, SessionState, Content },
@@ -32,24 +32,24 @@ const Template: Story = (args, { argTypes }) => ({
         <Content />
       </div>
     </SessionLayout>
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   slotState: 'future',
-  attendance: 123
-};
+  attendance: 123,
+}
 Default.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Mobile = Template.bind({});
+export const Mobile = Template.bind({})
 Mobile.args = {
   slotState: 'future',
-  attendance: 123
-};
+  attendance: 123,
+}
 Mobile.parameters = {
   layout: 'fullscreen',
-  viewport: { defaultViewport: 'mobile2' }
-};
+  viewport: { defaultViewport: 'mobile2' },
+}

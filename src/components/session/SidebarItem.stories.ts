@@ -1,11 +1,11 @@
-import { Meta, Story } from '@storybook/vue';
-import SidebarItem from './SidebarItem.vue';
-import { createText } from '../../story-lib/module';
+import { Meta, Story } from '@storybook/vue3'
+import SidebarItem from './SidebarItem.vue'
+import { createText } from '../../story-lib/module'
 
 export default {
   title: 'Session/SidebarItem',
-  component: SidebarItem
-} as Meta;
+  component: SidebarItem,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
@@ -22,8 +22,8 @@ const Template: Story = (args, { argTypes }) => ({
         <p>${createText(3)}</p>
       </SidebarItem>
     </div>
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = Template.bind({})
+Default.args = {}

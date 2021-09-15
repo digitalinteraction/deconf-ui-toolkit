@@ -7,23 +7,23 @@ import {
   SessionVisibility,
   Speaker,
   Theme,
-  Track
-} from '@openlab/deconf-shared';
-import { FullSchedule } from '../module';
-import { dates } from './dates';
+  Track,
+} from '@openlab/deconf-shared'
+import { FullSchedule } from '../lib/module'
+import { dates } from './dates'
 
 //
 // V2
 //
 
-const loremIpsum = `We gotta burn the rain forest, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.`;
+const loremIpsum = `We gotta burn the rain forest, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.`
 
 function makeFixture<T>(base: T) {
-  return (options: Partial<T> = {}): T => ({ ...base, ...options });
+  return (options: Partial<T> = {}): T => ({ ...base, ...options })
 }
 
 function localise(text: string) {
-  return { en: text, fr: text, es: text, ar: text };
+  return { en: text, fr: text, es: text, ar: text }
 }
 
 export const mockSession = makeFixture<Session>({
@@ -36,7 +36,7 @@ export const mockSession = makeFixture<Session>({
   title: localise('Session Title'),
   content: localise(loremIpsum),
   links: [
-    { type: 'video', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' }
+    { type: 'video', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
   ],
   hostLanguages: ['en'],
   enableInterpretation: false,
@@ -49,40 +49,40 @@ export const mockSession = makeFixture<Session>({
   state: SessionState.confirmed,
   participantCap: null,
   proxyUrl: undefined,
-  hideFromSchedule: false
-});
+  hideFromSchedule: false,
+})
 
 export const mockSessionSlot = makeFixture<SessionSlot>({
   id: 'slot-a',
   start: dates.future,
-  end: dates.past
-});
+  end: dates.past,
+})
 
 export const mockSessionType = makeFixture<SessionType>({
   id: 'plenary',
   iconGroup: 'fab',
   iconName: 'youtube',
   layout: 'plenary',
-  title: { en: 'Plenary' }
-});
+  title: { en: 'Plenary' },
+})
 
 export const mockSpeaker = makeFixture<Speaker>({
   id: 'speaker-a',
   name: 'Speaker Name',
   role: localise('Speaker role'),
   bio: localise(loremIpsum),
-  headshot: '/headshot.svg'
-});
+  headshot: '/headshot.svg',
+})
 
 export const mockTrack = makeFixture<Track>({
   id: 'track-a',
-  title: localise('Track Name')
-});
+  title: localise('Track Name'),
+})
 
 export const mockTheme = makeFixture<Theme>({
   id: 'theme-a',
-  title: localise('Theme Name')
-});
+  title: localise('Theme Name'),
+})
 
 export const mockSettings = makeFixture<ConferenceConfig>({
   atrium: { enabled: true, visible: true },
@@ -93,25 +93,25 @@ export const mockSettings = makeFixture<ConferenceConfig>({
 
   startDate: new Date(),
   endDate: new Date(),
-  isStatic: false
-});
+  isStatic: false,
+})
 
 //
 // v1
 //
 
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 export function createSponsors(n: number) {
-  const s = [];
+  const s = []
   for (let i = 0; i < n; i++) {
     s.push({
       title: `Corp ${alphabet[i % alphabet.length]}`,
       image: '/openlab.svg',
-      href: 'https://openlab.ncl.ac.uk'
-    });
+      href: 'https://openlab.ncl.ac.uk',
+    })
   }
-  return s;
+  return s
 }
 
 export function defaultSessionTypes() {
@@ -121,16 +121,16 @@ export function defaultSessionTypes() {
       iconGroup: 'fab',
       iconName: 'youtube',
       layout: 'plenary',
-      title: { en: 'Plenary' }
+      title: { en: 'Plenary' },
     },
     {
       id: 'workshop',
       iconGroup: 'fas',
       iconName: 'users',
       layout: 'workshop',
-      title: { en: 'Workshop' }
-    }
-  ];
+      title: { en: 'Workshop' },
+    },
+  ]
 }
 
 export function defaultSpeakers() {
@@ -138,49 +138,49 @@ export function defaultSpeakers() {
     mockSpeaker({
       id: '1',
       name: 'Geoff Testington',
-      role: localise('Chief Financial Officer')
+      role: localise('Chief Financial Officer'),
     }),
     mockSpeaker({
       id: '2',
       name: 'Felicity Wainwright',
-      role: localise('Chief Technical Officer')
+      role: localise('Chief Technical Officer'),
     }),
     mockSpeaker({
       id: '3',
       name: 'David Edge',
-      role: localise('Internal Interactions Designer')
+      role: localise('Internal Interactions Designer'),
     }),
     mockSpeaker({
       id: '4',
       name: 'Lorena Bernal',
-      role: localise('Chief Metrics Specialist')
+      role: localise('Chief Metrics Specialist'),
     }),
     mockSpeaker({
       id: '5',
       name: 'Katlyn Swift',
-      role: localise('Lead Implementation Coordinator')
+      role: localise('Lead Implementation Coordinator'),
     }),
     mockSpeaker({
       id: '6',
       name: 'Sid Hills',
-      role: localise('Product Data Associate')
+      role: localise('Product Data Associate'),
     }),
     mockSpeaker({
       id: '7',
       name: 'Noah Senior',
-      role: localise('Principal Identity Planner')
+      role: localise('Principal Identity Planner'),
     }),
     mockSpeaker({
       id: '8',
       name: 'Dolcie Wallace',
-      role: localise('Dynamic Interactions Analyst')
+      role: localise('Dynamic Interactions Analyst'),
     }),
     mockSpeaker({
       id: '9',
       name: 'Farrell Rocha',
-      role: localise('Human Paradigm Liason')
-    })
-  ];
+      role: localise('Human Paradigm Liason'),
+    }),
+  ]
 }
 
 export function defaultTracks() {
@@ -188,18 +188,18 @@ export function defaultTracks() {
     mockTrack({ id: 'track-a', title: localise('AI and Agriculture') }),
     mockTrack({
       id: 'track-b',
-      title: localise('Machine Learning with Fish')
+      title: localise('Machine Learning with Fish'),
     }),
-    mockTrack({ id: 'track-c', title: localise('Block Chain Horoscopes') })
-  ];
+    mockTrack({ id: 'track-c', title: localise('Block Chain Horoscopes') }),
+  ]
 }
 
 export function defaultThemes() {
   return [
     mockTheme({ id: 'theme-a', title: localise('Inclusivity') }),
     mockTheme({ id: 'theme-b', title: localise('Awareness') }),
-    mockTheme({ id: 'theme-c', title: localise('Engagement') })
-  ];
+    mockTheme({ id: 'theme-c', title: localise('Engagement') }),
+  ]
 }
 
 export function createSchedule(): FullSchedule {
@@ -209,41 +209,41 @@ export function createSchedule(): FullSchedule {
       {
         id: 'slot-a',
         start: dates.addMinutes(dates.now, -45),
-        end: dates.addMinutes(dates.now, -15)
+        end: dates.addMinutes(dates.now, -15),
       },
       {
         id: 'slot-b',
         start: dates.addMinutes(dates.now, -15),
-        end: dates.addMinutes(dates.now, 15)
+        end: dates.addMinutes(dates.now, 15),
       },
       {
         id: 'slot-c',
         start: dates.addMinutes(dates.now, 15),
-        end: dates.addMinutes(dates.now, 75)
-      }
+        end: dates.addMinutes(dates.now, 75),
+      },
     ],
     tracks: defaultTracks(),
     themes: defaultThemes(),
     types: defaultSessionTypes(),
     settings: mockSettings(),
-    sessions: []
-  };
+    sessions: [],
+  }
 }
 
 export function randomNumber(min: number, max: number) {
-  return min + Math.floor(Math.random() * (max - min));
+  return min + Math.floor(Math.random() * (max - min))
 }
 
 export function randomElement<T>(array: T[]): T {
-  return array[randomNumber(0, array.length)];
+  return array[randomNumber(0, array.length)]
 }
 
 export function randomElements<T>(array: T[], max = array.length): T[] {
-  const count = randomNumber(1, Math.min(max, array.length));
-  return array.slice(0, count).sort(() => (Math.random() > 0.5 ? -1 : 1));
+  const count = randomNumber(1, Math.min(max, array.length))
+  return array.slice(0, count).sort(() => (Math.random() > 0.5 ? -1 : 1))
 }
 
-let randomId = 1;
+let randomId = 1
 
 export function randomSession(
   schedule: FullSchedule,
@@ -254,8 +254,8 @@ export function randomSession(
     type: randomElement(schedule.types).id,
     slot: randomElement(schedule.slots).id,
     track: randomElement(schedule.tracks).id,
-    themes: randomElements(schedule.themes, 3).map(t => t.id),
-    speakers: randomElements(schedule.speakers, 5).map(t => t.id),
-    ...options
-  });
+    themes: randomElements(schedule.themes, 3).map((t) => t.id),
+    speakers: randomElements(schedule.speakers, 5).map((t) => t.id),
+    ...options,
+  })
 }

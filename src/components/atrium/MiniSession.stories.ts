@@ -1,19 +1,19 @@
-import { Meta, Story } from '@storybook/vue';
-import MiniSession from './MiniSession.vue';
+import { Meta, Story } from '@storybook/vue3'
+import MiniSession from './MiniSession.vue'
 
-import { dates, mockSession, mockSessionSlot } from '../../story-lib/module';
+import { dates, mockSession, mockSessionSlot } from '../../story-lib/module'
 
 export default {
   title: 'Atrium/MiniSession',
-  component: MiniSession
-} as Meta;
+  component: MiniSession,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { MiniSession },
   data: () => ({
     session: mockSession(),
     sessionSlot: args.sessionSlot,
-    currentDate: dates.now
+    currentDate: dates.now,
   }),
   template: `
     <MiniSession
@@ -21,22 +21,22 @@ const Template: Story = (args, { argTypes }) => ({
       :session-slot="sessionSlot"
       :current-date="currentDate"
     />
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   sessionSlot: mockSessionSlot({
-    start: dates.addMinutes(dates.now, 69, 11)
-  })
-};
-Default.parameters = {};
+    start: dates.addMinutes(dates.now, 69, 11),
+  }),
+}
+Default.parameters = {}
 
-export const Live = Template.bind({});
+export const Live = Template.bind({})
 Live.args = {
   sessionSlot: mockSessionSlot({
     start: dates.addMinutes(dates.now, -15),
-    end: dates.addMinutes(dates.now, 15)
-  })
-};
-Live.parameters = {};
+    end: dates.addMinutes(dates.now, 15),
+  }),
+}
+Live.parameters = {}

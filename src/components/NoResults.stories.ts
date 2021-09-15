@@ -1,10 +1,10 @@
-import { Meta, Story } from '@storybook/vue';
-import NoResults from './NoResults.vue';
+import { Meta, Story } from '@storybook/vue3'
+import NoResults from './NoResults.vue'
 
 export default {
   title: 'Component/NoResults',
-  component: NoResults
-} as Meta;
+  component: NoResults,
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { NoResults },
@@ -12,13 +12,13 @@ const Template: Story = (args, { argTypes }) => ({
     <NoResults>
       There are no results
     </NoResults>
-  `
-});
+  `,
+})
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = Template.bind({})
+Default.args = {}
 Default.parameters = {
   controls: {
-    exclude: ['default']
-  }
-};
+    exclude: ['default'],
+  },
+}

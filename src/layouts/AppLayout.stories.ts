@@ -1,37 +1,37 @@
 /* eslint-disable @typescript-eslint/camelcase */
 
-import { Meta, Story } from '@storybook/vue';
-import AppLayout from './AppLayout.vue';
+import { Meta, Story } from '@storybook/vue3'
+import AppLayout from './AppLayout.vue'
 import {
   mockSettings,
   createContent,
   BrandC,
   BrandB,
   BrandA,
-  LanguageControl
-} from '../story-lib/module';
-import { AuthToken } from '@openlab/deconf-shared';
+  LanguageControl,
+} from '../story-lib/module'
+import { AuthToken } from '@openlab/deconf-shared'
 import {
   AtriumIcon,
   CoffeeChatIcon,
   HelpDeskIcon,
   ScheduleIcon,
-  WhatsOnIcon
-} from '../icons/module';
+  WhatsOnIcon,
+} from '../icons/module'
 
 export default {
   title: 'Layout/AppLayout',
-  component: AppLayout
-} as Meta;
+  component: AppLayout,
+} as Meta
 
 const user: AuthToken = {
   kind: 'auth',
   sub: 1,
   user_roles: ['attendee', 'interpreter'],
-  user_lang: 'en'
-};
+  user_lang: 'en',
+}
 
-const Content = createContent();
+const Content = createContent()
 
 const Template: Story = (args, { argTypes }) => ({
   components: { AppLayout, Content, BrandA, BrandB, BrandC, LanguageControl },
@@ -43,41 +43,41 @@ const Template: Story = (args, { argTypes }) => ({
         title: 'Atrium',
         name: 'Atrium',
         enabled: true,
-        icon: AtriumIcon
+        icon: AtriumIcon,
       },
       {
         title: 'Whats On',
         name: 'WhatsOn',
         enabled: true,
-        icon: WhatsOnIcon
+        icon: WhatsOnIcon,
       },
       {
         title: 'Schedule',
         name: 'Schedule',
         enabled: true,
-        icon: ScheduleIcon
+        icon: ScheduleIcon,
       },
       {
         title: 'CoffeeChat',
         name: 'CoffeeChat',
         enabled: false,
-        icon: CoffeeChatIcon
+        icon: CoffeeChatIcon,
       },
       {
         title: 'HelpDesk',
         name: 'HelpDesk',
         enabled: false,
-        icon: HelpDeskIcon
-      }
-    ]
+        icon: HelpDeskIcon,
+      },
+    ],
   }),
   computed: {
     user() {
-      return this.isLoggedIn ? user : null;
+      return this.isLoggedIn ? user : null
     },
     contentLines() {
-      return new Array(this.contentSize as number).fill(0).map((v, k) => k);
-    }
+      return new Array(this.contentSize as number).fill(0).map((v, k) => k)
+    },
   },
   template: `
     <AppLayout :appSettings="appSettings" :user="user" :routes="routes">
@@ -101,33 +101,33 @@ const Template: Story = (args, { argTypes }) => ({
         </div>
       </div>
     </AppLayout>
-  `
-});
+  `,
+})
 
-export const Desktop = Template.bind({});
+export const Desktop = Template.bind({})
 Desktop.args = {
   isLoggedIn: true,
-  contentSize: 3
-};
+  contentSize: 3,
+}
 Desktop.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Short = Template.bind({});
+export const Short = Template.bind({})
 Short.args = {
   isLoggedIn: true,
-  contentSize: 0
-};
+  contentSize: 0,
+}
 Short.parameters = {
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
 
-export const Mobile = Template.bind({});
+export const Mobile = Template.bind({})
 Mobile.args = {
   isLoggedIn: true,
-  contentSize: 3
-};
+  contentSize: 3,
+}
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
-  layout: 'fullscreen'
-};
+  layout: 'fullscreen',
+}
