@@ -7,7 +7,7 @@
 process.env.VUE_APP_NAME = require('./package.json').name;
 process.env.VUE_APP_VERSION = require('./package.json').version;
 
-// Add an extra import to all sass imports
+/** @type {import("@vue/cli-service").ProjectOptions} */
 module.exports = {
   chainWebpack: () => {
     //
