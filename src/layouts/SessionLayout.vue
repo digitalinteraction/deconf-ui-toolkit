@@ -4,18 +4,18 @@
       <section class="section">
         <div class="sessionLayout-header">
           <div class="sessionLayout-back">
-            <slot name="backButton" />
+            <slot name="backButton"></slot>
           </div>
           <div class="sessionLayout-state">
-            <slot name="state" />
+            <slot name="state"></slot>
           </div>
         </div>
         <div class="sessionLayout-box">
           <div class="sessionLayout-main">
-            <slot name="main" />
+            <slot name="main"></slot>
           </div>
           <div class="sessionLayout-sidebar">
-            <slot name="sidebar" />
+            <slot name="sidebar"></slot>
           </div>
         </div>
       </section>
@@ -24,6 +24,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -35,9 +37,9 @@
 // - $sessionLayout-background
 //
 
-export default {
-  name: 'SessionLayout'
-};
+export default defineComponent({
+  name: 'SessionLayout',
+})
 </script>
 
 <style lang="scss">

@@ -47,29 +47,29 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { PropType, defineComponent } from 'vue'
 import {
   ScheduleConfig,
   SlotState,
   Routes,
   localiseFromObject,
   createICalEvent,
-  FullSchedule
-} from '../../../lib/module';
+  FullSchedule,
+} from '../../../lib/module'
 
-import SessionHeader from './SessionHeader.vue';
-import SessionAttributes from './SessionAttributes.vue';
-import SpeakerGrid from '../SpeakerGrid.vue';
-import AddToCalendar from '../actions/AddToCalendar.vue';
-import JoinSession from '../actions/JoinSession.vue';
+import SessionHeader from './SessionHeader.vue'
+import SessionAttributes from './SessionAttributes.vue'
+import SpeakerGrid from '../SpeakerGrid.vue'
+import AddToCalendar from '../actions/AddToCalendar.vue'
+import JoinSession from '../actions/JoinSession.vue'
 import {
   Session,
   SessionSlot,
   SessionType,
   Speaker,
   Theme,
-  Track
-} from '@openlab/deconf-shared';
+  Track,
+} from '@openlab/deconf-shared'
 
 //
 // i18n
@@ -87,111 +87,111 @@ import {
 //
 
 function mapById<T extends { id: string }>(records: T[]): Map<string, T> {
-  return new Map(records.map(r => [r.id, r]));
+  return new Map(records.map((r) => [r.id, r]))
 }
 
 function lookup<T extends { id: string }>(records: T[], query: string) {
-  return records.find(r => r.id === query) as T;
+  return records.find((r) => r.id === query) as T
 }
 
-export default {
+export default defineComponent({
   name: 'SessionTile',
   components: {
     SessionHeader,
     SessionAttributes,
     SpeakerGrid,
     AddToCalendar,
-    JoinSession
+    JoinSession,
   },
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
     session: { type: Object as PropType<Session>, required: true },
     schedule: { type: Object as PropType<FullSchedule>, required: true },
     config: { type: Object as PropType<ScheduleConfig>, required: true },
-    showActions: { type: Boolean, default: true }
+    showActions: { type: Boolean, default: true },
   },
   computed: {
     speakers(): Speaker[] {
-      const map = mapById(this.schedule.speakers);
+      const map = mapById(this.schedule.speakers)
       return this.session.speakers
-        .map(id => map.get(id) as Speaker)
-        .filter(s => Boolean(s));
+        .map((id) => map.get(id) as Speaker)
+        .filter((s) => Boolean(s))
     },
     themes(): Theme[] {
-      const map = mapById(this.schedule.themes);
+      const map = mapById(this.schedule.themes)
       return this.session.themes
-        .map(id => map.get(id) as Theme)
-        .filter(t => Boolean(t));
+        .map((id) => map.get(id) as Theme)
+        .filter((t) => Boolean(t))
     },
     sessionType(): SessionType {
       // TODO: handle this failing
-      return lookup(this.schedule.types, this.session.type);
+      return lookup(this.schedule.types, this.session.type)
     },
     sessionSlot(): SessionSlot {
       // TODO: handle this failing
-      return lookup(this.schedule.slots, this.session.slot as string);
+      return lookup(this.schedule.slots, this.session.slot as string)
     },
     track(): Track {
-      return lookup(this.schedule.tracks, this.session.track);
+      return lookup(this.schedule.tracks, this.session.track)
     },
     sessionRoute(): object {
-      return { name: Routes.Session, params: { sessionId: this.session.id } };
+      return { name: Routes.Session, params: { sessionId: this.session.id } }
     },
     sessionSpeakers(): Speaker[] {
       return this.session.speakers
-        .map(id => this.speakers.find(s => s.id === id) as Speaker)
-        .filter(s => Boolean(s));
+        .map((id) => this.speakers.find((s) => s.id === id) as Speaker)
+        .filter((s) => Boolean(s))
     },
     localeTitle(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.session.title);
+      return localiseFromObject(this.$i18n.locale, this.session.title)
     },
     localeContent(): string | null {
       const content = localiseFromObject(
         this.$i18n.locale,
         this.session.content
-      );
-      return content && this.trim(content, 300);
+      )
+      return content && this.trim(content, 300)
     },
     canAddToCalendar(): boolean {
-      return ['soon', 'future'].includes(this.slotState);
+      return ['soon', 'future'].includes(this.slotState)
     },
     canJoinSession(): boolean {
-      return true;
+      return true
     },
-    calendarLink(): string | null {
-      return this.$deconf.getCalendarLink(this.session);
+    calendarLink(): string {
+      return this.$deconf.getCalendarLink(this.session)
     },
     headerAttributes(): object {
-      const set = new Set(this.config.tileHeader);
+      const set = new Set(this.config.tileHeader)
 
       return {
         sessionType: set.has('type') ? this.sessionType : null,
         track: set.has('track') ? this.track : null,
-        themes: set.has('themes') ? this.themes : null
-      };
+        themes: set.has('themes') ? this.themes : null,
+      }
     },
     attributesAttributes(): object {
-      const set = new Set(this.config.tileAttributes);
+      const set = new Set(this.config.tileAttributes)
 
       return {
         languages: set.has('languages') ? this.session.hostLanguages : null,
         isRecorded: set.has('recorded') ? this.session.isRecorded : null,
         track: set.has('track') ? this.track : null,
-        themes: set.has('themes') ? this.themes : null
-      };
-    }
+        themes: set.has('themes') ? this.themes : null,
+      }
+    },
   },
   methods: {
     trim(value: string, length: number): string {
-      if (value.length < length) return value;
-      return `${value.substring(0, length)}…`;
+      if (value.length < length) return value
+      return `${value.substring(0, length)}…`
     },
     trackCalendar(): void {
       // Track the clicking of a calendar
-      this.$deconf.trackMetric(createICalEvent(this.session.id));
-    }
-  }
-};
+      this.$deconf.trackMetric(createICalEvent(this.session.id))
+    },
+  },
+})
 </script>
 
 <style lang="scss">

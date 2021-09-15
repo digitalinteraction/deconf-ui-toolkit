@@ -9,7 +9,7 @@
         :type="type"
         class="input"
         :class="inputClass"
-        :value="value"
+        :value="modelValue"
         @input="onInput"
         @keyup.enter="onEnter"
         :placeholder="placeholder"
@@ -23,6 +23,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // Wraps a bulma input field
 //
@@ -38,33 +40,33 @@
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'TextField',
   props: {
     name: { type: String, required: true },
     label: { type: String, required: true },
-    value: { type: String, required: true },
+    modelValue: { type: String, required: true },
     placeholder: { type: String, default: '' },
     help: { type: String, default: null },
     hasError: { type: Boolean, default: false },
     type: { type: String, default: 'text' },
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
   },
   computed: {
     inputClass(): unknown {
       return {
-        'is-danger': this.hasError
-      };
-    }
+        'is-danger': this.hasError,
+      }
+    },
   },
   methods: {
     onInput(event: Event): void {
-      if (!(event.target instanceof HTMLInputElement)) return;
-      this.$emit('input', event.target.value);
+      if (!(event.target instanceof HTMLInputElement)) return
+      this.$emit('update:modelValue', event.target.value)
     },
     onEnter(): void {
-      this.$emit('enter');
-    }
-  }
-};
+      this.$emit('enter')
+    },
+  },
+})
 </script>

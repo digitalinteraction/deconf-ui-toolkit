@@ -3,7 +3,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link :to="homeRoute" class="navbar-item" active-class="">
-          <slot name="brandA" />
+          <slot name="brandA"></slot>
         </router-link>
 
         <!-- Burger -->
@@ -32,8 +32,8 @@
             :title="item.title"
             class="navbar-item"
           >
-            <component :is="item.icon" class="navbar-item-icon" />
-            <span class="navbar-item-text" v-text="item.title" />
+            <component :is="item.icon" class="navbar-item-icon"></component>
+            <span class="navbar-item-text" v-text="item.title"></span>
             <span v-if="!item.enabled">
               &nbsp;
               {{ $t('deconf.navigationBar.unavailable') }}
@@ -45,14 +45,14 @@
           Show the owner brand if provided
         -->
           <div v-if="$slots.brandB" class="navbar-item">
-            <slot name="brandB" />
+            <slot name="brandB"></slot>
           </div>
 
           <!-- 
             Language control
           -->
           <div class="navbar-item" v-if="$slots.languageControl">
-            <slot name="languageControl" />
+            <slot name="languageControl"></slot>
           </div>
 
           <!-- 
@@ -103,14 +103,12 @@
 </template>
 
 <script lang="ts">
-import { AppRoute } from '../../lib/module';
-import { PropType } from 'vue';
-import { Routes } from '../../lib/constants';
-import { Location } from 'vue-router';
+import { AppRoute, RouterLocation, FontAwesomeIcon } from '../../lib/module'
+import { defineComponent, PropType } from 'vue'
+import { Routes } from '../../lib/constants'
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { SelectOption } from '../form/select-option';
-import { ConferenceConfig } from '@openlab/deconf-shared/dist/conference';
+import { SelectOption } from '../form/select-option'
+import { ConferenceConfig } from '@openlab/deconf-shared'
 
 //
 // i18n
@@ -130,49 +128,49 @@ import { ConferenceConfig } from '@openlab/deconf-shared/dist/conference';
 // - $navigationBar-mobileColor
 //
 
-export default {
+export default defineComponent({
   name: 'NavigationBar',
   components: { FontAwesomeIcon },
   data() {
     return {
-      isShowingMenu: false
-    };
+      isShowingMenu: false,
+    }
   },
   props: {
     appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
     isLoggedIn: { type: Boolean, required: true },
     isInterpreter: { type: Boolean, required: true },
     routes: { type: Array as PropType<AppRoute[]>, required: true },
-    languages: { type: Array as PropType<SelectOption[]>, default: null }
+    languages: { type: Array as PropType<SelectOption[]>, default: null },
   },
   computed: {
     activeClasses(): object {
       return {
-        'is-active': this.isShowingMenu
-      };
+        'is-active': this.isShowingMenu,
+      }
     },
-    homeRoute(): Location {
-      return { name: Routes.Atrium };
+    homeRoute(): RouterLocation {
+      return { name: Routes.Atrium }
     },
-    interpretRoute(): Location {
-      return { name: Routes.InterpretHome };
+    interpretRoute(): RouterLocation {
+      return { name: Routes.InterpretHome }
     },
-    profileRoute(): Location {
-      return { name: Routes.Profile };
+    profileRoute(): RouterLocation {
+      return { name: Routes.Profile }
     },
-    loginRoute(): Location {
-      return { name: Routes.Login };
+    loginRoute(): RouterLocation {
+      return { name: Routes.Login }
     },
-    registerRoute(): Location {
-      return { name: Routes.Register };
-    }
+    registerRoute(): RouterLocation {
+      return { name: Routes.Register }
+    },
   },
   methods: {
     toggleMenu(): void {
-      this.isShowingMenu = !this.isShowingMenu;
-    }
-  }
-};
+      this.isShowingMenu = !this.isShowingMenu
+    },
+  },
+})
 </script>
 
 <style lang="scss">

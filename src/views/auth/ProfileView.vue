@@ -36,8 +36,8 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { createLogoutEvent, createUnregisterEvent } from '../../lib/metrics';
+import { PropType, defineComponent } from 'vue'
+import { createLogoutEvent, createUnregisterEvent } from '../../lib/metrics'
 
 //
 // i18n
@@ -62,43 +62,41 @@ import { createLogoutEvent, createUnregisterEvent } from '../../lib/metrics';
 //
 
 interface ProfileField {
-  label: string;
-  value: string;
+  label: string
+  value: string
 }
 
-export default {
+export default defineComponent({
   name: 'ProfileView',
   props: {
     apiModule: { type: String, required: true },
-    fields: { type: Array as PropType<ProfileField[]>, required: true }
+    fields: { type: Array as PropType<ProfileField[]>, required: true },
   },
   methods: {
     logout() {
-      this.$deconf.trackMetric(createLogoutEvent());
+      this.$deconf.trackMetric(createLogoutEvent())
 
-      this.$emit('logout');
+      this.$emit('logout')
     },
     async unregister() {
-      const msg = this.$t('deconf.profile.deleteText');
-      const confirmed = window.confirm(msg as string);
+      const msg = this.$t('deconf.profile.deleteText')
+      const confirmed = window.confirm(msg as string)
 
-      this.$deconf.trackMetric(createUnregisterEvent(confirmed));
+      this.$deconf.trackMetric(createUnregisterEvent(confirmed))
 
-      if (!confirmed) return;
+      if (!confirmed) return
 
-      const success = await this.$store.dispatch(
-        `${this.apiModule}/unregister`
-      );
+      const success = await this.$store.dispatch(`${this.apiModule}/unregister`)
 
       if (!success) {
-        alert(this.$t('deconf.general.genericError'));
-        return;
+        alert(this.$t('deconf.general.genericError'))
+        return
       }
 
-      this.$emit('unregister');
-    }
-  }
-};
+      this.$emit('unregister')
+    },
+  },
+})
 </script>
 
 <style lang="scss">

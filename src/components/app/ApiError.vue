@@ -1,18 +1,25 @@
 <template>
   <UtilLayout :home-route="homeRoute">
-    <slot name="brand" slot="brand" />
-    <div class="content" slot="main">
-      <h1 class="title">{{ $t('deconf.apiError.title') }}</h1>
-      <p>{{ $t('deconf.apiError.content') }}</p>
-      <p>{{ $t('deconf.apiError.retry', [timeMessage]) }}</p>
-    </div>
-    <slot name="footer" slot="footer" />
+    <template v-slot:brand>
+      <slot name="brand"></slot>
+    </template>
+    <template v-slot:main>
+      <div class="content">
+        <h1 class="title">{{ $t('deconf.apiError.title') }}</h1>
+        <p>{{ $t('deconf.apiError.content') }}</p>
+        <p>{{ $t('deconf.apiError.retry', [timeMessage]) }}</p>
+      </div>
+    </template>
+    <template v-slot:footer>
+      <slot name="footer"></slot>
+    </template>
   </UtilLayout>
 </template>
 
 <script lang="ts">
-import { getCountdown, getCountdownMessage } from '../../lib/module';
-import UtilLayout from '../../layouts/UtilLayout.vue';
+import { getCountdown, getCountdownMessage } from '../../lib/module'
+import UtilLayout from '../../layouts/UtilLayout.vue'
+import { defineComponent } from '@vue/runtime-core'
 
 //
 // i18n
@@ -30,51 +37,51 @@ import UtilLayout from '../../layouts/UtilLayout.vue';
 // - n/a
 //
 
-const TICK_INTERVAL = 500;
+const TICK_INTERVAL = 500
 
 interface Data {
-  timerId: number | null;
-  retryDate: Date;
-  currentDate: Date;
+  timerId: number | null
+  retryDate: Date
+  currentDate: Date
 }
 
-export default {
+export default defineComponent({
   name: 'ApiError',
   components: { UtilLayout },
   props: {
     homeRoute: { type: Object, required: true },
-    retry: { type: Number, default: 1 }
+    retry: { type: Number, default: 1 },
   },
   data(): Data {
-    const retryDate = new Date();
-    retryDate.setMinutes(retryDate.getMinutes() + this.retry);
+    const retryDate = new Date()
+    retryDate.setMinutes(retryDate.getMinutes() + this.retry)
 
     return {
       timerId: null,
       retryDate,
-      currentDate: new Date()
-    };
+      currentDate: new Date(),
+    }
   },
   computed: {
     timeMessage(): string {
       return getCountdownMessage(
         getCountdown(this.currentDate, this.retryDate),
         (key, value) => this.$tc(key, value)
-      );
-    }
+      )
+    },
   },
   mounted(): void {
     this.timerId = window.setInterval(() => {
-      this.currentDate = new Date();
-      const timeLeft = this.retryDate.getTime() - this.currentDate.getTime();
+      this.currentDate = new Date()
+      const timeLeft = this.retryDate.getTime() - this.currentDate.getTime()
 
-      if (timeLeft <= 1) window.location.reload();
-    }, TICK_INTERVAL);
+      if (timeLeft <= 1) window.location.reload()
+    }, TICK_INTERVAL)
   },
   destroyed(): void {
     if (this.timerId) {
-      window.clearInterval(this.timerId);
+      window.clearInterval(this.timerId)
     }
-  }
-};
+  },
+})
 </script>

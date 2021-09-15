@@ -1,7 +1,7 @@
 <template>
   <div class="sideTabs">
     <div class="sideTabs-tab" v-if="$slots.brand">
-      <slot name="brand" />
+      <slot name="brand"></slot>
     </div>
     <component
       v-for="item in routes"
@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { AppRoute } from '../../lib/module';
+import { defineComponent, PropType } from 'vue'
+import { AppRoute } from '../../lib/module'
 
 //
 // i18n
@@ -35,30 +35,30 @@ import { AppRoute } from '../../lib/module';
 // - $sideTabs-active
 //
 
-export default {
+export default defineComponent({
   name: 'SideTabs',
   props: {
     routes: {
       type: Array as PropType<AppRoute[]>,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     routeArgs(item: AppRoute): object {
       if (item.enabled) {
         return {
           to: { name: item.name },
-          'active-class': 'is-active'
-        };
+          'active-class': 'is-active',
+        }
       } else {
         return {
           disabled: true,
-          title: this.$t('deconf.sideTabs.unavailable')
-        };
+          title: this.$t('deconf.sideTabs.unavailable'),
+        }
       }
-    }
-  }
-};
+    },
+  },
+})
 </script>
 
 <style lang="scss">

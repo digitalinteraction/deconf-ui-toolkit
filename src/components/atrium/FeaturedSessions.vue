@@ -25,12 +25,11 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { Location } from 'vue-router';
-import { Routes } from '../../lib/module';
+import { defineComponent, PropType } from 'vue'
+import { Routes, RouterLocation } from '../../lib/module'
 
-import MiniSession from './MiniSession.vue';
-import { Session, SessionSlot } from '@openlab/deconf-shared';
+import MiniSession from './MiniSession.vue'
+import { Session, SessionSlot } from '@openlab/deconf-shared'
 
 //
 // i18n
@@ -46,23 +45,23 @@ import { Session, SessionSlot } from '@openlab/deconf-shared';
 //
 
 interface SessionAndSlot {
-  session: Session;
-  slot: SessionSlot;
+  session: Session
+  slot: SessionSlot
 }
 
-export default {
+export default defineComponent({
   name: 'FeaturedSessions',
   components: { MiniSession },
   props: {
     featured: { type: Array as PropType<SessionAndSlot[]>, required: true },
-    currentDate: { type: Date as PropType<Date>, required: true }
+    currentDate: { type: Date as PropType<Date>, required: true },
   },
   computed: {
-    scheduleRoute(): Location {
-      return { name: Routes.Schedule };
-    }
-  }
-};
+    scheduleRoute(): RouterLocation {
+      return { name: Routes.Schedule }
+    },
+  },
+})
 </script>
 
 <style lang="scss">

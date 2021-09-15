@@ -20,8 +20,8 @@
 </template>
 
 <script lang="ts">
-import { Sponsor } from '../lib/module';
-import { PropType } from 'vue';
+import { Sponsor } from '../lib/module'
+import { defineComponent, PropType } from 'vue'
 
 //
 // i18n
@@ -37,21 +37,25 @@ import { PropType } from 'vue';
 // - $sponsorRow-smallHeight
 //
 
-const sizes = ['large', 'medium', 'regular', 'small'];
+const sizes = ['large', 'medium', 'regular', 'small']
 
-export default {
+export default defineComponent({
   name: 'SponsorRow',
   props: {
     title: { type: String, required: true },
-    size: { type: String, required: true, validator: v => sizes.includes(v) },
-    sponsors: { type: Array as PropType<Sponsor[]>, required: true }
+    size: {
+      type: String,
+      required: true,
+      validator: (v) => typeof v === 'string' && sizes.includes(v),
+    },
+    sponsors: { type: Array as PropType<Sponsor[]>, required: true },
   },
   computed: {
     classes(): string {
-      return `is-${this.size}`;
-    }
-  }
-};
+      return `is-${this.size}`
+    },
+  },
+})
 </script>
 
 <style lang="scss">

@@ -66,7 +66,7 @@
           <FontAwesomeIcon :icon="['fas', 'tags']" fixed-width />
         </span>
         <span>
-          {{ themes.map(t => localise(t.title)).join(', ') }}
+          {{ themes.map((t) => localise(t.title)).join(', ') }}
         </span>
       </span>
     </span>
@@ -74,10 +74,9 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { localiseFromObject } from '../../../lib/module';
-import { Theme, Track } from '@openlab/deconf-shared';
+import { defineComponent, PropType } from 'vue'
+import { localiseFromObject, FontAwesomeIcon } from '../../../lib/module'
+import { Theme, Track } from '@openlab/deconf-shared'
 
 //
 // i18n
@@ -100,21 +99,21 @@ import { Theme, Track } from '@openlab/deconf-shared';
 // - track
 //
 
-export default {
+export default defineComponent({
   name: 'SessionAttributes',
   components: { FontAwesomeIcon },
   props: {
     languages: { type: Array as PropType<string[] | null>, default: null },
     isRecorded: { type: Boolean as PropType<boolean | null>, default: null },
     track: { type: Object as PropType<Track | null>, default: null },
-    themes: { type: Array as PropType<Theme[] | null>, default: null }
+    themes: { type: Array as PropType<Theme[] | null>, default: null },
   },
   methods: {
-    localise(object: Record<string, string>): string | null {
-      return localiseFromObject(this.$i18n.locale, object);
-    }
-  }
-};
+    localise(object: Record<string, string | undefined>): string | null {
+      return localiseFromObject(this.$i18n.locale, object)
+    },
+  },
+})
 </script>
 
 <style lang="scss">

@@ -6,7 +6,7 @@
     <div class="control">
       <div class="select" :class="selectClass">
         <select
-          :value="value"
+          :value="modelValue"
           @change="onInput"
           :id="name"
           :disabled="disabled"
@@ -14,7 +14,7 @@
           <option disabled selected value="">{{ notSelected }}</option>
           <option
             v-for="option in options"
-            :key="option.value"
+            :key="option.text"
             :value="option.value"
           >
             {{ option.text }}
@@ -29,8 +29,8 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { SelectOption } from './select-option';
+import { defineComponent, PropType } from 'vue'
+import { SelectOption } from './select-option'
 
 //
 // Wraps a bulma select field
@@ -47,32 +47,32 @@ import { SelectOption } from './select-option';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'SelectField',
   props: {
     name: { type: String, required: true },
     label: { type: String, default: null },
-    value: { type: String as PropType<string | null>, default: null },
+    modelValue: { type: String, required: false },
     help: { type: String, default: null },
     options: { type: Array as PropType<SelectOption[]>, required: true },
     hasError: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
     fullwidth: { type: Boolean, default: false },
-    notSelected: { type: String, default: 'Please select...' }
+    notSelected: { type: String, default: 'Please select...' },
   },
   computed: {
     selectClass(): unknown {
       return {
         'is-danger': this.hasError,
-        'is-fullwidth': this.fullwidth
-      };
-    }
+        'is-fullwidth': this.fullwidth,
+      }
+    },
   },
   methods: {
     onInput(e: Event) {
-      if (!(e.target instanceof HTMLSelectElement)) return;
-      this.$emit('input', e.target.value);
-    }
-  }
-};
+      if (!(e.target instanceof HTMLSelectElement)) return
+      this.$emit('update:modelValue', e.target.value)
+    },
+  },
+})
 </script>

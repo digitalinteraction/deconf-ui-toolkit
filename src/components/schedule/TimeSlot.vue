@@ -4,8 +4,8 @@
       {{ $t(tagI18nKey) }}
     </div>
     <h3 class="timeSlot-time icon-text">
-      <span :title="startDate | localeDate">
-        {{ startDate | shortTime }}
+      <span :title="localeDate(startDate)">
+        {{ shortTime(startDate) }}
       </span>
       <span class="icon ltr-only">
         <FontAwesomeIcon :icon="['fas', 'long-arrow-alt-right']" />
@@ -13,23 +13,22 @@
       <span class="icon rtl-only">
         <FontAwesomeIcon :icon="['fas', 'long-arrow-alt-left']" />
       </span>
-      <span :title="endDate | localeDate">
-        {{ endDate | shortTime }}
+      <span :title="localeDate(endDate)">
+        {{ shortTime(endDate) }}
       </span>
     </h3>
     <p class="timeSlot-timezone">
       <span>{{ timezone }}</span>
     </p>
     <p class="timeSlot-date">
-      {{ startDate | localeDateShort }}
+      {{ localeDateShort(startDate) }}
     </p>
   </div>
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { SlotState } from '../../lib/module';
+import { defineComponent, PropType } from 'vue'
+import { SlotState, FontAwesomeIcon } from '../../lib/module'
 
 //
 // i18n
@@ -47,46 +46,46 @@ import { SlotState } from '../../lib/module';
 // - $timeSlot-pastBackground
 //
 
-export default {
+export default defineComponent({
   name: 'TimeSlot',
   components: { FontAwesomeIcon },
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
     startDate: { type: Date as PropType<Date>, required: true },
-    endDate: { type: Date as PropType<Date>, required: true }
+    endDate: { type: Date as PropType<Date>, required: true },
   },
-  filters: {
+  computed: {
+    tagClasses(): string {
+      return `is-${this.slotState}`
+    },
+    tagI18nKey(): string | null {
+      if (this.slotState === 'past') return 'deconf.timeSlot.past'
+      if (this.slotState === 'present') return 'deconf.timeSlot.live'
+      return null
+    },
+    timezone() {
+      const intl = Intl.DateTimeFormat().resolvedOptions()
+      return intl.timeZoneName || intl.timeZone
+    },
+  },
+  methods: {
     shortTime(date: Date): string {
       return new Date(date).toLocaleTimeString([], {
         hour: '2-digit',
-        minute: '2-digit'
-      });
+        minute: '2-digit',
+      })
     },
     localeDate(date: Date): string {
-      return new Date(date).toLocaleString();
+      return new Date(date).toLocaleString()
     },
     localeDateShort(date: Date): string {
       return new Date(date).toLocaleDateString([], {
         month: 'long',
-        day: 'numeric'
-      });
-    }
+        day: 'numeric',
+      })
+    },
   },
-  computed: {
-    tagClasses(): string {
-      return `is-${this.slotState}`;
-    },
-    tagI18nKey(): string | null {
-      if (this.slotState === 'past') return 'deconf.timeSlot.past';
-      if (this.slotState === 'present') return 'deconf.timeSlot.live';
-      return null;
-    },
-    timezone() {
-      const intl = Intl.DateTimeFormat().resolvedOptions();
-      return intl.timeZoneName || intl.timeZone;
-    }
-  }
-};
+})
 </script>
 
 <style lang="scss">

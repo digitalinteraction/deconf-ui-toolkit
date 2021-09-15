@@ -17,6 +17,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -28,7 +30,7 @@
 // - n/a
 //
 
-export default {
-  name: 'HelpDeskIcon'
-};
+export default defineComponent({
+  name: 'HelpDeskIcon',
+})
 </script>

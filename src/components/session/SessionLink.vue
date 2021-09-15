@@ -9,7 +9,7 @@
         target="_blank"
         rel="noopener"
       >
-        {{ link | cleanUrl }}
+        {{ cleanUrl(link) }}
       </a>
       <button
         class="sessionLink-copy button is-small is-dark"
@@ -27,7 +27,8 @@
 </template>
 
 <script lang="ts">
-import copy from 'copy-to-clipboard';
+import copy from 'copy-to-clipboard'
+import { defineComponent } from 'vue'
 
 //
 // i18n
@@ -44,42 +45,40 @@ import copy from 'copy-to-clipboard';
 // - $sessionLink-linkFont
 //
 
-export default {
+export default defineComponent({
   name: 'SessionLink',
   data() {
-    return { didCopy: false };
+    return { didCopy: false }
   },
   props: {
     title: { type: String, required: true },
-    link: { type: String, required: true }
-  },
-  filters: {
-    cleanUrl(url: string): string {
-      return url.replace(/https?:\/\//, '');
-    }
+    link: { type: String, required: true },
   },
   computed: {
     buttonClasses(): object {
       return {
         'is-dark': !this.didCopy,
-        'is-success': this.didCopy
-      };
-    }
+        'is-success': this.didCopy,
+      }
+    },
   },
   methods: {
     onClick(): void {
-      this.$emit('click', this.link);
+      this.$emit('click', this.link)
     },
     copyLink(): void {
-      copy(this.link, { message: 'done' });
+      copy(this.link, { message: 'done' })
 
-      this.didCopy = true;
-      setTimeout(() => (this.didCopy = false), 5000);
+      this.didCopy = true
+      setTimeout(() => (this.didCopy = false), 5000)
 
-      this.$emit('copy', this.link);
-    }
-  }
-};
+      this.$emit('copy', this.link)
+    },
+    cleanUrl(url: string): string {
+      return url.replace(/https?:\/\//, '')
+    },
+  },
+})
 </script>
 
 <style lang="scss">

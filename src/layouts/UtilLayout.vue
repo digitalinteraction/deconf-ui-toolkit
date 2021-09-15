@@ -7,31 +7,32 @@
     >
       <div class="navbar-brand">
         <router-link :to="homeRoute" class="navbar-item" active-class="">
-          <slot name="brand" />
+          <slot name="brand"></slot>
         </router-link>
       </div>
       <div class="navbar-end">
         <div class="navbar-item" v-if="$slots.languageControl">
-          <slot name="languageControl" />
+          <slot name="languageControl"></slot>
         </div>
       </div>
     </nav>
     <div class="utilLayout-page">
       <section class="section">
         <div class="buttons">
-          <slot name="backButton" />
+          <slot name="backButton"></slot>
         </div>
         <div class="box">
-          <slot name="main" />
+          <slot name="main"></slot>
         </div>
       </section>
     </div>
-    <slot name="footer" />
+    <slot name="footer"></slot>
   </FullHeight>
 </template>
 
-<script>
-import FullHeight from '../components/FullHeight.vue';
+<script lang="ts">
+import { defineComponent } from 'vue'
+import FullHeight from '../components/FullHeight.vue'
 
 //
 // A wrapper for utility-like pages on the site, like login or privacy
@@ -49,13 +50,13 @@ import FullHeight from '../components/FullHeight.vue';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'UtilLayout',
   components: { FullHeight },
   props: {
-    homeRoute: { type: [Object, String], required: true }
-  }
-};
+    homeRoute: { type: [Object, String], required: true },
+  },
+})
 </script>
 
 <style lang="scss">

@@ -12,7 +12,8 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent } from 'vue'
+import { FontAwesomeIcon } from '../../lib/module'
 
 //
 // i18n
@@ -26,32 +27,29 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 //
 
 interface Data {
-  hasWaited: boolean;
-  timerId: number | null;
+  hasWaited: boolean
+  timerId: number | null
 }
 
-const DEBOUNCE_MS = 500;
+const DEBOUNCE_MS = 500
 
-export default {
+export default defineComponent({
   name: 'AppLoading',
   components: { FontAwesomeIcon },
   data(): Data {
-    return { hasWaited: false, timerId: null };
+    return { hasWaited: false, timerId: null }
   },
   mounted() {
     //
     // Only show loading after 500ms
     //
-    this.timerId = window.setTimeout(
-      () => (this.hasWaited = true),
-      DEBOUNCE_MS
-    );
+    this.timerId = window.setTimeout(() => (this.hasWaited = true), DEBOUNCE_MS)
   },
   destroyed() {
-    if (this.timerId) clearInterval(this.timerId);
-    this.timerId = null;
-  }
-};
+    if (this.timerId) clearInterval(this.timerId)
+    this.timerId = null
+  },
+})
 </script>
 
 <style lang="scss">

@@ -10,13 +10,15 @@
     </div>
     <transition name="fade">
       <div class="toggleContents-contents" v-if="showContents || forceOpen">
-        <slot />
+        <slot></slot>
       </div>
     </transition>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -29,31 +31,31 @@
 // - $toggleContents-color
 //
 
-export default {
+export default defineComponent({
   name: 'ToggleContents',
   data() {
     return {
-      showContents: false
-    };
+      showContents: false,
+    }
   },
   props: {
     title: { type: String, required: true },
     showButton: { type: String, required: true },
     hideButton: { type: String, required: true },
-    forceOpen: { type: Boolean, default: false }
+    forceOpen: { type: Boolean, default: false },
   },
   computed: {
     toggleText(): string {
-      return this.showContents ? this.hideButton : this.showButton;
-    }
+      return this.showContents ? this.hideButton : this.showButton
+    },
   },
   methods: {
     toggle(): void {
-      this.showContents = !this.showContents;
-      this.$emit('toggle', this.showContents);
-    }
-  }
-};
+      this.showContents = !this.showContents
+      this.$emit('toggle', this.showContents)
+    },
+  },
+})
 </script>
 
 <style lang="scss">

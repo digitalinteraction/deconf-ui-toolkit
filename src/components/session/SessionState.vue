@@ -45,7 +45,8 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent, PropType } from 'vue'
+import { FontAwesomeIcon } from '../../lib/module'
 
 //
 // i18n
@@ -62,27 +63,27 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'SessionState',
   components: { FontAwesomeIcon },
   props: {
-    attendance: { type: Number, default: null },
-    slotState: { type: String, required: true }
+    attendance: { type: Number as PropType<number | null>, default: null },
+    slotState: { type: String, required: true },
   },
   computed: {
     isLive(): boolean {
-      return this.slotState === 'present';
+      return this.slotState === 'present'
     },
     isOver(): boolean {
-      return this.slotState === 'past';
+      return this.slotState === 'past'
     },
     isFuture(): boolean {
       return (
         ['future', 'soon'].includes(this.slotState) && this.attendance !== null
-      );
-    }
-  }
-};
+      )
+    },
+  },
+})
 </script>
 
 <style lang="scss">

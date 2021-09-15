@@ -117,9 +117,8 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { DevPlugin, SlotState } from '../../lib/module';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent, PropType } from 'vue'
+import { DevPlugin, SlotState, FontAwesomeIcon } from '../../lib/module'
 
 //
 // i18n
@@ -134,25 +133,25 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 //
 
 interface DateTimeObject {
-  date: string;
-  time: string;
+  date: string
+  time: string
 }
 
 // compose a real date from our date/time components from <input> elements
 function makeDate(date: string, time: string): Date | undefined {
-  const [fallbackDate, fallbackTime] = new Date().toISOString().split(/[TZ.]/);
+  const [fallbackDate, fallbackTime] = new Date().toISOString().split(/[TZ.]/)
 
   try {
     const result = new Date(
       `${date || fallbackDate}T${time || fallbackTime}.000Z`
-    );
+    )
     if (Number.isNaN(result)) {
-      console.error('Failed to create a date');
-      return undefined;
+      console.error('Failed to create a date')
+      return undefined
     }
-    return result;
+    return result
   } catch (error) {
-    return undefined;
+    return undefined
   }
 }
 
@@ -166,88 +165,88 @@ function makeDate(date: string, time: string): Date | undefined {
 // Not translated
 
 interface Data {
-  fastForward: null | { timerId: number };
+  fastForward: null | { timerId: number }
 }
 
-export default {
+export default defineComponent({
   name: 'DevControl',
   components: { FontAwesomeIcon },
   data(): Data {
     return {
-      fastForward: null
-    };
+      fastForward: null,
+    }
   },
   props: {
     devPlugin: { type: Object as PropType<DevPlugin>, required: true },
-    forceEnable: { type: Boolean, default: false }
+    forceEnable: { type: Boolean, default: false },
   },
   computed: {
     scheduleDate(): DateTimeObject {
-      const scheduleDate = this.devPlugin.scheduleDate as Date;
-      const [date, time] = scheduleDate.toISOString().split(/[TZ.]/);
-      const [h, m] = time.split(':');
-      return { date, time: [h, m, '00'].join(':') };
-    }
+      const scheduleDate = this.devPlugin.scheduleDate as Date
+      const [date, time] = scheduleDate.toISOString().split(/[TZ.]/)
+      const [h, m] = time.split(':')
+      return { date, time: [h, m, '00'].join(':') }
+    },
   },
   methods: {
     toggleExpanded(): void {
-      this.devPlugin.isVisible = !this.devPlugin.isVisible;
+      this.devPlugin.isVisible = !this.devPlugin.isVisible
     },
     updateSlotState(event: Event): void {
       if (this.devPlugin) {
         this.devPlugin.slotState =
-          ((event.target as HTMLSelectElement).value as SlotState) || undefined;
+          ((event.target as HTMLSelectElement).value as SlotState) || undefined
       }
     },
     updateScheduleDate(event: InputEvent): void {
-      const target = event.target as HTMLInputElement;
+      const target = event.target as HTMLInputElement
       this.devPlugin.scheduleDate = makeDate(
         target.value,
         this.scheduleDate.time
-      );
+      )
     },
     updateScheduleTime(event: InputEvent): void {
-      const target = event.target as HTMLInputElement;
+      const target = event.target as HTMLInputElement
 
-      const [h = '00', m = '00'] = target.value.split(':');
-      const newTime = [h, m, '00'].join(':');
+      const [h = '00', m = '00'] = target.value.split(':')
+      const newTime = [h, m, '00'].join(':')
 
-      this.devPlugin.scheduleDate = makeDate(this.scheduleDate.date, newTime);
+      this.devPlugin.scheduleDate = makeDate(this.scheduleDate.date, newTime)
     },
     setScheduleDate(): void {
-      this.devPlugin.scheduleDate = new Date();
+      this.devPlugin.scheduleDate = new Date()
     },
     clearScheduleDate() {
-      this.devPlugin.scheduleDate = undefined;
+      this.devPlugin.scheduleDate = undefined
     },
     startFastForward() {
-      let lastTick = Date.now();
+      let lastTick = Date.now()
 
       const timerId = window.setInterval(() => {
-        const date = this.devPlugin.scheduleDate;
+        const date = this.devPlugin.scheduleDate
         if (!date) {
-          this.stopFastForward();
-          return;
+          this.stopFastForward()
+          return
         }
-        const dt = Date.now() - lastTick;
-        lastTick = Date.now();
+        const dt = Date.now() - lastTick
+        lastTick = Date.now()
 
-        this.devPlugin.scheduleDate = new Date(date.getTime() + dt * 200);
-      }, 250);
+        this.devPlugin.scheduleDate = new Date(date.getTime() + dt * 200)
+      }, 250)
 
-      this.fastForward = { timerId };
+      this.fastForward = { timerId }
     },
     stopFastForward() {
-      if (!this.fastForward) return;
+      if (!this.fastForward) return
 
-      window.clearInterval(this.fastForward.timerId);
-      this.fastForward = null;
-    }
+      window.clearInterval(this.fastForward.timerId)
+      this.fastForward = null
+    },
   },
   destroyed() {
-    this.stopFastForward();
-  }
-};
+    this.stopFastForward()
+  },
+})
 </script>
 
 <style lang="scss">

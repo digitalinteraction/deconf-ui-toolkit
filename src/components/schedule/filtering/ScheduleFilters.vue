@@ -105,30 +105,30 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import debounce from 'lodash.debounce';
+import { PropType, defineComponent } from 'vue'
+import debounce from 'lodash.debounce'
 
 import {
   startOfDay,
   friendlyDate,
-  localiseFromObject
-} from '../../../lib/module';
-import InlineFilter from './InlineFilter.vue';
-import { ScheduleFilterRecord } from './ScheduleFilterRecord';
-import { FilterOption } from './FilterOption';
+  localiseFromObject,
+} from '../../../lib/module'
+import InlineFilter from './InlineFilter.vue'
+import { ScheduleFilterRecord } from './ScheduleFilterRecord'
+import { FilterOption } from './FilterOption'
 import {
   Localised,
   SessionSlot,
   SessionType,
   Theme,
-  Track
-} from '@openlab/deconf-shared';
+  Track,
+} from '@openlab/deconf-shared'
 
-const QUERY_DEBOUNCE = 300;
+const QUERY_DEBOUNCE = 300
 
 interface Data {
-  showExtraFilters: boolean;
-  queryHandler: null | ((newQuery: string) => void);
+  showExtraFilters: boolean
+  queryHandler: null | ((newQuery: string) => void)
 }
 
 //
@@ -153,7 +153,7 @@ interface Data {
 // - n/a
 //
 
-type FilterKey = keyof ScheduleFilterRecord;
+type FilterKey = keyof ScheduleFilterRecord
 
 const DEFAULT_FILTERS: FilterKey[] = [
   'query',
@@ -161,124 +161,127 @@ const DEFAULT_FILTERS: FilterKey[] = [
   'track',
   'theme',
   'date',
-  'isRecorded'
-];
+  'isRecorded',
+]
 
-export default {
+export default defineComponent({
   name: 'ScheduleFilters',
   components: { InlineFilter },
   props: {
     sessionTypes: {
       type: Array as PropType<SessionType[]>,
-      required: true
+      required: true,
     },
     tracks: { type: Array as PropType<Track[]>, required: true },
     themes: { type: Array as PropType<Theme[]>, required: true },
     sessionSlots: {
       type: Array as PropType<SessionSlot[]>,
-      required: true
+      required: true,
     },
     filters: {
       type: Object as PropType<ScheduleFilterRecord>,
-      required: true
+      required: true,
     },
     enabledFilters: {
       type: Array as PropType<FilterKey[]>,
-      default: () => DEFAULT_FILTERS
-    }
+      default: () => DEFAULT_FILTERS,
+    },
   },
   data(): Data {
     return {
       showExtraFilters: false,
-      queryHandler: null
-    };
+      queryHandler: null,
+    }
   },
   computed: {
     dateOptions(): FilterOption[] {
       const dates = new Map(
-        this.sessionSlots.map(s => [startOfDay(s.start).toISOString(), s.start])
-      );
-      return [...dates.values()].map(date => ({
+        this.sessionSlots.map((s) => [
+          startOfDay(s.start).toISOString(),
+          s.start,
+        ])
+      )
+      return [...dates.values()].map((date) => ({
         value: date,
-        text: friendlyDate(date)
-      }));
+        text: friendlyDate(date),
+      }))
     },
     sessionTypeOptions(): FilterOption[] {
-      return this.sessionTypes.map(t => ({
+      return this.sessionTypes.map((t) => ({
         value: t.id,
-        text: this.localise(t.title) as string
-      }));
+        text: this.localise(t.title) as string,
+      }))
     },
     trackOptions(): FilterOption[] {
-      return this.tracks.map(t => ({
+      return this.tracks.map((t) => ({
         value: t.id,
-        text: this.localise(t.title) as string
-      }));
+        text: this.localise(t.title) as string,
+      }))
     },
     themeOptions(): FilterOption[] {
-      return this.themes.map(t => ({
+      return this.themes.map((t) => ({
         value: t.id,
-        text: this.localise(t.title) as string
-      }));
+        text: this.localise(t.title) as string,
+      }))
     },
     recordedOptions(): FilterOption[] {
       return [
         { value: true, text: this.$t('deconf.scheduleFilters.yes') as string },
-        { value: false, text: this.$t('deconf.scheduleFilters.no') as string }
-      ];
+        { value: false, text: this.$t('deconf.scheduleFilters.no') as string },
+      ]
     },
     hasFilters(): boolean {
       return Object.keys(this.filters)
-        .filter(k => k !== 'viewMode')
-        .some(k => Boolean(this.filters[k as keyof ScheduleFilterRecord]));
+        .filter((k) => k !== 'viewMode')
+        .some((k) => Boolean(this.filters[k as keyof ScheduleFilterRecord]))
     },
     enabledFiltersSet(): Set<FilterKey> {
-      return new Set(this.enabledFilters);
-    }
+      return new Set(this.enabledFilters)
+    },
   },
   watch: {
     filters: {
       deep: true,
       handler(newValue: ScheduleFilterRecord) {
-        this.$emit('filter', newValue);
-      }
-    }
+        this.$emit('filter', newValue)
+      },
+    },
   },
   mounted() {
-    this.showExtraFilters = this.showExtraFilters || this.hasFilters;
+    this.showExtraFilters = this.showExtraFilters || this.hasFilters
 
     this.queryHandler = debounce((value: string) => {
-      this.filters.query = value;
-    }, QUERY_DEBOUNCE);
+      this.filters.query = value
+    }, QUERY_DEBOUNCE)
   },
   destroyed() {
-    this.queryHandler = null;
+    this.queryHandler = null
   },
   methods: {
     localise(object: Localised): string | null {
-      return localiseFromObject(this.$i18n.locale, object);
+      return localiseFromObject(this.$i18n.locale, object)
     },
     toggleFilters(): void {
-      this.showExtraFilters = !this.showExtraFilters;
+      this.showExtraFilters = !this.showExtraFilters
     },
     clearFilters(): void {
-      this.showExtraFilters = false;
-      this.filters.query = '';
-      this.filters.sessionType = null;
-      this.filters.track = null;
-      this.filters.theme = null;
-      this.filters.date = null;
-      this.filters.isRecorded = null;
+      this.showExtraFilters = false
+      this.filters.query = ''
+      this.filters.sessionType = null
+      this.filters.track = null
+      this.filters.theme = null
+      this.filters.date = null
+      this.filters.isRecorded = null
     },
     onQuery(e: InputEvent): void {
-      if (!this.queryHandler) return;
-      this.queryHandler((e.target as HTMLInputElement).value);
+      if (!this.queryHandler) return
+      this.queryHandler((e.target as HTMLInputElement).value)
     },
     isEnabled(filterName: FilterKey) {
-      return this.enabledFiltersSet.has(filterName);
-    }
-  }
-};
+      return this.enabledFiltersSet.has(filterName)
+    },
+  },
+})
 </script>
 
 <style lang="scss">

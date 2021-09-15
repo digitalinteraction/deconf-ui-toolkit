@@ -1,4 +1,4 @@
 export interface FilterOption {
-  value: unknown;
-  text: unknown;
+  value: any
+  text: string
 }

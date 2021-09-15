@@ -34,21 +34,21 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { Session } from '@openlab/deconf-shared';
+import { PropType, defineComponent } from 'vue'
+import { Session } from '@openlab/deconf-shared'
 import {
   createFilterPredicate,
   FullSchedule,
   loadScheduleFilters,
   ScheduleConfig,
-  SlotState
-} from '../../lib/module';
+  SlotState,
+} from '../../lib/module'
 import {
   ScheduleFilterRecord,
   ScheduleFilters,
   SessionTile,
-  SessionBoard
-} from '../../components/module';
+  SessionBoard,
+} from '../../components/module'
 
 //
 // i18n
@@ -63,10 +63,10 @@ import {
 //
 
 interface Data {
-  filters: ScheduleFilterRecord;
+  filters: ScheduleFilterRecord
 }
 
-export default {
+export default defineComponent({
   name: 'WhatsOnView',
   components: { ScheduleFilters, SessionTile, SessionBoard },
   props: {
@@ -75,15 +75,15 @@ export default {
     filtersKey: { type: String, required: true },
     enabledFilters: {
       type: Array as PropType<Array<keyof ScheduleFilterRecord>>,
-      default: undefined
+      default: undefined,
     },
     config: { type: Object as PropType<ScheduleConfig>, required: true },
-    slotState: { type: String as PropType<SlotState>, required: true }
+    slotState: { type: String as PropType<SlotState>, required: true },
   },
   data(): Data {
     return {
-      filters: loadScheduleFilters(this.filtersKey)
-    };
+      filters: loadScheduleFilters(this.filtersKey),
+    }
   },
   computed: {
     filteredSessions(): Session[] {
@@ -91,24 +91,24 @@ export default {
         this.$i18n.locale,
         this.filters,
         this.schedule
-      );
+      )
 
-      if (!predicate) return this.sessions;
+      if (!predicate) return this.sessions
 
-      return this.sessions.filter(s => predicate(s));
-    }
+      return this.sessions.filter((s) => predicate(s))
+    },
   },
   methods: {
     onFilter(filters: ScheduleFilterRecord) {
-      this.filters = filters;
+      this.filters = filters
 
       window.setTimeout(() => {
-        const json = JSON.stringify(filters);
-        localStorage.setItem(this.filtersKey, json);
-      });
-    }
-  }
-};
+        const json = JSON.stringify(filters)
+        localStorage.setItem(this.filtersKey, json)
+      })
+    },
+  },
+})
 </script>
 
 <style lang="scss">

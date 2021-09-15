@@ -48,8 +48,9 @@
 </template>
 
 <script lang="ts">
-import TextField from '../../components/form/TextField.vue';
-import { createLoginStartEvent, Routes } from '../../lib/module';
+import { defineComponent } from 'vue'
+import TextField from '../../components/form/TextField.vue'
+import { createLoginStartEvent, Routes } from '../../lib/module'
 
 //
 // i18n
@@ -72,39 +73,39 @@ import { createLoginStartEvent, Routes } from '../../lib/module';
 //
 
 interface Data {
-  email: string;
-  state: 'pending' | 'working' | 'error' | 'success';
+  email: string
+  state: 'pending' | 'working' | 'error' | 'success'
 }
 
-export default {
+export default defineComponent({
   name: 'LoginView',
   components: { TextField },
   props: {
-    apiModule: { type: String, required: true }
+    apiModule: { type: String, required: true },
   },
   data(): Data {
     return {
       email: '',
-      state: 'pending'
-    };
+      state: 'pending',
+    }
   },
   computed: {
     registerRoute(): unknown {
-      return { name: Routes.Register };
-    }
+      return { name: Routes.Register }
+    },
   },
   methods: {
     async submit() {
-      this.state = 'working';
+      this.state = 'working'
       const success = await this.$store.dispatch(
         `${this.apiModule}/login`,
         this.email
-      );
+      )
 
-      this.state = success ? 'success' : 'error';
+      this.state = success ? 'success' : 'error'
 
-      this.$deconf.trackMetric(createLoginStartEvent());
-    }
-  }
-};
+      this.$deconf.trackMetric(createLoginStartEvent())
+    },
+  },
+})
 </script>

@@ -88,23 +88,22 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { PropType, defineComponent } from 'vue'
 import {
   ScheduleFilterRecord,
   SelectOption,
   ScheduleFilters,
   StickyHeading,
   ScheduleBlock,
-  NoResults
-} from '../../components/module';
+  NoResults,
+} from '../../components/module'
 import {
   FullSchedule,
   loadScheduleFilters,
   scheduleComputed,
-  ScheduleConfig
-} from '../../lib/module';
-import { Session } from '@openlab/deconf-shared';
-import { TranslateResult } from 'vue-i18n';
+  ScheduleConfig,
+} from '../../lib/module'
+import { Session } from '@openlab/deconf-shared'
 
 //
 // i18n
@@ -130,12 +129,12 @@ import { TranslateResult } from 'vue-i18n';
 //
 
 interface Data {
-  showPastSessions: boolean;
-  filters: ScheduleFilterRecord;
-  viewModeOptions: SelectOption[];
+  showPastSessions: boolean
+  filters: ScheduleFilterRecord
+  viewModeOptions: SelectOption[]
 }
 
-export default {
+export default defineComponent({
   name: 'ScheduleView',
   components: { ScheduleFilters, StickyHeading, ScheduleBlock, NoResults },
   props: {
@@ -144,7 +143,7 @@ export default {
     filtersKey: { type: String, required: true },
     enabledFilters: {
       type: Array as PropType<Array<keyof ScheduleFilterRecord>>,
-      default: undefined
+      default: undefined,
     },
     // userSessions: {
     //   type: Array as PropType<string[]>,
@@ -152,16 +151,16 @@ export default {
     // },
     config: {
       type: Object as PropType<ScheduleConfig>,
-      required: true
+      required: true,
     },
     scheduleDate: {
       type: Date as PropType<Date>,
-      required: true
+      required: true,
     },
     isDuringConference: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   data(): Data {
     return {
@@ -169,35 +168,35 @@ export default {
       filters: loadScheduleFilters(this.filtersKey),
       viewModeOptions: [
         { value: 'all', text: this.$t('deconf.schedule.allSessions') },
-        { value: 'user', text: this.$t('deconf.schedule.userSessions') }
-      ]
-    };
+        { value: 'user', text: this.$t('deconf.schedule.userSessions') },
+      ],
+    }
   },
   computed: {
-    localePastAction(): TranslateResult {
+    localePastAction(): string {
       return this.showPastSessions
         ? this.$t('deconf.schedule.hidePast')
-        : this.$t('deconf.schedule.showPast');
+        : this.$t('deconf.schedule.showPast')
     },
     ...scheduleComputed(),
     showOtherSessions(): boolean {
-      return this.filteredSessions.length < 50;
-    }
+      return this.filteredSessions.length < 50
+    },
   },
   methods: {
     onFilter(filters: ScheduleFilterRecord) {
-      this.filters = filters;
+      this.filters = filters
 
       window.setTimeout(() => {
-        const json = JSON.stringify(filters);
-        localStorage.setItem(this.filtersKey, json);
-      });
+        const json = JSON.stringify(filters)
+        localStorage.setItem(this.filtersKey, json)
+      })
     },
     togglePastSessions() {
-      this.showPastSessions = !this.showPastSessions;
-    }
-  }
-};
+      this.showPastSessions = !this.showPastSessions
+    },
+  },
+})
 </script>
 
 <style lang="scss">

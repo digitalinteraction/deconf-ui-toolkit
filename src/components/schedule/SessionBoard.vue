@@ -1,10 +1,12 @@
 <template>
   <div class="sessionBoard">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // An abstract pinboard-style grid of items
 //
@@ -23,9 +25,9 @@
 // - $sessionBoard-background
 //
 
-export default {
-  name: 'SessionBoard'
-};
+export default defineComponent({
+  name: 'SessionBoard',
+})
 </script>
 
 <style lang="scss">

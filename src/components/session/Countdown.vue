@@ -22,8 +22,8 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { CountdownComponents, getCountdown } from '../../lib/module';
+import { defineComponent, PropType } from 'vue'
+import { CountdownComponents, getCountdown } from '../../lib/module'
 
 //
 // i18n
@@ -39,27 +39,27 @@ import { CountdownComponents, getCountdown } from '../../lib/module';
 // - $countdown-color
 //
 
-export default {
+export default defineComponent({
   name: 'Countdown',
   props: {
     currentDate: { type: Date as PropType<Date>, required: true },
-    targetDate: { type: Date as PropType<Date>, required: true }
+    targetDate: { type: Date as PropType<Date>, required: true },
   },
   computed: {
     remaining(): CountdownComponents {
-      return getCountdown(this.currentDate, this.targetDate);
+      return getCountdown(this.currentDate, this.targetDate)
     },
     hoursRemaining(): number {
-      return this.remaining.hours;
+      return this.remaining.hours
     },
     minutesRemaining(): number {
-      return this.remaining.minutes;
+      return this.remaining.minutes
     },
     secondsRemaining(): number {
-      return this.remaining.seconds;
-    }
-  }
-};
+      return this.remaining.seconds
+    },
+  },
+})
 </script>
 
 <style lang="scss">

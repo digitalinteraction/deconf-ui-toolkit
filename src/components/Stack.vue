@@ -1,6 +1,6 @@
 <template>
   <div class="stack" :class="classes">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 
@@ -8,6 +8,8 @@
 //
 // A reusable component to quickly flex between items without needing styles
 //
+
+import { defineComponent } from 'vue'
 
 //
 // i18n
@@ -27,28 +29,28 @@
 function enumProp(values: string[]) {
   return {
     type: String,
-    validator: (v: string) => values.includes(v),
-    required: true
-  };
+    validator: (v: unknown) => typeof v === 'string' && values.includes(v),
+    required: true,
+  }
 }
 
-export default {
+export default defineComponent({
   name: 'Stack',
   props: {
     direction: enumProp(['horizontal', 'vertical']),
     gap: enumProp(['none', 'small', 'regular', 'medium', 'large']),
-    align: enumProp(['start', 'end', 'center', 'stretch'])
+    align: enumProp(['start', 'end', 'center', 'stretch']),
   },
   computed: {
     classes(): string[] {
       return [
         `is-${this.gap}`,
         `is-${this.direction}`,
-        `is-aligned-${this.align}`
-      ];
-    }
-  }
-};
+        `is-aligned-${this.align}`,
+      ]
+    },
+  },
+})
 </script>
 
 <style lang="scss">

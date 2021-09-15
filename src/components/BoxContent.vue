@@ -2,12 +2,14 @@
   <div class="boxContent">
     <div class="container is-small">
       <h2 class="boxContent-title" v-if="title">{{ title }}</h2>
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -19,12 +21,12 @@
 // - $boxContent-titleFamily
 //
 
-export default {
+export default defineComponent({
   name: 'BoxContent',
   props: {
-    title: { type: String, default: '' }
-  }
-};
+    title: { type: String, default: '' },
+  },
+})
 </script>
 
 <style lang="scss">

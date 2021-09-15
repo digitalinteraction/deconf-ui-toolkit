@@ -10,7 +10,7 @@
           <span>
             {{
               $t('deconf.languageWarning.message', [
-                availableLanguages.join('/')
+                availableLanguages.join('/'),
               ])
             }}
           </span>
@@ -21,8 +21,8 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent, PropType } from 'vue'
+import { FontAwesomeIcon } from '../../lib/module'
 
 //
 // i18n
@@ -35,23 +35,23 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'LanguageWarning',
   components: { FontAwesomeIcon },
   data() {
     return {
-      isDismissed: false
-    };
+      isDismissed: false,
+    }
   },
   props: {
-    availableLanguages: { type: Array as PropType<string[]>, required: true }
+    availableLanguages: { type: Array as PropType<string[]>, required: true },
   },
   methods: {
     dismiss() {
-      this.isDismissed = true;
-    }
-  }
-};
+      this.isDismissed = true
+    },
+  },
+})
 </script>
 
 <style lang="scss">

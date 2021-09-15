@@ -6,13 +6,14 @@
       </ScheduleHeader>
     </div>
     <div class="stickyHeading-content">
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import ScheduleHeader from './schedule/ScheduleHeader.vue';
+import { defineComponent } from 'vue'
+import ScheduleHeader from './schedule/ScheduleHeader.vue'
 
 //
 // A heading that is sticky around a set of inner-content in it's slot
@@ -32,14 +33,14 @@ import ScheduleHeader from './schedule/ScheduleHeader.vue';
 // - $stickyHeading-z
 //
 
-export default {
+export default defineComponent({
   name: 'StickyHeading',
   components: { ScheduleHeader },
   props: {
     title: { type: String, required: true },
-    titleClass: { type: String, default: 'is-primary' }
-  }
-};
+    titleClass: { type: String, default: 'is-primary' },
+  },
+})
 </script>
 
 <style lang="scss">

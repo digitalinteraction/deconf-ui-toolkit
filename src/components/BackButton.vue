@@ -7,13 +7,14 @@
       <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
     </span>
     <span>
-      <slot />
+      <slot></slot>
     </span>
   </router-link>
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent } from 'vue'
+import { FontAwesomeIcon } from '../lib/module'
 
 //
 // i18n
@@ -27,11 +28,11 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'BackButton',
   components: { FontAwesomeIcon },
   props: {
-    to: { type: [String, Object], required: true }
-  }
-};
+    to: { type: [String, Object], required: true },
+  },
+})
 </script>

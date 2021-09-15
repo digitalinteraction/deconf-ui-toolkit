@@ -20,7 +20,8 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent, PropType } from 'vue'
+import { FontAwesomeIcon } from '../../lib/module'
 
 //
 // i18n
@@ -35,7 +36,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'ColorWidget',
   components: { FontAwesomeIcon },
   props: {
@@ -43,26 +44,29 @@ export default {
       type: String,
       required: true,
       validator(v) {
-        return ['primary', 'secondary', 'twitter', 'custom'].includes(v);
-      }
+        return (
+          typeof v === 'string' &&
+          ['primary', 'secondary', 'twitter', 'custom'].includes(v)
+        )
+      },
     },
-    icon: { type: [String, Array], required: true },
+    icon: { type: Array as PropType<string[]>, required: true },
     title: { type: String, required: true },
     subtitle: { type: String, required: true },
-    href: { type: String, default: null }
+    href: { type: String, default: null },
   },
   computed: {
     rootComponent(): string {
-      return this.href ? 'a' : 'div';
+      return this.href ? 'a' : 'div'
     },
     extraArgs(): object {
-      return this.href ? { href: this.href } : {};
+      return this.href ? { href: this.href } : {}
     },
     classes(): string[] {
-      return [`is-${this.kind}`, this.href ? 'is-hoverable' : ''];
-    }
-  }
-};
+      return [`is-${this.kind}`, this.href ? 'is-hoverable' : '']
+    },
+  },
+})
 </script>
 
 <style lang="scss">

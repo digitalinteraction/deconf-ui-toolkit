@@ -6,7 +6,7 @@
         type="checkbox"
         class="checkbox"
         :disabled="disabled"
-        :value="value"
+        :value="modelValue"
         @change="onInput"
       />
       {{ text }}
@@ -16,6 +16,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // Wraps a bulma checkbox field
 //
@@ -31,30 +33,30 @@
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'CheckboxField',
   props: {
     name: { type: String, required: true },
-    value: { type: Boolean, required: true },
+    modelValue: { type: Boolean, required: true },
     text: { type: String, required: true },
     hasError: { type: Boolean, default: false },
     help: { type: String, default: null },
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
   },
   computed: {
     labelClass(): unknown {
       return {
-        'is-danger': this.hasError
-      };
-    }
+        'is-danger': this.hasError,
+      }
+    },
   },
   methods: {
     onInput(event: Event) {
-      if (!(event.target instanceof HTMLInputElement)) return;
-      this.$emit('input', event.target.checked);
-    }
-  }
-};
+      if (!(event.target instanceof HTMLInputElement)) return
+      this.$emit('update:modelValue', event.target.checked)
+    },
+  },
+})
 </script>
 
 <style lang="scss">

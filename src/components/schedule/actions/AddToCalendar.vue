@@ -16,7 +16,8 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent } from 'vue'
+import { FontAwesomeIcon } from '../../../lib/module'
 
 //
 // i18n
@@ -29,18 +30,18 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'AddToCalendar',
   components: { FontAwesomeIcon },
   props: {
-    calendarLink: { type: String, required: true }
+    calendarLink: { type: String, required: true },
   },
   methods: {
     onClick(event: MouseEvent): void {
-      this.$emit('click', event);
-    }
-  }
-};
+      this.$emit('click', event)
+    },
+  },
+})
 </script>
 
 <style lang="scss">

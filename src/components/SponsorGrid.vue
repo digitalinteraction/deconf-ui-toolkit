@@ -11,10 +11,9 @@
 </template>
 
 <script lang="ts">
-import { SponsorGroup } from '../lib/module';
-import { PropType } from 'vue';
-
-import SponsorRow from './SponsorRow.vue';
+import { defineComponent, PropType } from 'vue'
+import { SponsorGroup } from '../lib/module'
+import SponsorRow from './SponsorRow.vue'
 
 //
 // i18n
@@ -27,13 +26,13 @@ import SponsorRow from './SponsorRow.vue';
 // - $sponsorGrid-spacing
 //
 
-export default {
+export default defineComponent({
   name: 'SponsorGrid',
   components: { SponsorRow },
   props: {
-    groups: { type: Array as PropType<SponsorGroup[]>, required: true }
-  }
-};
+    groups: { type: Array as PropType<SponsorGroup[]>, required: true },
+  },
+})
 </script>
 
 <style lang="scss">

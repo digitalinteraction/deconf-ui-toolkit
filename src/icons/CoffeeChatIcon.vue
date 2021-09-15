@@ -13,6 +13,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -24,7 +26,7 @@
 // - n/a
 //
 
-export default {
-  name: 'CoffeeChatIcon'
-};
+export default defineComponent({
+  name: 'CoffeeChatIcon',
+})
 </script>

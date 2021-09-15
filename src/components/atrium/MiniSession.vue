@@ -43,12 +43,12 @@ import {
   localiseFromObject,
   Routes,
   getCountdown,
-  getCountdownMessage
-} from '../../lib/module';
-import { PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { Location } from 'vue-router';
-import { Session, SessionSlot } from '@openlab/deconf-shared';
+  getCountdownMessage,
+  RouterLocation,
+  FontAwesomeIcon,
+} from '../../lib/module'
+import { defineComponent, PropType } from 'vue'
+import { Session, SessionSlot } from '@openlab/deconf-shared'
 
 //
 // i18n
@@ -66,20 +66,20 @@ import { Session, SessionSlot } from '@openlab/deconf-shared';
 // - $miniSession-titleWeight
 //
 
-export default {
+export default defineComponent({
   name: 'MiniSession',
   components: { FontAwesomeIcon },
   props: {
     session: { type: Object as PropType<Session>, required: true },
     sessionSlot: {
       type: Object as PropType<SessionSlot>,
-      required: true
+      required: true,
     },
-    currentDate: { type: Date as PropType<Date>, required: true }
+    currentDate: { type: Date as PropType<Date>, required: true },
   },
   computed: {
     localeTitle(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.session.title);
+      return localiseFromObject(this.$i18n.locale, this.session.title)
     },
     localeDate(): string {
       return this.sessionSlot.start.toLocaleString(undefined, {
@@ -87,29 +87,29 @@ export default {
         minute: '2-digit',
         month: 'long',
         day: 'numeric',
-        year: 'numeric'
-      });
+        year: 'numeric',
+      })
     },
-    sessionRoute(): Location {
+    sessionRoute(): RouterLocation {
       return {
         name: Routes.Session,
-        params: { sessionId: this.session.id }
-      };
+        params: { sessionId: this.session.id },
+      }
     },
     isLive(): boolean {
       return (
         this.currentDate.getTime() > this.sessionSlot.start.getTime() &&
         this.currentDate.getTime() < this.sessionSlot.end.getTime()
-      );
+      )
     },
     localeCountdown(): string {
       return getCountdownMessage(
         getCountdown(this.currentDate, this.sessionSlot.start),
         (key, value) => this.$tc(key, value)
-      );
-    }
-  }
-};
+      )
+    },
+  },
+})
 </script>
 
 <style lang="scss">

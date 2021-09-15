@@ -1,7 +1,7 @@
 <template>
   <SessionLayout class="sessionView">
     <!-- Back button -->
-    <slot name="backButton" slot="backButton" />
+    <slot name="backButton" slot="backButton"></slot>
 
     <!-- state bit -->
     <SessionState
@@ -23,7 +23,7 @@
       </h1>
 
       <!-- Embed -->
-      <div class="sessionView-embed" v-if="showPrimaryLink">
+      <div class="sessionView-embed" v-if="primaryLink && canShowLinks">
         <SessionEmbed :link="primaryLink.url" />
       </div>
 
@@ -58,7 +58,7 @@
       </template>
 
       <!-- Countdown -->
-      <template v-if="showCountdown">
+      <template v-if="sessionSlot && showCountdown">
         <SidebarItem :title="$t('deconf.session.countdown')">
           <Countdown
             :current-date="scheduleDate"
@@ -77,7 +77,7 @@
       </template>
 
       <!-- Links -->
-      <template v-if="showSecondaryLinks">
+      <template v-if="canShowLinks && showSecondaryLinks">
         <SidebarItem :title="$t('deconf.session.links')">
           <Stack direction="vertical" gap="regular" align="stretch">
             <SessionLink
@@ -97,7 +97,7 @@
         <SidebarItem :title="$t('deconf.session.actions')">
           <Stack direction="vertical" gap="regular" align="stretch">
             <AttendanceSection
-              v-if="showAttendance && loggedIn"
+              v-if="session.participantCap && showAttendance && loggedIn"
               :session="session"
               :session-cap="session.participantCap"
               :attendance="attendance"
@@ -134,24 +134,24 @@
 <script lang="ts">
 import {
   Session,
-  SessionAttendance,
   SessionLink as ISessionLink,
   SessionSlot,
   SessionType,
   Speaker,
-  Theme
-} from '@openlab/deconf-shared';
-import { PropType } from 'vue';
-import { FullSchedule } from '../../lib/api';
+  Theme,
+} from '@openlab/deconf-shared'
+import { PropType, defineComponent } from 'vue'
 import {
   createICalEvent,
   createSessionLinkEvent,
   getSlotState,
   localiseFromObject,
   parseEmbedLink,
-  SlotState
-} from '../../lib/module';
-import { SessionLayout } from '../../layouts/module';
+  SlotState,
+  FullSchedule,
+  SessionAttendance,
+} from '../../lib/module'
+import { SessionLayout } from '../../layouts/module'
 import {
   SessionAttributes,
   SessionHeader,
@@ -164,11 +164,11 @@ import {
   AddToCalendar,
   AttendanceSection,
   SpeakerGrid,
-  Stack
-} from '../../components/module';
+  Stack,
+} from '../../components/module'
 
 // 30 seconds
-const LINKS_INTERVAL = 60 * 1000;
+const LINKS_INTERVAL = 60 * 1000
 
 //
 // i18n
@@ -193,13 +193,13 @@ const LINKS_INTERVAL = 60 * 1000;
 //
 
 interface Data {
-  timerId: number | null;
-  links: ISessionLink[] | null;
-  attendance: null | SessionAttendance;
-  isLoading: boolean;
+  timerId: number | null
+  links: ISessionLink[] | null
+  attendance: null | SessionAttendance
+  isLoading: boolean
 }
 
-export default {
+export default defineComponent({
   name: 'SessionView',
   components: {
     SessionLayout,
@@ -214,173 +214,170 @@ export default {
     AddToCalendar,
     AttendanceSection,
     SpeakerGrid,
-    Stack
+    Stack,
   },
   props: {
     apiModule: { type: String, required: true },
     session: { type: Object as PropType<Session>, required: true },
     loggedIn: { type: Boolean, required: true },
     schedule: { type: Object as PropType<FullSchedule>, required: true },
-    scheduleDate: { type: Date as PropType<Date>, required: true }
+    scheduleDate: { type: Date as PropType<Date>, required: true },
   },
   data(): Data {
     return {
       timerId: null,
       links: null,
       attendance: null,
-      isLoading: false
-    };
+      isLoading: false,
+    }
   },
   computed: {
     sessionSlot(): SessionSlot | null {
-      return this.schedule.slots.find(s => s.id === this.session.slot) || null;
+      return this.schedule.slots.find((s) => s.id === this.session.slot) || null
     },
     sessionType(): SessionType | null {
-      return this.schedule.types.find(s => s.id === this.session.type) || null;
+      return this.schedule.types.find((s) => s.id === this.session.type) || null
     },
     sessionTrack(): SessionType | null {
-      return this.schedule.types.find(s => s.id === this.session.type) || null;
+      return this.schedule.types.find((s) => s.id === this.session.type) || null
     },
     sessionSpeakers(): Speaker[] {
-      const ids = new Set(this.session.speakers);
-      return this.schedule.speakers.filter(s => ids.has(s.id));
+      const ids = new Set(this.session.speakers)
+      return this.schedule.speakers.filter((s) => ids.has(s.id))
     },
     sessionThemes(): Theme[] {
-      const ids = new Set(this.session.themes);
-      return this.schedule.themes.filter(t => ids.has(t.id));
+      const ids = new Set(this.session.themes)
+      return this.schedule.themes.filter((t) => ids.has(t.id))
     },
     primaryLink(): ISessionLink | null {
-      if (!this.links) return null;
-      return this.links.find(l => (parseEmbedLink(l.url) ? l : null)) || null;
+      if (!this.links) return null
+      return this.links.find((l) => (parseEmbedLink(l.url) ? l : null)) || null
     },
     secondaryLinks(): ISessionLink[] | null {
-      if (!this.links) return null;
+      if (!this.links) return null
 
-      return this.links.filter(l => l !== this.primaryLink);
+      return this.links.filter((l) => l !== this.primaryLink)
     },
     slotState(): SlotState {
-      if (!this.sessionSlot) return 'future';
+      if (!this.sessionSlot) return 'future'
       return getSlotState(
         this.scheduleDate,
         this.sessionSlot.start,
         this.sessionSlot.end
-      );
+      )
     },
     localeTitle(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.session.title);
+      return localiseFromObject(this.$i18n.locale, this.session.title)
     },
     localeContent(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.session.content);
+      return localiseFromObject(this.$i18n.locale, this.session.content)
     },
     showCountdown(): boolean {
-      return this.slotState === 'soon';
+      return this.slotState === 'soon'
     },
     showLinkPreview(): boolean {
-      if (!this.links) return false;
-      return this.links.length > 0 && this.slotState === 'soon';
+      if (!this.links) return false
+      return this.links.length > 0 && this.slotState === 'soon'
     },
 
     /** Whether links can be shown at all (ie <= 15m before the session) */
     canShowLinks(): boolean {
-      if (!this.sessionSlot) return false;
+      if (!this.sessionSlot) return false
 
-      const enableTime = new Date(this.sessionSlot.start.getTime());
-      enableTime.setMinutes(enableTime.getMinutes() - 15);
+      const enableTime = new Date(this.sessionSlot.start.getTime())
+      enableTime.setMinutes(enableTime.getMinutes() - 15)
 
-      return this.scheduleDate.getTime() > enableTime.getTime();
-    },
-    showPrimaryLink(): boolean {
-      return this.canShowLinks && Boolean(this.primaryLink);
+      return this.scheduleDate.getTime() > enableTime.getTime()
     },
     showSecondaryLinks(): boolean {
-      return this.canShowLinks && (this.secondaryLinks || []).length > 0;
+      return this.canShowLinks && (this.secondaryLinks || []).length > 0
     },
     showAttendance(): boolean {
-      return this.slotState !== 'past' && this.session.participantCap !== null;
+      return this.slotState !== 'past' && this.session.participantCap !== null
     },
     showCalendar(): boolean {
       return (
         ['future', 'soon'].includes(this.slotState) &&
         Boolean(this.calendarLink) &&
         !this.showSecondaryLinks
-      );
+      )
     },
-    calendarLink(): string | null {
-      return this.$deconf.getCalendarLink(this.session);
+    calendarLink(): string {
+      return this.$deconf.getCalendarLink(this.session)
     },
     stateAttendance(): number | null {
-      if (this.attendance === null) return null;
-      if (this.session.participantCap === null) return null;
+      if (this.attendance === null) return null
+      if (this.session.participantCap === null) return null
 
-      return this.attendance.count;
-    }
+      return this.attendance.sessionCount
+    },
   },
   mounted() {
     // initially fetch links and attendance
-    this.fetchSessionData();
+    this.fetchSessionData()
 
     // Setup a timers to regularly pull links and updatre the current date
     this.timerId = window.setInterval(() => {
-      this.fetchLinks();
-    }, LINKS_INTERVAL);
+      this.fetchLinks()
+    }, LINKS_INTERVAL)
   },
   destroyed() {
     if (this.timerId) {
-      window.clearInterval(this.timerId);
-      this.timerId = null;
+      window.clearInterval(this.timerId)
+      this.timerId = null
     }
   },
   methods: {
     async fetchSessionData() {
-      this.isLoading = true;
+      this.isLoading = true
 
-      await Promise.all([this.fetchLinks(), this.fetchAttendance()]);
+      await Promise.all([this.fetchLinks(), this.fetchAttendance()])
 
-      this.isLoading = false;
+      this.isLoading = false
     },
     async fetchLinks() {
-      if (!this.loggedIn) return;
-      const result = await this.$store.dispatch(
+      if (!this.loggedIn) return
+      const result = (await this.$store.dispatch(
         `${this.apiModule}/fetchLinks`,
         this.session.id
-      );
-      this.links = result.links;
+      )) as { links: ISessionLink[] }
+      this.links = result.links
     },
     async fetchAttendance() {
-      this.attendance = await this.$store.dispatch(
+      this.attendance = (await this.$store.dispatch(
         `${this.apiModule}/fetchSessionAttendance`,
         this.session.id
-      );
+      )) as SessionAttendance
     },
     async attend() {
-      this.$store.dispatch(`${this.apiModule}/attend`, this.session.id);
-      this.fetchSessionData();
+      this.$store.dispatch(`${this.apiModule}/attend`, this.session.id)
+      this.fetchSessionData()
     },
     async unattend() {
-      this.$store.dispatch(`${this.apiModule}/unattend`, this.session.id);
-      this.fetchSessionData();
+      this.$store.dispatch(`${this.apiModule}/unattend`, this.session.id)
+      this.fetchSessionData()
     },
     guessLinkName(link: string) {
-      if (link.includes('zoom')) return this.$t('deconf.session.zoomLink');
-      if (link.includes('teams')) return this.$t('deconf.session.teamsLink');
-      if (link.includes('miro')) return this.$t('deconf.session.miroLink');
-      return this.$t('deconf.session.generalLink');
+      if (link.includes('zoom')) return this.$t('deconf.session.zoomLink')
+      if (link.includes('teams')) return this.$t('deconf.session.teamsLink')
+      if (link.includes('miro')) return this.$t('deconf.session.miroLink')
+      return this.$t('deconf.session.generalLink')
     },
     trackCalendar() {
-      this.$deconf.trackMetric(createICalEvent(this.session.id));
+      this.$deconf.trackMetric(createICalEvent(this.session.id))
     },
     trackLinkClick(link: string) {
       this.$deconf.trackMetric(
         createSessionLinkEvent(this.session.id, 'click', link)
-      );
+      )
     },
     trackLinkCopy(link: string) {
       this.$deconf.trackMetric(
         createSessionLinkEvent(this.session.id, 'copy', link)
-      );
-    }
-  }
-};
+      )
+    },
+  },
+})
 </script>
 
 <style lang="scss">

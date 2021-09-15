@@ -1,12 +1,14 @@
 <template>
   <div class="scheduleHeader">
     <h2 class="scheduleHeader-title">
-      <slot />
+      <slot></slot>
     </h2>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // TODO: should this be ScheduleHeading?
 //
@@ -22,9 +24,9 @@
 // - n/a
 //
 
-export default {
-  name: 'ScheduleHeader'
-};
+export default defineComponent({
+  name: 'ScheduleHeader',
+})
 </script>
 
 <style lang="scss">

@@ -20,12 +20,10 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { TranslateResult } from 'vue-i18n';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent, PropType } from 'vue'
+import { Session } from '@openlab/deconf-shared'
 
-import { SessionAttendance } from '../../lib/module';
-import { Session } from '@openlab/deconf-shared';
+import { SessionAttendance, FontAwesomeIcon } from '../../lib/module'
 
 //
 // i18n
@@ -45,7 +43,7 @@ import { Session } from '@openlab/deconf-shared';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'AttendanceSection',
   components: { FontAwesomeIcon },
   props: {
@@ -53,70 +51,70 @@ export default {
     sessionCap: { type: Number, required: true },
     attendance: {
       type: Object as PropType<SessionAttendance | null>,
-      default: null
+      default: null,
     },
     isProcessing: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     isRegistered(): boolean {
-      if (!this.attendance) return false;
-      return this.attendance.isAttending;
+      if (!this.attendance) return false
+      return this.attendance.isAttending
     },
     isFull(): boolean {
-      if (!this.attendance) return false;
-      return this.attendance.sessionCount >= this.sessionCap;
+      if (!this.attendance) return false
+      return this.attendance.sessionCount >= this.sessionCap
     },
     isInactive(): boolean {
-      return this.isProcessing || this.attendance === null;
+      return this.isProcessing || this.attendance === null
     },
     buttonClasses(): string {
-      if (this.isInactive) return 'is-loading';
-      if (this.isRegistered) return 'is-danger is-outlined';
-      return 'is-primary';
+      if (this.isInactive) return 'is-loading'
+      if (this.isRegistered) return 'is-danger is-outlined'
+      return 'is-primary'
     },
     disabled(): boolean {
-      return this.isInactive || (this.isFull && !this.isRegistered);
+      return this.isInactive || (this.isFull && !this.isRegistered)
     },
     icon(): string[] {
-      return this.isRegistered ? ['fas', 'times'] : ['fas', 'user-plus'];
+      return this.isRegistered ? ['fas', 'times'] : ['fas', 'user-plus']
     },
-    localeMessage(): TranslateResult {
-      if (!this.attendance) return this.$t('deconf.attendanceSection.loading');
+    localeMessage(): string {
+      if (!this.attendance) return this.$t('deconf.attendanceSection.loading')
 
       if (this.isInactive) {
-        return this.$t('deconf.attendanceSection.processing');
+        return this.$t('deconf.attendanceSection.processing')
       }
 
       if (this.isRegistered) {
-        return this.$t('deconf.attendanceSection.registered');
+        return this.$t('deconf.attendanceSection.registered')
       }
 
       if (this.isFull) {
-        return this.$t('deconf.attendanceSection.full');
+        return this.$t('deconf.attendanceSection.full')
       }
 
-      const spacesLeft = this.sessionCap - this.attendance.sessionCount;
+      const spacesLeft = this.sessionCap - this.attendance.sessionCount
       return this.$t('deconf.attendanceSection.spacesLeft', [
         spacesLeft,
-        this.sessionCap
-      ]);
+        this.sessionCap,
+      ])
     },
-    localeAction(): TranslateResult {
+    localeAction(): string {
       return this.isRegistered
         ? this.$t('deconf.attendanceSection.unregisterButton')
-        : this.$t('deconf.attendanceSection.registerButton');
-    }
+        : this.$t('deconf.attendanceSection.registerButton')
+    },
   },
   methods: {
     async register(): Promise<void> {
-      if (this.disabled) return;
-      this.$emit(this.isRegistered ? 'unattend' : 'attend');
-    }
-  }
-};
+      if (this.disabled) return
+      this.$emit(this.isRegistered ? 'unattend' : 'attend')
+    },
+  },
+})
 </script>
 
 <style lang="scss">

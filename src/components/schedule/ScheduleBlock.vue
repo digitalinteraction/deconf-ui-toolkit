@@ -57,13 +57,13 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue'
 import {
   ScheduleConfig,
   SlotState,
   getSlotState,
-  FullSchedule
-} from '../../lib/module';
+  FullSchedule,
+} from '../../lib/module'
 
 import {
   Speaker,
@@ -71,12 +71,12 @@ import {
   Track,
   Session,
   SessionSlot,
-  SessionType
-} from '@openlab/deconf-shared';
+  SessionType,
+} from '@openlab/deconf-shared'
 
-import TimeSlot from './TimeSlot.vue';
-import SessionTile from './tile/SessionTile.vue';
-import ToggleContents from '../ToggleContents.vue';
+import TimeSlot from './TimeSlot.vue'
+import SessionTile from './tile/SessionTile.vue'
+import ToggleContents from '../ToggleContents.vue'
 
 //
 // i18n
@@ -93,7 +93,7 @@ import ToggleContents from '../ToggleContents.vue';
 // - $scheduleBlock-background
 //
 
-export default {
+export default defineComponent({
   name: 'ScheduleBlock',
   components: { TimeSlot, SessionTile, ToggleContents },
   props: {
@@ -102,72 +102,74 @@ export default {
     sessions: { type: Array as PropType<Session[]>, required: true },
     showOtherSessions: { type: Boolean, default: false },
     schedule: { type: Object as PropType<FullSchedule>, required: true },
-    config: { type: Object as PropType<ScheduleConfig>, required: true }
+    config: { type: Object as PropType<ScheduleConfig>, required: true },
   },
   computed: {
     classes(): string {
       const isNow =
         this.currentDate.getTime() > this.sessionSlot.start.getTime() &&
-        this.currentDate.getTime() < this.sessionSlot.end.getTime();
-      return isNow ? 'is-present' : '';
+        this.currentDate.getTime() < this.sessionSlot.end.getTime()
+      return isNow ? 'is-present' : ''
     },
     speakerMap(): Map<string, Speaker> {
-      return new Map(this.schedule.speakers.map(s => [s.id, s]));
+      return new Map(this.schedule.speakers.map((s) => [s.id, s]))
     },
     sessionTypeMap(): Map<string, SessionType> {
-      return new Map(this.schedule.types.map(s => [s.id, s]));
+      return new Map(this.schedule.types.map((s) => [s.id, s]))
     },
     trackMap(): Map<string, Track> {
-      return new Map(this.schedule.tracks.map(t => [t.id, t]));
+      return new Map(this.schedule.tracks.map((t) => [t.id, t]))
     },
     themeMap(): Map<string, Theme> {
-      return new Map(this.schedule.themes.map(t => [t.id, t]));
+      return new Map(this.schedule.themes.map((t) => [t.id, t]))
     },
     plenaryTypes(): Set<string> {
       return new Set<string>(
-        this.schedule.types.filter(t => t.layout === 'plenary').map(t => t.id)
-      );
+        this.schedule.types
+          .filter((t) => t.layout === 'plenary')
+          .map((t) => t.id)
+      )
     },
     plenarySessions(): Session[] {
-      return this.sessions.filter(s => this.plenaryTypes.has(s.type));
+      return this.sessions.filter((s) => this.plenaryTypes.has(s.type))
     },
     otherSessions(): Session[] {
-      return this.sessions.filter(s => !this.plenaryTypes.has(s.type));
+      return this.sessions.filter((s) => !this.plenaryTypes.has(s.type))
     },
     slotState(): SlotState {
       return getSlotState(
         this.currentDate,
         this.sessionSlot.start,
         this.sessionSlot.end
-      );
+      )
     },
     shouldOpenWorkshops(): boolean {
-      if (this.slotState === 'present') return true;
-      return false;
-    }
+      if (this.slotState === 'present') return true
+      return false
+    },
   },
   methods: {
     getSessionType(session: Session): SessionType {
       // TODO: handle not found
-      return this.sessionTypeMap.get(session.type) as SessionType;
+      return this.sessionTypeMap.get(session.type) as SessionType
     },
     getSessionSpeakers(session: Session): Speaker[] {
       // TODO: handle not found better
       return session.speakers
-        .map(id => this.speakerMap.get(id) as Speaker)
-        .filter(s => Boolean(s));
+        .map((id) => this.speakerMap.get(id) as Speaker)
+        .filter((s) => Boolean(s))
     },
     getSessionTrack(session: Session): Track {
       // TODO: handle not found better too
-      return this.trackMap.get(session.track) as Track;
+      return this.trackMap.get(session.track) as Track
     },
     getSessionThemes(session: Session): Theme[] {
       return session.themes
-        .map(t => this.themeMap.get(t) as Theme)
-        .filter(t => Boolean(t));
-    }
-  }
-};
+        .map((t) => this.themeMap.get(t) as Theme)
+        .filter((t) => Boolean(t))
+    },
+  },
+})
 </script>
 
 <style lang="scss">

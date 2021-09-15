@@ -13,6 +13,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -25,13 +27,13 @@
 // - $iframeEmbed-background
 //
 
-export default {
+export default defineComponent({
   name: 'IframeEmbed',
   props: {
     src: { type: String, required: true },
-    allow: { type: String, default: '' }
-  }
-};
+    allow: { type: String, default: '' },
+  },
+})
 </script>
 
 <style lang="scss">

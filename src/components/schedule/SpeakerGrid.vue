@@ -17,9 +17,9 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { localiseFromObject } from '../../lib/module';
-import { Speaker } from '@openlab/deconf-shared';
+import { defineComponent, PropType } from 'vue'
+import { localiseFromObject } from '../../lib/module'
+import { Speaker } from '@openlab/deconf-shared'
 
 //
 // i18n
@@ -33,17 +33,17 @@ import { Speaker } from '@openlab/deconf-shared';
 // - $speakerGrid-cellWidth
 //
 
-export default {
+export default defineComponent({
   name: 'SpeakerGrid',
   props: {
-    speakers: { type: Array as PropType<Speaker[]>, required: true }
+    speakers: { type: Array as PropType<Speaker[]>, required: true },
   },
   methods: {
     localiseRole(speaker: Speaker): string | null {
-      return localiseFromObject(this.$i18n.locale, speaker.role);
-    }
-  }
-};
+      return localiseFromObject(this.$i18n.locale, speaker.role)
+    },
+  },
+})
 </script>
 
 <style lang="scss">

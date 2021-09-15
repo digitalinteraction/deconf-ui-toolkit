@@ -60,7 +60,7 @@
         target="_blank"
         rel="noopener"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openTeams') }}</span>
       </a>
     </div>
@@ -75,7 +75,7 @@
         target="_blank"
         rel="noopener"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openZoom') }}</span>
       </a>
     </div>
@@ -93,7 +93,7 @@
         target="_blank"
         rel="noopener"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openHubs') }}</span>
       </a>
     </div>
@@ -111,7 +111,7 @@
         target="_blank"
         rel="noopener"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openSpatial') }}</span>
       </a>
     </div>
@@ -119,9 +119,13 @@
 </template>
 
 <script lang="ts">
-import IframeEmbed from './IframeEmbed.vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { parseEmbedLink, ParsedEmbedLink } from '../../lib/module';
+import { defineComponent } from 'vue'
+import IframeEmbed from './IframeEmbed.vue'
+import {
+  parseEmbedLink,
+  ParsedEmbedLink,
+  FontAwesomeIcon,
+} from '../../lib/module'
 
 //
 // i18n
@@ -138,35 +142,35 @@ import { parseEmbedLink, ParsedEmbedLink } from '../../lib/module';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'SessionEmbed',
   components: { IframeEmbed, FontAwesomeIcon },
   props: {
-    link: { type: String, required: true }
+    link: { type: String, required: true },
   },
   computed: {
     parsed(): ParsedEmbedLink | null {
-      return parseEmbedLink(this.link);
-    }
+      return parseEmbedLink(this.link)
+    },
   },
   methods: {
     youtubeVideoLink(data: string) {
-      return `https://www.youtube-nocookie.com/embed/${data}`;
+      return `https://www.youtube-nocookie.com/embed/${data}`
     },
     youtubeChannelLink(data: string) {
-      return `https://www.youtube-nocookie.com/embed/live_stream?channel=${data}`;
+      return `https://www.youtube-nocookie.com/embed/live_stream?channel=${data}`
     },
     vimeoVideoLink(data: string) {
-      return `https://player.vimeo.com/video/${data}`;
+      return `https://player.vimeo.com/video/${data}`
     },
     panoptoVideoLink(data: string) {
-      return data;
+      return data
     },
     twitchVideoLink(data: string) {
-      return `https://player.twitch.tv/?channel=${data}&parent=${location.hostname}`;
-    }
-  }
-};
+      return `https://player.twitch.tv/?channel=${data}&parent=${location.hostname}`
+    },
+  },
+})
 </script>
 
 <style lang="scss">

@@ -4,12 +4,14 @@
       {{ title }}
     </h4>
     <div class="sidebarItem-content">
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -21,12 +23,12 @@
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'SidebarItem',
   props: {
-    title: { type: String, default: null }
-  }
-};
+    title: { type: String, default: null },
+  },
+})
 </script>
 
 <style lang="scss">

@@ -8,15 +8,12 @@
       </div>
       <div class="control">
         <div class="select">
-          <select :value="value" @input="onInput">
-            <option :value="null">
+          <!-- TODO needs work to work with non-strings -->
+          <select :value="chosenIndex" @input="onInput">
+            <option :value="undefined">
               {{ offLabel }}
             </option>
-            <option
-              v-for="item in options"
-              :key="item.value.toString()"
-              :value="item.value"
-            >
+            <option v-for="(item, i) in options" :key="item.value" :value="i">
               {{ item.text }}
             </option>
           </select>
@@ -27,9 +24,9 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { localiseFromObject } from '../../../lib/module';
-import { FilterOption } from './FilterOption';
+import { defineComponent, PropType } from 'vue'
+import { localiseFromObject } from '../../../lib/module'
+import { FilterOption } from './FilterOption'
 
 //
 // i18n
@@ -42,28 +39,41 @@ import { FilterOption } from './FilterOption';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'InlineFilter',
   props: {
     label: { type: String, required: true },
     offLabel: { type: String, required: true },
     options: { type: Array as PropType<FilterOption[]>, required: true },
-    value: { required: true }
+    modelValue: {
+      type: [String, Number, Boolean, Object] as PropType<any>,
+      required: false,
+    },
+  },
+  computed: {
+    allOptions(): unknown[] {
+      return [null, ...this.options.map((o) => o.value)]
+    },
+    chosenIndex(): number {
+      for (let i = 0; i < this.allOptions.length; i++) {
+        if (this.allOptions[i] === this.modelValue) return i
+      }
+      return 0
+    },
   },
   methods: {
     localise(object: Record<string, string>): string | null {
-      return localiseFromObject(this.$i18n.locale, object);
+      return localiseFromObject(this.$i18n.locale, object)
     },
     onInput(event: InputEvent) {
-      const target = event.target as HTMLSelectElement;
-      if (!target) return;
+      const target = event.target as HTMLSelectElement
+      if (!target) return
 
-      const allOptions = [null, ...this.options.map(o => o.value)];
-      const value = allOptions[target.selectedIndex];
-      this.$emit('input', value);
-    }
-  }
-};
+      const value = this.allOptions[target.selectedIndex]
+      this.$emit('update:modelValue', value)
+    },
+  },
+})
 </script>
 
 <style lang="scss">
