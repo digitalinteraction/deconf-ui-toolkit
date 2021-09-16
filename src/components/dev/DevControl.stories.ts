@@ -22,7 +22,9 @@ const Template: Story = (args, { argTypes }) => ({
           isEnabled: dev.isEnabled,
           isVisible: dev.isVisible,
           slotState: dev.slotState || 'null',
-          scheduleDate: dev.scheduleDate || 'null'
+          scheduleDate: dev.scheduleDate
+            ? dev.scheduleDate.toLocaleString()
+            : 'null'
         },
         null,
         2

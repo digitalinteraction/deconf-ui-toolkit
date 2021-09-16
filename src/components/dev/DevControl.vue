@@ -14,7 +14,7 @@
         <p class="devControl-heading">Dev controls</p>
 
         <!-- Slot state -->
-        <div class="devControl-block" v-if="!devPlugin.slotState">
+        <!-- <div class="devControl-block" v-if="!devPlugin.slotState">
           <button
             class="button is-fullwidth is-primary is-light"
             @click="devPlugin.slotState = 'future'"
@@ -40,7 +40,7 @@
               </span>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Schedule date -->
         <div class="devControl-block" v-if="!devPlugin.scheduleDate">
@@ -87,21 +87,71 @@
         </div>
 
         <div class="devControl-block">
-          <div class="buttons">
+          <div class="buttons is-centered">
+            <!-- Fast backwards -->
             <button
-              class="button is-success is-light"
-              @click="startFastForward"
-              v-if="!fastForward"
-              :disabled="!devPlugin.scheduleDate"
+              @click="startTracking('fastBackward')"
+              :disabled="disableButton('fastBackward')"
+              :class="trackClasses('fastBackward')"
             >
-              Fast forward
+              <span class="icon">
+                <FontAwesomeIcon :icon="['fas', 'fast-backward']" />
+              </span>
             </button>
+
+            <!-- Backwards -->
             <button
-              class="button is-success"
-              @click="stopFastForward"
-              v-if="fastForward"
+              @click="startTracking('backward')"
+              :disabled="disableButton('backward')"
+              :class="trackClasses('backward')"
             >
-              Stop Fast forward
+              <span class="icon">
+                <FontAwesomeIcon :icon="['fas', 'backward']" />
+              </span>
+            </button>
+
+            <!-- Stop -->
+            <button
+              class="button is-primary"
+              @click="stopTracking"
+              :disabled="!tracking"
+            >
+              <span class="icon">
+                <FontAwesomeIcon :icon="['fas', 'stop']" />
+              </span>
+            </button>
+
+            <!-- Play -->
+            <button
+              @click="startTracking('play')"
+              :disabled="disableButton('play')"
+              :class="trackClasses('play')"
+            >
+              <span class="icon">
+                <FontAwesomeIcon :icon="['fas', 'play']" />
+              </span>
+            </button>
+
+            <!-- Forwards -->
+            <button
+              @click="startTracking('forward')"
+              :disabled="disableButton('forward')"
+              :class="trackClasses('forward')"
+            >
+              <span class="icon">
+                <FontAwesomeIcon :icon="['fas', 'forward']" />
+              </span>
+            </button>
+
+            <!-- Fast Forwards -->
+            <button
+              @click="startTracking('fastForward')"
+              :disabled="disableButton('fastForward')"
+              :class="trackClasses('fastForward')"
+            >
+              <span class="icon">
+                <FontAwesomeIcon :icon="['fas', 'fast-forward']" />
+              </span>
             </button>
           </div>
         </div>
@@ -141,10 +191,16 @@ interface DateTimeObject {
 // compose a real date from our date/time components from <input> elements
 function makeDate(date: string, time: string): Date | undefined {
   const [fallbackDate, fallbackTime] = new Date().toISOString().split(/[TZ.]/);
+  console.debug(date, time, { fallbackDate, fallbackTime });
 
   try {
     const result = new Date(
       `${date || fallbackDate}T${time || fallbackTime}.000Z`
+    );
+    result.setMinutes(
+      result.getMinutes() + result.getTimezoneOffset(),
+      result.getSeconds(),
+      result.getMilliseconds()
     );
     if (Number.isNaN(result)) {
       console.error('Failed to create a date');
@@ -164,9 +220,28 @@ function makeDate(date: string, time: string): Date | undefined {
 
 // TODO:
 // Not translated
+// What is the word for moving forwards/backwards
+
+type TrackingSpeed =
+  | 'fastBackward'
+  | 'backward'
+  | 'play'
+  | 'forward'
+  | 'fastForward';
+
+const trackingSpeeds: Record<TrackingSpeed, number> = {
+  fastBackward: -1000,
+  backward: -200,
+  play: 1,
+  forward: 200,
+  fastForward: 1000
+};
 
 interface Data {
-  fastForward: null | { timerId: number };
+  tracking: null | {
+    timerId: number;
+    speed: TrackingSpeed;
+  };
 }
 
 export default {
@@ -174,7 +249,7 @@ export default {
   components: { FontAwesomeIcon },
   data(): Data {
     return {
-      fastForward: null
+      tracking: null
     };
   },
   props: {
@@ -183,10 +258,22 @@ export default {
   },
   computed: {
     scheduleDate(): DateTimeObject {
-      const scheduleDate = this.devPlugin.scheduleDate as Date;
-      const [date, time] = scheduleDate.toISOString().split(/[TZ.]/);
-      const [h, m] = time.split(':');
-      return { date, time: [h, m, '00'].join(':') };
+      const scheduleDate = new Date(this.devPlugin.scheduleDate as Date);
+
+      const padStart = (n: number) => n.toString().padStart(2, '0');
+
+      return {
+        date: [
+          scheduleDate.getFullYear(),
+          padStart(scheduleDate.getMonth() + 1),
+          padStart(scheduleDate.getDate())
+        ].join('-'),
+        time: [
+          padStart(scheduleDate.getHours()),
+          padStart(scheduleDate.getMinutes()),
+          padStart(scheduleDate.getSeconds())
+        ].join(':')
+      };
     }
   },
   methods: {
@@ -201,6 +288,7 @@ export default {
     },
     updateScheduleDate(event: InputEvent): void {
       const target = event.target as HTMLInputElement;
+      console.debug('updateScheduleDate', target.value);
       this.devPlugin.scheduleDate = makeDate(
         target.value,
         this.scheduleDate.time
@@ -208,9 +296,10 @@ export default {
     },
     updateScheduleTime(event: InputEvent): void {
       const target = event.target as HTMLInputElement;
+      console.debug('updateScheduleTime', target.value);
 
-      const [h = '00', m = '00'] = target.value.split(':');
-      const newTime = [h, m, '00'].join(':');
+      const [h = '00', m = '00', s = '00'] = target.value.split(':');
+      const newTime = [h, m, s].join(':');
 
       this.devPlugin.scheduleDate = makeDate(this.scheduleDate.date, newTime);
     },
@@ -220,32 +309,45 @@ export default {
     clearScheduleDate() {
       this.devPlugin.scheduleDate = undefined;
     },
-    startFastForward() {
+    startTracking(speed: TrackingSpeed) {
+      this.stopTracking();
       let lastTick = Date.now();
 
       const timerId = window.setInterval(() => {
         const date = this.devPlugin.scheduleDate;
         if (!date) {
-          this.stopFastForward();
+          this.stopTracking();
           return;
         }
         const dt = Date.now() - lastTick;
         lastTick = Date.now();
 
-        this.devPlugin.scheduleDate = new Date(date.getTime() + dt * 200);
+        this.devPlugin.scheduleDate = new Date(
+          date.getTime() + dt * trackingSpeeds[speed]
+        );
       }, 250);
 
-      this.fastForward = { timerId };
+      this.tracking = { timerId, speed };
     },
-    stopFastForward() {
-      if (!this.fastForward) return;
+    stopTracking() {
+      if (!this.tracking) return;
 
-      window.clearInterval(this.fastForward.timerId);
-      this.fastForward = null;
+      window.clearInterval(this.tracking.timerId);
+      this.tracking = null;
+    },
+    disableButton(speed: TrackingSpeed) {
+      if (!this.devPlugin.scheduleDate) return true;
+      return this.tracking ? this.tracking.speed === speed : false;
+    },
+    trackClasses(/*speed: TrackingSpeed*/) {
+      return {
+        button: true,
+        'is-primary': true
+      };
     }
   },
   destroyed() {
-    this.stopFastForward();
+    this.stopTracking();
   }
 };
 </script>
