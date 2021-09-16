@@ -4,7 +4,7 @@
     <div class="content" slot="main">
       <h1 class="title">{{ $t('deconf.apiError.title') }}</h1>
       <p>{{ $t('deconf.apiError.content') }}</p>
-      <p>{{ $t('deconf.apiError.retry', [timeMessage]) }}</p>
+      <p>{{ $t('deconf.apiError.retry', [localeCountdown]) }}</p>
     </div>
     <slot name="footer" slot="footer" />
   </UtilLayout>
@@ -56,7 +56,7 @@ export default {
     };
   },
   computed: {
-    timeMessage(): string {
+    localeCountdown(): string | null {
       return getCountdownMessage(
         getCountdown(this.currentDate, this.retryDate),
         (key, value) => this.$tc(key, value)
@@ -68,7 +68,9 @@ export default {
       this.currentDate = new Date();
       const timeLeft = this.retryDate.getTime() - this.currentDate.getTime();
 
-      if (timeLeft <= 1) window.location.reload();
+      if (timeLeft < 1500) {
+        window.location.reload();
+      }
     }, TICK_INTERVAL);
   },
   destroyed(): void {
