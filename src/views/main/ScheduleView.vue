@@ -212,7 +212,7 @@ $scheduleView-background: $background !default;
   padding-bottom: $block-spacing * 5;
 
   .scheduleBlock-slot {
-    top: calc(#{$navbar-height} + $scheduleView-headingHeight);
+    top: calc(#{$navbar-height} + #{$scheduleView-headingHeight});
   }
 }
 .scheduleView-header {
