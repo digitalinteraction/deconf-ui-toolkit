@@ -112,22 +112,17 @@ import {
   friendlyDate,
   localiseFromObject,
   debounce,
-  Debounced
+  Debounced,
+  FullSchedule
 } from '../../../lib/module';
 import InlineFilter from './InlineFilter.vue';
 import { ScheduleFilterRecord } from './ScheduleFilterRecord';
 import { FilterOption } from './FilterOption';
-import {
-  Localised,
-  SessionSlot,
-  SessionType,
-  Theme,
-  Track
-} from '@openlab/deconf-shared';
+import { Localised } from '@openlab/deconf-shared';
 
 type FilterKey = keyof ScheduleFilterRecord;
 
-const QUERY_DEBOUNCE = 300;
+const QUERY_DEBOUNCE = 500;
 
 const DEFAULT_FILTERS: FilterKey[] = [
   'query',
@@ -169,14 +164,8 @@ export default {
   name: 'ScheduleFilters',
   components: { InlineFilter },
   props: {
-    sessionTypes: {
-      type: Array as PropType<SessionType[]>,
-      required: true
-    },
-    tracks: { type: Array as PropType<Track[]>, required: true },
-    themes: { type: Array as PropType<Theme[]>, required: true },
-    sessionSlots: {
-      type: Array as PropType<SessionSlot[]>,
+    schedule: {
+      type: Object as PropType<FullSchedule>,
       required: true
     },
     filters: {
@@ -197,7 +186,10 @@ export default {
   computed: {
     dateOptions(): FilterOption[] {
       const dates = new Map(
-        this.sessionSlots.map(s => [startOfDay(s.start).toISOString(), s.start])
+        this.schedule.slots.map(s => [
+          startOfDay(s.start).toISOString(),
+          s.start
+        ])
       );
       return [...dates.values()].map(date => ({
         value: date,
@@ -205,19 +197,19 @@ export default {
       }));
     },
     sessionTypeOptions(): FilterOption[] {
-      return this.sessionTypes.map(t => ({
+      return this.schedule.types.map(t => ({
         value: t.id,
         text: this.localise(t.title) as string
       }));
     },
     trackOptions(): FilterOption[] {
-      return this.tracks.map(t => ({
+      return this.schedule.tracks.map(t => ({
         value: t.id,
         text: this.localise(t.title) as string
       }));
     },
     themeOptions(): FilterOption[] {
-      return this.themes.map(t => ({
+      return this.schedule.themes.map(t => ({
         value: t.id,
         text: this.localise(t.title) as string
       }));
@@ -229,9 +221,15 @@ export default {
       ];
     },
     hasFilters(): boolean {
-      return Object.keys(this.filters)
-        .filter(k => k !== 'viewMode')
-        .some(k => Boolean(this.filters[k as keyof ScheduleFilterRecord]));
+      if (!this.filters) return false;
+      return (
+        Boolean(this.filters.query) ||
+        this.filters.sessionType !== null ||
+        this.filters.track !== null ||
+        this.filters.theme !== null ||
+        this.filters.date !== null ||
+        this.filters.isRecorded !== null
+      );
     },
     enabledFiltersSet(): Set<FilterKey> {
       return new Set(this.enabledFilters);

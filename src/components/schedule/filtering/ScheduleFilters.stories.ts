@@ -1,5 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import {
+  createSchedule,
   dates,
   defaultSessionTypes,
   defaultThemes,
@@ -26,14 +27,7 @@ const Template: Story = (args, { argTypes }) => ({
   components: { ScheduleFilters },
   props: [...ALL_FILTERS],
   data: () => ({
-    sessionTypes: defaultSessionTypes(),
-    tracks: defaultTracks(),
-    themes: defaultThemes(),
-    sessionSlots: [
-      mockSessionSlot({ start: dates.addMinutes(dates.now, 0) }),
-      mockSessionSlot({ start: dates.addMinutes(dates.now, 24 * 60) }),
-      mockSessionSlot({ start: dates.addMinutes(dates.now, 48 * 60) })
-    ],
+    schedule: createSchedule(),
     filters: {
       query: '',
       sessionType: null,
@@ -49,17 +43,21 @@ const Template: Story = (args, { argTypes }) => ({
       return ALL_FILTERS.map(k =>
         this[k] ? k.replace(/Filter$/, '') : undefined
       ).filter(v => Boolean(v));
+    },
+    jsonFilters(): unknown {
+      return JSON.stringify(this.filters, null, 2);
     }
   },
   template: `
-    <ScheduleFilters
-      :session-types="sessionTypes"
-      :tracks="tracks"
-      :themes="themes"
-      :session-slots="sessionSlots"
-      :filters="filters"
-      :enabled-filters="enabledFilters"
-    />
+    <div>
+      <ScheduleFilters
+        :schedule="schedule"
+        :filters="filters"
+        :enabled-filters="enabledFilters"
+      />
+      <hr>
+      <pre v-html="jsonFilters" />
+    </div>
   `
 });
 
