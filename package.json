@@ -6,10 +6,6 @@
   "types": "dist/types/module.d.ts",
   "repository": "digitalinteraction/deconf-ui-toolkit",
   "license": "MIT",
-  "sideEffects": [
-    "*.css",
-    "*.scss"
-  ],
   "files": [
     "dist"
   ],
