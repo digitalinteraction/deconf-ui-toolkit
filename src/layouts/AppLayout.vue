@@ -72,6 +72,7 @@ $appLayout-navbarBackground: $white !default;
   display: flex;
   flex-direction: column;
   scroll-padding-top: $navbar-height;
+  position: relative;
 }
 
 .appLayout-page {
@@ -89,15 +90,16 @@ $appLayout-navbarBackground: $white !default;
 }
 
 @include desktop {
-  .appLayout {
-    margin-left: $tabbar-width;
-  }
   .appLayout-tabs {
     position: fixed;
     top: 0;
-    left: 0;
     bottom: 0;
-    display: flex;
+    display: flex; // bit of a hack to get the inside to fill
+    z-index: $z-appwrapper-tabbar;
+  }
+  .appLayout-header,
+  .appLayout-page {
+    margin-inline-start: $tabbar-width;
   }
 }
 
