@@ -12,7 +12,7 @@ interface Data {
  * It uses an internal Vue instance to with object getters to provide reactivity.
  */
 export class TemporalPlugin {
-  static install(Vue: typeof _Vue, interval: number) {
+  static install(Vue: typeof _Vue, interval = 1000): void {
     Vue.prototype.$temporal = new TemporalPlugin(Vue, interval);
   }
 
@@ -20,10 +20,10 @@ export class TemporalPlugin {
   timerId: number | null = null;
   _vm: CombinedVueInstance<_Vue, Data, unknown, unknown, unknown>;
 
-  get date() {
+  get date(): Date {
     return this._vm.date;
   }
-  set date(newValue) {
+  set date(newValue: Date) {
     this._vm.date = newValue;
   }
 
@@ -36,7 +36,7 @@ export class TemporalPlugin {
     });
   }
 
-  setup() {
+  setup(): void {
     this.teardown();
 
     this.timerId = window.setInterval(() => {
@@ -44,7 +44,7 @@ export class TemporalPlugin {
     }, this.interval);
   }
 
-  teardown() {
+  teardown(): void {
     if (!this.timerId) return;
 
     window.clearInterval(this.timerId);
