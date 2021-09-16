@@ -30,7 +30,7 @@ export interface InterpretModuleState {
   interpreters: Interpreter[];
 }
 
-export type InterpretStoreModule = Module<InterpretModuleState, {}>;
+export type InterpretStoreModule = Module<InterpretModuleState, unknown>;
 
 export const mapInterpretState = createStateMapper<InterpretModuleState>();
 

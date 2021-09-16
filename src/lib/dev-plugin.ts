@@ -25,7 +25,7 @@ export class DevPlugin {
 
   // Use an internal vue component to fake the reactivity of properties
   // so consumers can bind to $dev values
-  _vm: CombinedVueInstance<_Vue, Data, {}, {}, {}>;
+  _vm: CombinedVueInstance<_Vue, Data, unknown, unknown, unknown>;
 
   get slotState() {
     return this._vm.slotState;

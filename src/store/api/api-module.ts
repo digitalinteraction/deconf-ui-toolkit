@@ -16,7 +16,7 @@ export interface ApiModuleState {
   userSessions: null | string[];
 }
 
-export type ApiStoreModule = Module<ApiModuleState, {}>;
+export type ApiStoreModule = Module<ApiModuleState, unknown>;
 
 /** This function processes data before it is put into the store */
 function hydrateSchedule(data: ApiModuleState['schedule']) {

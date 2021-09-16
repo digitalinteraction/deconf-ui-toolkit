@@ -44,7 +44,7 @@ export default {
     }
   },
   methods: {
-    routeArgs(item: AppRoute): object {
+    routeArgs(item: AppRoute): unknown {
       if (item.enabled) {
         return {
           to: { name: item.name },

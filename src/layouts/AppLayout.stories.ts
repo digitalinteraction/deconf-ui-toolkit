@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/camelcase */
-
 import { Meta, Story } from '@storybook/vue';
 import AppLayout from './AppLayout.vue';
 import {

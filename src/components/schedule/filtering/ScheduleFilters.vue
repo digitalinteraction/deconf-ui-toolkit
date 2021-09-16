@@ -106,12 +106,13 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import debounce from 'lodash.debounce';
 
 import {
   startOfDay,
   friendlyDate,
-  localiseFromObject
+  localiseFromObject,
+  debounce,
+  Debounced
 } from '../../../lib/module';
 import InlineFilter from './InlineFilter.vue';
 import { ScheduleFilterRecord } from './ScheduleFilterRecord';
@@ -124,12 +125,18 @@ import {
   Track
 } from '@openlab/deconf-shared';
 
+type FilterKey = keyof ScheduleFilterRecord;
+
 const QUERY_DEBOUNCE = 300;
 
-interface Data {
-  showExtraFilters: boolean;
-  queryHandler: null | ((newQuery: string) => void);
-}
+const DEFAULT_FILTERS: FilterKey[] = [
+  'query',
+  'sessionType',
+  'track',
+  'theme',
+  'date',
+  'isRecorded'
+];
 
 //
 // i18n
@@ -153,16 +160,10 @@ interface Data {
 // - n/a
 //
 
-type FilterKey = keyof ScheduleFilterRecord;
-
-const DEFAULT_FILTERS: FilterKey[] = [
-  'query',
-  'sessionType',
-  'track',
-  'theme',
-  'date',
-  'isRecorded'
-];
+interface Data {
+  showExtraFilters: boolean;
+  queryHandler: null | Debounced<[string]>;
+}
 
 export default {
   name: 'ScheduleFilters',
@@ -247,11 +248,14 @@ export default {
   mounted() {
     this.showExtraFilters = this.showExtraFilters || this.hasFilters;
 
-    this.queryHandler = debounce((value: string) => {
+    this.queryHandler = debounce(QUERY_DEBOUNCE, (value: string) => {
       this.filters.query = value;
-    }, QUERY_DEBOUNCE);
+    });
   },
   destroyed() {
+    if (this.queryHandler) {
+      this.queryHandler.cancel();
+    }
     this.queryHandler = null;
   },
   methods: {

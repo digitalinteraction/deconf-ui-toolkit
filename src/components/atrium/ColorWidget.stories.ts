@@ -51,7 +51,7 @@ Custom.args = {
   icon: ['fas', 'apple-alt']
 };
 
-export const List = () => ({
+export const List: Story = () => ({
   components: { ColorWidget },
   template: `
     <div>

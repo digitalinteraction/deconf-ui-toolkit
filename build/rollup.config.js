@@ -4,149 +4,113 @@
 //
 import fs from 'fs';
 import path from 'path';
+
 import vue from 'rollup-plugin-vue';
-import alias from '@rollup/plugin-alias';
+import node from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import resolve from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
 import babel from '@rollup/plugin-babel';
-// import { terser } from 'rollup-plugin-terser';
-import minimist from 'minimist';
+import { terser } from 'rollup-plugin-terser';
+
 import extractSass from './sass-plugin';
-
-// Get browserslist config and remove ie from es build targets
-const esbrowserslist = fs
-  .readFileSync('./.browserslistrc')
-  .toString()
-  .split('\n')
-  .filter(entry => entry && entry.substring(0, 2) !== 'ie');
-
-// Extract babel preset-env config, to combine with esbrowserslist
-const babelPresetEnvConfig = require('../babel.config').presets.filter(
-  entry => entry[0] === '@babel/preset-env'
-)[0][1];
-
-const argv = minimist(process.argv.slice(2));
 
 const projectRoot = path.resolve(__dirname, '..');
 
-const baseConfig = {
-  input: 'src/module.ts',
-  plugins: {
-    preVue: [
-      alias({
-        entries: [
-          {
-            find: '@',
-            replacement: `${path.resolve(projectRoot, 'src')}`
+const babelConfig = {
+  // ...require('../babel.config'),
+  extensions: ['.js', '.ts', '.vue'],
+  exclude: 'node_modules/**',
+  babelHelpers: 'runtime',
+  babelrc: false,
+  presets: [
+    ['@babel/preset-env', { modules: false }],
+    '@babel/preset-typescript'
+  ],
+  plugins: ['@babel/plugin-transform-runtime']
+};
+
+/** @type {import('rollup-plugin-vue').VuePluginOptions} */
+const vueConfig = {
+  css: false,
+  template: {
+    isProduction: true,
+    compilerOptions: {
+      whitespace: 'condense'
+    }
+  },
+  data: {
+    scss: '@import "@/scss/common.scss";\n'
+  },
+  style: {
+    preprocessOptions: {
+      scss: {
+        importer: [
+          url => {
+            return {
+              file: url
+                .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
+                .replace(/^@/, path.join(projectRoot, 'src'))
+            };
           }
         ]
-      }),
-      extractSass({
-        prependData: [
-          fs.readFileSync('./src/scss/common.scss'),
-          fs.readFileSync('./src/scss/app.scss')
-        ].join('\n'),
-        copyFiles: [
-          {
-            input: path.resolve(projectRoot, 'src/scss/common.scss'),
-            output: 'common.scss'
-          }
-        ],
-        filename: null
-      })
-    ],
-    replace: {
-      preventAssignment: true,
-      'process.env.NODE_ENV': JSON.stringify('production')
-    },
-    vue: {
-      css: false,
-      template: {
-        isProduction: true
-      },
-
-      // https://github.com/vuejs/rollup-plugin-vue/issues/300
-      data: {
-        scss: '@import "@/scss/common.scss";\n'
-      },
-      style: {
-        preprocessOptions: {
-          // https://www.npmjs.com/package/sass
-          scss: {
-            importer: [
-              url => {
-                return {
-                  file: url
-                    .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
-                    .replace(/^@/, path.join(projectRoot, 'src'))
-                };
-              }
-            ]
-          }
-        }
       }
-    },
-    postVue: [
-      resolve({
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue']
-      }),
-      commonjs()
-    ],
-    babel: {
-      exclude: 'node_modules/**',
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue'],
-      babelHelpers: 'bundled'
     }
   }
 };
 
-// ESM/UMD/IIFE shared settings: externals
-// Refer to https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency
+const sassConfig = {
+  prependData: [
+    fs.readFileSync('src/scss/common.scss'),
+    fs.readFileSync('src/scss/app.scss')
+  ].join('\n\n\n'),
+  copyFiles: [
+    {
+      input: path.resolve(projectRoot, 'src/scss/common.scss'),
+      output: 'common.scss'
+    }
+  ],
+  filename: null
+};
+
+// const argv = minimist(process.argv.slice(2));
+
 // list external dependencies, exactly the way it is written in the import statement.
-const external = [
+// https://rollupjs.org/guide/en/#warning-treating-module-as-external-dependency
+const externalPackages = [
+  'bulma',
   'vue',
+  'vue-i18n',
+  'vue-router',
+  'vuex',
   '@fortawesome/vue-fontawesome',
   'copy-to-clipboard',
   '@openlab/deconf-shared',
-  'lodash.debounce'
+  '@babel/runtime'
 ];
 
 // Customize configs for individual targets
+/** @type {import("rollup").InputOptions[]} */
 const buildFormats = [];
-if (!argv.format || argv.format === 'es') {
-  const esConfig = {
-    ...baseConfig,
-    external,
-    output: {
-      file: `dist/deconf-ui.esm.js`,
-      format: 'esm',
-      exports: 'named'
-    },
-    plugins: [
-      replace(baseConfig.plugins.replace),
-      ...baseConfig.plugins.preVue,
-      vue(baseConfig.plugins.vue),
-      ...baseConfig.plugins.postVue,
-      babel({
-        ...baseConfig.plugins.babel,
-        presets: [
-          [
-            '@babel/preset-env',
-            {
-              ...babelPresetEnvConfig,
-              targets: esbrowserslist
-            }
-          ]
-        ]
-      }),
-      commonjs({
-        extensions: ['.js', '.ts', '.vue']
-      })
-    ]
-  };
-  buildFormats.push(esConfig);
-}
+
+//
+// ESM
+//
+buildFormats.push({
+  input: path.resolve(projectRoot, 'src/module.ts'),
+  external: externalPackages,
+  output: {
+    format: 'esm',
+    file: `dist/deconf-ui.esm.js`,
+    exports: 'named'
+  },
+  plugins: [
+    node({ extensions: ['.js', '.ts', '.vue'] }),
+    extractSass(sassConfig),
+    vue(vueConfig),
+    babel(babelConfig),
+    commonjs(),
+    terser()
+  ]
+});
 
 // Export config
 export default buildFormats;

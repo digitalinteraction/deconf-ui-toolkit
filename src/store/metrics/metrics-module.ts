@@ -12,7 +12,7 @@ export interface MetricsAuthenticateOptions {
   socketId: string | null;
 }
 
-export type MetricsStoreModule = Module<MetricsModuleState, {}>;
+export type MetricsStoreModule = Module<MetricsModuleState, unknown>;
 
 export const mapMetricsState = createStateMapper<MetricsModuleState>();
 

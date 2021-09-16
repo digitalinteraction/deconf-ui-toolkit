@@ -134,7 +134,7 @@ export default {
     track(): Track {
       return lookup(this.schedule.tracks, this.session.track);
     },
-    sessionRoute(): object {
+    sessionRoute(): unknown {
       return { name: Routes.Session, params: { sessionId: this.session.id } };
     },
     sessionSpeakers(): Speaker[] {
@@ -161,7 +161,7 @@ export default {
     calendarLink(): string | null {
       return this.$deconf.getCalendarLink(this.session);
     },
-    headerAttributes(): object {
+    headerAttributes(): unknown {
       const set = new Set(this.config.tileHeader);
 
       return {
@@ -170,7 +170,7 @@ export default {
         themes: set.has('themes') ? this.themes : null
       };
     },
-    attributesAttributes(): object {
+    attributesAttributes(): unknown {
       const set = new Set(this.config.tileAttributes);
 
       return {

@@ -18,7 +18,7 @@ export class TemporalPlugin {
 
   interval: number;
   timerId: number | null = null;
-  _vm: CombinedVueInstance<_Vue, Data, {}, {}, {}>;
+  _vm: CombinedVueInstance<_Vue, Data, unknown, unknown, unknown>;
 
   get date() {
     return this._vm.date;

@@ -110,7 +110,7 @@ import { Location } from 'vue-router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { SelectOption } from '../form/select-option';
-import { ConferenceConfig } from '@openlab/deconf-shared/dist/conference';
+import { ConferenceConfig } from '@openlab/deconf-shared';
 
 //
 // i18n
@@ -146,7 +146,7 @@ export default {
     languages: { type: Array as PropType<SelectOption[]>, default: null }
   },
   computed: {
-    activeClasses(): object {
+    activeClasses(): unknown {
       return {
         'is-active': this.isShowingMenu
       };

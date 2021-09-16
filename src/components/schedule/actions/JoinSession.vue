@@ -47,7 +47,7 @@ export default {
     sessionId: { type: String, required: true }
   },
   computed: {
-    classes(): object {
+    classes(): unknown {
       return {
         'is-success': ['present', 'past'].includes(this.slotState)
       };
@@ -55,7 +55,7 @@ export default {
     action(): string {
       return actions[this.slotState] || actions.past;
     },
-    sessionRoute(): object {
+    sessionRoute(): unknown {
       return { name: Routes.Session, params: { sessionId: this.sessionId } };
     }
   }

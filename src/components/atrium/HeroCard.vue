@@ -30,7 +30,7 @@ export default {
     coverImage: { type: String, required: true }
   },
   computed: {
-    style(): object {
+    style(): unknown {
       return { 'background-image': `url(${this.coverImage})` };
     }
   }

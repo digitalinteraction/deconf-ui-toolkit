@@ -11,7 +11,7 @@ export default {
  * A utility to slice/repeat an array upto a count using modulo logic
  * and ensuring unique ids
  */
-function repeatSlice<T = {}>(array: T[], count: number) {
+function moduloSlice<T>(array: T[], count: number) {
   const output = [];
   for (let i = 0; i < count; i++) {
     output.push({
@@ -27,7 +27,7 @@ const Template: Story = (args, { argTypes }) => ({
   props: ['speakerCount'],
   computed: {
     speakers() {
-      return repeatSlice(defaultSpeakers(), this.speakerCount as number);
+      return moduloSlice(defaultSpeakers(), this.speakerCount as number);
     }
   },
   template: `

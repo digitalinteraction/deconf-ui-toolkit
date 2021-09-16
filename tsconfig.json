@@ -17,12 +17,5 @@
     "lib": ["esnext", "dom", "dom.iterable"],
     "typeRoots": ["./node_modules/@types", "./src/typings"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-  ],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts"]
 }

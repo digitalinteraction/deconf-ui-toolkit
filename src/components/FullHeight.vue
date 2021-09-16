@@ -24,7 +24,7 @@ export default {
     };
   },
   computed: {
-    styles(): object {
+    styles(): unknown {
       return {
         'min-height': `${this.windowHeight}px`
       };

@@ -9,8 +9,10 @@ import {
   Theme,
   Track
 } from '@openlab/deconf-shared';
-import { FullSchedule } from '../module';
+import { FullSchedule, Sponsor } from '../module';
 import { dates } from './dates';
+
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 //
 // V2
@@ -96,25 +98,23 @@ export const mockSettings = makeFixture<ConferenceConfig>({
   isStatic: false
 });
 
+export const mockSponsor = makeFixture<Sponsor>({
+  title: 'Corp A',
+  image: '/openlab.svg',
+  href: 'https://openlab.ncl.ac.uk'
+});
+
 //
 // v1
 //
 
-const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-export function createSponsors(n: number) {
-  const s = [];
-  for (let i = 0; i < n; i++) {
-    s.push({
-      title: `Corp ${alphabet[i % alphabet.length]}`,
-      image: '/openlab.svg',
-      href: 'https://openlab.ncl.ac.uk'
-    });
-  }
-  return s;
+export function createSponsors(n: number): Sponsor[] {
+  return Array.from({ length: n }, (_, i) =>
+    mockSponsor({ title: `Corp ${ALPHABET[i % ALPHABET.length]}` })
+  );
 }
 
-export function defaultSessionTypes() {
+export function defaultSessionTypes(): SessionType[] {
   return [
     {
       id: 'plenary',
@@ -133,7 +133,7 @@ export function defaultSessionTypes() {
   ];
 }
 
-export function defaultSpeakers() {
+export function defaultSpeakers(): Speaker[] {
   return [
     mockSpeaker({
       id: '1',
@@ -183,7 +183,7 @@ export function defaultSpeakers() {
   ];
 }
 
-export function defaultTracks() {
+export function defaultTracks(): Track[] {
   return [
     mockTrack({ id: 'track-a', title: localise('AI and Agriculture') }),
     mockTrack({
@@ -194,7 +194,7 @@ export function defaultTracks() {
   ];
 }
 
-export function defaultThemes() {
+export function defaultThemes(): Theme[] {
   return [
     mockTheme({ id: 'theme-a', title: localise('Inclusivity') }),
     mockTheme({ id: 'theme-b', title: localise('Awareness') }),
@@ -230,7 +230,7 @@ export function createSchedule(): FullSchedule {
   };
 }
 
-export function randomNumber(min: number, max: number) {
+export function randomNumber(min: number, max: number): number {
   return min + Math.floor(Math.random() * (max - min));
 }
 
@@ -248,7 +248,7 @@ let randomId = 1;
 export function randomSession(
   schedule: FullSchedule,
   options: Partial<Session> = {}
-) {
+): Session {
   return mockSession({
     id: `session-${randomId++}`,
     type: randomElement(schedule.types).id,

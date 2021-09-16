@@ -5,7 +5,7 @@ import { DeconfPlugin } from '../lib/deconf-plugin';
 // declare module '@vue/runtime-core' {
 declare module 'vue/types/vue' {
   // declare your own store states
-  type State = {};
+  type State = Record<string, unknown>;
 
   // provide typings for `this.$store`
   interface Vue {

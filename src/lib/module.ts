@@ -1,10 +1,11 @@
 // ...
 
-export * from './audio/module';
 export * from './api';
+export * from './audio/module';
 export * from './constants';
 export * from './countdowns';
 export * from './dates';
+export * from './debounce';
 export * from './deconf-plugin';
 export * from './deep-seal';
 export * from './dev-plugin';

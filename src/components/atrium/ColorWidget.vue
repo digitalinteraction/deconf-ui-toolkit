@@ -55,7 +55,7 @@ export default {
     rootComponent(): string {
       return this.href ? 'a' : 'div';
     },
-    extraArgs(): object {
+    extraArgs(): unknown {
       return this.href ? { href: this.href } : {};
     },
     classes(): string[] {

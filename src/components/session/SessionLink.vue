@@ -59,7 +59,7 @@ export default {
     }
   },
   computed: {
-    buttonClasses(): object {
+    buttonClasses(): unknown {
       return {
         'is-dark': !this.didCopy,
         'is-success': this.didCopy

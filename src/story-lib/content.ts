@@ -10,14 +10,16 @@ const paragraphs = [
   `Must go faster. You're a very talented young man, with your own clever thoughts and ideas. Do you need a manager? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should. Remind me to thank John for a lovely weekend.`
 ];
 
-export function createText(index = 0) {
+export function createText(index = 0): string {
   return paragraphs[index];
 }
 
-export function createContent() {
+export function createContent(): Vue.Component {
   return Vue.extend({
     template: `
-      <div>${paragraphs.map(text => `<p>${text}</p>`).join('')}</div>
+      <div>
+        ${paragraphs.map(text => `<p>${text}</p>`).join('')}
+      </div>
     `
   });
 }
