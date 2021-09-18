@@ -38,7 +38,7 @@ import { SlotState } from '../../lib/module';
 //
 // icons
 // - fas long-arrow-alt-right
-// - long-arrow-alt-left
+// - fas long-arrow-alt-left
 //
 // sass
 // - $timeSlot-presentColor
