@@ -66,6 +66,8 @@ $sideTabs-background: #252525 !default;
 $sideTabs-color: $white !default;
 $sideTabs-active: $primary !default;
 
+// TODO: $sideTabs-activeBackground:
+
 .sideTabs {
   background-color: $sideTabs-background;
   width: $tabbar-width;
