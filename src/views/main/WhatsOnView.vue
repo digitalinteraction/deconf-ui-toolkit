@@ -23,7 +23,7 @@
           :session="session"
           :schedule="schedule"
           :config="config"
-          :show-actions="false"
+          :readonly="true"
         />
       </SessionBoard>
     </div>
@@ -129,10 +129,5 @@ $whatsOn-titleWeight: bold !default;
   // TODO: font-family
   font-size: $whatsOn-titleSize;
   font-weight: $whatsOn-titleWeight;
-}
-
-// TODO: move to SessionTile as a configuration
-.whatsOnView .sessionTile-actions {
-  display: none;
 }
 </style>
