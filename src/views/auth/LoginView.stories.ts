@@ -21,7 +21,10 @@ const Template: Story = (args, { argTypes }) => ({
       <LoginView
         slot="main"
         api-module="api"
-      />
+      >
+        <p slot="infoText">Use this form to log in</p>
+        <p slot="doneText">Log in email sent!</p>
+      </LoginView>
     </UtilLayout>
   `
 });
@@ -30,5 +33,8 @@ export const Default = Template.bind({});
 Default.args = {};
 Default.parameters = {
   layout: 'fullscreen',
-  actions: { argTypesRegex: '^on[A-Z].*' }
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  controls: {
+    exclude: ['initialState', 'infoText', 'doneText']
+  }
 };

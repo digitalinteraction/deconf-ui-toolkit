@@ -3,11 +3,11 @@
     <div class="loginView">
       <h1 class="title">{{ $t('deconf.login.title') }}</h1>
       <div class="content">
-        <p>{{ $t('deconf.login.infoText') }}</p>
+        <slot name="infoText" />
       </div>
       <div class="notification is-success" v-if="state === 'success'">
         <button class="delete" @click="state = 'pending'"></button>
-        <p>{{ $t('deconf.login.doneText') }}</p>
+        <slot name="doneText" />
       </div>
       <div class="notification is-danger" v-if="state === 'error'">
         <p>{{ $t('deconf.login.badEmail') }}</p>
@@ -48,6 +48,7 @@
 </template>
 
 <script lang="ts">
+import { PropType } from 'vue';
 import TextField from '../../components/form/TextField.vue';
 import { createLoginStartEvent, Routes } from '../../lib/module';
 
@@ -55,7 +56,6 @@ import { createLoginStartEvent, Routes } from '../../lib/module';
 // i18n
 // - deconf.login.title
 // - deconf.login.infoText
-// - deconf.login.doneText
 // - deconf.login.badEmail
 // - deconf.login.email.label
 // - deconf.login.email.placeholder
@@ -71,21 +71,27 @@ import { createLoginStartEvent, Routes } from '../../lib/module';
 // - n/a
 //
 
+type LoginState = 'pending' | 'working' | 'error' | 'success';
+
 interface Data {
   email: string;
-  state: 'pending' | 'working' | 'error' | 'success';
+  state: LoginState;
 }
 
 export default {
   name: 'LoginView',
   components: { TextField },
   props: {
-    apiModule: { type: String, required: true }
+    apiModule: { type: String, required: true },
+    initialState: {
+      type: String as PropType<LoginState>,
+      default: 'pending' as LoginState
+    }
   },
   data(): Data {
     return {
       email: '',
-      state: 'pending'
+      state: this.initialState
     };
   },
   computed: {
