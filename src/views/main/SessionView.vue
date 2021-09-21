@@ -357,11 +357,11 @@ export default {
       );
     },
     async attend() {
-      this.$store.dispatch(`${this.apiModule}/attend`, this.session.id);
+      await this.$store.dispatch(`${this.apiModule}/attend`, this.session.id);
       this.fetchSessionData();
     },
     async unattend() {
-      this.$store.dispatch(`${this.apiModule}/unattend`, this.session.id);
+      await this.$store.dispatch(`${this.apiModule}/unattend`, this.session.id);
       this.fetchSessionData();
     },
     guessLinkName(link: string) {
