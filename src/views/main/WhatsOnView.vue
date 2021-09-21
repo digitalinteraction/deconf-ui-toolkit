@@ -8,10 +8,7 @@
         <p>{{ $t('deconf.whatsOn.infoText') }}</p>
       </div>
       <ScheduleFilters
-        :session-types="schedule.types"
-        :tracks="schedule.tracks"
-        :themes="schedule.themes"
-        :session-slots="schedule.slots"
+        :schedule="schedule"
         :filters="filters"
         @filter="onFilter"
         :enabled-filters="enabledFilters"
