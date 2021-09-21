@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.15](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2021-09-21)
+
+
+### Bug Fixes
+
+* fix SessionView not waiting for attend endpoints ([7415ea9](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/7415ea96ac3f875a750287cbe72d867f475ba640))
+
 ## [2.0.0-beta.14](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2021-09-21)
 
 
