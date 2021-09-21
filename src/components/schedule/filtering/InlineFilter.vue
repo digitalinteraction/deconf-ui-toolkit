@@ -1,27 +1,21 @@
 <template>
-  <div class="inlineFilter">
-    <div class="field has-addons">
-      <div class="control">
-        <div class="button is-static">
-          {{ label }}
-        </div>
-      </div>
-      <div class="control">
-        <div class="select">
-          <select :value="value" @input="onInput">
-            <option :value="null">
-              {{ offLabel }}
-            </option>
-            <option
-              v-for="item in options"
-              :key="item.value.toString()"
-              :value="item.value"
-            >
-              {{ item.text }}
-            </option>
-          </select>
-        </div>
-      </div>
+  <div class="inlineField">
+    <div class="button is-static">
+      {{ label }}
+    </div>
+    <div class="select">
+      <select :value="value" @input="onInput">
+        <option :value="null">
+          {{ offLabel }}
+        </option>
+        <option
+          v-for="item in options"
+          :key="item.value.toString()"
+          :value="item.value"
+        >
+          {{ item.text }}
+        </option>
+      </select>
     </div>
   </div>
 </template>
@@ -66,8 +60,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.inlineFilter {
-  // ...
-}
-</style>
+<style lang="scss"></style>
