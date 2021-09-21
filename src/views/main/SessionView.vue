@@ -357,12 +357,16 @@ export default {
       );
     },
     async attend() {
+      this.isLoading = true;
       await this.$store.dispatch(`${this.apiModule}/attend`, this.session.id);
       this.fetchSessionData();
+      this.isLoading = false;
     },
     async unattend() {
+      this.isLoading = true;
       await this.$store.dispatch(`${this.apiModule}/unattend`, this.session.id);
       this.fetchSessionData();
+      this.isLoading = false;
     },
     guessLinkName(link: string) {
       if (link.includes('zoom')) return this.$t('deconf.session.zoomLink');
