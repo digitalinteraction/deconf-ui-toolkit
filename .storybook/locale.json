@@ -26,6 +26,7 @@
       "workshops": "None | 1 workshop | {n} workshops"
     },
     "general": {
+      "day": "days | day | days",
       "hours": "hours | hour | hours",
       "minutes": "minutes | minute | minutes",
       "seconds": "seconds | second | seconds",

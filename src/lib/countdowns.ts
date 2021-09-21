@@ -1,4 +1,5 @@
 export interface CountdownComponents {
+  days: number;
   hours: number;
   minutes: number;
   seconds: number;
@@ -16,9 +17,8 @@ export function getCountdown(
   let remaining = targetDate.getTime() - currentDate.getTime();
 
   // Remaining days
-  // TODO:
-  // const days = Math.floor(remaining / MS_PER_DAY);
-  // remaining = remaining - days * MS_PER_DAY;
+  const days = Math.floor(remaining / MS_PER_DAY);
+  remaining = remaining - days * MS_PER_DAY;
 
   // Remaining hours
   const hours = Math.floor(remaining / MS_PER_HOUR);
@@ -32,11 +32,11 @@ export function getCountdown(
   const seconds = Math.floor(remaining / MS_PER_SECOND);
   remaining = remaining - seconds * MS_PER_SECOND;
 
-  return { hours, minutes, seconds };
+  return { days, hours, minutes, seconds };
 }
 
 export function getCountdownMessage(
-  { hours, minutes, seconds }: CountdownComponents,
+  { days, hours, minutes, seconds }: CountdownComponents,
   tc: (key: string, value: number) => string,
   seperator = ' '
 ): string {
@@ -46,6 +46,7 @@ export function getCountdownMessage(
   };
 
   return [
+    convert(days, 'days'),
     convert(hours, 'hours'),
     convert(minutes, 'minutes'),
     convert(seconds, 'seconds')
