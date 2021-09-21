@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.14](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2021-09-21)
+
+
+### Features
+
+* support multi-lingual links and upgrade deconf-shared ([48aef9b](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/48aef9bc214a20bdb6d686d56a4a10ee4674d07d))
+
+
+### Bug Fixes
+
+* fix countdown logic ([98a85d4](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/98a85d4f7764cc6d71d2d8987f58624e8a35dfd0))
+
 ## [2.0.0-beta.13](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2021-09-21)
 
 
