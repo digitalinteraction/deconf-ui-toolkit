@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.15.4",
-    "@openlab/deconf-shared": "^3.2.0"
+    "@openlab/deconf-shared": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",

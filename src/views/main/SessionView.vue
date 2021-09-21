@@ -135,7 +135,7 @@
 import {
   Session,
   SessionAttendance,
-  SessionLink as ISessionLink,
+  LocalisedLink,
   SessionSlot,
   SessionType,
   Speaker,
@@ -146,6 +146,7 @@ import { FullSchedule } from '../../lib/api';
 import {
   createICalEvent,
   createSessionLinkEvent,
+  getLocaleLinks,
   getSlotState,
   localiseFromObject,
   parseEmbedLink,
@@ -194,7 +195,7 @@ const LINKS_INTERVAL = 60 * 1000;
 
 interface Data {
   timerId: number | null;
-  links: ISessionLink[] | null;
+  links: LocalisedLink[] | null;
   attendance: null | SessionAttendance;
   isLoading: boolean;
 }
@@ -249,14 +250,17 @@ export default {
       const ids = new Set(this.session.themes);
       return this.schedule.themes.filter(t => ids.has(t.id));
     },
-    primaryLink(): ISessionLink | null {
+    localeLinks(): LocalisedLink[] | null {
       if (!this.links) return null;
-      return this.links.find(l => (parseEmbedLink(l.url) ? l : null)) || null;
+      return getLocaleLinks(this.links, this.$i18n.locale, 'en');
     },
-    secondaryLinks(): ISessionLink[] | null {
-      if (!this.links) return null;
-
-      return this.links.filter(l => l !== this.primaryLink);
+    primaryLink(): LocalisedLink | undefined {
+      if (!this.localeLinks) return undefined;
+      return this.localeLinks.find(l => (parseEmbedLink(l.url) ? l : null));
+    },
+    secondaryLinks(): LocalisedLink[] | null {
+      if (!this.localeLinks) return null;
+      return this.localeLinks.filter(l => l !== this.primaryLink);
     },
     slotState(): SlotState {
       if (!this.sessionSlot) return 'future';

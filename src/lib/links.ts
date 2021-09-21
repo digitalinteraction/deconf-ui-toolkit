@@ -1,3 +1,5 @@
+import { LocalisedLink } from '@openlab/deconf-shared';
+
 function isDomain(url: URL, ...domains: string[]) {
   return domains.some(d => url.hostname.endsWith(d));
 }
@@ -133,4 +135,15 @@ export function parseEmbedLink(link: string): ParsedEmbedLink | null {
   }
 
   return null;
+}
+
+export function getLocaleLinks(
+  links: LocalisedLink[],
+  locale: string,
+  fallback: string
+): LocalisedLink[] {
+  return [
+    ...links.filter(l => l.language === locale),
+    ...links.filter(l => l.language === fallback)
+  ];
 }

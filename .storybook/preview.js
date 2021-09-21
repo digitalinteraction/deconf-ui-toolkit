@@ -80,6 +80,7 @@ const actions = {
     if (!attendance.has(sessionId)) return { links: null };
     return {
       links: [
+        { type: '', url: 'https://youtu.be/yPYZpwSpKmA', language: 'fr' },
         { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
         { type: '', url: 'https://miro.com/', language: 'en' },
         { type: '', url: 'https://docs.google.com/abcdef', language: 'en' }
