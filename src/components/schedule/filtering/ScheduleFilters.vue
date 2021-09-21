@@ -2,21 +2,17 @@
   <div class="scheduleFilters">
     <div class="scheduleFilters-row">
       <!-- Query -->
-      <div class="field has-addons" v-if="isEnabled('query')">
-        <div class="control">
-          <div class="button is-static">
-            {{ $t('deconf.scheduleFilters.query') }}
-          </div>
+      <div class="inlineField" v-if="isEnabled('query')">
+        <div class="button is-static">
+          {{ $t('deconf.scheduleFilters.query') }}
         </div>
-        <div class="control">
-          <input
-            type="text"
-            class="input"
-            :value="filters.query"
-            :placeholder="$t('deconf.scheduleFilters.query')"
-            @input="onQuery"
-          />
-        </div>
+        <input
+          type="text"
+          class="input"
+          :value="filters.query"
+          :placeholder="$t('deconf.scheduleFilters.query')"
+          @input="onQuery"
+        />
       </div>
 
       <!-- Show / hide filters -->
