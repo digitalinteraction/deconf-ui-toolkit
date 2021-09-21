@@ -5,9 +5,14 @@
     </div>
     <div class="sessionTile-info">
       <h2 class="sessionTile-title">
-        <router-link :to="sessionRoute">
+        <template v-if="readonly">
           {{ localeTitle }}
-        </router-link>
+        </template>
+        <template v-else>
+          <router-link :to="sessionRoute">
+            {{ localeTitle }}
+          </router-link>
+        </template>
       </h2>
       <p class="sessionTile-description">
         {{ localeContent }}
@@ -19,7 +24,7 @@
     <div class="sessionTile-speakers">
       <SpeakerGrid :speakers="sessionSpeakers" />
     </div>
-    <div class="sessionTile-actions" v-if="showActions">
+    <div class="sessionTile-actions" v-if="!readonly">
       <div class="buttons is-right">
         <!-- 
           Add to calendar
@@ -108,7 +113,7 @@ export default {
     session: { type: Object as PropType<Session>, required: true },
     schedule: { type: Object as PropType<FullSchedule>, required: true },
     config: { type: Object as PropType<ScheduleConfig>, required: true },
-    showActions: { type: Boolean, default: true }
+    readonly: { type: Boolean, default: false }
   },
   computed: {
     speakers(): Speaker[] {
