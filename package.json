@@ -140,5 +140,10 @@
   },
   "prettier": {
     "singleQuote": true
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
