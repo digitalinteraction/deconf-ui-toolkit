@@ -19,9 +19,8 @@
     "storybook": "start-storybook -s ./static -p 6006 --ci",
     "build-storybook": "build-storybook -s ./static",
     "preversion": "npm run lint && npm run build",
-    "postversion": "git push --follow-tags",
-    "release": "standard-version",
-    "release:beta": "standard-version --prerelease=beta"
+    "release": "npm run preversion && standard-version",
+    "release:beta": "npm run preversion && standard-version --prerelease=beta"
   },
   "peerDependencies": {
     "@fortawesome/vue-fontawesome": "^2.0.2",
