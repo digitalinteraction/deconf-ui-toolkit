@@ -348,7 +348,9 @@ export default {
         `${this.apiModule}/fetchLinks`,
         this.session.id
       );
-      this.links = result.links;
+      if (result) {
+        this.links = result.links;
+      }
     },
     async fetchAttendance() {
       this.attendance = await this.$store.dispatch(
