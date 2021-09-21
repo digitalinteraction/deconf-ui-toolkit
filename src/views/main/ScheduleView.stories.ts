@@ -17,20 +17,22 @@ const Template: Story = (args, { argTypes }) => ({
   props: ['isDuringConference', 'scheduleDate'],
   data() {
     const schedule = createSchedule();
+    const sessions = [
+      randomSession(schedule),
+      randomSession(schedule),
+      randomSession(schedule),
+      randomSession(schedule),
+      randomSession(schedule),
+      randomSession(schedule),
+      randomSession(schedule),
+      randomSession(schedule),
+      randomSession(schedule),
+      randomSession(schedule)
+    ];
     return {
       schedule,
-      sessions: [
-        randomSession(schedule),
-        randomSession(schedule),
-        randomSession(schedule),
-        randomSession(schedule),
-        randomSession(schedule),
-        randomSession(schedule),
-        randomSession(schedule),
-        randomSession(schedule),
-        randomSession(schedule),
-        randomSession(schedule)
-      ],
+      sessions,
+      userSessions: [sessions[0].id, sessions[2].id, sessions[5].id],
       config: {
         tileHeader: ['type', 'track'],
         tileAttributes: ['languages', 'themes', 'recorded']
@@ -42,6 +44,7 @@ const Template: Story = (args, { argTypes }) => ({
       <ScheduleView
         :schedule="schedule"
         :sessions="sessions"
+        :user-sessions="userSessions"
         filters-key="schedule.filters"
         :config="config"
         :scheduleDate="scheduleDate"

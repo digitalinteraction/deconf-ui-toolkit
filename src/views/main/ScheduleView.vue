@@ -6,10 +6,10 @@
           {{ $t('deconf.schedule.title') }}
         </h1>
         <div class="scheduleView-viewControl">
-          <!-- <SegmentField
-              v-model="filters.viewMode"
-              :options="viewModeOptions"
-            /> -->
+          <SegmentControl
+            v-model="filters.viewMode"
+            :options="viewModeOptions"
+          />
         </div>
       </div>
       <p class="scheduleView-content">
@@ -92,7 +92,8 @@ import {
   ScheduleFilters,
   StickyHeading,
   ScheduleBlock,
-  NoResults
+  NoResults,
+  SegmentControl
 } from '../../components/module';
 import {
   FullSchedule,
@@ -134,7 +135,13 @@ interface Data {
 
 export default {
   name: 'ScheduleView',
-  components: { ScheduleFilters, StickyHeading, ScheduleBlock, NoResults },
+  components: {
+    ScheduleFilters,
+    StickyHeading,
+    ScheduleBlock,
+    NoResults,
+    SegmentControl
+  },
   props: {
     schedule: { type: Object as PropType<FullSchedule>, required: true },
     sessions: { type: Array as PropType<Session[]>, required: true },
@@ -143,10 +150,10 @@ export default {
       type: Array as PropType<Array<keyof ScheduleFilterRecord>>,
       default: undefined
     },
-    // userSessions: {
-    //   type: Array as PropType<string[]>,
-    //   required: true
-    // },
+    userSessions: {
+      type: Array as PropType<string[]>,
+      required: true
+    },
     config: {
       type: Object as PropType<ScheduleConfig>,
       required: true
@@ -216,6 +223,25 @@ $scheduleView-background: $background !default;
   padding: $block-spacing;
   background-color: $white;
   border-bottom: 1px solid $border;
+}
+.scheduleView-headerSplit {
+  display: flex;
+  justify-content: space-between;
+  @include mobile {
+    flex-direction: column-reverse;
+    .scheduleView-title {
+      width: 100%;
+    }
+    .inlineField {
+      margin-bottom: 1em;
+      display: flex;
+
+      > * {
+        font-size: 0.75em;
+        flex: 1;
+      }
+    }
+  }
 }
 .scheduleView-toggleHistory {
   background: $scheduleView-background;

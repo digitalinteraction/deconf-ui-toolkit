@@ -58,7 +58,6 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
       );
     },
 
-    // TODO: move to other side for client-specific logic
     filteredSessions() {
       const showUserSessions = this.filters.viewMode === 'user';
       const userSessions = new Set(this.userSessions);
