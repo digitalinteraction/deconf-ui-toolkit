@@ -28,6 +28,7 @@ import { SelectOption } from './select-option';
 //
 
 export default {
+  name: 'SegmentControl',
   props: {
     value: { type: String, required: true },
     options: { type: Array as PropType<SelectOption[]>, required: true }
