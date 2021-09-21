@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.13](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2021-09-21)
+
+
+### Bug Fixes
+
+* fix WhatsOnView to not show links ([dacef2f](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/dacef2f580222a451b41da8232201e40ae934e83))
+
 ## [2.0.0-beta.12](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2021-09-21)
 
 
