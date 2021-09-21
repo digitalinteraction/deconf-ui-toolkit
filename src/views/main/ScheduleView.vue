@@ -13,7 +13,7 @@
         </div>
       </div>
       <p class="scheduleView-content">
-        <!-- <FilterContent /> -->
+        <slot name="infoText" />
       </p>
       <ScheduleFilters
         :session-types="schedule.types"

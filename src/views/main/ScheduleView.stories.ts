@@ -46,7 +46,9 @@ const Template: Story = (args, { argTypes }) => ({
         :config="config"
         :scheduleDate="scheduleDate"
         :is-during-conference="isDuringConference"
-      />
+      >
+        <p slot="infoText">The sessions on at the conference</p>
+      </ScheduleView>
     </MockAppLayout>
   `
 });
@@ -57,7 +59,17 @@ Future.args = {
   isDuringConference: true
 };
 Future.parameters = {
-  layout: 'fullscreen'
+  layout: 'fullscreen',
+  controls: {
+    exclude: [
+      'schedule',
+      'sessions',
+      'filtersKey',
+      'enabledFilters',
+      'infoText',
+      'config'
+    ]
+  }
 };
 
 export const Present = Template.bind({});
@@ -66,6 +78,7 @@ Present.args = {
   isDuringConference: true
 };
 Present.parameters = {
+  ...Future.parameters,
   layout: 'fullscreen'
 };
 
@@ -75,5 +88,6 @@ Past.args = {
   isDuringConference: false
 };
 Past.parameters = {
+  ...Future.parameters,
   layout: 'fullscreen'
 };
