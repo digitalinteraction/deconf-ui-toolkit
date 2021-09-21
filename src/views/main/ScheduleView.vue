@@ -16,10 +16,7 @@
         <slot name="infoText" />
       </p>
       <ScheduleFilters
-        :session-types="schedule.types"
-        :session-slots="schedule.slots"
-        :tracks="schedule.tracks"
-        :themes="schedule.themes"
+        :schedule="schedule"
         :filters="filters"
         :enabledFilters="enabledFilters"
         @filter="onFilter"
