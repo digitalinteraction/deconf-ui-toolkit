@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.16](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.15...v2.0.0-beta.16) (2021-09-22)
+
+
+### Features
+
+* **metrics:** organise metrics, ensure implementation and add more ([2142312](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/2142312f85d0c36928c2de7b66ea00aeda26f9c0))
+
+
+### Bug Fixes
+
+* **SessionView:** fix links error ([e922bff](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/e922bffc65dea7ea9d7a4b16a83917845b029f7e))
+* show loading when attend/unattend-ing a session ([8d3e475](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/8d3e475abebb978e68fd63f5231164e28467c010))
+
 ## [2.0.0-beta.15](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2021-09-21)
 
 
