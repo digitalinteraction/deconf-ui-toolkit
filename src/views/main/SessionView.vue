@@ -144,6 +144,7 @@ import {
 import { PropType } from 'vue';
 import { FullSchedule } from '../../lib/api';
 import {
+  createAttendanceEvent,
   createICalEvent,
   createSessionLinkEvent,
   getLocaleLinks,
@@ -360,14 +361,24 @@ export default {
     },
     async attend() {
       this.isLoading = true;
+
       await this.$store.dispatch(`${this.apiModule}/attend`, this.session.id);
+      this.$deconf.trackMetric(
+        createAttendanceEvent('attend', this.session.id)
+      );
       this.fetchSessionData();
+
       this.isLoading = false;
     },
     async unattend() {
       this.isLoading = true;
+
       await this.$store.dispatch(`${this.apiModule}/unattend`, this.session.id);
+      this.$deconf.trackMetric(
+        createAttendanceEvent('unattend', this.session.id)
+      );
       this.fetchSessionData();
+
       this.isLoading = false;
     },
     guessLinkName(link: string) {
