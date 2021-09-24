@@ -15,6 +15,10 @@
       />
     </div>
     <div class="whatsOnView-sessions">
+      <NoResults v-if="filteredSessions.length === 0">
+        {{ $t('deconf.whatsOn.noResults') }}
+      </NoResults>
+
       <SessionBoard>
         <SessionTile
           v-for="session in filteredSessions"
@@ -44,13 +48,15 @@ import {
   ScheduleFilterRecord,
   ScheduleFilters,
   SessionTile,
-  SessionBoard
+  SessionBoard,
+  NoResults
 } from '../../components/module';
 
 //
 // i18n
 // - deconf.whatsOn.title
 // - deconf.whatsOn.infoText
+// - deconf.whatsOn.noResults
 //
 // icons
 // - n/a
@@ -65,7 +71,7 @@ interface Data {
 
 export default {
   name: 'WhatsOnView',
-  components: { ScheduleFilters, SessionTile, SessionBoard },
+  components: { ScheduleFilters, SessionTile, SessionBoard, NoResults },
   props: {
     schedule: { type: Object as PropType<FullSchedule>, required: true },
     sessions: { type: Array as PropType<Session[]>, required: true },

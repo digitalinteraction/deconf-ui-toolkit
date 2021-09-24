@@ -107,7 +107,8 @@
     },
     "whatsOn": {
       "title": "What's On",
-      "infoText": "Here is an overview of events are happening at this conference"
+      "infoText": "Here is an overview of events are happening at this conference",
+      "noResults": "Nothing matched your query"
     },
     "login": {
       "title": "Log in",
