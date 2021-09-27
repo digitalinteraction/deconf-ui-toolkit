@@ -16,7 +16,7 @@
         </div>
       </div>
     </nav>
-    <div class="utilLayout-page">
+    <div class="utilLayout-page" :class="pageClasses">
       <section class="section">
         <div class="buttons">
           <slot name="backButton" />
@@ -30,7 +30,7 @@
   </FullHeight>
 </template>
 
-<script>
+<script lang="ts">
 import FullHeight from '../components/FullHeight.vue';
 
 //
@@ -46,19 +46,38 @@ import FullHeight from '../components/FullHeight.vue';
 // - n/a
 //
 // sass
-// - n/a
+// - $utilLayout-regular
+// - $utilLayout-medium
+// - $utilLayout-large
 //
 
 export default {
   name: 'UtilLayout',
   components: { FullHeight },
   props: {
-    homeRoute: { type: [Object, String], required: true }
+    homeRoute: { type: [Object, String], required: true },
+    width: {
+      type: String,
+      validator: (v: string) => ['regular', 'medium', 'large'].includes(v),
+      default: 'regular'
+    }
+  },
+  computed: {
+    pageClasses(): unknown {
+      return {
+        'is-medium': this.width === 'medium',
+        'is-large': this.width === 'large'
+      };
+    }
   }
 };
 </script>
 
 <style lang="scss">
+$utilLayout-regular: $tablet !default;
+$utilLayout-medium: $desktop !default;
+$utilLayout-large: $widescreen !default;
+
 .utilLayout {
   background-color: $grey-lightest;
   display: flex;
@@ -66,9 +85,16 @@ export default {
 
   .utilLayout-page {
     flex: 1;
-    max-width: $tablet;
+    max-width: $utilLayout-regular;
     margin: 0 auto;
     width: 100%;
+
+    &.is-medium {
+      max-width: $utilLayout-medium;
+    }
+    &.is-large {
+      max-width: $utilLayout-large;
+    }
   }
 }
 </style>
