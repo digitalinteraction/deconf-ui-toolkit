@@ -1,33 +1,34 @@
-import { Interpreter } from '@openlab/deconf-shared';
+import { InterpretBooth, Interpreter } from '@openlab/deconf-shared';
 import { Module } from 'vuex';
 import { createStateMapper } from '../../lib/module';
 
-interface Booth {
-  sessionId: string;
-  channel: string;
-  self: Interpreter;
-}
-
-interface ActiveBooth {
+export interface ActiveBooth {
   interpreter: Interpreter;
   isSelf: boolean;
 }
 
-interface BoothMessage {
+export interface BoothMessage {
+  user: string;
   date: Date;
-  text: string;
+  body: string;
 }
 
-interface InterpretationRequest {
+export interface InterpretationRequest {
   interpreter: Interpreter;
   duration: number;
 }
 
 export interface InterpretModuleState {
-  booth: null | Booth;
+  self: null | Interpreter;
+  booth: null | InterpretBooth;
   activeBooth: null | ActiveBooth;
   messages: BoothMessage[];
   interpreters: Interpreter[];
+}
+
+export interface NewBoothMessage {
+  message: string;
+  user: Interpreter;
 }
 
 export type InterpretStoreModule = Module<InterpretModuleState, unknown>;
@@ -38,6 +39,7 @@ export function createInterpretStoreModule(): InterpretStoreModule {
   return {
     namespaced: true,
     state: () => ({
+      self: null,
       booth: null,
       activeBooth: null,
       messages: [],
@@ -45,7 +47,10 @@ export function createInterpretStoreModule(): InterpretStoreModule {
     }),
     getters: {},
     mutations: {
-      join(state, booth: Booth) {
+      set(state, interpreter: Interpreter) {
+        state.self = interpreter;
+      },
+      join(state, booth: InterpretBooth) {
         state.booth = booth;
       },
       leave(state) {
@@ -54,11 +59,10 @@ export function createInterpretStoreModule(): InterpretStoreModule {
         state.messages = [];
         state.interpreters = [];
       },
-      messageBooth(state, message: string) {
-        state.messages.push({
-          date: new Date(),
-          text: message
-        });
+      messageBooth(state, { user, message }: NewBoothMessage) {
+        state.messages = state.messages.concat([
+          { date: new Date(), body: message, user: user.name }
+        ]);
       },
 
       startInterpreting(state, interpreter: Interpreter) {
@@ -69,7 +73,7 @@ export function createInterpretStoreModule(): InterpretStoreModule {
 
         state.activeBooth = {
           interpreter,
-          isSelf: booth.self.id === interpreter.id
+          isSelf: interpreter.id === state.self?.id
         };
       },
       stopInterpreting(state) {
@@ -77,7 +81,9 @@ export function createInterpretStoreModule(): InterpretStoreModule {
       },
 
       interpreterJoined(state, interpreter: Interpreter) {
-        state.interpreters.push(interpreter);
+        state.interpreters = state.interpreters
+          .filter(i => i.id !== interpreter.id)
+          .concat([interpreter]);
       },
       interpreterLeft(state, interpreter: Interpreter) {
         state.interpreters = state.interpreters.filter(
