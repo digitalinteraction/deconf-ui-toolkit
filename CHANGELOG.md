@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.17](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2021-09-27)
+
+
+### Features
+
+* add "width" prop to UtilLayout ([23d3b31](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/23d3b31b93eb17de22f3acdbb2af502c7346774e))
+
+
+### Bug Fixes
+
+* add NoResults to WhatsOnView ([017aac7](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/017aac704797705672c30637974b3110d76c8225))
+* **session:** fix links not being reset after unattend ([b6dfe39](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/b6dfe39ff7a31faf1d84005c58b5a030b965e2c5))
+
 ## [2.0.0-beta.16](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.15...v2.0.0-beta.16) (2021-09-22)
 
 
