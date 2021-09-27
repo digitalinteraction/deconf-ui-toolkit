@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.18](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.17...v2.0.0-beta.18) (2021-09-27)
+
+
+### Bug Fixes
+
+* **interpret:** work on store ([fba9310](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/fba93100887c53f9f0eed48a1c09bc0487a62be5))
+* show interpret-mode button if an admin ([d0e355c](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/d0e355c95e8d32a0678bd33a41ce099a26f25bf1))
+
 ## [2.0.0-beta.17](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.16...v2.0.0-beta.17) (2021-09-27)
 
 
