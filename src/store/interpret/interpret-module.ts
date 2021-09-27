@@ -47,7 +47,7 @@ export function createInterpretStoreModule(): InterpretStoreModule {
     }),
     getters: {},
     mutations: {
-      set(state, interpreter: Interpreter) {
+      self(state, interpreter: Interpreter) {
         state.self = interpreter;
       },
       join(state, booth: InterpretBooth) {
