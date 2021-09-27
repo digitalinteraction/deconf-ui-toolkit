@@ -59,7 +59,11 @@ export default {
       return Boolean(this.user);
     },
     isInterpreter(): boolean {
-      return Boolean(this.user && this.user.user_roles.includes('interpreter'));
+      if (!this.user) return false;
+      return (
+        this.user.user_roles.includes('interpreter') ||
+        this.user.user_roles.includes('admin')
+      );
     }
   }
 };
