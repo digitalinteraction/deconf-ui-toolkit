@@ -16,6 +16,9 @@ export function getCountdown(
 ): CountdownComponents {
   let remaining = targetDate.getTime() - currentDate.getTime();
 
+  // TODO: test this
+  if (remaining <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
   // Remaining days
   const days = Math.floor(remaining / MS_PER_DAY);
   remaining = remaining - days * MS_PER_DAY;
