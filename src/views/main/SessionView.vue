@@ -27,6 +27,8 @@
         <SessionEmbed :link="primaryLink.url" />
       </div>
 
+      <slot name="afterEmbed" />
+
       <!-- Attributes -->
       <div class="sessionView-attributes">
         <!-- TODO: allow what is shown to be customisable -->
@@ -37,11 +39,16 @@
           :themes="sessionThemes"
         />
       </div>
+
+      <slot name="afterAttributes" />
+
       <div class="sessionView-content">
         <div class="content">
           {{ localeContent }}
         </div>
       </div>
+
+      <slot name="afterContent" />
     </div>
 
     <!-- Sidebar -->
@@ -80,14 +87,16 @@
       <template v-if="showSecondaryLinks">
         <SidebarItem :title="$t('deconf.session.links')">
           <Stack direction="vertical" gap="regular" align="stretch">
+            <slot name="beforeLinks" />
             <SessionLink
               v-for="link in secondaryLinks"
               :key="link.url"
               :link="link.url"
-              :title="link.title || guessLinkName(link.url)"
+              :title="link.title || getLinkName(link)"
               @click="trackLinkClick(link.url)"
               @copy="trackLinkCopy(link.url)"
             />
+            <slot name="afterLinks" />
           </Stack>
         </SidebarItem>
       </template>
@@ -171,6 +180,13 @@ import {
 
 // 30 seconds
 const LINKS_INTERVAL = 60 * 1000;
+
+const LANGUAGES: Record<string, string | undefined> = {
+  en: 'English',
+  fr: 'Français',
+  es: 'Español',
+  ar: 'عربى'
+};
 
 //
 // i18n
@@ -379,11 +395,18 @@ export default {
 
       this.isLoading = false;
     },
-    guessLinkName(link: string) {
-      if (link.includes('zoom')) return this.$t('deconf.session.zoomLink');
-      if (link.includes('teams')) return this.$t('deconf.session.teamsLink');
-      if (link.includes('miro')) return this.$t('deconf.session.miroLink');
-      return this.$t('deconf.session.generalLink');
+    getLinkName(link: LocalisedLink) {
+      let name = this.$t('deconf.session.generalLink');
+      if (link.url.includes('zoom')) {
+        name = this.$t('deconf.session.zoomLink');
+      }
+      if (link.url.includes('teams')) {
+        name = this.$t('deconf.session.teamsLink');
+      }
+      if (link.url.includes('miro')) {
+        name = this.$t('deconf.session.miroLink');
+      }
+      return `${name} – ${LANGUAGES[link.language] || link.language}`;
     },
     trackCalendar() {
       this.$deconf.trackMetric(createICalEvent(this.session.id));
