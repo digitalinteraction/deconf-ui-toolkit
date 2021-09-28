@@ -142,8 +142,12 @@ export function getLocaleLinks(
   locale: string,
   fallback: string
 ): LocalisedLink[] {
-  return [
-    ...links.filter(l => l.language === locale),
-    ...links.filter(l => l.language === fallback)
-  ];
+  // First add the specific language links
+  const result = links.filter(l => l.language === locale);
+
+  // Add fallback languages afterwards, if different from the main language
+  if (locale !== fallback) {
+    result.push(...links.filter(l => l.language === fallback));
+  }
+  return result;
 }

@@ -82,7 +82,8 @@ const actions = {
       links: [
         { type: '', url: 'https://youtu.be/yPYZpwSpKmA', language: 'fr' },
         { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
-        { type: '', url: 'https://miro.com/', language: 'en' },
+        { type: '', url: 'https://miro.com/en', language: 'en' },
+        { type: '', url: 'https://miro.com/fr', language: 'fr' },
         { type: '', url: 'https://docs.google.com/abcdef', language: 'en' }
       ]
     };
