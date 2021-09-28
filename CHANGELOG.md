@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.19](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2021-09-28)
+
+
+### Features
+
+* add new slots to SessionView and add language to link's name ([4ba0ac3](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/4ba0ac325d001ac87a6a8ffcc79136ca3a3f1d74))
+
+
+### Bug Fixes
+
+* createStateMapper generics to return a subset of state ([b5a9638](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/b5a9638addc1b1bc5250379bf49b1cf5dd095ab8))
+* fix duplicate links and improve multi-lingual links order ([5ca6b1b](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/5ca6b1b65773bd7bad90d3971ac9fa0757e9c2ad))
+* **interpret:** fix self mutation ([8e2670b](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/8e2670b3acabe726189559bdc0deb986484e763b))
+* short-circuit countdown when negative to always return 0s ([341a812](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/341a812b99d85d25614fa3637623adfb7324ac2e))
+
 ## [2.0.0-beta.18](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.17...v2.0.0-beta.18) (2021-09-27)
 
 
