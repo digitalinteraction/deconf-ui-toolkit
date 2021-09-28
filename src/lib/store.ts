@@ -15,8 +15,8 @@ export function createStateMapper<State>() {
   return function<Namespace extends string, Keys extends keyof State>(
     namespace: Namespace,
     keys: Keys[]
-  ): MappedState<Namespace, State> {
-    const output = {} as MappedState<Namespace, State>;
+  ): MappedState<Namespace, Pick<State, Keys>> {
+    const output = {} as MappedState<Namespace, Pick<State, Keys>>;
 
     for (const key of keys) {
       output[key] = function() {
