@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0-beta.20](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2021-09-29)
+
+
+### Features
+
+* **session-view:** add language-warning ([45f9a21](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/45f9a21ef03789f3a485605f1c3df51442b492df))
+
+
+### Bug Fixes
+
+* **box-content:** reduce padding on mobile ([4b945cf](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/4b945cf46896a2896a90e0cc9ba3eb8205c49009))
+* **box-content:** round corners on tablet as well desktop ([319a29a](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/319a29ac86cbf58bd155ee5277c2888780e7a039))
+* **schedule-view:** add padding between infoText and filters ([13a8be6](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/13a8be6fb3f009f4ef06ad2f2c1022fcd83e1101))
+* **util-layout:** stop buttons overflowing on mobile ([1da03af](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/1da03afc9487ea9a2bcf1082524db1f36defa602))
+* **whats-on:** normalise infoText spacing with ScheduleView ([6388f1e](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/6388f1ec693a41b5be52c4247ba0fb62778d5cec))
+
 ## [2.0.0-beta.19](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.18...v2.0.0-beta.19) (2021-09-28)
 
 
