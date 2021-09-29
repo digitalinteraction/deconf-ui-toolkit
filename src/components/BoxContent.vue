@@ -34,7 +34,7 @@ $boxContent-titleFamily: $family-sans-serif !default;
   background-color: $white;
   padding: 2.5rem;
 
-  @include desktop {
+  @include tablet {
     border-radius: $radius;
   }
 
