@@ -22,6 +22,11 @@
         {{ localeTitle }}
       </h1>
 
+      <!-- Language warning -->
+      <div class="sessionView-langWarning" v-if="showLanguageWarning">
+        <LanguageWarning :available-languages="session.hostLanguages" />
+      </div>
+
       <!-- Embed -->
       <div class="sessionView-embed" v-if="showPrimaryLink">
         <SessionEmbed :link="primaryLink.url" />
@@ -175,7 +180,8 @@ import {
   AddToCalendar,
   AttendanceSection,
   SpeakerGrid,
-  Stack
+  Stack,
+  LanguageWarning
 } from '../../components/module';
 
 // 30 seconds
@@ -232,7 +238,8 @@ export default {
     AddToCalendar,
     AttendanceSection,
     SpeakerGrid,
-    Stack
+    Stack,
+    LanguageWarning
   },
   props: {
     apiModule: { type: String, required: true },
@@ -334,6 +341,10 @@ export default {
       if (this.session.participantCap === null) return null;
 
       return this.attendance.count;
+    },
+    showLanguageWarning(): boolean {
+      if (!this.session) return false;
+      return !this.session.hostLanguages.includes(this.$i18n.locale);
     }
   },
   mounted() {
@@ -442,7 +453,8 @@ $sessionView-titleWeight: bold !default;
 
 .sessionView-title,
 .sessionView-embed,
-.sessionView-attributes {
+.sessionView-attributes,
+.sessionView-langWarning {
   padding-bottom: 1rem;
 }
 
