@@ -4,7 +4,7 @@
       <h1 class="whatsOnView-title">
         {{ $t('deconf.whatsOn.title') }}
       </h1>
-      <div class="content">
+      <div class="whatsOnView-content">
         <p>{{ $t('deconf.whatsOn.infoText') }}</p>
       </div>
       <ScheduleFilters
@@ -135,5 +135,8 @@ $whatsOn-titleWeight: bold !default;
   // TODO: font-family
   font-size: $whatsOn-titleSize;
   font-weight: $whatsOn-titleWeight;
+}
+.whatsOnView-content {
+  margin-bottom: 0.5rem;
 }
 </style>
