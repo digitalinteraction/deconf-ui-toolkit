@@ -252,4 +252,7 @@ $scheduleView-background: $background !default;
   font-size: $scheduleView-titleSize;
   font-weight: $scheduleView-titleWeight;
 }
+.scheduleView-content {
+  margin-bottom: 0.5rem;
+}
 </style>
