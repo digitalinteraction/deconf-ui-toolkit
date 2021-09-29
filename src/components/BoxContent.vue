@@ -38,6 +38,10 @@ $boxContent-titleFamily: $family-sans-serif !default;
     border-radius: $radius;
   }
 
+  @include mobile {
+    padding: 1rem;
+  }
+
   .boxContent-title {
     font-family: $boxContent-titleFamily;
     font-weight: $weight-bold;

@@ -19,13 +19,27 @@ const Template: Story = (args, { argTypes }) => ({
   `
 });
 
-export const Default = Template.bind({});
-Default.args = {
+export const Desktop = Template.bind({});
+Desktop.args = {
   title: 'Lorem ipsum sil dor amet'
 };
-Default.parameters = {
+Desktop.parameters = {
   backgrounds: { default: 'dark' },
   controls: {
     exclude: ['default']
+  }
+};
+
+export const Mobile = Template.bind({});
+Mobile.args = {
+  title: 'Lorem ipsum sil dor amet'
+};
+Mobile.parameters = {
+  backgrounds: { default: 'dark' },
+  controls: {
+    exclude: ['default']
+  },
+  viewport: {
+    defaultViewport: 'mobile2'
   }
 };
