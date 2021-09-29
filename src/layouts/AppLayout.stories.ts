@@ -6,16 +6,10 @@ import {
   BrandC,
   BrandB,
   BrandA,
-  LanguageControl
+  LanguageControl,
+  TabIcon
 } from '../story-lib/module';
 import { AuthToken } from '@openlab/deconf-shared';
-import {
-  AtriumIcon,
-  CoffeeChatIcon,
-  HelpDeskIcon,
-  ScheduleIcon,
-  WhatsOnIcon
-} from '../icons/module';
 
 export default {
   title: 'Layout/AppLayout',
@@ -41,31 +35,31 @@ const Template: Story = (args, { argTypes }) => ({
         title: 'Atrium',
         name: 'Atrium',
         enabled: true,
-        icon: AtriumIcon
+        icon: TabIcon
       },
       {
         title: 'Whats On',
         name: 'WhatsOn',
         enabled: true,
-        icon: WhatsOnIcon
+        icon: TabIcon
       },
       {
         title: 'Schedule',
         name: 'Schedule',
         enabled: true,
-        icon: ScheduleIcon
+        icon: TabIcon
       },
       {
         title: 'CoffeeChat',
         name: 'CoffeeChat',
         enabled: false,
-        icon: CoffeeChatIcon
+        icon: TabIcon
       },
       {
         title: 'HelpDesk',
         name: 'HelpDesk',
         enabled: false,
-        icon: HelpDeskIcon
+        icon: TabIcon
       }
     ]
   }),

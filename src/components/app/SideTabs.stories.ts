@@ -1,11 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
+import { TabIcon } from '../../story-lib/module';
 import SideTabs from './SideTabs.vue';
-
-import AtriumIcon from '../../icons/AtriumIcon.vue';
-import WhatsOnIcon from '../../icons/WhatsOnIcon.vue';
-import ScheduleIcon from '../../icons/ScheduleIcon.vue';
-import CoffeeChatIcon from '../../icons/CoffeeChatIcon.vue';
-import HelpDeskIcon from '../../icons/HelpDeskIcon.vue';
 
 export default {
   title: 'App/SideTabs',
@@ -21,35 +16,35 @@ const Template: Story = (args, { argTypes }) => ({
         name: 'A',
         title: 'Atrium',
         enabled: true,
-        icon: AtriumIcon,
+        icon: TabIcon,
         active: true
       },
       {
         name: 'B',
         title: "What's on",
         enabled: true,
-        icon: WhatsOnIcon,
+        icon: TabIcon,
         active: false
       },
       {
         name: 'C',
         title: 'Schedule',
         enabled: true,
-        icon: ScheduleIcon,
+        icon: TabIcon,
         active: false
       },
       {
         name: 'D',
         title: 'CoffeeChat',
         enabled: false,
-        icon: CoffeeChatIcon,
+        icon: TabIcon,
         active: false
       },
       {
         name: 'E',
         title: 'HelpDesk',
         enabled: false,
-        icon: HelpDeskIcon,
+        icon: TabIcon,
         active: false
       }
     ]
