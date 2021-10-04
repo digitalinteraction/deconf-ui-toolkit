@@ -89,7 +89,7 @@
       </template>
 
       <!-- Links -->
-      <template v-if="showOtherLinks">
+      <template v-if="showLinksSection">
         <SidebarItem :title="$t('deconf.session.links')">
           <Stack direction="vertical" gap="regular" align="stretch">
             <slot name="beforeLinks" />
@@ -330,8 +330,9 @@ export default {
     showPrimaryLink(): boolean {
       return this.canShowLinks && Boolean(this.primaryLink);
     },
-    showOtherLinks(): boolean {
-      return this.canShowLinks && (this.otherLinks || []).length > 0;
+    showLinksSection(): boolean {
+      if (!this.canShowLinks) return false;
+      return Boolean(this.secondaryLink) || (this.otherLinks || []).length > 0;
     },
     showAttendance(): boolean {
       return this.slotState !== 'past' && this.session.participantCap !== null;
@@ -340,7 +341,7 @@ export default {
       return (
         ['future', 'soon'].includes(this.slotState) &&
         Boolean(this.calendarLink) &&
-        !this.showOtherLinks
+        !this.showLinksSection
       );
     },
     calendarLink(): string | null {
