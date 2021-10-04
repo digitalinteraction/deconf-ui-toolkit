@@ -191,7 +191,6 @@ interface DateTimeObject {
 // compose a real date from our date/time components from <input> elements
 function makeDate(date: string, time: string): Date | undefined {
   const [fallbackDate, fallbackTime] = new Date().toISOString().split(/[TZ.]/);
-  console.debug(date, time, { fallbackDate, fallbackTime });
 
   try {
     const result = new Date(
