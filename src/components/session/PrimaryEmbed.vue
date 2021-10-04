@@ -121,7 +121,7 @@
 <script lang="ts">
 import IframeEmbed from './IframeEmbed.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { parseEmbedLink, ParsedEmbedLink } from '../../lib/module';
+import { parsePrimaryLink, PrimaryLink } from '../../lib/module';
 
 //
 // i18n
@@ -137,16 +137,19 @@ import { parseEmbedLink, ParsedEmbedLink } from '../../lib/module';
 // sass
 // - n/a
 //
+// todo
+// - fully rename to PrimaryEmbed
+//
 
 export default {
-  name: 'SessionEmbed',
+  name: 'PrimaryEmbed',
   components: { IframeEmbed, FontAwesomeIcon },
   props: {
     link: { type: String, required: true }
   },
   computed: {
-    parsed(): ParsedEmbedLink | null {
-      return parseEmbedLink(this.link);
+    parsed(): PrimaryLink | null {
+      return parsePrimaryLink(this.link);
     }
   },
   methods: {

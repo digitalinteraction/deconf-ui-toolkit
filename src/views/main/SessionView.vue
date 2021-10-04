@@ -89,12 +89,13 @@
       </template>
 
       <!-- Links -->
-      <template v-if="showSecondaryLinks">
+      <template v-if="showOtherLinks">
         <SidebarItem :title="$t('deconf.session.links')">
           <Stack direction="vertical" gap="regular" align="stretch">
             <slot name="beforeLinks" />
+            <SecondaryEmbed v-if="secondaryLink" :link="secondaryLink.url" />
             <SessionLink
-              v-for="link in secondaryLinks"
+              v-for="link in otherLinks"
               :key="link.url"
               :link="link.url"
               :title="link.title || getLinkName(link)"
@@ -164,7 +165,8 @@ import {
   getLocaleLinks,
   getSlotState,
   localiseFromObject,
-  parseEmbedLink,
+  parsePrimaryLink,
+  parseSecondaryLink,
   SlotState
 } from '../../lib/module';
 import { SessionLayout } from '../../layouts/module';
@@ -181,7 +183,8 @@ import {
   AttendanceSection,
   SpeakerGrid,
   Stack,
-  LanguageWarning
+  LanguageWarning,
+  SecondaryEmbed
 } from '../../components/module';
 
 // 30 seconds
@@ -239,7 +242,8 @@ export default {
     AttendanceSection,
     SpeakerGrid,
     Stack,
-    LanguageWarning
+    LanguageWarning,
+    SecondaryEmbed
   },
   props: {
     apiModule: { type: String, required: true },
@@ -280,11 +284,17 @@ export default {
     },
     primaryLink(): LocalisedLink | undefined {
       if (!this.localeLinks) return undefined;
-      return this.localeLinks.find(l => (parseEmbedLink(l.url) ? l : null));
+      return this.localeLinks.find(l => Boolean(parsePrimaryLink(l.url)));
     },
-    secondaryLinks(): LocalisedLink[] | null {
+    secondaryLink(): LocalisedLink | undefined {
+      if (!this.localeLinks) return undefined;
+      return this.localeLinks.find(l => Boolean(parseSecondaryLink(l.url)));
+    },
+    otherLinks(): LocalisedLink[] | null {
       if (!this.localeLinks) return null;
-      return this.localeLinks.filter(l => l !== this.primaryLink);
+      return this.localeLinks.filter(
+        l => l !== this.primaryLink && l !== this.secondaryLink
+      );
     },
     slotState(): SlotState {
       if (!this.sessionSlot) return 'future';
@@ -320,8 +330,8 @@ export default {
     showPrimaryLink(): boolean {
       return this.canShowLinks && Boolean(this.primaryLink);
     },
-    showSecondaryLinks(): boolean {
-      return this.canShowLinks && (this.secondaryLinks || []).length > 0;
+    showOtherLinks(): boolean {
+      return this.canShowLinks && (this.otherLinks || []).length > 0;
     },
     showAttendance(): boolean {
       return this.slotState !== 'past' && this.session.participantCap !== null;
@@ -330,7 +340,7 @@ export default {
       return (
         ['future', 'soon'].includes(this.slotState) &&
         Boolean(this.calendarLink) &&
-        !this.showSecondaryLinks
+        !this.showOtherLinks
       );
     },
     calendarLink(): string | null {

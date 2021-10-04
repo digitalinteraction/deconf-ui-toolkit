@@ -1,19 +1,19 @@
 import { Meta, Story } from '@storybook/vue';
-import SessionEmbed from './SessionEmbed.vue';
+import PrimaryEmbed from './PrimaryEmbed.vue';
 
 export default {
-  title: 'Session/SessionEmbed',
-  component: SessionEmbed,
+  title: 'Session/PrimaryEmbed',
+  component: PrimaryEmbed,
   decorators: [
     () => ({ template: `<div style="max-width: 720px"><story/></div>` })
   ]
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
-  components: { SessionEmbed },
+  components: { PrimaryEmbed },
   props: ['link'],
   template: `
-    <SessionEmbed :link="link" />
+    <PrimaryEmbed :link="link" />
   `
 });
 

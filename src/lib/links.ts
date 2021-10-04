@@ -8,7 +8,7 @@ function splitPath(url: URL): string[] {
   return url.pathname.split(/\/+/).filter(p => p);
 }
 
-export interface ParsedEmbedLink {
+export interface PrimaryLink {
   kind:
     | 'youtube-video'
     | 'youtube-channel'
@@ -22,7 +22,15 @@ export interface ParsedEmbedLink {
   data: string;
 }
 
-export function parseEmbedLink(link: string): ParsedEmbedLink | null {
+/** @deprecated renamed to PrimaryLink */
+export type ParsedEmbedLink = PrimaryLink;
+
+export interface SecondaryLink {
+  kind: 'vimeo-chat';
+  data: string;
+}
+
+export function parsePrimaryLink(link: string): PrimaryLink | null {
   const url = new URL(link);
   const pathSegments = splitPath(url);
 
@@ -131,6 +139,24 @@ export function parseEmbedLink(link: string): ParsedEmbedLink | null {
     return {
       kind: 'spatial-chat',
       data: url.toString()
+    };
+  }
+
+  return null;
+}
+
+/** @deprecated renamed to parsePrimaryLink */
+export const parseEmbedLink = parsePrimaryLink;
+
+export function parseSecondaryLink(link: string): SecondaryLink | null {
+  const url = new URL(link);
+  const pathSegments = splitPath(url);
+
+  // https://vimeo.com/live-chat/123456/
+  if (isDomain(url, 'vimeo.com') && pathSegments[0] === 'live-chat') {
+    return {
+      kind: 'vimeo-chat',
+      data: pathSegments[1]
     };
   }
 
