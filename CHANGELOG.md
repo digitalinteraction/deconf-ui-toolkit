@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.20...v2.0.0) (2021-10-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* remove unused assets
+
+### Features
+
+* embed vimeo-chats alongside sessions. Deprecate SessionEmbed for PrimaryEmbed ([c40a7b7](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/c40a7b7aae456e9c0ebf5748778d8305c6e4d7f4))
+
+
+### Bug Fixes
+
+* remove unused assets ([c441825](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/c44182589d83385612d3c006c4b75a5958482452))
+
 ## [2.0.0-beta.20](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.19...v2.0.0-beta.20) (2021-09-29)
 
 
