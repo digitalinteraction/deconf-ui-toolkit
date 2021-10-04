@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0...v2.0.1) (2021-10-04)
+
+
+### Bug Fixes
+
+* secondary links now show on sessions when there are no "other" links ([407d3db](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/407d3db8e5c3a93609f9d741cbc1195674ab6f34))
+
 ## [2.0.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.0-beta.20...v2.0.0) (2021-10-04)
 
 
