@@ -9,6 +9,7 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { FeaturedSessions },
+  props: ['showAction'],
   data: () => ({
     currentDate: dates.now,
     featured: [
@@ -33,12 +34,15 @@ const Template: Story = (args, { argTypes }) => ({
     <FeaturedSessions
       :featured="featured"
       :current-date="currentDate"
+      :show-action="showAction"
     />
   `
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  showAction: true
+};
 Default.parameters = {
   layout: 'fullscreen',
   viewport: { defaultViewport: 'mobile2' }

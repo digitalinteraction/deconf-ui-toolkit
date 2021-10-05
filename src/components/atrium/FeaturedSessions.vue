@@ -16,7 +16,7 @@
     </div>
 
     <!-- Post-sessions action -->
-    <div class="buttons">
+    <div class="buttons" v-if="showAction">
       <router-link class="button is-link is-fullwidth" :to="scheduleRoute">
         {{ $t('deconf.featuredSessions.action') }}
       </router-link>
@@ -56,7 +56,8 @@ export default {
   components: { MiniSession },
   props: {
     featured: { type: Array as PropType<SessionAndSlot[]>, required: true },
-    currentDate: { type: Date as PropType<Date>, required: true }
+    currentDate: { type: Date as PropType<Date>, required: true },
+    showAction: { type: Boolean, default: true }
   },
   computed: {
     scheduleRoute(): Location {
