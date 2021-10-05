@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.1.0...v2.1.1) (2021-10-05)
+
+
+### Bug Fixes
+
+* add option to hide FeaturedSession's buttons ([d7a178b](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/d7a178b142b424c76c7bf224c710f4d8655155ae))
+
 ## [2.1.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.2...v2.1.0) (2021-10-05)
 
 
