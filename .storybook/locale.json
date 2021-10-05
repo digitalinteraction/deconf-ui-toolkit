@@ -152,6 +152,11 @@
       "teamsLink": "Teams Meeting",
       "miroLink": "Miro Board",
       "generalLink": "Link"
+    },
+    "interestSection": {
+      "message": "Register your interest",
+      "unregisterButton": "Remove from your sessions",
+      "registerButton": "Add to your sessions"
     }
   }
 }

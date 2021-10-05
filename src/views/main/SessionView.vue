@@ -29,7 +29,7 @@
 
       <!-- Embed -->
       <div class="sessionView-embed" v-if="showPrimaryLink">
-        <SessionEmbed :link="primaryLink.url" />
+        <PrimaryEmbed :link="primaryLink.url" />
       </div>
 
       <slot name="afterEmbed" />
@@ -108,11 +108,13 @@
       </template>
 
       <!-- Session Actions -->
-      <template v-if="showCalendar || showAttendance">
+      <template
+        v-if="showAttendance || showInterest || !loggedIn || showCalendar"
+      >
         <SidebarItem :title="$t('deconf.session.actions')">
           <Stack direction="vertical" gap="regular" align="stretch">
             <AttendanceSection
-              v-if="showAttendance && loggedIn"
+              v-if="showAttendance"
               :session="session"
               :session-cap="session.participantCap"
               :attendance="attendance"
@@ -120,10 +122,15 @@
               @attend="attend"
               @unattend="unattend"
             />
-            <div
-              class="notification is-danger is-light"
-              v-if="showAttendance && !loggedIn"
-            >
+            <!-- <InterestSection
+              v-if="showInterest"
+              :session="session"
+              :attendance="attendance"
+              :is-processing="isLoading"
+              @attend="attend"
+              @unattend="unattend"
+            /> -->
+            <div class="notification is-danger is-light" v-if="!loggedIn">
               {{ $t('deconf.session.logIn') }}
             </div>
             <AddToCalendar
@@ -173,7 +180,7 @@ import { SessionLayout } from '../../layouts/module';
 import {
   SessionAttributes,
   SessionHeader,
-  SessionEmbed,
+  PrimaryEmbed,
   SessionState,
   Countdown,
   SidebarItem,
@@ -185,6 +192,7 @@ import {
   Stack,
   LanguageWarning,
   SecondaryEmbed
+  // InterestSection
 } from '../../components/module';
 
 // 30 seconds
@@ -229,21 +237,22 @@ interface Data {
 export default {
   name: 'SessionView',
   components: {
-    SessionLayout,
-    SessionAttributes,
-    SessionHeader,
-    SessionEmbed,
-    SessionState,
-    Countdown,
-    SidebarItem,
-    SessionLink,
-    TimeSlot,
     AddToCalendar,
     AttendanceSection,
+    Countdown,
+    // InterestSection,
+    LanguageWarning,
+    PrimaryEmbed,
+    SecondaryEmbed,
+    SessionAttributes,
+    SessionHeader,
+    SessionLayout,
+    SessionLink,
+    SessionState,
+    SidebarItem,
     SpeakerGrid,
     Stack,
-    LanguageWarning,
-    SecondaryEmbed
+    TimeSlot
   },
   props: {
     apiModule: { type: String, required: true },
@@ -335,7 +344,18 @@ export default {
       return Boolean(this.secondaryLink) || (this.otherLinks || []).length > 0;
     },
     showAttendance(): boolean {
-      return this.slotState !== 'past' && this.session.participantCap !== null;
+      return (
+        this.slotState !== 'past' &&
+        this.session.participantCap !== null &&
+        this.loggedIn
+      );
+    },
+    showInterest(): boolean {
+      return (
+        this.slotState !== 'past' &&
+        this.session.participantCap === null &&
+        this.loggedIn
+      );
     },
     showCalendar(): boolean {
       return (

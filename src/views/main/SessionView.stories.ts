@@ -20,7 +20,7 @@ const Template: Story = (args, { argTypes }) => ({
     const schedule = createSchedule();
     const session = randomSession(schedule, {
       slot: 'slot-b',
-      participantCap: 50
+      participantCap: args.participantCap
     });
     return { schedule, session };
   },
@@ -42,16 +42,28 @@ const Template: Story = (args, { argTypes }) => ({
 export const Future = Template.bind({});
 Future.args = {
   loggedIn: true,
-  scheduleDate: dates.past
+  scheduleDate: dates.past,
+  participantCap: 50
 };
 Future.parameters = {
+  layout: 'fullscreen'
+};
+
+export const FutureUncapped = Template.bind({});
+FutureUncapped.args = {
+  loggedIn: true,
+  scheduleDate: dates.past,
+  participantCap: null
+};
+FutureUncapped.parameters = {
   layout: 'fullscreen'
 };
 
 export const Countdown = Template.bind({});
 Countdown.args = {
   loggedIn: true,
-  scheduleDate: dates.addMinutes(dates.now, -46, -23)
+  scheduleDate: dates.addMinutes(dates.now, -46, -23),
+  participantCap: 50
 };
 Countdown.parameters = {
   layout: 'fullscreen'
@@ -60,7 +72,8 @@ Countdown.parameters = {
 export const Soon = Template.bind({});
 Soon.args = {
   loggedIn: true,
-  scheduleDate: dates.addMinutes(dates.now, -17, -23)
+  scheduleDate: dates.addMinutes(dates.now, -17, -23),
+  participantCap: 50
 };
 Soon.parameters = {
   layout: 'fullscreen'
@@ -69,7 +82,8 @@ Soon.parameters = {
 export const Present = Template.bind({});
 Present.args = {
   loggedIn: true,
-  scheduleDate: dates.now
+  scheduleDate: dates.now,
+  participantCap: 50
 };
 Present.parameters = {
   layout: 'fullscreen'
@@ -78,7 +92,8 @@ Present.parameters = {
 export const Past = Template.bind({});
 Past.args = {
   loggedIn: true,
-  scheduleDate: dates.future
+  scheduleDate: dates.future,
+  participantCap: 50
 };
 Past.parameters = {
   layout: 'fullscreen'
