@@ -31,6 +31,7 @@
             :disabled="!item.enabled"
             :title="item.title"
             class="navbar-item"
+            active-class="is-active"
           >
             <component :is="item.icon" class="navbar-item-icon" />
             <span class="navbar-item-text" v-text="item.title" />

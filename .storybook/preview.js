@@ -18,7 +18,7 @@ setupFontawesome();
 // Stub out router-link
 //
 Vue.component('router-link', {
-  props: ['to'],
+  props: ['to', 'activeClass'],
   template: `<a href="#" @click.prevent="log"><slot/></a>`,
   methods: {
     log() {
