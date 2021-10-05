@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.2...v2.1.0) (2021-10-05)
+
+
+### Features
+
+* **session:** show interest section when not capped ([845c6ae](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/845c6ae5b12dcac5677dfb30001d268b7dc45f9a))
+
+
+### Bug Fixes
+
+* **session:** show 'please log in' message when logged out ([201bd02](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/201bd02cbce349fc3a61a0110751fb79ce9a7007))
+
 ### [2.0.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.0.1...v2.0.2) (2021-10-05)
 
 
