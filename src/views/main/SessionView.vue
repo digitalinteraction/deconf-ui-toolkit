@@ -122,14 +122,14 @@
               @attend="attend"
               @unattend="unattend"
             />
-            <!-- <InterestSection
+            <InterestSection
               v-if="showInterest"
               :session="session"
               :attendance="attendance"
               :is-processing="isLoading"
               @attend="attend"
               @unattend="unattend"
-            /> -->
+            />
             <div class="notification is-danger is-light" v-if="!loggedIn">
               {{ $t('deconf.session.logIn') }}
             </div>
@@ -191,8 +191,8 @@ import {
   SpeakerGrid,
   Stack,
   LanguageWarning,
-  SecondaryEmbed
-  // InterestSection
+  SecondaryEmbed,
+  InterestSection
 } from '../../components/module';
 
 // 30 seconds
@@ -240,7 +240,7 @@ export default {
     AddToCalendar,
     AttendanceSection,
     Countdown,
-    // InterestSection,
+    InterestSection,
     LanguageWarning,
     PrimaryEmbed,
     SecondaryEmbed,

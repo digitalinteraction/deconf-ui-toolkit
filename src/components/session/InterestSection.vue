@@ -43,6 +43,20 @@ import Vue, { PropType } from 'vue';
 import { SessionAttendance } from '../../lib/module';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+//
+// i18n
+// - deconf.interestSection.message
+// - deconf.interestSection.unregisterButton
+// - deconf.interestSection.registerButton
+//
+// icons
+// - fas times
+// - fas user-plus
+//
+// sass
+// - n/a
+//
+
 export default Vue.extend({
   name: 'InterestSection',
   components: { FontAwesomeIcon },
