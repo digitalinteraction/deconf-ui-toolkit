@@ -156,7 +156,6 @@
 <script lang="ts">
 import {
   Session,
-  SessionAttendance,
   LocalisedLink,
   SessionSlot,
   SessionType,
@@ -174,7 +173,8 @@ import {
   localiseFromObject,
   parsePrimaryLink,
   parseSecondaryLink,
-  SlotState
+  SlotState,
+  SessionAttendance
 } from '../../lib/module';
 import { SessionLayout } from '../../layouts/module';
 import {
@@ -369,9 +369,9 @@ export default {
     },
     stateAttendance(): number | null {
       if (this.attendance === null) return null;
-      if (this.session.participantCap === null) return null;
+      if (this.session.participantCap !== null) return null;
 
-      return this.attendance.count;
+      return this.attendance.sessionCount;
     },
     showLanguageWarning(): boolean {
       if (!this.session) return false;
