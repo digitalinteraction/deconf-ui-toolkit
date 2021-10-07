@@ -27,6 +27,7 @@ const Template: Story = (args, { argTypes }) => ({
       :is-recorded="isRecorded"
       :track="track"
       :themes="themes"
+      organisation="AI Encorporated"
     />
   `
 });

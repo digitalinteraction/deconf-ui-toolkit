@@ -17,22 +17,19 @@
       </span>
     </span>
 
-    <!-- 
-      Recorded
+    <!--
+      Organisation
     -->
     <span
-      class="sessionAttributes-attribute sessionAttributes-attribute-isRecorded"
-      v-if="isRecorded !== null"
+      class="sessionAttributes-attribute sessionAttributes-attribute-org"
+      v-if="organisation !== null"
     >
       <span class="icon-text">
         <span class="icon">
-          <FontAwesomeIcon :icon="['fas', 'save']" fixed-width />
+          <FontAwesomeIcon :icon="['fas', 'id-badge']" fixed-width />
         </span>
-        <span v-if="isRecorded">
-          {{ $t('deconf.sessionAttributes.isRecorded') }}
-        </span>
-        <span v-else>
-          {{ $t('deconf.sessionAttributes.notRecorded') }}
+        <span>
+          {{ organisation }}
         </span>
       </span>
     </span>
@@ -67,6 +64,26 @@
         </span>
         <span>
           {{ themes.map(t => localise(t.title)).join(', ') }}
+        </span>
+      </span>
+    </span>
+
+    <!-- 
+      Recorded
+    -->
+    <span
+      class="sessionAttributes-attribute sessionAttributes-attribute-isRecorded"
+      v-if="isRecorded !== null"
+    >
+      <span class="icon-text">
+        <span class="icon">
+          <FontAwesomeIcon :icon="['fas', 'save']" fixed-width />
+        </span>
+        <span v-if="isRecorded">
+          {{ $t('deconf.sessionAttributes.isRecorded') }}
+        </span>
+        <span v-else>
+          {{ $t('deconf.sessionAttributes.notRecorded') }}
         </span>
       </span>
     </span>
@@ -107,7 +124,8 @@ export default {
     languages: { type: Array as PropType<string[] | null>, default: null },
     isRecorded: { type: Boolean as PropType<boolean | null>, default: null },
     track: { type: Object as PropType<Track | null>, default: null },
-    themes: { type: Array as PropType<Theme[] | null>, default: null }
+    themes: { type: Array as PropType<Theme[] | null>, default: null },
+    organisation: { type: String, default: null }
   },
   methods: {
     localise(object: Record<string, string>): string | null {
