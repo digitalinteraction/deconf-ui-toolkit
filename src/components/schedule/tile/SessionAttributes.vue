@@ -106,6 +106,7 @@ import { Theme, Track } from '@openlab/deconf-shared';
 // - fas save
 // - fas code-branch
 // - fas tags
+// - fas id-badge
 //
 // sass
 // - $sessionAttributes-color
