@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.1.2...v2.2.0) (2021-10-07)
+
+
+### Features
+
+* add language filter to ScheduleFilters ([e1b3b85](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/e1b3b85348a8a898ccc4bb1b36c88bc48ac50f6a))
+* show an organisation in SessionAttributes ([2c94672](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/2c94672ac45c280754b5b33185e961c5491bca5a))
+* show organisation in SessionView and SessionTile ([95090b4](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/95090b43fef4be7e04c5ed416755f4ca0dbb23f8))
+
 ### [2.1.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.1.1...v2.1.2) (2021-10-06)
 
 
