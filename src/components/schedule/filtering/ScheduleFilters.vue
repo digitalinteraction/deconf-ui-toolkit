@@ -77,6 +77,16 @@
         :options="themeOptions"
       />
 
+      <!-- Language -->
+      <InlineFilter
+        class="scheduleFilters-language"
+        v-if="isEnabled('language') && languageOptions.length > 0"
+        v-model="filters.language"
+        :label="$t('deconf.scheduleFilters.languageFilter')"
+        :off-label="$t('deconf.scheduleFilters.offLabel')"
+        :options="languageOptions"
+      />
+
       <!-- Recorded -->
       <InlineFilter
         class="scheduleFilters-recorded"
@@ -115,6 +125,7 @@ import InlineFilter from './InlineFilter.vue';
 import { ScheduleFilterRecord } from './ScheduleFilterRecord';
 import { FilterOption } from './FilterOption';
 import { Localised } from '@openlab/deconf-shared';
+import { SelectOption } from '../../form/select-option';
 
 type FilterKey = keyof ScheduleFilterRecord;
 
@@ -126,7 +137,8 @@ const DEFAULT_FILTERS: FilterKey[] = [
   'track',
   'theme',
   'date',
-  'isRecorded'
+  'isRecorded',
+  'language'
 ];
 
 //
@@ -139,6 +151,7 @@ const DEFAULT_FILTERS: FilterKey[] = [
 // - deconf.scheduleFilters.typeFilter - The label of the type filter
 // - deconf.scheduleFilters.trackFilter - The label of the track filter
 // - deconf.scheduleFilters.themeFilter - The label of the theme filter
+// - deconf.scheduleFilters.languageFilter - The label of the language filter
 // - deconf.scheduleFilters.recordedFilter - The label of the "is recorded" filter
 // - deconf.scheduleFilters.offLabel - The label when no value is applied, e.g. "All"
 // - deconf.scheduleFilters.yes - "Yes" option
@@ -171,6 +184,10 @@ export default {
     enabledFilters: {
       type: Array as PropType<FilterKey[]>,
       default: () => DEFAULT_FILTERS
+    },
+    languageOptions: {
+      type: Array as PropType<SelectOption[]>,
+      default: () => []
     }
   },
   data(): Data {
@@ -224,7 +241,8 @@ export default {
         this.filters.track !== null ||
         this.filters.theme !== null ||
         this.filters.date !== null ||
-        this.filters.isRecorded !== null
+        this.filters.isRecorded !== null ||
+        this.filters.language !== null
       );
     },
     enabledFiltersSet(): Set<FilterKey> {
@@ -267,6 +285,7 @@ export default {
       this.filters.theme = null;
       this.filters.date = null;
       this.filters.isRecorded = null;
+      this.filters.language = null;
     },
     onQuery(e: InputEvent): void {
       if (!this.queryHandler) return;

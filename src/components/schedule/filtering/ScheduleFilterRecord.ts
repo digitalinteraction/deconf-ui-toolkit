@@ -6,4 +6,5 @@ export interface ScheduleFilterRecord {
   date: Date | null;
   isRecorded: boolean | null;
   viewMode: 'all' | 'user';
+  language: string | null;
 }

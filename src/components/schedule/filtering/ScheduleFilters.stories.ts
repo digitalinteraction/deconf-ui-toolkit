@@ -1,12 +1,5 @@
 import { Meta, Story } from '@storybook/vue';
-import {
-  createSchedule,
-  dates,
-  defaultSessionTypes,
-  defaultThemes,
-  defaultTracks,
-  mockSessionSlot
-} from '../../../story-lib/module';
+import { createSchedule, defaultLanguages } from '../../../story-lib/module';
 import ScheduleFilters from './ScheduleFilters.vue';
 
 export default {
@@ -20,7 +13,8 @@ const ALL_FILTERS = [
   'trackFilter',
   'themeFilter',
   'dateFilter',
-  'isRecordedFilter'
+  'isRecordedFilter',
+  'languageFilter'
 ];
 
 const Template: Story = (args, { argTypes }) => ({
@@ -35,8 +29,10 @@ const Template: Story = (args, { argTypes }) => ({
       theme: null,
       date: null,
       isRecorded: null,
-      viewMode: 'all'
-    }
+      viewMode: 'all',
+      language: null
+    },
+    languages: defaultLanguages()
   }),
   computed: {
     enabledFilters(): unknown[] {
@@ -54,6 +50,7 @@ const Template: Story = (args, { argTypes }) => ({
         :schedule="schedule"
         :filters="filters"
         :enabled-filters="enabledFilters"
+        :language-options="languages"
       />
       <hr>
       <pre v-html="jsonFilters" />
@@ -69,6 +66,7 @@ Default.args = {
   themeFilter: true,
   dateFilter: true,
   isRecordedFilter: true,
-  viewModeFilter: true
+  viewModeFilter: true,
+  languageFilter: true
 };
 Default.parameters = {};

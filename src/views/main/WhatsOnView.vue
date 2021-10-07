@@ -12,6 +12,7 @@
         :filters="filters"
         @filter="onFilter"
         :enabled-filters="enabledFilters"
+        :language-options="languageOptions"
       />
     </div>
     <div class="whatsOnView-sessions">
@@ -49,7 +50,8 @@ import {
   ScheduleFilters,
   SessionTile,
   SessionBoard,
-  NoResults
+  NoResults,
+  SelectOption
 } from '../../components/module';
 
 //
@@ -81,7 +83,11 @@ export default {
       default: undefined
     },
     config: { type: Object as PropType<ScheduleConfig>, required: true },
-    slotState: { type: String as PropType<SlotState>, required: true }
+    slotState: { type: String as PropType<SlotState>, required: true },
+    languageOptions: {
+      type: Array as PropType<SelectOption[]>,
+      default: () => []
+    }
   },
   data(): Data {
     return {

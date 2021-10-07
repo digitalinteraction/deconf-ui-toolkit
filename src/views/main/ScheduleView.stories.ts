@@ -2,6 +2,7 @@ import { Meta, Story } from '@storybook/vue';
 import {
   createSchedule,
   dates,
+  defaultLanguages,
   MockAppLayout,
   randomSession
 } from '../../story-lib/module';
@@ -35,8 +36,9 @@ const Template: Story = (args, { argTypes }) => ({
       userSessions: [sessions[0].id, sessions[2].id, sessions[5].id],
       config: {
         tileHeader: ['type', 'track'],
-        tileAttributes: ['languages', 'themes', 'recorded']
-      }
+        tileAttributes: ['languages', 'organisation', 'themes', 'recorded']
+      },
+      languages: defaultLanguages()
     };
   },
   template: `
@@ -49,6 +51,7 @@ const Template: Story = (args, { argTypes }) => ({
         :config="config"
         :scheduleDate="scheduleDate"
         :is-during-conference="isDuringConference"
+        :language-options="languages"
       >
         <p slot="infoText">The sessions on at the conference</p>
       </ScheduleView>

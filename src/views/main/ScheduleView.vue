@@ -18,8 +18,9 @@
       <ScheduleFilters
         :schedule="schedule"
         :filters="filters"
-        :enabledFilters="enabledFilters"
+        :enabled-filters="enabledFilters"
         @filter="onFilter"
+        :language-options="languageOptions"
       />
     </div>
     <div class="scheduleView-blocks">
@@ -165,6 +166,10 @@ export default {
     isDuringConference: {
       type: Boolean,
       required: true
+    },
+    languageOptions: {
+      type: Array as PropType<SelectOption[]>,
+      default: () => []
     }
   },
   data(): Data {

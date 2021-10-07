@@ -9,7 +9,7 @@ import {
   Theme,
   Track
 } from '@openlab/deconf-shared';
-import { FullSchedule, Sponsor } from '../module';
+import { FullSchedule, SelectOption, Sponsor } from '../module';
 import { dates } from './dates';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -103,6 +103,15 @@ export const mockSponsor = makeFixture<Sponsor>({
   image: '/openlab.svg',
   href: 'https://openlab.ncl.ac.uk'
 });
+
+export function defaultLanguages(): SelectOption[] {
+  return [
+    { value: 'en', text: 'English' },
+    { value: 'fr', text: 'Français' },
+    { value: 'es', text: 'Español' },
+    { value: 'ar', text: 'عربى' }
+  ];
+}
 
 //
 // v1
@@ -249,6 +258,7 @@ export function randomSession(
   schedule: FullSchedule,
   options: Partial<Session> = {}
 ): Session {
+  const langs = ['fr', 'es', 'ar'];
   return mockSession({
     id: `session-${randomId++}`,
     type: randomElement(schedule.types).id,
@@ -256,6 +266,7 @@ export function randomSession(
     track: randomElement(schedule.tracks).id,
     themes: randomElements(schedule.themes, 3).map(t => t.id),
     speakers: randomElements(schedule.speakers, 5).map(t => t.id),
+    hostLanguages: ['en', randomElement(langs)],
     ...options
   });
 }

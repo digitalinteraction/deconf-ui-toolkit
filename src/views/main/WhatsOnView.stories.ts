@@ -1,5 +1,9 @@
 import { Meta, Story } from '@storybook/vue';
-import { createSchedule, randomSession } from '../../story-lib/schedule';
+import {
+  createSchedule,
+  defaultLanguages,
+  randomSession
+} from '../../story-lib/schedule';
 import WhatsOnView from './WhatsOnView.vue';
 
 export default {
@@ -25,7 +29,8 @@ const Template: Story = (args, { argTypes }) => ({
       config: {
         tileHeader: ['type', 'track'],
         tileAttributes: ['languages', 'themes', 'recorded']
-      }
+      },
+      languages: defaultLanguages()
     };
   },
   template: `
@@ -36,6 +41,7 @@ const Template: Story = (args, { argTypes }) => ({
         filters-key="whatsOn.filters"
         :config="config"
         slot-state="future"
+        :language-options="languages"
       />
     </div>
   `

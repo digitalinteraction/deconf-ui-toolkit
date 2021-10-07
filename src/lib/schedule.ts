@@ -79,18 +79,30 @@ export function groupSessionsByDay(
 
 /** Load and parse schedule filters from localStorage, setting missing default values */
 export function loadScheduleFilters(key: string): ScheduleFilterRecord {
+  const base: ScheduleFilterRecord = {
+    viewMode: 'all',
+    query: '',
+    sessionType: null,
+    track: null,
+    theme: null,
+    date: null,
+    isRecorded: null,
+    language: null
+  };
+
   try {
     const json = localStorage.getItem(key);
     if (!json) throw new Error();
 
     // Using a reviver is fine while ScheduleFilters contains no complex objects
-    return JSON.parse(json, (key, value) => {
+    const parsed = JSON.parse(json, (key, value) => {
       switch (key) {
         case 'query': {
           return typeof value === 'string' ? value : '';
         }
         case 'sessionType':
         case 'theme':
+        case 'language':
         case 'track': {
           return typeof value === 'string' ? value : null;
         }
@@ -105,21 +117,14 @@ export function loadScheduleFilters(key: string): ScheduleFilterRecord {
         case 'viewMode': {
           return ['all', 'user'].includes(value) ? value : 'all';
         }
-
         default:
           return value;
       }
     });
+
+    return { ...base, ...parsed };
   } catch (error) {
-    return {
-      viewMode: 'all',
-      query: '',
-      sessionType: null,
-      track: null,
-      theme: null,
-      date: null,
-      isRecorded: null
-    };
+    return base;
   }
 }
 
@@ -184,7 +189,7 @@ export function createFilterPredicate(
 ): SessionPredicate | null {
   if (!filtersAreSet(filters)) return null;
 
-  const { sessionType, track, date, isRecorded, theme } = filters;
+  const { sessionType, track, date, isRecorded, theme, language } = filters;
 
   // Cache a map of slot-id to slot for easy lookups
   const sessionSlotMap = new Map(schedule.slots.map(s => [s.id, s]));
@@ -208,6 +213,11 @@ export function createFilterPredicate(
 
     // Check for themes
     if (theme !== null && !session.themes.includes(theme)) return false;
+
+    // Check for language
+    if (language !== null && !session.hostLanguages.includes(language)) {
+      return false;
+    }
 
     // Check the date
     const slot = session.slot ? sessionSlotMap.get(session.slot) : null;

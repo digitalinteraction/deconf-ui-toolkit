@@ -50,6 +50,7 @@
       "trackFilter": "Track",
       "themeFilter": "Theme",
       "recordedFilter": "Is Recorded",
+      "languageFilter": "Language",
       "offLabel": "All",
       "yes": "Yes",
       "no": "No"
