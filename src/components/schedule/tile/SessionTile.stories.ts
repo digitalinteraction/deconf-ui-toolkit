@@ -20,7 +20,8 @@ const Template: Story = (args, { argTypes }) => ({
     'attrLangs',
     'attrRecorded',
     'attrTrack',
-    'attrThemes'
+    'attrThemes',
+    'attrOrganisation'
   ],
   data: () => ({
     schedule: createSchedule()
@@ -37,6 +38,7 @@ const Template: Story = (args, { argTypes }) => ({
       if (this.attrRecorded) config.tileAttributes.push('recorded');
       if (this.attrTrack) config.tileAttributes.push('track');
       if (this.attrThemes) config.tileAttributes.push('themes');
+      if (this.attrOrganisation) config.tileAttributes.push('organisation');
 
       return config;
     },
@@ -63,7 +65,8 @@ const baseArgs = {
   attrLangs: true,
   attrRecorded: true,
   attrTrack: false,
-  attrThemes: true
+  attrThemes: true,
+  attrOrganisation: true
 };
 
 export const Future = Template.bind({});

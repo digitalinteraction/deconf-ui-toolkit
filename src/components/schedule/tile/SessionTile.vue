@@ -182,7 +182,10 @@ export default {
         languages: set.has('languages') ? this.session.hostLanguages : null,
         isRecorded: set.has('recorded') ? this.session.isRecorded : null,
         track: set.has('track') ? this.track : null,
-        themes: set.has('themes') ? this.themes : null
+        themes: set.has('themes') ? this.themes : null,
+        organisation: set.has('organisation')
+          ? localiseFromObject(this.$i18n.locale, this.session.hostOrganisation)
+          : null
       };
     }
   },

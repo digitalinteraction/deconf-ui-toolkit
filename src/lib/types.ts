@@ -46,5 +46,7 @@ export interface AppRoute {
 
 export interface ScheduleConfig {
   tileHeader: Array<'type' | 'track' | 'themes'>;
-  tileAttributes: Array<'languages' | 'recorded' | 'track' | 'themes'>;
+  tileAttributes: Array<
+    'languages' | 'recorded' | 'track' | 'themes' | 'organisation'
+  >;
 }

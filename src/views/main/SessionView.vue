@@ -42,6 +42,7 @@
           :is-recorded="session.isRecorded"
           :track="sessionTrack"
           :themes="sessionThemes"
+          :organisation="localisedSessionOrg"
         />
       </div>
 
@@ -286,6 +287,12 @@ export default {
     sessionThemes(): Theme[] {
       const ids = new Set(this.session.themes);
       return this.schedule.themes.filter(t => ids.has(t.id));
+    },
+    localisedSessionOrg(): string | null {
+      return localiseFromObject(
+        this.$i18n.locale,
+        this.session.hostOrganisation
+      );
     },
     localeLinks(): LocalisedLink[] | null {
       if (!this.links) return null;
