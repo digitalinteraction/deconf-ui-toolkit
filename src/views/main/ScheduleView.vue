@@ -131,7 +131,6 @@ import { TranslateResult } from 'vue-i18n';
 interface Data {
   showPastSessions: boolean;
   filters: ScheduleFilterRecord;
-  viewModeOptions: SelectOption[];
 }
 
 export default {
@@ -175,11 +174,7 @@ export default {
   data(): Data {
     return {
       showPastSessions: false,
-      filters: loadScheduleFilters(this.filtersKey),
-      viewModeOptions: [
-        { value: 'all', text: this.$t('deconf.schedule.allSessions') },
-        { value: 'user', text: this.$t('deconf.schedule.userSessions') }
-      ]
+      filters: loadScheduleFilters(this.filtersKey)
     };
   },
   computed: {
@@ -191,6 +186,12 @@ export default {
     ...scheduleComputed(),
     showOtherSessions(): boolean {
       return this.filteredSessions.length < 50;
+    },
+    viewModeOptions(): SelectOption[] {
+      return [
+        { value: 'all', text: this.$t('deconf.schedule.allSessions') },
+        { value: 'user', text: this.$t('deconf.schedule.userSessions') }
+      ];
     }
   },
   methods: {
