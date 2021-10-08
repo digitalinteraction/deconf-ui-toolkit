@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.2.0...v2.2.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* **schedule:** fix all/user toggle not localising ([4bc50fe](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/4bc50fecd3ed238ddbdb15997ee70b5657cf934a))
+
 ## [2.2.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.1.2...v2.2.0) (2021-10-07)
 
 
