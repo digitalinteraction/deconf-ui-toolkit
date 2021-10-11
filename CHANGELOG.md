@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.3.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.2.1...v2.3.0) (2021-10-11)
+
+
+### Features
+
+* add new vimeo formats ([9a709ab](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/9a709ab8ec183171029c1e5bb3a7154b40907207))
+
 ### [2.2.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.2.0...v2.2.1) (2021-10-08)
 
 
