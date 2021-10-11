@@ -14,6 +14,7 @@ export interface PrimaryLink {
     | 'youtube-channel'
     | 'zoom'
     | 'vimeo'
+    | 'vimeo-event'
     | 'teams'
     | 'panopto'
     | 'mozilla-hubs'
@@ -26,7 +27,7 @@ export interface PrimaryLink {
 export type ParsedEmbedLink = PrimaryLink;
 
 export interface SecondaryLink {
-  kind: 'vimeo-chat';
+  kind: 'vimeo-chat' | 'vimeo-event-chat';
   data: string;
 }
 
@@ -90,7 +91,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     pathSegments[0] === 'event'
   ) {
     return {
-      kind: 'vimeo',
+      kind: 'vimeo-event',
       data: pathSegments[1]
     };
   }
@@ -182,7 +183,7 @@ export function parseSecondaryLink(link: string): SecondaryLink | null {
     pathSegments[3] === 'interaction'
   ) {
     return {
-      kind: 'vimeo-chat',
+      kind: 'vimeo-event-chat',
       data: pathSegments[1]
     };
   }

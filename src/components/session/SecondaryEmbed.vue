@@ -20,6 +20,21 @@
         frameborder="0"
       ></iframe>
     </div>
+
+    <!--
+      Vimeo Chat embed
+    -->
+    <div
+      class="secondaryEmbed-iframe"
+      v-else-if="parsed.kind === 'vimeo-event-chat'"
+    >
+      <iframe
+        width="100%"
+        height="100%"
+        :src="vimeoEventChatLink(parsed.data)"
+        frameborder="0"
+      ></iframe>
+    </div>
   </div>
 </template>
 
@@ -50,6 +65,9 @@ export default {
   methods: {
     vimeoChatLink(data: string) {
       return `https://vimeo.com/live-chat/${data}`;
+    },
+    vimeoEventChatLink(data: string) {
+      return `https://vimeo.com/event/${data}/chat/`;
     }
   }
 };

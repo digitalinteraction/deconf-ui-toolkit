@@ -37,6 +37,13 @@
     </div>
 
     <!-- 
+      Vimeo
+     -->
+    <div class="sessionEmbed-video" v-else-if="parsed.kind === 'vimeo-event'">
+      <IframeEmbed :src="vimeoEventLink(parsed.data)" allow="autoplay" />
+    </div>
+
+    <!-- 
       Panopto
      -->
     <div class="sessionEmbed-video" v-else-if="parsed.kind === 'panopto'">
@@ -161,6 +168,9 @@ export default {
     },
     vimeoVideoLink(data: string) {
       return `https://player.vimeo.com/video/${data}`;
+    },
+    vimeoEventLink(data: string) {
+      return `https://vimeo.com/event/${data}/embed`;
     },
     panoptoVideoLink(data: string) {
       return data;
