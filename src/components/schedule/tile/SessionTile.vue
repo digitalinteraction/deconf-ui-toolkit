@@ -68,6 +68,7 @@ import SpeakerGrid from '../SpeakerGrid.vue';
 import AddToCalendar from '../actions/AddToCalendar.vue';
 import JoinSession from '../actions/JoinSession.vue';
 import {
+  Localised,
   Session,
   SessionSlot,
   SessionType,
@@ -148,13 +149,10 @@ export default {
         .filter(s => Boolean(s));
     },
     localeTitle(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.session.title);
+      return this.localise(this.session.title);
     },
     localeContent(): string | null {
-      const content = localiseFromObject(
-        this.$i18n.locale,
-        this.session.content
-      );
+      const content = this.localise(this.session.content);
       return content && this.trim(content, 300);
     },
     canAddToCalendar(): boolean {
@@ -184,7 +182,7 @@ export default {
         track: set.has('track') ? this.track : null,
         themes: set.has('themes') ? this.themes : null,
         organisation: set.has('organisation')
-          ? localiseFromObject(this.$i18n.locale, this.session.hostOrganisation)
+          ? this.localise(this.session.hostOrganisation)
           : null
       };
     }
@@ -197,6 +195,12 @@ export default {
     trackCalendar(): void {
       // Track the clicking of a calendar
       this.$deconf.trackMetric(createICalEvent(this.session.id));
+    },
+    localise(object: Localised) {
+      return (
+        localiseFromObject(this.$i18n.locale, object) ||
+        localiseFromObject(this.session.hostLanguages[0], object)
+      );
     }
   }
 };

@@ -23,9 +23,11 @@ const Template: Story = (args, { argTypes }) => ({
     'attrThemes',
     'attrOrganisation'
   ],
-  data: () => ({
-    schedule: createSchedule()
-  }),
+  data() {
+    const schedule = createSchedule();
+    const session = randomSession(schedule, {});
+    return { schedule, session };
+  },
   computed: {
     config(): ScheduleConfig {
       const config: ScheduleConfig = { tileHeader: [], tileAttributes: [] };
@@ -41,9 +43,6 @@ const Template: Story = (args, { argTypes }) => ({
       if (this.attrOrganisation) config.tileAttributes.push('organisation');
 
       return config;
-    },
-    session() {
-      return randomSession(this.schedule as FullSchedule);
     }
   },
   template: `
