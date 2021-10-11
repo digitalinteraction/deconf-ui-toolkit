@@ -161,7 +161,8 @@ import {
   SessionSlot,
   SessionType,
   Speaker,
-  Theme
+  Theme,
+  Localised
 } from '@openlab/deconf-shared';
 import { PropType } from 'vue';
 import { FullSchedule } from '../../lib/api';
@@ -289,10 +290,7 @@ export default {
       return this.schedule.themes.filter(t => ids.has(t.id));
     },
     localisedSessionOrg(): string | null {
-      return localiseFromObject(
-        this.$i18n.locale,
-        this.session.hostOrganisation
-      );
+      return this.localise(this.session.hostOrganisation);
     },
     localeLinks(): LocalisedLink[] | null {
       if (!this.links) return null;
@@ -321,10 +319,10 @@ export default {
       );
     },
     localeTitle(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.session.title);
+      return this.localise(this.session.title);
     },
     localeContent(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.session.content);
+      return this.localise(this.session.content);
     },
     showCountdown(): boolean {
       return this.slotState === 'soon';
@@ -468,6 +466,12 @@ export default {
     trackLinkCopy(link: string) {
       this.$deconf.trackMetric(
         createSessionLinkEvent(this.session.id, 'copy', link)
+      );
+    },
+    localise(object: Localised): string | null {
+      return (
+        localiseFromObject(this.$i18n.locale, object) ||
+        localiseFromObject(this.session.hostLanguages[0], object)
       );
     }
   }
