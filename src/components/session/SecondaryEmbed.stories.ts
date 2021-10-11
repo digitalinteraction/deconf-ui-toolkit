@@ -16,7 +16,12 @@ const Template: Story = (args, { argTypes }) => ({
   `
 });
 
-export const Default = Template.bind({});
-Default.args = {
+export const VimeoChat = Template.bind({});
+VimeoChat.args = {
   link: 'https://vimeo.com/live-chat/622215885/'
+};
+
+export const VimeoEvent = Template.bind({});
+VimeoEvent.args = {
+  link: 'https://vimeo.com/event/1361742/chat/interaction/'
 };

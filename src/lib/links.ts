@@ -75,10 +75,23 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
+  // https://vimeo.com/123456
   if (isDomain(url, 'vimeo.com') && pathSegments.length === 1) {
     return {
       kind: 'vimeo',
       data: pathSegments[0]
+    };
+  }
+
+  // https://vimeo.com/event/123456
+  if (
+    isDomain(url, 'vimeo.com') &&
+    pathSegments.length === 2 &&
+    pathSegments[0] === 'event'
+  ) {
+    return {
+      kind: 'vimeo',
+      data: pathSegments[1]
     };
   }
 
@@ -160,6 +173,19 @@ export function parseSecondaryLink(link: string): SecondaryLink | null {
     };
   }
 
+  // https://vimeo.com/event/123456/chat/interaction/
+  if (
+    isDomain(url, 'vimeo.com') &&
+    pathSegments.length === 4 &&
+    pathSegments[0] === 'event' &&
+    pathSegments[2] === 'chat' &&
+    pathSegments[3] === 'interaction'
+  ) {
+    return {
+      kind: 'vimeo-chat',
+      data: pathSegments[1]
+    };
+  }
   return null;
 }
 

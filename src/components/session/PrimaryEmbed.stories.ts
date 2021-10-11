@@ -54,6 +54,11 @@ VimeoPlayer.args = {
   link: 'https://player.vimeo.com/video/336812660'
 };
 
+export const VimeoEvent = Template.bind({});
+VimeoEvent.args = {
+  link: 'https://vimeo.com/event/1361742'
+};
+
 export const Twitch = Template.bind({});
 Twitch.args = {
   link: 'https://www.twitch.tv/bobross'
