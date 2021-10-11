@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.3.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.3.2...v2.3.3) (2021-10-11)
+
+
+### Bug Fixes
+
+* fix settings.endDate being pushed forwards ([196d20e](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/196d20e7a56bbab97533555befa274f953755aff))
+
 ### [2.3.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.3.1...v2.3.2) (2021-10-11)
 
 
