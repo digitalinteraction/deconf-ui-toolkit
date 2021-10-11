@@ -24,7 +24,7 @@ function hydrateSchedule(data: ApiModuleState['schedule']) {
 
   data.settings.startDate = new Date(data.settings.startDate);
   data.settings.endDate = new Date(data.settings.endDate);
-  data.settings.endDate.setHours(23, 59, 59);
+  // data.settings.endDate.setHours(23, 59, 59);
 
   for (const slot of data.slots) {
     slot.start = new Date(slot.start);
