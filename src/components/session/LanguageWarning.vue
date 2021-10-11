@@ -8,11 +8,7 @@
             <FontAwesomeIcon :icon="['fas', 'globe']" />
           </span>
           <span>
-            {{
-              $t('deconf.languageWarning.message', [
-                availableLanguages.join('/')
-              ])
-            }}
+            {{ $t('deconf.languageWarning.message', [languages]) }}
           </span>
         </div>
       </span>
@@ -45,6 +41,11 @@ export default {
   },
   props: {
     availableLanguages: { type: Array as PropType<string[]>, required: true }
+  },
+  computed: {
+    languages(): string {
+      return this.availableLanguages.join('/').toUpperCase();
+    }
   },
   methods: {
     dismiss() {
