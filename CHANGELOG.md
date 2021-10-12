@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.4.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.3.3...v2.4.0) (2021-10-12)
+
+
+### Features
+
+* add click metric to primary embed ([1cde122](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/1cde12238e134631113b5bce11710f65b074f242))
+
 ### [2.3.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.3.2...v2.3.3) (2021-10-11)
 
 
