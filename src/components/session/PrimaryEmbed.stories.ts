@@ -13,8 +13,13 @@ const Template: Story = (args, { argTypes }) => ({
   components: { PrimaryEmbed },
   props: ['link'],
   template: `
-    <PrimaryEmbed :link="link" />
-  `
+    <PrimaryEmbed :link="link" @click="onClick" />
+  `,
+  methods: {
+    onClick() {
+      console.log('clicked');
+    }
+  }
 });
 
 export const YoutubeFull = Template.bind({});

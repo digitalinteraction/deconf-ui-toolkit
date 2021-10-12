@@ -29,7 +29,10 @@
 
       <!-- Embed -->
       <div class="sessionView-embed" v-if="showPrimaryLink">
-        <PrimaryEmbed :link="primaryLink.url" />
+        <PrimaryEmbed
+          :link="primaryLink.url"
+          @click="trackLinkClick(primaryLink.url)"
+        />
       </div>
 
       <slot name="afterEmbed" />

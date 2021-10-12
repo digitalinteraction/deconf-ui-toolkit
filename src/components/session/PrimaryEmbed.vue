@@ -66,6 +66,7 @@
         :href="parsed.data"
         target="_blank"
         rel="noopener"
+        @click="onClick"
       >
         <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
         <span>{{ $t('deconf.sessionEmbed.openTeams') }}</span>
@@ -81,6 +82,7 @@
         :href="parsed.data"
         target="_blank"
         rel="noopener"
+        @click="onClick"
       >
         <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
         <span>{{ $t('deconf.sessionEmbed.openZoom') }}</span>
@@ -99,6 +101,7 @@
         :href="parsed.data"
         target="_blank"
         rel="noopener"
+        @click="onClick"
       >
         <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
         <span>{{ $t('deconf.sessionEmbed.openHubs') }}</span>
@@ -117,6 +120,7 @@
         :href="parsed.data"
         target="_blank"
         rel="noopener"
+        @click="onClick"
       >
         <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
         <span>{{ $t('deconf.sessionEmbed.openSpatial') }}</span>
@@ -160,6 +164,9 @@ export default {
     }
   },
   methods: {
+    onClick() {
+      this.$emit('click');
+    },
     youtubeVideoLink(data: string) {
       return `https://www.youtube-nocookie.com/embed/${data}`;
     },
