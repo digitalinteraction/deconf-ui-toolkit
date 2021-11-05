@@ -123,10 +123,6 @@ import { TranslateResult } from 'vue-i18n';
 // - $scheduleView-headingHeight
 // - $scheduleView-background
 //
-// TODO:
-// - refactor to one v-for
-// - user sessions toggle
-//
 
 interface Data {
   showPastSessions: boolean;
@@ -254,7 +250,6 @@ $scheduleView-background: $background !default;
   padding: $block-spacing 0;
 }
 .scheduleView-title {
-  // TODO: font-family
   font-size: $scheduleView-titleSize;
   font-weight: $scheduleView-titleWeight;
 }

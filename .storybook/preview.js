@@ -7,8 +7,6 @@ import { get } from 'lodash';
 
 document.dir = 'ltr';
 
-// TODO: our use of `action` will be dropped in storybook 7.x
-
 //
 // Initialize all icons
 //

@@ -6,9 +6,10 @@
           <div class="staticLayout-backButton">
             <slot name="backButton" />
           </div>
-          <div class="staticLayout-languageControl" v-if="showLanguageControl">
-            <!-- TODO -->
-          </div>
+          <div
+            class="staticLayout-languageControl"
+            v-if="showLanguageControl"
+          ></div>
         </div>
 
         <div class="staticLayout-main">

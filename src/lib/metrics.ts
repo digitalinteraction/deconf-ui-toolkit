@@ -1,29 +1,3 @@
-// TODO: review use of this against new Metrics structs
-// - could they be classes?
-// - or a class with static methods?
-//   so MetricsEvent.ical(sessionId)
-
-// class MetricsEvent {
-//   constructor(public eventName: string, public payload: unknown) {}
-// }
-//
-// class CalendarMetric extends MetricsEvent {
-//   constructor(sessionId: string) {
-//     super('session/ical', { sessionId })
-//   }
-// }
-
-// class MetricsEvent2 {
-//   constructor(public eventName: string, public payload: unknown) {}
-//
-//   static ical(sessionId: string): MetricsEvent2 {
-//     return {
-//       eventName: 'session/ical',
-//       payload: { sessionId }
-//     }
-//   }
-// }
-
 export interface MetricsEvent {
   eventName: string;
   payload: unknown;

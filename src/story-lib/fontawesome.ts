@@ -1,6 +1,5 @@
 //
 // Storybook util for registering fontawesome
-// TODO: move to preview.js?
 //
 
 import { library } from '@fortawesome/fontawesome-svg-core';

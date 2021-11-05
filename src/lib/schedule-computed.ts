@@ -105,7 +105,6 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
       if (!this.filterPredicate) return null;
 
       return [
-        // TODO: localise and/or keep day grouping
         {
           title: 'Search Results',
           date: new Date(),

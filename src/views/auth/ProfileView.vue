@@ -106,7 +106,6 @@ $profileView-headingWeight: bold !default;
 $profileView-headingSize: $size-5 !default;
 
 .profileView-heading {
-  // TODO: font-family
   font-weight: $profileView-headingWeight;
   font-size: $profileView-headingSize;
   margin-bottom: 0.3em;

@@ -166,8 +166,6 @@ export class AudioReciever {
     this.emitChange();
   }
   unqueueBuffer() {
-    // TODO: theres probably some way to merge these logics together
-
     // Do nothing if we're inactive
     if (this.state === RecieverState.inactive || !this.ctx) return;
 

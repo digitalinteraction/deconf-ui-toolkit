@@ -217,10 +217,6 @@ function makeDate(date: string, time: string): Date | undefined {
 // - fas clock
 //
 
-// TODO:
-// Not translated
-// What is the word for moving forwards/backwards
-
 type TrackingSpeed =
   | 'fastBackward'
   | 'backward'

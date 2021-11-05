@@ -66,7 +66,6 @@ export class AudioBroadcaster {
       sampleRate: this.options.audioTransportRate
     });
 
-    // TODO: work out why `noiseSuppression` isn't working
     this.stream = await navigator.mediaDevices.getUserMedia({
       video: false,
       audio: {
@@ -76,16 +75,13 @@ export class AudioBroadcaster {
         noiseSuppression: { ideal: true }
       } as any
     });
-    // TODO: what if the user manually closes the stream?
 
-    // TODO: what happens if sampleRate is not set
     const {
       deviceId: chosenDevice,
       sampleRate = this.options.audioTransportRate
     } = this.stream.getAudioTracks()[0].getSettings();
 
     // Register the user's audio worklet
-    // TODO: provide an example one of these
     await this.ctx.audioWorklet.addModule(this.options.audioWorklet.path);
 
     // Create a recorder to process the oudio

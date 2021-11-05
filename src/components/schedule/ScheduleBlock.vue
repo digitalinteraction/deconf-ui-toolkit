@@ -148,17 +148,14 @@ export default {
   },
   methods: {
     getSessionType(session: Session): SessionType {
-      // TODO: handle not found
       return this.sessionTypeMap.get(session.type) as SessionType;
     },
     getSessionSpeakers(session: Session): Speaker[] {
-      // TODO: handle not found better
       return session.speakers
         .map(id => this.speakerMap.get(id) as Speaker)
         .filter(s => Boolean(s));
     },
     getSessionTrack(session: Session): Track {
-      // TODO: handle not found better too
       return this.trackMap.get(session.track) as Track;
     },
     getSessionThemes(session: Session): Theme[] {

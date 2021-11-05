@@ -130,11 +130,9 @@ export default {
         .filter(t => Boolean(t));
     },
     sessionType(): SessionType {
-      // TODO: handle this failing
       return lookup(this.schedule.types, this.session.type);
     },
     sessionSlot(): SessionSlot {
-      // TODO: handle this failing
       return lookup(this.schedule.slots, this.session.slot as string);
     },
     track(): Track {

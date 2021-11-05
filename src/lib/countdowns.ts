@@ -16,7 +16,6 @@ export function getCountdown(
 ): CountdownComponents {
   let remaining = targetDate.getTime() - currentDate.getTime();
 
-  // TODO: test this
   if (remaining <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
   // Remaining days

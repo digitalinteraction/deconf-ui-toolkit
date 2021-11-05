@@ -4,7 +4,6 @@
 // Experimental script to pull out <theme> blocks from .vue sfc's
 //
 
-// TODO: make sure these are top-level dependencies
 const fs = require('fs');
 const glob = require('globby');
 const debug = require('debug')('theme');

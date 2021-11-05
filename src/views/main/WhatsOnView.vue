@@ -138,7 +138,6 @@ $whatsOn-titleWeight: bold !default;
 }
 
 .whatsOnView-title {
-  // TODO: font-family
   font-size: $whatsOn-titleSize;
   font-weight: $whatsOn-titleWeight;
 }

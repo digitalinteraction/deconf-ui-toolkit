@@ -39,7 +39,6 @@
 
       <!-- Attributes -->
       <div class="sessionView-attributes">
-        <!-- TODO: allow what is shown to be customisable -->
         <SessionAttributes
           :languages="session.hostLanguages"
           :is-recorded="session.isRecorded"
@@ -490,7 +489,6 @@ $sessionView-titleWeight: bold !default;
 }
 
 .sessionView-title {
-  // TODO: font-family
   font-size: $sessionView-titleSize;
   font-weight: $sessionView-titleWeight;
   line-height: 1;
@@ -502,6 +500,4 @@ $sessionView-titleWeight: bold !default;
 .sessionView-langWarning {
   padding-bottom: 1rem;
 }
-
-// TODO: move more from MozFest
 </style>

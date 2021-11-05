@@ -1,5 +1,3 @@
 <template>
-  <div class="registerView">
-    <!-- TODO -->
-  </div>
+  <div class="registerView"></div>
 </template>

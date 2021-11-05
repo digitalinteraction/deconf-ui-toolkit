@@ -1,6 +1,3 @@
-// Migrated from @/const from climatered-gui
-// TODO: review & remove unused routes
-
 export enum Routes {
   Atrium = 'Atrium',
   WhatsOn = 'WhatsOn',

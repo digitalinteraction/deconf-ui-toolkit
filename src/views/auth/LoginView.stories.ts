@@ -9,8 +9,6 @@ export default {
   component: LoginView
 } as Meta;
 
-// TODO: look into hooking @logout and @unregister into storybook/addons-actions
-
 const Template: Story = (args, { argTypes }) => ({
   components: { LoginView, UtilLayout, BrandA, BackButton },
 

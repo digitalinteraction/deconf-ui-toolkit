@@ -8,10 +8,6 @@
 
 <script lang="ts">
 //
-// TODO: should this be ScheduleHeading?
-//
-
-//
 // i18n
 // - n/a
 //

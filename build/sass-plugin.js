@@ -2,13 +2,6 @@
 // A plugin for rollup to take all sass out and combine into a single scss
 // file to be imported by clients
 //
-//
-// 16/09/21 TODO:
-//   This is only used to strip CSS out of the rollup build (filename === null).
-//   With rollup-plugin-vue@5 it handles the SCSS and doesn't export for rollup,
-//   with @6 it does export the SCSS which means we can bundle it ourselfs.
-//   But that isn't possible for now.
-//
 
 import { createFilter } from 'rollup-pluginutils';
 import fs from 'fs';

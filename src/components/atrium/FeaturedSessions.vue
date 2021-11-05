@@ -45,7 +45,6 @@ import { Session, SessionSlot } from '@openlab/deconf-shared';
 // - $featuredSessions-titleWeight
 //
 
-// TODO: export this type
 interface SessionAndSlot {
   session: Session;
   slot: SessionSlot;

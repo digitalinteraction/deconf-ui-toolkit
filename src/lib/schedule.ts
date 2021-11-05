@@ -5,9 +5,6 @@ import { friendlyDate, isSameDay, startOfDay } from './dates';
 import { localiseFromObject } from './locales';
 import { ConferenceConfig, Session, SessionSlot } from '@openlab/deconf-shared';
 
-// TODO:
-// - Add test coverage
-
 export interface SlotWithSessions {
   slot: SessionSlot;
   sessions: Session[];

@@ -148,9 +148,6 @@ import { parsePrimaryLink, PrimaryLink } from '../../lib/module';
 // sass
 // - n/a
 //
-// todo
-// - fully rename to PrimaryEmbed
-//
 
 export default {
   name: 'PrimaryEmbed',

@@ -1,7 +1,5 @@
 import Vue from 'vue';
 
-// TODO: refactor `Content = createContent()` to a component here
-
 export const BrandA = Vue.extend({
   template: `
     <img

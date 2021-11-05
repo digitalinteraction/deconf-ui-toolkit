@@ -30,7 +30,6 @@
             {{ $t('deconf.miniSession.view') }}
           </span>
           <span class="icon">
-            <!-- TODO: rtl support -->
             <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
           </span>
         </router-link>

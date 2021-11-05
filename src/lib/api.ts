@@ -10,9 +10,6 @@ import {
   Track
 } from '@openlab/deconf-shared';
 
-//
-// TODO: move these to @openlab/deconf-shared
-//
 export interface AuthenticateOptions {
   token: string;
 }
