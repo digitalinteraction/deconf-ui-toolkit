@@ -1,6 +1,7 @@
 import { Module } from 'vuex';
 import { deepSeal, FullSchedule, createStateMapper } from '../../lib/module';
 import {
+  Attendance,
   AuthToken,
   CarbonCalculation,
   Registration
@@ -84,6 +85,9 @@ export function createApiStoreModule(): ApiStoreModule {
       },
       userSessions: (state, userSessions: string[]) => {
         state.userSessions = deepSeal(userSessions);
+      },
+      userAttendance: (state, attendance: Attendance[]) => {
+        state.userSessions = deepSeal(attendance.map(a => a.session));
       }
     },
     actions: {
