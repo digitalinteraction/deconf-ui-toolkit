@@ -109,7 +109,7 @@ export default {
 
       this.state = success ? 'success' : 'error';
 
-      this.$deconf.trackMetric(createLoginStartEvent(window.btoa(this.email)));
+      this.$deconf.trackMetric(createLoginStartEvent('_feature_removed_'));
     }
   }
 };
