@@ -105,6 +105,25 @@
       </a>
     </div>
 
+    <!--
+      Google Meet
+    -->
+    <div
+      class="sessionEmbed-link is-googleMeet"
+      v-else-if="parsed.kind === 'google-meet'"
+    >
+      <a
+        class="button is-medium"
+        :href="parsed.data"
+        target="_blank"
+        rel="noopener"
+        @click="onClick"
+      >
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span>{{ $t('deconf.sessionEmbed.openGoogleMeet') }}</span>
+      </a>
+    </div>
+
     <!-- 
       Mozilla Hub links
      -->
@@ -156,6 +175,7 @@ import { parsePrimaryLink, PrimaryLink } from '../../lib/module';
 // - deconf.sessionEmbed.openTeams - Button to open a teams link
 // - deconf.sessionEmbed.openZoom - Button to open a zoom link
 // - deconf.sessionEmbed.openZoomRegister - Button to open a zoom registration
+// - deconf.sessionEmbed.openGoogleMeet - Button to open a Google Meet event
 // - deconf.sessionEmbed.openHubs - Button to open a Mozilla Hubs link
 // - deconf.sessionEmbed.openSpatial - Button to open a Spatial Chat link
 //
@@ -259,6 +279,16 @@ export default {
 
     .button {
       background: $spatial-blue;
+      color: $white;
+    }
+  }
+
+  &.is-googleMeet {
+    border: 2px dashed $google-meet-blue;
+    background-color: lighten($google-meet-blue, 40%);
+
+    .button {
+      background: $google-meet-blue;
       color: $white;
     }
   }

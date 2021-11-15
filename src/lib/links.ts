@@ -14,6 +14,7 @@ export interface PrimaryLink {
     | 'youtube-channel'
     | 'zoom'
     | 'zoom-register'
+    | 'google-meet'
     | 'vimeo'
     | 'vimeo-event'
     | 'teams'
@@ -118,6 +119,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   //
   // Links out
   //
+  // https://zoom.us/my/abcdef
   if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/my/')) {
     return {
       kind: 'zoom',
@@ -125,6 +127,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
+  // https://zoom.us/j/123456789
   if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/j/')) {
     return {
       kind: 'zoom',
@@ -139,6 +142,14 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'zoom-register',
+      data: url.toString()
+    };
+  }
+
+  // https://meet.google.com/abc-defg-hij
+  if (isDomain(url, 'meet.google.com')) {
+    return {
+      kind: 'google-meet',
       data: url.toString()
     };
   }
