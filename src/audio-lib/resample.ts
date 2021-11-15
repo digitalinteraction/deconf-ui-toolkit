@@ -1,7 +1,7 @@
 /**
  * Interpolate between two values
  */
-export function lerp(v0: number, v1: number, factor: number) {
+export function lerp(v0: number, v1: number, factor: number): number {
   return (1 - factor) * v0 + factor * v1;
 }
 
@@ -13,7 +13,7 @@ export function getResampledLength(
   inputLength: number,
   inputRate: number,
   outputRate: number
-) {
+): number {
   return Math.round((outputRate * inputLength) / inputRate);
 }
 
@@ -22,7 +22,7 @@ interface ArrayLike<T> {
   [n: number]: T;
 }
 
-export function linearResample(from: ArrayLike<number>, to: ArrayLike<number>) {
+export function linearResample<T extends ArrayLike<number>>(from: T, to: T): T {
   for (let i = 0; i < to.length; i++) {
     const pivot = (i * from.length) / to.length;
 
@@ -36,7 +36,10 @@ export function linearResample(from: ArrayLike<number>, to: ArrayLike<number>) {
   return to;
 }
 
-export function nearestNeighbourResample(from: number[], to: number[]) {
+export function nearestNeighbourResample<T extends ArrayLike<number>>(
+  from: T,
+  to: T
+): T {
   for (let i = 0; i < to.length; i++) {
     const j = Math.floor((i * from.length) / to.length);
     to[i] = from[j];

@@ -1,7 +1,6 @@
 // ...
 
 export * from './api';
-export * from './audio/module';
 export * from './constants';
 export * from './countdowns';
 export * from './dates';

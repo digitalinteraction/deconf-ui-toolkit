@@ -29,7 +29,7 @@ interface AudioRecieverOptions {
   audioLowLevel: number;
   audioHighLevel: number;
   onChange(data: OnChangeData): void;
-  onDebug(...args: any[]): void;
+  onDebug(...args: unknown[]): void;
 }
 
 interface InternalBuffer {
@@ -43,7 +43,7 @@ interface DataPacket {
 }
 
 export class AudioReciever {
-  static isSupported() {
+  static isSupported(): boolean {
     return Boolean(getAudioContext());
   }
 
@@ -54,16 +54,16 @@ export class AudioReciever {
   private state = RecieverState.inactive;
   private rawStats: null | RecieverRawStats = null;
 
-  getState() {
+  getState(): RecieverState {
     return this.state;
   }
-  getStats() {
+  getStats(): RecieverRawStats | { state: RecieverState } {
     return {
       state: this.state,
       ...this.rawStats
     };
   }
-  emitChange() {
+  emitChange(): void {
     this.options.onChange({
       state: this.state,
       bufferSize: this.buffers.length,
@@ -73,7 +73,7 @@ export class AudioReciever {
 
   constructor(public options: AudioRecieverOptions) {}
 
-  open() {
+  open(): void {
     const AudioContext = getAudioContext() as typeof window.AudioContext;
     this.ctx = new AudioContext({
       sampleRate: this.options.playbackRate
@@ -88,7 +88,7 @@ export class AudioReciever {
     this.emitChange();
   }
 
-  close() {
+  close(): void {
     this.buffers = [];
     this.state = RecieverState.inactive;
     this.rawStats = null;
@@ -99,7 +99,7 @@ export class AudioReciever {
     this.emitChange();
   }
 
-  playOrBuffer() {
+  playOrBuffer(): void {
     this.state = RecieverState.buffering;
 
     if (this.buffers.length > this.options.audioLowLevel) {
@@ -109,11 +109,11 @@ export class AudioReciever {
       this.emitChange();
     }
   }
-  stop() {
+  stop(): void {
     this.state = RecieverState.inactive;
   }
 
-  pushData({ arrayBuffer, sampleRate }: DataPacket) {
+  pushData({ arrayBuffer, sampleRate }: DataPacket): void {
     if (!this.ctx) return;
 
     // Confert int16 transport arrays to float32 audio arrays
@@ -165,7 +165,7 @@ export class AudioReciever {
 
     this.emitChange();
   }
-  unqueueBuffer() {
+  unqueueBuffer(): void {
     // Do nothing if we're inactive
     if (this.state === RecieverState.inactive || !this.ctx) return;
 
