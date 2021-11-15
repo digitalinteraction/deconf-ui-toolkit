@@ -10,6 +10,11 @@ export interface SlotWithSessions {
   sessions: Session[];
 }
 
+export interface SessionAndSlot {
+  session: Session;
+  slot: SessionSlot;
+}
+
 /** Take a set of sessios and slots and group them by slot */
 export function groupSessionsBySlot(
   sessions: Session[],

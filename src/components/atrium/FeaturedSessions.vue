@@ -27,10 +27,9 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { Location } from 'vue-router';
-import { Routes } from '../../lib/module';
+import { Routes, SessionAndSlot } from '../../lib/module';
 
 import MiniSession from './MiniSession.vue';
-import { Session, SessionSlot } from '@openlab/deconf-shared';
 
 //
 // i18n
@@ -44,11 +43,6 @@ import { Session, SessionSlot } from '@openlab/deconf-shared';
 // - $featuredSessions-titleSize
 // - $featuredSessions-titleWeight
 //
-
-interface SessionAndSlot {
-  session: Session;
-  slot: SessionSlot;
-}
 
 export default {
   name: 'FeaturedSessions',
