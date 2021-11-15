@@ -69,6 +69,11 @@
   margin-left: unset;
   margin-right: unset;
 }
+// Make buttons with icons work nicely on ltr & rtl
+.button .icon:last-child:not(:first-child) {
+  margin-left: unset;
+  margin-right: unset;
+}
 .button .icon + :not(.icon) {
   padding-inline-start: 0.375em;
 }
