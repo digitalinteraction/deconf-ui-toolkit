@@ -64,7 +64,10 @@ import {
 // - n/a
 //
 // sass
-// - n/a
+// - $whatsOn-background
+// - $whatsOn-titleSize
+// - $whatsOn-titleWeight
+// - $whatsOn-titleFamily
 //
 
 interface Data {
@@ -124,6 +127,7 @@ export default {
 $whatsOn-background: $background !default;
 $whatsOn-titleSize: $size-3 !default;
 $whatsOn-titleWeight: bold !default;
+$whatsOn-titleFamily: $family-title !default;
 
 .whatsOnView {
   flex: 1; // Fill AppLayout
@@ -140,6 +144,7 @@ $whatsOn-titleWeight: bold !default;
 .whatsOnView-title {
   font-size: $whatsOn-titleSize;
   font-weight: $whatsOn-titleWeight;
+  font-family: $whatsOn-titleFamily;
 }
 .whatsOnView-content {
   margin-bottom: 0.5rem;

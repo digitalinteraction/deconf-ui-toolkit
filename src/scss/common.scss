@@ -20,6 +20,7 @@ $family-sans-serif: Avenir, -apple-system, system-ui, BlinkMacSystemFont,
   'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
   'Segoe UI Emoji', 'Segoe UI Symbol' !default;
 $family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !default;
+$family-title: $family-sans-serif !default;
 
 $navbar-height: 3.5rem !default;
 
