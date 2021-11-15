@@ -120,6 +120,7 @@ import { TranslateResult } from 'vue-i18n';
 // sass
 // - $scheduleView-titleSize
 // - $scheduleView-titleWeight
+// - $scheduleView-titleFamily
 // - $scheduleView-headingHeight
 // - $scheduleView-background
 //
@@ -209,6 +210,7 @@ export default {
 <style lang="scss">
 $scheduleView-titleSize: $size-3 !default;
 $scheduleView-titleWeight: bold !default;
+$scheduleView-titleFamily: $family-title !default;
 $scheduleView-headingHeight: 42px !default;
 $scheduleView-background: $background !default;
 
@@ -252,6 +254,7 @@ $scheduleView-background: $background !default;
 .scheduleView-title {
   font-size: $scheduleView-titleSize;
   font-weight: $scheduleView-titleWeight;
+  font-family: $scheduleView-titleFamily;
 }
 .scheduleView-content {
   margin-bottom: 0.5rem;
