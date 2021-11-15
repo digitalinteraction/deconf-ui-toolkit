@@ -1,4 +1,4 @@
 export * from './audio-context';
 export * from './broadcaster';
-export * from './reciever';
+export * from './receiver';
 export * from './resample';

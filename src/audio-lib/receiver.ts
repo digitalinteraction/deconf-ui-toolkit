@@ -1,13 +1,13 @@
 import { getAudioContext } from './audio-context';
 import { int16ToFloat32, linearResample, getResampledLength } from './resample';
 
-export enum RecieverState {
+export enum ReceiverState {
   inactive = 'inactive',
   buffering = 'buffering',
   playing = 'playing'
 }
 
-interface RecieverRawStats {
+export interface ReceiverRawStats {
   input: {
     byteLength: number;
     sampleRate: number;
@@ -18,17 +18,17 @@ interface RecieverRawStats {
   };
 }
 
-interface OnChangeData {
-  state: RecieverState;
+export interface ReceiverOnChange {
+  state: ReceiverState;
   bufferSize: number;
-  rawStats: RecieverRawStats | null;
+  rawStats: ReceiverRawStats | null;
 }
 
-interface AudioRecieverOptions {
+export interface AudioReceiverOptions {
   playbackRate: number;
   audioLowLevel: number;
   audioHighLevel: number;
-  onChange(data: OnChangeData): void;
+  onChange(data: ReceiverOnChange): void;
   onDebug(...args: unknown[]): void;
 }
 
@@ -37,12 +37,12 @@ interface InternalBuffer {
   buffer: AudioBuffer;
 }
 
-interface DataPacket {
+export interface ReceiverDataPacket {
   arrayBuffer: ArrayBuffer;
   sampleRate: number;
 }
 
-export class AudioReciever {
+export class AudioReceiver {
   static isSupported(): boolean {
     return Boolean(getAudioContext());
   }
@@ -51,13 +51,13 @@ export class AudioReciever {
   private buffers: InternalBuffer[] = [];
   private nextPacket = 1;
 
-  private state = RecieverState.inactive;
-  private rawStats: null | RecieverRawStats = null;
+  private state = ReceiverState.inactive;
+  private rawStats: null | ReceiverRawStats = null;
 
-  getState(): RecieverState {
+  getState(): ReceiverState {
     return this.state;
   }
-  getStats(): RecieverRawStats | { state: RecieverState } {
+  getStats(): ReceiverRawStats | { state: ReceiverState } {
     return {
       state: this.state,
       ...this.rawStats
@@ -71,7 +71,7 @@ export class AudioReciever {
     });
   }
 
-  constructor(public options: AudioRecieverOptions) {}
+  constructor(public options: AudioReceiverOptions) {}
 
   open(): void {
     const AudioContext = getAudioContext() as typeof window.AudioContext;
@@ -82,7 +82,7 @@ export class AudioReciever {
     this.buffers = [];
     this.nextPacket = 1;
 
-    this.state = RecieverState.inactive;
+    this.state = ReceiverState.inactive;
     this.rawStats = null;
 
     this.emitChange();
@@ -90,7 +90,7 @@ export class AudioReciever {
 
   close(): void {
     this.buffers = [];
-    this.state = RecieverState.inactive;
+    this.state = ReceiverState.inactive;
     this.rawStats = null;
 
     if (this.ctx) this.ctx.close();
@@ -100,20 +100,20 @@ export class AudioReciever {
   }
 
   playOrBuffer(): void {
-    this.state = RecieverState.buffering;
+    this.state = ReceiverState.buffering;
 
     if (this.buffers.length > this.options.audioLowLevel) {
-      this.state = RecieverState.playing;
+      this.state = ReceiverState.playing;
       this.unqueueBuffer();
     } else {
       this.emitChange();
     }
   }
   stop(): void {
-    this.state = RecieverState.inactive;
+    this.state = ReceiverState.inactive;
   }
 
-  pushData({ arrayBuffer, sampleRate }: DataPacket): void {
+  pushData({ arrayBuffer, sampleRate }: ReceiverDataPacket): void {
     if (!this.ctx) return;
 
     // Confert int16 transport arrays to float32 audio arrays
@@ -127,7 +127,7 @@ export class AudioReciever {
     );
 
     this.options.onDebug(
-      'AudioReciever#push intLength=%d floatsLength=%d inputRate=%d outputRate=%d',
+      'AudioReceiver#push intLength=%d floatsLength=%d inputRate=%d outputRate=%d',
       arrayBuffer.byteLength,
       inputFloats.buffer.byteLength,
       sampleRate,
@@ -167,20 +167,20 @@ export class AudioReciever {
   }
   unqueueBuffer(): void {
     // Do nothing if we're inactive
-    if (this.state === RecieverState.inactive || !this.ctx) return;
+    if (this.state === ReceiverState.inactive || !this.ctx) return;
 
     // If we're out of data, enter the buffering state
     if (this.buffers.length === 0) {
-      this.state = RecieverState.buffering;
+      this.state = ReceiverState.buffering;
       return;
     }
 
     // If we aren't in the playing state, stop here
-    if (this.state !== RecieverState.playing) return;
+    if (this.state !== ReceiverState.playing) return;
 
     // If we're playing and run out of data, start buffering again
-    if (this.state === RecieverState.playing && this.buffers.length < 1) {
-      this.state = RecieverState.buffering;
+    if (this.state === ReceiverState.playing && this.buffers.length < 1) {
+      this.state = ReceiverState.buffering;
       return;
     }
 
@@ -198,7 +198,7 @@ export class AudioReciever {
 
     // When the source finishes, play another
     source.onended = () => {
-      this.options.onDebug('AudioReciever source@ended packet=%d', next.index);
+      this.options.onDebug('AudioReceiver source@ended packet=%d', next.index);
       source.disconnect();
       this.unqueueBuffer();
     };
@@ -210,3 +210,19 @@ export class AudioReciever {
     this.emitChange();
   }
 }
+
+//
+// Deprecated typo naming
+//
+
+/** @deprecated use AudioReceiver */
+export const AudioReciever = AudioReceiver;
+
+/** @deprecated use AudioReceiver */
+export type AudioReciever = AudioReceiver;
+
+/** @deprecated use AudioReceiver */
+export const RecieverState = ReceiverState;
+
+/** @deprecated use AudioReceiver */
+export type RecieverState = ReceiverState;
