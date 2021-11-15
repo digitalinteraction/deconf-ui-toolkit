@@ -229,6 +229,7 @@ const LANGUAGES: Record<string, string | undefined> = {
 // sass
 // - $sessionView-titleSize
 // - $sessionView-titleWeight
+// - $sessionView-titleFamily
 //
 
 interface Data {
@@ -483,6 +484,7 @@ export default {
 <style lang="scss">
 $sessionView-titleSize: $size-3 !default;
 $sessionView-titleWeight: bold !default;
+$sessionView-titleFamily: $family-title !default;
 
 .sessionView {
   flex: 1; // Fill AppLayout
@@ -491,6 +493,7 @@ $sessionView-titleWeight: bold !default;
 .sessionView-title {
   font-size: $sessionView-titleSize;
   font-weight: $sessionView-titleWeight;
+  font-family: $sessionView-titleFamily;
   line-height: 1;
 }
 
