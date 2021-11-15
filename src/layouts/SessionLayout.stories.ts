@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/vue';
 import SessionLayout from './SessionLayout.vue';
 import { BackButton, SessionState } from '../components/module';
-import { createContent } from '../story-lib/module';
+import { Content } from '../story-lib/module';
 
 export default {
   title: 'Layout/SessionLayout',
@@ -16,8 +16,6 @@ export default {
   }
 } as Meta;
 
-const Content = createContent();
-
 const Template: Story = (args, { argTypes }) => ({
   components: { SessionLayout, BackButton, SessionState, Content },
   props: ['slotState', 'attendance'],
@@ -29,7 +27,7 @@ const Template: Story = (args, { argTypes }) => ({
         <Content />
       </div>
       <div slot="sidebar">
-        <Content />
+        <Content :size="1" />
       </div>
     </SessionLayout>
   `

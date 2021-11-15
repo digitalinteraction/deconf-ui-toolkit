@@ -1,9 +1,8 @@
 import { Meta, Story } from '@storybook/vue';
 
 import UtilLayout from './UtilLayout.vue';
-import { BoxContent } from '../components/module';
 
-import { createContent, BrandA, LanguageControl } from '../story-lib/module';
+import { Content, BrandA, LanguageControl } from '../story-lib/module';
 
 export default {
   title: 'Layout/UtilLayout',
@@ -19,15 +18,14 @@ export default {
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
-  components: { UtilLayout, BoxContent, BrandA, LanguageControl },
+  components: { UtilLayout, Content, BrandA, LanguageControl },
   props: ['width'],
   data: () => ({
-    content: createContent(),
     homeRoute: { name: 'HOME' }
   }),
   template: `
     <UtilLayout :home-route="homeRoute" :width="width">
-      <component :is="content" slot="main" />
+      <Content slot="main" />
       <button class="button" slot="backButton">Go Back</button>
       <BrandA slot="brand" />
       <div slot="footer" class="footer">

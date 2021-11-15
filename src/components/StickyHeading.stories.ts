@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/vue';
-import { createContent, BrandA, mockSettings } from '../story-lib/module';
+import { BrandA, mockSettings, Content } from '../story-lib/module';
 
 import StickyHeading from './StickyHeading.vue';
 import AppLayout from '../layouts/AppLayout.vue';
@@ -16,8 +16,6 @@ export default {
     }
   }
 } as Meta;
-
-const Content = createContent();
 
 const Template: Story = (args, { argTypes }) => ({
   components: { StickyHeading, Content, AppLayout, BrandA },

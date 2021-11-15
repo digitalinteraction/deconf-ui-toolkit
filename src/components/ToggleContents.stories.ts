@@ -1,13 +1,11 @@
 import { Meta, Story } from '@storybook/vue';
 import ToggleContents from './ToggleContents.vue';
-import { createContent } from '../story-lib/module';
+import { Content } from '../story-lib/module';
 
 export default {
   title: 'Component/ToggleContents',
   component: ToggleContents
 } as Meta;
-
-const Content = createContent();
 
 const Template: Story = (args, { argTypes }) => ({
   components: { ToggleContents, Content },
@@ -19,7 +17,7 @@ const Template: Story = (args, { argTypes }) => ({
       :hide-button="hideButton"
       :force-open="forceOpen"
     >
-      <Content />
+      <Content class="content" />
     </ToggleContents>
   `
 });

@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/vue';
 import AppLayout from './AppLayout.vue';
 import {
   mockSettings,
-  createContent,
+  Content,
   BrandC,
   BrandB,
   BrandA,
@@ -22,8 +22,6 @@ const user: AuthToken = {
   user_roles: ['attendee', 'interpreter'],
   user_lang: 'en'
 };
-
-const Content = createContent();
 
 const Template: Story = (args, { argTypes }) => ({
   components: { AppLayout, Content, BrandA, BrandB, BrandC, LanguageControl },
@@ -66,9 +64,6 @@ const Template: Story = (args, { argTypes }) => ({
   computed: {
     user() {
       return this.isLoggedIn ? user : null;
-    },
-    contentLines() {
-      return new Array(this.contentSize as number).fill(0).map((v, k) => k);
     }
   },
   template: `
@@ -84,7 +79,7 @@ const Template: Story = (args, { argTypes }) => ({
               <p>
                 <a id="top" href="#bottom">Bottom</a>
               </p>
-              <Content v-for="line in contentLines" :key="line" />
+              <Content :size="contentSize * 5" />
               <p>
                 <a id="bottom" href="#top">Top</a>
               </p>

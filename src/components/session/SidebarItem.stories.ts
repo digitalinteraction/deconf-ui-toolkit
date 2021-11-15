@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/vue';
 import SidebarItem from './SidebarItem.vue';
-import { createText } from '../../story-lib/module';
+import { Content } from '../../story-lib/module';
 
 export default {
   title: 'Session/SidebarItem',
@@ -9,17 +9,17 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   props: Object.keys(argTypes),
-  components: { SidebarItem },
+  components: { SidebarItem, Content },
   template: `
     <div>
       <SidebarItem title="First Item">
-        <p>${createText(0)}</p>
+        <Content :size="1" />
       </SidebarItem>
       <SidebarItem title="Second Item">
-        <p>${createText(1)}</p>
+        <Content :size="1" />
       </SidebarItem>
       <SidebarItem title="Third Item">
-        <p>${createText(3)}</p>
+        <Content :size="1" />
       </SidebarItem>
     </div>
   `

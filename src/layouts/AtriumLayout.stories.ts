@@ -8,7 +8,7 @@ import {
   SponsorGrid
 } from '../components/module';
 
-import { createSponsors, createContent } from '../story-lib/module';
+import { createSponsors, Content } from '../story-lib/module';
 
 export default {
   title: 'Layout/AtriumLayout',
@@ -16,7 +16,14 @@ export default {
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
-  components: { AtriumLayout, HeroCard, BoxContent, ColorWidget, SponsorGrid },
+  components: {
+    AtriumLayout,
+    HeroCard,
+    BoxContent,
+    Content,
+    ColorWidget,
+    SponsorGrid
+  },
   data: () => ({
     sponsors: [
       {
@@ -39,8 +46,7 @@ const Template: Story = (args, { argTypes }) => ({
         title: 'Other Sponsors',
         sponsors: createSponsors(20)
       }
-    ],
-    content: createContent()
+    ]
   }),
   template: `
     <AtriumLayout>
@@ -53,8 +59,9 @@ const Template: Story = (args, { argTypes }) => ({
       <BoxContent
         slot="left"
         title="Welcome to our global, digital climate change summit"
-        :content="content"
-      />
+      >
+        <Content />
+      </BoxContent>
       <div slot="right">
         <ColorWidget
           kind="primary"
