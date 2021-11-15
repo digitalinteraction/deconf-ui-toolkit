@@ -13,6 +13,7 @@ export interface PrimaryLink {
     | 'youtube-video'
     | 'youtube-channel'
     | 'zoom'
+    | 'zoom-register'
     | 'vimeo'
     | 'vimeo-event'
     | 'teams'
@@ -127,6 +128,17 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/j/')) {
     return {
       kind: 'zoom',
+      data: url.toString()
+    };
+  }
+
+  // https://some-org.zoom.us/meeting/register/abcdef-1234567890
+  if (
+    isDomain(url, 'zoom.us') &&
+    url.pathname.startsWith('/meeting/register/')
+  ) {
+    return {
+      kind: 'zoom-register',
       data: url.toString()
     };
   }

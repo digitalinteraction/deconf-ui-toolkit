@@ -89,6 +89,22 @@
       </a>
     </div>
 
+    <div
+      class="sessionEmbed-link is-zoom"
+      v-else-if="parsed.kind === 'zoom-register'"
+    >
+      <a
+        class="button is-medium"
+        :href="parsed.data"
+        target="_blank"
+        rel="noopener"
+        @click="onClick"
+      >
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span>{{ $t('deconf.sessionEmbed.openZoomRegister') }}</span>
+      </a>
+    </div>
+
     <!-- 
       Mozilla Hub links
      -->
@@ -139,6 +155,7 @@ import { parsePrimaryLink, PrimaryLink } from '../../lib/module';
 // - deconf.sessionEmbed.noEmbed - The warning when no embedable option is available
 // - deconf.sessionEmbed.openTeams - Button to open a teams link
 // - deconf.sessionEmbed.openZoom - Button to open a zoom link
+// - deconf.sessionEmbed.openZoomRegister - Button to open a zoom registration
 // - deconf.sessionEmbed.openHubs - Button to open a Mozilla Hubs link
 // - deconf.sessionEmbed.openSpatial - Button to open a Spatial Chat link
 //

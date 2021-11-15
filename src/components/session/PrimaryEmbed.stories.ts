@@ -79,6 +79,11 @@ ZoomJoin.args = {
   link: 'https://zoom.us/j/123456789'
 };
 
+export const ZoomRegister = Template.bind({});
+ZoomRegister.args = {
+  link: 'https://some-org.zoom.us/meeting/register/abcdef-1234567890'
+};
+
 export const Teams = Template.bind({});
 Teams.args = {
   link:
