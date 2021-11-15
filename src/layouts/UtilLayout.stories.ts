@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/vue';
 
 import UtilLayout from './UtilLayout.vue';
+import { BackButton } from '../components/module';
 
 import { Content, BrandA, LanguageControl } from '../story-lib/module';
 
@@ -18,7 +19,7 @@ export default {
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
-  components: { UtilLayout, Content, BrandA, LanguageControl },
+  components: { UtilLayout, Content, BrandA, LanguageControl, BackButton },
   props: ['width'],
   data: () => ({
     homeRoute: { name: 'HOME' }
@@ -26,7 +27,7 @@ const Template: Story = (args, { argTypes }) => ({
   template: `
     <UtilLayout :home-route="homeRoute" :width="width">
       <Content slot="main" />
-      <button class="button" slot="backButton">Go Back</button>
+      <BackButton slot="backButton" to="#">Go Back</button>
       <BrandA slot="brand" />
       <div slot="footer" class="footer">
         <p>This is a footer</p>
