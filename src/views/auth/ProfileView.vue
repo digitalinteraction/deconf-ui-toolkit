@@ -1,6 +1,8 @@
 <template>
   <div class="profileView">
-    <h1 class="title">{{ $t('deconf.profile.title') }}</h1>
+    <h1 class="profileView-title">
+      {{ $t('deconf.profile.title') }}
+    </h1>
 
     <table class="table">
       <tbody>
@@ -55,6 +57,10 @@ import { createLogoutEvent, createUnregisterEvent } from '../../lib/metrics';
 // sass
 // - $profileView-headingWeight
 // - $profileView-headingSize
+// - $profileView-headingFamily
+// - $profileView-titleWeight
+// - $profileView-titleSize
+// - $profileView-titleFamily
 //
 // events
 // - logout – When the user logged out
@@ -104,10 +110,22 @@ export default {
 <style lang="scss">
 $profileView-headingWeight: bold !default;
 $profileView-headingSize: $size-5 !default;
+$profileView-headingFamily: $family-title !default;
+
+$profileView-titleWeight: bold !default;
+$profileView-titleSize: $size-3 !default;
+$profileView-titleFamily: $family-title !default;
+
+.profileView-title {
+  font-weight: $profileView-titleWeight;
+  font-size: $profileView-titleSize;
+  font-family: $profileView-titleFamily;
+}
 
 .profileView-heading {
   font-weight: $profileView-headingWeight;
   font-size: $profileView-headingSize;
+  font-family: $profileView-headingFamily;
   margin-bottom: 0.3em;
 }
 </style>
