@@ -472,10 +472,9 @@ export default {
       );
     },
     localise(object: Localised): string | null {
-      return (
-        localiseFromObject(this.$i18n.locale, object) ||
-        localiseFromObject(this.session.hostLanguages[0], object)
-      );
+      const fallbacks = [...this.session.hostLanguages];
+      if (!fallbacks.includes('en')) fallbacks.push('en');
+      return localiseFromObject(this.$i18n.locale, object, { fallbacks });
     }
   }
 };

@@ -195,10 +195,9 @@ export default {
       this.$deconf.trackMetric(createICalEvent(this.session.id));
     },
     localise(object: Localised) {
-      return (
-        localiseFromObject(this.$i18n.locale, object) ||
-        localiseFromObject(this.session.hostLanguages[0], object)
-      );
+      const fallbacks = [...this.session.hostLanguages];
+      if (!fallbacks.includes('en')) fallbacks.push('en');
+      return localiseFromObject(this.$i18n.locale, object, { fallbacks });
     }
   }
 };
