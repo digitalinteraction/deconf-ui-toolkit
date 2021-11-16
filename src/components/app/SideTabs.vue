@@ -33,6 +33,7 @@ import { AppRoute } from '../../lib/module';
 // - $sideTabs-background
 // - $sideTabs-color
 // - $sideTabs-active
+// - $sideTabs-activeBackground
 //
 
 export default {
@@ -65,6 +66,7 @@ export default {
 $sideTabs-background: #252525 !default;
 $sideTabs-color: $white !default;
 $sideTabs-active: $primary !default;
+$sideTabs-activeBackground: $white !default;
 
 .sideTabs {
   background-color: $sideTabs-background;
@@ -133,7 +135,7 @@ $sideTabs-active: $primary !default;
   }
 
   &.is-active {
-    background-color: $sideTabs-color;
+    background-color: $sideTabs-activeBackground;
     color: $sideTabs-active;
   }
 }
