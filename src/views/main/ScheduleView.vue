@@ -97,12 +97,11 @@ import {
   SegmentControl
 } from '../../components/module';
 import {
-  FullSchedule,
   loadScheduleFilters,
   scheduleComputed,
   ScheduleConfig
 } from '../../lib/module';
-import { Session } from '@openlab/deconf-shared';
+import { ScheduleRecord, Session } from '@openlab/deconf-shared';
 import { TranslateResult } from 'vue-i18n';
 
 //
@@ -140,7 +139,7 @@ export default {
     SegmentControl
   },
   props: {
-    schedule: { type: Object as PropType<FullSchedule>, required: true },
+    schedule: { type: Object as PropType<ScheduleRecord>, required: true },
     sessions: { type: Array as PropType<Session[]>, required: true },
     filtersKey: { type: String, required: true },
     enabledFilters: {

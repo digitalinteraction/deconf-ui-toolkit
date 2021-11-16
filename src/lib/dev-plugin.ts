@@ -19,7 +19,7 @@ function shouldInitiallyShowDevTools() {
 }
 
 export class DevPlugin {
-  static install(Vue: typeof _Vue) {
+  static install(Vue: typeof _Vue): void {
     Vue.prototype.$dev = new DevPlugin(Vue);
   }
 
@@ -27,31 +27,31 @@ export class DevPlugin {
   // so consumers can bind to $dev values
   _vm: CombinedVueInstance<_Vue, Data, unknown, unknown, unknown>;
 
-  get slotState() {
+  get slotState(): SlotState | undefined {
     return this._vm.slotState;
   }
-  set slotState(newValue) {
+  set slotState(newValue: SlotState | undefined) {
     this._vm.slotState = newValue;
   }
 
-  get isEnabled() {
+  get isEnabled(): boolean {
     return this._vm.isEnabled;
   }
-  set isEnabled(newValue) {
+  set isEnabled(newValue: boolean) {
     this._vm.isEnabled = newValue;
   }
 
-  get isVisible() {
+  get isVisible(): boolean {
     return this._vm.isVisible;
   }
-  set isVisible(newValue) {
+  set isVisible(newValue: boolean) {
     this._vm.isVisible = newValue;
   }
 
-  get scheduleDate() {
+  get scheduleDate(): Date | undefined {
     return this._vm.scheduleDate;
   }
-  set scheduleDate(newValue) {
+  set scheduleDate(newValue: Date | undefined) {
     this._vm.scheduleDate = newValue;
   }
 

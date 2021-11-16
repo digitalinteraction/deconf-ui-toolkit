@@ -1,6 +1,5 @@
-import { Session } from '@openlab/deconf-shared';
+import { ScheduleRecord, Session } from '@openlab/deconf-shared';
 import { ScheduleFilterRecord } from '../components/schedule/filtering/ScheduleFilterRecord';
-import { FullSchedule } from './api';
 import {
   createFilterPredicate,
   DailySessions,
@@ -15,7 +14,7 @@ export interface ScheduleThis extends ScheduleComputed {
     locale: string;
   };
   filters: ScheduleFilterRecord;
-  schedule: FullSchedule;
+  schedule: ScheduleRecord;
   sessions: Session[];
   userSessions: string[];
   isDuringConference: boolean;
@@ -73,10 +72,7 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
     },
 
     sessionsByDay(): DailySessions[] {
-      return groupSessionsByDay(
-        this.filteredSessions,
-        (this.schedule as FullSchedule).slots
-      );
+      return groupSessionsByDay(this.filteredSessions, this.schedule.slots);
     },
 
     previousDays() {

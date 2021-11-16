@@ -1,8 +1,8 @@
 import { Meta, Story } from '@storybook/vue';
 import ScheduleBlock from './ScheduleBlock.vue';
 import { dates, createSchedule, randomSession } from '../../story-lib/module';
-import { FullSchedule, ScheduleConfig } from '../../lib/module';
-import { Session } from '@openlab/deconf-shared';
+import { ScheduleConfig } from '../../lib/module';
+import { ScheduleRecord, Session } from '@openlab/deconf-shared';
 
 export default {
   title: 'Schedule/ScheduleBlock',
@@ -22,7 +22,7 @@ const Template: Story = (args, { argTypes }) => ({
   computed: {
     sessions(): Session[] {
       return (this.toCreate as string[]).map((type, index) => ({
-        ...randomSession(this.schedule as FullSchedule),
+        ...randomSession(this.schedule as ScheduleRecord),
         id: index.toString(),
         type: type
       }));

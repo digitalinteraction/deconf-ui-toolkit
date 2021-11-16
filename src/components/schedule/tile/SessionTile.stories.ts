@@ -1,7 +1,7 @@
 import { Meta, Story } from '@storybook/vue';
 import SessionTile from './SessionTile.vue';
 import { createSchedule, randomSession } from '../../../story-lib/module';
-import { ScheduleConfig, FullSchedule } from '../../../lib/module';
+import { ScheduleConfig } from '../../../lib/module';
 
 export default {
   title: 'Schedule/SessionTile',

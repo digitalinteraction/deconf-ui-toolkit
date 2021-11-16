@@ -58,8 +58,7 @@ import {
   SlotState,
   Routes,
   localiseFromObject,
-  createICalEvent,
-  FullSchedule
+  createICalEvent
 } from '../../../lib/module';
 
 import SessionHeader from './SessionHeader.vue';
@@ -69,6 +68,7 @@ import AddToCalendar from '../actions/AddToCalendar.vue';
 import JoinSession from '../actions/JoinSession.vue';
 import {
   Localised,
+  ScheduleRecord,
   Session,
   SessionSlot,
   SessionType,
@@ -112,7 +112,7 @@ export default {
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
     session: { type: Object as PropType<Session>, required: true },
-    schedule: { type: Object as PropType<FullSchedule>, required: true },
+    schedule: { type: Object as PropType<ScheduleRecord>, required: true },
     config: { type: Object as PropType<ScheduleConfig>, required: true },
     readonly: { type: Boolean, default: false }
   },

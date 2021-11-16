@@ -1,15 +1,16 @@
 import { Module } from 'vuex';
-import { deepSeal, FullSchedule, createStateMapper } from '../../lib/module';
+import { deepSeal, createStateMapper } from '../../lib/module';
 import {
   Attendance,
   AuthToken,
   CarbonCalculation,
-  Registration
+  Registration,
+  ScheduleRecord
 } from '@openlab/deconf-shared';
 import { ApiState } from './api-state';
 
 export interface ApiModuleState {
-  schedule: null | FullSchedule;
+  schedule: null | ScheduleRecord;
   apiState: ApiState;
   user: AuthToken | null;
   profile: null | Registration;

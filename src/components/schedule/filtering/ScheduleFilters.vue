@@ -118,13 +118,12 @@ import {
   friendlyDate,
   localiseFromObject,
   debounce,
-  Debounced,
-  FullSchedule
+  Debounced
 } from '../../../lib/module';
 import InlineFilter from './InlineFilter.vue';
 import { ScheduleFilterRecord } from './ScheduleFilterRecord';
 import { FilterOption } from './FilterOption';
-import { Localised } from '@openlab/deconf-shared';
+import { Localised, ScheduleRecord } from '@openlab/deconf-shared';
 import { SelectOption } from '../../form/select-option';
 
 type FilterKey = keyof ScheduleFilterRecord;
@@ -174,7 +173,7 @@ export default {
   components: { InlineFilter },
   props: {
     schedule: {
-      type: Object as PropType<FullSchedule>,
+      type: Object as PropType<ScheduleRecord>,
       required: true
     },
     filters: {

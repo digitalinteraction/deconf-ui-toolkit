@@ -24,8 +24,7 @@ import { PropType } from 'vue';
 import { TranslateResult } from 'vue-i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
-import { SessionAttendance } from '../../lib/module';
-import { Session } from '@openlab/deconf-shared';
+import { Session, UserSessionAttendance } from '@openlab/deconf-shared';
 
 //
 // i18n
@@ -52,7 +51,7 @@ export default {
     session: { type: Object as PropType<Session>, required: true },
     sessionCap: { type: Number, required: true },
     attendance: {
-      type: Object as PropType<SessionAttendance | null>,
+      type: Object as PropType<UserSessionAttendance | null>,
       default: null
     },
     isProcessing: {

@@ -1,12 +1,12 @@
 /** Work out the start of the day */
-export function startOfDay(input: Date) {
+export function startOfDay(input: Date): Date {
   const d = new Date(input);
   d.setHours(0, 0, 0, 0);
   return d;
 }
 
 /** Whether two dates are on the same day */
-export function isSameDay(a: Date, b: Date) {
+export function isSameDay(a: Date, b: Date): Date {
   return (
     a.getFullYear() === b.getFullYear() &&
     a.getMonth() === b.getMonth() &&

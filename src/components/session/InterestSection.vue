@@ -40,8 +40,8 @@
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { SessionAttendance } from '../../lib/module';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { UserSessionAttendance } from '@openlab/deconf-shared';
 
 //
 // i18n
@@ -62,7 +62,7 @@ export default Vue.extend({
   components: { FontAwesomeIcon },
   props: {
     attendance: {
-      type: Object as PropType<SessionAttendance | null>,
+      type: Object as PropType<UserSessionAttendance | null>,
       default: null
     },
     isProcessing: {

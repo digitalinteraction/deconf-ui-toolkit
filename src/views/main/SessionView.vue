@@ -164,10 +164,11 @@ import {
   SessionType,
   Speaker,
   Theme,
-  Localised
+  Localised,
+  ScheduleRecord,
+  UserSessionAttendance
 } from '@openlab/deconf-shared';
 import { PropType } from 'vue';
-import { FullSchedule } from '../../lib/api';
 import {
   createAttendanceEvent,
   createICalEvent,
@@ -177,8 +178,7 @@ import {
   localiseFromObject,
   parsePrimaryLink,
   parseSecondaryLink,
-  SlotState,
-  SessionAttendance
+  SlotState
 } from '../../lib/module';
 import { SessionLayout } from '../../layouts/module';
 import {
@@ -235,7 +235,7 @@ const LANGUAGES: Record<string, string | undefined> = {
 interface Data {
   timerId: number | null;
   links: LocalisedLink[] | null;
-  attendance: null | SessionAttendance;
+  attendance: null | UserSessionAttendance;
   isLoading: boolean;
 }
 
@@ -263,7 +263,7 @@ export default {
     apiModule: { type: String, required: true },
     session: { type: Object as PropType<Session>, required: true },
     loggedIn: { type: Boolean, required: true },
-    schedule: { type: Object as PropType<FullSchedule>, required: true },
+    schedule: { type: Object as PropType<ScheduleRecord>, required: true },
     scheduleDate: { type: Date as PropType<Date>, required: true }
   },
   data(): Data {

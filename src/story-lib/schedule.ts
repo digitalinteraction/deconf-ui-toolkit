@@ -1,5 +1,6 @@
 import {
   ConferenceConfig,
+  ScheduleRecord,
   Session,
   SessionSlot,
   SessionState,
@@ -9,7 +10,7 @@ import {
   Theme,
   Track
 } from '@openlab/deconf-shared';
-import { FullSchedule, SelectOption, Sponsor } from '../module';
+import { SelectOption, Sponsor } from '../module';
 import { dates } from './dates';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -211,7 +212,7 @@ export function defaultThemes(): Theme[] {
   ];
 }
 
-export function createSchedule(): FullSchedule {
+export function createSchedule(): ScheduleRecord {
   return {
     speakers: defaultSpeakers().slice(0, 4),
     slots: [
@@ -255,7 +256,7 @@ export function randomElements<T>(array: T[], max = array.length): T[] {
 let randomId = 1;
 
 export function randomSession(
-  schedule: FullSchedule,
+  schedule: ScheduleRecord,
   options: Partial<Session> = {}
 ): Session {
   const langs = ['fr', 'es', 'ar'];

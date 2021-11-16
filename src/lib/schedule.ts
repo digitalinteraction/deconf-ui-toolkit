@@ -1,9 +1,13 @@
 import { TranslateResult } from 'vue-i18n';
 import { ScheduleFilterRecord } from '../components/schedule/filtering/ScheduleFilterRecord';
-import { FullSchedule } from './api';
 import { friendlyDate, isSameDay, startOfDay } from './dates';
 import { localiseFromObject } from './locales';
-import { ConferenceConfig, Session, SessionSlot } from '@openlab/deconf-shared';
+import {
+  ConferenceConfig,
+  ScheduleRecord,
+  Session,
+  SessionSlot
+} from '@openlab/deconf-shared';
 
 export interface SlotWithSessions {
   slot: SessionSlot;
@@ -147,7 +151,7 @@ export type SessionPredicate = (session: Session) => boolean;
 export function createQueryPredicate(
   locale: string,
   query: string | undefined,
-  schedule: FullSchedule
+  schedule: ScheduleRecord
 ): SessionPredicate | null {
   if (!query || !query.trim()) return null;
 
@@ -187,7 +191,7 @@ export function createQueryPredicate(
 export function createFilterPredicate(
   locale: string,
   filters: ScheduleFilterRecord,
-  schedule: FullSchedule
+  schedule: ScheduleRecord
 ): SessionPredicate | null {
   if (!filtersAreSet(filters)) return null;
 

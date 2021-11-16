@@ -58,12 +58,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import {
-  ScheduleConfig,
-  SlotState,
-  getSlotState,
-  FullSchedule
-} from '../../lib/module';
+import { ScheduleConfig, SlotState, getSlotState } from '../../lib/module';
 
 import {
   Speaker,
@@ -71,7 +66,8 @@ import {
   Track,
   Session,
   SessionSlot,
-  SessionType
+  SessionType,
+  ScheduleRecord
 } from '@openlab/deconf-shared';
 
 import TimeSlot from './TimeSlot.vue';
@@ -101,7 +97,7 @@ export default {
     sessionSlot: { type: Object as PropType<SessionSlot>, required: true },
     sessions: { type: Array as PropType<Session[]>, required: true },
     showOtherSessions: { type: Boolean, default: false },
-    schedule: { type: Object as PropType<FullSchedule>, required: true },
+    schedule: { type: Object as PropType<ScheduleRecord>, required: true },
     config: { type: Object as PropType<ScheduleConfig>, required: true }
   },
   computed: {
