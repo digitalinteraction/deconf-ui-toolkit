@@ -10,8 +10,9 @@ import {
   Theme,
   Track
 } from '@openlab/deconf-shared';
-import { SelectOption, Sponsor } from '../module';
 import { dates } from './dates';
+import { SelectOption } from '../form/module';
+import { Sponsor } from '../lib/module';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 

@@ -6,7 +6,7 @@ export function startOfDay(input: Date): Date {
 }
 
 /** Whether two dates are on the same day */
-export function isSameDay(a: Date, b: Date): Date {
+export function isSameDay(a: Date, b: Date): boolean {
   return (
     a.getFullYear() === b.getFullYear() &&
     a.getMonth() === b.getMonth() &&

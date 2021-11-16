@@ -1,5 +1,5 @@
 import { ScheduleRecord, Session } from '@openlab/deconf-shared';
-import { ScheduleFilterRecord } from '../components/schedule/filtering/ScheduleFilterRecord';
+import { ScheduleFilterRecord } from './schedule';
 import {
   createFilterPredicate,
   DailySessions,
