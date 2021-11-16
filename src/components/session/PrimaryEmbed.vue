@@ -1,5 +1,5 @@
 <template>
-  <div class="sessionEmbed">
+  <div class="primaryEmbed">
     <template v-if="!parsed">
       <div class="notification is-warning">
         {{ $t('deconf.sessionEmbed.noEmbed') }}
@@ -9,7 +9,7 @@
     <!-- 
       YouTube video / livestream
      -->
-    <div class="sessionEmbed-video" v-else-if="parsed.kind === 'youtube-video'">
+    <div class="primaryEmbed-video" v-else-if="parsed.kind === 'youtube-video'">
       <IframeEmbed
         :src="youtubeVideoLink(parsed.data)"
         allow="autoplay; encrypted-media; picture-in-picture"
@@ -20,7 +20,7 @@
       YouTube channel livestream
      -->
     <div
-      class="sessionEmbed-video"
+      class="primaryEmbed-video"
       v-else-if="parsed.kind === 'youtube-channel'"
     >
       <IframeEmbed
@@ -32,35 +32,35 @@
     <!-- 
       Vimeo
      -->
-    <div class="sessionEmbed-video" v-else-if="parsed.kind === 'vimeo'">
+    <div class="primaryEmbed-video" v-else-if="parsed.kind === 'vimeo'">
       <IframeEmbed :src="vimeoVideoLink(parsed.data)" allow="autoplay" />
     </div>
 
     <!-- 
       Vimeo
      -->
-    <div class="sessionEmbed-video" v-else-if="parsed.kind === 'vimeo-event'">
+    <div class="primaryEmbed-video" v-else-if="parsed.kind === 'vimeo-event'">
       <IframeEmbed :src="vimeoEventLink(parsed.data)" allow="autoplay" />
     </div>
 
     <!-- 
       Panopto
      -->
-    <div class="sessionEmbed-video" v-else-if="parsed.kind === 'panopto'">
+    <div class="primaryEmbed-video" v-else-if="parsed.kind === 'panopto'">
       <IframeEmbed :src="panoptoVideoLink(parsed.data)" allow="autoplay" />
     </div>
 
     <!--
       Twitch
      -->
-    <div class="sessionEmbed-video" v-else-if="parsed.kind === 'twitch'">
+    <div class="primaryEmbed-video" v-else-if="parsed.kind === 'twitch'">
       <IframeEmbed :src="twitchVideoLink(parsed.data)" allow="autoplay" />
     </div>
 
     <!-- 
       Microsoft Teams links
      -->
-    <div class="sessionEmbed-link is-teams" v-else-if="parsed.kind === 'teams'">
+    <div class="primaryEmbed-link is-teams" v-else-if="parsed.kind === 'teams'">
       <a
         class="button is-medium"
         :href="parsed.data"
@@ -76,7 +76,7 @@
     <!-- 
       Zoom links
      -->
-    <div class="sessionEmbed-link is-zoom" v-else-if="parsed.kind === 'zoom'">
+    <div class="primaryEmbed-link is-zoom" v-else-if="parsed.kind === 'zoom'">
       <a
         class="button is-medium"
         :href="parsed.data"
@@ -90,7 +90,7 @@
     </div>
 
     <div
-      class="sessionEmbed-link is-zoom"
+      class="primaryEmbed-link is-zoom"
       v-else-if="parsed.kind === 'zoom-register'"
     >
       <a
@@ -109,7 +109,7 @@
       Google Meet
     -->
     <div
-      class="sessionEmbed-link is-googleMeet"
+      class="primaryEmbed-link is-googleMeet"
       v-else-if="parsed.kind === 'google-meet'"
     >
       <a
@@ -128,7 +128,7 @@
       Mozilla Hub links
      -->
     <div
-      class="sessionEmbed-link is-mozillaHubs"
+      class="primaryEmbed-link is-mozillaHubs"
       v-else-if="parsed.kind === 'mozilla-hubs'"
     >
       <a
@@ -147,7 +147,7 @@
       Spatial Chat links
      -->
     <div
-      class="sessionEmbed-link is-spatialChat"
+      class="primaryEmbed-link is-spatialChat"
       v-else-if="parsed.kind === 'spatial-chat'"
     >
       <a
@@ -224,11 +224,11 @@ export default {
 </script>
 
 <style lang="scss">
-.sessionEmbed {
+.primaryEmbed {
 }
-.sessionEmbed-video {
+.primaryEmbed-video {
 }
-.sessionEmbed-link {
+.primaryEmbed-link {
   width: 100%;
   height: 100%;
   min-height: 220px;
