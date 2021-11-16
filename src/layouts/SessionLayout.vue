@@ -24,7 +24,6 @@
 </template>
 
 <script lang="ts">
-//
 // i18n
 // - n/a
 //
@@ -35,6 +34,7 @@
 // - $sessionLayout-background
 //
 
+/** @deprecated This wasn't used, a combination of `UtilLayout` and `ApiContent` work well */
 export default {
   name: 'SessionLayout'
 };
