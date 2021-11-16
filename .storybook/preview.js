@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import Vue from 'vue';
 import '../src/scss/app.scss';
-import { setupFontawesome } from '../src/story-lib/module';
+import { setupFontawesome, CONTENT_PARAGRAPHS } from '../src/story-lib/module';
 import locales from './locale.json';
 import { get } from 'lodash';
 
@@ -100,7 +100,14 @@ const actions = {
   },
   'api/unattend': sessionId => {
     attendance.delete(sessionId);
-  }
+  },
+  'api/fetchContent': ({ slug }) => ({
+    en: `
+      <p>${CONTENT_PARAGRAPHS[0]}</p>
+      <div id="featured_thing"></div>
+      <p>${CONTENT_PARAGRAPHS[1]}</p>
+    `
+  })
 };
 Vue.prototype.$store = {
   state: {},
