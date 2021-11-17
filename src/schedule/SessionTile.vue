@@ -59,13 +59,15 @@ import {
   Routes,
   localiseFromObject,
   createICalEvent
-} from '../../lib/module';
+} from '../lib/module';
+import {
+  SessionHeader,
+  SessionAttributes,
+  AddToCalendar,
+  JoinSession
+} from '../core/module';
+import SpeakerGrid from './SpeakerGrid.vue';
 
-import SessionHeader from './SessionHeader.vue';
-import SessionAttributes from './SessionAttributes.vue';
-import SpeakerGrid from '../SpeakerGrid.vue';
-import AddToCalendar from '../actions/AddToCalendar.vue';
-import JoinSession from '../actions/JoinSession.vue';
 import {
   Localised,
   ScheduleRecord,

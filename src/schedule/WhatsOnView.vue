@@ -45,13 +45,12 @@ import {
   SlotState
 } from '../lib/module';
 import ScheduleFilters from './filtering/ScheduleFilters.vue';
-import SessionTile from './tile/SessionTile.vue';
+import SessionTile from './SessionTile.vue';
 import SessionBoard from './SessionBoard.vue';
 import NoResults from './NoResults.vue';
-import { SelectOption } from '../form/select-option';
-import { ScheduleFilterRecord } from '../lib/module';
 
-// TODO: review module inter-dependencies
+import { SelectOption } from '../form/module';
+import { ScheduleFilterRecord } from '../lib/module';
 
 //
 // i18n

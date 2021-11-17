@@ -100,8 +100,6 @@ import StickyHeading from './StickyHeading.vue';
 import ScheduleBlock from './ScheduleBlock.vue';
 import NoResults from './NoResults.vue';
 import { SegmentControl, SelectOption } from '../form/module';
-
-// TODO: review how modules can use each other or declare dependencies
 import { ScheduleFilterRecord } from '../lib/module';
 
 //

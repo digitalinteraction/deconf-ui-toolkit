@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/vue';
-import AppLayout from '../core/AppLayout.vue';
+import AppLayout from './AppLayout.vue';
 import {
   mockSettings,
   Content,

@@ -71,7 +71,7 @@ import {
 } from '@openlab/deconf-shared';
 
 import TimeSlot from './TimeSlot.vue';
-import SessionTile from './tile/SessionTile.vue';
+import SessionTile from './SessionTile.vue';
 import ToggleContents from './ToggleContents.vue';
 
 //

@@ -1,3 +1,9 @@
+// session
+export { default as AddToCalendar } from './session/AddToCalendar.vue';
+export { default as JoinSession } from './session/JoinSession.vue';
+export { default as SessionAttributes } from './session/SessionAttributes.vue';
+export { default as SessionHeader } from './session/SessionHeader.vue';
+
 export { default as ApiError } from './ApiError.vue';
 export { default as AppLayout } from './AppLayout.vue';
 export { default as AppLoading } from './AppLoading.vue';

@@ -19,8 +19,6 @@
 // - $boxContent-titleFamily
 //
 
-// TODO: should this be merged into AtriumLayout?
-
 export default {
   name: 'BoxContent',
   props: {

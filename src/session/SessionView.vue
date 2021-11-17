@@ -193,14 +193,13 @@ import SecondaryEmbed from './SecondaryEmbed.vue';
 import InterestSection from './InterestSection.vue';
 
 // TODO: review inter-module dependencies
+import { SpeakerGrid, TimeSlot } from '../schedule/module';
 import {
+  Stack,
   SessionAttributes,
   SessionHeader,
-  AddToCalendar,
-  SpeakerGrid,
-  TimeSlot
-} from '../schedule/module';
-import { Stack } from '../core/module';
+  AddToCalendar
+} from '../core/module';
 
 // 30 seconds
 const LINKS_INTERVAL = 60 * 1000;

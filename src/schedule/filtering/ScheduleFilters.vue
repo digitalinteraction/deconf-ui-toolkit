@@ -124,8 +124,7 @@ import InlineFilter from './InlineFilter.vue';
 import { FilterOption } from './filter-option';
 import { Localised, ScheduleRecord } from '@openlab/deconf-shared';
 
-// TODO: review inter-module dependencies
-import { SelectOption } from '../../form/select-option';
+import { SelectOption } from '../../form/module';
 import { ScheduleFilterRecord } from '../../lib/module';
 
 type FilterKey = keyof ScheduleFilterRecord;
