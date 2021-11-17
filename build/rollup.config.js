@@ -123,8 +123,8 @@ for (const { input, output } of exportedModules) {
       extractSass(sassConfig),
       vuePlugin,
       babel(babelConfig),
-      commonjs(),
-      terser()
+      commonjs()
+      // terser()
     ]
   });
 }
