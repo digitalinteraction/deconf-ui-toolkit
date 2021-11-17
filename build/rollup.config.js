@@ -60,11 +60,10 @@ const vueConfig = {
       scss: {
         importer: [
           url => {
-            return {
-              file: url
-                .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
-                .replace(/^@/, path.join(projectRoot, 'src'))
-            };
+            const file = url
+              .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
+              .replace(/^@/, path.join(projectRoot, 'src'));
+            return { file };
           }
         ]
       }
@@ -109,6 +108,7 @@ const buildFormats = [];
 //
 // ESM
 //
+const vuePlugin = vue(vueConfig);
 for (const { input, output } of exportedModules) {
   buildFormats.push({
     input: path.resolve(projectRoot, input),
@@ -121,7 +121,7 @@ for (const { input, output } of exportedModules) {
     plugins: [
       node({ extensions: ['.js', '.ts', '.vue'] }),
       extractSass(sassConfig),
-      vue(vueConfig),
+      vuePlugin,
       babel(babelConfig),
       commonjs(),
       terser()
