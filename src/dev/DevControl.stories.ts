@@ -11,11 +11,18 @@ export default {
 const dev = new DevPlugin(Vue);
 
 const Template: Story = (args, { argTypes }) => ({
+  props: ['enableSlotState', 'enableScheduleDate'],
   components: { DevControl },
   data: () => ({
     plugin: Object.freeze({ dev })
   }),
   computed: {
+    controls(): string[] {
+      const result: string[] = [];
+      if (this.enableSlotState) result.push('slotState');
+      if (this.enableScheduleDate) result.push('scheduleDate');
+      return result;
+    },
     devData(): unknown {
       return JSON.stringify(
         {
@@ -37,11 +44,15 @@ const Template: Story = (args, { argTypes }) => ({
       <DevControl
         :dev-plugin="plugin.dev"
         :force-enable="true"
+        :controls="controls"
       />
     </div>
   `
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  enableSlotState: true,
+  enableScheduleDate: true
+};
 Default.parameters = { layout: 'fullscreen' };

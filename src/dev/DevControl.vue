@@ -14,77 +14,81 @@
         <p class="devControl-heading">Dev controls</p>
 
         <!-- Slot state -->
-        <!-- <div class="devControl-block" v-if="!devPlugin.slotState">
-          <button
-            class="button is-fullwidth is-primary is-light"
-            @click="devPlugin.slotState = 'future'"
-          >
-            Override session slot state
-          </button>
-        </div>
-        <div class="devControl-block" v-else>
-          <div class="field">
-            <label class="label">Override slot state</label>
-            <div class="control has-icons-left">
-              <div class="select is-fullwidth">
-                <select v-model="devPlugin.slotState">
-                  <option :value="undefined">Reset</option>
-                  <option value="future">Future</option>
-                  <option value="soon">Soon</option>
-                  <option value="present">Present</option>
-                  <option value="past">Past</option>
-                </select>
+        <template v-if="slotStateIsEnabled">
+          <div class="devControl-block" v-if="!devPlugin.slotState">
+            <button
+              class="button is-fullwidth is-primary is-light"
+              @click="devPlugin.slotState = 'future'"
+            >
+              Override session slot state
+            </button>
+          </div>
+          <div class="devControl-block" v-else>
+            <div class="field">
+              <label class="label">Override slot state</label>
+              <div class="control has-icons-left">
+                <div class="select is-fullwidth">
+                  <select v-model="devPlugin.slotState">
+                    <option :value="undefined">Reset</option>
+                    <option value="future">Future</option>
+                    <option value="soon">Soon</option>
+                    <option value="present">Present</option>
+                    <option value="past">Past</option>
+                  </select>
+                </div>
+                <span class="icon is-left">
+                  <FontAwesomeIcon :icon="['fas', 'clock']" />
+                </span>
               </div>
-              <span class="icon is-left">
-                <FontAwesomeIcon :icon="['fas', 'clock']" />
-              </span>
             </div>
           </div>
-        </div> -->
+        </template>
 
         <!-- Schedule date -->
-        <div class="devControl-block" v-if="!devPlugin.scheduleDate">
-          <button
-            class="button is-fullwidth is-primary is-light"
-            @click="devPlugin.scheduleDate = new Date()"
-          >
-            Override schedule date
-          </button>
-        </div>
-        <div class="devControl-block has-columns" v-else>
-          <div class="field">
-            <label class="label">Schedule Date</label>
-            <div class="control">
-              <input
-                class="input"
-                type="date"
-                :value="scheduleDate.date"
-                @input="updateScheduleDate"
-              />
+        <template v-if="scheduleDateIsEnabled">
+          <div class="devControl-block" v-if="!devPlugin.scheduleDate">
+            <button
+              class="button is-fullwidth is-primary is-light"
+              @click="devPlugin.scheduleDate = new Date()"
+            >
+              Override schedule date
+            </button>
+          </div>
+          <div class="devControl-block has-columns" v-else>
+            <div class="field">
+              <label class="label">Schedule Date</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="date"
+                  :value="scheduleDate.date"
+                  @input="updateScheduleDate"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Time</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="time"
+                  :value="scheduleDate.time"
+                  @input="updateScheduleTime"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <button
+                  class="devControl-smallButton button is-danger"
+                  @click="devPlugin.scheduleDate = undefined"
+                >
+                  Clear
+                </button>
+              </div>
             </div>
           </div>
-          <div class="field">
-            <label class="label">Time</label>
-            <div class="control">
-              <input
-                class="input"
-                type="time"
-                :value="scheduleDate.time"
-                @input="updateScheduleTime"
-              />
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <button
-                class="devControl-smallButton button is-danger"
-                @click="devPlugin.scheduleDate = undefined"
-              >
-                Clear
-              </button>
-            </div>
-          </div>
-        </div>
+        </template>
 
         <div class="devControl-block">
           <div class="buttons is-centered">
@@ -249,9 +253,16 @@ export default {
   },
   props: {
     devPlugin: { type: Object as PropType<DevPlugin>, required: true },
-    forceEnable: { type: Boolean, default: false }
+    forceEnable: { type: Boolean, default: false },
+    controls: { type: Array, default: () => ['slotState', 'scheduleDate'] }
   },
   computed: {
+    slotStateIsEnabled(): boolean {
+      return this.controls.includes('slotState');
+    },
+    scheduleDateIsEnabled(): boolean {
+      return this.controls.includes('scheduleDate');
+    },
     scheduleDate(): DateTimeObject {
       const scheduleDate = new Date(this.devPlugin.scheduleDate as Date);
 
