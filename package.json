@@ -1,9 +1,13 @@
 {
   "name": "@openlab/deconf-ui-toolkit",
-  "version": "2.4.0",
+  "version": "2.4.0-restructure",
   "browser": "dist/deconf-ui.esm.js",
   "module": "dist/deconf-ui.esm.js",
   "types": "dist/types/module.d.ts",
+  "exports": {
+    ".": "./dist/deconf-ui.esm.js",
+    "./*": "./dist/*.js"
+  },
   "repository": "digitalinteraction/deconf-ui-toolkit",
   "license": "MIT",
   "files": [
@@ -94,7 +98,6 @@
     "vuex": "^3.6.2"
   },
   "engines": {
-    "npm": "<7",
     "node": ">=12"
   },
   "eslintConfig": {

@@ -15,6 +15,21 @@ import extractSass from './sass-plugin';
 
 const projectRoot = path.resolve(__dirname, '..');
 
+const exportedModules = [
+  { input: 'src/module.ts', output: 'dist/deconf-ui.esm.js' },
+  { input: 'src/atrium/module.ts', output: 'dist/atrium.js' },
+  { input: 'src/audio-lib/module.ts', output: 'dist/audio-lib.js' },
+  { input: 'src/content/module.ts', output: 'dist/content.js' },
+  { input: 'src/core/module.ts', output: 'dist/core.js' },
+  { input: 'src/dev/module.ts', output: 'dist/dev.js' },
+  { input: 'src/form/module.ts', output: 'dist/form.js' },
+  { input: 'src/lib/module.ts', output: 'dist/lib.js' },
+  { input: 'src/registration/module.ts', output: 'dist/registration.js' },
+  { input: 'src/schedule/module.ts', output: 'dist/schedule.js' },
+  { input: 'src/session/module.ts', output: 'dist/session.js' },
+  { input: 'src/store/module.ts', output: 'dist/store.js' }
+];
+
 const babelConfig = {
   // ...require('../babel.config'),
   extensions: ['.js', '.ts', '.vue'],
@@ -45,11 +60,10 @@ const vueConfig = {
       scss: {
         importer: [
           url => {
-            return {
-              file: url
-                .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
-                .replace(/^@/, path.join(projectRoot, 'src'))
-            };
+            const file = url
+              .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
+              .replace(/^@/, path.join(projectRoot, 'src'));
+            return { file };
           }
         ]
       }
@@ -94,23 +108,26 @@ const buildFormats = [];
 //
 // ESM
 //
-buildFormats.push({
-  input: path.resolve(projectRoot, 'src/module.ts'),
-  external: externalPackages,
-  output: {
-    format: 'esm',
-    file: `dist/deconf-ui.esm.js`,
-    exports: 'named'
-  },
-  plugins: [
-    node({ extensions: ['.js', '.ts', '.vue'] }),
-    extractSass(sassConfig),
-    vue(vueConfig),
-    babel(babelConfig),
-    commonjs(),
-    terser()
-  ]
-});
+const vuePlugin = vue(vueConfig);
+for (const { input, output } of exportedModules) {
+  buildFormats.push({
+    input: path.resolve(projectRoot, input),
+    external: externalPackages,
+    output: {
+      format: 'esm',
+      file: output,
+      exports: 'named'
+    },
+    plugins: [
+      node({ extensions: ['.js', '.ts', '.vue'] }),
+      extractSass(sassConfig),
+      vuePlugin,
+      babel(babelConfig),
+      commonjs()
+      // terser()
+    ]
+  });
+}
 
 // Export config
 export default buildFormats;

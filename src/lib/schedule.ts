@@ -1,5 +1,4 @@
 import { TranslateResult } from 'vue-i18n';
-import { ScheduleFilterRecord } from '../components/schedule/filtering/ScheduleFilterRecord';
 import { friendlyDate, isSameDay, startOfDay } from './dates';
 import { localiseFromObject } from './locales';
 import {
@@ -8,6 +7,17 @@ import {
   Session,
   SessionSlot
 } from '@openlab/deconf-shared';
+
+export interface ScheduleFilterRecord {
+  query: string;
+  sessionType: string | null;
+  track: string | null;
+  theme: string | null;
+  date: Date | null;
+  isRecorded: boolean | null;
+  viewMode: 'all' | 'user';
+  language: string | null;
+}
 
 export interface SlotWithSessions {
   slot: SessionSlot;
