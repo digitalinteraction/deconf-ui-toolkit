@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.4.0...v2.5.0) (2021-11-18)
+
+
+### Features
+
+* add $sessionView-titleFamily to SessionView to customise the title font ([7379223](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/7379223fdd87d2f0d53abb77e19aded32374143a)), closes [#30](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/30)
+* add $sideTabs-activeBackground to SideTabs to customise the background when a tab is active ([87055eb](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/87055ebb7304467358bdf83445cef410dbf3886f)), closes [#8](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/8)
+* add $whatsOn-titleFamily to WhatsOnView to customise the title's font ([0c1c2ef](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/0c1c2efd3428cc9a2884d41f2351656aa6588bd7)), closes [#31](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/31)
+* add support for google meet links ([e7e2a3b](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/e7e2a3b09708df086a70b9dfb18e0d1040941aa4)), closes [#34](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/34)
+* add support for zoom meeting registration links ([cc44507](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/cc44507123a17972627f5c76fbf66fee007341dc)), closes [#35](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/35)
+* add variables to customize ProfileView's title & headings ([641871b](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/641871b145ddaf44633e4fb2cd8fc115008c2129)), closes [#25](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/25)
+* **content:** add content module and migrate ApiContent from PlanetRed ([11649c3](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/11649c372a680ced602201c30a15afd9a1a05bfb)), closes [#41](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/41)
+* **core:** add FullScreenDialog component ([e69d1f4](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/e69d1f4f16fd581a91046a68910591ea148ce3ab)), closes [#39](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/39)
+* **core:** add PageFooter component ([0c82f14](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/0c82f149575e1c393038bb5743f2ab1af33a9359)), closes [#44](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/44)
+* **dev:** add optional prop to set which controls to show ([3431829](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/3431829811118de667aec83c307f6558a494ddff)), closes [#49](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/49)
+* export SessionAndSlot interface for FeaturedSessions use ([715a041](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/715a04176f67f93227df3b89342f9fea7b29f56f)), closes [#9](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/9)
+* **lib:** add option to localiseFromObject to customise fallbacks ([3f86cdd](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/3f86cdd8e81290f101b0e812c781f1ca518bd8a3)), closes [#17](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/17)
+* **store:** add userAttendance mutation to api to convert from the API ([fb8886b](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/fb8886bca55fdb01feff07643c527eab6e9bafaf))
+
+
+### Bug Fixes
+
+* add RTL support to MiniSession's button ([ec3e130](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/ec3e130a67e89cbe24cc4580c3ea647b750989e1)), closes [#10](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/10)
+* fix audio-receiver typo ([b3a0e83](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/b3a0e8394c0edb39850d638208d0cb67e6fd6b48)), closes [#48](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/48)
+* fix AudioBroadcaster bugs and add example processor ([cf9d27a](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/cf9d27a9032ee43eacdc502b866b91f1addcdee2)), closes [#22](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/22) [#21](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/21)
+* fix button's icon in RTL ([317358a](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/317358acf50c24be5c7e07a22022688c6050a379)), closes [#50](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/50)
+* fix insecure hashing in log-in metric, to be re-added in the future. ([23d76ff](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/23d76ff2ee4a5c46a701d4ffe001e986a226d5f5)), closes [#33](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/33)
+* mark SessionLayout as deprecated ([f369d02](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/f369d02ca63787e66ffbf8a346c06be6f95600f2)), closes [#15](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/15)
+
 ## [2.4.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.3.3...v2.4.0) (2021-10-12)
 
 
