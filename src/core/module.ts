@@ -16,4 +16,4 @@ export { default as SideTabs } from './SideTabs.vue';
 export { default as Stack } from './Stack.vue';
 export { default as StaticLayout } from './StaticLayout.vue';
 export { default as UtilLayout } from './UtilLayout.vue';
-export { PageFooterLink } from './page-footer-link';
+export type { PageFooterLink } from './page-footer-link';
