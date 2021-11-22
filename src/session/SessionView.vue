@@ -192,7 +192,6 @@ import LanguageWarning from './LanguageWarning.vue';
 import SecondaryEmbed from './SecondaryEmbed.vue';
 import InterestSection from './InterestSection.vue';
 
-// TODO: review inter-module dependencies
 import { SpeakerGrid, TimeSlot } from '../schedule/module';
 import {
   Stack,
