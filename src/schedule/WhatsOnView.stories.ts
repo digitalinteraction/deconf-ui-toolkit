@@ -42,7 +42,11 @@ const Template: Story = (args, { argTypes }) => ({
         :config="config"
         slot-state="future"
         :language-options="languages"
-      />
+      >
+        <span slot="title"> What is on </span>
+        <p slot="info">Here are the sessions that are going to happen</p>
+        <span slot="noResults"> Nothing matched your query 😢 </span>
+      </WhatsOnView>
     </div>
   `
 });

@@ -2,10 +2,14 @@
   <div class="whatsOnView">
     <div class="whatsOnView-header">
       <h1 class="whatsOnView-title">
-        {{ $t('deconf.whatsOn.title') }}
+        <slot name="title">
+          {{ $t('deconf.whatsOn.title') }}
+        </slot>
       </h1>
       <div class="whatsOnView-content">
-        <p>{{ $t('deconf.whatsOn.infoText') }}</p>
+        <slot name="info">
+          <p>{{ $t('deconf.whatsOn.infoText') }}</p>
+        </slot>
       </div>
       <ScheduleFilters
         :schedule="schedule"
@@ -17,7 +21,9 @@
     </div>
     <div class="whatsOnView-sessions">
       <NoResults v-if="filteredSessions.length === 0">
-        {{ $t('deconf.whatsOn.noResults') }}
+        <slot name="noResults">
+          {{ $t('deconf.whatsOn.noResults') }}
+        </slot>
       </NoResults>
 
       <SessionBoard>
