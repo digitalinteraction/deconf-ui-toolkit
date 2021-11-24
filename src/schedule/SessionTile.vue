@@ -64,9 +64,9 @@ import {
   SessionHeader,
   SessionAttributes,
   AddToCalendar,
-  JoinSession
+  JoinSession,
+  SpeakerGrid
 } from '../core/module';
-import SpeakerGrid from './SpeakerGrid.vue';
 
 import {
   Localised,

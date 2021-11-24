@@ -70,7 +70,7 @@ import {
   ScheduleRecord
 } from '@openlab/deconf-shared';
 
-import TimeSlot from './TimeSlot.vue';
+import { TimeSlot } from '../core/module';
 import SessionTile from './SessionTile.vue';
 import ToggleContents from './ToggleContents.vue';
 

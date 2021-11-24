@@ -3,7 +3,7 @@ import SpeakerGrid from './SpeakerGrid.vue';
 import { defaultSpeakers } from '../story-lib/module';
 
 export default {
-  title: 'Schedule/SpeakerGrid',
+  title: 'Core/SpeakerGrid',
   component: SpeakerGrid
 } as Meta;
 

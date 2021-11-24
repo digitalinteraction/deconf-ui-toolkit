@@ -3,7 +3,7 @@ import TimeSlot from './TimeSlot.vue';
 import { dates } from '../story-lib/module';
 
 export default {
-  title: 'Schedule/TimeSlot',
+  title: 'Core/TimeSlot',
   component: TimeSlot
 };
 

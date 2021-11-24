@@ -9,8 +9,6 @@ export { default as ScheduleHeader } from './ScheduleHeader.vue';
 export { default as ScheduleView } from './ScheduleView.vue';
 export { default as SessionBoard } from './SessionBoard.vue';
 export { default as SessionTile } from './SessionTile.vue';
-export { default as SpeakerGrid } from './SpeakerGrid.vue';
 export { default as StickyHeading } from './StickyHeading.vue';
-export { default as TimeSlot } from './TimeSlot.vue';
 export { default as ToggleContents } from './ToggleContents.vue';
 export { default as WhatsOnView } from './WhatsOnView.vue';

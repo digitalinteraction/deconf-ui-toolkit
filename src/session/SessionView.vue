@@ -192,12 +192,13 @@ import LanguageWarning from './LanguageWarning.vue';
 import SecondaryEmbed from './SecondaryEmbed.vue';
 import InterestSection from './InterestSection.vue';
 
-import { SpeakerGrid, TimeSlot } from '../schedule/module';
 import {
-  Stack,
+  AddToCalendar,
   SessionAttributes,
   SessionHeader,
-  AddToCalendar
+  SpeakerGrid,
+  Stack,
+  TimeSlot
 } from '../core/module';
 
 // 30 seconds
