@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.6.0...v2.6.1) (2021-11-24)
+
+
+### Bug Fixes
+
+* fix ApiContent not showing links properly ([5a4d627](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/5a4d627e50dbf641234fb85df83e217596ce825e))
+
 ## [2.6.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.5.0...v2.6.0) (2021-11-24)
 
 
