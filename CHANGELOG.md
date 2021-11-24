@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.5.0...v2.6.0) (2021-11-24)
+
+
+### Features
+
+* **registration:** expose ProfileField and FullAuthToken interfaces ([de229c7](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/de229c74062409c9441ce6c4f4f06d6fbb94fb6f)), closes [#62](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/62)
+* **schedule:** add slots for WhatsOnView content ([98fbae5](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/98fbae5e4750548c845c7c4cb0777dfb99a2d7a3))
+* **schedule:** add title & noResults customisation to ScheduleView via slots ([f1f6843](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/f1f68434fc90f96ae6333a919cfa1f00c3e665de))
+
+
+### Bug Fixes
+
+* **schedule:** fix WhatsOnView breaking up tiles on FireFox ([89c3368](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/89c336848d1daac352748be12917a6a44efcce96)), closes [#63](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/63)
+
 ## [2.5.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.4.0...v2.5.0) (2021-11-18)
 
 
