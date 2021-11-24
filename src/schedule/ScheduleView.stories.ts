@@ -53,6 +53,8 @@ const Template: Story = (args, { argTypes }) => ({
         :is-during-conference="isDuringConference"
         :language-options="languages"
       >
+        <span slot="title">The Schedule</span>
+        <span slot="noResults">No results!</span>
         <p slot="infoText">The sessions on at the conference</p>
       </ScheduleView>
     </MockAppLayout>

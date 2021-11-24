@@ -3,7 +3,9 @@
     <div class="scheduleView-header">
       <div class="scheduleView-headerSplit">
         <h1 class="scheduleView-title">
-          {{ $t('deconf.schedule.title') }}
+          <slot name="title">
+            {{ $t('deconf.schedule.title') }}
+          </slot>
         </h1>
         <div class="scheduleView-viewControl">
           <SegmentControl
@@ -59,7 +61,9 @@
       </template>
 
       <NoResults v-if="filteredSessions.length === 0">
-        {{ $t('deconf.schedule.noResults') }}
+        <slot name="noResults">
+          {{ $t('deconf.schedule.noResults') }}
+        </slot>
       </NoResults>
 
       <div
