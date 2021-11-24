@@ -2,11 +2,12 @@
   <div class="sponsorRow" :class="classes">
     <h3 class="sponsorRow-title">{{ title }}</h3>
     <div class="sponsorRow-sponsors">
-      <a
+      <component
         v-for="sponsor in sponsors"
+        :is="sponsorComponent(sponsor)"
         class="sponsorRow-sponsor"
         :key="sponsor.title"
-        :href="sponsor.href || '#'"
+        :href="sponsor.href"
       >
         <img
           class="sponsorRow-image"
@@ -14,7 +15,7 @@
           :alt="sponsor.title"
           :title="sponsor.title"
         />
-      </a>
+      </component>
     </div>
   </div>
 </template>
@@ -49,6 +50,11 @@ export default {
   computed: {
     classes(): string {
       return `is-${this.size}`;
+    }
+  },
+  methods: {
+    sponsorComponent(sponsor: Sponsor) {
+      return sponsor.href ? 'a' : 'span';
     }
   }
 };
