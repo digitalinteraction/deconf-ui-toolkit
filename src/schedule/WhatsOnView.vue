@@ -137,6 +137,11 @@ $whatsOn-titleFamily: $family-title !default;
   flex: 1; // Fill AppLayout
   background: $whatsOn-background;
   padding-bottom: $block-spacing * 5;
+
+  // This fixes firefox breaking up tiles across multiple columns for some reason
+  .sessionTile {
+    overflow: hidden;
+  }
 }
 
 .whatsOnView-header {
