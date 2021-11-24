@@ -56,8 +56,17 @@ export default {
     domToVue(node: Node): VNode | string {
       if (node instanceof Text) return node.textContent || '';
 
+      // Convert dom attributes to a plain record
+      let attrs: Record<string, unknown>  = {}
+      if (node instanceof Element) {
+        for (const key of node.attributes) {
+          attrs[key.name] = key.value
+        }
+      }
+
       return this.$createElement(
         node.nodeName,
+        { attrs },
         Array.from(node.childNodes).map(child => this.domToVue(child))
       );
     }

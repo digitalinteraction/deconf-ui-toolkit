@@ -106,6 +106,7 @@ const actions = {
       <p>${CONTENT_PARAGRAPHS[0]}</p>
       <div id="featured_thing"></div>
       <p>${CONTENT_PARAGRAPHS[1]}</p>
+      <p><a href="https://duck.com">A link</a></p>
     `
   })
 };
