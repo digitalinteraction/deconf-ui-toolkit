@@ -40,6 +40,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { createLogoutEvent, createUnregisterEvent } from '../lib/metrics';
+import { ProfileField } from './profile-field';
 
 //
 // i18n
@@ -66,11 +67,6 @@ import { createLogoutEvent, createUnregisterEvent } from '../lib/metrics';
 // - logout – When the user logged out
 // - unregister – When the user unregistered
 //
-
-interface ProfileField {
-  label: string;
-  value: string;
-}
 
 export default {
   name: 'ProfileView',
