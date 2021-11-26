@@ -76,6 +76,7 @@
     "copy-to-clipboard": "^3.3.1",
     "core-js": "^3.17.3",
     "debug": "^4.3.2",
+    "dedent": "^0.7.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^6.2.2",

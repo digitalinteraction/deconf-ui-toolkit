@@ -25,3 +25,5 @@ pnpm-debug.log*
 !*.code-snippets
 
 storybook-static
+
+dependencies.html

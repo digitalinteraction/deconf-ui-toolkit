@@ -27,6 +27,23 @@ class BespokeDeconfPlugin implements DeconfPlugin {
 }
 ```
 
+## Component dependency viewer
+
+There is a script to generate a HTML report of the components and their dependencies.
+It works by parsing the special comments at the top of each component files
+and parsing the `components { ... }` section of the default export.
+
+```sh
+# cd to/this/directory
+
+# Generate a HTML report of each component and i18n, icons, sass variables and child components
+node build/dependency-page.mjs > dependencies.html
+open dependencies.html
+
+# Generate JSON output
+node build/dependency-page.mjs --json > output.json
+```
+
 ---
 
 ## Contents
