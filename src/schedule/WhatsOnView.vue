@@ -60,9 +60,9 @@ import { ScheduleFilterRecord } from '../lib/module';
 
 //
 // i18n
-// - deconf.whatsOn.title
-// - deconf.whatsOn.infoText
-// - deconf.whatsOn.noResults
+// - deconf.whatsOn.title [or via slot]
+// - deconf.whatsOn.infoText [or via slot]
+// - deconf.whatsOn.noResults [or via slot]
 //
 // icons
 // - n/a

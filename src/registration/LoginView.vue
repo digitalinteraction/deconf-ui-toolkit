@@ -55,7 +55,6 @@ import { createLoginStartEvent, Routes } from '../lib/module';
 //
 // i18n
 // - deconf.login.title
-// - deconf.login.infoText
 // - deconf.login.badEmail
 // - deconf.login.email.label
 // - deconf.login.email.placeholder

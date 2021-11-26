@@ -182,12 +182,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // icons
 // - fas terminal
 // - fas clock
-// - fas fast
+// - fas forward
+// - fas fast-forward
 // - fas backward
+// - fas fast-backward
 // - fas stop
 // - fas play
-// - fas forward
-// - fas fast
 //
 // sass
 // - n/a
