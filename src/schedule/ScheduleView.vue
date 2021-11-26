@@ -15,7 +15,9 @@
         </div>
       </div>
       <p class="scheduleView-content">
-        <slot name="infoText" />
+        <slot name="infoText">
+          {{ $t('deconf.schedule.infoText') }}
+        </slot>
       </p>
       <ScheduleFilters
         :schedule="schedule"
@@ -108,8 +110,9 @@ import { ScheduleFilterRecord } from '../lib/module';
 
 //
 // i18n
-// - deconf.schedule.title
-// - deconf.schedule.noResults
+// - deconf.schedule.title [or via slot]
+// - deconf.schedule.infoText [or via slot]
+// - deconf.schedule.noResults [or via slot]
 // - deconf.schedule.allSessions
 // - deconf.schedule.userSessions
 // - deconf.schedule.hidePast
