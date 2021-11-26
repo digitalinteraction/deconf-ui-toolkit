@@ -19,3 +19,4 @@ export { default as StaticLayout } from './StaticLayout.vue';
 export { default as TimeSlot } from './TimeSlot.vue';
 export { default as UtilLayout } from './UtilLayout.vue';
 export type { PageFooterLink } from './page-footer-link';
+export type { NavLink } from './nav-link';

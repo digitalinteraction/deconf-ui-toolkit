@@ -6,6 +6,7 @@
         :is-logged-in="isLoggedIn"
         :is-interpreter="isInterpreter"
         :routes="routes"
+        :links="navLinks"
       >
         <slot name="brandA" slot="brandA" />
         <slot name="brandB" slot="brandB" />
@@ -54,7 +55,8 @@ export default {
   props: {
     appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
     user: { type: Object as PropType<AuthToken>, default: null },
-    routes: { type: Array as PropType<AppRoute[]>, required: true }
+    routes: { type: Array as PropType<AppRoute[]>, required: true },
+    navLinks: { type: Array as PropType<string[]>, required: false }
   },
   computed: {
     isLoggedIn(): boolean {

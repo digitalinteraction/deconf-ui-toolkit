@@ -13,7 +13,14 @@ export default {
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
-  props: ['isLoggedIn', 'isInterpreter'],
+  props: [
+    'isLoggedIn',
+    'isInterpreter',
+    'showProfile',
+    'showInterpret',
+    'showLogin',
+    'showRegister'
+  ],
   components: { NavigationBar, BrandA, BrandB, LanguageControl },
   data: () => ({
     appSettings: mockSettings(),
@@ -40,12 +47,23 @@ const Template: Story = (args, { argTypes }) => ({
       }
     ]
   }),
+  computed: {
+    links(): string[] {
+      const links: string[] = [];
+      if (this.showInterpret) links.push('interpret');
+      if (this.showProfile) links.push('profile');
+      if (this.showLogin) links.push('login');
+      if (this.showRegister) links.push('register');
+      return links;
+    }
+  },
   template: `
     <NavigationBar
       :app-settings="appSettings"
       :routes="routes"
       :is-logged-in="isLoggedIn"
       :is-interpreter="isInterpreter"
+      :links="links"
     >
       <BrandA slot="brandA" />
       <BrandB slot="brandB" />
@@ -57,7 +75,12 @@ const Template: Story = (args, { argTypes }) => ({
 export const Desktop = Template.bind({});
 Desktop.args = {
   isLoggedIn: true,
-  isInterpreter: true
+  isInterpreter: true,
+
+  showInterpret: true,
+  showProfile: true,
+  showRegister: true,
+  showLogin: true
 };
 Desktop.parameters = {
   layout: 'fullscreen',

@@ -59,7 +59,10 @@
           <!-- 
             Interpret mode button
           -->
-          <div v-if="isLoggedIn && isInterpreter" class="navbar-item">
+          <div
+            v-if="isLoggedIn && isInterpreter && showLink('interpret')"
+            class="navbar-item"
+          >
             <router-link
               class="button is-secondary is-small"
               :to="interpretRoute"
@@ -71,7 +74,7 @@
           <!-- 
             Profile button
           -->
-          <div v-if="isLoggedIn" class="navbar-item">
+          <div v-if="isLoggedIn && showLink('profile')" class="navbar-item">
             <router-link class="button is-small has-addons" :to="profileRoute">
               <span class="icon">
                 <FontAwesomeIcon :icon="['fas', 'user']" />
@@ -83,13 +86,21 @@
           <!-- 
             Login Button
           -->
-          <div class="navbar-item" v-if="!isLoggedIn">
+          <div
+            class="navbar-item"
+            v-if="!isLoggedIn && (showLink('login') || showLink('register'))"
+          >
             <div class="buttons">
-              <router-link class="button is-light is-small" :to="loginRoute">
+              <router-link
+                v-if="showLink('login')"
+                class="button is-light is-small"
+                :to="loginRoute"
+              >
                 {{ $t('deconf.navigationBar.login') }}
               </router-link>
               <!-- Register button -->
               <router-link
+                v-if="showLink('register')"
                 class="button is-primary is-small"
                 :to="registerRoute"
               >
@@ -111,6 +122,7 @@ import { Location } from 'vue-router';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { ConferenceConfig } from '@openlab/deconf-shared';
 import { SelectOption } from '../form/module';
+import { NavLink } from './nav-link';
 
 //
 // i18n
@@ -143,7 +155,11 @@ export default {
     isLoggedIn: { type: Boolean, required: true },
     isInterpreter: { type: Boolean, required: true },
     routes: { type: Array as PropType<AppRoute[]>, required: true },
-    languages: { type: Array as PropType<SelectOption[]>, default: null }
+    languages: { type: Array as PropType<SelectOption[]>, default: null },
+    links: {
+      type: Array as PropType<NavLink[]>,
+      default: () => ['login', 'register', 'interpret', 'profile']
+    }
   },
   computed: {
     activeClasses(): unknown {
@@ -170,6 +186,9 @@ export default {
   methods: {
     toggleMenu(): void {
       this.isShowingMenu = !this.isShowingMenu;
+    },
+    showLink(link: string) {
+      return this.links.includes(link);
     }
   }
 };
