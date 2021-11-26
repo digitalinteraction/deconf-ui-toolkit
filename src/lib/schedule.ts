@@ -259,3 +259,31 @@ export function isDuringConference(
     appSettings.endDate.getTime() > scheduleDate.getTime()
   );
 }
+
+export function getFeaturedSessions(
+  schedule: ScheduleRecord | null,
+  daysInFuture: number,
+  currentDate: Date,
+  predicate: (session: Session) => boolean
+): SessionAndSlot[] | null {
+  if (!schedule) return null;
+  if (!schedule.settings.schedule.enabled) return null;
+
+  const now = currentDate.getTime();
+  const inTheFuture = now + daysInFuture * 24 * 60 * 60 * 1000;
+  const slotMap = new Map(schedule.slots.map(s => [s.id, s]));
+
+  return schedule.sessions
+    .filter(session => Boolean(session.slot) && predicate(session))
+    .map(session => ({
+      slot: slotMap.get(session.slot as string) as SessionSlot,
+      session: session
+    }))
+    .filter(
+      group =>
+        Boolean(group.slot) &&
+        group.slot.end.getTime() > now &&
+        group.slot.start.getTime() < inTheFuture
+    )
+    .sort((a, b) => a.slot.start.getTime() - b.slot.start.getTime());
+}
