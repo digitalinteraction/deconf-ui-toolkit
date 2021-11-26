@@ -63,6 +63,7 @@ import { Session, SessionSlot } from '@openlab/deconf-shared';
 //
 // icons
 // - fas arrow-right
+// - fas arrow-left
 //
 // sass
 // - $miniSession-titleSize

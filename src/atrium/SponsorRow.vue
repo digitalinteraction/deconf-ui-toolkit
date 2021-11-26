@@ -29,7 +29,7 @@ import { PropType } from 'vue';
 // - n/a
 //
 // icons
-// - fas search
+// - n/a
 //
 // sass
 // - $sponsorRow-regularHeight
