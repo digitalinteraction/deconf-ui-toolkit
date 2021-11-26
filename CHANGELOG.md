@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.6.1...v2.7.0) (2021-11-26)
+
+
+### Features
+
+* add tool to view component dependencies ([b408d72](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/b408d72a9e3fe26761d01b95f1eedfd9bd82408d))
+* **core:** add prop to control which links NavigationBar shows ([8bd4051](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/8bd40515dc487b10475adec3a214a790703efc02))
+
+
+### Bug Fixes
+
+* **schedule:** add infoText fallback i18n to ScheduleView ([834fac9](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/834fac96eeba4405972a042cfc31ba418e048806))
+* update dependency docs ([942aac8](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/942aac801fef94247eb9af942b8399225b380ffc))
+* update missing docs ([d8b511e](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/d8b511e90c1b15f72621cf1111fae1b19298fb5f))
+
 ### [2.6.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.6.0...v2.6.1) (2021-11-24)
 
 
