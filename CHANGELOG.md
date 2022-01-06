@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.7.0...v2.8.0) (2022-01-06)
+
+
+### Features
+
+* improve ScheduleFilter serialisation + expose to parents components ([74874df](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/74874df22068f89e7477da56a37895d5cb7ba678))
+* **schedule:** add getFeaturedSessions to get upcoming  sessions and slots for FeaturedSessions ([d02644d](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/d02644dade9ad3b5973509e6219b748f62258875))
+
 ## [2.7.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.6.1...v2.7.0) (2021-11-26)
 
 
