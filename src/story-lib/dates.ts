@@ -6,5 +6,10 @@ export const dates = {
     const date = new Date(original);
     date.setMinutes(date.getMinutes() + minutes, ...args);
     return date;
+  },
+  startOfDay(original: Date): Date {
+    const date = new Date(original);
+    date.setHours(0, 0, 0, 0);
+    return date;
   }
 };

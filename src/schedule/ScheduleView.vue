@@ -98,6 +98,7 @@ import { ScheduleRecord, Session } from '@openlab/deconf-shared';
 
 import {
   loadScheduleFilters,
+  encodeScheduleFilters,
   scheduleComputed,
   ScheduleConfig
 } from '../lib/module';
@@ -170,12 +171,16 @@ export default {
     languageOptions: {
       type: Array as PropType<SelectOption[]>,
       default: () => []
+    },
+    urlFilters: {
+      type: Object as PropType<ScheduleFilterRecord | null>,
+      default: null
     }
   },
   data(): Data {
     return {
       showPastSessions: false,
-      filters: loadScheduleFilters(this.filtersKey)
+      filters: this.urlFilters || loadScheduleFilters(this.filtersKey)
     };
   },
   computed: {
@@ -199,9 +204,11 @@ export default {
     onFilter(filters: ScheduleFilterRecord) {
       this.filters = filters;
 
+      this.$emit('filter', filters);
+
       window.setTimeout(() => {
-        const json = JSON.stringify(filters);
-        localStorage.setItem(this.filtersKey, json);
+        const encoded = encodeScheduleFilters(filters);
+        localStorage.setItem(this.filtersKey, JSON.stringify(encoded));
       });
     },
     togglePastSessions() {

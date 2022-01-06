@@ -41,7 +41,8 @@
       <InlineFilter
         class="scheduleFilters-date"
         v-if="isEnabled('date')"
-        v-model="filters.date"
+        :value="filters.date ? filters.date.toISOString() : null"
+        @input="v => updateDateFilter(v)"
         :label="$t('deconf.scheduleFilters.dateFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="dateOptions"
@@ -51,7 +52,8 @@
       <InlineFilter
         v-if="isEnabled('sessionType')"
         class="scheduleFilters-type"
-        v-model="filters.sessionType"
+        :value="filters.sessionType"
+        @input="v => updateFilter('sessionType', v)"
         :label="$t('deconf.scheduleFilters.typeFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="sessionTypeOptions"
@@ -61,7 +63,8 @@
       <InlineFilter
         class="scheduleFilters-track"
         v-if="isEnabled('track')"
-        v-model="filters.track"
+        :value="filters.track"
+        @input="v => updateFilter('track', v)"
         :label="$t('deconf.scheduleFilters.trackFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="trackOptions"
@@ -71,7 +74,8 @@
       <InlineFilter
         class="scheduleFilters-theme"
         v-if="isEnabled('theme')"
-        v-model="filters.theme"
+        :value="filters.theme"
+        @input="v => updateFilter('theme', v)"
         :label="$t('deconf.scheduleFilters.themeFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="themeOptions"
@@ -81,7 +85,8 @@
       <InlineFilter
         class="scheduleFilters-language"
         v-if="isEnabled('language') && languageOptions.length > 0"
-        v-model="filters.language"
+        :value="filters.language"
+        @input="v => updateFilter('language', v)"
         :label="$t('deconf.scheduleFilters.languageFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="languageOptions"
@@ -91,7 +96,8 @@
       <InlineFilter
         class="scheduleFilters-recorded"
         v-if="isEnabled('isRecorded')"
-        v-model="filters.isRecorded"
+        :value="filters.isRecorded"
+        @input="v => updateFilter('isRecorded', v)"
         :label="$t('deconf.scheduleFilters.recordedFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="recordedOptions"
@@ -204,8 +210,8 @@ export default {
           s.start
         ])
       );
-      return [...dates.values()].map(date => ({
-        value: date,
+      return [...dates.entries()].map(([start, date]) => ({
+        value: start,
         text: friendlyDate(date)
       }));
     },
@@ -249,19 +255,11 @@ export default {
       return new Set(this.enabledFilters);
     }
   },
-  watch: {
-    filters: {
-      deep: true,
-      handler(newValue: ScheduleFilterRecord) {
-        this.$emit('filter', newValue);
-      }
-    }
-  },
   mounted() {
     this.showExtraFilters = this.showExtraFilters || this.hasFilters;
 
     this.queryHandler = debounce(QUERY_DEBOUNCE, (value: string) => {
-      this.filters.query = value;
+      this.updateFilter('query', value);
     });
   },
   destroyed() {
@@ -271,6 +269,16 @@ export default {
     this.queryHandler = null;
   },
   methods: {
+    updateFilter<K extends FilterKey>(
+      key: K,
+      newValue: ScheduleFilterRecord[K]
+    ) {
+      this.filters[key] = newValue;
+      this.$emit('filter', this.filters);
+    },
+    updateDateFilter(newValue: string) {
+      this.updateFilter('date', newValue ? new Date(newValue) : null);
+    },
     localise(object: Localised): string | null {
       return localiseFromObject(this.$i18n.locale, object);
     },
@@ -286,6 +294,7 @@ export default {
       this.filters.date = null;
       this.filters.isRecorded = null;
       this.filters.language = null;
+      this.$emit('filter', this.filters);
     },
     onQuery(e: InputEvent): void {
       if (!this.queryHandler) return;

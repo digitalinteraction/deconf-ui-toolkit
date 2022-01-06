@@ -10,12 +10,15 @@ import ScheduleView from './ScheduleView.vue';
 
 export default {
   title: 'Schedule/ScheduleView',
-  component: ScheduleView
+  component: ScheduleView,
+  argTypes: {
+    onFilter: { action: 'filter' }
+  }
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { MockAppLayout, ScheduleView },
-  props: ['isDuringConference', 'scheduleDate'],
+  props: ['isDuringConference', 'scheduleDate', 'urlFilters', 'onFilter'],
   data() {
     const schedule = createSchedule();
     const sessions = [
@@ -52,6 +55,8 @@ const Template: Story = (args, { argTypes }) => ({
         :scheduleDate="scheduleDate"
         :is-during-conference="isDuringConference"
         :language-options="languages"
+        :url-filters="urlFilters"
+        @filter="onFilter"
       >
         <span slot="title">The Schedule</span>
         <span slot="noResults">No results!</span>
@@ -86,8 +91,7 @@ Present.args = {
   isDuringConference: true
 };
 Present.parameters = {
-  ...Future.parameters,
-  layout: 'fullscreen'
+  ...Future.parameters
 };
 
 export const Past = Template.bind({});
@@ -96,6 +100,24 @@ Past.args = {
   isDuringConference: false
 };
 Past.parameters = {
-  ...Future.parameters,
-  layout: 'fullscreen'
+  ...Future.parameters
+};
+
+export const PresetFilters = Template.bind({});
+PresetFilters.args = {
+  scheduleDate: dates.now,
+  isDuringConference: true,
+  urlFilters: {
+    query: 'plop',
+    sessionType: 'plenary',
+    track: 'track-a',
+    theme: 'theme-a',
+    date: dates.startOfDay(dates.now),
+    isRecorded: true,
+    viewMode: 'all',
+    language: 'en'
+  }
+};
+PresetFilters.parameters = {
+  ...Future.parameters
 };

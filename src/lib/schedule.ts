@@ -95,52 +95,20 @@ export function groupSessionsByDay(
 
 /** Load and parse schedule filters from localStorage, setting missing default values */
 export function loadScheduleFilters(key: string): ScheduleFilterRecord {
-  const base: ScheduleFilterRecord = {
-    viewMode: 'all',
-    query: '',
-    sessionType: null,
-    track: null,
-    theme: null,
-    date: null,
-    isRecorded: null,
-    language: null
-  };
-
   try {
     const json = localStorage.getItem(key);
     if (!json) throw new Error();
 
-    // Using a reviver is fine while ScheduleFilters contains no complex objects
-    const parsed = JSON.parse(json, (key, value) => {
-      switch (key) {
-        case 'query': {
-          return typeof value === 'string' ? value : '';
-        }
-        case 'sessionType':
-        case 'theme':
-        case 'language':
-        case 'track': {
-          return typeof value === 'string' ? value : null;
-        }
-        case 'date': {
-          if (typeof value !== 'string') return null;
-          const date = new Date(value);
-          return Number.isNaN(date) ? null : date;
-        }
-        case 'isRecorded': {
-          return typeof value === 'boolean' ? value : null;
-        }
-        case 'viewMode': {
-          return ['all', 'user'].includes(value) ? value : 'all';
-        }
-        default:
-          return value;
-      }
-    });
+    const urlFilters = JSON.parse(json);
 
-    return { ...base, ...parsed };
+    const filters: ScheduleFilterRecord = {
+      ...decodeScheduleFilters(urlFilters),
+      viewMode: decoder.enum(urlFilters.viewMode, ['all', 'user'])
+    };
+
+    return filters;
   } catch (error) {
-    return base;
+    return decodeScheduleFilters({});
   }
 }
 
@@ -286,4 +254,78 @@ export function getFeaturedSessions(
         group.slot.start.getTime() < inTheFuture
     )
     .sort((a, b) => a.slot.start.getTime() - b.slot.start.getTime());
+}
+
+export function encodeScheduleFilters(
+  filters: ScheduleFilterRecord
+): Record<Exclude<keyof ScheduleFilterRecord, 'viewMode'>, string> {
+  return stripNulls({
+    query: encoder.string(filters.query),
+    sessionType: encoder.string(filters.sessionType),
+    track: encoder.string(filters.track),
+    theme: encoder.string(filters.theme),
+    language: encoder.string(filters.language),
+    date: encoder.date(filters.date),
+    isRecorded: encoder.boolean(filters.isRecorded)
+  });
+}
+
+export function decodeScheduleFilters(
+  input: Record<string, unknown>
+): ScheduleFilterRecord {
+  return {
+    viewMode: 'all',
+    query: decoder.string(input.query) || '',
+    sessionType: decoder.string(input.sessionType),
+    track: decoder.string(input.track),
+    theme: decoder.string(input.theme),
+    date: decoder.date(input.date),
+    isRecorded: decoder.boolean(input.isRecorded),
+    language: decoder.string(input.language)
+  };
+}
+
+const encoder = {
+  string(value: unknown) {
+    return typeof value === 'string' && value ? value : null;
+  },
+  boolean(value: unknown) {
+    if (typeof value !== 'boolean') return null;
+    return value ? 'true' : 'false';
+  },
+  date(value: unknown) {
+    return value instanceof Date ? value.toISOString() : null;
+  },
+  enum(value: unknown, options: unknown[]) {
+    return options.includes(value) ? value : null;
+  }
+};
+const decoder = {
+  string(value: unknown) {
+    return typeof value === 'string' ? value : null;
+  },
+  boolean(value: unknown) {
+    if (value === 'true') return true;
+    if (value === 'false') return false;
+    return null;
+  },
+  date(value: unknown) {
+    if (typeof value !== 'string') return null;
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return null;
+    return date;
+  },
+  enum<T extends string>(value: T, options: T[]) {
+    return options.includes(value) ? value : options[0];
+  }
+};
+
+type NonNullRecord<T> = { [K in keyof T]: NonNullable<T[K]> };
+
+function stripNulls<T extends Record<string, unknown>>(
+  input: T
+): NonNullRecord<T> {
+  return Object.fromEntries(
+    Object.entries(input).filter(pair => pair[1] !== null)
+  ) as NonNullRecord<T>;
 }

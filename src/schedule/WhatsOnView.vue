@@ -46,6 +46,7 @@ import { PropType } from 'vue';
 import { ScheduleRecord, Session } from '@openlab/deconf-shared';
 import {
   createFilterPredicate,
+  encodeScheduleFilters,
   loadScheduleFilters,
   ScheduleConfig,
   SlotState
@@ -118,9 +119,11 @@ export default {
     onFilter(filters: ScheduleFilterRecord) {
       this.filters = filters;
 
+      this.$emit('filter', filters);
+
       window.setTimeout(() => {
-        const json = JSON.stringify(filters);
-        localStorage.setItem(this.filtersKey, json);
+        const encoded = encodeScheduleFilters(filters);
+        localStorage.setItem(this.filtersKey, JSON.stringify(encoded));
       });
     }
   }
