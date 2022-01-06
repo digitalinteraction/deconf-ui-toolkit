@@ -4,6 +4,7 @@
       class="speakerGrid-speaker"
       v-for="speaker in speakers"
       :key="speaker.id"
+      @click="showDialog(speaker)"
     >
       <div class="speakerGrid-headshot">
         <img :src="speaker.headshot" width="42" height="42" />
@@ -20,6 +21,7 @@
 import { PropType } from 'vue';
 import { localiseFromObject } from '../lib/module';
 import { Speaker } from '@openlab/deconf-shared';
+import SpeakerDialog from './SpeakerDialog.vue';
 
 //
 // i18n
@@ -41,6 +43,9 @@ export default {
   methods: {
     localiseRole(speaker: Speaker): string | null {
       return localiseFromObject(this.$i18n.locale, speaker.role);
+    },
+    showDialog(speaker: Speaker): void {
+      this.$deconf.showDialog(SpeakerDialog, { speaker });
     }
   }
 };
