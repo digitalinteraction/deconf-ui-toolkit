@@ -1,0 +1,10 @@
+{
+  "actions" : {
+    "run" : {
+      "enabled" : true,
+      "script" : "npm run -s storybook"
+    }
+  },
+  "identifier" : "98804B58-2144-42BA-9070-73C5D2ECF963",
+  "openLogOnRun" : "start"
+}
