@@ -30,7 +30,8 @@
       "hours": "hours | hour | hours",
       "minutes": "minutes | minute | minutes",
       "seconds": "seconds | second | seconds",
-      "genericError": "Something went wrong, please try again"
+      "genericError": "Something went wrong, please try again",
+      "closeDialog": "Close"
     },
     "miniSession": {
       "view": "View",
