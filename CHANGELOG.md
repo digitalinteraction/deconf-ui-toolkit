@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.8.1...v2.9.0) (2022-01-06)
+
+
+### Features
+
+* add Core/SpeakerDialog ([a295729](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/a295729e2e7a634b7c49888181065e8d9d0bdfb6))
+* add dialog open/close to deconf-plugin interface — lightly backwards incompatible. ([80234ff](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/80234ff9ace8d9a47411b46458c4d7617ea484d1))
+* show SpeakerDialog when clicking on SpeakerGrid ([81d2c3e](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/81d2c3e131f3de7fa7c39f0e499cd288145a0ab1))
+
 ### [2.8.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.8.0...v2.8.1) (2022-01-06)
 
 
