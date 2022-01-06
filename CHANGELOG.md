@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.9.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.9.0...v2.9.1) (2022-01-06)
+
+
+### Bug Fixes
+
+* **core:** make SpeakerDialog headshots circular ([c98e801](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/c98e801933a8fd62c4a9c981eac515e49da196db))
+
 ## [2.9.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.8.1...v2.9.0) (2022-01-06)
 
 
