@@ -95,11 +95,15 @@ export default {
     languageOptions: {
       type: Array as PropType<SelectOption[]>,
       default: () => []
+    },
+    urlFilters: {
+      type: Object as PropType<ScheduleFilterRecord | null>,
+      default: null
     }
   },
   data(): Data {
     return {
-      filters: loadScheduleFilters(this.filtersKey)
+      filters: this.urlFilters || loadScheduleFilters(this.filtersKey)
     };
   },
   computed: {
