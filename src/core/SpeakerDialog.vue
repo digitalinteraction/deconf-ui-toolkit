@@ -71,6 +71,7 @@ $speakerDialog-nameFamily: $family-title !default;
   width: 64px;
   height: 64px;
   border-radius: $radius-rounded;
+  object-fit: cover;
 }
 .speakerDialog-name {
   flex: 1;
