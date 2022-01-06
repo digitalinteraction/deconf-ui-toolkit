@@ -70,6 +70,7 @@ $speakerDialog-nameFamily: $family-title !default;
 .speakerDialog-headshot {
   width: 64px;
   height: 64px;
+  border-radius: $radius-rounded;
 }
 .speakerDialog-name {
   flex: 1;
