@@ -136,6 +136,12 @@ Vue.prototype.$deconf = {
   trackMetric(metric) {
     const { eventName, payload } = metric;
     action(`[metric] ${eventName}`)(payload);
+  },
+  showDialog(component, props) {
+    action(`[show dialog]`)({ component, props });
+  },
+  closeDialog() {
+    action(`[close dialog]`)();
   }
 };
 
