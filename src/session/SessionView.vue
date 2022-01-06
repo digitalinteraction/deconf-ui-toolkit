@@ -458,7 +458,7 @@ export default {
       if (link.url.includes('miro')) {
         name = this.$t('deconf.session.miroLink');
       }
-      return `${name} – ${LANGUAGES[link.language] || link.language}`;
+      return `${name} — ${LANGUAGES[link.language] || link.language}`;
     },
     trackCalendar() {
       this.$deconf.trackMetric(createICalEvent(this.session.id));
