@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.8.0...v2.8.1) (2022-01-06)
+
+
+### Bug Fixes
+
+* add missing url-filters prop to WhatsOnView ([cf82636](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/cf82636d7bd4964877acf288cdd7ab2e4fb6106e))
+
 ## [2.8.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.7.0...v2.8.0) (2022-01-06)
 
 
