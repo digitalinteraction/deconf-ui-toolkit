@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.9.1...v2.10.0) (2022-01-07)
+
+
+### Features
+
+* **schedule:** allow WhatsOnView readonly to be configured by a prop ([e3773be](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/e3773be63a655338191f5ae97b90c6eafe516307))
+* **session:** emit links & attendance from SessionView for parents to use ([5cddaea](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/5cddaeaee2f76429c6d9d1a86ed270444ecb69dd))
+
+
+### Bug Fixes
+
+* **core:** make SpeakerDialog headshots fit into the circle ([9a8de64](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/9a8de648362d383e1c9058eafc9088a504901c5b))
+
 ### [2.9.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.9.0...v2.9.1) (2022-01-06)
 
 
