@@ -112,7 +112,7 @@
 
       <!-- Session Actions -->
       <template
-        v-if="showAttendance || showInterest || !loggedIn || showCalendar"
+        v-if="showAttendance || showInterest || !loggedIn || showAddToCalendar"
       >
         <SidebarItem :title="$t('deconf.session.actions')">
           <Stack direction="vertical" gap="regular" align="stretch">
@@ -137,7 +137,7 @@
               {{ $t('deconf.session.logIn') }}
             </div>
             <AddToCalendar
-              v-if="showCalendar"
+              v-if="showAddToCalendar"
               class="is-fullwidth is-link"
               :calendar-link="calendarLink"
               @click="trackCalendar"
@@ -367,7 +367,7 @@ export default {
         this.loggedIn
       );
     },
-    showCalendar(): boolean {
+    showAddToCalendar(): boolean {
       return (
         ['future', 'soon'].includes(this.slotState) &&
         Boolean(this.calendarLink) &&

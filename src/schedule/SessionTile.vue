@@ -156,7 +156,10 @@ export default {
       return content && this.trim(content, 300);
     },
     canAddToCalendar(): boolean {
-      return ['soon', 'future'].includes(this.slotState);
+      return (
+        Boolean(this.calendarLink) &&
+        ['soon', 'future'].includes(this.slotState)
+      );
     },
     canJoinSession(): boolean {
       return true;
