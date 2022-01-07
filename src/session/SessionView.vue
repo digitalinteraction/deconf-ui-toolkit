@@ -418,12 +418,14 @@ export default {
         this.session.id
       );
       this.links = result ? result.links : null;
+      this.$emit('links', this.links);
     },
     async fetchAttendance() {
       this.attendance = await this.$store.dispatch(
         `${this.apiModule}/fetchSessionAttendance`,
         this.session.id
       );
+      this.$emit('attendance', this.attendance);
     },
     async attend() {
       this.isLoading = true;
