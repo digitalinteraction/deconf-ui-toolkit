@@ -31,8 +31,16 @@ const Template: Story = (args, { argTypes }) => ({
   `
 });
 
-export const Default = Template.bind({});
-Default.args = {
+export const Desktop = Template.bind({});
+Desktop.args = {
   open: true
 };
-Default.parameters = {};
+Desktop.parameters = {};
+
+export const Mobile = Template.bind({});
+Mobile.args = {
+  open: true
+};
+Mobile.parameters = {
+  viewport: { defaultViewport: 'mobile2' }
+};
