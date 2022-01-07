@@ -34,7 +34,7 @@
           :session="session"
           :schedule="schedule"
           :config="config"
-          :readonly="true"
+          :readonly="readonly"
         />
       </SessionBoard>
     </div>
@@ -99,7 +99,8 @@ export default {
     urlFilters: {
       type: Object as PropType<ScheduleFilterRecord | null>,
       default: null
-    }
+    },
+    readonly: { type: Boolean, default: true }
   },
   data(): Data {
     return {
