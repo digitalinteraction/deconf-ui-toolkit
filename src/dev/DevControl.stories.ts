@@ -45,7 +45,13 @@ const Template: Story = (args, { argTypes }) => ({
         :dev-plugin="plugin.dev"
         :force-enable="true"
         :controls="controls"
-      />
+      >
+        <template slot="extras">
+          <div class="devControl-block">
+            <p class="has-text-centered">A custom extra command</p>
+          </div>
+        </template>
+      </DevControl>
     </div>
   `
 });

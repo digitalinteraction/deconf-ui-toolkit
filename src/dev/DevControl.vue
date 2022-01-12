@@ -160,6 +160,8 @@
           </div>
         </div>
 
+        <slot name="extras" />
+
         <div class="devControl-block">
           <button class="button is-fullwidth is-small" @click="toggleExpanded">
             Close
