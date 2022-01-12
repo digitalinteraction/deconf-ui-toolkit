@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.11.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.10.1...v2.11.0) (2022-01-12)
+
+
+### Features
+
+* **dev:** add "extras" slot to allow custom controls to be added ([e3ec72c](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/e3ec72ccc5b3372c65127186bf7a53e328f9b213))
+
 ### [2.10.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.10.0...v2.10.1) (2022-01-07)
 
 
