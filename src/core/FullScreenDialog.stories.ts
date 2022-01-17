@@ -14,10 +14,10 @@ export default {
 
 const Template: Story = (args, { argTypes }) => ({
   components: { FullScreenDialog, Content },
-  props: ['open', 'onClose'],
+  props: Object.keys(argTypes),
   template: `
     <div>
-      <FullScreenDialog @close="onClose" v-if="open">
+      <FullScreenDialog @close="onClose" v-if="open" :size="size">
         <div class="content">
           <h1> This is a title </h1>
           <Content />
@@ -36,6 +36,13 @@ Desktop.args = {
   open: true
 };
 Desktop.parameters = {};
+
+export const DesktopSmall = Template.bind({});
+DesktopSmall.args = {
+  ...Desktop.args,
+  size: 'small'
+};
+DesktopSmall.parameters = {};
 
 export const Mobile = Template.bind({});
 Mobile.args = {

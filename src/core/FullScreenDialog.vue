@@ -1,5 +1,5 @@
 <template>
-  <div class="fullScreenDialog" @click="onBackgroundClick">
+  <div class="fullScreenDialog" @click="onBackgroundClick" :class="classes">
     <div class="fullScreenDialog-box">
       <slot />
     </div>
@@ -18,10 +18,28 @@
 // - $fullScreenDialog-background
 // - $fullScreenDialog-boxRadius
 // - $fullScreenDialog-boxBackground
+// - $fullScreenDialig-regular
+// - $fullScreenDialig-small
 //
+
+const dialogSizes = ['small', 'regular'];
 
 export default {
   name: 'FullScreenDialog',
+  props: {
+    size: {
+      type: String,
+      default: 'regular',
+      validator: (v: string) => dialogSizes.includes(v)
+    }
+  },
+  computed: {
+    classes(): unknown {
+      return {
+        'is-small': this.size === 'small'
+      };
+    }
+  },
   mounted() {
     // Stop window scroll
     document.documentElement.classList.add('has-dialog');
@@ -45,6 +63,9 @@ $fullScreenDialog-background: rgba(10, 10, 15, 0.72) !default;
 $fullScreenDialog-boxRadius: $radius !default;
 $fullScreenDialog-boxBackground: $white !default;
 
+$fullScreenDialig-regular: 720px !default;
+$fullScreenDialig-small: 420px !default;
+
 .fullScreenDialog {
   position: fixed;
   top: 0;
@@ -59,11 +80,15 @@ $fullScreenDialog-boxBackground: $white !default;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &.is-small > .fullScreenDialog-box {
+    max-width: $fullScreenDialig-small;
+  }
 }
 .fullScreenDialog-box {
   border-radius: $fullScreenDialog-boxRadius;
   padding: 1.5rem;
-  max-width: 720px;
+  max-width: $fullScreenDialig-regular;
   width: 100%;
   background-color: $fullScreenDialog-boxBackground;
 
