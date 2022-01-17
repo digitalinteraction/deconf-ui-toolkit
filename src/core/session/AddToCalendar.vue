@@ -1,10 +1,19 @@
 <template>
+  <button v-if="session" class="addToCalendar button" @click="onClickButton">
+    <span class="icon">
+      <FontAwesomeIcon :icon="['fas', 'calendar-plus']" />
+    </span>
+    <span>
+      {{ $t('deconf.addToCalendar.action') }}
+    </span>
+  </button>
   <a
+    v-else-if="calendarLink"
     class="addToCalendar button"
     :href="calendarLink"
     target="_blank"
     rel="noopener"
-    @click="onClick"
+    @click="onClickLink"
   >
     <span class="icon">
       <FontAwesomeIcon :icon="['fas', 'calendar-plus']" />
@@ -17,6 +26,9 @@
 
 <script lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { PropType } from 'vue';
+import { Session } from '@openlab/deconf-shared';
+import AddToCalendarDialog from './AddToCalendarDialog.vue';
 
 //
 // i18n
@@ -28,16 +40,24 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // sass
 // - n/a
 //
+// notes
+// - passing the `calendar-link` prop is deprecated, pass a `session` instead
+//
 
 export default {
   name: 'AddToCalendar',
   components: { FontAwesomeIcon },
   props: {
-    calendarLink: { type: String, required: true }
+    calendarLink: { type: String as PropType<string | null>, default: null },
+    session: { type: Object as PropType<Session | null>, default: null }
   },
   methods: {
-    onClick(event: MouseEvent): void {
+    onClickLink(event: MouseEvent): void {
       this.$emit('click', event);
+    },
+    onClickButton(event: MouseEvent): void {
+      this.$emit('click', event);
+      this.$deconf.showDialog(AddToCalendarDialog, { session: this.session });
     }
   }
 };

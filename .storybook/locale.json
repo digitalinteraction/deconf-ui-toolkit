@@ -161,6 +161,12 @@
       "message": "Register your interest",
       "unregisterButton": "Remove from your sessions",
       "registerButton": "Add to your sessions"
+    },
+    "addToCalendarDialog": {
+      "title": "Add to calendar",
+      "ical": "Download event",
+      "google": "Google Calendar",
+      "cancel": "Cancel"
     }
   }
 }
