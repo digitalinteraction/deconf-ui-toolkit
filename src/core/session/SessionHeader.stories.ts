@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/vue';
 import SessionHeader from './SessionHeader.vue';
 
 export default {
-  title: 'Schedule/SessionHeader',
+  title: 'Core/SessionHeader',
   component: SessionHeader
 } as Meta;
 

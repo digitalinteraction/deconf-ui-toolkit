@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/vue';
 import SessionAttributes from './SessionAttributes.vue';
 
 export default {
-  title: 'Schedule/SessionAttributes',
+  title: 'Core/SessionAttributes',
   component: SessionAttributes,
   argTypes: {
     isRecorded: {

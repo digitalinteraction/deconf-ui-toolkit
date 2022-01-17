@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/vue';
 import JoinSession from './JoinSession.vue';
 
 export default {
-  title: 'Schedule/JoinSession',
+  title: 'Core/JoinSession',
   component: JoinSession,
   argTypes: {
     slotState: {
