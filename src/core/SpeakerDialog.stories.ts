@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/vue';
-import { FullScreenDialog } from '../core/module';
+import FullScreenDialog from './FullScreenDialog.vue';
 import { mockSpeaker } from '../story-lib/schedule';
 import SpeakerDialog from './SpeakerDialog.vue';
 
