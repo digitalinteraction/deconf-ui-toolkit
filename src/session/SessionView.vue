@@ -139,8 +139,7 @@
             <AddToCalendar
               v-if="showAddToCalendar"
               class="is-fullwidth is-link"
-              :calendar-link="calendarLink"
-              @click="trackCalendar"
+              :session="session"
             />
           </Stack>
         </SidebarItem>
@@ -171,7 +170,6 @@ import {
 import { PropType } from 'vue';
 import {
   createAttendanceEvent,
-  createICalEvent,
   createSessionLinkEvent,
   getLocaleLinks,
   getSlotState,
@@ -461,9 +459,6 @@ export default {
         name = this.$t('deconf.session.miroLink');
       }
       return `${name} — ${LANGUAGES[link.language] || link.language}`;
-    },
-    trackCalendar() {
-      this.$deconf.trackMetric(createICalEvent(this.session.id));
     },
     trackLinkClick(link: string) {
       this.$deconf.trackMetric(

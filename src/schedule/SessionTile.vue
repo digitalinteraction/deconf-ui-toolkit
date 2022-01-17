@@ -30,11 +30,7 @@
           Add to calendar
         -->
         <template v-if="canAddToCalendar">
-          <AddToCalendar
-            class="is-small is-link"
-            :calendar-link="calendarLink"
-            @click="trackCalendar"
-          />
+          <AddToCalendar class="is-small is-link" :session="session" />
         </template>
         <!-- 
           Join session
@@ -57,8 +53,7 @@ import {
   ScheduleConfig,
   SlotState,
   Routes,
-  localiseFromObject,
-  createICalEvent
+  localiseFromObject
 } from '../lib/module';
 import {
   SessionHeader,
@@ -194,10 +189,6 @@ export default {
     trim(value: string, length: number): string {
       if (value.length < length) return value;
       return `${value.substring(0, length)}…`;
-    },
-    trackCalendar(): void {
-      // Track the clicking of a calendar
-      this.$deconf.trackMetric(createICalEvent(this.session.id));
     },
     localise(object: Localised) {
       const fallbacks = [...this.session.hostLanguages];

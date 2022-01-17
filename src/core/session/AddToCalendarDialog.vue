@@ -10,6 +10,7 @@
         class="button is-fullwidth is-link is-medium"
         target="_blank"
         rel="nofollow"
+        @click="track('ical')"
       >
         <span class="icon">
           <FontAwesomeIcon :icon="['fas', 'calendar-plus']" />
@@ -24,6 +25,7 @@
         class="button is-fullwidth is-google is-medium"
         target="_blank"
         rel="nofollow"
+        @click="track('google')"
       >
         <span class="icon">
           <FontAwesomeIcon :icon="['fab', 'google']" />
@@ -47,6 +49,7 @@
 import { PropType } from 'vue';
 import { Session } from '@openlab/deconf-shared';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { createICalEvent } from '../../lib/module';
 
 export default {
   name: 'AddToCalendarDialog',
@@ -63,6 +66,9 @@ export default {
     }
   },
   methods: {
+    track(kind: string) {
+      this.$deconf.trackMetric(createICalEvent(this.session.id, kind));
+    },
     cancel() {
       this.$deconf.closeDialog();
     }

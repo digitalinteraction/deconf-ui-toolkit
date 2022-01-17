@@ -3,10 +3,14 @@ export interface MetricsEvent {
   payload: unknown;
 }
 
-export function createICalEvent(sessionId: string): MetricsEvent {
+/** not passing `kind` is @deprecated */
+export function createICalEvent(
+  sessionId: string,
+  kind?: string
+): MetricsEvent {
   return {
     eventName: `session/ical`,
-    payload: { sessionId }
+    payload: { sessionId, kind }
   };
 }
 
