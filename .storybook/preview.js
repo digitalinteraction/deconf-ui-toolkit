@@ -13,8 +13,11 @@ document.dir = 'ltr';
 setupFontawesome();
 
 //
-// Stub out router-link
+// Stub out vue-router
 //
+Vue.prototype.$router = {
+  resolve: () => ({ href: '#' })
+};
 Vue.component('router-link', {
   props: ['to', 'activeClass'],
   template: `<a href="#" @click.prevent="log"><slot/></a>`,
@@ -130,8 +133,8 @@ Vue.prototype.$store = {
 // Stub out $deconf
 //
 Vue.prototype.$deconf = {
-  getCalendarLink(session) {
-    return `/session/${session.id}/ics`;
+  getCalendarLink(session, kind) {
+    return `/fake/session/${session.id}/${kind}`;
   },
   trackMetric(metric) {
     const { eventName, payload } = metric;
