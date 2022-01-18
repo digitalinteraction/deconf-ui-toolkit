@@ -51,6 +51,23 @@ import { Session } from '@openlab/deconf-shared';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { createICalEvent } from '../../lib/module';
 
+//
+// i18n
+// - deconf.addToCalendarDialog.title
+// - deconf.addToCalendarDialog.ical
+// - deconf.addToCalendarDialog.google
+// - deconf.addToCalendarDialog.cancel
+//
+// icons
+// - fas calendar-plus
+// - fab google
+//
+// sass
+// - $addToCalendarDialog-titleFamily
+// - $addToCalendarDialog-titleSize
+// - $addToCalendarDialog-titleWeight
+//
+
 export default {
   name: 'AddToCalendarDialog',
   components: { FontAwesomeIcon },
