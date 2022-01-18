@@ -3,22 +3,36 @@ import fs from 'fs/promises';
 import path from 'path';
 import dedent from 'dedent';
 
+/**
+ * @typedef {{
+ *  name: string,
+ *  path: string,
+ *  i18n: string[],
+ *  icons: string[],
+ *  sass: string[],
+ *  components: string[]
+ *  notes: string[]
+ * }} ComponentDefinition
+ */
+
 async function main() {
   const files = await glob('src/**/*.vue');
 
-  /** @type {Array<{ name: string, path: string, i18n: string[], icons: string[], sass: string[], components: string[] }>} */
+  /** @type {Array<ComponentDefinition>} */
   const output = [];
 
   for (const componentPath of files) {
     const file = await fs.readFile(componentPath, 'utf8');
 
+    /** @type {ComponentDefinition} */
     const result = {
       name: path.basename(componentPath).replace('.vue', ''),
       path: componentPath,
       i18n: [],
       icons: [],
       sass: [],
-      components: []
+      components: [],
+      notes: []
     };
 
     let mode = null;
@@ -34,6 +48,7 @@ async function main() {
       if (line.includes('// i18n')) mode = 'i18n';
       if (line.includes('// icons')) mode = 'icons';
       if (line.includes('// sass')) mode = 'sass';
+      if (line.includes('// notes')) mode = 'notes';
     }
 
     for (const match of file.matchAll(/components:\s+{([\w\W]+?)}/g)) {
@@ -44,8 +59,11 @@ async function main() {
           .filter(c => c)
       );
     }
-    if (result.components.length === 0) {
-      result.components.push('n/a');
+
+    for (const key of ['i18n', 'icons', 'sass', 'components', 'notes']) {
+      if (result[key].length === 0) {
+        result[key].push('n/a');
+      }
     }
 
     output.push(result);
@@ -78,6 +96,8 @@ async function main() {
         <ul>${listify(comp.sass)}</ul>
         <h3>components</h3>
         <ul>${comp.components.map(componentItem).join('')}</ul>
+        <h3>notes</h3>
+        <ul>${listify(comp.notes)}</ul>
       </article>
     `
   );

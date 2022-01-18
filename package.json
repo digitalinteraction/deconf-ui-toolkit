@@ -21,7 +21,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -s ./static -p 6006 --ci",
-    "build-storybook": "build-storybook -s ./static",
+    "build-storybook": "build-storybook -s ./static && node build/dependency-page.mjs > storybook-static/components.html",
     "preversion": "npm run lint && npm run build",
     "release": "npm run preversion && standard-version",
     "release:beta": "npm run preversion && standard-version --prerelease=beta"
