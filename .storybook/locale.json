@@ -163,7 +163,8 @@
       "registerButton": "Add to your sessions"
     },
     "addToCalendarDialog": {
-      "title": "Add to calendar",
+      "title": "Add session to calendar",
+      "info": "You can also get a personalised calendar link on the profile page.",
       "ical": "Download event",
       "google": "Google Calendar",
       "cancel": "Cancel"

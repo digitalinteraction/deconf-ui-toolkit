@@ -1,8 +1,13 @@
 <template>
   <div class="addToCalendarDialog">
-    <h1 class="addToCalendarDialog-title">
-      {{ $t('deconf.addToCalendarDialog.title') }}
-    </h1>
+    <header class="addToCalendarDialog-header">
+      <h1 class="addToCalendarDialog-title">
+        {{ $t('deconf.addToCalendarDialog.title') }}
+      </h1>
+      <p class="addToCalendarDialog-body">
+        {{ $t('deconf.addToCalendarDialog.info') }}
+      </p>
+    </header>
     <section class="addToCalendarDialog-actions">
       <a
         v-if="icalLink"
@@ -100,12 +105,17 @@ $addToCalendarDialog-titleWeight: $weight-bold !default;
 
 .addToCalendarDialog {
 }
+.addToCalendarDialog-header {
+  margin-bottom: $gap;
+}
 .addToCalendarDialog-title {
   font-weight: $addToCalendarDialog-titleWeight;
   font-size: $addToCalendarDialog-titleSize;
   font-family: $addToCalendarDialog-titleFamily;
-  margin-bottom: $gap;
 }
+.addToCalendarDialog-body {
+}
+
 .addToCalendarDialog-actions {
   display: flex;
   flex-direction: column;
