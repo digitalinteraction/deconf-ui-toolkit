@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.12.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.11.0...v2.12.0) (2022-01-19)
+
+
+### Features
+
+* add argument `kind` to getCalendarLink and deprecate the method without kind passed ([055ae3d](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/055ae3d29ae0562a7cf1171d130d3b1cab49db1d))
+* **core:** add FullScreenDialog size prop with small option ([f6497ab](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/f6497abf51a317ae8d0f03e18c0f55d243c66ecf))
+* **core:** add updated AddToCalendar button to show AddToCalendarDialog with multiple options ([5b5aa0e](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/5b5aa0e35ef31c85ad09a61ce5e7b340bc7000ce))
+* track the type of calendar used from the dialog ([e8124e0](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/e8124e005ed4077382a3ca81a2ed8c204a7949bf))
+
+
+### Bug Fixes
+
+* add missing AddToCalendarDialog export ([ec20e3c](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/ec20e3c1e298eef4362a1e03667f5d2b80eeeba3))
+* add subtitle to AddToCalendarDialog ([8af04df](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/8af04df7b55073e546de59ac92587d4dcdf13895))
+
 ## [2.11.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.10.1...v2.11.0) (2022-01-12)
 
 
