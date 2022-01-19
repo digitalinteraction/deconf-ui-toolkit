@@ -13,6 +13,8 @@
       </tbody>
     </table>
 
+    <slot name="preActions" />
+
     <p class="profileView-heading">
       {{ $t('deconf.profile.actionLabel') }}
     </p>
