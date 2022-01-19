@@ -2,6 +2,10 @@ import { Session } from '@openlab/deconf-shared';
 import { Component } from 'vue';
 import { MetricsEvent } from './metrics';
 
+export interface ShowDialogOptions {
+  size: 'small' | 'regular';
+}
+
 export interface DeconfPlugin {
   getCalendarLink(session: Session, kind: 'ical' | 'google'): string | null;
 
@@ -10,6 +14,10 @@ export interface DeconfPlugin {
 
   trackMetric(metric: MetricsEvent): void;
 
-  showDialog(component: Component, props: Record<string, unknown>): void;
+  showDialog(
+    component: Component,
+    props: Record<string, unknown>,
+    options?: ShowDialogOptions
+  ): void;
   closeDialog(): void;
 }

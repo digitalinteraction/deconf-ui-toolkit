@@ -57,7 +57,11 @@ export default {
     },
     onClickButton(event: MouseEvent): void {
       this.$emit('click', event);
-      this.$deconf.showDialog(AddToCalendarDialog, { session: this.session });
+      this.$deconf.showDialog(
+        AddToCalendarDialog,
+        { session: this.session },
+        { size: 'small' }
+      );
     }
   }
 };
