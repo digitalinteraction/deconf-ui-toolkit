@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.12.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.12.0...v2.12.1) (2022-01-19)
+
+
+### Bug Fixes
+
+* show AddToCalendar buttons as expected ([006ad5c](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/006ad5c98bafa53f7089a8d7ab50129da2c80720))
+
 ## [2.12.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.11.0...v2.12.0) (2022-01-19)
 
 
