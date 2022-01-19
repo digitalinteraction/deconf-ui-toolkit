@@ -15,7 +15,7 @@
         class="button is-fullwidth is-link is-medium"
         target="_blank"
         rel="nofollow"
-        @click="track('ical')"
+        @click="finish('ical')"
       >
         <span class="icon">
           <FontAwesomeIcon :icon="['fas', 'calendar-plus']" />
@@ -30,7 +30,7 @@
         class="button is-fullwidth is-google is-medium"
         target="_blank"
         rel="nofollow"
-        @click="track('google')"
+        @click="finish('google')"
       >
         <span class="icon">
           <FontAwesomeIcon :icon="['fab', 'google']" />
@@ -88,8 +88,9 @@ export default {
     }
   },
   methods: {
-    track(kind: string) {
+    finish(kind: string) {
       this.$deconf.trackMetric(createICalEvent(this.session.id, kind));
+      this.$deconf.closeDialog();
     },
     cancel() {
       this.$deconf.closeDialog();
