@@ -367,13 +367,8 @@ export default {
     },
     showAddToCalendar(): boolean {
       return (
-        ['future', 'soon'].includes(this.slotState) &&
-        Boolean(this.calendarLink) &&
-        !this.showLinksSection
+        ['future', 'soon'].includes(this.slotState) && !this.showLinksSection
       );
-    },
-    calendarLink(): string | null {
-      return this.$deconf.getCalendarLink(this.session);
     },
     stateAttendance(): number | null {
       if (this.attendance === null) return null;

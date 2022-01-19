@@ -151,16 +151,10 @@ export default {
       return content && this.trim(content, 300);
     },
     canAddToCalendar(): boolean {
-      return (
-        Boolean(this.calendarLink) &&
-        ['soon', 'future'].includes(this.slotState)
-      );
+      return ['soon', 'future'].includes(this.slotState);
     },
     canJoinSession(): boolean {
       return true;
-    },
-    calendarLink(): string | null {
-      return this.$deconf.getCalendarLink(this.session);
     },
     headerAttributes(): unknown {
       const set = new Set(this.config.tileHeader);
