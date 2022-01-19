@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.13.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.12.1...v2.13.0) (2022-01-19)
+
+
+### Features
+
+* **core:** add `options` to DeconfPlugin#showDialog to request a dialog size ([be536e2](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/be536e233c0c5ca67c97cf19638f5ebcda5b7664))
+* **registration:** add "preActions" slot to ProfileView ([f1424da](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/f1424dab40d2415d02186d78c58520611b34382f))
+
+
+### Bug Fixes
+
+* **core:** close AddToCalendarDialog after picking a calendar ([da62c4b](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/da62c4b6eef91260f530d239da93994474b49958))
+
 ### [2.12.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.12.0...v2.12.1) (2022-01-19)
 
 
