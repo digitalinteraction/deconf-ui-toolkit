@@ -51,9 +51,11 @@
       <slot name="afterAttributes" />
 
       <div class="sessionView-content">
-        <div class="content">
-          {{ localeContent }}
-        </div>
+        <slot name="content">
+          <div class="content" v-if="localeContent">
+            {{ localeContent }}
+          </div>
+        </slot>
       </div>
 
       <slot name="afterContent" />
