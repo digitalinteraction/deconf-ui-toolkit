@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.14.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.13.0...v2.14.0) (2022-01-20)
+
+
+### Features
+
+* **session:** allow session content to be overidden by a slot ([0ed33b3](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/0ed33b358629681f74489cf066c4cf0dddbb81ff))
+
 ## [2.13.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.12.1...v2.13.0) (2022-01-19)
 
 
