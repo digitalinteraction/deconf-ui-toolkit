@@ -1,6 +1,6 @@
 {
   "name": "@openlab/deconf-ui-toolkit",
-  "version": "2.14.0",
+  "version": "2.13.0",
   "browser": "dist/deconf-ui.esm.js",
   "module": "dist/deconf-ui.esm.js",
   "types": "dist/types/module.d.ts",
@@ -23,7 +23,7 @@
     "storybook": "start-storybook -s ./static -p 6006 --ci",
     "build-storybook": "build-storybook -s ./static && node build/dependency-page.mjs > storybook-static/components.html",
     "preversion": "npm run lint && npm run build",
-    "release": "npm run preversion && standard-version",
+    "release": "npm run preversion && standard-version && git push --follow-tags origin main && npm publish",
     "release:beta": "npm run preversion && standard-version --prerelease=beta"
   },
   "peerDependencies": {
