@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.14.0...v2.14.1) (2022-01-27)
+
+
+### Bug Fixes
+
+* **session:** speakers are shown in the correct order ([baf8f3d](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/baf8f3d3ac3fb3f63ea091ed255686c759903696))
+
 ## [2.14.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.13.0...v2.14.0) (2022-01-20)
 
 
