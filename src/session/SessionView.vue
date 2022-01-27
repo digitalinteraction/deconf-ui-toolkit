@@ -287,8 +287,14 @@ export default {
       return this.schedule.types.find(s => s.id === this.session.type) || null;
     },
     sessionSpeakers(): Speaker[] {
-      const ids = new Set(this.session.speakers);
-      return this.schedule.speakers.filter(s => ids.has(s.id));
+      const speakerMap = new Map(
+        this.schedule.speakers
+          .filter(s => this.session.speakers.includes(s.id))
+          .map(s => [s.id, s])
+      );
+      return this.session.speakers
+        .map(id => speakerMap.get(id) as Speaker)
+        .filter(s => s);
     },
     sessionThemes(): Theme[] {
       const ids = new Set(this.session.themes);
