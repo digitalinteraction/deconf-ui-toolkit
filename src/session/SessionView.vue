@@ -498,6 +498,7 @@ $sessionView-titleFamily: $family-title !default;
   line-height: 1;
 }
 
+.sessionView-header,
 .sessionView-title,
 .sessionView-embed,
 .sessionView-attributes,
