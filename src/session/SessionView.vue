@@ -65,7 +65,10 @@
     <div slot="sidebar" class="sessionView-sidebar">
       <!-- Slot -->
       <template v-if="sessionSlot">
-        <SidebarItem :title="$t('deconf.session.slot')">
+        <SidebarItem
+          :title="$t('deconf.session.slot')"
+          class="sessionView-slot"
+        >
           <TimeSlot
             :slot-state="slotState"
             :start-date="sessionSlot.start"
@@ -76,7 +79,10 @@
 
       <!-- Countdown -->
       <template v-if="showCountdown">
-        <SidebarItem :title="$t('deconf.session.countdown')">
+        <SidebarItem
+          :title="$t('deconf.session.countdown')"
+          class="sessionView-countdown"
+        >
           <Countdown
             :current-date="scheduleDate"
             :target-date="sessionSlot.start"
@@ -86,7 +92,10 @@
 
       <!-- Link preview -->
       <template v-if="showLinkPreview && !canShowLinks">
-        <SidebarItem :title="$t('deconf.session.links')">
+        <SidebarItem
+          :title="$t('deconf.session.links')"
+          class="sessionView-links"
+        >
           <div class="notification is-warning">
             {{ $t('deconf.session.linkPreview') }}
           </div>
@@ -95,7 +104,10 @@
 
       <!-- Links -->
       <template v-if="showLinksSection">
-        <SidebarItem :title="$t('deconf.session.links')">
+        <SidebarItem
+          :title="$t('deconf.session.links')"
+          class="sessionView-links"
+        >
           <Stack direction="vertical" gap="regular" align="stretch">
             <slot name="beforeLinks" />
             <SecondaryEmbed v-if="secondaryLink" :link="secondaryLink.url" />
@@ -116,7 +128,10 @@
       <template
         v-if="showAttendance || showInterest || !loggedIn || showAddToCalendar"
       >
-        <SidebarItem :title="$t('deconf.session.actions')">
+        <SidebarItem
+          :title="$t('deconf.session.actions')"
+          class="sessionView-actions"
+        >
           <Stack direction="vertical" gap="regular" align="stretch">
             <AttendanceSection
               v-if="showAttendance"
@@ -149,7 +164,10 @@
 
       <!-- Speakers -->
       <template v-if="sessionSpeakers.length > 0">
-        <SidebarItem :title="$t('deconf.session.speakers')">
+        <SidebarItem
+          :title="$t('deconf.session.speakers')"
+          class="sessionView-speakers"
+        >
           <SpeakerGrid :speakers="sessionSpeakers" />
         </SidebarItem>
       </template>
