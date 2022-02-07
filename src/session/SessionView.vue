@@ -185,7 +185,8 @@ import {
   Theme,
   Localised,
   ScheduleRecord,
-  UserSessionAttendance
+  UserSessionAttendance,
+  Track
 } from '@openlab/deconf-shared';
 import { PropType } from 'vue';
 import {
@@ -301,8 +302,10 @@ export default {
     sessionType(): SessionType | null {
       return this.schedule.types.find(s => s.id === this.session.type) || null;
     },
-    sessionTrack(): SessionType | null {
-      return this.schedule.types.find(s => s.id === this.session.type) || null;
+    sessionTrack(): Track | null {
+      return (
+        this.schedule.tracks.find(s => s.id === this.session.track) || null
+      );
     },
     sessionSpeakers(): Speaker[] {
       const speakerMap = new Map(
