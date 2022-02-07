@@ -161,6 +161,22 @@
         <span>{{ $t('deconf.sessionEmbed.openSpatial') }}</span>
       </a>
     </div>
+
+    <!-- 
+      Anchor FM embed
+     -->
+    <div
+      class="primaryEmbed-anchorFm is-anchorFmEmbed"
+      v-else-if="parsed.kind === 'anchor-fm-embed'"
+    >
+      <iframe
+        :src="parsed.data"
+        height="98px"
+        width="400px"
+        frameborder="0"
+        scrolling="no"
+      ></iframe>
+    </div>
   </div>
 </template>
 
@@ -227,6 +243,24 @@ export default {
 .primaryEmbed {
 }
 .primaryEmbed-video {
+}
+.primaryEmbed-anchorFm {
+  height: 98px;
+  max-width: 650px;
+
+  background-color: $background;
+  border-radius: $radius;
+  overflow: hidden;
+
+  position: relative;
+
+  > iframe {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 .primaryEmbed-link {
   width: 100%;

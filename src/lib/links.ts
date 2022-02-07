@@ -21,7 +21,8 @@ export interface PrimaryLink {
     | 'panopto'
     | 'mozilla-hubs'
     | 'spatial-chat'
-    | 'twitch';
+    | 'twitch'
+    | 'anchor-fm-embed';
   data: string;
 }
 
@@ -113,6 +114,18 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     return {
       kind: 'twitch',
       data: pathSegments[0]
+    };
+  }
+
+  // https://anchor.fm/:username/embed/episodes/*
+  if (
+    isDomain(url, 'anchor.fm') &&
+    pathSegments[1] === 'embed' &&
+    pathSegments[2] === 'episodes'
+  ) {
+    return {
+      kind: 'anchor-fm-embed',
+      data: url.toString()
     };
   }
 

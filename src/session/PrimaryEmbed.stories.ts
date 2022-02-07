@@ -110,6 +110,12 @@ SpatialChat.args = {
   link: 'https://spatial.chat/s/MozFest2021'
 };
 
+export const AnchorFmEmbed = Template.bind({});
+AnchorFmEmbed.args = {
+  link:
+    'https://anchor.fm/letsgetlitical/embed/episodes/Google-tell-me-about-gender--AI--Do-the-gender-stereotypes-offline-replicate-themselves-online-featuring-Sapni-GK--Garnett-Achieng-Mozfest-e1d2ivd/a-a78hb45'
+};
+
 export const NoEmbed = Template.bind({});
 NoEmbed.args = {
   link: 'https://duck.com'
