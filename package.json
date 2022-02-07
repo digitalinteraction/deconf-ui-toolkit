@@ -1,6 +1,6 @@
 {
   "name": "@openlab/deconf-ui-toolkit",
-  "version": "2.14.1",
+  "version": "2.14.2",
   "browser": "dist/deconf-ui.esm.js",
   "module": "dist/deconf-ui.esm.js",
   "types": "dist/types/module.d.ts",
