@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.14.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.14.2...v2.14.3) (2022-02-07)
+
+
+### Bug Fixes
+
+* **session:** describe sidebar items with classes ([8fb281f](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/8fb281f3b0d78f0f888a2d792ebd2e2336e74e22))
+
 ### [2.14.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.14.1...v2.14.2) (2022-02-07)
 
 
