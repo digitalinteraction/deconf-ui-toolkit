@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.15.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.14.3...v2.15.0) (2022-02-07)
+
+
+### Features
+
+* **session:** add anchor-fm embed ([a288ef7](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/a288ef700c825ffb896233ed14bf74f2c8a59365))
+
+
+### Bug Fixes
+
+* **session:** track attribute shows correctly ([63000c2](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/63000c2523d872200bca8c92e498c9ef48b35f1b))
+
 ### [2.14.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.14.2...v2.14.3) (2022-02-07)
 
 
