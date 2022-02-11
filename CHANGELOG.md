@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.15.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.15.1...v2.15.2) (2022-02-11)
+
+
+### Bug Fixes
+
+* **core:** fix AppLoading not appearing when compiled ([53c9bd9](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/53c9bd94f7de10e5678e7baa31f78abfaef20be8))
+
 ### [2.15.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.15.0...v2.15.1) (2022-02-11)
 
 
