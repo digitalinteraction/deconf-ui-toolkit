@@ -57,10 +57,10 @@ export default {
 <style lang="scss">
 @keyframes appLoadingEnterance {
   from {
-    opacity: 0%;
+    opacity: 0;
   }
   to {
-    opacity: 100%;
+    opacity: 1;
   }
 }
 
