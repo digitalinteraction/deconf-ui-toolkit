@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.15.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.15.0...v2.15.1) (2022-02-11)
+
+
+### Bug Fixes
+
+* **lib:** decodeScheduleFilters returns null as expected when empty params passed ([98ea94f](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/98ea94fb815ff3ee8b9b5f13876c7110e8dc5f82))
+* revert decodeScheduleFilters and add decodeUrlScheduleFilters instead ([e73987e](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/e73987ea8ec466c763e3812b139530b121217c8a))
+
 ## [2.15.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.14.3...v2.15.0) (2022-02-07)
 
 
