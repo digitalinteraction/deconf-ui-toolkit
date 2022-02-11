@@ -272,7 +272,8 @@ export function encodeScheduleFilters(
 
 export function decodeScheduleFilters(
   input: Record<string, unknown>
-): ScheduleFilterRecord {
+): ScheduleFilterRecord | null {
+  if (Object.keys(input).length === 0) return null;
   return {
     viewMode: 'all',
     query: decoder.string(input.query) || '',
