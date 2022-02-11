@@ -270,10 +270,16 @@ export function encodeScheduleFilters(
   });
 }
 
-export function decodeScheduleFilters(
+export function decodeUrlScheduleFilters(
   input: Record<string, unknown>
 ): ScheduleFilterRecord | null {
   if (Object.keys(input).length === 0) return null;
+  return decodeScheduleFilters(input);
+}
+
+export function decodeScheduleFilters(
+  input: Record<string, unknown>
+): ScheduleFilterRecord {
   return {
     viewMode: 'all',
     query: decoder.string(input.query) || '',
