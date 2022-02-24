@@ -58,6 +58,39 @@
     </div>
 
     <!-- 
+      Anchor FM embed
+     -->
+    <div
+      class="primaryEmbed-video"
+      v-else-if="parsed.kind === 'anchor-fm-embed'"
+    >
+      <iframe
+        :src="parsed.data"
+        height="98px"
+        width="400px"
+        frameborder="0"
+        scrolling="no"
+      ></iframe>
+    </div>
+
+    <!--
+      Cinnamon video
+    -->
+    <div
+      class="primaryEmbed-video is-cinnamonVideo"
+      v-else-if="parsed.kind === 'cinnamon-video'"
+    >
+      <iframe
+        width="640"
+        height="360"
+        :src="`https://cinnamon.video/embed?v=${parsed.data}`"
+        frameborder="0"
+        allow="monetization; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <!-- 
       Microsoft Teams links
      -->
     <div class="primaryEmbed-link is-teams" v-else-if="parsed.kind === 'teams'">
@@ -160,22 +193,6 @@
         <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
         <span>{{ $t('deconf.sessionEmbed.openSpatial') }}</span>
       </a>
-    </div>
-
-    <!-- 
-      Anchor FM embed
-     -->
-    <div
-      class="primaryEmbed-anchorFm is-anchorFmEmbed"
-      v-else-if="parsed.kind === 'anchor-fm-embed'"
-    >
-      <iframe
-        :src="parsed.data"
-        height="98px"
-        width="400px"
-        frameborder="0"
-        scrolling="no"
-      ></iframe>
     </div>
   </div>
 </template>

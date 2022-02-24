@@ -116,6 +116,16 @@ AnchorFmEmbed.args = {
     'https://anchor.fm/letsgetlitical/embed/episodes/Google-tell-me-about-gender--AI--Do-the-gender-stereotypes-offline-replicate-themselves-online-featuring-Sapni-GK--Garnett-Achieng-Mozfest-e1d2ivd/a-a78hb45'
 };
 
+export const CinnamonVideoEmbed = Template.bind({});
+CinnamonVideoEmbed.args = {
+  link: 'https://cinnamon.video/embed?v=660791655456048824'
+};
+
+export const CinnamonWatchPage = Template.bind({});
+CinnamonWatchPage.args = {
+  link: 'https://cinnamon.video/watch?v=660791655456048824'
+};
+
 export const NoEmbed = Template.bind({});
 NoEmbed.args = {
   link: 'https://duck.com'

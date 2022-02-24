@@ -22,7 +22,8 @@ export interface PrimaryLink {
     | 'mozilla-hubs'
     | 'spatial-chat'
     | 'twitch'
-    | 'anchor-fm-embed';
+    | 'anchor-fm-embed'
+    | 'cinnamon-video';
   data: string;
 }
 
@@ -189,6 +190,20 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     return {
       kind: 'spatial-chat',
       data: url.toString()
+    };
+  }
+
+  // https://cinnamon.video/watch?v=660791655456048824
+  // https://cinnamon.video/embed?v=660791655456048824
+  if (
+    isDomain(url, 'cinnamon.video') &&
+    pathSegments.length === 1 &&
+    ['watch', 'embed'].includes(pathSegments[0]) &&
+    url.searchParams.has('v')
+  ) {
+    return {
+      kind: 'cinnamon-video',
+      data: url.searchParams.get('v') as string
     };
   }
 
