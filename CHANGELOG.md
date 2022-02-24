@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.16.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.15.2...v2.16.0) (2022-02-24)
+
+
+### Features
+
+* **session:** embed cinnamon videos ([7b30164](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/7b30164418190da8e28c2fcfd635675a52e928b5))
+
 ### [2.15.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.15.1...v2.15.2) (2022-02-11)
 
 
