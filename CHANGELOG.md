@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.16.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.16.1...v2.16.2) (2022-02-25)
+
+
+### Bug Fixes
+
+* **core:** stop AppLayout's header covering the page ([41c865d](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/41c865d34a2a877d5557049b4a97a90048819cc8))
+
 ### [2.16.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.16.0...v2.16.1) (2022-02-25)
 
 
