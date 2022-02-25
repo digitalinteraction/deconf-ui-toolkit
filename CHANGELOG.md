@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.16.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.16.0...v2.16.1) (2022-02-25)
+
+
+### Bug Fixes
+
+* **core:** allow AppLayout menu to scroll on mobile ([f2cd452](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/f2cd452718432090fd16682578d595466482e173))
+
 ## [2.16.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.15.2...v2.16.0) (2022-02-24)
 
 
