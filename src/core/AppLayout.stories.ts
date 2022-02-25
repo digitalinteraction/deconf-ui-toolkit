@@ -115,6 +115,6 @@ Mobile.args = {
   contentSize: 3
 };
 Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
+  viewport: { defaultViewport: 'mobile1' },
   layout: 'fullscreen'
 };

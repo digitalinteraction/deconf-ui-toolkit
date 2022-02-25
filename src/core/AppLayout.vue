@@ -91,10 +91,15 @@ $appLayout-navbarBackground: $white !default;
 }
 
 .appLayout-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: $z-appwrapper-navbar;
   background: $appLayout-navbarBackground;
+
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 @include desktop {
