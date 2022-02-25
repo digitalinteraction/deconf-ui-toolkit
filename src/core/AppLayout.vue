@@ -88,6 +88,7 @@ $appLayout-navbarBackground: $white !default;
   flex: 1;
   display: flex;
   flex-direction: column;
+  margin-block-start: $navbar-height;
 }
 
 .appLayout-header {
