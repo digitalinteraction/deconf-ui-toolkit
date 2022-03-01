@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.16.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.16.2...v2.16.3) (2022-03-01)
+
+
+### Bug Fixes
+
+* **schedule:** don't show filters with no options ([dc76eb3](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/dc76eb3b739ccdef0ffeaa1df1aba9f5e0b67532))
+
 ### [2.16.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.16.1...v2.16.2) (2022-02-25)
 
 
