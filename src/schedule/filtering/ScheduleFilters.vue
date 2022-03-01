@@ -40,7 +40,7 @@
       <!-- Date  -->
       <InlineFilter
         class="scheduleFilters-date"
-        v-if="isEnabled('date')"
+        v-if="isEnabled('date') && dateOptions.length > 0"
         :value="filters.date ? filters.date.toISOString() : null"
         @input="v => updateDateFilter(v)"
         :label="$t('deconf.scheduleFilters.dateFilter')"
@@ -50,7 +50,7 @@
 
       <!-- Session Type  -->
       <InlineFilter
-        v-if="isEnabled('sessionType')"
+        v-if="isEnabled('sessionType') && sessionTypeOptions.length > 0"
         class="scheduleFilters-type"
         :value="filters.sessionType"
         @input="v => updateFilter('sessionType', v)"
@@ -62,7 +62,7 @@
       <!-- Track -->
       <InlineFilter
         class="scheduleFilters-track"
-        v-if="isEnabled('track')"
+        v-if="isEnabled('track') && trackOptions.length > 0"
         :value="filters.track"
         @input="v => updateFilter('track', v)"
         :label="$t('deconf.scheduleFilters.trackFilter')"
@@ -73,7 +73,7 @@
       <!-- Theme -->
       <InlineFilter
         class="scheduleFilters-theme"
-        v-if="isEnabled('theme')"
+        v-if="isEnabled('theme') && themeOptions.length > 0"
         :value="filters.theme"
         @input="v => updateFilter('theme', v)"
         :label="$t('deconf.scheduleFilters.themeFilter')"
