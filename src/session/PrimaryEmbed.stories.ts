@@ -105,6 +105,11 @@ MozHubsShort.args = {
   link: 'https://hub.link/abcdefg'
 };
 
+export const MozHubsMozfest = Template.bind({});
+MozHubsMozfest.args = {
+  link: 'http://hubs.mozillafestival.org/abcdefg'
+};
+
 export const SpatialChat = Template.bind({});
 SpatialChat.args = {
   link: 'https://spatial.chat/s/MozFest2021'

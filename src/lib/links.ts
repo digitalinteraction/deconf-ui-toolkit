@@ -175,7 +175,11 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
-  if (isDomain(url, 'hubs.mozilla.com') || isDomain(url, 'hub.link')) {
+  if (
+    isDomain(url, 'hubs.mozilla.com') ||
+    isDomain(url, 'hub.link') ||
+    isDomain(url, 'hubs.mozillafestival.org')
+  ) {
     return {
       kind: 'mozilla-hubs',
       data: url.toString()
