@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.17.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.16.3...v2.17.0) (2022-03-09)
+
+
+### Features
+
+* **session:** add support for mozfest mozilla hubs links ([b6ef6d8](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/b6ef6d8cf1884522ceb0af1b94e20d4255fce29f))
+
 ### [2.16.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.16.2...v2.16.3) (2022-03-01)
 
 
