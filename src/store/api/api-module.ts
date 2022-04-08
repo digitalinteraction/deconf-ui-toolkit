@@ -1,5 +1,5 @@
 import { Module } from 'vuex';
-import { deepSeal, createStateMapper } from '../../lib/module';
+import { deepSeal, createStateMapper, pause } from '../../lib/module';
 import {
   Attendance,
   AuthToken,
@@ -8,6 +8,9 @@ import {
   ScheduleRecord
 } from '@openlab/deconf-shared';
 import { ApiState } from './api-state';
+import { DeconfApiClient } from '../../lib/api-client';
+
+const API_DELAY = 300;
 
 export interface ApiModuleState {
   schedule: null | ScheduleRecord;
@@ -93,6 +96,87 @@ export function createApiStoreModule(): ApiStoreModule {
     },
     actions: {
       // Let library-users provide the actions
+    }
+  };
+}
+
+/** @deprecated this will used in `createApiStoreModule` in the next major version */
+export function createApiStoreActions(
+  api: DeconfApiClient
+): ApiStoreModule['actions'] {
+  return {
+    //
+    // Conference
+    //
+    async fetchData({ commit }) {
+      const data = await api.getSchedule();
+      commit('schedule', data);
+      return data !== null;
+    },
+
+    //
+    // Registration
+    //
+    login(ctx, email) {
+      return api.startEmailLogin(email);
+    },
+    register(ctx, body) {
+      return api.startRegister(body);
+    },
+    unregister(ctx, body) {
+      return api.unregister();
+    },
+    async fetchProfile({ commit }) {
+      commit('profile', await api.getRegistration());
+    },
+
+    //
+    // Carbon
+    //
+    async fetchCarbon({ commit }) {
+      commit('carbon', await api.getCarbon());
+    },
+
+    //
+    // Conference
+    //
+    fetchLinks(ctx, sessionId) {
+      return api.getLinks(sessionId);
+    },
+
+    //
+    // Attendance
+    //
+    async attend({ dispatch }, sessionId) {
+      await api.attend(sessionId);
+      dispatch('fetchUserAttendance');
+      await pause(API_DELAY);
+    },
+    async unattend({ dispatch }, sessionId) {
+      await api.unattend(sessionId);
+      dispatch('fetchUserAttendance');
+      await pause(API_DELAY);
+    },
+    async fetchUserAttendance({ commit }) {
+      const result = await api.getUserAttendance();
+      commit('userAttendance', result?.attendance ?? []);
+    },
+    fetchSessionAttendance(ctx, sessionId) {
+      return api.getSessionAttendance(sessionId);
+    },
+
+    //
+    // Content
+    //
+    fetchContent(ctx, { slug }) {
+      return api.getContent(slug);
+    },
+
+    //
+    // Calendar
+    //
+    fetchUserCalendar() {
+      return api.createUserCalendar();
     }
   };
 }
