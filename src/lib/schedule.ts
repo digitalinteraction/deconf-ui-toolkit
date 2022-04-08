@@ -336,3 +336,12 @@ function stripNulls<T extends Record<string, unknown>>(
     Object.entries(input).filter(pair => pair[1] !== null)
   ) as NonNullRecord<T>;
 }
+
+export function getSlug(input: string): string {
+  return input
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/[^\w-]+/g, '');
+}
