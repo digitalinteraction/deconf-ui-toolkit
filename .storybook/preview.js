@@ -111,7 +111,8 @@ const actions = {
       <p>${CONTENT_PARAGRAPHS[1]}</p>
       <p><a href="https://duck.com">A link</a></p>
     `
-  })
+  }),
+  'api/fetchUserCalendar': () => 'https://duck.com'
 };
 Vue.prototype.$store = {
   state: {},
