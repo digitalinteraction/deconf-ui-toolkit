@@ -1,6 +1,8 @@
+import { ConferenceConfig, AuthToken, PageFlag } from '@openlab/deconf-shared';
+import VueRouter from 'vue-router';
+
 import { Routes } from './constants';
 import { AppRoute } from './types';
-import { ConferenceConfig, AuthToken } from '@openlab/deconf-shared';
 
 export function getDefaultRoutes(
   user: AuthToken | null,
@@ -55,4 +57,21 @@ export function getDefaultRoutes(
   }
 
   return routes;
+}
+
+/** Guard a route against a PageFlag unless an admin is visiting */
+export function guardRoute<T extends Record<string, PageFlag>>(
+  schedule: T | undefined,
+  key: keyof T,
+  user: AuthToken | null,
+  router: VueRouter
+): void {
+  if (user && user.user_roles.includes('admin')) return;
+  if (!schedule) return;
+
+  const flag = schedule[key];
+
+  if (!flag || flag.enabled !== true || flag.visible !== true) {
+    router.replace({ name: Routes.NotFound });
+  }
 }
