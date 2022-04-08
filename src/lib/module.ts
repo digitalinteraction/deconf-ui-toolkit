@@ -1,5 +1,3 @@
-// ...
-
 export * from './api';
 export * from './constants';
 export * from './countdowns';
@@ -8,6 +6,7 @@ export * from './debounce';
 export * from './deconf-plugin';
 export * from './deep-seal';
 export * from './dev-plugin';
+export * from './dialog-plugin';
 export * from './jwt';
 export * from './links';
 export * from './locales';
