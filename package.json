@@ -6,7 +6,10 @@
   "types": "dist/types/module.d.ts",
   "exports": {
     ".": "./dist/deconf-ui.esm.js",
-    "./*": "./dist/*.js"
+    "./*": {
+      "require": "./dist/*.cjs",
+      "default": "./dist/*"
+    }
   },
   "repository": "digitalinteraction/deconf-ui-toolkit",
   "license": "MIT",
