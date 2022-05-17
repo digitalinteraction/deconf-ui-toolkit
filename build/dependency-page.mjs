@@ -10,6 +10,7 @@ import dedent from 'dedent';
  *  i18n: string[],
  *  icons: string[],
  *  sass: string[],
+ *  events: string[],
  *  components: string[]
  *  notes: string[]
  * }} ComponentDefinition
@@ -31,6 +32,7 @@ async function main() {
       i18n: [],
       icons: [],
       sass: [],
+      events: [],
       components: [],
       notes: []
     };
@@ -49,6 +51,7 @@ async function main() {
       if (line.includes('// icons')) mode = 'icons';
       if (line.includes('// sass')) mode = 'sass';
       if (line.includes('// notes')) mode = 'notes';
+      if (line.includes('// events')) mode = 'events';
     }
 
     for (const match of file.matchAll(/components:\s+{([\w\W]+?)}/g)) {
@@ -60,7 +63,7 @@ async function main() {
       );
     }
 
-    for (const key of ['i18n', 'icons', 'sass', 'components', 'notes']) {
+    for (const key of Object.keys(result)) {
       if (result[key].length === 0) {
         result[key].push('n/a');
       }
@@ -94,6 +97,8 @@ async function main() {
         <ul>${listify(comp.icons)}</ul>
         <h3>sass</h3>
         <ul>${listify(comp.sass)}</ul>
+        <h3>events</h3>
+        <ul>${listify(comp.events)}</ul>
         <h3>components</h3>
         <ul>${comp.components.map(componentItem).join('')}</ul>
         <h3>notes</h3>
