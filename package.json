@@ -7,7 +7,7 @@
   "exports": {
     ".": "./dist/deconf-ui.esm.js",
     "./*": {
-      "require": "./dist/*.cjs",
+      "require": "./dist/*.js",
       "default": "./dist/*"
     }
   },
