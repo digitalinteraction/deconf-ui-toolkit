@@ -12,6 +12,7 @@ export { default as AppLoading } from './AppLoading.vue';
 export { default as BackButton } from './BackButton.vue';
 export { default as FullHeight } from './FullHeight.vue';
 export { default as FullScreenDialog } from './FullScreenDialog.vue';
+export { default as InlineMessage } from './InlineMessage.vue';
 export { default as NavigationBar } from './NavigationBar.vue';
 export { default as PageFooter } from './PageFooter.vue';
 export { default as SideTabs } from './SideTabs.vue';
