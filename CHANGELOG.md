@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.18.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.17.0...v2.18.0) (2022-05-17)
+
+
+### Features
+
+* add AppDialog ([357d20d](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/357d20dc64ec4c99b1dc615818f01738d1f070e3))
+* add DialogPlugin ([bbf54ca](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/bbf54cad381a2be31f799f2a595f391caafc4e30))
+* add getSlug to lib module ([4f93ac5](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/4f93ac51b581258d4f02e9f2183742884d72863c))
+* add guardRoute to lib module ([b69f127](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/b69f12753264bba44ae6365df7d21f9426c6cc02))
+* add PrivateCalendarCreator ([5e36265](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/5e36265d155e6e1e8052752ae4fa58b302f0457e))
+* **build:** show events in dependencies.html ([df28d81](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/df28d81c291cfd3f8c2a4b298c4d0f49d976f885))
+* **core:** add InlineMessage ([641f739](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/641f739a3c78696de1ac310d6eaa6384c27bef2c))
+* **schedule:** add FilteredScheduleView and associated library functions ([2f978e5](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/2f978e530395df48c9e5b7e2d514e79fe30be2ce))
+
+
+### Bug Fixes
+
+* improve package "exports" ([3f7acb5](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/3f7acb555c9013e5488392b32e10e72ca9fa4ac9))
+
 ## [2.17.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.16.3...v2.17.0) (2022-03-09)
 
 
