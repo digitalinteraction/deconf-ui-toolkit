@@ -17,7 +17,8 @@ export type DeconfEndpointRecord = Record<
 export const deconfDefaultEndpoints: DeconfEndpointRecord = {
   'AttendanceRoutes.attend': () => `attendance/:sessionId/attend`,
   'AttendanceRoutes.unattend': () => `attendance/:sessionId/unattend`,
-  'AttendanceRoutes.getSessionAttendance': () => `attendance/:sessionId`,
+  'AttendanceRoutes.getSessionAttendance': sessionId =>
+    `attendance/${sessionId}`,
   'AttendanceRoutes.getUserAttendance': () => `attendance/me`,
 
   'CarbonRoutes.getCarbon': () => `carbon/estimate`,
