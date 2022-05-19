@@ -100,7 +100,10 @@ export function createApiStoreModule(): ApiStoreModule {
   };
 }
 
-/** @deprecated this will used in `createApiStoreModule` in the next major version */
+/**
+ * @deprecated this will used in `createApiStoreModule` in the next major version
+ * @warning the `authenticate` action must still be implemented
+ */
 export function createApiStoreActions(
   api: DeconfApiClient
 ): ApiStoreModule['actions'] {

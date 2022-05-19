@@ -46,7 +46,6 @@ export const deconfDefaultEndpoints: DeconfEndpointRecord = {
 const jsonHeaders = { 'Content-Type': 'application/json' };
 
 interface DeconfApiClientOptions {
-  jwtIss?: string;
   endpointMap?: DeconfEndpointRecord;
 }
 
@@ -61,7 +60,7 @@ export class DeconfApiClient {
   //
   // Helpers
   //
-  setAuthToken(token: string): void {
+  setAuthToken(token: string | null): void {
     this.authToken = token;
   }
   applyAuthToken(init: RequestInit): void {
