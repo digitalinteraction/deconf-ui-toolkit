@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { PropType } from 'vue';
 import { ScheduleRecord, Session } from '@openlab/deconf-shared';
 import {
   decodeUrlScheduleFilters,
