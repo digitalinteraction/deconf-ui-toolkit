@@ -44,7 +44,6 @@ $heroCard-family: $family-sans-serif !default;
 .heroCard {
   background-size: cover;
   background-position: bottom;
-  border-bottom: 1px solid $border;
   border-radius: $radius;
   padding: 2.5rem;
 
