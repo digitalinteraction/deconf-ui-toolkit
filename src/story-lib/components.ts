@@ -52,7 +52,7 @@ export const MockAppLayout = Vue.extend({
           <BrandA />
         </div>
       </nav>
-      <div style="display: flex; min-height: 100vh; flex-direction: column">
+      <div style="display: flex; min-height: calc(100vh - 56px); flex-direction: column">
         <slot />
       </div>
     </div>
