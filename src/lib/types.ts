@@ -1,3 +1,6 @@
+import { Session } from '@openlab/deconf-shared';
+import { RawLocation } from 'vue-router';
+
 //
 // Normalised relative time to a slot
 //
@@ -49,4 +52,5 @@ export interface ScheduleConfig {
   tileAttributes: Array<
     'languages' | 'recorded' | 'track' | 'themes' | 'organisation'
   >;
+  getSessionRoute?(session: Session): RawLocation;
 }

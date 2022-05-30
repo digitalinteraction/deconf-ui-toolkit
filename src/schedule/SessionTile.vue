@@ -73,6 +73,7 @@ import {
   Theme,
   Track
 } from '@openlab/deconf-shared';
+import { RawLocation } from 'vue-router';
 
 //
 // i18n
@@ -135,7 +136,10 @@ export default {
     track(): Track {
       return lookup(this.schedule.tracks, this.session.track);
     },
-    sessionRoute(): unknown {
+    sessionRoute(): RawLocation {
+      if (this.config.getSessionRoute) {
+        return this.config.getSessionRoute(this.session);
+      }
       return { name: Routes.Session, params: { sessionId: this.session.id } };
     },
     sessionSpeakers(): Speaker[] {
