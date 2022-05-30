@@ -11,14 +11,14 @@ const sassBlock = (name, inner) =>
   [`/*\n  START ${name}\n*/`, inner, `/*\n  END ${name}\n*/`].join('\n');
 
 /** @returns {import("rollup").PluginHooks} */
-export default function(options = {}) {
+export default function (options = {}) {
   const {
     filename = 'theme.scss',
     include = ['/**/*.css', '/**/*.scss', '/**/*.sass'],
     exclude,
     prependData = null,
     copyFiles = [],
-    appendData = null
+    appendData = null,
   } = options;
 
   const filter = createFilter(include, exclude);
@@ -54,7 +54,7 @@ export default function(options = {}) {
           this.emitFile({
             type: 'asset',
             fileName: output,
-            source: fs.readFileSync(input, 'utf8')
+            source: fs.readFileSync(input, 'utf8'),
           });
         }
       }
@@ -75,8 +75,8 @@ export default function(options = {}) {
       this.emitFile({
         type: 'asset',
         fileName: filename,
-        source: components.join(sassSeperator)
+        source: components.join(sassSeperator),
       });
-    }
+    },
   };
 }

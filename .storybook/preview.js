@@ -16,7 +16,7 @@ setupFontawesome();
 // Stub out vue-router
 //
 Vue.prototype.$router = {
-  resolve: () => ({ href: '#' })
+  resolve: () => ({ href: '#' }),
 };
 Vue.component('router-link', {
   props: ['to', 'activeClass'],
@@ -25,21 +25,21 @@ Vue.component('router-link', {
     log() {
       const route = this.to;
       action(`[router] ${route.name || route}`)(route.params);
-    }
-  }
+    },
+  },
 });
 
 function templated(template, params) {
-  const regexes = Object.keys(params).map(key => [
+  const regexes = Object.keys(params).map((key) => [
     new RegExp(`{\\s*${key}\\s*}`, 'g'),
-    params[key]
+    params[key],
   ]);
   let output = template;
   for (const [regex, value] of regexes) output = output.replace(regex, value);
   return output;
 }
 function counted(template, count) {
-  const [none, singlur, plural] = template.split('|').map(s => s.trim());
+  const [none, singlur, plural] = template.split('|').map((s) => s.trim());
 
   const params = { count, n: count };
   if (count === 0) return templated(none, params);
@@ -64,7 +64,7 @@ Vue.prototype.$i18n = {
     if (match) return counted(match, count);
 
     return `{{ "${key}" count=${count} }}`;
-  }
+  },
 };
 Vue.prototype.$t = Vue.prototype.$i18n.t;
 Vue.prototype.$tc = Vue.prototype.$i18n.tc;
@@ -74,10 +74,10 @@ Vue.prototype.$tc = Vue.prototype.$i18n.tc;
 //
 const attendance = new Set();
 const actions = {
-  'api/login': payload => payload.includes('@'),
-  'api/register': payload => payload.email.includes('@'),
-  'api/unregister': payload => true,
-  'api/fetchLinks': sessionId => {
+  'api/login': (payload) => payload.includes('@'),
+  'api/register': (payload) => payload.email.includes('@'),
+  'api/unregister': (payload) => true,
+  'api/fetchLinks': (sessionId) => {
     if (!attendance.has(sessionId)) return { links: null };
     return {
       links: [
@@ -86,22 +86,22 @@ const actions = {
         {
           type: '',
           url: 'https://vimeo.com/live-chat/622215885/',
-          language: 'en'
+          language: 'en',
         },
         { type: '', url: 'https://miro.com/en', language: 'en' },
         { type: '', url: 'https://miro.com/fr', language: 'fr' },
-        { type: '', url: 'https://docs.google.com/abcdef', language: 'en' }
-      ]
+        { type: '', url: 'https://docs.google.com/abcdef', language: 'en' },
+      ],
     };
   },
-  'api/fetchSessionAttendance': sessionId => ({
+  'api/fetchSessionAttendance': (sessionId) => ({
     isAttending: attendance.has(sessionId),
-    sessionCount: 14
+    sessionCount: 14,
   }),
-  'api/attend': sessionId => {
+  'api/attend': (sessionId) => {
     attendance.add(sessionId);
   },
-  'api/unattend': sessionId => {
+  'api/unattend': (sessionId) => {
     attendance.delete(sessionId);
   },
   'api/fetchContent': ({ slug }) => ({
@@ -110,14 +110,14 @@ const actions = {
       <div id="featured_thing"></div>
       <p>${CONTENT_PARAGRAPHS[1]}</p>
       <p><a href="https://duck.com">A link</a></p>
-    `
+    `,
   }),
-  'api/fetchUserCalendar': () => 'https://duck.com'
+  'api/fetchUserCalendar': () => 'https://duck.com',
 };
 Vue.prototype.$store = {
   state: {},
   getters: {
-    'api/calendarLink': session => `/ical/${session.id}`
+    'api/calendarLink': (session) => `/ical/${session.id}`,
   },
   commit(key, value) {
     action(`[vuex commit] ${key}`)(value);
@@ -126,8 +126,8 @@ Vue.prototype.$store = {
     action(`[vuex dispatch] ${key}`)(value);
     const result = actions[key] ? actions[key](value) : undefined;
 
-    return new Promise(resolve => setTimeout(() => resolve(result)), 1000);
-  }
+    return new Promise((resolve) => setTimeout(() => resolve(result)), 1000);
+  },
 };
 
 //
@@ -146,9 +146,9 @@ Vue.prototype.$deconf = {
   },
   closeDialog() {
     action(`[close dialog]`)();
-  }
+  },
 };
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' }
+  actions: { argTypesRegex: '^on[A-Z].*' },
 };

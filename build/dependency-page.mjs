@@ -34,7 +34,7 @@ async function main() {
       sass: [],
       events: [],
       components: [],
-      notes: []
+      notes: [],
     };
 
     let mode = null;
@@ -58,8 +58,8 @@ async function main() {
       result.components = result.components.concat(
         match[1]
           .split(',')
-          .map(c => c.trim())
-          .filter(c => c)
+          .map((c) => c.trim())
+          .filter((c) => c)
       );
     }
 
@@ -77,17 +77,17 @@ async function main() {
     return;
   }
 
-  const listify = input =>
-    input.map(str => `<li><code>${str}</code></li>`).join('');
+  const listify = (input) =>
+    input.map((str) => `<li><code>${str}</code></li>`).join('');
 
-  const componentItem = component => {
+  const componentItem = (component) => {
     return component !== 'n/a' && component !== 'FontAwesomeIcon'
       ? `<li><a href="#${component}">${component}</a></li>`
       : `<li>${component}</li>`;
   };
   const title = 'Deconf Component Dependencies';
   const componentHtml = output.map(
-    comp => dedent`
+    (comp) => dedent`
       <article id="${comp.name}">
         <h2><a href="#${comp.name}">#</a> ${comp.name}</h2>
         <pre>${comp.path}</pre>
@@ -147,7 +147,7 @@ async function main() {
   console.log(html);
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error(error);
   process.exit(1);
 });

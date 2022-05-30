@@ -33,9 +33,9 @@ async function main() {
 
   // Load the prepend files first and convert into components (scss strings)
   const components = await Promise.all(
-    prependFiles.map(async filename => ({
+    prependFiles.map(async (filename) => ({
       name: filename,
-      code: await fs.promises.readFile(filename, 'utf8')
+      code: await fs.promises.readFile(filename, 'utf8'),
     }))
   );
 
@@ -70,7 +70,7 @@ async function main() {
 //
 // Run the main function and log any errors
 //
-main().catch(error => {
+main().catch((error) => {
   console.error(error);
   process.exit(1);
 });

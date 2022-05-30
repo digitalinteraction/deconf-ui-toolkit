@@ -11,10 +11,10 @@ module.exports = {
         sassLoaderOptions: {
           prependData: `
             @import "~@/scss/common.scss";
-          `
-        }
-      }
-    }
+          `,
+        },
+      },
+    },
   ],
   webpackFinal: async (config, { configType }) => {
     //
@@ -22,9 +22,9 @@ module.exports = {
     //
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname, '../src')
+      '@': path.resolve(__dirname, '../src'),
     };
 
     return config;
-  }
+  },
 };
