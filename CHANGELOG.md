@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.19.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.18.1...v2.19.0) (2022-05-30)
+
+
+### Features
+
+* **schedule:** optionally allow custom session routes in ScheduleConfig ([04c9851](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/04c9851a06c13960896bd020f746ffca4883a275))
+
+
+### Bug Fixes
+
+* **lib:** fix api-client getSessionAttendance URL ([7335400](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/7335400d8d927265010ae02f8ef8241ce3c8b60b))
+* remove broken style ([bb210d7](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/bb210d7fd212c33efb6db546f2708729caa19d26))
+
 ### [2.18.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.18.0...v2.18.1) (2022-05-19)
 
 
