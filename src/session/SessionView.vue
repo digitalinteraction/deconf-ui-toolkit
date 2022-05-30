@@ -12,6 +12,8 @@
 
     <!-- Main bit -->
     <div slot="main" class="sessionView-main">
+      <slot name="beforeHeader" />
+
       <!-- Session header -->
       <div class="sessionView-header">
         <SessionHeader v-if="sessionType" :session-type="sessionType" />
@@ -251,6 +253,16 @@ const LANGUAGES: Record<string, string | undefined> = {
 // - $sessionView-titleSize
 // - $sessionView-titleWeight
 // - $sessionView-titleFamily
+//
+// slots
+// - afterAttributes
+// - afterContent
+// - afterEmbed
+// - afterLinks
+// - backButton
+// - beforeHeader
+// - beforeLinks
+// - content
 //
 
 interface Data {
@@ -523,11 +535,8 @@ $sessionView-titleFamily: $family-title !default;
   line-height: 1;
 }
 
-.sessionView-header,
-.sessionView-title,
-.sessionView-embed,
-.sessionView-attributes,
-.sessionView-langWarning {
-  padding-bottom: 1rem;
+.sessionView-main > * + *,
+.sessionView-sidebar > * + * {
+  margin-top: 1rem;
 }
 </style>
