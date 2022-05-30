@@ -100,7 +100,7 @@ import {
   loadScheduleFilters,
   encodeScheduleFilters,
   scheduleComputed,
-  ScheduleConfig
+  ScheduleConfig,
 } from '../lib/module';
 import ScheduleFilters from './filtering/ScheduleFilters.vue';
 import StickyHeading from './StickyHeading.vue';
@@ -142,7 +142,7 @@ export default {
     StickyHeading,
     ScheduleBlock,
     NoResults,
-    SegmentControl
+    SegmentControl,
   },
   props: {
     schedule: { type: Object as PropType<ScheduleRecord>, required: true },
@@ -150,37 +150,37 @@ export default {
     filtersKey: { type: String, required: true },
     enabledFilters: {
       type: Array as PropType<Array<keyof ScheduleFilterRecord>>,
-      default: undefined
+      default: undefined,
     },
     userSessions: {
       type: Array as PropType<string[]>,
-      required: true
+      required: true,
     },
     config: {
       type: Object as PropType<ScheduleConfig>,
-      required: true
+      required: true,
     },
     scheduleDate: {
       type: Date as PropType<Date>,
-      required: true
+      required: true,
     },
     isDuringConference: {
       type: Boolean,
-      required: true
+      required: true,
     },
     languageOptions: {
       type: Array as PropType<SelectOption[]>,
-      default: () => []
+      default: () => [],
     },
     urlFilters: {
       type: Object as PropType<ScheduleFilterRecord | null>,
-      default: null
-    }
+      default: null,
+    },
   },
   data(): Data {
     return {
       showPastSessions: false,
-      filters: this.urlFilters || loadScheduleFilters(this.filtersKey)
+      filters: this.urlFilters || loadScheduleFilters(this.filtersKey),
     };
   },
   computed: {
@@ -196,9 +196,9 @@ export default {
     viewModeOptions(): SelectOption[] {
       return [
         { value: 'all', text: this.$t('deconf.schedule.allSessions') },
-        { value: 'user', text: this.$t('deconf.schedule.userSessions') }
+        { value: 'user', text: this.$t('deconf.schedule.userSessions') },
       ];
-    }
+    },
   },
   methods: {
     onFilter(filters: ScheduleFilterRecord) {
@@ -213,8 +213,8 @@ export default {
     },
     togglePastSessions() {
       this.showPastSessions = !this.showPastSessions;
-    }
-  }
+    },
+  },
 };
 </script>
 

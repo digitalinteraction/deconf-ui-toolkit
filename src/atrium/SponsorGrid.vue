@@ -31,8 +31,8 @@ export default {
   name: 'SponsorGrid',
   components: { SponsorRow },
   props: {
-    groups: { type: Array as PropType<SponsorGroup[]>, required: true }
-  }
+    groups: { type: Array as PropType<SponsorGroup[]>, required: true },
+  },
 };
 </script>
 

@@ -28,7 +28,7 @@ export class DialogPlugin {
 
   constructor(Vue: typeof _Vue) {
     this._vm = new Vue({
-      data: { component: null, props: {} }
+      data: { component: null, props: {} },
     });
   }
 

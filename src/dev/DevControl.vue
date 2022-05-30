@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable vue/no-mutating-props -->
   <div class="devControl" v-if="devPlugin.isEnabled || forceEnable">
     <button
       class="button devControl-toggle"
@@ -173,6 +174,8 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable vue/no-mutating-props */
+
 import { PropType } from 'vue';
 import { DevPlugin, SlotState } from '../lib/module';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -241,7 +244,7 @@ const trackingSpeeds: Record<TrackingSpeed, number> = {
   backward: -200,
   play: 1,
   forward: 200,
-  fastForward: 1000
+  fastForward: 1000,
 };
 
 interface Data {
@@ -256,13 +259,13 @@ export default {
   components: { FontAwesomeIcon },
   data(): Data {
     return {
-      tracking: null
+      tracking: null,
     };
   },
   props: {
     devPlugin: { type: Object as PropType<DevPlugin>, required: true },
     forceEnable: { type: Boolean, default: false },
-    controls: { type: Array, default: () => ['slotState', 'scheduleDate'] }
+    controls: { type: Array, default: () => ['slotState', 'scheduleDate'] },
   },
   computed: {
     slotStateIsEnabled(): boolean {
@@ -280,15 +283,15 @@ export default {
         date: [
           scheduleDate.getFullYear(),
           padStart(scheduleDate.getMonth() + 1),
-          padStart(scheduleDate.getDate())
+          padStart(scheduleDate.getDate()),
         ].join('-'),
         time: [
           padStart(scheduleDate.getHours()),
           padStart(scheduleDate.getMinutes()),
-          padStart(scheduleDate.getSeconds())
-        ].join(':')
+          padStart(scheduleDate.getSeconds()),
+        ].join(':'),
       };
-    }
+    },
   },
   methods: {
     toggleExpanded(): void {
@@ -356,13 +359,13 @@ export default {
     trackClasses(/*speed: TrackingSpeed*/) {
       return {
         button: true,
-        'is-primary': true
+        'is-primary': true,
       };
-    }
+    },
   },
   destroyed() {
     this.stopTracking();
-  }
+  },
 };
 </script>
 

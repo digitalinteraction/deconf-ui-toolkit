@@ -6,7 +6,7 @@ import {
   SessionLinks,
   UserAttendance,
   UserRegistration,
-  UserSessionAttendance
+  UserSessionAttendance,
 } from '@openlab/deconf-shared';
 
 export type DeconfEndpointRecord = Record<
@@ -17,31 +17,32 @@ export type DeconfEndpointRecord = Record<
 export const deconfDefaultEndpoints: DeconfEndpointRecord = {
   'AttendanceRoutes.attend': () => `attendance/:sessionId/attend`,
   'AttendanceRoutes.unattend': () => `attendance/:sessionId/unattend`,
-  'AttendanceRoutes.getSessionAttendance': sessionId =>
+  'AttendanceRoutes.getSessionAttendance': (sessionId) =>
     `attendance/${sessionId}`,
   'AttendanceRoutes.getUserAttendance': () => `attendance/me`,
 
   'CarbonRoutes.getCarbon': () => `carbon/estimate`,
 
-  'CalendarRoutes.getSessionIcsFile': sessionId => `calendar/ical/${sessionId}`,
-  'CalendarRoutes.getGoogleCalendarUrl': sessionId =>
+  'CalendarRoutes.getSessionIcsFile': (sessionId) =>
+    `calendar/ical/${sessionId}`,
+  'CalendarRoutes.getGoogleCalendarUrl': (sessionId) =>
     `calendar/google/${sessionId}`,
-  'CalendarRoutes.getUserIcs': token => `calendar/me/${token}`,
+  'CalendarRoutes.getUserIcs': (token) => `calendar/me/${token}`,
   'CalendarRoutes.createUserCalendar': () => `calendar/me`,
 
-  'ConferenceRoutes.generateIcs': sessionId => `schedule/${sessionId}/ics`,
+  'ConferenceRoutes.generateIcs': (sessionId) => `schedule/${sessionId}/ics`,
   'ConferenceRoutes.getSchedule': () => `schedule`,
-  'ConferenceRoutes.getLinks': sessionId => `schedule/${sessionId}/links`,
+  'ConferenceRoutes.getLinks': (sessionId) => `schedule/${sessionId}/links`,
   'ConferenceRoutes.lintSessions': () => 'schedule/lint',
 
-  'ContentRoutes.getContent': slug => `content/${slug}`,
+  'ContentRoutes.getContent': (slug) => `content/${slug}`,
 
   'RegistrationRoutes.getRegistration': () => `auth/me`,
   'RegistrationRoutes.startEmailLogin': () => `auth/login`,
-  'RegistrationRoutes.finishEmailLogin': token => `auth/login/${token}`,
+  'RegistrationRoutes.finishEmailLogin': (token) => `auth/login/${token}`,
   'RegistrationRoutes.startRegister': () => `auth/register`,
-  'RegistrationRoutes.finishRegister': token => `auth/register/${token}`,
-  'RegistrationRoutes.unregister': () => `auth/unregister`
+  'RegistrationRoutes.finishRegister': (token) => `auth/register/${token}`,
+  'RegistrationRoutes.unregister': () => `auth/unregister`,
 };
 
 const jsonHeaders = { 'Content-Type': 'application/json' };
@@ -79,7 +80,7 @@ export class DeconfApiClient {
   async fetch(endpoint: string, init: RequestInit = {}): Promise<boolean> {
     this.applyAuthToken(init);
     return fetch(new URL(endpoint, this.baseUrl).toString(), init).then(
-      r => r.ok
+      (r) => r.ok
     );
   }
   async fetchJson<T>(
@@ -88,8 +89,8 @@ export class DeconfApiClient {
   ): Promise<T | null> {
     this.applyAuthToken(init);
     return fetch(new URL(endpoint, this.baseUrl).toString(), init).then(
-      r => r.json() as Promise<T>,
-      error => (console.error(error), null)
+      (r) => r.json() as Promise<T>,
+      (error) => (console.error(error), null)
     );
   }
 
@@ -98,7 +99,7 @@ export class DeconfApiClient {
   //
   attend(sessionId: string): Promise<boolean> {
     return this.fetch(this.getEndpoint('AttendanceRoutes.attend', sessionId), {
-      method: 'POST'
+      method: 'POST',
     });
   }
   unattend(sessionId: string): Promise<boolean> {
@@ -167,14 +168,14 @@ export class DeconfApiClient {
     return this.fetch(this.getEndpoint('RegistrationRoutes.startEmailLogin'), {
       method: 'POST',
       body: JSON.stringify({ email }),
-      headers: { ...jsonHeaders }
+      headers: { ...jsonHeaders },
     });
   }
   startRegister(body: Record<string, unknown>): Promise<boolean> {
     return this.fetch(this.getEndpoint('RegistrationRoutes.startRegister'), {
       method: 'POST',
       body: JSON.stringify(body),
-      headers: { ...jsonHeaders }
+      headers: { ...jsonHeaders },
     });
   }
   unregister(): Promise<boolean> {

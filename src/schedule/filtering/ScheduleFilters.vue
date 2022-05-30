@@ -42,7 +42,7 @@
         class="scheduleFilters-date"
         v-if="isEnabled('date') && dateOptions.length > 0"
         :value="filters.date ? filters.date.toISOString() : null"
-        @input="v => updateDateFilter(v)"
+        @input="(v) => updateDateFilter(v)"
         :label="$t('deconf.scheduleFilters.dateFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="dateOptions"
@@ -53,7 +53,7 @@
         v-if="isEnabled('sessionType') && sessionTypeOptions.length > 0"
         class="scheduleFilters-type"
         :value="filters.sessionType"
-        @input="v => updateFilter('sessionType', v)"
+        @input="(v) => updateFilter('sessionType', v)"
         :label="$t('deconf.scheduleFilters.typeFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="sessionTypeOptions"
@@ -64,7 +64,7 @@
         class="scheduleFilters-track"
         v-if="isEnabled('track') && trackOptions.length > 0"
         :value="filters.track"
-        @input="v => updateFilter('track', v)"
+        @input="(v) => updateFilter('track', v)"
         :label="$t('deconf.scheduleFilters.trackFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="trackOptions"
@@ -75,7 +75,7 @@
         class="scheduleFilters-theme"
         v-if="isEnabled('theme') && themeOptions.length > 0"
         :value="filters.theme"
-        @input="v => updateFilter('theme', v)"
+        @input="(v) => updateFilter('theme', v)"
         :label="$t('deconf.scheduleFilters.themeFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="themeOptions"
@@ -86,7 +86,7 @@
         class="scheduleFilters-language"
         v-if="isEnabled('language') && languageOptions.length > 0"
         :value="filters.language"
-        @input="v => updateFilter('language', v)"
+        @input="(v) => updateFilter('language', v)"
         :label="$t('deconf.scheduleFilters.languageFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="languageOptions"
@@ -97,7 +97,7 @@
         class="scheduleFilters-recorded"
         v-if="isEnabled('isRecorded')"
         :value="filters.isRecorded"
-        @input="v => updateFilter('isRecorded', v)"
+        @input="(v) => updateFilter('isRecorded', v)"
         :label="$t('deconf.scheduleFilters.recordedFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="recordedOptions"
@@ -124,7 +124,7 @@ import {
   friendlyDate,
   localiseFromObject,
   debounce,
-  Debounced
+  Debounced,
 } from '../../lib/module';
 import InlineFilter from './InlineFilter.vue';
 import { FilterOption } from './filter-option';
@@ -144,7 +144,7 @@ const DEFAULT_FILTERS: FilterKey[] = [
   'theme',
   'date',
   'isRecorded',
-  'language'
+  'language',
 ];
 
 //
@@ -181,62 +181,62 @@ export default {
   props: {
     schedule: {
       type: Object as PropType<ScheduleRecord>,
-      required: true
+      required: true,
     },
     filters: {
       type: Object as PropType<ScheduleFilterRecord>,
-      required: true
+      required: true,
     },
     enabledFilters: {
       type: Array as PropType<FilterKey[]>,
-      default: () => DEFAULT_FILTERS
+      default: () => DEFAULT_FILTERS,
     },
     languageOptions: {
       type: Array as PropType<SelectOption[]>,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   data(): Data {
     return {
       showExtraFilters: false,
-      queryHandler: null
+      queryHandler: null,
     };
   },
   computed: {
     dateOptions(): FilterOption[] {
       const dates = new Map(
-        this.schedule.slots.map(s => [
+        this.schedule.slots.map((s) => [
           startOfDay(s.start).toISOString(),
-          s.start
+          s.start,
         ])
       );
       return [...dates.entries()].map(([start, date]) => ({
         value: start,
-        text: friendlyDate(date)
+        text: friendlyDate(date),
       }));
     },
     sessionTypeOptions(): FilterOption[] {
-      return this.schedule.types.map(t => ({
+      return this.schedule.types.map((t) => ({
         value: t.id,
-        text: this.localise(t.title) as string
+        text: this.localise(t.title) as string,
       }));
     },
     trackOptions(): FilterOption[] {
-      return this.schedule.tracks.map(t => ({
+      return this.schedule.tracks.map((t) => ({
         value: t.id,
-        text: this.localise(t.title) as string
+        text: this.localise(t.title) as string,
       }));
     },
     themeOptions(): FilterOption[] {
-      return this.schedule.themes.map(t => ({
+      return this.schedule.themes.map((t) => ({
         value: t.id,
-        text: this.localise(t.title) as string
+        text: this.localise(t.title) as string,
       }));
     },
     recordedOptions(): FilterOption[] {
       return [
         { value: true, text: this.$t('deconf.scheduleFilters.yes') as string },
-        { value: false, text: this.$t('deconf.scheduleFilters.no') as string }
+        { value: false, text: this.$t('deconf.scheduleFilters.no') as string },
       ];
     },
     hasFilters(): boolean {
@@ -253,7 +253,7 @@ export default {
     },
     enabledFiltersSet(): Set<FilterKey> {
       return new Set(this.enabledFilters);
-    }
+    },
   },
   mounted() {
     this.showExtraFilters = this.showExtraFilters || this.hasFilters;
@@ -273,6 +273,7 @@ export default {
       key: K,
       newValue: ScheduleFilterRecord[K]
     ) {
+      // eslint-disable-next-line vue/no-mutating-props
       this.filters[key] = newValue;
       this.$emit('filter', this.filters);
     },
@@ -287,6 +288,7 @@ export default {
     },
     clearFilters(): void {
       this.showExtraFilters = false;
+      /* eslint-disable vue/no-mutating-props */
       this.filters.query = '';
       this.filters.sessionType = null;
       this.filters.track = null;
@@ -294,6 +296,7 @@ export default {
       this.filters.date = null;
       this.filters.isRecorded = null;
       this.filters.language = null;
+      /* eslint-enable vue/no-mutating-props */
       this.$emit('filter', this.filters);
     },
     onQuery(e: InputEvent): void {
@@ -302,8 +305,8 @@ export default {
     },
     isEnabled(filterName: FilterKey) {
       return this.enabledFiltersSet.has(filterName);
-    }
-  }
+    },
+  },
 };
 </script>
 

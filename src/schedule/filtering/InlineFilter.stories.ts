@@ -4,14 +4,14 @@ import type { FilterOption } from './filter-option';
 
 export default {
   title: 'Schedule/InlineFilter',
-  component: InlineFilter
+  component: InlineFilter,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { InlineFilter },
   props: ['label', 'offLabel', 'options'],
   data: () => ({
-    value: null
+    value: null,
   }),
   template: `
     <InlineFilter
@@ -20,7 +20,7 @@ const Template: Story = (args, { argTypes }) => ({
       :off-label="offLabel"
       :options="options"
     />
-  `
+  `,
 });
 
 export const Default = Template.bind({});
@@ -30,7 +30,7 @@ Default.args = {
   options: [
     { text: 'Option A', value: 'OptionA' },
     { text: 'Option B', value: 'OptionB' },
-    { text: 'Option C', value: 'OptionC' }
-  ] as FilterOption[]
+    { text: 'Option C', value: 'OptionC' },
+  ] as FilterOption[],
 };
 Default.parameters = {};

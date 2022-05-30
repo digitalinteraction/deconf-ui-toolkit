@@ -12,17 +12,17 @@ export default {
     width: {
       control: {
         type: 'select',
-        options: ['regular', 'medium', 'large']
-      }
-    }
-  }
+        options: ['regular', 'medium', 'large'],
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { UtilLayout, Content, BrandA, LanguageControl, BackButton },
   props: ['width'],
   data: () => ({
-    homeRoute: { name: 'HOME' }
+    homeRoute: { name: 'HOME' },
   }),
   template: `
     <UtilLayout :home-route="homeRoute" :width="width">
@@ -34,20 +34,20 @@ const Template: Story = (args, { argTypes }) => ({
       </div>
       <LanguageControl slot="languageControl" />
     </UtilLayout>
-  `
+  `,
 });
 
 export const Desktop = Template.bind({});
 Desktop.args = {
-  width: 'regular'
+  width: 'regular',
 };
 Desktop.parameters = { layout: 'fullscreen' };
 
 export const Mobile = Template.bind({});
 Mobile.args = {
-  width: 'regular'
+  width: 'regular',
 };
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 };

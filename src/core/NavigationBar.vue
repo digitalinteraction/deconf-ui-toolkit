@@ -147,7 +147,7 @@ export default {
   components: { FontAwesomeIcon },
   data() {
     return {
-      isShowingMenu: false
+      isShowingMenu: false,
     };
   },
   props: {
@@ -158,13 +158,13 @@ export default {
     languages: { type: Array as PropType<SelectOption[]>, default: null },
     links: {
       type: Array as PropType<NavLink[]>,
-      default: () => ['login', 'register', 'interpret', 'profile']
-    }
+      default: () => ['login', 'register', 'interpret', 'profile'],
+    },
   },
   computed: {
     activeClasses(): unknown {
       return {
-        'is-active': this.isShowingMenu
+        'is-active': this.isShowingMenu,
       };
     },
     homeRoute(): Location {
@@ -181,7 +181,7 @@ export default {
     },
     registerRoute(): Location {
       return { name: Routes.Register };
-    }
+    },
   },
   methods: {
     toggleMenu(): void {
@@ -189,8 +189,8 @@ export default {
     },
     showLink(link: string) {
       return this.links.includes(link);
-    }
-  }
+    },
+  },
 };
 </script>
 

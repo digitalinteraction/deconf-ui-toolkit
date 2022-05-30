@@ -7,7 +7,7 @@ export const BrandA = Vue.extend({
       width="160"
       height="28"
     />
-  `
+  `,
 });
 
 export const BrandB = Vue.extend({
@@ -17,7 +17,7 @@ export const BrandB = Vue.extend({
       width="110"
       height="28"
     />
-  `
+  `,
 });
 
 export const BrandC = Vue.extend({
@@ -27,7 +27,7 @@ export const BrandC = Vue.extend({
       width="64"
       height="64"
     />
-  `
+  `,
 });
 
 export const LanguageControl = Vue.extend({
@@ -40,7 +40,7 @@ export const LanguageControl = Vue.extend({
         <option>AR</option>
       </select>
     </div>
-  `
+  `,
 });
 
 export const MockAppLayout = Vue.extend({
@@ -56,7 +56,7 @@ export const MockAppLayout = Vue.extend({
         <slot />
       </div>
     </div>
-  `
+  `,
 });
 
 export const TabIcon = Vue.extend({
@@ -64,5 +64,5 @@ export const TabIcon = Vue.extend({
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" width="128" height="128" viewBox="0, 0, 128, 128">
       <path d="M64,6.007 L69.357,15.286 L95.75,61 L122.143,106.714 L127.5,115.993 L0.5,115.993 L5.857,106.714 L32.25,61 L58.643,15.286 L64,6.007 z M64,30.751 L42.964,67.186 L21.928,103.621 L106.072,103.621 L64,30.751 z" fill="currentColor"/>
     </svg>
-  `
+  `,
 });

@@ -19,7 +19,7 @@
 //
 
 export default {
-  name: 'ScheduleHeader'
+  name: 'ScheduleHeader',
 };
 </script>
 

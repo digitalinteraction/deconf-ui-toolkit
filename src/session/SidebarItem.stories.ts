@@ -4,7 +4,7 @@ import { Content } from '../story-lib/module';
 
 export default {
   title: 'Session/SidebarItem',
-  component: SidebarItem
+  component: SidebarItem,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -22,7 +22,7 @@ const Template: Story = (args, { argTypes }) => ({
         <Content :size="1" />
       </SidebarItem>
     </div>
-  `
+  `,
 });
 
 export const Default = Template.bind({});

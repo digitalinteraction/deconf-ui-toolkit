@@ -37,7 +37,7 @@ import { localiseFromObject } from '../lib/locales';
 export default {
   name: 'SpeakerDialog',
   props: {
-    speaker: { type: Object as PropType<Speaker>, required: true }
+    speaker: { type: Object as PropType<Speaker>, required: true },
   },
   computed: {
     localeRole(): string | null {
@@ -45,13 +45,13 @@ export default {
     },
     localeContent(): string | null {
       return localiseFromObject(this.$i18n.locale, this.speaker.bio);
-    }
+    },
   },
   methods: {
     onClose() {
       this.$deconf.closeDialog();
-    }
-  }
+    },
+  },
 };
 </script>
 

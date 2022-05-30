@@ -84,19 +84,19 @@ export default {
     apiModule: { type: String, required: true },
     initialState: {
       type: String as PropType<LoginState>,
-      default: 'pending' as LoginState
-    }
+      default: 'pending' as LoginState,
+    },
   },
   data(): Data {
     return {
       email: '',
-      state: this.initialState
+      state: this.initialState,
     };
   },
   computed: {
     registerRoute(): unknown {
       return { name: Routes.Register };
-    }
+    },
   },
   methods: {
     async submit() {
@@ -109,7 +109,7 @@ export default {
       this.state = success ? 'success' : 'error';
 
       this.$deconf.trackMetric(createLoginStartEvent('_feature_removed_'));
-    }
-  }
+    },
+  },
 };
 </script>

@@ -25,11 +25,11 @@ interface Data {
 export default {
   name: 'ApiContent',
   props: {
-    slug: { type: String, required: true }
+    slug: { type: String, required: true },
   },
   data(): Data {
     return {
-      content: undefined
+      content: undefined,
     };
   },
   computed: {
@@ -40,7 +40,7 @@ export default {
         if (localeHtml) html.innerHTML = localeHtml;
       }
       return html;
-    }
+    },
   },
   mounted() {
     this.fetchData();
@@ -48,7 +48,7 @@ export default {
   methods: {
     async fetchData() {
       this.content = await this.$store.dispatch('api/fetchContent', {
-        slug: this.slug
+        slug: this.slug,
       });
     },
 
@@ -57,31 +57,31 @@ export default {
       if (node instanceof Text) return node.textContent || '';
 
       // Convert dom attributes to a plain record
-      let attrs: Record<string, unknown>  = {}
+      let attrs: Record<string, unknown> = {};
       if (node instanceof Element) {
         for (const key of node.attributes) {
-          attrs[key.name] = key.value
+          attrs[key.name] = key.value;
         }
       }
 
       return this.$createElement(
         node.nodeName,
         { attrs },
-        Array.from(node.childNodes).map(child => this.domToVue(child))
+        Array.from(node.childNodes).map((child) => this.domToVue(child))
       );
-    }
+    },
   },
   render(createElement): VNode {
     // Go through each child of the api content
     // if a <div id="xyz"> attempt to replace with a slot
     // otherwise, copy the dom node across
-    const children = Array.from(this.domContent.children).map(child => {
-      return (child.id && this.$slots[child.id])
-        ? this.$slots[child.id] as VNode[]
+    const children = Array.from(this.domContent.children).map((child) => {
+      return child.id && this.$slots[child.id]
+        ? (this.$slots[child.id] as VNode[])
         : (this.domToVue(child) as VNode);
     });
 
-    return createElement('div', { staticClass: 'content' }, children)
-  }
+    return createElement('div', { staticClass: 'content' }, children);
+  },
 };
 </script>

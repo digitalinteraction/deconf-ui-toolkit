@@ -3,7 +3,7 @@ import InlineMessage from './InlineMessage.vue';
 
 export default {
   title: 'Core/InlineMessage',
-  component: InlineMessage
+  component: InlineMessage,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -13,7 +13,7 @@ const Template: Story = (args, { argTypes }) => ({
     <InlineMessage>
       This is a message
     </InlineMessage>
-  `
+  `,
 });
 
 export const Default = Template.bind({});

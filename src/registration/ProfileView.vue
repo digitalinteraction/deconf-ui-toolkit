@@ -74,7 +74,7 @@ export default {
   name: 'ProfileView',
   props: {
     apiModule: { type: String, required: true },
-    fields: { type: Array as PropType<ProfileField[]>, required: true }
+    fields: { type: Array as PropType<ProfileField[]>, required: true },
   },
   methods: {
     logout() {
@@ -100,8 +100,8 @@ export default {
       }
 
       this.$emit('unregister');
-    }
-  }
+    },
+  },
 };
 </script>
 

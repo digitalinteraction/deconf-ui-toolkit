@@ -41,24 +41,24 @@ export default {
   props: {
     routes: {
       type: Array as PropType<AppRoute[]>,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     routeArgs(item: AppRoute): unknown {
       if (item.enabled) {
         return {
           to: { name: item.name },
-          'active-class': 'is-active'
+          'active-class': 'is-active',
         };
       } else {
         return {
           disabled: true,
-          title: this.$t('deconf.sideTabs.unavailable')
+          title: this.$t('deconf.sideTabs.unavailable'),
         };
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

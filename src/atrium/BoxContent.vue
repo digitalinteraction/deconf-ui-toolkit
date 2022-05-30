@@ -22,8 +22,8 @@
 export default {
   name: 'BoxContent',
   props: {
-    title: { type: String, default: '' }
-  }
+    title: { type: String, default: '' },
+  },
 };
 </script>
 

@@ -77,7 +77,7 @@ export default {
   name: 'AddToCalendarDialog',
   components: { FontAwesomeIcon },
   props: {
-    session: { type: Object as PropType<Session>, required: true }
+    session: { type: Object as PropType<Session>, required: true },
   },
   computed: {
     icalLink(): string | null {
@@ -85,7 +85,7 @@ export default {
     },
     googleLink(): string | null {
       return this.$deconf.getCalendarLink(this.session, 'google');
-    }
+    },
   },
   methods: {
     finish(kind: string) {
@@ -94,8 +94,8 @@ export default {
     },
     cancel() {
       this.$deconf.closeDialog();
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -38,8 +38,8 @@ export default {
   computed: {
     showLanguageControl(): boolean {
       return false;
-    }
-  }
+    },
+  },
 };
 </script>
 

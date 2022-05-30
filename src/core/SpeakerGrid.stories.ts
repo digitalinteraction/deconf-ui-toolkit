@@ -4,7 +4,7 @@ import { defaultSpeakers } from '../story-lib/module';
 
 export default {
   title: 'Core/SpeakerGrid',
-  component: SpeakerGrid
+  component: SpeakerGrid,
 } as Meta;
 
 /**
@@ -16,7 +16,7 @@ function moduloSlice<T>(array: T[], count: number) {
   for (let i = 0; i < count; i++) {
     output.push({
       ...array[i % array.length],
-      id: i.toString()
+      id: i.toString(),
     });
   }
   return output;
@@ -28,22 +28,22 @@ const Template: Story = (args, { argTypes }) => ({
   computed: {
     speakers() {
       return moduloSlice(defaultSpeakers(), this.speakerCount as number);
-    }
+    },
   },
   template: `
     <SpeakerGrid :speakers="speakers" />
-  `
+  `,
 });
 
 export const Desktop = Template.bind({});
 Desktop.args = {
-  speakerCount: 10
+  speakerCount: 10,
 };
 
 export const Mobile = Template.bind({});
 Mobile.args = {
-  speakerCount: 10
+  speakerCount: 10,
 };
 Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile1' }
+  viewport: { defaultViewport: 'mobile1' },
 };

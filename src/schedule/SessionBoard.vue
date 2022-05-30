@@ -24,7 +24,7 @@
 //
 
 export default {
-  name: 'SessionBoard'
+  name: 'SessionBoard',
 };
 </script>
 

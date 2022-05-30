@@ -4,12 +4,12 @@ import {
   BrandA,
   BrandB,
   LanguageControl,
-  mockSettings
+  mockSettings,
 } from '../story-lib/module';
 
 export default {
   title: 'Core/NavigationBar',
-  component: NavigationBar
+  component: NavigationBar,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -19,7 +19,7 @@ const Template: Story = (args, { argTypes }) => ({
     'showProfile',
     'showInterpret',
     'showLogin',
-    'showRegister'
+    'showRegister',
   ],
   components: { NavigationBar, BrandA, BrandB, LanguageControl },
   data: () => ({
@@ -28,24 +28,24 @@ const Template: Story = (args, { argTypes }) => ({
       {
         name: 'A',
         title: 'Route A',
-        enabled: true
+        enabled: true,
       },
       {
         name: 'B',
         title: 'Route B',
-        enabled: true
+        enabled: true,
       },
       {
         name: 'C',
         title: 'Route C',
-        enabled: true
+        enabled: true,
       },
       {
         name: 'D',
         title: 'Route D',
-        enabled: false
-      }
-    ]
+        enabled: false,
+      },
+    ],
   }),
   computed: {
     links(): string[] {
@@ -55,7 +55,7 @@ const Template: Story = (args, { argTypes }) => ({
       if (this.showLogin) links.push('login');
       if (this.showRegister) links.push('register');
       return links;
-    }
+    },
   },
   template: `
     <NavigationBar
@@ -69,7 +69,7 @@ const Template: Story = (args, { argTypes }) => ({
       <BrandB slot="brandB" />
       <LanguageControl slot="languageControl" />
      </NavigationBar>
-  `
+  `,
 });
 
 export const Desktop = Template.bind({});
@@ -80,23 +80,23 @@ Desktop.args = {
   showInterpret: true,
   showProfile: true,
   showRegister: true,
-  showLogin: true
+  showLogin: true,
 };
 Desktop.parameters = {
   layout: 'fullscreen',
   controls: {
-    exclude: ['appSettings', 'routes', 'brandA', 'brandB']
-  }
+    exclude: ['appSettings', 'routes', 'brandA', 'brandB'],
+  },
 };
 
 export const Mobile = Template.bind({});
 Mobile.args = {
-  ...Desktop.args
+  ...Desktop.args,
 };
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
   layout: 'fullscreen',
   controls: {
-    exclude: ['appSettings', 'routes', 'brandA', 'brandB']
-  }
+    exclude: ['appSettings', 'routes', 'brandA', 'brandB'],
+  },
 };

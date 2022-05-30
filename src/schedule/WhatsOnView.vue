@@ -49,7 +49,7 @@ import {
   encodeScheduleFilters,
   loadScheduleFilters,
   ScheduleConfig,
-  SlotState
+  SlotState,
 } from '../lib/module';
 import ScheduleFilters from './filtering/ScheduleFilters.vue';
 import SessionTile from './SessionTile.vue';
@@ -88,23 +88,23 @@ export default {
     filtersKey: { type: String, required: true },
     enabledFilters: {
       type: Array as PropType<Array<keyof ScheduleFilterRecord>>,
-      default: undefined
+      default: undefined,
     },
     config: { type: Object as PropType<ScheduleConfig>, required: true },
     slotState: { type: String as PropType<SlotState>, required: true },
     languageOptions: {
       type: Array as PropType<SelectOption[]>,
-      default: () => []
+      default: () => [],
     },
     urlFilters: {
       type: Object as PropType<ScheduleFilterRecord | null>,
-      default: null
+      default: null,
     },
-    readonly: { type: Boolean, default: true }
+    readonly: { type: Boolean, default: true },
   },
   data(): Data {
     return {
-      filters: this.urlFilters || loadScheduleFilters(this.filtersKey)
+      filters: this.urlFilters || loadScheduleFilters(this.filtersKey),
     };
   },
   computed: {
@@ -117,8 +117,8 @@ export default {
 
       if (!predicate) return this.sessions;
 
-      return this.sessions.filter(s => predicate(s));
-    }
+      return this.sessions.filter((s) => predicate(s));
+    },
   },
   methods: {
     onFilter(filters: ScheduleFilterRecord) {
@@ -130,8 +130,8 @@ export default {
         const encoded = encodeScheduleFilters(filters);
         localStorage.setItem(this.filtersKey, JSON.stringify(encoded));
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -44,19 +44,19 @@ export default {
   name: 'SponsorRow',
   props: {
     title: { type: String, required: true },
-    size: { type: String, required: true, validator: v => sizes.includes(v) },
-    sponsors: { type: Array as PropType<Sponsor[]>, required: true }
+    size: { type: String, required: true, validator: (v) => sizes.includes(v) },
+    sponsors: { type: Array as PropType<Sponsor[]>, required: true },
   },
   computed: {
     classes(): string {
       return `is-${this.size}`;
-    }
+    },
   },
   methods: {
     sponsorComponent(sponsor: Sponsor) {
       return sponsor.href ? 'a' : 'span';
-    }
-  }
+    },
+  },
 };
 </script>
 

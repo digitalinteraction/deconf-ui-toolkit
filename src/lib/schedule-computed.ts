@@ -6,7 +6,7 @@ import {
   groupSessionsByDay,
   groupSessionsBySlot,
   SessionPredicate,
-  SlotWithSessions
+  SlotWithSessions,
 } from './schedule';
 
 export interface ScheduleThis extends ScheduleComputed {
@@ -39,12 +39,12 @@ function filterGroups(
   predicate: (group: SlotWithSessions) => boolean
 ): DailySessions[] {
   return days
-    .map(day => ({
+    .map((day) => ({
       title: day.title,
       date: day.date,
-      groups: day.groups.filter(g => predicate(g))
+      groups: day.groups.filter((g) => predicate(g)),
     }))
-    .filter(d => d.groups.length > 0);
+    .filter((d) => d.groups.length > 0);
 }
 
 export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
@@ -61,7 +61,7 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
       const showUserSessions = this.filters.viewMode === 'user';
       const userSessions = new Set(this.userSessions);
 
-      return this.sessions.filter(session => {
+      return this.sessions.filter((session) => {
         if (showUserSessions && !userSessions.has(session.id)) return false;
 
         if (this.filterPredicate && !this.filterPredicate(session))
@@ -83,7 +83,7 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
 
       return filterGroups(
         this.sessionsByDay,
-        group => group.slot.end.getTime() < now
+        (group) => group.slot.end.getTime() < now
       );
     },
     upcomingDays() {
@@ -94,7 +94,7 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
 
       return filterGroups(
         this.sessionsByDay,
-        group => group.slot.end.getTime() > now
+        (group) => group.slot.end.getTime() > now
       );
     },
     searchResults() {
@@ -107,9 +107,9 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
           groups: groupSessionsBySlot(
             this.filteredSessions,
             this.schedule.slots
-          )
-        }
+          ),
+        },
       ];
-    }
+    },
   };
 }

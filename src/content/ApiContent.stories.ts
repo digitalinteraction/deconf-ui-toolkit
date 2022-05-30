@@ -3,7 +3,7 @@ import ApiContent from './ApiContent.vue';
 
 export default {
   title: 'Content/ApiContent',
-  component: ApiContent
+  component: ApiContent,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -14,7 +14,7 @@ const Template: Story = (args, { argTypes }) => ({
         <div slot="featured_thing" class="notification is-info">This is important</div>
       </ApiContent>
     </div>
-  `
+  `,
 });
 
 export const Default = Template.bind({});

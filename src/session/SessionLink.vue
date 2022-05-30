@@ -51,20 +51,20 @@ export default {
   },
   props: {
     title: { type: String, required: true },
-    link: { type: String, required: true }
+    link: { type: String, required: true },
   },
   filters: {
     cleanUrl(url: string): string {
       return url.replace(/https?:\/\//, '');
-    }
+    },
   },
   computed: {
     buttonClasses(): unknown {
       return {
         'is-dark': !this.didCopy,
-        'is-success': this.didCopy
+        'is-success': this.didCopy,
       };
-    }
+    },
   },
   methods: {
     onClick(): void {
@@ -77,8 +77,8 @@ export default {
       setTimeout(() => (this.didCopy = false), 5000);
 
       this.$emit('copy', this.link);
-    }
-  }
+    },
+  },
 };
 </script>
 

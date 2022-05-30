@@ -12,14 +12,14 @@ export type MappedState<Namespace extends string, State> = {
 
 /** Creates a strongly-typed "mapXState" method for easier vuex + TypeScript */
 export function createStateMapper<State>() {
-  return function<Namespace extends string, Keys extends keyof State>(
+  return function <Namespace extends string, Keys extends keyof State>(
     namespace: Namespace,
     keys: Keys[]
   ): MappedState<Namespace, Pick<State, Keys>> {
     const output = {} as MappedState<Namespace, Pick<State, Keys>>;
 
     for (const key of keys) {
-      output[key] = function() {
+      output[key] = function () {
         return this.$store.state[namespace][key];
       };
     }

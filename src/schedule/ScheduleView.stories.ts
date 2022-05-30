@@ -4,7 +4,7 @@ import {
   dates,
   defaultLanguages,
   MockAppLayout,
-  randomSession
+  randomSession,
 } from '../story-lib/module';
 import ScheduleView from './ScheduleView.vue';
 
@@ -12,8 +12,8 @@ export default {
   title: 'Schedule/ScheduleView',
   component: ScheduleView,
   argTypes: {
-    onFilter: { action: 'filter' }
-  }
+    onFilter: { action: 'filter' },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -31,7 +31,7 @@ const Template: Story = (args, { argTypes }) => ({
       randomSession(schedule),
       randomSession(schedule),
       randomSession(schedule),
-      randomSession(schedule)
+      randomSession(schedule),
     ];
     return {
       schedule,
@@ -39,9 +39,9 @@ const Template: Story = (args, { argTypes }) => ({
       userSessions: [sessions[0].id, sessions[2].id, sessions[5].id],
       config: {
         tileHeader: ['type', 'track'],
-        tileAttributes: ['languages', 'organisation', 'themes', 'recorded']
+        tileAttributes: ['languages', 'organisation', 'themes', 'recorded'],
       },
-      languages: defaultLanguages()
+      languages: defaultLanguages(),
     };
   },
   template: `
@@ -63,13 +63,13 @@ const Template: Story = (args, { argTypes }) => ({
         <p slot="infoText">The sessions on at the conference</p>
       </ScheduleView>
     </MockAppLayout>
-  `
+  `,
 });
 
 export const Future = Template.bind({});
 Future.args = {
   scheduleDate: dates.past,
-  isDuringConference: true
+  isDuringConference: true,
 };
 Future.parameters = {
   layout: 'fullscreen',
@@ -80,27 +80,27 @@ Future.parameters = {
       'filtersKey',
       'enabledFilters',
       'infoText',
-      'config'
-    ]
-  }
+      'config',
+    ],
+  },
 };
 
 export const Present = Template.bind({});
 Present.args = {
   scheduleDate: dates.now,
-  isDuringConference: true
+  isDuringConference: true,
 };
 Present.parameters = {
-  ...Future.parameters
+  ...Future.parameters,
 };
 
 export const Past = Template.bind({});
 Past.args = {
   scheduleDate: dates.future,
-  isDuringConference: false
+  isDuringConference: false,
 };
 Past.parameters = {
-  ...Future.parameters
+  ...Future.parameters,
 };
 
 export const PresetFilters = Template.bind({});
@@ -115,9 +115,9 @@ PresetFilters.args = {
     date: dates.startOfDay(dates.now),
     isRecorded: true,
     viewMode: 'all',
-    language: 'en'
-  }
+    language: 'en',
+  },
 };
 PresetFilters.parameters = {
-  ...Future.parameters
+  ...Future.parameters,
 };

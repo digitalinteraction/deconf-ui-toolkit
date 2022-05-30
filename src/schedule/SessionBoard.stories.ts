@@ -3,7 +3,7 @@ import SessionBoard from './SessionBoard.vue';
 
 export default {
   title: 'Schedule/SessionBoard',
-  component: SessionBoard
+  component: SessionBoard,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -18,7 +18,7 @@ const Template: Story = (args, { argTypes }) => ({
       <div style="height: 200px; background: rebeccapurple" />
       <div style="height: 275px; background: rebeccapurple" />
     </SessionBoard>
-  `
+  `,
 });
 
 export const Default = Template.bind({});

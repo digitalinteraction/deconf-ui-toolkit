@@ -67,7 +67,7 @@ import {
   Session,
   SessionSlot,
   SessionType,
-  ScheduleRecord
+  ScheduleRecord,
 } from '@openlab/deconf-shared';
 
 import { TimeSlot } from '../core/module';
@@ -98,7 +98,7 @@ export default {
     sessions: { type: Array as PropType<Session[]>, required: true },
     showOtherSessions: { type: Boolean, default: false },
     schedule: { type: Object as PropType<ScheduleRecord>, required: true },
-    config: { type: Object as PropType<ScheduleConfig>, required: true }
+    config: { type: Object as PropType<ScheduleConfig>, required: true },
   },
   computed: {
     classes(): string {
@@ -108,27 +108,29 @@ export default {
       return isNow ? 'is-present' : '';
     },
     speakerMap(): Map<string, Speaker> {
-      return new Map(this.schedule.speakers.map(s => [s.id, s]));
+      return new Map(this.schedule.speakers.map((s) => [s.id, s]));
     },
     sessionTypeMap(): Map<string, SessionType> {
-      return new Map(this.schedule.types.map(s => [s.id, s]));
+      return new Map(this.schedule.types.map((s) => [s.id, s]));
     },
     trackMap(): Map<string, Track> {
-      return new Map(this.schedule.tracks.map(t => [t.id, t]));
+      return new Map(this.schedule.tracks.map((t) => [t.id, t]));
     },
     themeMap(): Map<string, Theme> {
-      return new Map(this.schedule.themes.map(t => [t.id, t]));
+      return new Map(this.schedule.themes.map((t) => [t.id, t]));
     },
     plenaryTypes(): Set<string> {
       return new Set<string>(
-        this.schedule.types.filter(t => t.layout === 'plenary').map(t => t.id)
+        this.schedule.types
+          .filter((t) => t.layout === 'plenary')
+          .map((t) => t.id)
       );
     },
     plenarySessions(): Session[] {
-      return this.sessions.filter(s => this.plenaryTypes.has(s.type));
+      return this.sessions.filter((s) => this.plenaryTypes.has(s.type));
     },
     otherSessions(): Session[] {
-      return this.sessions.filter(s => !this.plenaryTypes.has(s.type));
+      return this.sessions.filter((s) => !this.plenaryTypes.has(s.type));
     },
     slotState(): SlotState {
       return getSlotState(
@@ -140,7 +142,7 @@ export default {
     shouldOpenWorkshops(): boolean {
       if (this.slotState === 'present') return true;
       return false;
-    }
+    },
   },
   methods: {
     getSessionType(session: Session): SessionType {
@@ -148,18 +150,18 @@ export default {
     },
     getSessionSpeakers(session: Session): Speaker[] {
       return session.speakers
-        .map(id => this.speakerMap.get(id) as Speaker)
-        .filter(s => Boolean(s));
+        .map((id) => this.speakerMap.get(id) as Speaker)
+        .filter((s) => Boolean(s));
     },
     getSessionTrack(session: Session): Track {
       return this.trackMap.get(session.track) as Track;
     },
     getSessionThemes(session: Session): Theme[] {
       return session.themes
-        .map(t => this.themeMap.get(t) as Theme)
-        .filter(t => Boolean(t));
-    }
-  }
+        .map((t) => this.themeMap.get(t) as Theme)
+        .filter((t) => Boolean(t));
+    },
+  },
 };
 </script>
 

@@ -5,7 +5,7 @@ import {
   ConferenceConfig,
   ScheduleRecord,
   Session,
-  SessionSlot
+  SessionSlot,
 } from '@openlab/deconf-shared';
 
 export interface ScheduleFilterRecord {
@@ -45,11 +45,11 @@ export function groupSessionsBySlot(
   }
 
   return sessionSlots
-    .map(slot => ({
+    .map((slot) => ({
       slot: slot,
-      sessions: bySlot.get(slot.id) || []
+      sessions: bySlot.get(slot.id) || [],
     }))
-    .filter(slotted => slotted.sessions.length > 0);
+    .filter((slotted) => slotted.sessions.length > 0);
 }
 
 export interface DailySessions {
@@ -103,7 +103,7 @@ export function loadScheduleFilters(key: string): ScheduleFilterRecord {
 
     const filters: ScheduleFilterRecord = {
       ...decodeScheduleFilters(urlFilters),
-      viewMode: decoder.enum(urlFilters.viewMode, ['all', 'user'])
+      viewMode: decoder.enum(urlFilters.viewMode, ['all', 'user']),
     };
 
     return filters;
@@ -115,8 +115,8 @@ export function loadScheduleFilters(key: string): ScheduleFilterRecord {
 /** Determine if any of the filters in a record are "active" */
 export function filtersAreSet(filters: ScheduleFilterRecord): boolean {
   return Object.keys(filters)
-    .filter(k => k !== 'viewMode')
-    .some(k => Boolean(filters[k as keyof ScheduleFilterRecord]));
+    .filter((k) => k !== 'viewMode')
+    .some((k) => Boolean(filters[k as keyof ScheduleFilterRecord]));
 }
 
 /** A method used to yes/no a session based on some unknown logic */
@@ -141,7 +141,7 @@ export function createQueryPredicate(
   const matchesQuery = (input: string) => trim(input).includes(trimmedQuery);
 
   // Cache a map of speaker-id to their name for easy lookups
-  const speakerNames = new Map(schedule.speakers.map(s => [s.id, s.name]));
+  const speakerNames = new Map(schedule.speakers.map((s) => [s.id, s.name]));
 
   // Create a SessionPredicate to match if a session contains a text value
   // Based on OR logic so passes if any sub-value matches the string.
@@ -154,8 +154,8 @@ export function createQueryPredicate(
     if (title && matchesQuery(title)) return true;
 
     // Check the speaker names
-    const speakers = session.speakers.map(s => speakerNames.get(s));
-    if (speakers.some(name => name && matchesQuery(name))) return true;
+    const speakers = session.speakers.map((s) => speakerNames.get(s));
+    if (speakers.some((name) => name && matchesQuery(name))) return true;
 
     // At this point no strings matched
     return false;
@@ -176,7 +176,7 @@ export function createFilterPredicate(
   const { sessionType, track, date, isRecorded, theme, language } = filters;
 
   // Cache a map of slot-id to slot for easy lookups
-  const sessionSlotMap = new Map(schedule.slots.map(s => [s.id, s]));
+  const sessionSlotMap = new Map(schedule.slots.map((s) => [s.id, s]));
 
   // Cache a text-based query predicate
   const queryPredicate = createQueryPredicate(locale, filters.query, schedule);
@@ -185,7 +185,7 @@ export function createFilterPredicate(
   // matches the set filters.
   // Based on AND logic so all parts of the filter (if set) must match.
   // So it returns false as soon as possible.
-  return session => {
+  return (session) => {
     // Check the text query
     if (queryPredicate && !queryPredicate(session)) return false;
 
@@ -239,16 +239,16 @@ export function getFeaturedSessions(
 
   const now = currentDate.getTime();
   const inTheFuture = now + daysInFuture * 24 * 60 * 60 * 1000;
-  const slotMap = new Map(schedule.slots.map(s => [s.id, s]));
+  const slotMap = new Map(schedule.slots.map((s) => [s.id, s]));
 
   return schedule.sessions
-    .filter(session => Boolean(session.slot) && predicate(session))
-    .map(session => ({
+    .filter((session) => Boolean(session.slot) && predicate(session))
+    .map((session) => ({
       slot: slotMap.get(session.slot as string) as SessionSlot,
-      session: session
+      session: session,
     }))
     .filter(
-      group =>
+      (group) =>
         Boolean(group.slot) &&
         group.slot.end.getTime() > now &&
         group.slot.start.getTime() < inTheFuture
@@ -266,7 +266,7 @@ export function encodeScheduleFilters(
     theme: encoder.string(filters.theme),
     language: encoder.string(filters.language),
     date: encoder.date(filters.date),
-    isRecorded: encoder.boolean(filters.isRecorded)
+    isRecorded: encoder.boolean(filters.isRecorded),
   });
 }
 
@@ -288,7 +288,7 @@ export function decodeScheduleFilters(
     theme: decoder.string(input.theme),
     date: decoder.date(input.date),
     isRecorded: decoder.boolean(input.isRecorded),
-    language: decoder.string(input.language)
+    language: decoder.string(input.language),
   };
 }
 
@@ -305,7 +305,7 @@ const encoder = {
   },
   enum(value: unknown, options: unknown[]) {
     return options.includes(value) ? value : null;
-  }
+  },
 };
 const decoder = {
   string(value: unknown) {
@@ -324,7 +324,7 @@ const decoder = {
   },
   enum<T extends string>(value: T, options: T[]) {
     return options.includes(value) ? value : options[0];
-  }
+  },
 };
 
 type NonNullRecord<T> = { [K in keyof T]: NonNullable<T[K]> };
@@ -333,7 +333,7 @@ function stripNulls<T extends Record<string, unknown>>(
   input: T
 ): NonNullRecord<T> {
   return Object.fromEntries(
-    Object.entries(input).filter(pair => pair[1] !== null)
+    Object.entries(input).filter((pair) => pair[1] !== null)
   ) as NonNullRecord<T>;
 }
 
@@ -356,7 +356,7 @@ export function getScheduleStartAndEnd(
   sessions: Session[],
   schedule: ScheduleRecord
 ): DateRange | null {
-  const slots = new Map(schedule.slots.map(s => [s.id, s]));
+  const slots = new Map(schedule.slots.map((s) => [s.id, s]));
 
   let firstDate: Date | null = null;
   let lastDate: Date | null = null;
@@ -378,7 +378,7 @@ export function getScheduleStartAndEnd(
 
   return {
     start: firstDate,
-    end: lastDate
+    end: lastDate,
   };
 }
 
@@ -410,15 +410,15 @@ export function filterScheduleFromSessions(
     if (session.track) trackIds.add(session.track);
     if (session.type) typeIds.add(session.type);
 
-    session.speakers.forEach(id => speakerIds.add(id));
-    session.themes.forEach(id => themeIds.add(id));
+    session.speakers.forEach((id) => speakerIds.add(id));
+    session.themes.forEach((id) => themeIds.add(id));
   }
 
-  const slots = schedule.slots.filter(s => slotIds.has(s.id));
-  const speakers = schedule.speakers.filter(s => speakerIds.has(s.id));
-  const themes = schedule.themes.filter(s => themeIds.has(s.id));
-  const tracks = schedule.tracks.filter(s => trackIds.has(s.id));
-  const types = schedule.types.filter(s => typeIds.has(s.id));
+  const slots = schedule.slots.filter((s) => slotIds.has(s.id));
+  const speakers = schedule.speakers.filter((s) => speakerIds.has(s.id));
+  const themes = schedule.themes.filter((s) => themeIds.has(s.id));
+  const tracks = schedule.tracks.filter((s) => trackIds.has(s.id));
+  const types = schedule.types.filter((s) => typeIds.has(s.id));
 
   return { ...schedule, slots, speakers, themes, tracks, types };
 }

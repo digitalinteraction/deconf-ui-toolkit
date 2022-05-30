@@ -3,7 +3,7 @@ import ColorWidget from './ColorWidget.vue';
 
 export default {
   title: 'Atrium/ColorWidget',
-  component: 'ColorWidget'
+  component: 'ColorWidget',
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -17,7 +17,7 @@ const Template: Story = (args, { argTypes }) => ({
       :icon="icon"
       :href="href"
     />
-  `
+  `,
 });
 
 export const Primary = Template.bind({});
@@ -26,14 +26,14 @@ Primary.args = {
   title: 'Hello, world!',
   subtitle: 'Now for something completely different',
   icon: ['fas', 'user-friends'],
-  href: null
+  href: null,
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   ...Primary.args,
   kind: 'secondary',
-  icon: ['fas', 'terminal']
+  icon: ['fas', 'terminal'],
 };
 
 export const Twitter = Template.bind({});
@@ -41,14 +41,14 @@ Twitter.args = {
   ...Primary.args,
   kind: 'twitter',
   icon: ['fab', 'twitter'],
-  href: 'https://duck.com'
+  href: 'https://duck.com',
 };
 
 export const Custom = Template.bind({});
 Custom.args = {
   ...Primary.args,
   kind: 'custom',
-  icon: ['fas', 'apple-alt']
+  icon: ['fas', 'apple-alt'],
 };
 
 export const List: Story = () => ({
@@ -75,5 +75,5 @@ export const List: Story = () => ({
         href="https://duck.com"
       />
     </div>
-  `
+  `,
 });

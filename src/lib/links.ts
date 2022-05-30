@@ -1,11 +1,11 @@
 import { LocalisedLink } from '@openlab/deconf-shared';
 
 function isDomain(url: URL, ...domains: string[]) {
-  return domains.some(d => url.hostname.endsWith(d));
+  return domains.some((d) => url.hostname.endsWith(d));
 }
 
 function splitPath(url: URL): string[] {
-  return url.pathname.split(/\/+/).filter(p => p);
+  return url.pathname.split(/\/+/).filter((p) => p);
 }
 
 export interface PrimaryLink {
@@ -47,7 +47,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   if (isYouTube && url.searchParams.has('v')) {
     return {
       kind: 'youtube-video',
-      data: url.searchParams.get('v') as string
+      data: url.searchParams.get('v') as string,
     };
   }
 
@@ -58,14 +58,14 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'youtube-channel',
-      data: url.searchParams.get('channel') as string
+      data: url.searchParams.get('channel') as string,
     };
   }
 
   if (isDomain(url, 'youtu.be') && pathSegments.length === 1) {
     return {
       kind: 'youtube-video',
-      data: pathSegments[0]
+      data: pathSegments[0],
     };
   }
 
@@ -76,7 +76,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'vimeo',
-      data: pathSegments[1]
+      data: pathSegments[1],
     };
   }
 
@@ -84,7 +84,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   if (isDomain(url, 'vimeo.com') && pathSegments.length === 1) {
     return {
       kind: 'vimeo',
-      data: pathSegments[0]
+      data: pathSegments[0],
     };
   }
 
@@ -96,7 +96,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'vimeo-event',
-      data: pathSegments[1]
+      data: pathSegments[1],
     };
   }
 
@@ -107,14 +107,14 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'panopto',
-      data: url.toString()
+      data: url.toString(),
     };
   }
 
   if (isDomain(url, 'twitch.tv') && pathSegments.length === 1) {
     return {
       kind: 'twitch',
-      data: pathSegments[0]
+      data: pathSegments[0],
     };
   }
 
@@ -126,7 +126,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'anchor-fm-embed',
-      data: url.toString()
+      data: url.toString(),
     };
   }
 
@@ -137,7 +137,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/my/')) {
     return {
       kind: 'zoom',
-      data: url.toString()
+      data: url.toString(),
     };
   }
 
@@ -145,7 +145,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   if (isDomain(url, 'zoom.us') && url.pathname.startsWith('/j/')) {
     return {
       kind: 'zoom',
-      data: url.toString()
+      data: url.toString(),
     };
   }
 
@@ -156,7 +156,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'zoom-register',
-      data: url.toString()
+      data: url.toString(),
     };
   }
 
@@ -164,14 +164,14 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   if (isDomain(url, 'meet.google.com')) {
     return {
       kind: 'google-meet',
-      data: url.toString()
+      data: url.toString(),
     };
   }
 
   if (isDomain(url, 'teams.microsoft.com')) {
     return {
       kind: 'teams',
-      data: url.toString()
+      data: url.toString(),
     };
   }
 
@@ -182,7 +182,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'mozilla-hubs',
-      data: url.toString()
+      data: url.toString(),
     };
   }
 
@@ -193,7 +193,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'spatial-chat',
-      data: url.toString()
+      data: url.toString(),
     };
   }
 
@@ -207,7 +207,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   ) {
     return {
       kind: 'cinnamon-video',
-      data: url.searchParams.get('v') as string
+      data: url.searchParams.get('v') as string,
     };
   }
 
@@ -225,7 +225,7 @@ export function parseSecondaryLink(link: string): SecondaryLink | null {
   if (isDomain(url, 'vimeo.com') && pathSegments[0] === 'live-chat') {
     return {
       kind: 'vimeo-chat',
-      data: pathSegments[1]
+      data: pathSegments[1],
     };
   }
 
@@ -239,7 +239,7 @@ export function parseSecondaryLink(link: string): SecondaryLink | null {
   ) {
     return {
       kind: 'vimeo-event-chat',
-      data: pathSegments[1]
+      data: pathSegments[1],
     };
   }
   return null;
@@ -251,11 +251,11 @@ export function getLocaleLinks(
   fallback: string
 ): LocalisedLink[] {
   // First add the specific language links
-  const result = links.filter(l => l.language === locale);
+  const result = links.filter((l) => l.language === locale);
 
   // Add fallback languages afterwards, if different from the main language
   if (locale !== fallback) {
-    result.push(...links.filter(l => l.language === fallback));
+    result.push(...links.filter((l) => l.language === fallback));
   }
   return result;
 }

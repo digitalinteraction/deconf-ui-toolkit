@@ -5,7 +5,7 @@ import { ScheduleConfig } from '../lib/module';
 
 export default {
   title: 'Schedule/SessionTile',
-  component: SessionTile
+  component: SessionTile,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -21,7 +21,7 @@ const Template: Story = (args, { argTypes }) => ({
     'attrRecorded',
     'attrTrack',
     'attrThemes',
-    'attrOrganisation'
+    'attrOrganisation',
   ],
   data() {
     const schedule = createSchedule();
@@ -43,7 +43,7 @@ const Template: Story = (args, { argTypes }) => ({
       if (this.attrOrganisation) config.tileAttributes.push('organisation');
 
       return config;
-    }
+    },
   },
   template: `
     <SessionTile
@@ -53,7 +53,7 @@ const Template: Story = (args, { argTypes }) => ({
       :slot-state="slotState"
       :readonly="readonly"
     />
-  `
+  `,
 });
 
 const baseArgs = {
@@ -65,29 +65,29 @@ const baseArgs = {
   attrRecorded: true,
   attrTrack: false,
   attrThemes: true,
-  attrOrganisation: true
+  attrOrganisation: true,
 };
 
 export const Future = Template.bind({});
 Future.args = {
   ...baseArgs,
-  slotState: 'future'
+  slotState: 'future',
 };
 
 export const Soon = Template.bind({});
 Soon.args = {
   ...baseArgs,
-  slotState: 'soon'
+  slotState: 'soon',
 };
 
 export const Present = Template.bind({});
 Present.args = {
   ...baseArgs,
-  slotState: 'present'
+  slotState: 'present',
 };
 
 export const Past = Template.bind({});
 Past.args = {
   ...baseArgs,
-  slotState: 'past'
+  slotState: 'past',
 };

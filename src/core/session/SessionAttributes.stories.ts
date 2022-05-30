@@ -6,9 +6,9 @@ export default {
   component: SessionAttributes,
   argTypes: {
     isRecorded: {
-      control: { type: 'boolean' }
-    }
-  }
+      control: { type: 'boolean' },
+    },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -18,8 +18,8 @@ const Template: Story = (args, { argTypes }) => ({
     track: { id: 1, title: { en: 'AI and Agriculture' } },
     themes: [
       { id: '1', title: { en: 'OSS' } },
-      { id: '2', title: { en: 'Microservices' } }
-    ]
+      { id: '2', title: { en: 'Microservices' } },
+    ],
   }),
   template: `
     <SessionAttributes
@@ -29,12 +29,12 @@ const Template: Story = (args, { argTypes }) => ({
       :themes="themes"
       organisation="AI Encorporated"
     />
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   languages: ['en', 'fr', 'es', 'ar'],
-  isRecorded: true
+  isRecorded: true,
 };
 Default.parameters = {};

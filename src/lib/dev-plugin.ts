@@ -61,8 +61,8 @@ export class DevPlugin {
         isEnabled: shouldInitiallyShowDevTools(),
         isVisible: false,
         slotState: undefined,
-        scheduleDate: undefined
-      }
+        scheduleDate: undefined,
+      },
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

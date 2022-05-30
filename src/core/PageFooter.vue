@@ -38,8 +38,8 @@ import { PageFooterLink } from './page-footer-link';
 export default {
   name: 'PageFooter',
   props: {
-    links: { type: Array as PropType<PageFooterLink[]>, required: true }
-  }
+    links: { type: Array as PropType<PageFooterLink[]>, required: true },
+  },
 };
 </script>
 

@@ -46,7 +46,7 @@ import {
   localiseFromObject,
   Routes,
   getCountdown,
-  getCountdownMessage
+  getCountdownMessage,
 } from '../lib/module';
 import { PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -77,9 +77,9 @@ export default {
     session: { type: Object as PropType<Session>, required: true },
     sessionSlot: {
       type: Object as PropType<SessionSlot>,
-      required: true
+      required: true,
     },
-    currentDate: { type: Date as PropType<Date>, required: true }
+    currentDate: { type: Date as PropType<Date>, required: true },
   },
   computed: {
     localeTitle(): string | null {
@@ -91,13 +91,13 @@ export default {
         minute: '2-digit',
         month: 'long',
         day: 'numeric',
-        year: 'numeric'
+        year: 'numeric',
       });
     },
     sessionRoute(): Location {
       return {
         name: Routes.Session,
-        params: { sessionId: this.session.id }
+        params: { sessionId: this.session.id },
       };
     },
     isLive(): boolean {
@@ -111,8 +111,8 @@ export default {
         getCountdown(this.currentDate, this.sessionSlot.start),
         (key, value) => this.$tc(key, value)
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

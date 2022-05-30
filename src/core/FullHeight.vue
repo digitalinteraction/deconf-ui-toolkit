@@ -20,15 +20,15 @@ export default {
   name: 'FullHeight',
   data() {
     return {
-      windowHeight: window.innerHeight
+      windowHeight: window.innerHeight,
     };
   },
   computed: {
     styles(): unknown {
       return {
-        'min-height': `${this.windowHeight}px`
+        'min-height': `${this.windowHeight}px`,
       };
-    }
+    },
   },
   mounted() {
     window.addEventListener('resize', this.update);
@@ -39,7 +39,7 @@ export default {
   methods: {
     update(): void {
       this.windowHeight = window.innerHeight;
-    }
-  }
+    },
+  },
 };
 </script>

@@ -28,26 +28,27 @@ function enumProp(values: string[]) {
   return {
     type: String,
     validator: (v: string) => values.includes(v),
-    required: true
+    required: true,
   };
 }
 
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Stack',
   props: {
     direction: enumProp(['horizontal', 'vertical']),
     gap: enumProp(['none', 'small', 'regular', 'medium', 'large']),
-    align: enumProp(['start', 'end', 'center', 'stretch'])
+    align: enumProp(['start', 'end', 'center', 'stretch']),
   },
   computed: {
     classes(): string[] {
       return [
         `is-${this.gap}`,
         `is-${this.direction}`,
-        `is-aligned-${this.align}`
+        `is-aligned-${this.align}`,
       ];
-    }
-  }
+    },
+  },
 };
 </script>
 

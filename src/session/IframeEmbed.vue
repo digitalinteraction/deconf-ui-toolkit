@@ -29,8 +29,8 @@ export default {
   name: 'IframeEmbed',
   props: {
     src: { type: String, required: true },
-    allow: { type: String, default: '' }
-  }
+    allow: { type: String, default: '' },
+  },
 };
 </script>
 

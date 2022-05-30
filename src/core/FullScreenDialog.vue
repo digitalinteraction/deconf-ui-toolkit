@@ -30,15 +30,15 @@ export default {
     size: {
       type: String,
       default: 'regular',
-      validator: (v: string) => dialogSizes.includes(v)
-    }
+      validator: (v: string) => dialogSizes.includes(v),
+    },
   },
   computed: {
     classes(): unknown {
       return {
-        'is-small': this.size === 'small'
+        'is-small': this.size === 'small',
       };
-    }
+    },
   },
   mounted() {
     // Stop window scroll
@@ -53,8 +53,8 @@ export default {
       if (event.target !== this.$el) return;
 
       this.$emit('close');
-    }
-  }
+    },
+  },
 };
 </script>
 

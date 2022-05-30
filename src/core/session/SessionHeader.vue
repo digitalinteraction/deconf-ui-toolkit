@@ -30,7 +30,7 @@
           <FontAwesomeIcon :icon="['fas', 'tags']" size="lg" fixed-width />
         </span>
         <span class="text">
-          {{ themes.map(t => localise(t.title)).join(', ') }}
+          {{ themes.map((t) => localise(t.title)).join(', ') }}
         </span>
       </template>
     </div>
@@ -63,13 +63,13 @@ export default {
   props: {
     sessionType: { type: Object as PropType<SessionType>, default: null },
     track: { type: Object as PropType<Track>, default: null },
-    themes: { type: Array as PropType<Theme[]>, default: null }
+    themes: { type: Array as PropType<Theme[]>, default: null },
   },
   methods: {
     localise(object: Record<string, string>): string | null {
       return localiseFromObject(this.$i18n.locale, object);
-    }
-  }
+    },
+  },
 };
 </script>
 

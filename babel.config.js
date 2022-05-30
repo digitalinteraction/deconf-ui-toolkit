@@ -1,10 +1,10 @@
 // ...
 
-const devPresets = ['@vue/babel-preset-app'];
+const devPresets = ['@vue/cli-plugin-babel/preset'];
 const buildPresets = [
   ['@babel/preset-env', { modules: false }],
-  '@babel/preset-typescript'
+  '@babel/preset-typescript',
 ];
 module.exports = {
-  presets: process.env.NODE_ENV === 'development' ? devPresets : buildPresets
+  presets: process.env.NODE_ENV === 'development' ? devPresets : buildPresets,
 };

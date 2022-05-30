@@ -55,12 +55,12 @@ import { SecondaryLink, parseSecondaryLink } from '../lib/module';
 export default {
   name: 'SecondaryEmbed',
   props: {
-    link: { type: String, required: true }
+    link: { type: String, required: true },
   },
   computed: {
     parsed(): SecondaryLink | null {
       return parseSecondaryLink(this.link);
-    }
+    },
   },
   methods: {
     vimeoChatLink(data: string) {
@@ -68,8 +68,8 @@ export default {
     },
     vimeoEventChatLink(data: string) {
       return `https://vimeo.com/event/${data}/chat/`;
-    }
-  }
+    },
+  },
 };
 </script>
 

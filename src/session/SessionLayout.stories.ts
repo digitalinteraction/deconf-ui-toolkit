@@ -12,10 +12,10 @@ export default {
     slotState: {
       control: {
         type: 'select',
-        options: ['future', 'soon', 'past', 'present']
-      }
-    }
-  }
+        options: ['future', 'soon', 'past', 'present'],
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -32,24 +32,24 @@ const Template: Story = (args, { argTypes }) => ({
         <Content :size="1" />
       </div>
     </SessionLayout>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   slotState: 'future',
-  attendance: 123
+  attendance: 123,
 };
 Default.parameters = {
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 };
 
 export const Mobile = Template.bind({});
 Mobile.args = {
   slotState: 'future',
-  attendance: 123
+  attendance: 123,
 };
 Mobile.parameters = {
   layout: 'fullscreen',
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };

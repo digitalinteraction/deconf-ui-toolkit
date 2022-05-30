@@ -67,7 +67,7 @@ export default {
   components: { FontAwesomeIcon },
   props: {
     attendance: { type: Number, default: null },
-    slotState: { type: String, required: true }
+    slotState: { type: String, required: true },
   },
   computed: {
     isLive(): boolean {
@@ -80,8 +80,8 @@ export default {
       return (
         ['future', 'soon'].includes(this.slotState) && this.attendance !== null
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

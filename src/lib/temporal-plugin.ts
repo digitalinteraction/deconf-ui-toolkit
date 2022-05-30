@@ -31,8 +31,8 @@ export class TemporalPlugin {
     this.interval = interval;
     this._vm = new Vue({
       data: (): Data => ({
-        date: new Date()
-      })
+        date: new Date(),
+      }),
     });
   }
 
@@ -53,5 +53,5 @@ export class TemporalPlugin {
 }
 
 export function pause(ms: number): Promise<void> {
-  return new Promise(resolve => window.setTimeout(resolve, ms));
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
 }

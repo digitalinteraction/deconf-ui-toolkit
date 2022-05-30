@@ -10,7 +10,7 @@ import { createSponsors, Content } from '../story-lib/module';
 
 export default {
   title: 'Atrium/AtriumLayout',
-  component: AtriumLayout
+  component: AtriumLayout,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -20,31 +20,31 @@ const Template: Story = (args, { argTypes }) => ({
     BoxContent,
     Content,
     ColorWidget,
-    SponsorGrid
+    SponsorGrid,
   },
   data: () => ({
     sponsors: [
       {
         size: 'large',
         title: 'Platinum Sponsors',
-        sponsors: createSponsors(3)
+        sponsors: createSponsors(3),
       },
       {
         size: 'medium',
         title: 'Gold Sponsors',
-        sponsors: createSponsors(5)
+        sponsors: createSponsors(5),
       },
       {
         size: 'regular',
         title: 'Bronze Sponsors',
-        sponsors: createSponsors(10)
+        sponsors: createSponsors(10),
       },
       {
         size: 'small',
         title: 'Other Sponsors',
-        sponsors: createSponsors(20)
-      }
-    ]
+        sponsors: createSponsors(20),
+      },
+    ],
   }),
   template: `
     <AtriumLayout>
@@ -83,7 +83,7 @@ const Template: Story = (args, { argTypes }) => ({
         </div>
       <SponsorGrid slot="bottom" :groups="sponsors" />
     </AtriumLayout>
-  `
+  `,
 });
 
 export const Desktop = Template.bind({});
@@ -93,5 +93,5 @@ export const Mobile = Template.bind({});
 Mobile.args = {};
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 };

@@ -7,7 +7,7 @@ import {
   SessionType,
   Speaker,
   Theme,
-  Track
+  Track,
 } from '@openlab/deconf-shared';
 
 export interface AuthenticateOptions {

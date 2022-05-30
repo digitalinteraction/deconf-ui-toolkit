@@ -51,17 +51,17 @@ export default {
     width: {
       type: String,
       validator: (v: string) => ['regular', 'medium', 'large'].includes(v),
-      default: 'regular'
-    }
+      default: 'regular',
+    },
   },
   computed: {
     pageClasses(): unknown {
       return {
         'is-medium': this.width === 'medium',
-        'is-large': this.width === 'large'
+        'is-large': this.width === 'large',
       };
-    }
-  }
+    },
+  },
 };
 </script>
 

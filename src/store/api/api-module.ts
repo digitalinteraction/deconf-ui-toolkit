@@ -5,7 +5,7 @@ import {
   AuthToken,
   CarbonCalculation,
   Registration,
-  ScheduleRecord
+  ScheduleRecord,
 } from '@openlab/deconf-shared';
 import { ApiState } from './api-state';
 import { DeconfApiClient } from '../../lib/api-client';
@@ -47,7 +47,7 @@ function hydrateProfile(profile: Registration | null) {
 
   return deepSeal({
     ...profile,
-    created: new Date(profile.created)
+    created: new Date(profile.created),
   });
 }
 
@@ -67,7 +67,7 @@ export function createApiStoreModule(): ApiStoreModule {
       user: null,
       profile: null,
       carbon: null,
-      userSessions: null
+      userSessions: null,
     },
     getters: {},
     mutations: {
@@ -91,12 +91,12 @@ export function createApiStoreModule(): ApiStoreModule {
         state.userSessions = deepSeal(userSessions);
       },
       userAttendance: (state, attendance: Attendance[]) => {
-        state.userSessions = deepSeal(attendance.map(a => a.session));
-      }
+        state.userSessions = deepSeal(attendance.map((a) => a.session));
+      },
     },
     actions: {
       // Let library-users provide the actions
-    }
+    },
   };
 }
 
@@ -126,7 +126,7 @@ export function createApiStoreActions(
     register(ctx, body) {
       return api.startRegister(body);
     },
-    unregister(ctx, body) {
+    unregister(/* ctx, body */) {
       return api.unregister();
     },
     async fetchProfile({ commit }) {
@@ -180,6 +180,6 @@ export function createApiStoreActions(
     //
     fetchUserCalendar() {
       return api.createUserCalendar();
-    }
+    },
   };
 }

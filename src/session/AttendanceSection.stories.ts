@@ -4,14 +4,14 @@ import AttendanceSection from './AttendanceSection.vue';
 
 export default {
   title: 'Session/AttendanceSection',
-  component: AttendanceSection
+  component: AttendanceSection,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { AttendanceSection },
   props: ['sessionCap', 'attendance', 'isProcessing'],
   data: () => ({
-    session: mockSession()
+    session: mockSession(),
   }),
   template: `
     <AttendanceSection
@@ -20,7 +20,7 @@ const Template: Story = (args, { argTypes }) => ({
       :attendance="attendance"
       :is-processing="isProcessing"
     />
-  `
+  `,
 });
 
 export const Default = Template.bind({});
@@ -29,11 +29,11 @@ Default.args = {
   attendance: {
     isAttending: false,
     attendance: {},
-    sessionCount: 12
-  }
+    sessionCount: 12,
+  },
 };
 Default.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };
 
 export const IsFull = Template.bind({});
@@ -42,11 +42,11 @@ IsFull.args = {
   attendance: {
     isAttending: false,
     attendance: {},
-    sessionCount: 30
-  }
+    sessionCount: 30,
+  },
 };
 IsFull.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };
 
 export const Attending = Template.bind({});
@@ -55,20 +55,20 @@ Attending.args = {
   attendance: {
     isAttending: true,
     attendance: {},
-    sessionCount: 12
-  }
+    sessionCount: 12,
+  },
 };
 Attending.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };
 
 export const Loading = Template.bind({});
 Loading.args = {
   sessionCap: 30,
-  attendance: null
+  attendance: null,
 };
 Loading.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };
 
 export const Processing = Template.bind({});
@@ -77,10 +77,10 @@ Processing.args = {
   attendance: {
     isAttending: true,
     attendance: {},
-    sessionCount: 12
+    sessionCount: 12,
   },
-  isProcessing: true
+  isProcessing: true,
 };
 Processing.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };

@@ -11,10 +11,10 @@ export default {
     titleClass: {
       control: {
         type: 'select',
-        options: ['is-primary', 'is-dark']
-      }
-    }
-  }
+        options: ['is-primary', 'is-dark'],
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -22,7 +22,7 @@ const Template: Story = (args, { argTypes }) => ({
   props: ['title', 'titleClass'],
   data() {
     return {
-      appSettings: mockSettings()
+      appSettings: mockSettings(),
     };
   },
   template: `
@@ -49,17 +49,17 @@ const Template: Story = (args, { argTypes }) => ({
         </StickyHeading>
       </AppLayout>
     </div>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   title: 'This is a title',
-  titleClass: 'is-primary'
+  titleClass: 'is-primary',
 };
 Default.parameters = {
   layout: 'fullscreen',
   controls: {
-    exclude: ['default']
-  }
+    exclude: ['default'],
+  },
 };

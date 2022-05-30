@@ -48,14 +48,14 @@ export default {
     help: { type: String, default: null },
     hasError: { type: Boolean, default: false },
     type: { type: String, default: 'text' },
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
   },
   computed: {
     inputClass(): unknown {
       return {
-        'is-danger': this.hasError
+        'is-danger': this.hasError,
       };
-    }
+    },
   },
   methods: {
     onInput(event: Event): void {
@@ -64,7 +64,7 @@ export default {
     },
     onEnter(): void {
       this.$emit('enter');
-    }
-  }
+    },
+  },
 };
 </script>

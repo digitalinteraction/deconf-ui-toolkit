@@ -27,13 +27,13 @@ export default {
   props: {
     title: { type: String, required: true },
     subtitle: { type: String, required: true },
-    coverImage: { type: String, required: true }
+    coverImage: { type: String, required: true },
   },
   computed: {
     style(): unknown {
       return { 'background-image': `url(${this.coverImage})` };
-    }
-  }
+    },
+  },
 };
 </script>
 

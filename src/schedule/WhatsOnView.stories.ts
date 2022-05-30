@@ -2,13 +2,13 @@ import { Meta, Story } from '@storybook/vue';
 import {
   createSchedule,
   defaultLanguages,
-  randomSession
+  randomSession,
 } from '../story-lib/schedule';
 import WhatsOnView from './WhatsOnView.vue';
 
 export default {
   title: 'Schedule/WhatsOnView',
-  component: WhatsOnView
+  component: WhatsOnView,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -24,13 +24,13 @@ const Template: Story = (args, { argTypes }) => ({
         randomSession(schedule),
         randomSession(schedule),
         randomSession(schedule),
-        randomSession(schedule)
+        randomSession(schedule),
       ],
       config: {
         tileHeader: ['type', 'track'],
-        tileAttributes: ['languages', 'themes', 'recorded']
+        tileAttributes: ['languages', 'themes', 'recorded'],
       },
-      languages: defaultLanguages()
+      languages: defaultLanguages(),
     };
   },
   template: `
@@ -48,11 +48,11 @@ const Template: Story = (args, { argTypes }) => ({
         <span slot="noResults"> Nothing matched your query 😢 </span>
       </WhatsOnView>
     </div>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {};
 Default.parameters = {
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 };

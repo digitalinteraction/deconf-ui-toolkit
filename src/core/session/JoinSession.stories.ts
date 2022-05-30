@@ -8,10 +8,10 @@ export default {
     slotState: {
       control: {
         type: 'select',
-        options: ['future', 'soon', 'present', 'past']
-      }
-    }
-  }
+        options: ['future', 'soon', 'present', 'past'],
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -22,12 +22,12 @@ const Template: Story = (args, { argTypes }) => ({
       :slot-state="slotState"
       :session-id="sessionId"
     />
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   slotState: 'future',
-  sessionId: 'abcdef'
+  sessionId: 'abcdef',
 };
 Default.parameters = {};

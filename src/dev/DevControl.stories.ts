@@ -5,7 +5,7 @@ import DevControl from './DevControl.vue';
 
 export default {
   title: 'Dev/DevControl',
-  component: DevControl
+  component: DevControl,
 } as Meta;
 
 const dev = new DevPlugin(Vue);
@@ -14,7 +14,7 @@ const Template: Story = (args, { argTypes }) => ({
   props: ['enableSlotState', 'enableScheduleDate'],
   components: { DevControl },
   data: () => ({
-    plugin: Object.freeze({ dev })
+    plugin: Object.freeze({ dev }),
   }),
   computed: {
     controls(): string[] {
@@ -31,12 +31,12 @@ const Template: Story = (args, { argTypes }) => ({
           slotState: dev.slotState || 'null',
           scheduleDate: dev.scheduleDate
             ? dev.scheduleDate.toLocaleString()
-            : 'null'
+            : 'null',
         },
         null,
         2
       );
-    }
+    },
   },
   template: `
     <div style="position: relative; width: 100vw; height: 100vh">
@@ -53,12 +53,12 @@ const Template: Story = (args, { argTypes }) => ({
         </template>
       </DevControl>
     </div>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   enableSlotState: true,
-  enableScheduleDate: true
+  enableScheduleDate: true,
 };
 Default.parameters = { layout: 'fullscreen' };

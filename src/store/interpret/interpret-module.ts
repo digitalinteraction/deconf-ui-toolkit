@@ -43,7 +43,7 @@ export function createInterpretStoreModule(): InterpretStoreModule {
       booth: null,
       activeBooth: null,
       messages: [],
-      interpreters: []
+      interpreters: [],
     }),
     getters: {},
     mutations: {
@@ -61,7 +61,7 @@ export function createInterpretStoreModule(): InterpretStoreModule {
       },
       messageBooth(state, { user, message }: NewBoothMessage) {
         state.messages = state.messages.concat([
-          { date: new Date(), body: message, user: user.name }
+          { date: new Date(), body: message, user: user.name },
         ]);
       },
 
@@ -73,7 +73,7 @@ export function createInterpretStoreModule(): InterpretStoreModule {
 
         state.activeBooth = {
           interpreter,
-          isSelf: interpreter.id === state.self?.id
+          isSelf: interpreter.id === state.self?.id,
         };
       },
       stopInterpreting(state) {
@@ -82,14 +82,14 @@ export function createInterpretStoreModule(): InterpretStoreModule {
 
       interpreterJoined(state, interpreter: Interpreter) {
         state.interpreters = state.interpreters
-          .filter(i => i.id !== interpreter.id)
+          .filter((i) => i.id !== interpreter.id)
           .concat([interpreter]);
       },
       interpreterLeft(state, interpreter: Interpreter) {
         state.interpreters = state.interpreters.filter(
-          i => i.id !== interpreter.id
+          (i) => i.id !== interpreter.id
         );
-      }
-    }
+      },
+    },
   };
 }

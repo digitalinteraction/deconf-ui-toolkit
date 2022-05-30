@@ -44,12 +44,12 @@ export default {
       required: true,
       validator(v) {
         return ['primary', 'secondary', 'twitter', 'custom'].includes(v);
-      }
+      },
     },
     icon: { type: [String, Array], required: true },
     title: { type: String, required: true },
     subtitle: { type: String, required: true },
-    href: { type: String, default: null }
+    href: { type: String, default: null },
   },
   computed: {
     rootComponent(): string {
@@ -60,8 +60,8 @@ export default {
     },
     classes(): string[] {
       return [`is-${this.kind}`, this.href ? 'is-hoverable' : ''];
-    }
-  }
+    },
+  },
 };
 </script>
 

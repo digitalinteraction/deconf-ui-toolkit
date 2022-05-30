@@ -49,7 +49,7 @@ export default {
   components: { FontAwesomeIcon },
   props: {
     calendarLink: { type: String as PropType<string | null>, default: null },
-    session: { type: Object as PropType<Session | null>, default: null }
+    session: { type: Object as PropType<Session | null>, default: null },
   },
   methods: {
     onClickLink(event: MouseEvent): void {
@@ -62,8 +62,8 @@ export default {
         { session: this.session },
         { size: 'small' }
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

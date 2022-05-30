@@ -3,7 +3,7 @@ import BackButton from './BackButton.vue';
 
 export default {
   title: 'Core/BackButton',
-  component: BackButton
+  component: BackButton,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -11,15 +11,15 @@ const Template: Story = (args, { argTypes }) => ({
   props: ['text'],
   template: `
     <BackButton to="/">{{ text }}</BackButton>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  text: 'Go home'
+  text: 'Go home',
 };
 Default.parameters = {
   controls: {
-    exclude: ['to', 'default']
-  }
+    exclude: ['to', 'default'],
+  },
 };

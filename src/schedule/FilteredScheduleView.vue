@@ -27,7 +27,7 @@ import {
   ScheduleFilterRecord,
   filterScheduleFromSessions,
   getScheduleStartAndEnd,
-  isInRange
+  isInRange,
 } from '../lib/module';
 
 import ScheduleView from './ScheduleView.vue';
@@ -57,34 +57,34 @@ export default {
   props: {
     schedule: {
       type: Object as PropType<ScheduleRecord>,
-      required: true
+      required: true,
     },
     userSessions: {
       type: Array as PropType<string[]>,
-      required: false
+      required: false,
     },
     options: {
       type: Object as PropType<FilteredScheduleOptions>,
-      required: true
+      required: true,
     },
     scheduleDate: {
       type: Date as PropType<Date>,
-      required: true
+      required: true,
     },
     routeQuery: {
       type: Object,
-      default: () => ({})
-    }
+      default: () => ({}),
+    },
   },
   data(): Data {
     return {
-      urlFilters: decodeUrlScheduleFilters(this.routeQuery)
+      urlFilters: decodeUrlScheduleFilters(this.routeQuery),
     };
   },
   computed: {
     filteredSessions(): Session[] {
       return this.schedule.sessions.filter(
-        s => s.slot && this.options.predicate(s)
+        (s) => s.slot && this.options.predicate(s)
       );
     },
     isDuringConference(): boolean {
@@ -97,12 +97,12 @@ export default {
     },
     filteredSchedule(): ScheduleRecord {
       return filterScheduleFromSessions(this.schedule, this.filteredSessions);
-    }
+    },
   },
   methods: {
     onFilter(filters: ScheduleFilterRecord) {
       this.$emit('filter', encodeScheduleFilters(filters));
-    }
-  }
+    },
+  },
 };
 </script>

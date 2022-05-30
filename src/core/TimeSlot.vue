@@ -53,13 +53,13 @@ export default {
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
     startDate: { type: Date as PropType<Date>, required: true },
-    endDate: { type: Date as PropType<Date>, required: true }
+    endDate: { type: Date as PropType<Date>, required: true },
   },
   filters: {
     shortTime(date: Date): string {
       return new Date(date).toLocaleTimeString([], {
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
       });
     },
     localeDate(date: Date): string {
@@ -68,9 +68,9 @@ export default {
     localeDateShort(date: Date): string {
       return new Date(date).toLocaleDateString([], {
         month: 'long',
-        day: 'numeric'
+        day: 'numeric',
       });
-    }
+    },
   },
   computed: {
     tagClasses(): string {
@@ -84,8 +84,8 @@ export default {
     timezone() {
       const intl = Intl.DateTimeFormat().resolvedOptions();
       return intl.timeZoneName || intl.timeZone;
-    }
-  }
+    },
+  },
 };
 </script>
 

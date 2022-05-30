@@ -5,7 +5,7 @@ import AppDialog from './AppDialog.vue';
 
 export default {
   title: 'Core/AppDialog',
-  component: AppDialog
+  component: AppDialog,
 } as Meta;
 
 const dialogPlugin = new DialogPlugin(Vue);
@@ -15,14 +15,14 @@ const MockDialog: Component = {
   methods: {
     onClick() {
       dialogPlugin.close();
-    }
+    },
   },
   template: `
     <div>
       <p> Hello, {{ name }} </p>
       <p> <button @click="onClick">Close</button> </p>
     </div>
-  `
+  `,
 };
 
 const Template: Story = (args, { argTypes }) => ({
@@ -31,14 +31,14 @@ const Template: Story = (args, { argTypes }) => ({
   methods: {
     onClick() {
       dialogPlugin.show(MockDialog, { name: 'Geoff' });
-    }
+    },
   },
   template: `
     <div style="padding: 250px 0; background: red; text-align: center;" >
       <AppDialog :dialog-plugin="dialogPlugin" />
       <button @click="onClick">Show dialog</button>
     </div>
-  `
+  `,
 });
 
 export const Default = Template.bind({});

@@ -6,8 +6,8 @@ export default {
   title: 'Core/AddToCalendar',
   component: AddToCalendar,
   argTypes: {
-    onClick: { control: 'action' }
-  }
+    onClick: { control: 'action' },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -21,17 +21,17 @@ const Template: Story = (args, { argTypes }) => ({
     >
       Add to your calendar!
     </AddToCalendar>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  calendarLink: '#'
+  calendarLink: '#',
 };
 Default.parameters = {};
 
 export const Version2 = Template.bind({});
 Version2.args = {
-  session: mockSession()
+  session: mockSession(),
 };
 Version2.parameters = {};

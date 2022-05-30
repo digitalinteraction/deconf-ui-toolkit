@@ -39,21 +39,21 @@ export default {
     text: { type: String, required: true },
     hasError: { type: Boolean, default: false },
     help: { type: String, default: null },
-    disabled: { type: Boolean, default: false }
+    disabled: { type: Boolean, default: false },
   },
   computed: {
     labelClass(): unknown {
       return {
-        'is-danger': this.hasError
+        'is-danger': this.hasError,
       };
-    }
+    },
   },
   methods: {
     onInput(event: Event) {
       if (!(event.target instanceof HTMLInputElement)) return;
       this.$emit('input', event.target.checked);
-    }
-  }
+    },
+  },
 };
 </script>
 

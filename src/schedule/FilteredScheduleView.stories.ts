@@ -3,14 +3,14 @@ import {
   createSchedule,
   dates,
   MockAppLayout,
-  randomSession
+  randomSession,
 } from '../story-lib/module';
 import { FilteredScheduleOptions } from './filtered-schedule-options';
 import FilteredScheduleView from './FilteredScheduleView.vue';
 
 export default {
   title: 'Schedule/FilteredScheduleView',
-  component: FilteredScheduleView
+  component: FilteredScheduleView,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -24,25 +24,25 @@ const Template: Story = (args, { argTypes }) => ({
       randomSession(schedule, { slot: 'slot-a', type: 'workshop' }),
       randomSession(schedule, { slot: 'slot-b', type: 'workshop' }),
       randomSession(schedule, { slot: 'slot-b', type: 'workshop' }),
-      randomSession(schedule, { slot: 'slot-c', type: 'plenary' })
+      randomSession(schedule, { slot: 'slot-c', type: 'plenary' }),
     ];
     const userSessions = [
       schedule.sessions[3].id,
       schedule.sessions[4].id,
-      schedule.sessions[5].id
+      schedule.sessions[5].id,
     ];
     const options: FilteredScheduleOptions = {
       predicate: () => true,
       filtersKey: 'storybookScheduleView',
       scheduleConfig: {
         tileHeader: ['type'],
-        tileAttributes: ['track', 'themes']
+        tileAttributes: ['track', 'themes'],
       },
       enabledFilters: ['track', 'theme'],
       languages: [
         { value: 'en', text: 'English' },
-        { value: 'es', text: 'Spanish' }
-      ]
+        { value: 'es', text: 'Spanish' },
+      ],
     };
     const date = dates.past;
     return { schedule, userSessions, options, date };
@@ -61,12 +61,12 @@ const Template: Story = (args, { argTypes }) => ({
         <span slot="noResults">No results...</span>
       </FilteredScheduleView>
     </MockAppLayout>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  onFilter: () => console.log('FilteredScheduleView@filter')
+  onFilter: () => console.log('FilteredScheduleView@filter'),
 };
 Default.parameters = {
   layout: 'fullscreen',
@@ -76,7 +76,7 @@ Default.parameters = {
       'userSessions',
       'options',
       'scheduleDate',
-      'routeQuery'
-    ]
-  }
+      'routeQuery',
+    ],
+  },
 };

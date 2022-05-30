@@ -7,9 +7,9 @@ export default {
   component: FullScreenDialog,
   argTypes: {
     onClose: {
-      action: 'clicked'
-    }
-  }
+      action: 'clicked',
+    },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -28,26 +28,26 @@ const Template: Story = (args, { argTypes }) => ({
         <Content :size="20" />
       </div>
     </div>
-  `
+  `,
 });
 
 export const Desktop = Template.bind({});
 Desktop.args = {
-  open: true
+  open: true,
 };
 Desktop.parameters = {};
 
 export const DesktopSmall = Template.bind({});
 DesktopSmall.args = {
   ...Desktop.args,
-  size: 'small'
+  size: 'small',
 };
 DesktopSmall.parameters = {};
 
 export const Mobile = Template.bind({});
 Mobile.args = {
-  open: true
+  open: true,
 };
 Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };

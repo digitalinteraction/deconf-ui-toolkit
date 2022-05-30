@@ -101,7 +101,7 @@
         rel="noopener"
         @click="onClick"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openTeams') }}</span>
       </a>
     </div>
@@ -117,7 +117,7 @@
         rel="noopener"
         @click="onClick"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openZoom') }}</span>
       </a>
     </div>
@@ -133,7 +133,7 @@
         rel="noopener"
         @click="onClick"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openZoomRegister') }}</span>
       </a>
     </div>
@@ -152,7 +152,7 @@
         rel="noopener"
         @click="onClick"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openGoogleMeet') }}</span>
       </a>
     </div>
@@ -171,7 +171,7 @@
         rel="noopener"
         @click="onClick"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openHubs') }}</span>
       </a>
     </div>
@@ -190,7 +190,7 @@
         rel="noopener"
         @click="onClick"
       >
-        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']"/></span>
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
         <span>{{ $t('deconf.sessionEmbed.openSpatial') }}</span>
       </a>
     </div>
@@ -223,12 +223,12 @@ export default {
   name: 'PrimaryEmbed',
   components: { IframeEmbed, FontAwesomeIcon },
   props: {
-    link: { type: String, required: true }
+    link: { type: String, required: true },
   },
   computed: {
     parsed(): PrimaryLink | null {
       return parsePrimaryLink(this.link);
-    }
+    },
   },
   methods: {
     onClick() {
@@ -251,8 +251,8 @@ export default {
     },
     twitchVideoLink(data: string) {
       return `https://player.twitch.tv/?channel=${data}&parent=${location.hostname}`;
-    }
-  }
+    },
+  },
 };
 </script>
 

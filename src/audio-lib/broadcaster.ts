@@ -3,7 +3,7 @@ import { float32ToInt16, getResampledLength, linearResample } from './resample';
 
 export enum BroadcasterState {
   active = 'active',
-  inactive = 'inactive'
+  inactive = 'inactive',
 }
 
 interface OnChange {
@@ -50,7 +50,7 @@ export class AudioBroadcaster {
 
   private emitChange() {
     this.options.onChange({
-      state: this.state
+      state: this.state,
     });
   }
 
@@ -65,7 +65,7 @@ export class AudioBroadcaster {
 
     const AudioContext = getAudioContext() as typeof window.AudioContext;
     this.ctx = new AudioContext({
-      sampleRate: this.options.audioTransportRate
+      sampleRate: this.options.audioTransportRate,
     });
 
     this.stream = await navigator.mediaDevices.getUserMedia({
@@ -73,8 +73,8 @@ export class AudioBroadcaster {
       audio: {
         deviceId: { ideal: previousDeviceId },
         sampleRate: { ideal: this.options.audioTransportRate },
-        echoCancellation: { ideal: true }
-      }
+        echoCancellation: { ideal: true },
+      },
     });
 
     const { deviceId } = this.stream.getAudioTracks()[0].getSettings();
@@ -90,10 +90,10 @@ export class AudioBroadcaster {
       {
         channelCount: 1,
         numberOfInputs: 1,
-        numberOfOutputs: 0
+        numberOfOutputs: 0,
       }
     );
-    this.recorder.port.onmessage = event => {
+    this.recorder.port.onmessage = (event) => {
       const { kind, arrayBuffer } = event.data;
 
       if (kind === 'ondata' && arrayBuffer) {
@@ -124,7 +124,7 @@ export class AudioBroadcaster {
     this.state = BroadcasterState.inactive;
 
     if (this.stream) {
-      this.stream.getTracks().forEach(t => t.stop());
+      this.stream.getTracks().forEach((t) => t.stop());
     }
     if (this.source) {
       this.source.disconnect();

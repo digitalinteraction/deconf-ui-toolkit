@@ -38,7 +38,7 @@ import SpeakerDialog from './SpeakerDialog.vue';
 export default {
   name: 'SpeakerGrid',
   props: {
-    speakers: { type: Array as PropType<Speaker[]>, required: true }
+    speakers: { type: Array as PropType<Speaker[]>, required: true },
   },
   methods: {
     localiseRole(speaker: Speaker): string | null {
@@ -46,8 +46,8 @@ export default {
     },
     showDialog(speaker: Speaker): void {
       this.$deconf.showDialog(SpeakerDialog, { speaker });
-    }
-  }
+    },
+  },
 };
 </script>
 

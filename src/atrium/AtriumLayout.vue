@@ -36,7 +36,7 @@
 //
 
 export default {
-  name: 'AtriumLayout'
+  name: 'AtriumLayout',
 };
 </script>
 

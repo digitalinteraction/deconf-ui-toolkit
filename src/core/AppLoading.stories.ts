@@ -3,14 +3,14 @@ import AppLoading from './AppLoading.vue';
 
 export default {
   title: 'Core/AppLoading',
-  component: AppLoading
+  component: AppLoading,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { AppLoading },
   template: `
     <AppLoading />
-  `
+  `,
 });
 
 export const Default = Template.bind({});
@@ -21,5 +21,5 @@ export const Mobile = Template.bind({});
 Mobile.args = {};
 Mobile.parameters = {
   layout: 'fullscreen',
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };

@@ -20,5 +20,5 @@ export enum Routes {
   NotFound = 'NotFound',
   Translator = 'Translator',
   InterpretHome = 'InterpretHome',
-  InterpretSession = 'InterpretSession'
+  InterpretSession = 'InterpretSession',
 }

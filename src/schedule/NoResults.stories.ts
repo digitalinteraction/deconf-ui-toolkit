@@ -3,7 +3,7 @@ import NoResults from './NoResults.vue';
 
 export default {
   title: 'Schedule/NoResults',
-  component: NoResults
+  component: NoResults,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -12,13 +12,13 @@ const Template: Story = (args, { argTypes }) => ({
     <NoResults>
       There are no results
     </NoResults>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {};
 Default.parameters = {
   controls: {
-    exclude: ['default']
-  }
+    exclude: ['default'],
+  },
 };

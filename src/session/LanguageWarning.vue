@@ -36,22 +36,22 @@ export default {
   components: { FontAwesomeIcon },
   data() {
     return {
-      isDismissed: false
+      isDismissed: false,
     };
   },
   props: {
-    availableLanguages: { type: Array as PropType<string[]>, required: true }
+    availableLanguages: { type: Array as PropType<string[]>, required: true },
   },
   computed: {
     languages(): string {
       return this.availableLanguages.join('/').toUpperCase();
-    }
+    },
   },
   methods: {
     dismiss() {
       this.isDismissed = true;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -76,9 +76,9 @@ export default {
     copyClasses(): unknown {
       return {
         'is-dark': !this.didCopy,
-        'is-success': this.didCopy
+        'is-success': this.didCopy,
       };
-    }
+    },
   },
   destroyed() {
     if (this.timerId) {
@@ -90,7 +90,7 @@ export default {
     async generate() {
       this.$deconf.trackMetric({
         eventName: 'profile/userCalendar',
-        payload: {}
+        payload: {},
       });
 
       this.privateUrl = await this.$store.dispatch('api/fetchUserCalendar');
@@ -102,8 +102,8 @@ export default {
 
       this.didCopy = true;
       this.timerId = window.setTimeout(() => (this.didCopy = false), 5000);
-    }
-  }
+    },
+  },
 };
 </script>
 

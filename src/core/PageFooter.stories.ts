@@ -3,7 +3,7 @@ import PageFooter from './PageFooter.vue';
 
 export default {
   title: 'Core/PageFooter',
-  component: PageFooter
+  component: PageFooter,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -13,8 +13,8 @@ const Template: Story = (args, { argTypes }) => ({
       links: [
         { title: 'About', url: '/about' },
         { title: 'Terms', url: '/terms' },
-        { title: 'Privacy', url: '/privacy' }
-      ]
+        { title: 'Privacy', url: '/privacy' },
+      ],
     };
   },
   template: `
@@ -25,7 +25,7 @@ const Template: Story = (args, { argTypes }) => ({
       Open Lab
       v1.2.3
     </PageFooter>
-  `
+  `,
 });
 
 export const Default = Template.bind({});

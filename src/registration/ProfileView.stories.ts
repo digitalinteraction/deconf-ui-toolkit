@@ -6,7 +6,7 @@ import { UtilLayout, BackButton } from '../core/module';
 
 export default {
   title: 'Registration/ProfileView',
-  component: ProfileView
+  component: ProfileView,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -20,8 +20,8 @@ const Template: Story = (args, { argTypes }) => ({
         { label: 'Registered', value: '12/08/2020' },
         { label: 'Logged in', value: '24/09/2020' },
         { label: 'Affiliation', value: 'Open Lab' },
-        { label: 'Country', value: 'United Kingdom' }
-      ]
+        { label: 'Country', value: 'United Kingdom' },
+      ],
     };
   },
   template: `
@@ -30,11 +30,11 @@ const Template: Story = (args, { argTypes }) => ({
       <BackButton to="/" slot="backButton">Go Back</BackButton>
       <ProfileView slot="main" api-module="api" :fields="fields" />
     </UtilLayout>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {};
 Default.parameters = {
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 };

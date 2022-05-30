@@ -11,5 +11,5 @@ export const dates = {
     const date = new Date(original);
     date.setHours(0, 0, 0, 0);
     return date;
-  }
+  },
 };

@@ -53,14 +53,14 @@ import {
   ScheduleConfig,
   SlotState,
   Routes,
-  localiseFromObject
+  localiseFromObject,
 } from '../lib/module';
 import {
   SessionHeader,
   SessionAttributes,
   AddToCalendar,
   JoinSession,
-  SpeakerGrid
+  SpeakerGrid,
 } from '../core/module';
 
 import {
@@ -71,7 +71,7 @@ import {
   SessionType,
   Speaker,
   Theme,
-  Track
+  Track,
 } from '@openlab/deconf-shared';
 import { RawLocation } from 'vue-router';
 
@@ -91,11 +91,11 @@ import { RawLocation } from 'vue-router';
 //
 
 function mapById<T extends { id: string }>(records: T[]): Map<string, T> {
-  return new Map(records.map(r => [r.id, r]));
+  return new Map(records.map((r) => [r.id, r]));
 }
 
 function lookup<T extends { id: string }>(records: T[], query: string) {
-  return records.find(r => r.id === query) as T;
+  return records.find((r) => r.id === query) as T;
 }
 
 export default {
@@ -105,27 +105,27 @@ export default {
     SessionAttributes,
     SpeakerGrid,
     AddToCalendar,
-    JoinSession
+    JoinSession,
   },
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
     session: { type: Object as PropType<Session>, required: true },
     schedule: { type: Object as PropType<ScheduleRecord>, required: true },
     config: { type: Object as PropType<ScheduleConfig>, required: true },
-    readonly: { type: Boolean, default: false }
+    readonly: { type: Boolean, default: false },
   },
   computed: {
     speakers(): Speaker[] {
       const map = mapById(this.schedule.speakers);
       return this.session.speakers
-        .map(id => map.get(id) as Speaker)
-        .filter(s => Boolean(s));
+        .map((id) => map.get(id) as Speaker)
+        .filter((s) => Boolean(s));
     },
     themes(): Theme[] {
       const map = mapById(this.schedule.themes);
       return this.session.themes
-        .map(id => map.get(id) as Theme)
-        .filter(t => Boolean(t));
+        .map((id) => map.get(id) as Theme)
+        .filter((t) => Boolean(t));
     },
     sessionType(): SessionType {
       return lookup(this.schedule.types, this.session.type);
@@ -144,8 +144,8 @@ export default {
     },
     sessionSpeakers(): Speaker[] {
       return this.session.speakers
-        .map(id => this.speakers.find(s => s.id === id) as Speaker)
-        .filter(s => Boolean(s));
+        .map((id) => this.speakers.find((s) => s.id === id) as Speaker)
+        .filter((s) => Boolean(s));
     },
     localeTitle(): string | null {
       return this.localise(this.session.title);
@@ -166,7 +166,7 @@ export default {
       return {
         sessionType: set.has('type') ? this.sessionType : null,
         track: set.has('track') ? this.track : null,
-        themes: set.has('themes') ? this.themes : null
+        themes: set.has('themes') ? this.themes : null,
       };
     },
     attributesAttributes(): unknown {
@@ -179,9 +179,9 @@ export default {
         themes: set.has('themes') ? this.themes : null,
         organisation: set.has('organisation')
           ? this.localise(this.session.hostOrganisation)
-          : null
+          : null,
       };
-    }
+    },
   },
   methods: {
     trim(value: string, length: number): string {
@@ -192,8 +192,8 @@ export default {
       const fallbacks = [...this.session.hostLanguages];
       if (!fallbacks.includes('en')) fallbacks.push('en');
       return localiseFromObject(this.$i18n.locale, object, { fallbacks });
-    }
-  }
+    },
+  },
 };
 </script>
 

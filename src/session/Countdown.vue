@@ -40,10 +40,11 @@ import { CountdownComponents, getCountdown } from '../lib/module';
 //
 
 export default {
+  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Countdown',
   props: {
     currentDate: { type: Date as PropType<Date>, required: true },
-    targetDate: { type: Date as PropType<Date>, required: true }
+    targetDate: { type: Date as PropType<Date>, required: true },
   },
   computed: {
     remaining(): CountdownComponents {
@@ -57,8 +58,8 @@ export default {
     },
     secondsRemaining(): number {
       return this.remaining.seconds;
-    }
-  }
+    },
+  },
 };
 </script>
 

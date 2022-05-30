@@ -35,7 +35,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export default {
   name: 'NoResults',
-  components: { FontAwesomeIcon }
+  components: { FontAwesomeIcon },
 };
 </script>
 

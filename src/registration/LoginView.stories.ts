@@ -5,7 +5,7 @@ import { UtilLayout, BackButton } from '../core/module';
 
 export default {
   title: 'Registration/LoginView',
-  component: LoginView
+  component: LoginView,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -23,7 +23,7 @@ const Template: Story = (args, { argTypes }) => ({
         <p slot="doneText">Log in email sent!</p>
       </LoginView>
     </UtilLayout>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
@@ -32,6 +32,6 @@ Default.parameters = {
   layout: 'fullscreen',
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
-    exclude: ['initialState', 'infoText', 'doneText']
-  }
+    exclude: ['initialState', 'infoText', 'doneText'],
+  },
 };

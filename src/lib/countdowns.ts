@@ -51,8 +51,8 @@ export function getCountdownMessage(
     convert(days, 'days'),
     convert(hours, 'hours'),
     convert(minutes, 'minutes'),
-    convert(seconds, 'seconds')
+    convert(seconds, 'seconds'),
   ]
-    .filter(str => Boolean(str))
+    .filter((str) => Boolean(str))
     .join(seperator);
 }

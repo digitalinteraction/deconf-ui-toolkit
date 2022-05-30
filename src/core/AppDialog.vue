@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
-import FullScreenDialog from './FullScreenDialog.vue'
+import { PropType } from 'vue';
+import FullScreenDialog from './FullScreenDialog.vue';
 
 import type { DialogPlugin } from '../lib/module';
 
@@ -25,7 +25,7 @@ export default {
   name: 'AppDialog',
   components: { FullScreenDialog },
   props: {
-    dialogPlugin: { type: Object as PropType<DialogPlugin>, required: true }
-  }
-} ;
+    dialogPlugin: { type: Object as PropType<DialogPlugin>, required: true },
+  },
+};
 </script>

@@ -31,17 +31,17 @@ export default {
   name: 'SegmentControl',
   props: {
     value: { type: String, required: true },
-    options: { type: Array as PropType<SelectOption[]>, required: true }
+    options: { type: Array as PropType<SelectOption[]>, required: true },
   },
   methods: {
     optionClasses(option: SelectOption): unknown {
       return {
-        'is-primary': option.value === this.value
+        'is-primary': option.value === this.value,
       };
     },
     onOption(option: SelectOption) {
       this.$emit('input', option.value);
-    }
-  }
+    },
+  },
 };
 </script>

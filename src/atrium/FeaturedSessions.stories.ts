@@ -4,7 +4,7 @@ import FeaturedSessions from './FeaturedSessions.vue';
 
 export default {
   title: 'Atrium/FeaturedSessions',
-  component: FeaturedSessions
+  component: FeaturedSessions,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -17,18 +17,18 @@ const Template: Story = (args, { argTypes }) => ({
         session: mockSession({ id: 'session-a' }),
         slot: mockSessionSlot({
           start: dates.addMinutes(dates.now, -15),
-          end: dates.addMinutes(dates.now, 15)
-        })
+          end: dates.addMinutes(dates.now, 15),
+        }),
       },
       {
         session: mockSession({ id: 'session-b' }),
-        slot: mockSessionSlot({ start: dates.addMinutes(dates.now, 91) })
+        slot: mockSessionSlot({ start: dates.addMinutes(dates.now, 91) }),
       },
       {
         session: mockSession({ id: 'session-c' }),
-        slot: mockSessionSlot({ start: dates.addMinutes(dates.now, 291) })
-      }
-    ]
+        slot: mockSessionSlot({ start: dates.addMinutes(dates.now, 291) }),
+      },
+    ],
   }),
   template: `
     <FeaturedSessions
@@ -36,14 +36,14 @@ const Template: Story = (args, { argTypes }) => ({
       :current-date="currentDate"
       :show-action="showAction"
     />
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  showAction: true
+  showAction: true,
 };
 Default.parameters = {
   layout: 'fullscreen',
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };

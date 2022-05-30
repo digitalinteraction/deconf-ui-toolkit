@@ -24,8 +24,8 @@
 export default {
   name: 'SidebarItem',
   props: {
-    title: { type: String, default: null }
-  }
+    title: { type: String, default: null },
+  },
 };
 </script>
 

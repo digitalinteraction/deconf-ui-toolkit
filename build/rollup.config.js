@@ -9,7 +9,6 @@ import vue from 'rollup-plugin-vue';
 import node from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
-import { terser } from 'rollup-plugin-terser';
 
 import extractSass from './sass-plugin';
 
@@ -27,7 +26,7 @@ const exportedModules = [
   { input: 'src/registration/module.ts', output: 'dist/registration.js' },
   { input: 'src/schedule/module.ts', output: 'dist/schedule.js' },
   { input: 'src/session/module.ts', output: 'dist/session.js' },
-  { input: 'src/store/module.ts', output: 'dist/store.js' }
+  { input: 'src/store/module.ts', output: 'dist/store.js' },
 ];
 
 const babelConfig = {
@@ -38,9 +37,9 @@ const babelConfig = {
   babelrc: false,
   presets: [
     ['@babel/preset-env', { modules: false }],
-    '@babel/preset-typescript'
+    '@babel/preset-typescript',
   ],
-  plugins: ['@babel/plugin-transform-runtime']
+  plugins: ['@babel/plugin-transform-runtime'],
 };
 
 /** @type {import('rollup-plugin-vue').VuePluginOptions} */
@@ -49,40 +48,40 @@ const vueConfig = {
   template: {
     isProduction: true,
     compilerOptions: {
-      whitespace: 'condense'
-    }
+      whitespace: 'condense',
+    },
   },
   data: {
-    scss: '@import "@/scss/common.scss";\n'
+    scss: '@import "@/scss/common.scss";\n',
   },
   style: {
     preprocessOptions: {
       scss: {
         importer: [
-          url => {
+          (url) => {
             const file = url
               .replace(/^~/, `${path.join(projectRoot, 'node_modules')}/`)
               .replace(/^@/, path.join(projectRoot, 'src'));
             return { file };
-          }
-        ]
-      }
-    }
-  }
+          },
+        ],
+      },
+    },
+  },
 };
 
 const sassConfig = {
   prependData: [
     fs.readFileSync('src/scss/common.scss'),
-    fs.readFileSync('src/scss/app.scss')
+    fs.readFileSync('src/scss/app.scss'),
   ].join('\n\n\n'),
   copyFiles: [
     {
       input: path.resolve(projectRoot, 'src/scss/common.scss'),
-      output: 'common.scss'
-    }
+      output: 'common.scss',
+    },
   ],
-  filename: null
+  filename: null,
 };
 
 // const argv = minimist(process.argv.slice(2));
@@ -98,7 +97,7 @@ const externalPackages = [
   '@fortawesome/vue-fontawesome',
   'copy-to-clipboard',
   '@openlab/deconf-shared',
-  '@babel/runtime'
+  '@babel/runtime',
 ];
 
 // Customize configs for individual targets
@@ -116,16 +115,16 @@ for (const { input, output } of exportedModules) {
     output: {
       format: 'esm',
       file: output,
-      exports: 'named'
+      exports: 'named',
     },
     plugins: [
       node({ extensions: ['.js', '.ts', '.vue'] }),
       extractSass(sassConfig),
       vuePlugin,
       babel(babelConfig),
-      commonjs()
+      commonjs(),
       // terser()
-    ]
+    ],
   });
 }
 

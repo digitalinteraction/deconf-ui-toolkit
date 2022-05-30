@@ -43,7 +43,7 @@ export default {
   components: { UtilLayout },
   props: {
     homeRoute: { type: Object, required: true },
-    retry: { type: Number, default: 1 }
+    retry: { type: Number, default: 1 },
   },
   data(): Data {
     const retryDate = new Date();
@@ -52,7 +52,7 @@ export default {
     return {
       timerId: null,
       retryDate,
-      currentDate: new Date()
+      currentDate: new Date(),
     };
   },
   computed: {
@@ -61,7 +61,7 @@ export default {
         getCountdown(this.currentDate, this.retryDate),
         (key, value) => this.$tc(key, value)
       );
-    }
+    },
   },
   mounted(): void {
     this.timerId = window.setInterval(() => {
@@ -77,6 +77,6 @@ export default {
     if (this.timerId) {
       window.clearInterval(this.timerId);
     }
-  }
+  },
 };
 </script>

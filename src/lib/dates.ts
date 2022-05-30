@@ -19,6 +19,6 @@ export function friendlyDate(date: Date): string {
   return date.toLocaleDateString([], {
     month: 'long',
     day: 'numeric',
-    year: 'numeric'
+    year: 'numeric',
   });
 }

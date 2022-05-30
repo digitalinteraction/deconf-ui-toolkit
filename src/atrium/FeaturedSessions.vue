@@ -50,13 +50,13 @@ export default {
   props: {
     featured: { type: Array as PropType<SessionAndSlot[]>, required: true },
     currentDate: { type: Date as PropType<Date>, required: true },
-    showAction: { type: Boolean, default: true }
+    showAction: { type: Boolean, default: true },
   },
   computed: {
     scheduleRoute(): Location {
       return { name: Routes.Schedule };
-    }
-  }
+    },
+  },
 };
 </script>
 

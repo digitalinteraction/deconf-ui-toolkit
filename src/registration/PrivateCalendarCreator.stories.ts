@@ -3,7 +3,7 @@ import PrivateCalendarCreator from './PrivateCalendarCreator.vue';
 
 export default {
   title: 'Registration/PrivateCalendarCreator',
-  component: PrivateCalendarCreator
+  component: PrivateCalendarCreator,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -11,7 +11,7 @@ const Template: Story = (args, { argTypes }) => ({
   props: [],
   template: `
     <PrivateCalendarCreator />
-  `
+  `,
 });
 
 export const Default = Template.bind({});

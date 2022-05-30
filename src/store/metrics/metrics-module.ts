@@ -29,7 +29,7 @@ export function createMetricsStoreModule(): MetricsStoreModule {
     state: {
       userId: null,
       socketId: null,
-      siteVisitors: null
+      siteVisitors: null,
     },
     getters: {},
     mutations: {
@@ -39,7 +39,7 @@ export function createMetricsStoreModule(): MetricsStoreModule {
       },
       siteVisitors(state, siteVisitors: number) {
         state.siteVisitors = siteVisitors;
-      }
-    }
+      },
+    },
   };
 }

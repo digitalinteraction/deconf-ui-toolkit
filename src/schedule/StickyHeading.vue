@@ -37,8 +37,8 @@ export default {
   components: { ScheduleHeader },
   props: {
     title: { type: String, required: true },
-    titleClass: { type: String, default: 'is-primary' }
-  }
+    titleClass: { type: String, default: 'is-primary' },
+  },
 };
 </script>
 

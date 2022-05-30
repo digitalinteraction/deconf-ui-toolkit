@@ -16,7 +16,7 @@ export function getDefaultRoutes(
       title: t('deconf.appLayout.atrium'),
       name: Routes.Atrium,
       enabled: settings.atrium.enabled,
-      icon: undefined
+      icon: undefined,
     });
   }
 
@@ -25,7 +25,7 @@ export function getDefaultRoutes(
       title: t('deconf.appLayout.whatsOn'),
       name: Routes.WhatsOn,
       enabled: settings.whatsOn.enabled,
-      icon: undefined
+      icon: undefined,
     });
   }
 
@@ -34,7 +34,7 @@ export function getDefaultRoutes(
       title: t('deconf.appLayout.schedule'),
       name: Routes.Schedule,
       enabled: Boolean(user) && settings.schedule.enabled,
-      icon: undefined
+      icon: undefined,
     });
   }
 
@@ -43,7 +43,7 @@ export function getDefaultRoutes(
       title: t('deconf.appLayout.coffeeChat'),
       name: Routes.CoffeeChatLobby,
       enabled: Boolean(user) && settings.coffeeChat.enabled,
-      icon: undefined
+      icon: undefined,
     });
   }
 
@@ -52,7 +52,7 @@ export function getDefaultRoutes(
       title: t('deconf.appLayout.helpDesk'),
       name: Routes.HelpDesk,
       enabled: Boolean(user) && settings.helpDesk.enabled,
-      icon: undefined
+      icon: undefined,
     });
   }
 

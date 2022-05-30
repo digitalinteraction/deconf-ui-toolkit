@@ -4,7 +4,7 @@ import { Content } from '../story-lib/module';
 
 export default {
   title: 'Core/StaticLayout',
-  component: StaticLayout
+  component: StaticLayout,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -19,19 +19,19 @@ const Template: Story = (args, { argTypes }) => ({
         <Content />
       </div>
     </StaticLayout>
-  `
+  `,
 });
 Template.args = {};
 
 export const Desktop = Template.bind({});
 Desktop.args = {};
 Desktop.parameters = {
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 };
 
 export const Mobile = Template.bind({});
 Mobile.args = {};
 Mobile.parameters = {
   layout: 'fullscreen',
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };

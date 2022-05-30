@@ -22,7 +22,7 @@ const actions: Record<SlotState, string> = {
   future: 'deconf.joinSession.future',
   soon: 'deconf.joinSession.present',
   present: 'deconf.joinSession.present',
-  past: 'deconf.joinSession.past'
+  past: 'deconf.joinSession.past',
 };
 
 //
@@ -44,12 +44,12 @@ export default {
   components: { FontAwesomeIcon },
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
-    sessionId: { type: String, required: true }
+    sessionId: { type: String, required: true },
   },
   computed: {
     classes(): unknown {
       return {
-        'is-success': ['present', 'past'].includes(this.slotState)
+        'is-success': ['present', 'past'].includes(this.slotState),
       };
     },
     action(): string {
@@ -57,8 +57,8 @@ export default {
     },
     sessionRoute(): unknown {
       return { name: Routes.Session, params: { sessionId: this.sessionId } };
-    }
-  }
+    },
+  },
 };
 </script>
 

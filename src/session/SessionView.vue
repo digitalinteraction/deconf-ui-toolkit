@@ -186,7 +186,7 @@ import {
   Localised,
   ScheduleRecord,
   UserSessionAttendance,
-  Track
+  Track,
 } from '@openlab/deconf-shared';
 import { PropType } from 'vue';
 import {
@@ -197,7 +197,7 @@ import {
   localiseFromObject,
   parsePrimaryLink,
   parseSecondaryLink,
-  SlotState
+  SlotState,
 } from '../lib/module';
 import SessionLayout from './SessionLayout.vue';
 
@@ -217,7 +217,7 @@ import {
   SessionHeader,
   SpeakerGrid,
   Stack,
-  TimeSlot
+  TimeSlot,
 } from '../core/module';
 
 // 30 seconds
@@ -227,7 +227,7 @@ const LANGUAGES: Record<string, string | undefined> = {
   en: 'English',
   fr: 'Français',
   es: 'Español',
-  ar: 'عربى'
+  ar: 'عربى',
 };
 
 //
@@ -278,48 +278,52 @@ export default {
     SidebarItem,
     SpeakerGrid,
     Stack,
-    TimeSlot
+    TimeSlot,
   },
   props: {
     apiModule: { type: String, required: true },
     session: { type: Object as PropType<Session>, required: true },
     loggedIn: { type: Boolean, required: true },
     schedule: { type: Object as PropType<ScheduleRecord>, required: true },
-    scheduleDate: { type: Date as PropType<Date>, required: true }
+    scheduleDate: { type: Date as PropType<Date>, required: true },
   },
   data(): Data {
     return {
       timerId: null,
       links: null,
       attendance: null,
-      isLoading: false
+      isLoading: false,
     };
   },
   computed: {
     sessionSlot(): SessionSlot | null {
-      return this.schedule.slots.find(s => s.id === this.session.slot) || null;
+      return (
+        this.schedule.slots.find((s) => s.id === this.session.slot) || null
+      );
     },
     sessionType(): SessionType | null {
-      return this.schedule.types.find(s => s.id === this.session.type) || null;
+      return (
+        this.schedule.types.find((s) => s.id === this.session.type) || null
+      );
     },
     sessionTrack(): Track | null {
       return (
-        this.schedule.tracks.find(s => s.id === this.session.track) || null
+        this.schedule.tracks.find((s) => s.id === this.session.track) || null
       );
     },
     sessionSpeakers(): Speaker[] {
       const speakerMap = new Map(
         this.schedule.speakers
-          .filter(s => this.session.speakers.includes(s.id))
-          .map(s => [s.id, s])
+          .filter((s) => this.session.speakers.includes(s.id))
+          .map((s) => [s.id, s])
       );
       return this.session.speakers
-        .map(id => speakerMap.get(id) as Speaker)
-        .filter(s => s);
+        .map((id) => speakerMap.get(id) as Speaker)
+        .filter((s) => s);
     },
     sessionThemes(): Theme[] {
       const ids = new Set(this.session.themes);
-      return this.schedule.themes.filter(t => ids.has(t.id));
+      return this.schedule.themes.filter((t) => ids.has(t.id));
     },
     localisedSessionOrg(): string | null {
       return this.localise(this.session.hostOrganisation);
@@ -330,16 +334,16 @@ export default {
     },
     primaryLink(): LocalisedLink | undefined {
       if (!this.localeLinks) return undefined;
-      return this.localeLinks.find(l => Boolean(parsePrimaryLink(l.url)));
+      return this.localeLinks.find((l) => Boolean(parsePrimaryLink(l.url)));
     },
     secondaryLink(): LocalisedLink | undefined {
       if (!this.localeLinks) return undefined;
-      return this.localeLinks.find(l => Boolean(parseSecondaryLink(l.url)));
+      return this.localeLinks.find((l) => Boolean(parseSecondaryLink(l.url)));
     },
     otherLinks(): LocalisedLink[] | null {
       if (!this.localeLinks) return null;
       return this.localeLinks.filter(
-        l => l !== this.primaryLink && l !== this.secondaryLink
+        (l) => l !== this.primaryLink && l !== this.secondaryLink
       );
     },
     slotState(): SlotState {
@@ -408,7 +412,7 @@ export default {
     showLanguageWarning(): boolean {
       if (!this.session) return false;
       return !this.session.hostLanguages.includes(this.$i18n.locale);
-    }
+    },
   },
   mounted() {
     // initially fetch links and attendance
@@ -498,8 +502,8 @@ export default {
       const fallbacks = [...this.session.hostLanguages];
       if (!fallbacks.includes('en')) fallbacks.push('en');
       return localiseFromObject(this.$i18n.locale, object, { fallbacks });
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -8,7 +8,7 @@ import {
   SessionVisibility,
   Speaker,
   Theme,
-  Track
+  Track,
 } from '@openlab/deconf-shared';
 import { dates } from './dates';
 import { SelectOption } from '../form/module';
@@ -40,7 +40,7 @@ export const mockSession = makeFixture<Session>({
   title: localise('Session Title'),
   content: localise(loremIpsum),
   links: [
-    { type: 'video', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' }
+    { type: 'video', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
   ],
   hostLanguages: ['en'],
   enableInterpretation: false,
@@ -53,13 +53,13 @@ export const mockSession = makeFixture<Session>({
   state: SessionState.confirmed,
   participantCap: null,
   proxyUrl: undefined,
-  hideFromSchedule: false
+  hideFromSchedule: false,
 });
 
 export const mockSessionSlot = makeFixture<SessionSlot>({
   id: 'slot-a',
   start: dates.future,
-  end: dates.past
+  end: dates.past,
 });
 
 export const mockSessionType = makeFixture<SessionType>({
@@ -67,7 +67,7 @@ export const mockSessionType = makeFixture<SessionType>({
   iconGroup: 'fab',
   iconName: 'youtube',
   layout: 'plenary',
-  title: { en: 'Plenary' }
+  title: { en: 'Plenary' },
 });
 
 export const mockSpeaker = makeFixture<Speaker>({
@@ -75,17 +75,17 @@ export const mockSpeaker = makeFixture<Speaker>({
   name: 'Speaker Name',
   role: localise('Speaker role'),
   bio: localise(loremIpsum),
-  headshot: '/headshot.svg'
+  headshot: '/headshot.svg',
 });
 
 export const mockTrack = makeFixture<Track>({
   id: 'track-a',
-  title: localise('Track Name')
+  title: localise('Track Name'),
 });
 
 export const mockTheme = makeFixture<Theme>({
   id: 'theme-a',
-  title: localise('Theme Name')
+  title: localise('Theme Name'),
 });
 
 export const mockSettings = makeFixture<ConferenceConfig>({
@@ -97,13 +97,13 @@ export const mockSettings = makeFixture<ConferenceConfig>({
 
   startDate: new Date(),
   endDate: new Date(),
-  isStatic: false
+  isStatic: false,
 });
 
 export const mockSponsor = makeFixture<Sponsor>({
   title: 'Corp A',
   image: '/openlab.svg',
-  href: 'https://openlab.ncl.ac.uk'
+  href: 'https://openlab.ncl.ac.uk',
 });
 
 export function defaultLanguages(): SelectOption[] {
@@ -111,7 +111,7 @@ export function defaultLanguages(): SelectOption[] {
     { value: 'en', text: 'English' },
     { value: 'fr', text: 'Français' },
     { value: 'es', text: 'Español' },
-    { value: 'ar', text: 'عربى' }
+    { value: 'ar', text: 'عربى' },
   ];
 }
 
@@ -132,15 +132,15 @@ export function defaultSessionTypes(): SessionType[] {
       iconGroup: 'fab',
       iconName: 'youtube',
       layout: 'plenary',
-      title: { en: 'Plenary' }
+      title: { en: 'Plenary' },
     },
     {
       id: 'workshop',
       iconGroup: 'fas',
       iconName: 'users',
       layout: 'workshop',
-      title: { en: 'Workshop' }
-    }
+      title: { en: 'Workshop' },
+    },
   ];
 }
 
@@ -149,48 +149,48 @@ export function defaultSpeakers(): Speaker[] {
     mockSpeaker({
       id: '1',
       name: 'Geoff Testington',
-      role: localise('Chief Financial Officer')
+      role: localise('Chief Financial Officer'),
     }),
     mockSpeaker({
       id: '2',
       name: 'Felicity Wainwright',
-      role: localise('Chief Technical Officer')
+      role: localise('Chief Technical Officer'),
     }),
     mockSpeaker({
       id: '3',
       name: 'David Edge',
-      role: localise('Internal Interactions Designer')
+      role: localise('Internal Interactions Designer'),
     }),
     mockSpeaker({
       id: '4',
       name: 'Lorena Bernal',
-      role: localise('Chief Metrics Specialist')
+      role: localise('Chief Metrics Specialist'),
     }),
     mockSpeaker({
       id: '5',
       name: 'Katlyn Swift',
-      role: localise('Lead Implementation Coordinator')
+      role: localise('Lead Implementation Coordinator'),
     }),
     mockSpeaker({
       id: '6',
       name: 'Sid Hills',
-      role: localise('Product Data Associate')
+      role: localise('Product Data Associate'),
     }),
     mockSpeaker({
       id: '7',
       name: 'Noah Senior',
-      role: localise('Principal Identity Planner')
+      role: localise('Principal Identity Planner'),
     }),
     mockSpeaker({
       id: '8',
       name: 'Dolcie Wallace',
-      role: localise('Dynamic Interactions Analyst')
+      role: localise('Dynamic Interactions Analyst'),
     }),
     mockSpeaker({
       id: '9',
       name: 'Farrell Rocha',
-      role: localise('Human Paradigm Liason')
-    })
+      role: localise('Human Paradigm Liason'),
+    }),
   ];
 }
 
@@ -199,9 +199,9 @@ export function defaultTracks(): Track[] {
     mockTrack({ id: 'track-a', title: localise('AI and Agriculture') }),
     mockTrack({
       id: 'track-b',
-      title: localise('Machine Learning with Fish')
+      title: localise('Machine Learning with Fish'),
     }),
-    mockTrack({ id: 'track-c', title: localise('Block Chain Horoscopes') })
+    mockTrack({ id: 'track-c', title: localise('Block Chain Horoscopes') }),
   ];
 }
 
@@ -209,7 +209,7 @@ export function defaultThemes(): Theme[] {
   return [
     mockTheme({ id: 'theme-a', title: localise('Inclusivity') }),
     mockTheme({ id: 'theme-b', title: localise('Awareness') }),
-    mockTheme({ id: 'theme-c', title: localise('Engagement') })
+    mockTheme({ id: 'theme-c', title: localise('Engagement') }),
   ];
 }
 
@@ -220,24 +220,24 @@ export function createSchedule(): ScheduleRecord {
       {
         id: 'slot-a',
         start: dates.addMinutes(dates.now, -45),
-        end: dates.addMinutes(dates.now, -15)
+        end: dates.addMinutes(dates.now, -15),
       },
       {
         id: 'slot-b',
         start: dates.addMinutes(dates.now, -15),
-        end: dates.addMinutes(dates.now, 15)
+        end: dates.addMinutes(dates.now, 15),
       },
       {
         id: 'slot-c',
         start: dates.addMinutes(dates.now, 15),
-        end: dates.addMinutes(dates.now, 75)
-      }
+        end: dates.addMinutes(dates.now, 75),
+      },
     ],
     tracks: defaultTracks(),
     themes: defaultThemes(),
     types: defaultSessionTypes(),
     settings: mockSettings(),
-    sessions: []
+    sessions: [],
   };
 }
 
@@ -266,9 +266,9 @@ export function randomSession(
     type: randomElement(schedule.types).id,
     slot: randomElement(schedule.slots).id,
     track: randomElement(schedule.tracks).id,
-    themes: randomElements(schedule.themes, 3).map(t => t.id),
-    speakers: randomElements(schedule.speakers, 5).map(t => t.id),
+    themes: randomElements(schedule.themes, 3).map((t) => t.id),
+    speakers: randomElements(schedule.speakers, 5).map((t) => t.id),
     hostLanguages: ['en', randomElement(langs)],
-    ...options
+    ...options,
   });
 }

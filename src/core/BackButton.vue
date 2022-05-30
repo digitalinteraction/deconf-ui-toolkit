@@ -31,7 +31,7 @@ export default {
   name: 'BackButton',
   components: { FontAwesomeIcon },
   props: {
-    to: { type: [String, Object], required: true }
-  }
+    to: { type: [String, Object], required: true },
+  },
 };
 </script>

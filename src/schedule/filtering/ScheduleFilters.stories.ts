@@ -4,7 +4,7 @@ import ScheduleFilters from './ScheduleFilters.vue';
 
 export default {
   title: 'Schedule/ScheduleFilters',
-  component: ScheduleFilters
+  component: ScheduleFilters,
 } as Meta;
 
 const ALL_FILTERS = [
@@ -14,7 +14,7 @@ const ALL_FILTERS = [
   'themeFilter',
   'dateFilter',
   'isRecordedFilter',
-  'languageFilter'
+  'languageFilter',
 ];
 
 const Template: Story = (args, { argTypes }) => ({
@@ -30,19 +30,19 @@ const Template: Story = (args, { argTypes }) => ({
       date: null,
       isRecorded: null,
       viewMode: 'all',
-      language: null
+      language: null,
     },
-    languages: defaultLanguages()
+    languages: defaultLanguages(),
   }),
   computed: {
     enabledFilters(): unknown[] {
-      return ALL_FILTERS.map(k =>
+      return ALL_FILTERS.map((k) =>
         this[k] ? k.replace(/Filter$/, '') : undefined
-      ).filter(v => Boolean(v));
+      ).filter((v) => Boolean(v));
     },
     jsonFilters(): unknown {
       return JSON.stringify(this.filters, null, 2);
-    }
+    },
   },
   template: `
     <div>
@@ -55,7 +55,7 @@ const Template: Story = (args, { argTypes }) => ({
       <hr>
       <pre v-html="jsonFilters" />
     </div>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
@@ -67,6 +67,6 @@ Default.args = {
   dateFilter: true,
   isRecordedFilter: true,
   viewModeFilter: true,
-  languageFilter: true
+  languageFilter: true,
 };
 Default.parameters = {};

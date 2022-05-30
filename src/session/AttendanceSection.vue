@@ -52,12 +52,12 @@ export default {
     sessionCap: { type: Number, required: true },
     attendance: {
       type: Object as PropType<UserSessionAttendance | null>,
-      default: null
+      default: null,
     },
     isProcessing: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     isRegistered(): boolean {
@@ -100,21 +100,21 @@ export default {
       const spacesLeft = this.sessionCap - this.attendance.sessionCount;
       return this.$t('deconf.attendanceSection.spacesLeft', [
         spacesLeft,
-        this.sessionCap
+        this.sessionCap,
       ]);
     },
     localeAction(): TranslateResult {
       return this.isRegistered
         ? this.$t('deconf.attendanceSection.unregisterButton')
         : this.$t('deconf.attendanceSection.registerButton');
-    }
+    },
   },
   methods: {
     async register(): Promise<void> {
       if (this.disabled) return;
       this.$emit(this.isRegistered ? 'unattend' : 'attend');
-    }
-  }
+    },
+  },
 };
 </script>
 

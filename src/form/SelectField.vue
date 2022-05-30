@@ -58,21 +58,21 @@ export default {
     hasError: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
     fullwidth: { type: Boolean, default: false },
-    notSelected: { type: String, default: 'Please select...' }
+    notSelected: { type: String, default: 'Please select...' },
   },
   computed: {
     selectClass(): unknown {
       return {
         'is-danger': this.hasError,
-        'is-fullwidth': this.fullwidth
+        'is-fullwidth': this.fullwidth,
       };
-    }
+    },
   },
   methods: {
     onInput(e: Event) {
       if (!(e.target instanceof HTMLSelectElement)) return;
       this.$emit('input', e.target.value);
-    }
-  }
+    },
+  },
 };
 </script>

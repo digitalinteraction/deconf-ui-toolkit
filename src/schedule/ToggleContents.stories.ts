@@ -4,7 +4,7 @@ import { Content } from '../story-lib/module';
 
 export default {
   title: 'Schedule/ToggleContents',
-  component: ToggleContents
+  component: ToggleContents,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -19,7 +19,7 @@ const Template: Story = (args, { argTypes }) => ({
     >
       <Content class="content" />
     </ToggleContents>
-  `
+  `,
 });
 
 export const Desktop = Template.bind({});
@@ -27,12 +27,12 @@ Desktop.args = {
   title: '5 things',
   showButton: 'Show',
   hideButton: 'Hide',
-  forceOpen: false
+  forceOpen: false,
 };
 Desktop.parameters = {
   controls: {
-    exclude: ['default']
-  }
+    exclude: ['default'],
+  },
 };
 
 export const Mobile = Template.bind({});
@@ -40,22 +40,22 @@ Mobile.args = {
   title: '5 things',
   showButton: 'Show',
   hideButton: 'Hide',
-  forceOpen: false
+  forceOpen: false,
 };
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
   controls: {
-    exclude: ['default']
-  }
+    exclude: ['default'],
+  },
 };
 
 export const Opened = Template.bind({});
 Opened.args = {
   ...Desktop.args,
-  forceOpen: true
+  forceOpen: true,
 };
 Opened.parameters = {
   controls: {
-    exclude: ['default']
-  }
+    exclude: ['default'],
+  },
 };

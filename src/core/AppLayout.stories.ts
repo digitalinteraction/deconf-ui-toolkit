@@ -7,20 +7,20 @@ import {
   BrandB,
   BrandA,
   LanguageControl,
-  TabIcon
+  TabIcon,
 } from '../story-lib/module';
 import { AuthToken } from '@openlab/deconf-shared';
 
 export default {
   title: 'Core/AppLayout',
-  component: AppLayout
+  component: AppLayout,
 } as Meta;
 
 const user: AuthToken = {
   kind: 'auth',
   sub: 1,
   user_roles: ['attendee', 'interpreter'],
-  user_lang: 'en'
+  user_lang: 'en',
 };
 
 const Template: Story = (args, { argTypes }) => ({
@@ -33,38 +33,38 @@ const Template: Story = (args, { argTypes }) => ({
         title: 'Atrium',
         name: 'Atrium',
         enabled: true,
-        icon: TabIcon
+        icon: TabIcon,
       },
       {
         title: 'Whats On',
         name: 'WhatsOn',
         enabled: true,
-        icon: TabIcon
+        icon: TabIcon,
       },
       {
         title: 'Schedule',
         name: 'Schedule',
         enabled: true,
-        icon: TabIcon
+        icon: TabIcon,
       },
       {
         title: 'CoffeeChat',
         name: 'CoffeeChat',
         enabled: false,
-        icon: TabIcon
+        icon: TabIcon,
       },
       {
         title: 'HelpDesk',
         name: 'HelpDesk',
         enabled: false,
-        icon: TabIcon
-      }
-    ]
+        icon: TabIcon,
+      },
+    ],
   }),
   computed: {
     user() {
       return this.isLoggedIn ? user : null;
-    }
+    },
   },
   template: `
     <AppLayout :appSettings="appSettings" :user="user" :routes="routes">
@@ -88,33 +88,33 @@ const Template: Story = (args, { argTypes }) => ({
         </div>
       </div>
     </AppLayout>
-  `
+  `,
 });
 
 export const Desktop = Template.bind({});
 Desktop.args = {
   isLoggedIn: true,
-  contentSize: 3
+  contentSize: 3,
 };
 Desktop.parameters = {
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 };
 
 export const Short = Template.bind({});
 Short.args = {
   isLoggedIn: true,
-  contentSize: 0
+  contentSize: 0,
 };
 Short.parameters = {
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 };
 
 export const Mobile = Template.bind({});
 Mobile.args = {
   isLoggedIn: true,
-  contentSize: 3
+  contentSize: 3,
 };
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile1' },
-  layout: 'fullscreen'
+  layout: 'fullscreen',
 };

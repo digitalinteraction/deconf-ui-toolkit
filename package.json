@@ -1,33 +1,86 @@
 {
   "name": "@openlab/deconf-ui-toolkit",
   "version": "2.19.0",
-  "browser": "dist/deconf-ui.esm.js",
-  "module": "dist/deconf-ui.esm.js",
-  "types": "dist/types/module.d.ts",
-  "exports": {
-    ".": "./dist/deconf-ui.esm.js",
-    "./*": {
-      "require": "./dist/*.js",
-      "default": "./dist/*"
-    }
+  "scripts": {
+    "build": "npm run lint && rimraf dist/* && npm run build:js && npm run build:types && npm run build:scss",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint",
+    "build-storybook": "build-storybook -s ./static && node build/dependency-page.mjs > storybook-static/components.html",
+    "build:js": "NODE_ENV=production rollup --config build/rollup.config.js",
+    "build:scss": " NODE_ENV=production node build/pull-theme.js",
+    "build:types": " NODE_ENV=production tsc --emitDeclarationOnly --project tsconfig.npm.json",
+    "preversion": "npm run build",
+    "release": "npm run preversion && standard-version && git push --follow-tags origin main && npm publish",
+    "release:beta": "npm run preversion && standard-version --prerelease=beta",
+    "storybook": "start-storybook -s ./static -p 6006 --ci"
   },
-  "repository": "digitalinteraction/deconf-ui-toolkit",
-  "license": "MIT",
+  "module": "dist/deconf-ui.esm.js",
+  "browser": "dist/deconf-ui.esm.js",
   "files": [
     "dist"
   ],
-  "scripts": {
-    "build": "rimraf dist/* && npm run build:js && npm run build:types && npm run build:scss",
-    "build:js": "NODE_ENV=production rollup --config build/rollup.config.js",
-    "build:types": " NODE_ENV=production tsc --emitDeclarationOnly --project tsconfig.npm.json",
-    "build:scss": " NODE_ENV=production node build/pull-theme.js",
-    "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint",
-    "storybook": "start-storybook -s ./static -p 6006 --ci",
-    "build-storybook": "build-storybook -s ./static && node build/dependency-page.mjs > storybook-static/components.html",
-    "preversion": "npm run lint && npm run build",
-    "release": "npm run preversion && standard-version && git push --follow-tags origin main && npm publish",
-    "release:beta": "npm run preversion && standard-version --prerelease=beta"
+  "dependencies": {
+    "@babel/runtime": "^7.15.4",
+    "@openlab/deconf-shared": "^3.5.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-transform-runtime": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-typescript": "^7.17.12",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/vue-fontawesome": "^2.0.2",
+    "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.4",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@storybook/addon-actions": "^6.5.6",
+    "@storybook/addon-essentials": "^6.5.6",
+    "@storybook/addon-links": "^6.5.6",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/vue": "^6.5.6",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "@vue/cli-plugin-babel": "~5.0.4",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.4",
+    "@vue/cli-service": "~5.0.4",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^9.1.0",
+    "@vue/test-utils": "^1.0.3",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "bulma": "^0.9.2",
+    "copy-to-clipboard": "^3.3.1",
+    "core-js": "^3.17.3",
+    "debug": "^4.3.2",
+    "dedent": "^0.7.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "globby": "^11.0.4",
+    "lint-staged": "^11.1.2",
+    "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.56.3",
+    "rollup-plugin-vue": "^5.1.9",
+    "sass": "^1.39.0",
+    "sass-loader": "^8.0.2",
+    "standard-version": "^9.3.1",
+    "typescript": "~4.5.5",
+    "vue": "^2.6.11",
+    "vue-i18n": "^8.22.4",
+    "vue-loader": "^15.9.8",
+    "vue-router": "^3.5.1",
+    "vue-template-compiler": "^2.6.11",
+    "vuex": "^3.6.2"
   },
   "peerDependencies": {
     "@fortawesome/vue-fontawesome": "^2.0.2",
@@ -37,72 +90,6 @@
     "vue-i18n": "^8.22.4",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.15.4",
-    "@openlab/deconf-shared": "^3.5.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/plugin-transform-runtime": "^7.15.0",
-    "@babel/preset-env": "^7.15.4",
-    "@babel/preset-typescript": "^7.12.7",
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-brands-svg-icons": "^5.15.2",
-    "@fortawesome/free-regular-svg-icons": "^5.15.2",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
-    "@fortawesome/vue-fontawesome": "^2.0.2",
-    "@rollup/plugin-alias": "^3.1.2",
-    "@rollup/plugin-babel": "^5.2.3",
-    "@rollup/plugin-commonjs": "^20.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.4",
-    "@rollup/plugin-replace": "^3.0.0",
-    "@storybook/addon-actions": "=6.3.7",
-    "@storybook/addon-essentials": "=6.3.7",
-    "@storybook/addon-links": "=6.3.7",
-    "@storybook/preset-scss": "^1.0.3",
-    "@storybook/vue": "=6.3.7",
-    "@typescript-eslint/eslint-plugin": "^4.18.0",
-    "@typescript-eslint/parser": "^4.18.0",
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-typescript": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/eslint-config-typescript": "^7.0.0",
-    "@vue/test-utils": "^1.0.3",
-    "babel-loader": "^8.2.2",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "bulma": "^0.9.2",
-    "copy-to-clipboard": "^3.3.1",
-    "core-js": "^3.17.3",
-    "debug": "^4.3.2",
-    "dedent": "^0.7.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-vue": "^6.2.2",
-    "globby": "^11.0.4",
-    "lint-staged": "^11.1.2",
-    "minimist": "^1.2.5",
-    "prettier": "^1.19.1",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.56.3",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-vue": "^5.1.9",
-    "sass": "^1.39.0",
-    "sass-loader": "^8.0.2",
-    "standard-version": "^9.3.1",
-    "typescript": "^4.4.2",
-    "vue": "^2.6.11",
-    "vue-i18n": "^8.22.4",
-    "vue-router": "^3.5.1",
-    "vue-template-compiler": "^2.6.11",
-    "vuex": "^3.6.2"
-  },
-  "engines": {
-    "node": ">=12"
   },
   "eslintConfig": {
     "root": true,
@@ -114,7 +101,8 @@
       "eslint:recommended",
       "@vue/typescript/recommended",
       "@vue/prettier",
-      "@vue/prettier/@typescript-eslint"
+      "@vue/prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
     ],
     "parserOptions": {
       "ecmaVersion": 2020
@@ -139,14 +127,6 @@
       }
     ]
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "vue-cli-service lint"
-    ]
-  },
   "prettier": {
     "singleQuote": true
   },
@@ -154,5 +134,26 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  }
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "exports": {
+    ".": "./dist/deconf-ui.esm.js",
+    "./*": {
+      "require": "./dist/*.js",
+      "default": "./dist/*"
+    }
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "license": "MIT",
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "vue-cli-service lint"
+    ]
+  },
+  "repository": "digitalinteraction/deconf-ui-toolkit",
+  "types": "dist/types/module.d.ts"
 }

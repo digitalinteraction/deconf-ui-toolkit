@@ -5,7 +5,7 @@ import SpeakerDialog from './SpeakerDialog.vue';
 
 export default {
   title: 'Core/SpeakerDialog',
-  component: SpeakerDialog
+  component: SpeakerDialog,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -15,14 +15,14 @@ const Template: Story = (args, { argTypes }) => ({
     <FullScreenDialog>
       <SpeakerDialog :speaker="speaker" />
     </FullScreenDialog>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   speaker: mockSpeaker({
     name: 'Geoff Testington',
-    role: { en: 'Chief Technical Officer' }
-  })
+    role: { en: 'Chief Technical Officer' },
+  }),
 };
 Default.parameters = {};

@@ -56,7 +56,7 @@ export default {
     appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
     user: { type: Object as PropType<AuthToken>, default: null },
     routes: { type: Array as PropType<AppRoute[]>, required: true },
-    navLinks: { type: Array as PropType<string[]>, required: false }
+    navLinks: { type: Array as PropType<string[]>, required: false },
   },
   computed: {
     isLoggedIn(): boolean {
@@ -68,8 +68,8 @@ export default {
         this.user.user_roles.includes('interpreter') ||
         this.user.user_roles.includes('admin')
       );
-    }
-  }
+    },
+  },
 };
 </script>
 

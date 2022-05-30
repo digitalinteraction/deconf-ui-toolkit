@@ -10,7 +10,7 @@ export function createICalEvent(
 ): MetricsEvent {
   return {
     eventName: `session/ical`,
-    payload: { sessionId, kind }
+    payload: { sessionId, kind },
   };
 }
 
@@ -21,43 +21,43 @@ export function createAttendanceEvent(
   return {
     eventName: `attendance/${action}`,
     payload: {
-      sessionId
-    }
+      sessionId,
+    },
   };
 }
 
 export function createLoginStartEvent(emailHash: string): MetricsEvent {
   return {
     eventName: 'login/start',
-    payload: { emailHash }
+    payload: { emailHash },
   };
 }
 
 export function createLoginFinishEvent(): MetricsEvent {
   return {
     eventName: 'login/finish',
-    payload: {}
+    payload: {},
   };
 }
 
 export function createLogoutEvent(): MetricsEvent {
   return {
     eventName: 'login/logout',
-    payload: {}
+    payload: {},
   };
 }
 
 export function createRegisterStartEvent(country: string): MetricsEvent {
   return {
     eventName: 'register/start',
-    payload: { country }
+    payload: { country },
   };
 }
 
 export function createUnregisterEvent(confirmed: boolean): MetricsEvent {
   return {
     eventName: 'login/unregister',
-    payload: { confirmed }
+    payload: { confirmed },
   };
 }
 
@@ -69,8 +69,8 @@ export function createPageViewEvent(
     eventName: 'general/pageView',
     payload: {
       routeName,
-      params
-    }
+      params,
+    },
   };
 }
 
@@ -81,13 +81,13 @@ export function createSessionLinkEvent(
 ): MetricsEvent {
   return {
     eventName: 'session/link',
-    payload: { sessionId, action, link }
+    payload: { sessionId, action, link },
   };
 }
 
 export function createAtriumWidgetEvent(widget: string): MetricsEvent {
   return {
     eventName: 'atrium/widget',
-    payload: { widget }
+    payload: { widget },
   };
 }

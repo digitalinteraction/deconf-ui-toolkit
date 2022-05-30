@@ -3,7 +3,7 @@ import InterestSection from './InterestSection.vue';
 
 export default {
   title: 'Session/InterestSection',
-  component: InterestSection
+  component: InterestSection,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -14,7 +14,7 @@ const Template: Story = (args, { argTypes }) => ({
       :attendance="attendance"
       :is-processing="isProcessing"
     />
-  `
+  `,
 });
 
 export const Default = Template.bind({});
@@ -22,11 +22,11 @@ Default.args = {
   attendance: {
     isAttending: false,
     attendance: {},
-    sessionCount: 12
-  }
+    sessionCount: 12,
+  },
 };
 Default.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };
 
 export const Interested = Template.bind({});
@@ -35,9 +35,9 @@ Interested.args = {
   attendance: {
     isAttending: true,
     attendance: {},
-    sessionCount: 12
-  }
+    sessionCount: 12,
+  },
 };
 Interested.parameters = {
-  viewport: { defaultViewport: 'mobile2' }
+  viewport: { defaultViewport: 'mobile2' },
 };

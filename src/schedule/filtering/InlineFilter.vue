@@ -42,7 +42,7 @@ export default {
     label: { type: String, required: true },
     offLabel: { type: String, required: true },
     options: { type: Array as PropType<FilterOption[]>, required: true },
-    value: { required: true }
+    value: { required: true },
   },
   methods: {
     localise(object: Record<string, string>): string | null {
@@ -52,11 +52,11 @@ export default {
       const target = event.target as HTMLSelectElement;
       if (!target) return;
 
-      const allOptions = [null, ...this.options.map(o => o.value)];
+      const allOptions = [null, ...this.options.map((o) => o.value)];
       const value = allOptions[target.selectedIndex];
       this.$emit('input', value);
-    }
-  }
+    },
+  },
 };
 </script>
 

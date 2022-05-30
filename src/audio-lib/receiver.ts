@@ -4,7 +4,7 @@ import { int16ToFloat32, linearResample, getResampledLength } from './resample';
 export enum ReceiverState {
   inactive = 'inactive',
   buffering = 'buffering',
-  playing = 'playing'
+  playing = 'playing',
 }
 
 export interface ReceiverRawStats {
@@ -60,14 +60,14 @@ export class AudioReceiver {
   getStats(): ReceiverRawStats | { state: ReceiverState } {
     return {
       state: this.state,
-      ...this.rawStats
+      ...this.rawStats,
     };
   }
   emitChange(): void {
     this.options.onChange({
       state: this.state,
       bufferSize: this.buffers.length,
-      rawStats: this.rawStats
+      rawStats: this.rawStats,
     });
   }
 
@@ -76,7 +76,7 @@ export class AudioReceiver {
   open(): void {
     const AudioContext = getAudioContext() as typeof window.AudioContext;
     this.ctx = new AudioContext({
-      sampleRate: this.options.playbackRate
+      sampleRate: this.options.playbackRate,
     });
 
     this.buffers = [];
@@ -148,19 +148,19 @@ export class AudioReceiver {
     // Store the buffer to play later
     this.buffers.push({
       index: this.nextPacket++,
-      buffer: audioBuffer
+      buffer: audioBuffer,
     });
 
     // Update our stats
     this.rawStats = {
       input: {
         byteLength: arrayBuffer.byteLength,
-        sampleRate: sampleRate
+        sampleRate: sampleRate,
       },
       output: {
         byteLength: outputFloats.buffer.byteLength,
-        sampleRate: this.options.playbackRate
-      }
+        sampleRate: this.options.playbackRate,
+      },
     };
 
     this.emitChange();

@@ -3,7 +3,7 @@ export type { FilterOption } from './filtering/filter-option';
 export { default as InlineFilter } from './filtering/InlineFilter.vue';
 export { default as ScheduleFilters } from './filtering/ScheduleFilters.vue';
 
-export type { FilteredScheduleOptions } from './filtered-schedule-options'
+export type { FilteredScheduleOptions } from './filtered-schedule-options';
 export { default as FilteredScheduleView } from './FilteredScheduleView.vue';
 export { default as NoResults } from './NoResults.vue';
 export { default as ScheduleBlock } from './ScheduleBlock.vue';

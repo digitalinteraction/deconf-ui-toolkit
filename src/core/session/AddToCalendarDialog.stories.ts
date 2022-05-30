@@ -6,7 +6,7 @@ import { dates } from '../../story-lib/dates';
 
 export default {
   title: 'Core/AddToCalendarDialog',
-  component: AddToCalendarDialog
+  component: AddToCalendarDialog,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -16,7 +16,7 @@ const Template: Story = (args, { argTypes }) => ({
     <FullScreenDialog size="small">
       <AddToCalendarDialog v-bind="$props" />
     </FullScreenDialog>
-  `
+  `,
 });
 
 export const Default = Template.bind({});
@@ -24,7 +24,7 @@ Default.args = {
   session: mockSession(),
   sessionSlot: mockSessionSlot({
     start: dates.addMinutes(dates.now, 15),
-    end: dates.addMinutes(dates.now, 45)
-  })
+    end: dates.addMinutes(dates.now, 45),
+  }),
 };
 Default.parameters = {};

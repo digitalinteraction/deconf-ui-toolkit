@@ -63,12 +63,12 @@ export default Vue.extend({
   props: {
     attendance: {
       type: Object as PropType<UserSessionAttendance | null>,
-      default: null
+      default: null,
     },
     isProcessing: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     isRegistered(): boolean {
@@ -82,13 +82,13 @@ export default Vue.extend({
     },
     disabled(): boolean {
       return this.isProcessing;
-    }
+    },
   },
   methods: {
     async register(): Promise<void> {
       this.$emit(this.isRegistered ? 'unattend' : 'attend');
-    }
-  }
+    },
+  },
 });
 </script>
 

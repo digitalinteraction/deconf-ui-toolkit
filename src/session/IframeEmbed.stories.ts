@@ -3,7 +3,7 @@ import IframeEmbed from './IframeEmbed.vue';
 
 export default {
   title: 'Session/IframeEmbed',
-  component: IframeEmbed
+  component: IframeEmbed,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -13,16 +13,16 @@ const Template: Story = (args, { argTypes }) => ({
     <div style="max-width: 860px">
       <IframeEmbed :src="src" :allow="allow" />
     </div>
-  `
+  `,
 });
 
 export const Youtube = Template.bind({});
 Youtube.args = {
   src: 'https://www.youtube-nocookie.com/embed/Qo4JIT8jMtI?controls=0',
-  allow: 'encrypted-media; picture-in-picture'
+  allow: 'encrypted-media; picture-in-picture',
 };
 
 export const Empty = Template.bind({});
 Empty.args = {
-  src: ''
+  src: '',
 };

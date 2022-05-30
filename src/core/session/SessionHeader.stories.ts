@@ -3,7 +3,7 @@ import SessionHeader from './SessionHeader.vue';
 
 export default {
   title: 'Core/SessionHeader',
-  component: SessionHeader
+  component: SessionHeader,
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -14,7 +14,7 @@ const Template: Story = (args, { argTypes }) => ({
     'title',
     'showType',
     'showTrack',
-    'showThemes'
+    'showThemes',
   ],
   computed: {
     sessionType() {
@@ -24,7 +24,7 @@ const Template: Story = (args, { argTypes }) => ({
         iconGroup: this.iconGroup,
         iconName: this.iconName,
         layout: 'plenary',
-        title: { en: this.title }
+        title: { en: this.title },
       };
     },
     track() {
@@ -35,15 +35,15 @@ const Template: Story = (args, { argTypes }) => ({
       if (!this.showThemes) return null;
       return [
         { id: 'oss', title: { en: 'Open Source Software' } },
-        { id: 'oss', title: { en: 'Open Source Software' } }
+        { id: 'oss', title: { en: 'Open Source Software' } },
       ];
-    }
+    },
   },
   template: `
     <SessionHeader
       :session-type="sessionType" :track="track" :themes="themes"
     />
-  `
+  `,
 });
 
 export const Default = Template.bind({});
@@ -53,5 +53,5 @@ Default.args = {
   title: 'Plenary',
   showType: true,
   showTrack: true,
-  showThemes: true
+  showThemes: true,
 };

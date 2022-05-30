@@ -8,22 +8,22 @@ export default {
     direction: {
       control: {
         type: 'select',
-        options: ['horizontal', 'vertical']
-      }
+        options: ['horizontal', 'vertical'],
+      },
     },
     gap: {
       control: {
         type: 'select',
-        options: ['none', 'small', 'regular', 'medium', 'large']
-      }
+        options: ['none', 'small', 'regular', 'medium', 'large'],
+      },
     },
     align: {
       control: {
         type: 'select',
-        options: ['start', 'end', 'center', 'stretch']
-      }
-    }
-  }
+        options: ['start', 'end', 'center', 'stretch'],
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
@@ -45,29 +45,29 @@ const Template: Story = (args, { argTypes }) => ({
         <div class="notification is-danger is-size-4">Block C</div>
       </div>
     </Stack>
-  `
+  `,
 });
 
 export const Vertical = Template.bind({});
 Vertical.args = {
   direction: 'vertical',
   gap: 'regular',
-  align: 'center'
+  align: 'center',
 };
 Vertical.parameters = {
   controls: {
-    exclude: ['default']
-  }
+    exclude: ['default'],
+  },
 };
 
 export const Horizontal = Template.bind({});
 Horizontal.args = {
   direction: 'horizontal',
   gap: 'regular',
-  align: 'center'
+  align: 'center',
 };
 Horizontal.parameters = {
   controls: {
-    exclude: ['default']
-  }
+    exclude: ['default'],
+  },
 };

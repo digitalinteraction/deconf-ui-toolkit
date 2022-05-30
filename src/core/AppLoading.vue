@@ -50,7 +50,7 @@ export default {
   destroyed() {
     if (this.timerId) clearInterval(this.timerId);
     this.timerId = null;
-  }
+  },
 };
 </script>
 
