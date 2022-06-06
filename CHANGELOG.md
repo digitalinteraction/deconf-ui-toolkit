@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.21.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.20.0...v2.21.0) (2022-06-06)
+
+
+### Features
+
+* **core:** add slot to PageFooter for text above the links ([5a3c6c6](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/5a3c6c6937661863ca5be72615c46fff3ad6737a))
+
 ## [2.20.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.19.1...v2.20.0) (2022-05-30)
 
 
