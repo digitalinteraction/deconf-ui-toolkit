@@ -1,5 +1,9 @@
 <template>
   <div class="pageFooter">
+    <p class="pageFooter-line" v-if="$slots.beforeLinks">
+      <slot name="beforeLinks" />
+    </p>
+
     <p class="pageFooter-line">
       <!-- Render each link -->
       <span v-for="(link, i) in links" :key="link.key">

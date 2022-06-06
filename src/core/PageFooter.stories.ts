@@ -4,9 +4,18 @@ import PageFooter from './PageFooter.vue';
 export default {
   title: 'Core/PageFooter',
   component: PageFooter,
+  argTypes: {
+    beforeLinks: {
+      control: {
+        type: 'select',
+        options: [true, false],
+      },
+    },
+  },
 } as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
+  props: ['beforeLinks'],
   components: { PageFooter },
   data() {
     return {
@@ -19,6 +28,9 @@ const Template: Story = (args, { argTypes }) => ({
   },
   template: `
     <PageFooter :links="links">
+    <template slot="beforeLinks" v-if="beforeLinks">
+      Text before the links
+    </template>
       Made by
       <a href="https://openlab.ncl.ac.uk">Open Lab</a>
       /
@@ -29,4 +41,6 @@ const Template: Story = (args, { argTypes }) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  beforeLinks: false,
+};
