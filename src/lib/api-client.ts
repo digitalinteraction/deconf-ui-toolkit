@@ -129,10 +129,12 @@ export class DeconfApiClient {
   //
   // Calendar
   //
-  createUserCalendar(): Promise<PrivateCalendar | null> {
-    return this.fetchJson(
+  async createUserCalendar(): Promise<PrivateCalendar | null> {
+    const result = await this.fetchJson<PrivateCalendar>(
       this.getEndpoint('CalendarRoutes.createUserCalendar')
     );
+    if (result) result.url = new URL(result.url);
+    return result;
   }
 
   //

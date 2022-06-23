@@ -5,7 +5,7 @@
     </p>
 
     <!-- The "generate" button -->
-    <template v-if="!privateUrl">
+    <template v-if="!privateCal">
       <button class="button is-primary" @click="generate">
         {{ $t('deconf.addUserCalendar.generate') }}
       </button>
@@ -17,7 +17,7 @@
         <input
           type="text"
           class="input addUserCalendar-input"
-          :value="privateUrl"
+          :value="privateCal.url"
           readonly
         />
         <button class="button" :class="copyClasses" @click="copyLink">
@@ -37,6 +37,7 @@
 
 <script lang="ts">
 import copyToClipboard from 'copy-to-clipboard';
+import { PrivateCalendar } from '@openlab/deconf-shared/dist/conference';
 
 //
 // i18n
@@ -62,7 +63,7 @@ import copyToClipboard from 'copy-to-clipboard';
 //
 
 interface Data {
-  privateUrl: string | null;
+  privateCal: PrivateCalendar | null;
   didCopy: boolean;
   timerId: number | null;
 }
@@ -70,7 +71,7 @@ interface Data {
 export default {
   name: 'PrivateCalendarCreator',
   data(): Data {
-    return { privateUrl: null, didCopy: false, timerId: null };
+    return { privateCal: null, didCopy: false, timerId: null };
   },
   computed: {
     copyClasses(): unknown {
@@ -93,12 +94,12 @@ export default {
         payload: {},
       });
 
-      this.privateUrl = await this.$store.dispatch('api/fetchUserCalendar');
-      if (!this.privateUrl) alert('Something went wrong');
+      this.privateCal = await this.$store.dispatch('api/fetchUserCalendar');
+      if (!this.privateCal) alert('Something went wrong');
     },
     copyLink() {
-      if (!this.privateUrl) return;
-      copyToClipboard(this.privateUrl);
+      if (!this.privateCal) return;
+      copyToClipboard(this.privateCal.url.toString());
 
       this.didCopy = true;
       this.timerId = window.setTimeout(() => (this.didCopy = false), 5000);

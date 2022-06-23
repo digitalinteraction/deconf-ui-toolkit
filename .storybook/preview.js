@@ -17,6 +17,7 @@ setupFontawesome();
 //
 Vue.prototype.$router = {
   resolve: () => ({ href: '#' }),
+  afterEach() {},
 };
 Vue.component('router-link', {
   props: ['to', 'activeClass'],
@@ -112,7 +113,7 @@ const actions = {
       <p><a href="https://duck.com">A link</a></p>
     `,
   }),
-  'api/fetchUserCalendar': () => 'https://duck.com',
+  'api/fetchUserCalendar': () => ({ url: new URL('https://duck.com') }),
 };
 Vue.prototype.$store = {
   state: {},
