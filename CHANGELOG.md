@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.21.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.21.0...v2.21.1) (2022-06-23)
+
+
+### Bug Fixes
+
+* add missing apiModule param to PrivateCalendarCreator ([249f8c1](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/249f8c1c2004996e7e2d0977f9adaa6977a39eb4)), closes [#79](https://github.com/digitalinteraction/deconf-ui-toolkit/issues/79)
+* **core:** fetchProfile properly commits the registration now ([edf89d0](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/edf89d03671c29f6cd585519a86741b3add11c73))
+* fix badly mapped attendance routes ([4e07523](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/4e0752319fe521f6900e19e7a6228e428dccb49e))
+* **registration:** fix PrivateCalendarCreator's api inconsistency ([71954b4](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/71954b4374b7cd780accccf5af77b480639d19b7))
+* strip markdown from speaker roles and session content ([a12f875](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/a12f875a2e28eef6a16503b669c051496e14463b))
+
 ## [2.21.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.20.0...v2.21.0) (2022-06-06)
 
 
