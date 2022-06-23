@@ -11,6 +11,7 @@ export * from './dialog-plugin';
 export * from './jwt';
 export * from './links';
 export * from './locales';
+export * from './markdown';
 export * from './metrics';
 export * from './routes';
 export * from './schedule-computed';

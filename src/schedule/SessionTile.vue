@@ -54,6 +54,7 @@ import {
   SlotState,
   Routes,
   localiseFromObject,
+  stripMarkdown,
 } from '../lib/module';
 import {
   SessionHeader,
@@ -152,7 +153,7 @@ export default {
     },
     localeContent(): string | null {
       const content = this.localise(this.session.content);
-      return content && this.trim(content, 300);
+      return content ? this.trim(stripMarkdown(content), 300) : null;
     },
     canAddToCalendar(): boolean {
       return ['soon', 'future'].includes(this.slotState);

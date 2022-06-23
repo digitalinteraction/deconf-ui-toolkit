@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { localiseFromObject } from '../lib/module';
+import { localiseFromObject, stripMarkdown } from '../lib/module';
 import { Speaker } from '@openlab/deconf-shared';
 import SpeakerDialog from './SpeakerDialog.vue';
 
@@ -42,7 +42,8 @@ export default {
   },
   methods: {
     localiseRole(speaker: Speaker): string | null {
-      return localiseFromObject(this.$i18n.locale, speaker.role);
+      const str = localiseFromObject(this.$i18n.locale, speaker.role);
+      return str ? stripMarkdown(str) : null;
     },
     showDialog(speaker: Speaker): void {
       this.$deconf.showDialog(SpeakerDialog, { speaker });

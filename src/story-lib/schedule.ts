@@ -20,7 +20,7 @@ const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 // V2
 //
 
-const loremIpsum = `We gotta burn the rain forest, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but your scientists were so preoccupied with whether or not they could, they didn't stop to think if they should.`;
+const loremIpsumMarkdown = `We gotta burn the **rain forest**, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but _your_ scientists were so preoccupied with whether or not they could, they didn't stop to think if they [should](https://duck.com).`;
 
 function makeFixture<T>(base: T) {
   return (options: Partial<T> = {}): T => ({ ...base, ...options });
@@ -38,7 +38,7 @@ export const mockSession = makeFixture<Session>({
   themes: ['theme-a', 'theme-b'],
   coverImage: undefined,
   title: localise('Session Title'),
-  content: localise(loremIpsum),
+  content: localise(loremIpsumMarkdown),
   links: [
     { type: 'video', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
   ],
@@ -74,7 +74,7 @@ export const mockSpeaker = makeFixture<Speaker>({
   id: 'speaker-a',
   name: 'Speaker Name',
   role: localise('Speaker role'),
-  bio: localise(loremIpsum),
+  bio: localise(loremIpsumMarkdown),
   headshot: '/headshot.svg',
 });
 
