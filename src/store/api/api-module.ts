@@ -130,7 +130,8 @@ export function createApiStoreActions(
       return api.unregister();
     },
     async fetchProfile({ commit }) {
-      commit('profile', await api.getRegistration());
+      const result = await api.getRegistration();
+      commit('profile', result?.registration ?? null);
     },
 
     //
