@@ -14,19 +14,17 @@ export type DeconfEndpointRecord = Record<
   ((...keys: string[]) => string) | undefined
 >;
 
+// prettier-ignore
 export const deconfDefaultEndpoints: DeconfEndpointRecord = {
-  'AttendanceRoutes.attend': () => `attendance/:sessionId/attend`,
-  'AttendanceRoutes.unattend': () => `attendance/:sessionId/unattend`,
-  'AttendanceRoutes.getSessionAttendance': (sessionId) =>
-    `attendance/${sessionId}`,
+  'AttendanceRoutes.attend': (sessionId) => `attendance/${sessionId}/attend`,
+  'AttendanceRoutes.unattend': (sessionId) => `attendance/${sessionId}/unattend`,
+  'AttendanceRoutes.getSessionAttendance': (sessionId) => `attendance/${sessionId}`,
   'AttendanceRoutes.getUserAttendance': () => `attendance/me`,
 
   'CarbonRoutes.getCarbon': () => `carbon/estimate`,
 
-  'CalendarRoutes.getSessionIcsFile': (sessionId) =>
-    `calendar/ical/${sessionId}`,
-  'CalendarRoutes.getGoogleCalendarUrl': (sessionId) =>
-    `calendar/google/${sessionId}`,
+  'CalendarRoutes.getSessionIcsFile': (sessionId) => `calendar/ical/${sessionId}`,
+  'CalendarRoutes.getGoogleCalendarUrl': (sessionId) => `calendar/google/${sessionId}`,
   'CalendarRoutes.getUserIcs': (token) => `calendar/me/${token}`,
   'CalendarRoutes.createUserCalendar': () => `calendar/me`,
 
