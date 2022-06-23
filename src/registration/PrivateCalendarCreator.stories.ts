@@ -10,7 +10,7 @@ const Template: Story = (args, { argTypes }) => ({
   components: { PrivateCalendarCreator },
   props: [],
   template: `
-    <PrivateCalendarCreator />
+    <PrivateCalendarCreator api-module="api" />
   `,
 });
 

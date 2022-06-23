@@ -70,6 +70,9 @@ interface Data {
 
 export default {
   name: 'PrivateCalendarCreator',
+  props: {
+    apiModule: { type: String, required: true },
+  },
   data(): Data {
     return { privateCal: null, didCopy: false, timerId: null };
   },
@@ -94,7 +97,9 @@ export default {
         payload: {},
       });
 
-      this.privateCal = await this.$store.dispatch('api/fetchUserCalendar');
+      this.privateCal = await this.$store.dispatch(
+        `${this.apiModule}/fetchUserCalendar`
+      );
       if (!this.privateCal) alert('Something went wrong');
     },
     copyLink() {
