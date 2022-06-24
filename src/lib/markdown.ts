@@ -6,5 +6,6 @@ export function stripMarkdown(input: string) {
     .replaceAll(/_(.*?)_/g, (_, match) => match)
     .replaceAll(/~~(.*?)~~/g, (_, match) => match)
     .replaceAll(/`(.*?)`/g, (_, match) => match)
-    .replaceAll(/#{1,6}\s+/gm, '');
+    .replaceAll(/#{1,6}\s+/gm, '')
+    .replaceAll(/<.+?>/g, '');
 }
