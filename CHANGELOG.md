@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.21.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.21.1...v2.21.2) (2022-06-24)
+
+
+### Bug Fixes
+
+* **core:** strip html tags from markdown too ([97f76a8](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/97f76a8533de23514199304166f8bd84738098f3))
+
 ### [2.21.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.21.0...v2.21.1) (2022-06-23)
 
 
