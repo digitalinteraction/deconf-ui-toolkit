@@ -17,11 +17,18 @@ const ALL_FILTERS = [
   'languageFilter',
 ];
 
+function multiDaySchedule() {
+  const schedule = createSchedule();
+  schedule.slots[0].start.setDate(schedule.slots[0].start.getDate() - 1);
+  schedule.slots[2].start.setDate(schedule.slots[2].start.getDate() + 1);
+  return schedule;
+}
+
 const Template: Story = (args, { argTypes }) => ({
   components: { ScheduleFilters },
   props: [...ALL_FILTERS],
   data: () => ({
-    schedule: createSchedule(),
+    schedule: multiDaySchedule(),
     filters: {
       query: '',
       sessionType: null,

@@ -210,10 +210,13 @@ export default {
           s.start,
         ])
       );
-      return [...dates.entries()].map(([start, date]) => ({
-        value: start,
-        text: friendlyDate(date),
-      }));
+      return [...dates.entries()]
+        .map(([start, date]) => ({
+          value: start,
+          text: friendlyDate(date),
+          date,
+        }))
+        .sort((a, b) => a.date.getTime() - b.date.getTime());
     },
     sessionTypeOptions(): FilterOption[] {
       return this.schedule.types.map((t) => ({
