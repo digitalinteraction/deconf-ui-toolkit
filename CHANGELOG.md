@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.21.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.21.2...v2.21.3) (2022-07-01)
+
+
+### Bug Fixes
+
+* sort schedule filter date options ([c2e9d0b](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/c2e9d0b00f1386ac820a93ff83597fa18f006d54))
+
 ### [2.21.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.21.1...v2.21.2) (2022-06-24)
 
 
