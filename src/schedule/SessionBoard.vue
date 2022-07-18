@@ -46,6 +46,7 @@ $sessionBoard-background: $white !default;
   box-shadow: $box-shadow;
   break-inside: avoid;
   border-radius: $radius-large;
+  overflow: hidden;
 
   &:not(:last-child) {
     margin-bottom: $sessionBoard-spacing;
