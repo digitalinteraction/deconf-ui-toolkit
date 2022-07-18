@@ -29,12 +29,10 @@
           <span>
             {{ $t('deconf.miniSession.view') }}
           </span>
-          <span class="icon ltr-only">
-            <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
-          </span>
-          <span class="icon rtl-only">
-            <FontAwesomeIcon :icon="['fas', 'arrow-left']" />
-          </span>
+          <BidirectionalIcon
+            :ltr="['fas', 'arrow-right']"
+            :rtl="['fas', 'arrow-left']"
+          />
         </router-link>
       </p>
     </div>
@@ -49,9 +47,9 @@ import {
   getCountdownMessage,
 } from '../lib/module';
 import { PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { Location } from 'vue-router';
 import { Session, SessionSlot } from '@openlab/deconf-shared';
+import { BidirectionalIcon } from '../core/module';
 
 //
 // i18n
@@ -72,7 +70,7 @@ import { Session, SessionSlot } from '@openlab/deconf-shared';
 
 export default {
   name: 'MiniSession',
-  components: { FontAwesomeIcon },
+  components: { BidirectionalIcon },
   props: {
     session: { type: Object as PropType<Session>, required: true },
     sessionSlot: {

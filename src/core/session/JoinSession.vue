@@ -1,22 +1,20 @@
 <template>
   <router-link class="joinSession button" :class="classes" :to="sessionRoute">
-    <span class="icon rtl-only">
-      <FontAwesomeIcon :icon="['fas', 'arrow-left']" />
-    </span>
     <span>
       {{ $t(action) }}
     </span>
-    <span class="icon ltr-only">
-      <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
-    </span>
+    <BidirectionalIcon
+      :ltr="['fas', 'arrow-right']"
+      :rtl="['fas', 'arrow-left']"
+    />
   </router-link>
 </template>
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import { Routes, SlotState } from '../../lib/module';
+import BidirectionalIcon from '../BidirectionalIcon.vue';
 
 const actions: Record<SlotState, string> = {
   future: 'deconf.joinSession.future',
@@ -41,7 +39,7 @@ const actions: Record<SlotState, string> = {
 
 export default {
   name: 'JoinSession',
-  components: { FontAwesomeIcon },
+  components: { BidirectionalIcon },
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
     sessionId: { type: String, required: true },

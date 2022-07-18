@@ -13,14 +13,16 @@
       {{ subtitle }}
     </p>
     <span class="colorWidget-arrow" v-if="href">
-      <FontAwesomeIcon :icon="['fas', 'chevron-right']" class="ltr-only" />
-      <FontAwesomeIcon :icon="['fas', 'chevron-left']" class="rtl-only" />
+      <BidirectionalIcon
+        :ltr="['fas', 'chevron-right']"
+        :rtl="['fas', 'chevron-left']"
+      />
     </span>
   </component>
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { BidirectionalIcon } from '../core/module';
 
 //
 // i18n
@@ -37,7 +39,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export default {
   name: 'ColorWidget',
-  components: { FontAwesomeIcon },
+  components: { BidirectionalIcon },
   props: {
     kind: {
       type: String,

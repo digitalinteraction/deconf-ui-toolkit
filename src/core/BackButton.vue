@@ -1,11 +1,9 @@
 <template>
   <router-link class="backButton button is-white" active-class="" :to="to">
-    <span class="icon ltr-only">
-      <FontAwesomeIcon :icon="['fas', 'arrow-left']" />
-    </span>
-    <span class="icon rtl-only">
-      <FontAwesomeIcon :icon="['fas', 'arrow-right']" />
-    </span>
+    <BidirectionalIcon
+      :ltr="['fas', 'arrow-left']"
+      :rtl="['fas', 'arrow-right']"
+    />
     <span>
       <slot />
     </span>
@@ -13,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import BidirectionalIcon from './BidirectionalIcon.vue';
 
 //
 // i18n
@@ -29,7 +27,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 export default {
   name: 'BackButton',
-  components: { FontAwesomeIcon },
+  components: { BidirectionalIcon },
   props: {
     to: { type: [String, Object], required: true },
   },
