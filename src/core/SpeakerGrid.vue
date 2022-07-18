@@ -77,6 +77,7 @@ $speakerGrid-cellWidth: 280px !default;
 
 .speakerGrid-headshot {
   padding-inline-end: 8px;
+  flex-shrink: 0;
 
   img {
     width: 42px;
