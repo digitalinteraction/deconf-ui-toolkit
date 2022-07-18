@@ -39,3 +39,10 @@ Future.args = {
   startDate: dates.addMinutes(dates.future, 0),
   endDate: dates.addMinutes(dates.future, 30),
 };
+
+export const MultiDay = Template.bind({});
+MultiDay.args = {
+  slotState: 'present',
+  startDate: dates.addMinutes(dates.now, 0),
+  endDate: dates.addMinutes(dates.now, 7 * 24 * 60),
+};

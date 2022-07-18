@@ -7,28 +7,35 @@
       <span :title="startDate | localeDate">
         {{ startDate | shortTime }}
       </span>
-      <span class="icon ltr-only">
-        <FontAwesomeIcon :icon="['fas', 'long-arrow-alt-right']" />
-      </span>
-      <span class="icon rtl-only">
-        <FontAwesomeIcon :icon="['fas', 'long-arrow-alt-left']" />
-      </span>
+      <BidirectionalIcon
+        :ltr="['fas', 'long-arrow-alt-right']"
+        :rtl="['fas', 'long-arrow-alt-left']"
+      />
       <span :title="endDate | localeDate">
         {{ endDate | shortTime }}
       </span>
     </h3>
+    <p class="timeSlot-date icon-text">
+      <span>
+        {{ startDate | localeDateShort }}
+      </span>
+      <template v-if="isMultiDay">
+        <BidirectionalIcon
+          :ltr="['fas', 'long-arrow-alt-right']"
+          :rtl="['fas', 'long-arrow-alt-left']"
+        />
+        <span>{{ endDate | localeDateShort }}</span>
+      </template>
+    </p>
     <p class="timeSlot-timezone">
       <span>{{ timezone }}</span>
-    </p>
-    <p class="timeSlot-date">
-      {{ startDate | localeDateShort }}
     </p>
   </div>
 </template>
 
 <script lang="ts">
 import { PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import BidirectionalIcon from './BidirectionalIcon.vue';
 import { SlotState } from '../lib/module';
 
 //
@@ -49,7 +56,7 @@ import { SlotState } from '../lib/module';
 
 export default {
   name: 'TimeSlot',
-  components: { FontAwesomeIcon },
+  components: { BidirectionalIcon },
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
     startDate: { type: Date as PropType<Date>, required: true },
@@ -81,9 +88,12 @@ export default {
       if (this.slotState === 'present') return 'deconf.timeSlot.live';
       return null;
     },
-    timezone() {
+    timezone(): string {
       const intl = Intl.DateTimeFormat().resolvedOptions();
       return intl.timeZoneName || intl.timeZone;
+    },
+    isMultiDay(): boolean {
+      return this.endDate.getDate() !== this.startDate.getDate();
     },
   },
 };
@@ -129,15 +139,15 @@ $timeSlot-pastBackground: #999 !default;
   font-weight: $weight-bold;
   line-height: 1.5rem;
 }
-.timeSlot-timezone {
-  color: $text-light;
-  font-size: 0.9em;
-  font-weight: $weight-bold;
-  line-height: 1.25rem;
-}
 .timeSlot-date {
   color: $text-light;
   font-size: 0.9em;
+  font-weight: $weight-bold;
+}
+.timeSlot-timezone {
+  color: $text-light;
+  font-size: 0.9em;
   font-weight: $weight-normal;
+  line-height: 1.25rem;
 }
 </style>
