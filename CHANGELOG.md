@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.22.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.21.3...v2.22.0) (2022-07-18)
+
+
+### Features
+
+* **core:** add BidirectionalIcon to ease ltr/rtl icon usage ([0e9dedf](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/0e9dedf42bbcdb83798d52091f4bb8d3a26cd83a))
+
+
+### Bug Fixes
+
+* **core:** show the end-date of a TimeSlot when it is meaningful ([531bf4d](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/531bf4da3391ee4e4cfaddeebd499aa00200e6a0))
+* **core:** stop long speaker roles breaking the headshots ([c7eee49](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/c7eee49c309dee3d5f2523964e8a9ae072e02dbc))
+* **schedule:** stop Firefox overflow in SessionBoard ([6c86c9f](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/6c86c9f1e99edf6dd9e93c35275e84739f1f328d))
+
 ### [2.21.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.21.2...v2.21.3) (2022-07-01)
 
 
