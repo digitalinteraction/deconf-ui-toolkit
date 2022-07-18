@@ -10,6 +10,7 @@ export { default as ApiError } from './ApiError.vue';
 export { default as AppLayout } from './AppLayout.vue';
 export { default as AppLoading } from './AppLoading.vue';
 export { default as BackButton } from './BackButton.vue';
+export { default as BidirectionalIcon } from './BidirectionalIcon.vue';
 export { default as FullHeight } from './FullHeight.vue';
 export { default as FullScreenDialog } from './FullScreenDialog.vue';
 export { default as InlineMessage } from './InlineMessage.vue';
