@@ -4,7 +4,6 @@ import {
   createFilterPredicate,
   DailySessions,
   groupSessionsByDay,
-  groupSessionsBySlot,
   SessionPredicate,
   SlotWithSessions,
 } from './schedule';
@@ -13,6 +12,7 @@ export interface ScheduleThis extends ScheduleComputed {
   $i18n: {
     locale: string;
   };
+  $t(...args: unknown[]): string;
   filters: ScheduleFilterRecord;
   schedule: ScheduleRecord;
   sessions: Session[];
@@ -100,16 +100,24 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
     searchResults() {
       if (!this.filterPredicate) return null;
 
-      return [
-        {
-          title: 'Search Results',
-          date: new Date(),
-          groups: groupSessionsBySlot(
-            this.filteredSessions,
-            this.schedule.slots
-          ),
-        },
-      ];
+      const result = groupSessionsByDay(
+        this.filteredSessions,
+        this.schedule.slots
+      );
+
+      // Add "search result" text to each day's title
+      // written in a backwards-compatable array, so it still works
+      // if the i18n string isn't set
+      for (const item of result) {
+        const newTitle = this.$t('deconf.schedule.resultHeading', [item.title]);
+
+        item.title =
+          newTitle !== 'deconf.schedule.resultHeading'
+            ? newTitle
+            : `${item.title} - Search Results`;
+      }
+
+      return result;
     },
   };
 }

@@ -142,7 +142,8 @@
       "userSessions": "User",
       "hidePast": "Hide previous sessions",
       "showPast": "Show previous sessions",
-      "noResults": "Nothing matched your query"
+      "noResults": "Nothing matched your query",
+      "resultHeading": "Search results for {0}"
     },
     "session": {
       "slot": "Schedule",

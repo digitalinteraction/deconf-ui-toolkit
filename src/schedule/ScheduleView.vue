@@ -118,6 +118,7 @@ import { ScheduleFilterRecord } from '../lib/module';
 // - deconf.schedule.userSessions
 // - deconf.schedule.hidePast
 // - deconf.schedule.showPast
+// - deconf.schedule.resultHeading
 //
 // icons
 // - n/a
