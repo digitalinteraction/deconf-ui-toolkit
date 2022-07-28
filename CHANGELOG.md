@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.23.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.22.0...v2.23.0) (2022-07-28)
+
+
+### Features
+
+* add option to sort a FilteredScheduleView ([38e1163](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/38e1163fbd4d9f24dd49cf1abdd67356e1662d52))
+
 ## [2.22.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.21.3...v2.22.0) (2022-07-18)
 
 
