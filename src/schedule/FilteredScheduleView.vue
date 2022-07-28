@@ -83,12 +83,9 @@ export default {
   },
   computed: {
     filteredSessions(): Session[] {
-      const { sort, predicate } = this.options;
-      const result = this.schedule.sessions.filter(
-        (s) => s.slot && predicate(s)
+      return this.schedule.sessions.filter(
+        (s) => s.slot && this.options.predicate(s)
       );
-      if (sort) result.sort((a, b) => sort(a, b));
-      return result;
     },
     isDuringConference(): boolean {
       const range = getScheduleStartAndEnd(
