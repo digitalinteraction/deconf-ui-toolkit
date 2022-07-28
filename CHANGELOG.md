@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.24.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.23.0...v2.24.0) (2022-07-28)
+
+
+### Features
+
+* group search results by day. New optional deconf.schedule.resultHeading i18n key ([0aa3373](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/0aa33738338fcc9e9bb971d96ed57a458de0c685))
+
+
+### Bug Fixes
+
+* revert broken sort for FilteredScheduleView ([5bba978](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/5bba978bd38bbf20f61faa2e6d09363abadf68ab))
+
 ## [2.23.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.22.0...v2.23.0) (2022-07-28)
 
 
