@@ -87,8 +87,13 @@ export function groupSessionsByDay(
     output.push({ date, title, groups });
   }
 
-  // Make sure they are still in order
+  // Make sure the days are in order
   output.sort((a, b) => a.date.getTime() - b.date.getTime());
+
+  // Make sure each day's slots-groups are in the right order
+  for (const item of output) {
+    item.groups.sort((a, b) => a.slot.start.getTime() - b.slot.start.getTime());
+  }
 
   return output;
 }
