@@ -57,8 +57,7 @@ Vue.prototype.$i18n = {
     const match = get(locales, key);
     if (match) return params ? templated(match, params) : match;
 
-    const extra = params ? `, ${JSON.stringify(params)}` : '';
-    return `{{ ${key}${extra} }}`;
+    return key;
   },
   tc(key, count) {
     const match = get(locales, key);
