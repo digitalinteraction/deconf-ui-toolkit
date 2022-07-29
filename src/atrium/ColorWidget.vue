@@ -23,6 +23,7 @@
 
 <script lang="ts">
 import { BidirectionalIcon } from '../core/module';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
 // i18n
@@ -39,7 +40,7 @@ import { BidirectionalIcon } from '../core/module';
 
 export default {
   name: 'ColorWidget',
-  components: { BidirectionalIcon },
+  components: { FontAwesomeIcon, BidirectionalIcon },
   props: {
     kind: {
       type: String,
