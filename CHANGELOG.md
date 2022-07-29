@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.24.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.24.1...v2.24.2) (2022-07-29)
+
+
+### Bug Fixes
+
+* fix ColorWidget not displaying icons ([a9b9b66](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/a9b9b668db846535f8a01b1d9d14239b554f7e6a))
+
 ### [2.24.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.24.0...v2.24.1) (2022-07-28)
 
 
