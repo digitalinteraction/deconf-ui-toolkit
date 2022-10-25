@@ -176,6 +176,18 @@
       "info": "Use this link to subscribe to \"My Schedule\" in your own calendar.",
       "copy": "copy",
       "copied": "copied"
+    },
+    "apiMessage": {
+      "loginExpired": {
+        "title": "Login expired",
+        "info": "Your log-in code has expired, please request a new one",
+        "action": "Log in"
+      },
+      "unknown": {
+        "title": "Something went wrong",
+        "info": "An unknown error occured, please try again or contact us",
+        "email": "support@example.com"
+      }
     }
   }
 }
