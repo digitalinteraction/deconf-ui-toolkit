@@ -91,6 +91,10 @@ $appLayout-navbarBackground: $white !default;
   margin-block-start: $navbar-height;
 }
 
+.appLayout-page > .appLayout-main {
+  flex: 1;
+}
+
 .appLayout-header {
   position: fixed;
   top: 0;

@@ -72,21 +72,17 @@ const Template: Story = (args, { argTypes }) => ({
       <BrandB slot="brandB" />
       <BrandC slot="brandC" />
       <LanguageControl slot="languageControl" />
-      <div slot="main" style="background: #fafafa; flex: 1">
-        <div class="container">
+      <template slot="main">
+        <p class="has-text-centered">Header</p>
+        <div class="container appLayout-main">
           <section class="section">
             <div class="content">
-              <p>
-                <a id="top" href="#bottom">Bottom</a>
-              </p>
               <Content :size="contentSize * 5" />
-              <p>
-                <a id="bottom" href="#top">Top</a>
-              </p>
             </div>
           </section>
         </div>
-      </div>
+        <p class="has-text-centered">Footer</p>
+      </template>
     </AppLayout>
   `,
 });
@@ -103,7 +99,7 @@ Desktop.parameters = {
 export const Short = Template.bind({});
 Short.args = {
   isLoggedIn: true,
-  contentSize: 0,
+  contentSize: 1,
 };
 Short.parameters = {
   layout: 'fullscreen',
