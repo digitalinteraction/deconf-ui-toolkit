@@ -61,7 +61,10 @@ export function getDefaultRoutes(
   return routes;
 }
 
-/** Guard a route against a PageFlag unless an admin is visiting */
+/**
+ * Guard a route against a PageFlag unless an admin is visiting
+ * @deprecated
+ */
 export function guardRoute<T extends Record<string, PageFlag>>(
   schedule: T | undefined,
   key: keyof T,
@@ -72,6 +75,20 @@ export function guardRoute<T extends Record<string, PageFlag>>(
   if (!schedule) return;
 
   const flag = schedule[key];
+
+  if (!flag || flag.enabled !== true || flag.visible !== true) {
+    router.replace({ name: Routes.NotFound });
+  }
+}
+
+/** Guard navigation to a page based on a user and `PageFlag` */
+export function guardPage(
+  flag: PageFlag | undefined,
+  user: AuthToken | null,
+  router: VueRouter
+) {
+  if (user && user.user_roles.includes('admin')) return;
+  if (!flag) return;
 
   if (!flag || flag.enabled !== true || flag.visible !== true) {
     router.replace({ name: Routes.NotFound });
