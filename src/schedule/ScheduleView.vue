@@ -262,6 +262,10 @@ $scheduleView-background: $background !default;
 .scheduleView-toggleHistory {
   background: $scheduleView-background;
   padding: $block-spacing 0;
+
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
 }
 .scheduleView-title {
   font-size: $scheduleView-titleSize;
