@@ -7,7 +7,7 @@
         <p class="speakerDialog-role">{{ localeRole }}</p>
       </div>
     </div>
-    <p class="speakerDialog-bio">{{ localeContent }}</p>
+    <p class="speakerDialog-bio content" v-html="localeContent" />
     <div class="buttons">
       <button class="button is-link" @click="onClose">
         {{ $t('deconf.general.closeDialog') }}
@@ -17,9 +17,10 @@
 </template>
 
 <script lang="ts">
+import { marked } from 'marked';
 import { PropType } from 'vue';
 import { Speaker } from '@openlab/deconf-shared';
-import { localiseFromObject } from '../lib/locales';
+import { localiseFromObject, stripMarkdown } from '../lib/module';
 
 //
 // i18n
@@ -41,10 +42,12 @@ export default {
   },
   computed: {
     localeRole(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.speaker.role);
+      const content = localiseFromObject(this.$i18n.locale, this.speaker.role);
+      return content ? stripMarkdown(content) : null;
     },
     localeContent(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.speaker.bio);
+      const content = localiseFromObject(this.$i18n.locale, this.speaker.bio);
+      return content ? marked(content) : null;
     },
   },
   methods: {
@@ -71,6 +74,8 @@ $speakerDialog-nameFamily: $family-title !default;
   width: 64px;
   height: 64px;
   border-radius: $radius-rounded;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
 }
 .speakerDialog-name {
