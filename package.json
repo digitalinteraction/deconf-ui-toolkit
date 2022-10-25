@@ -1,6 +1,6 @@
 {
   "name": "@openlab/deconf-ui-toolkit",
-  "version": "2.24.2",
+  "version": "2.25.0",
   "scripts": {
     "build": "npm run lint && rimraf dist/* && npm run build:js && npm run build:types && npm run build:scss",
     "test:unit": "vue-cli-service test:unit",

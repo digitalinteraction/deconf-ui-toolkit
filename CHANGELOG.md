@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.25.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.24.2...v2.25.0) (2022-10-25)
+
+
+### Features
+
+* **core:** add ApiMessage for displaying well-known API errors ([b932b37](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/b932b379d7bcd12af7b390349955463185ec0239))
+* **core:** add optional "appLayout-main" class to AppLayout to auto-fill vertically ([ac66282](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/ac6628206f4c36c4666447c95ffa518250c7014b))
+* **core:** add TokenCaptureView to encapsulate the login flow ([9b3318e](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/9b3318eee9c58cf2344b5bdcb4ed5a94368288a5))
+* **core:** SpeakerDialog supports markdown and strips it from the role ([0d02747](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/0d02747256e15670929111bbc32a6f1c03bec09e))
+* **lib:** add getRouteTitle & getScrollBehaviour router helpers ([a71083e](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/a71083efa5cdbe1354c8ba69f2f38199b12c1efb))
+* **schedule:** stick "toggle history" to the bottom of the screen ([aaf6c00](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/aaf6c006e2d5f169ff472ee51936bb93b75d7aec))
+
+
+### Bug Fixes
+
+* **core:** improve inline icons ([5daed59](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/5daed5940d2c664c4068925eac579c850b4accbf))
+* **lib:** deprecate `getDefaultRoutes` ([90b4256](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/90b4256110e8a60a5c770b006535c0415960a674))
+* **lib:** fix ApiClient#getContent to match the API ([1771e60](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/1771e604c00db1379dfb64460877fdee52ab571e))
+
 ### [2.24.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.24.1...v2.24.2) (2022-07-29)
 
 
