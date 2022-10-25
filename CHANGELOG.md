@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.26.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.25.0...v2.26.0) (2022-10-25)
+
+
+### Features
+
+* **lib:** add `guardPage` and deprecated `guardRoute` ([9c82d14](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/9c82d14511dbc37688b2892e87bbfcecf3fde50b))
+
 ## [2.25.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.24.2...v2.25.0) (2022-10-25)
 
 
