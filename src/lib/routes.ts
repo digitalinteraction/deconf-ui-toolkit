@@ -1,5 +1,6 @@
 import { ConferenceConfig, AuthToken, PageFlag } from '@openlab/deconf-shared';
-import VueRouter from 'vue-router';
+import VueI18n from 'vue-i18n';
+import VueRouter, { NavigationGuardNext, Route } from 'vue-router';
 
 import { Routes } from './constants';
 import { AppRoute } from './types';
@@ -75,4 +76,44 @@ export function guardRoute<T extends Record<string, PageFlag>>(
   if (!flag || flag.enabled !== true || flag.visible !== true) {
     router.replace({ name: Routes.NotFound });
   }
+}
+
+/**
+ * Generate a title for a given route, based on `meta.pageTitle` i18n key,
+ * plus `deconf.general.appName`.
+ */
+export function getRouteTitle(route: Route, i18n: VueI18n): string {
+  const routeWithTitle = [...route.matched]
+    .reverse()
+    .find((r) => r.meta.pageTitle);
+
+  const appName = i18n.t('deconf.general.appName') as string;
+  if (!routeWithTitle) return appName;
+
+  const pageName = i18n.t(routeWithTitle.meta.pageTitle);
+  return [pageName, appName].join(' | ');
+}
+
+/** Generate a normal-ish scroll-behaviour for a SPA that wants to act like a webpage */
+export function getScrollBehaviour(scrollOffest: number) {
+  return (
+    to: Route,
+    from: Route,
+    savedPosition: { x: number; y: number } | void
+  ) => {
+    // If they clicked on a hash, scroll to that
+    if (to.hash && to.name !== Routes.TokenCapture) {
+      return {
+        selector: to.hash,
+        offset: { x: 0, y: scrollOffest },
+      };
+    }
+
+    // If they've been to the page, scroll back to there
+    // Only available when navigating back via the browser
+    if (savedPosition) return savedPosition;
+
+    // Otherwise, its a new page so go to the top
+    return { x: 0, y: 0 };
+  };
 }

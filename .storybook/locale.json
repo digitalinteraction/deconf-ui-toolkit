@@ -31,7 +31,8 @@
       "minutes": "minutes | minute | minutes",
       "seconds": "seconds | second | seconds",
       "genericError": "Something went wrong, please try again",
-      "closeDialog": "Close"
+      "closeDialog": "Close",
+      "appName": "Deconf"
     },
     "miniSession": {
       "view": "View",
