@@ -152,8 +152,11 @@ export class DeconfApiClient {
   //
   // Content
   //
-  getContent(slug: string): Promise<LocalisedContent | null> {
-    return this.fetchJson(this.getEndpoint('ContentRoutes.getContent', slug));
+  async getContent(slug: string): Promise<LocalisedContent | null> {
+    const raw = await this.fetchJson<{ content: LocalisedContent }>(
+      this.getEndpoint('ContentRoutes.getContent', slug)
+    );
+    return raw?.content ?? null;
   }
 
   //
