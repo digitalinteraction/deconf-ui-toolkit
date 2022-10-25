@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import { Routes } from './constants';
 import { AppRoute } from './types';
 
+/** @deprecated */
 export function getDefaultRoutes(
   user: AuthToken | null,
   settings: ConferenceConfig,
