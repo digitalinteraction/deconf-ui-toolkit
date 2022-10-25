@@ -188,6 +188,9 @@
         "info": "An unknown error occured, please try again or contact us",
         "email": "support@example.com"
       }
+    },
+    "tokenCaptureView": {
+      "message": "Processing login..."
     }
   }
 }

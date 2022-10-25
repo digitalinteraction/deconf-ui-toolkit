@@ -22,6 +22,7 @@ export { default as SpeakerGrid } from './SpeakerGrid.vue';
 export { default as Stack } from './Stack.vue';
 export { default as StaticLayout } from './StaticLayout.vue';
 export { default as TimeSlot } from './TimeSlot.vue';
+export { default as TokenCaptureView } from './TokenCaptureView.vue';
 export { default as UtilLayout } from './UtilLayout.vue';
 export type { PageFooterLink } from './page-footer-link';
 export type { NavLink } from './nav-link';
