@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.26.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.26.0...v2.26.1) (2022-10-25)
+
+
+### Bug Fixes
+
+* **lib:** reduce schedule method's type requirements for ScheduleView ([f49247c](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/f49247c2d955027b4644191bfb68d61dbbb1e2a7))
+
 ## [2.26.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.25.0...v2.26.0) (2022-10-25)
 
 
