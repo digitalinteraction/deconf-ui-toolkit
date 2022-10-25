@@ -134,7 +134,7 @@ export type SessionPredicate = (session: Session) => boolean;
 export function createQueryPredicate(
   locale: string,
   query: string | undefined,
-  schedule: ScheduleRecord
+  schedule: Omit<ScheduleRecord, 'settings'>
 ): SessionPredicate | null {
   if (!query || !query.trim()) return null;
 
@@ -174,7 +174,7 @@ export function createQueryPredicate(
 export function createFilterPredicate(
   locale: string,
   filters: ScheduleFilterRecord,
-  schedule: ScheduleRecord
+  schedule: Omit<ScheduleRecord, 'settings'>
 ): SessionPredicate | null {
   if (!filtersAreSet(filters)) return null;
 
@@ -234,13 +234,12 @@ export function isDuringConference(
 }
 
 export function getFeaturedSessions(
-  schedule: ScheduleRecord | null,
+  schedule: Omit<ScheduleRecord, 'settings'> | null,
   daysInFuture: number,
   currentDate: Date,
   predicate: (session: Session) => boolean
 ): SessionAndSlot[] | null {
   if (!schedule) return null;
-  if (!schedule.settings.schedule.enabled) return null;
 
   const now = currentDate.getTime();
   const inTheFuture = now + daysInFuture * 24 * 60 * 60 * 1000;
@@ -359,7 +358,7 @@ export interface DateRange {
 /** Get the earliest and lastest dates based on a set of sessions */
 export function getScheduleStartAndEnd(
   sessions: Session[],
-  schedule: ScheduleRecord
+  schedule: Omit<ScheduleRecord, 'settings'>
 ): DateRange | null {
   const slots = new Map(schedule.slots.map((s) => [s.id, s]));
 
@@ -400,10 +399,9 @@ export function isInRange(range: DateRange, date: Date): boolean {
  * It looks through each session and only keeps slots/speakers/themes/tracks/types
  * that existing on the provided sessions.
  */
-export function filterScheduleFromSessions(
-  schedule: ScheduleRecord,
-  sessions: Session[]
-): ScheduleRecord {
+export function filterScheduleFromSessions<
+  T extends Omit<ScheduleRecord, 'settings'>
+>(schedule: T, sessions: Session[]): T {
   const slotIds = new Set<string>();
   const speakerIds = new Set<string>();
   const themeIds = new Set<string>();
