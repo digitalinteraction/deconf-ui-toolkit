@@ -1,5 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import Vue from 'vue';
+import Vuex from 'vuex';
 import '../src/scss/app.scss';
 import { setupFontawesome, CONTENT_PARAGRAPHS } from '../src/story-lib/module';
 import locales from './locale.json';
@@ -72,63 +73,67 @@ Vue.prototype.$tc = Vue.prototype.$i18n.tc;
 //
 // Stub out vuex
 //
-const attendance = new Set();
-const actions = {
-  'api/login': (payload) => payload.includes('@'),
-  'api/register': (payload) => payload.email.includes('@'),
-  'api/unregister': (payload) => true,
-  'api/fetchLinks': (sessionId) => {
-    if (!attendance.has(sessionId)) return { links: null };
-    return {
-      links: [
-        { type: '', url: 'https://youtu.be/yPYZpwSpKmA', language: 'fr' },
-        { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
-        {
-          type: '',
-          url: 'https://vimeo.com/live-chat/622215885/',
-          language: 'en',
-        },
-        { type: '', url: 'https://miro.com/en', language: 'en' },
-        { type: '', url: 'https://miro.com/fr', language: 'fr' },
-        { type: '', url: 'https://docs.google.com/abcdef', language: 'en' },
-      ],
-    };
-  },
-  'api/fetchSessionAttendance': (sessionId) => ({
-    isAttending: attendance.has(sessionId),
-    sessionCount: 14,
-  }),
-  'api/attend': (sessionId) => {
-    attendance.add(sessionId);
-  },
-  'api/unattend': (sessionId) => {
-    attendance.delete(sessionId);
-  },
-  'api/fetchContent': ({ slug }) => ({
-    en: `
-      <p>${CONTENT_PARAGRAPHS[0]}</p>
-      <div id="featured_thing"></div>
-      <p>${CONTENT_PARAGRAPHS[1]}</p>
-      <p><a href="https://duck.com">A link</a></p>
-    `,
-  }),
-  'api/fetchUserCalendar': () => ({ url: new URL('https://duck.com') }),
-};
-Vue.prototype.$store = {
-  state: {},
-  getters: {
-    'api/calendarLink': (session) => `/ical/${session.id}`,
-  },
-  commit(key, value) {
-    action(`[vuex commit] ${key}`)(value);
-  },
-  dispatch(key, value) {
-    action(`[vuex dispatch] ${key}`)(value);
-    const result = actions[key] ? actions[key](value) : undefined;
+const fakeLinks = [
+  { type: '', url: 'https://youtu.be/yPYZpwSpKmA', language: 'fr' },
+  { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
+  { type: '', url: 'https://vimeo.com/live-chat/622215885/', language: 'en' },
+  { type: '', url: 'https://miro.com/en', language: 'en' },
+  { type: '', url: 'https://miro.com/fr', language: 'fr' },
+  { type: '', url: 'https://docs.google.com/abcdef', language: 'en' },
+];
+const fakeContent = `
+<p>${CONTENT_PARAGRAPHS[0]}</p>
+<div id="featured_thing"></div>
+<p>${CONTENT_PARAGRAPHS[1]}</p>
+<p><a href="https://duck.com">A link</a></p>
+`;
 
-    return new Promise((resolve) => setTimeout(() => resolve(result)), 1000);
+Vue.use(Vuex);
+const api = {
+  namespaced: true,
+  state: {
+    attendance: [],
+  },
+  getters: {
+    calendarLink: (state) => (session) => `/ical/${session.id}`,
+    userSessions: (state) => state.attendance,
+  },
+  actions: {
+    login(ctx, payload) {
+      return payload.includes('@');
+    },
+    register(ctx, payload) {
+      return payload.email.includes('@');
+    },
+    unregister(ctx, payload) {
+      return true;
+    },
+    fetchLinks({ state }, sessionId) {
+      if (!state.attendance.includes(sessionId)) return { links: null };
+      return { links: fakeLinks };
+    },
+    fetchSessionAttendance({ state }, sessionId) {
+      return {
+        isAttending: state.attendance.includes(sessionId),
+        sessionCount: 14,
+      };
+    },
+    attend({ state }, sessionId) {
+      state.attendance.push(sessionId);
+    },
+    unattend({ state }, sessionId) {
+      // state.attendance.delete(sessionId);
+      state.attendance = state.attendance.filter((id) => id !== sessionId);
+    },
+    fetchContent(ctx, { slug }) {
+      return { en: fakeContent };
+    },
+    fetchUserCalendar() {
+      return { url: new URL('https://duck.com') };
+    },
   },
 };
+Vue.prototype.$store = new Vuex.Store({ modules: { api } });
 
 //
 // Stub out $deconf
