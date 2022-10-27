@@ -2,6 +2,7 @@
 import type { VNode } from 'vue';
 import { Localised } from '@openlab/deconf-shared';
 import { localiseFromObject } from '../lib/locales';
+import { namespaceForApi } from '../lib/store';
 
 //
 // i18n
@@ -47,9 +48,10 @@ export default {
   },
   methods: {
     async fetchData() {
-      this.content = await this.$store.dispatch('api/fetchContent', {
-        slug: this.slug,
-      });
+      this.content = await this.$store.dispatch(
+        namespaceForApi(this.$deconf, 'fetchContent'),
+        { slug: this.slug }
+      );
     },
 
     /** Convert a HTML node to a Vue.js VNode */
