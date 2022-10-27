@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { AuthToken } from '@openlab/deconf-shared';
-import { createLoginFinishEvent } from '../lib/module';
+import { createLoginFinishEvent, namespaceForApi } from '../lib/module';
 
 //
 // i18n
@@ -40,7 +40,10 @@ export default {
       if (!authToken) return this.$emit('failed');
 
       localStorage.setItem(this.tokenKey, authToken);
-      await this.$store.dispatch('api/authenticate', { token: authToken });
+      await this.$store.dispatch(
+        namespaceForApi(this.$deconf, 'authenticate'),
+        { token: authToken }
+      );
 
       const user: AuthToken = this.$store.state.api.user;
       if (!user) this.$emit('failed');
