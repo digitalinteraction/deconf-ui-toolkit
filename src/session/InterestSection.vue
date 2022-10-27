@@ -15,7 +15,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import { UserSessionAttendance } from '@openlab/deconf-shared';
-import InterestButton from '@/core/session/InterestButton.vue';
+import InterestButton from '../core/session/InterestButton.vue';
 
 //
 // i18n
