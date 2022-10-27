@@ -43,6 +43,7 @@
 import { PropType } from 'vue';
 import { createLogoutEvent, createUnregisterEvent } from '../lib/metrics';
 import { ProfileField } from './profile-field';
+import { namespaceForApi } from '../lib/module';
 
 //
 // i18n
@@ -73,7 +74,6 @@ import { ProfileField } from './profile-field';
 export default {
   name: 'ProfileView',
   props: {
-    apiModule: { type: String, required: true },
     fields: { type: Array as PropType<ProfileField[]>, required: true },
   },
   methods: {
@@ -91,7 +91,7 @@ export default {
       if (!confirmed) return;
 
       const success = await this.$store.dispatch(
-        `${this.apiModule}/unregister`
+        namespaceForApi(this.$deconf, 'unregister')
       );
 
       if (!success) {

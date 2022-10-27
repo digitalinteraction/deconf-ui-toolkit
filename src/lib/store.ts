@@ -1,3 +1,5 @@
+import { DeconfPlugin } from './deconf-plugin';
+
 /** A "this" value with a partially strongly typed state */
 export interface VuexWithState<Namespace extends string, State> {
   $store: {
@@ -26,4 +28,8 @@ export function createStateMapper<State>() {
 
     return output;
   };
+}
+
+export function namespaceForApi(deconf: DeconfPlugin, key: string) {
+  return `${deconf.apiModule ?? 'api'}/${key}`;
 }

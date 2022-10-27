@@ -20,4 +20,7 @@ export interface DeconfPlugin {
     options?: ShowDialogOptions
   ): void;
   closeDialog(): void;
+
+  /** @experimental — stablise in next major-version */
+  apiModule?: string;
 }

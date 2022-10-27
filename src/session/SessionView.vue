@@ -197,6 +197,7 @@ import {
   getLocaleLinks,
   getSlotState,
   localiseFromObject,
+  namespaceForApi,
   parsePrimaryLink,
   parseSecondaryLink,
   SlotState,
@@ -293,7 +294,6 @@ export default {
     TimeSlot,
   },
   props: {
-    apiModule: { type: String, required: true },
     session: { type: Object as PropType<Session>, required: true },
     loggedIn: { type: Boolean, required: true },
     schedule: { type: Object as PropType<ScheduleRecord>, required: true },
@@ -452,7 +452,7 @@ export default {
     async fetchLinks() {
       if (!this.loggedIn) return;
       const result = await this.$store.dispatch(
-        `${this.apiModule}/fetchLinks`,
+        namespaceForApi(this.$deconf, 'fetchLinks'),
         this.session.id
       );
       this.links = result ? result.links : null;
@@ -460,7 +460,7 @@ export default {
     },
     async fetchAttendance() {
       this.attendance = await this.$store.dispatch(
-        `${this.apiModule}/fetchSessionAttendance`,
+        namespaceForApi(this.$deconf, 'fetchSessionAttendance'),
         this.session.id
       );
       this.$emit('attendance', this.attendance);
@@ -468,7 +468,10 @@ export default {
     async attend() {
       this.isLoading = true;
 
-      await this.$store.dispatch(`${this.apiModule}/attend`, this.session.id);
+      await this.$store.dispatch(
+        namespaceForApi(this.$deconf, 'attend'),
+        this.session.id
+      );
       this.$deconf.trackMetric(
         createAttendanceEvent('attend', this.session.id)
       );
@@ -479,7 +482,10 @@ export default {
     async unattend() {
       this.isLoading = true;
 
-      await this.$store.dispatch(`${this.apiModule}/unattend`, this.session.id);
+      await this.$store.dispatch(
+        namespaceForApi(this.$deconf, 'unattend'),
+        this.session.id
+      );
       this.$deconf.trackMetric(
         createAttendanceEvent('unattend', this.session.id)
       );

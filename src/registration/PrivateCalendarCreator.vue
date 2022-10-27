@@ -38,6 +38,7 @@
 <script lang="ts">
 import copyToClipboard from 'copy-to-clipboard';
 import { PrivateCalendar } from '@openlab/deconf-shared/dist/conference';
+import { namespaceForApi } from '../lib/module';
 
 //
 // i18n
@@ -70,9 +71,6 @@ interface Data {
 
 export default {
   name: 'PrivateCalendarCreator',
-  props: {
-    apiModule: { type: String, required: true },
-  },
   data(): Data {
     return { privateCal: null, didCopy: false, timerId: null };
   },
@@ -98,7 +96,7 @@ export default {
       });
 
       this.privateCal = await this.$store.dispatch(
-        `${this.apiModule}/fetchUserCalendar`
+        namespaceForApi(this.$deconf, 'fetchUserCalendar')
       );
       if (!this.privateCal) alert('Something went wrong');
     },

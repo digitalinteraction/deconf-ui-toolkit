@@ -50,7 +50,7 @@
 <script lang="ts">
 import { PropType } from 'vue';
 import { TextField } from '../form/module';
-import { createLoginStartEvent, Routes } from '../lib/module';
+import { createLoginStartEvent, namespaceForApi, Routes } from '../lib/module';
 
 //
 // i18n
@@ -81,7 +81,6 @@ export default {
   name: 'LoginView',
   components: { TextField },
   props: {
-    apiModule: { type: String, required: true },
     initialState: {
       type: String as PropType<LoginState>,
       default: 'pending' as LoginState,
@@ -102,7 +101,7 @@ export default {
     async submit() {
       this.state = 'working';
       const success = await this.$store.dispatch(
-        `${this.apiModule}/login`,
+        namespaceForApi(this.$deconf, 'login'),
         this.email
       );
 
