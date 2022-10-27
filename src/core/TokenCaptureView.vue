@@ -50,7 +50,7 @@ export default {
 
       this.$deconf.trackMetric(createLoginFinishEvent());
 
-      this.$emit('success', user);
+      this.$emit('success', user, params);
     },
   },
 };
