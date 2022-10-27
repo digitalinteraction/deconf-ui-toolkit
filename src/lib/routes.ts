@@ -1,6 +1,6 @@
 import { ConferenceConfig, AuthToken, PageFlag } from '@openlab/deconf-shared';
 import VueI18n from 'vue-i18n';
-import VueRouter, { NavigationGuardNext, Route } from 'vue-router';
+import VueRouter, { Route } from 'vue-router';
 
 import { Routes } from './constants';
 import { AppRoute } from './types';
