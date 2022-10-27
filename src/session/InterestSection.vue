@@ -4,54 +4,25 @@
       {{ $t('deconf.interestSection.message') }}
     </p>
 
-    <!-- Remove interest button -->
-    <button
-      class="button interestSection-button"
-      v-if="isRegistered"
+    <InterestButton
+      :is-interested="isRegistered"
+      :is-processing="isProcessing"
       @click="register"
-      :class="buttonClasses"
-      :disabled="disabled"
-    >
-      <span class="icon">
-        <FontAwesomeIcon :icon="['fas', 'times']" />
-      </span>
-      <span>
-        {{ $t('deconf.interestSection.unregisterButton') }}
-      </span>
-    </button>
-
-    <!-- Register interest button -->
-    <button
-      class="button interestSection-button"
-      v-else
-      @click="register"
-      :class="buttonClasses"
-      :disabled="disabled"
-    >
-      <span class="icon">
-        <FontAwesomeIcon :icon="['fas', 'user-plus']" />
-      </span>
-      <span>
-        {{ $t('deconf.interestSection.registerButton') }}
-      </span>
-    </button>
+    />
   </div>
 </template>
 
 <script lang="ts">
 import Vue, { PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { UserSessionAttendance } from '@openlab/deconf-shared';
+import InterestButton from '@/core/session/InterestButton.vue';
 
 //
 // i18n
 // - deconf.interestSection.message
-// - deconf.interestSection.unregisterButton
-// - deconf.interestSection.registerButton
 //
 // icons
-// - fas times
-// - fas user-plus
+// - n/a
 //
 // sass
 // - n/a
@@ -59,7 +30,7 @@ import { UserSessionAttendance } from '@openlab/deconf-shared';
 
 export default Vue.extend({
   name: 'InterestSection',
-  components: { FontAwesomeIcon },
+  components: { InterestButton },
   props: {
     attendance: {
       type: Object as PropType<UserSessionAttendance | null>,
@@ -99,7 +70,7 @@ export default Vue.extend({
   font-weight: $weight-bold;
   margin-bottom: 0.3em;
 }
-.interestSection-button {
+.interestSection > .interestButton {
   width: 100%;
 }
 </style>

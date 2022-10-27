@@ -9,35 +9,19 @@ export default {
 const Template: Story = (args, { argTypes }) => ({
   components: { InterestSection },
   props: ['attendance', 'isProcessing'],
+  data: () => ({ attending: false }),
   template: `
     <InterestSection
-      :attendance="attendance"
+      :attendance="{ isAttending: attending }"
       :is-processing="isProcessing"
+      @attend="attending = true"
+      @unattend="attending = false"
     />
   `,
 });
 
 export const Default = Template.bind({});
-Default.args = {
-  attendance: {
-    isAttending: false,
-    attendance: {},
-    sessionCount: 12,
-  },
-};
+Default.args = {};
 Default.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
-};
-
-export const Interested = Template.bind({});
-Interested.args = {
-  sessionCap: 30,
-  attendance: {
-    isAttending: true,
-    attendance: {},
-    sessionCount: 12,
-  },
-};
-Interested.parameters = {
   viewport: { defaultViewport: 'mobile2' },
 };

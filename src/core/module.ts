@@ -1,6 +1,7 @@
 // session
 export { default as AddToCalendar } from './session/AddToCalendar.vue';
 export { default as AddToCalendarDialog } from './session/AddToCalendarDialog.vue';
+export { default as InterestButton } from './session/InterestButton.vue';
 export { default as JoinSession } from './session/JoinSession.vue';
 export { default as SessionAttributes } from './session/SessionAttributes.vue';
 export { default as SessionHeader } from './session/SessionHeader.vue';
