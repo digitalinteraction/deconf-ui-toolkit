@@ -49,11 +49,10 @@
     "@types/marked": "^4.0.7",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "@vue/cli-plugin-babel": "~5.0.4",
+    "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-plugin-typescript": "~5.0.4",
-    "@vue/cli-service": "~5.0.4",
-    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
     "@vue/test-utils": "^1.0.3",
     "babel-loader": "^8.2.5",
@@ -82,7 +81,7 @@
     "vue-i18n": "^8.22.4",
     "vue-loader": "^15.9.8",
     "vue-router": "^3.5.1",
-    "vue-template-compiler": "^2.6.11",
+    "vue-template-compiler": "^2.6.14",
     "vuex": "^3.6.2",
     "webpack": "^4.46.0"
   },
@@ -105,8 +104,6 @@
       "plugin:vue/essential",
       "eslint:recommended",
       "@vue/typescript/recommended",
-      "@vue/prettier",
-      "@vue/prettier/@typescript-eslint",
       "plugin:prettier/recommended"
     ],
     "parserOptions": {
