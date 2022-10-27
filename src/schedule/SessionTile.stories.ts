@@ -22,6 +22,9 @@ const Template: Story = (args, { argTypes }) => ({
     'attrTrack',
     'attrThemes',
     'attrOrganisation',
+    'actionJoin',
+    'actionCalendar',
+    'actionMySchedule',
   ],
   data() {
     const schedule = createSchedule();
@@ -30,7 +33,11 @@ const Template: Story = (args, { argTypes }) => ({
   },
   computed: {
     config(): ScheduleConfig {
-      const config: ScheduleConfig = { tileHeader: [], tileAttributes: [] };
+      const config: ScheduleConfig = {
+        tileHeader: [],
+        tileAttributes: [],
+        tileActions: [],
+      };
 
       if (this.headerType) config.tileHeader.push('type');
       if (this.headerTrack) config.tileHeader.push('track');
@@ -41,6 +48,10 @@ const Template: Story = (args, { argTypes }) => ({
       if (this.attrTrack) config.tileAttributes.push('track');
       if (this.attrThemes) config.tileAttributes.push('themes');
       if (this.attrOrganisation) config.tileAttributes.push('organisation');
+
+      if (this.actionJoin) config.tileActions?.push('join');
+      if (this.actionCalendar) config.tileActions?.push('addToCalendar');
+      if (this.actionMySchedule) config.tileActions?.push('addToMySchedule');
 
       return config;
     },
@@ -57,7 +68,7 @@ const Template: Story = (args, { argTypes }) => ({
 });
 
 const baseArgs = {
-  readonly: true,
+  readonly: false,
   headerType: true,
   headerTrack: true,
   headerThemes: false,
@@ -66,6 +77,9 @@ const baseArgs = {
   attrTrack: false,
   attrThemes: true,
   attrOrganisation: true,
+  actionJoin: true,
+  actionCalendar: true,
+  actionMySchedule: true,
 };
 
 export const Future = Template.bind({});

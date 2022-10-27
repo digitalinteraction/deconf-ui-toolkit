@@ -69,7 +69,10 @@ export function createApiStoreModule(): ApiStoreModule {
       carbon: null,
       userSessions: null,
     },
-    getters: {},
+    getters: {
+      /** Internal accessor for `userSessions` */
+      userSessions: (state) => new Set(state.userSessions),
+    },
     mutations: {
       schedule: (state, schedule: ApiModuleState['schedule']) => {
         state.schedule = hydrateSchedule(schedule);

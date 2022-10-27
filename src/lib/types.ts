@@ -47,10 +47,13 @@ export interface AppRoute {
 //
 //
 
+export type ScheduleConfigAction = 'join' | 'addToCalendar' | 'addToMySchedule';
+
 export interface ScheduleConfig {
   tileHeader: Array<'type' | 'track' | 'themes'>;
   tileAttributes: Array<
     'languages' | 'recorded' | 'track' | 'themes' | 'organisation'
   >;
   getSessionRoute?(session: Session): RawLocation;
+  tileActions?: ScheduleConfigAction[];
 }

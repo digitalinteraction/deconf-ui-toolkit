@@ -26,6 +26,17 @@
     </div>
     <div class="sessionTile-actions" v-if="!readonly">
       <div class="buttons is-right">
+        <!--
+          Add to MySchedule
+        -->
+        <template v-if="canAddToMySchedule">
+          <InterestButton
+            class="is-small"
+            :is-interested="isInterested"
+            :is-processing="isProcessing"
+            @click="toggleInterest"
+          />
+        </template>
         <!-- 
           Add to calendar
         -->
@@ -55,6 +66,8 @@ import {
   Routes,
   localiseFromObject,
   stripMarkdown,
+  ScheduleConfigAction,
+  namespaceForApi,
 } from '../lib/module';
 import {
   SessionHeader,
@@ -62,6 +75,7 @@ import {
   AddToCalendar,
   JoinSession,
   SpeakerGrid,
+  InterestButton,
 } from '../core/module';
 
 import {
@@ -99,6 +113,10 @@ function lookup<T extends { id: string }>(records: T[], query: string) {
   return records.find((r) => r.id === query) as T;
 }
 
+interface Data {
+  isProcessing: boolean;
+}
+
 export default {
   name: 'SessionTile',
   components: {
@@ -107,6 +125,7 @@ export default {
     SpeakerGrid,
     AddToCalendar,
     JoinSession,
+    InterestButton,
   },
   props: {
     slotState: { type: String as PropType<SlotState>, required: true },
@@ -115,7 +134,15 @@ export default {
     config: { type: Object as PropType<ScheduleConfig>, required: true },
     readonly: { type: Boolean, default: false },
   },
+  data(): Data {
+    return { isProcessing: false };
+  },
   computed: {
+    isInterested(): boolean {
+      return this.$store.getters[
+        namespaceForApi(this.$deconf, 'userSessions')
+      ].includes(this.session.id);
+    },
     speakers(): Speaker[] {
       const map = mapById(this.schedule.speakers);
       return this.session.speakers
@@ -155,11 +182,20 @@ export default {
       const content = this.localise(this.session.content);
       return content ? this.trim(stripMarkdown(content), 300) : null;
     },
+    actions(): Set<ScheduleConfigAction> {
+      return new Set(this.config.tileActions ?? ['join', 'addToCalendar']);
+    },
     canAddToCalendar(): boolean {
-      return ['soon', 'future'].includes(this.slotState);
+      return (
+        this.actions.has('addToCalendar') &&
+        ['soon', 'future'].includes(this.slotState)
+      );
     },
     canJoinSession(): boolean {
-      return true;
+      return this.actions.has('join');
+    },
+    canAddToMySchedule(): boolean {
+      return this.actions.has('addToMySchedule');
     },
     headerAttributes(): unknown {
       const set = new Set(this.config.tileHeader);
@@ -193,6 +229,15 @@ export default {
       const fallbacks = [...this.session.hostLanguages];
       if (!fallbacks.includes('en')) fallbacks.push('en');
       return localiseFromObject(this.$i18n.locale, object, { fallbacks });
+    },
+    async toggleInterest() {
+      const action = namespaceForApi(
+        this.$deconf,
+        this.isInterested ? 'unattend' : 'attend'
+      );
+      this.isProcessing = true;
+      await this.$store.dispatch(action, this.session.id);
+      this.isProcessing = false;
     },
   },
 };
