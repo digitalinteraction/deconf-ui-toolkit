@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.27.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.26.1...v2.27.0) (2022-10-27)
+
+
+### Features
+
+* **core:** add InterestButton to encapsulate the rendering of that button ([0c8b45a](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/0c8b45adf2d760b48168e12962b6ef3df6ea91bb))
+* deprecate api-module prop in favor of DeconfPlugin#apiModule + add namespaceForApi util ([8f7de41](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/8f7de41c3c7da7bc38d033b70817de7aaf162043))
+* **schedule:** add "actions" option to SessionTile with new InterestButton ([af98ce4](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/af98ce4bd7f9f23244f0a24f7b24dfa48b5e43c2))
+
+
+### Bug Fixes
+
+* **content:** ApiContent now uses namespaceForApi ([eddbc40](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/eddbc403218e90fd13aa7f0666935370db532235))
+* **core:** TokenCaptureView now uses namespaceForApi ([46d693f](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/46d693f172fedb88ed3f0bdadda46c02adcee30b))
+* fix bad InterestButton import ([42fd86d](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/42fd86df5c7024d80c735a1cb6b7c53c061761fa))
+
 ### [2.26.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.26.0...v2.26.1) (2022-10-25)
 
 
