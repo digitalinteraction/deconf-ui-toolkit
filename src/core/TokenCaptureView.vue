@@ -37,7 +37,10 @@ export default {
 
       const params = new URLSearchParams(hash.slice(1));
       const authToken = params.get('token');
-      if (!authToken) return this.$emit('failed');
+      if (!authToken) {
+        this.$emit('failed');
+        return;
+      }
 
       localStorage.setItem(this.tokenKey, authToken);
       await this.$store.dispatch(
@@ -46,7 +49,10 @@ export default {
       );
 
       const user: AuthToken = this.$store.state.api.user;
-      if (!user) this.$emit('failed');
+      if (!user) {
+        this.$emit('failed');
+        return;
+      }
 
       this.$deconf.trackMetric(createLoginFinishEvent());
 
