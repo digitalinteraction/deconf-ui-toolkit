@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.28.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.28.0...v2.28.1) (2022-10-28)
+
+
+### Bug Fixes
+
+* **core:** TokenCaptureView no longer emits success when it actually failed ([a3ba873](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/a3ba8734a893d79e3f531d09049a3e6c37d3e90e))
+
 ## [2.28.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.27.0...v2.28.0) (2022-10-27)
 
 
