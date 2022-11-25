@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.29.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.28.1...v2.29.0) (2022-11-25)
+
+
+### Features
+
+* add StaticDeconfApiClient ([98230bf](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/98230bf9e5546e3235f86a7684d9711457d7e9b5))
+
+
+### Bug Fixes
+
+* export DeconfApiClientOptions ([63e3466](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/63e3466df3c917da1300210a3cb94d5606dffad8))
+
 ### [2.28.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.28.0...v2.28.1) (2022-10-28)
 
 
