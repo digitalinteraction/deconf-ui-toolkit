@@ -17,6 +17,7 @@ export * from './routes';
 export * from './schedule-computed';
 export * from './schedule';
 export * from './slots';
+export * from './static-api-client';
 export * from './store';
 export * from './temporal-plugin';
 export * from './types';
