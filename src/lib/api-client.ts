@@ -45,7 +45,7 @@ export const deconfDefaultEndpoints: DeconfEndpointRecord = {
 
 const jsonHeaders = { 'Content-Type': 'application/json' };
 
-interface DeconfApiClientOptions {
+export interface DeconfApiClientOptions {
   endpointMap?: DeconfEndpointRecord;
 }
 
