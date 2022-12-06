@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.29.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.29.0...v2.29.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* don't show "Add to my schedule" when signed out ([01126c1](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/01126c1d704efa51544f02619ede94e54fad8359))
+* update browser lists ([21b2031](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/21b20315fecae08149ec79e670a9d0e97996a4c7))
+
 ## [2.29.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.28.1...v2.29.0) (2022-11-25)
 
 
