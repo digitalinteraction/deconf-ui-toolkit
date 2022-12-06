@@ -70,8 +70,11 @@ export function createApiStoreModule(): ApiStoreModule {
       userSessions: null,
     },
     getters: {
-      /** Internal accessor for `userSessions` */
+      /** Internal to get a the ids of a user's sessions */
       userSessions: (state) => new Set(state.userSessions),
+
+      /** Internal to know when there is a signed in user */
+      isSignedIn: (state) => Boolean(state.user),
     },
     mutations: {
       schedule: (state, schedule: ApiModuleState['schedule']) => {

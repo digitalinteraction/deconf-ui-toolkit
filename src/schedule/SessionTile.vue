@@ -138,10 +138,15 @@ export default {
     return { isProcessing: false };
   },
   computed: {
+    userSessions(): string[] {
+      return this.$store.getters[namespaceForApi(this.$deconf, 'userSessions')];
+    },
+    isSignedIn(): string[] {
+      return this.$store.getters[namespaceForApi(this.$deconf, 'isSignedIn')];
+    },
+
     isInterested(): boolean {
-      return this.$store.getters[
-        namespaceForApi(this.$deconf, 'userSessions')
-      ].includes(this.session.id);
+      return this.userSessions.includes(this.session.id);
     },
     speakers(): Speaker[] {
       const map = mapById(this.schedule.speakers);
@@ -195,7 +200,7 @@ export default {
       return this.actions.has('join');
     },
     canAddToMySchedule(): boolean {
-      return this.actions.has('addToMySchedule');
+      return this.isSignedIn && this.actions.has('addToMySchedule');
     },
     headerAttributes(): unknown {
       const set = new Set(this.config.tileHeader);

@@ -97,6 +97,7 @@ const api = {
   getters: {
     calendarLink: (state) => (session) => `/ical/${session.id}`,
     userSessions: (state) => state.attendance,
+    isSignedIn: () => true,
   },
   actions: {
     login(ctx, payload) {
