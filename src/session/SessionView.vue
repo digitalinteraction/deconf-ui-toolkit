@@ -153,7 +153,9 @@
               @unattend="unattend"
             />
             <div class="notification is-danger is-light" v-if="!loggedIn">
-              {{ $t('deconf.session.logIn') }}
+              <slot name="login">
+                {{ $t('deconf.session.logIn') }}
+              </slot>
             </div>
             <AddToCalendar
               v-if="showAddToCalendar"
