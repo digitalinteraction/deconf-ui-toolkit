@@ -29,7 +29,7 @@ export interface SessionAndSlot {
   slot: SessionSlot;
 }
 
-/** Take a set of sessios and slots and group them by slot */
+/** Take a set of sessions and slots and group them by slot */
 export function groupSessionsBySlot(
   sessions: Session[],
   sessionSlots: SessionSlot[]
@@ -91,8 +91,14 @@ export function groupSessionsByDay(
   output.sort((a, b) => a.date.getTime() - b.date.getTime());
 
   // Make sure each day's slots-groups are in the right order
+  // And order the sessions per slot shortest first
   for (const item of output) {
-    item.groups.sort((a, b) => a.slot.start.getTime() - b.slot.start.getTime());
+    item.groups.sort((a, b) => {
+      const difference = a.slot.start.getTime() - b.slot.start.getTime();
+      return difference === 0
+        ? a.slot.end.getTime() - b.slot.end.getTime()
+        : difference;
+    });
   }
 
   return output;
