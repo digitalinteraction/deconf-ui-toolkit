@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.30.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.29.1...v2.30.0) (2023-01-12)
+
+
+### Features
+
+* **session:** add slot to swap out login text ([266dcd7](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/266dcd7b79712c03e4c3cd90e91b87529d537ef4))
+
+
+### Bug Fixes
+
+* **schedule:** show shorter sessions first when grouping slots ([635f20e](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/635f20e7b610aeccbc27611e4777d615d07e1a0b))
+
 ### [2.29.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.29.0...v2.29.1) (2022-12-06)
 
 
