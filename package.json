@@ -137,9 +137,6 @@
       "@commitlint/config-conventional"
     ]
   },
-  "engines": {
-    "node": ">=16"
-  },
   "exports": {
     ".": "./dist/deconf-ui.esm.js",
     "./*": {
