@@ -176,6 +176,8 @@
         </SidebarItem>
       </template>
     </div>
+
+    <slot name="footer" slot="footer" />
   </SessionLayout>
 </template>
 

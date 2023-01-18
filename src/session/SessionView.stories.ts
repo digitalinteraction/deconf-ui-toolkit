@@ -34,6 +34,7 @@ const Template: Story = (args, { argTypes }) => ({
         :schedule-date="scheduleDate"
       >
         <BackButton slot="backButton" to="/">Go back</BackButton>
+        <p slot="footer">This is in the footer</p>
       </SessionView>
     </MockAppLayout>
   `,

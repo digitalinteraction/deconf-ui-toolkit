@@ -18,6 +18,9 @@
             <slot name="sidebar" />
           </div>
         </div>
+        <div class="sessionLayout-footer">
+          <slot name="footer" />
+        </div>
       </section>
     </div>
   </div>
@@ -92,5 +95,9 @@ $sessionLayout-background: $background !default;
       font-size: 0.75em;
     }
   }
+}
+
+.sessionLayout-footer {
+  margin-block-start: $block-spacing;
 }
 </style>
