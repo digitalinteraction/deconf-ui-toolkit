@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.32.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.31.0...v2.32.0) (2023-02-01)
+
+
+### Features
+
+* add new vimeo embed links ([91b3ab3](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/91b3ab3a1f76d31a59e62e145474fc909b3e37ca))
+
 ## [2.31.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.30.0...v2.31.0) (2023-01-18)
 
 
