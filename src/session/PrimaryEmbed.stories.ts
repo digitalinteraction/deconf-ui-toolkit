@@ -62,6 +62,11 @@ VimeoEvent.args = {
   link: 'https://vimeo.com/event/1361742',
 };
 
+export const VimeoEventEmbed = Template.bind({});
+VimeoEventEmbed.args = {
+  link: 'https://vimeo.com/event/336812660/embed',
+};
+
 export const Twitch = Template.bind({});
 Twitch.args = {
   link: 'https://www.twitch.tv/bobross',

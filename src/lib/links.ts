@@ -100,6 +100,19 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
+  // https://vimeo.com/event/123456/embed
+  if (
+    isDomain(url, 'vimeo.com') &&
+    pathSegments.length === 3 &&
+    pathSegments[0] === 'event' &&
+    pathSegments[2] === 'embed'
+  ) {
+    return {
+      kind: 'vimeo-event',
+      data: pathSegments[1],
+    };
+  }
+
   if (
     isDomain(url, 'hosted.panopto.com') &&
     url.pathname === '/Panopto/Pages/Embed.aspx' &&
@@ -242,6 +255,20 @@ export function parseSecondaryLink(link: string): SecondaryLink | null {
       data: pathSegments[1],
     };
   }
+
+  // https://vimeo.com/event/2816447/chat/
+  if (
+    isDomain(url, 'vimeo.com') &&
+    pathSegments.length === 3 &&
+    pathSegments[0] === 'event' &&
+    pathSegments[2] === 'chat'
+  ) {
+    return {
+      kind: 'vimeo-event-chat',
+      data: pathSegments[1],
+    };
+  }
+
   return null;
 }
 
