@@ -266,7 +266,7 @@ export function parseSecondaryLink(link: string): SecondaryLink | null {
     };
   }
 
-  // https://vimeo.com/event/2816447/chat/
+  // https://vimeo.com/event/123456/chat/
   if (
     isDomain(url, 'vimeo.com') &&
     pathSegments.length === 3 &&
