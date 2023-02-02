@@ -44,6 +44,9 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
   //
   // Actual embeds
   //
+
+  // https://youtube.com?v=123456
+  // https://youtube-nocookie.com?v=123456
   if (isYouTube && url.searchParams.has('v')) {
     return {
       kind: 'youtube-video',
@@ -51,6 +54,8 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
+  // https://youtube.com/embed/live_stream?channel=abcdef
+  // https://youtube-nocookie.com/embed/live_stream?channel=abcdef
   if (
     isYouTube &&
     url.pathname === '/embed/live_stream' &&
@@ -62,6 +67,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
+  // https://youtu.be/abcdef
   if (isDomain(url, 'youtu.be') && pathSegments.length === 1) {
     return {
       kind: 'youtube-video',
@@ -69,6 +75,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
+  // https://player.vimeo.com/video/123456
   if (
     isDomain(url, 'player.vimeo.com') &&
     pathSegments.length === 2 &&
@@ -113,6 +120,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
+  // https://hosted.panopto.com/Panopto/Pages/Embed.aspx?id=123456
   if (
     isDomain(url, 'hosted.panopto.com') &&
     url.pathname === '/Panopto/Pages/Embed.aspx' &&
@@ -124,6 +132,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
+  // https://twitch.tv/123456
   if (isDomain(url, 'twitch.tv') && pathSegments.length === 1) {
     return {
       kind: 'twitch',
@@ -131,7 +140,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
-  // https://anchor.fm/:username/embed/episodes/*
+  // https://anchor.fm/:username/embed/episodes/123456
   if (
     isDomain(url, 'anchor.fm') &&
     pathSegments[1] === 'embed' &&
@@ -181,6 +190,7 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     };
   }
 
+  // https://teams.microsoft.com/*
   if (isDomain(url, 'teams.microsoft.com')) {
     return {
       kind: 'teams',
