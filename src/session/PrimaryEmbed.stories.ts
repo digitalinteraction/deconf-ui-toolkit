@@ -132,6 +132,11 @@ CinnamonWatchPage.args = {
   link: 'https://cinnamon.video/watch?v=660791655456048824',
 };
 
+export const Hyperaudio = Template.bind({});
+Hyperaudio.args = {
+  link: 'https://mozfest.hyper.audio/media/e27cea3f-9e26-4710-8ceb-63a92c37bc46',
+};
+
 export const NoEmbed = Template.bind({});
 NoEmbed.args = {
   link: 'https://duck.com',

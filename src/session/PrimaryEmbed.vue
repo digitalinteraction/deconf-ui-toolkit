@@ -90,6 +90,21 @@
       ></iframe>
     </div>
 
+    <!-- Hyperaudio -->
+    <div
+      class="primaryEmbed-hyperaudio"
+      v-else-if="parsed.kind === 'hyperaudio'"
+    >
+      <iframe
+        width="640"
+        height="360"
+        :src="`https://mozfest.hyper.audio/media/${parsed.data}?embed=true`"
+        frameborder="0"
+        allow="autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+
     <!-- 
       Microsoft Teams links
      -->
@@ -261,20 +276,12 @@ export default {
 }
 .primaryEmbed-video {
 }
-.primaryEmbed-anchorFm {
-  height: 98px;
-  max-width: 650px;
+.primaryEmbed-hyperaudio {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 2px solid $border;
 
-  background-color: $background;
-  border-radius: $radius;
-  overflow: hidden;
-
-  position: relative;
-
-  > iframe {
-    position: absolute;
-    left: 0;
-    top: 0;
+  & > iframe {
     width: 100%;
     height: 100%;
   }

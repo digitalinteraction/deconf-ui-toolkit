@@ -23,7 +23,8 @@ export interface PrimaryLink {
     | 'spatial-chat'
     | 'twitch'
     | 'anchor-fm-embed'
-    | 'cinnamon-video';
+    | 'cinnamon-video'
+    | 'hyperaudio';
   data: string;
 }
 
@@ -231,6 +232,18 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     return {
       kind: 'cinnamon-video',
       data: url.searchParams.get('v') as string,
+    };
+  }
+
+  // https://mozfest.hyper.audio/media/xxx ?embed
+  if (
+    isDomain(url, 'hyper.audio') &&
+    pathSegments.length === 2 &&
+    pathSegments[0] === 'media'
+  ) {
+    return {
+      kind: 'hyperaudio',
+      data: pathSegments[1],
     };
   }
 
