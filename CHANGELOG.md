@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.33.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.33.0...v2.33.1) (2023-02-27)
+
+
+### Bug Fixes
+
+* update browserlists ([b15ec28](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/b15ec289cd60fca173c46339c8849d49e05bf6d4))
+
 ## [2.33.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.32.0...v2.33.0) (2023-02-27)
 
 
