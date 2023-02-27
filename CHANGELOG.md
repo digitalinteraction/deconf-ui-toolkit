@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.33.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.32.0...v2.33.0) (2023-02-27)
+
+
+### Features
+
+* support hyper.audio embeds ([996f1a8](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/996f1a87d98db538ef6ce97578d250a3a2211a7c))
+
 ## [2.32.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.31.0...v2.32.0) (2023-02-01)
 
 
