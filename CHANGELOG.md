@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.34.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.33.1...v2.34.0) (2023-03-20)
+
+
+### Features
+
+* add myhubs as hubs embeds ([c54efa8](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/c54efa82e1b8788e0dcf36993bc5c4d1c037f29b))
+
 ### [2.33.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.33.0...v2.33.1) (2023-02-27)
 
 
