@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.35.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.34.0...v2.35.0) (2023-06-15)
+
+
+### Features
+
+* add discord primary embed ([8eb4bfc](https://github.com/digitalinteraction/deconf-ui-toolkit/commit/8eb4bfcde2acd5acfdbb6f764f90d6c5c5bd932d))
+
 ## [2.34.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.33.1...v2.34.0) (2023-03-20)
 
 
