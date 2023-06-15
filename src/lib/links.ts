@@ -24,7 +24,8 @@ export interface PrimaryLink {
     | 'twitch'
     | 'anchor-fm-embed'
     | 'cinnamon-video'
-    | 'hyperaudio';
+    | 'hyperaudio'
+    | 'discord';
   data: string;
 }
 
@@ -245,6 +246,15 @@ export function parsePrimaryLink(link: string): PrimaryLink | null {
     return {
       kind: 'hyperaudio',
       data: pathSegments[1],
+    };
+  }
+
+  // https://discord.gg/abcdef?event=123456
+  // https://discord.com/channels/12345/67890
+  if (isDomain(url, 'discord.gg') || isDomain(url, 'discord.com')) {
+    return {
+      kind: 'discord',
+      data: url.toString(),
     };
   }
 

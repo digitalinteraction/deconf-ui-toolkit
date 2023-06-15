@@ -209,6 +209,25 @@
         <span>{{ $t('deconf.sessionEmbed.openSpatial') }}</span>
       </a>
     </div>
+
+    <!-- 
+      Discord links
+     -->
+    <div
+      class="primaryEmbed-link is-discord"
+      v-else-if="parsed.kind === 'discord'"
+    >
+      <a
+        class="button is-medium"
+        :href="parsed.data"
+        target="_blank"
+        rel="noopener"
+        @click="onClick"
+      >
+        <span class="icon"><FontAwesomeIcon :icon="['fas', 'video']" /></span>
+        <span>{{ $t('deconf.sessionEmbed.openDiscord') }}</span>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -226,6 +245,7 @@ import { parsePrimaryLink, PrimaryLink } from '../lib/module';
 // - deconf.sessionEmbed.openGoogleMeet - Button to open a Google Meet event
 // - deconf.sessionEmbed.openHubs - Button to open a Mozilla Hubs link
 // - deconf.sessionEmbed.openSpatial - Button to open a Spatial Chat link
+// - deconf.sessionEmbed.openDiscord - Button to open a Discord link
 //
 // icons
 // - fas video
@@ -347,6 +367,16 @@ export default {
 
     .button {
       background: $google-meet-blue;
+      color: $white;
+    }
+  }
+
+  &.is-discord {
+    border: 2px dashed $discord-blue;
+    background-color: lighten($discord-blue, 30%);
+
+    .button {
+      background: $discord-blue;
       color: $white;
     }
   }
