@@ -162,6 +162,7 @@
               class="is-fullwidth is-link"
               :session="session"
             />
+            <slot name="extraActions" />
           </Stack>
         </SidebarItem>
       </template>
