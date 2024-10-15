@@ -235,6 +235,7 @@
 import IframeEmbed from './IframeEmbed.vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { parsePrimaryLink, PrimaryLink } from '../lib/module';
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -254,7 +255,7 @@ import { parsePrimaryLink, PrimaryLink } from '../lib/module';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'PrimaryEmbed',
   components: { IframeEmbed, FontAwesomeIcon },
   props: {
@@ -288,7 +289,7 @@ export default {
       return `https://player.twitch.tv/?channel=${data}&parent=${location.hostname}`;
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

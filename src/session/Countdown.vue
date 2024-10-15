@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { CountdownComponents, getCountdown } from '../lib/module';
 
 //
@@ -39,7 +39,7 @@ import { CountdownComponents, getCountdown } from '../lib/module';
 // - $countdown-color
 //
 
-export default {
+export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Countdown',
   props: {
@@ -60,7 +60,7 @@ export default {
       return this.remaining.seconds;
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

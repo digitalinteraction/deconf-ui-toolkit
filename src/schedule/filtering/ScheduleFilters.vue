@@ -41,8 +41,8 @@
       <InlineFilter
         class="scheduleFilters-date"
         v-if="isEnabled('date') && dateOptions.length > 0"
-        :value="filters.date ? filters.date.toISOString() : null"
-        @input="(v) => updateDateFilter(v)"
+        :model-value="filters.date ? filters.date.toISOString() : null"
+        @update:model-value="(v) => updateDateFilter(v)"
         :label="$t('deconf.scheduleFilters.dateFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="dateOptions"
@@ -52,8 +52,8 @@
       <InlineFilter
         v-if="isEnabled('sessionType') && sessionTypeOptions.length > 0"
         class="scheduleFilters-type"
-        :value="filters.sessionType"
-        @input="(v) => updateFilter('sessionType', v)"
+        :model-value="filters.sessionType"
+        @update:model-value="(v) => updateFilter('sessionType', v)"
         :label="$t('deconf.scheduleFilters.typeFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="sessionTypeOptions"
@@ -63,8 +63,8 @@
       <InlineFilter
         class="scheduleFilters-track"
         v-if="isEnabled('track') && trackOptions.length > 0"
-        :value="filters.track"
-        @input="(v) => updateFilter('track', v)"
+        :model-value="filters.track"
+        @update:model-value="(v) => updateFilter('track', v)"
         :label="$t('deconf.scheduleFilters.trackFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="trackOptions"
@@ -74,8 +74,8 @@
       <InlineFilter
         class="scheduleFilters-theme"
         v-if="isEnabled('theme') && themeOptions.length > 0"
-        :value="filters.theme"
-        @input="(v) => updateFilter('theme', v)"
+        :model-value="filters.theme"
+        @update:model-value="(v) => updateFilter('theme', v)"
         :label="$t('deconf.scheduleFilters.themeFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="themeOptions"
@@ -85,8 +85,8 @@
       <InlineFilter
         class="scheduleFilters-language"
         v-if="isEnabled('language') && languageOptions.length > 0"
-        :value="filters.language"
-        @input="(v) => updateFilter('language', v)"
+        :model-value="filters.language"
+        @update:model-value="(v) => updateFilter('language', v)"
         :label="$t('deconf.scheduleFilters.languageFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="languageOptions"
@@ -96,8 +96,8 @@
       <InlineFilter
         class="scheduleFilters-recorded"
         v-if="isEnabled('isRecorded')"
-        :value="filters.isRecorded"
-        @input="(v) => updateFilter('isRecorded', v)"
+        :model-value="filters.isRecorded"
+        @update:model-value="(v) => updateFilter('isRecorded', v)"
         :label="$t('deconf.scheduleFilters.recordedFilter')"
         :off-label="$t('deconf.scheduleFilters.offLabel')"
         :options="recordedOptions"
@@ -117,7 +117,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 import {
   startOfDay,
@@ -170,12 +170,12 @@ const DEFAULT_FILTERS: FilterKey[] = [
 // - n/a
 //
 
-interface Data {
+export interface _Data {
   showExtraFilters: boolean;
   queryHandler: null | Debounced<[string]>;
 }
 
-export default {
+export default defineComponent({
   name: 'ScheduleFilters',
   components: { InlineFilter },
   props: {
@@ -196,7 +196,7 @@ export default {
       default: () => [],
     },
   },
-  data(): Data {
+  data(): _Data {
     return {
       showExtraFilters: false,
       queryHandler: null,
@@ -302,7 +302,7 @@ export default {
       /* eslint-enable vue/no-mutating-props */
       this.$emit('filter', this.filters);
     },
-    onQuery(e: InputEvent): void {
+    onQuery(e: Event): void {
       if (!this.queryHandler) return;
       this.queryHandler((e.target as HTMLInputElement).value);
     },
@@ -310,7 +310,7 @@ export default {
       return this.enabledFiltersSet.has(filterName);
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

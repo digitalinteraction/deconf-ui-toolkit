@@ -46,6 +46,7 @@
 
 <script lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -62,7 +63,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'SessionState',
   components: { FontAwesomeIcon },
   props: {
@@ -82,7 +83,7 @@ export default {
       );
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

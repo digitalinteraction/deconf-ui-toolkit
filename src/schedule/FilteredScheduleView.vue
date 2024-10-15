@@ -13,19 +13,19 @@
     :language-options="options.languages"
   >
     <template v-slot:title>
-      <slot name="title" />
+      <slot name="title"></slot>
     </template>
     <template v-slot:noResults>
-      <slot name="noResults" />
+      <slot name="noResults"></slot>
     </template>
     <template v-slot:infoText>
-      <slot name="infoText" />
+      <slot name="infoText"></slot>
     </template>
   </ScheduleView>
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { ScheduleRecord, Session } from '@openlab/deconf-shared';
 import {
   decodeUrlScheduleFilters,
@@ -57,7 +57,7 @@ interface Data {
   urlFilters: ScheduleFilterRecord | null;
 }
 
-export default {
+export default defineComponent({
   name: 'FilteredScheduleView',
   components: { ScheduleView },
   props: {
@@ -110,5 +110,5 @@ export default {
       this.$emit('filter', encodeScheduleFilters(filters));
     },
   },
-};
+});
 </script>

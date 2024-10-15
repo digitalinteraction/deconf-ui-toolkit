@@ -6,12 +6,13 @@
       </ScheduleHeader>
     </div>
     <div class="stickyHeading-content">
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import ScheduleHeader from './ScheduleHeader.vue';
 
 //
@@ -32,14 +33,14 @@ import ScheduleHeader from './ScheduleHeader.vue';
 // - $stickyHeading-z
 //
 
-export default {
+export default defineComponent({
   name: 'StickyHeading',
   components: { ScheduleHeader },
   props: {
     title: { type: String, required: true },
     titleClass: { type: String, default: 'is-primary' },
   },
-};
+});
 </script>
 
 <style lang="scss">

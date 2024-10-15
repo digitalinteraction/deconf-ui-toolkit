@@ -13,7 +13,7 @@
       </tbody>
     </table>
 
-    <slot name="preActions" />
+    <slot name="preActions"></slot>
 
     <p class="profileView-heading">
       {{ $t('deconf.profile.actionLabel') }}
@@ -40,7 +40,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { createLogoutEvent, createUnregisterEvent } from '../lib/metrics';
 import { ProfileField } from './profile-field';
 import { namespaceForApi } from '../lib/module';
@@ -71,7 +71,7 @@ import { namespaceForApi } from '../lib/module';
 // - unregister – When the user unregistered
 //
 
-export default {
+export default defineComponent({
   name: 'ProfileView',
   props: {
     fields: { type: Array as PropType<ProfileField[]>, required: true },
@@ -102,7 +102,7 @@ export default {
       this.$emit('unregister');
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

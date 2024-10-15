@@ -131,7 +131,7 @@ import { ScheduleFilterRecord } from '../lib/module';
 // - $scheduleView-background
 //
 
-interface Data {
+export interface _Data {
   showPastSessions: boolean;
   filters: ScheduleFilterRecord;
 }
@@ -178,7 +178,7 @@ export default {
       default: null,
     },
   },
-  data(): Data {
+  data(): _Data {
     return {
       showPastSessions: false,
       filters: this.urlFilters || loadScheduleFilters(this.filtersKey),

@@ -54,8 +54,8 @@ export default defineComponent({
     },
 
     /** Convert a HTML node to a Vue.js VNode */
-    domToVue(node: Node): VNode | string {
-      if (node instanceof Text) return node.textContent || '';
+    domToVue(node: Node): VNode {
+      if (node instanceof Text) return h(Text, node.textContent ?? '');
 
       // Convert dom attributes to a plain record
       const attrs: Record<string, unknown> = {};
@@ -65,7 +65,7 @@ export default defineComponent({
         }
       }
 
-      return this.$createElement(
+      return h(
         node.nodeName,
         { attrs },
         Array.from(node.childNodes).map((child) => this.domToVue(child)),
@@ -77,11 +77,15 @@ export default defineComponent({
     // Go through each child of the api content
     // if a <div id="xyz"> attempt to replace with a slot
     // otherwise, copy the dom node across
-    const children = Array.from(dom.children).map((child) => {
-      return child.id && this.$slots[child.id]
-        ? (this.$slots[child.id] as VNode[])
-        : (this.domToVue(child) as VNode);
-    });
+
+    const children: VNode[] = [];
+    for (const child of dom.children) {
+      if (child.id && this.$slots[child.id]) {
+        children.push(...this.$slots[child.id]!());
+      } else {
+        children.push(this.domToVue(child));
+      }
+    }
 
     return h('div', { staticClass: 'content' }, children);
   },

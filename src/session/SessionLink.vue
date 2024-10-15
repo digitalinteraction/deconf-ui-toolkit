@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import copy from 'copy-to-clipboard';
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -44,7 +45,7 @@ import copy from 'copy-to-clipboard';
 // - $sessionLink-linkFont
 //
 
-export default {
+export default defineComponent({
   name: 'SessionLink',
   data() {
     return { didCopy: false };
@@ -78,7 +79,7 @@ export default {
       return url.replace(/https?:\/\//, '');
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

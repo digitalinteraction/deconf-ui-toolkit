@@ -1,6 +1,6 @@
 import { ConferenceConfig, AuthToken, PageFlag } from '@openlab/deconf-shared';
-import VueI18n from 'vue-i18n';
-import VueRouter, { Route } from 'vue-router';
+import { VueI18n } from 'vue-i18n';
+import { Router, RouteLocationNormalized } from 'vue-router';
 
 import { Routes } from './constants';
 import { AppRoute } from './types';
@@ -69,7 +69,7 @@ export function guardRoute<T extends Record<string, PageFlag>>(
   schedule: T | undefined,
   key: keyof T,
   user: AuthToken | null,
-  router: VueRouter,
+  router: Router,
 ): void {
   if (user && user.user_roles.includes('admin')) return;
   if (!schedule) return;
@@ -85,7 +85,7 @@ export function guardRoute<T extends Record<string, PageFlag>>(
 export function guardPage(
   flag: PageFlag | undefined,
   user: AuthToken | null,
-  router: VueRouter,
+  router: Router,
 ) {
   if (user && user.user_roles.includes('admin')) return;
   if (!flag) return;
@@ -99,7 +99,10 @@ export function guardPage(
  * Generate a title for a given route, based on `meta.pageTitle` i18n key,
  * plus `deconf.general.appName`.
  */
-export function getRouteTitle(route: Route, i18n: VueI18n): string {
+export function getRouteTitle(
+  route: RouteLocationNormalized,
+  i18n: VueI18n,
+): string {
   const routeWithTitle = [...route.matched]
     .reverse()
     .find((r) => r.meta.pageTitle);
@@ -107,15 +110,15 @@ export function getRouteTitle(route: Route, i18n: VueI18n): string {
   const appName = i18n.t('deconf.general.appName') as string;
   if (!routeWithTitle) return appName;
 
-  const pageName = i18n.t(routeWithTitle.meta.pageTitle);
+  const pageName = i18n.t(routeWithTitle.meta.pageTitle as string);
   return [pageName, appName].join(' | ');
 }
 
 /** Generate a normal-ish scroll-behaviour for a SPA that wants to act like a webpage */
 export function getScrollBehaviour(scrollOffest: number) {
   return (
-    to: Route,
-    from: Route,
+    to: RouteLocationNormalized,
+    _from: RouteLocationNormalized,
     savedPosition: { x: number; y: number } | void,
   ) => {
     // If they clicked on a hash, scroll to that

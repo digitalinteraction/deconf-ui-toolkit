@@ -42,7 +42,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { ScheduleRecord, Session } from '@openlab/deconf-shared';
 import {
   createFilterPredicate,
@@ -75,11 +75,11 @@ import { ScheduleFilterRecord } from '../lib/module';
 // - $whatsOn-titleFamily
 //
 
-interface Data {
+export interface _Data {
   filters: ScheduleFilterRecord;
 }
 
-export default {
+export default defineComponent({
   name: 'WhatsOnView',
   components: { ScheduleFilters, SessionTile, SessionBoard, NoResults },
   props: {
@@ -102,7 +102,7 @@ export default {
     },
     readonly: { type: Boolean, default: true },
   },
-  data(): Data {
+  data(): _Data {
     return {
       filters: this.urlFilters || loadScheduleFilters(this.filtersKey),
     };
@@ -132,7 +132,7 @@ export default {
       });
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

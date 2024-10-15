@@ -44,7 +44,6 @@ import { AppRoute } from '../lib/module';
 import FullHeight from './FullHeight.vue';
 import NavigationBar from './NavigationBar.vue';
 import SideTabs from './SideTabs.vue';
-import { NavLink } from './nav-link';
 
 //
 // i18n
@@ -67,7 +66,7 @@ export default defineComponent({
     appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
     user: { type: Object as PropType<AuthToken>, default: null },
     routes: { type: Array as PropType<AppRoute[]>, required: true },
-    navLinks: { type: Array as PropType<NavLink[]>, required: false },
+    navLinks: { type: Array as PropType<string[]>, required: false },
   },
   computed: {
     isLoggedIn(): boolean {

@@ -39,6 +39,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import { SecondaryLink, parseSecondaryLink } from '../lib/module';
 
 //
@@ -52,7 +53,7 @@ import { SecondaryLink, parseSecondaryLink } from '../lib/module';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'SecondaryEmbed',
   props: {
     link: { type: String, required: true },
@@ -70,7 +71,7 @@ export default {
       return `https://vimeo.com/event/${data}/chat/`;
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

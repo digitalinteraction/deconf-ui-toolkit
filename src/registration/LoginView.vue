@@ -3,11 +3,11 @@
     <div class="loginView">
       <h1 class="title">{{ $t('deconf.login.title') }}</h1>
       <div class="content">
-        <slot name="infoText" />
+        <slot name="infoText"></slot>
       </div>
       <div class="notification is-success" v-if="state === 'success'">
         <button class="delete" @click="state = 'pending'"></button>
-        <slot name="doneText" />
+        <slot name="doneText"></slot>
       </div>
       <div class="notification is-danger" v-if="state === 'error'">
         <p>{{ $t('deconf.login.badEmail') }}</p>
@@ -48,9 +48,14 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { TextField } from '../form/module';
-import { createLoginStartEvent, namespaceForApi, Routes } from '../lib/module';
+import { defineComponent, PropType } from 'vue';
+import { RouteLocationRaw } from 'vue-router';
+import { TextField } from '../form/module.js';
+import {
+  createLoginStartEvent,
+  namespaceForApi,
+  Routes,
+} from '../lib/module.js';
 
 //
 // i18n
@@ -77,7 +82,7 @@ interface Data {
   state: LoginState;
 }
 
-export default {
+export default defineComponent({
   name: 'LoginView',
   components: { TextField },
   props: {
@@ -93,7 +98,7 @@ export default {
     };
   },
   computed: {
-    registerRoute(): unknown {
+    registerRoute(): RouteLocationRaw {
       return { name: Routes.Register };
     },
   },
@@ -110,5 +115,5 @@ export default {
       this.$deconf.trackMetric(createLoginStartEvent('_feature_removed_'));
     },
   },
-};
+});
 </script>

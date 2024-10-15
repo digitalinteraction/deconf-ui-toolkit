@@ -6,7 +6,7 @@
     <div class="control">
       <div class="select" :class="selectClass">
         <select
-          :value="value"
+          :value="modelValue"
           @change="onInput"
           :id="name"
           :disabled="disabled"
@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { SelectOption } from './select-option';
+import { SelectOption } from './select-option.js';
 
 //
 // Wraps a bulma select field
@@ -52,7 +52,7 @@ export default defineComponent({
   props: {
     name: { type: String, required: true },
     label: { type: String, default: null },
-    value: { type: String as PropType<string | null>, default: null },
+    modelValue: { type: String as PropType<string | null>, default: null },
     help: { type: String, default: null },
     options: { type: Array as PropType<SelectOption[]>, required: true },
     hasError: { type: Boolean, default: false },
@@ -60,6 +60,7 @@ export default defineComponent({
     fullwidth: { type: Boolean, default: false },
     notSelected: { type: String, default: 'Please select...' },
   },
+  emits: ['update:modelValue'],
   computed: {
     selectClass(): unknown {
       return {
@@ -71,7 +72,7 @@ export default defineComponent({
   methods: {
     onInput(e: Event) {
       if (!(e.target instanceof HTMLSelectElement)) return;
-      this.$emit('input', e.target.value);
+      this.$emit('update:modelValue', e.target.value);
     },
     stringify(input: unknown) {
       return input as string;

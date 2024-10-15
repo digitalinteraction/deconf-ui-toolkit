@@ -12,7 +12,7 @@
     "release:beta": "npm run preversion && standard-version --prerelease=beta",
     "lint": "npx eslint",
     "format": "npx prettier --write src",
-    "check": "npx vue-tsc --noEmit"
+    "check": "npx vue-tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",

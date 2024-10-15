@@ -4,13 +4,13 @@
       {{ label }}
     </div>
     <div class="select">
-      <select :value="value" @input="onInput">
+      <select :value="modelValue" @input="onInput">
         <option :value="null">
           {{ offLabel }}
         </option>
         <option
           v-for="item in options"
-          :key="item.value.toString()"
+          :key="`${item.value}`"
           :value="item.value"
         >
           {{ item.text }}
@@ -42,21 +42,22 @@ export default {
     label: { type: String, required: true },
     offLabel: { type: String, required: true },
     options: { type: Array as PropType<FilterOption[]>, required: true },
-    value: { required: true },
+    modelValue: { required: true },
   },
   methods: {
     localise(object: Record<string, string>): string | null {
       return localiseFromObject(this.$i18n.locale, object);
     },
-    onInput(event: InputEvent) {
+    onInput(event: Event) {
       const target = event.target as HTMLSelectElement;
       if (!target) return;
 
       const allOptions = [null, ...this.options.map((o) => o.value)];
       const value = allOptions[target.selectedIndex];
-      this.$emit('input', value);
+      this.$emit('update:modelValue', value);
     },
   },
+  emits: ['update:modelValue'],
 };
 </script>
 

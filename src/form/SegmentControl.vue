@@ -30,17 +30,18 @@ import { SelectOption } from './select-option';
 export default defineComponent({
   name: 'SegmentControl',
   props: {
-    value: { type: String, required: true },
+    modelValue: { type: String, required: true },
     options: { type: Array as PropType<SelectOption[]>, required: true },
   },
+  emits: ['update:modelValue'],
   methods: {
     optionClasses(option: SelectOption): unknown {
       return {
-        'is-primary': option.value === this.value,
+        'is-primary': option.value === this.modelValue,
       };
     },
     onOption(option: SelectOption) {
-      this.$emit('input', option.value);
+      this.$emit('update:modelValue', option.value);
     },
     stringify(value: unknown) {
       return value as string;

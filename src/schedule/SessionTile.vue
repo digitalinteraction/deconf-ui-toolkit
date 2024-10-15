@@ -59,7 +59,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import {
   ScheduleConfig,
   SlotState,
@@ -88,7 +88,7 @@ import {
   Theme,
   Track,
 } from '@openlab/deconf-shared';
-import { RawLocation } from 'vue-router';
+import { RouteLocationRaw } from 'vue-router';
 
 //
 // i18n
@@ -113,11 +113,12 @@ function lookup<T extends { id: string }>(records: T[], query: string) {
   return records.find((r) => r.id === query) as T;
 }
 
-interface Data {
+// NOTE — typescript complains if this isn't exported
+export interface _Data {
   isProcessing: boolean;
 }
 
-export default {
+export default defineComponent({
   name: 'SessionTile',
   components: {
     SessionHeader,
@@ -134,7 +135,7 @@ export default {
     config: { type: Object as PropType<ScheduleConfig>, required: true },
     readonly: { type: Boolean, default: false },
   },
-  data(): Data {
+  data(): _Data {
     return { isProcessing: false };
   },
   computed: {
@@ -169,7 +170,7 @@ export default {
     track(): Track {
       return lookup(this.schedule.tracks, this.session.track);
     },
-    sessionRoute(): RawLocation {
+    sessionRoute(): RouteLocationRaw {
       if (this.config.getSessionRoute) {
         return this.config.getSessionRoute(this.session);
       }
@@ -202,7 +203,8 @@ export default {
     canAddToMySchedule(): boolean {
       return this.isSignedIn && this.actions.has('addToMySchedule');
     },
-    headerAttributes(): unknown {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    headerAttributes(): any {
       const set = new Set(this.config.tileHeader);
 
       return {
@@ -211,7 +213,8 @@ export default {
         themes: set.has('themes') ? this.themes : null,
       };
     },
-    attributesAttributes(): unknown {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    attributesAttributes(): any {
       const set = new Set(this.config.tileAttributes);
 
       return {
@@ -245,7 +248,7 @@ export default {
       this.isProcessing = false;
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

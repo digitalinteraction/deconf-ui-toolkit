@@ -2,18 +2,21 @@
   <SessionLayout class="sessionView">
     <!-- Back button -->
     <template v-slot:backButton>
-      <slot name="backButton" />
+      <slot name="backButton"></slot>
     </template>
 
     <!-- state bit -->
     <template v-slot:state>
-      <SessionState :slot-state="slotState" :attendance="stateAttendance" />
+      <SessionState
+        :slot-state="slotState"
+        :attendance="stateAttendance ?? undefined"
+      />
     </template>
 
     <!-- Main bit -->
     <template v-slot:main>
       <div class="sessionView-main">
-        <slot name="beforeHeader" />
+        <slot name="beforeHeader"></slot>
 
         <!-- Session header -->
         <div class="sessionView-header">
@@ -33,12 +36,12 @@
         <!-- Embed -->
         <div class="sessionView-embed" v-if="showPrimaryLink">
           <PrimaryEmbed
-            :link="primaryLink.url"
-            @click="trackLinkClick(primaryLink.url)"
+            :link="primaryLink!.url"
+            @click="trackLinkClick(primaryLink!.url)"
           />
         </div>
 
-        <slot name="afterEmbed" />
+        <slot name="afterEmbed"></slot>
 
         <!-- Attributes -->
         <div class="sessionView-attributes">
@@ -47,11 +50,11 @@
             :is-recorded="session.isRecorded"
             :track="sessionTrack"
             :themes="sessionThemes"
-            :organisation="localisedSessionOrg"
+            :organisation="localisedSessionOrg ?? undefined"
           />
         </div>
 
-        <slot name="afterAttributes" />
+        <slot name="afterAttributes"></slot>
 
         <div class="sessionView-content">
           <slot name="content">
@@ -61,7 +64,7 @@
           </slot>
         </div>
 
-        <slot name="afterContent" />
+        <slot name="afterContent"></slot>
       </div>
     </template>
 
@@ -90,7 +93,7 @@
           >
             <Countdown
               :current-date="scheduleDate"
-              :target-date="sessionSlot.start"
+              :target-date="sessionSlot!.start"
             />
           </SidebarItem>
         </template>
@@ -114,7 +117,7 @@
             class="sessionView-links"
           >
             <Stack direction="vertical" gap="regular" align="stretch">
-              <slot name="beforeLinks" />
+              <slot name="beforeLinks"></slot>
               <SecondaryEmbed v-if="secondaryLink" :link="secondaryLink.url" />
               <SessionLink
                 v-for="link in otherLinks"
@@ -124,7 +127,7 @@
                 @click="trackLinkClick(link.url)"
                 @copy="trackLinkCopy(link.url)"
               />
-              <slot name="afterLinks" />
+              <slot name="afterLinks"></slot>
             </Stack>
           </SidebarItem>
         </template>
@@ -143,7 +146,7 @@
               <AttendanceSection
                 v-if="showAttendance"
                 :session="session"
-                :session-cap="session.participantCap"
+                :session-cap="session.participantCap!"
                 :attendance="attendance"
                 :is-processing="isLoading"
                 @attend="attend"
@@ -167,7 +170,7 @@
                 class="is-fullwidth is-link"
                 :session="session"
               />
-              <slot name="extraActions" />
+              <slot name="extraActions"></slot>
             </Stack>
           </SidebarItem>
         </template>
@@ -185,7 +188,7 @@
     </template>
 
     <template v-slot:footer>
-      <slot name="footer" />
+      <slot name="footer"></slot>
     </template>
   </SessionLayout>
 </template>
@@ -203,7 +206,7 @@ import {
   UserSessionAttendance,
   Track,
 } from '@openlab/deconf-shared';
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import {
   createAttendanceEvent,
   createSessionLinkEvent,
@@ -286,7 +289,7 @@ interface Data {
   isLoading: boolean;
 }
 
-export default {
+export default defineComponent({
   name: 'SessionView',
   components: {
     AddToCalendar,
@@ -535,7 +538,7 @@ export default {
       return localiseFromObject(this.$i18n.locale, object, { fallbacks });
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -39,6 +39,7 @@
 import copyToClipboard from 'copy-to-clipboard';
 import { PrivateCalendar } from '@openlab/deconf-shared';
 import { namespaceForApi } from '../lib/module';
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -69,7 +70,7 @@ interface Data {
   timerId: number | null;
 }
 
-export default {
+export default defineComponent({
   name: 'PrivateCalendarCreator',
   data(): Data {
     return { privateCal: null, didCopy: false, timerId: null };
@@ -108,7 +109,7 @@ export default {
       this.timerId = window.setTimeout(() => (this.didCopy = false), 5000);
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

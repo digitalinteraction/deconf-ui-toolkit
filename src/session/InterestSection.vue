@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { UserSessionAttendance } from '@openlab/deconf-shared';
 import InterestButton from '../core/session/InterestButton.vue';
 
@@ -28,7 +28,7 @@ import InterestButton from '../core/session/InterestButton.vue';
 // - n/a
 //
 
-export default Vue.extend({
+export default defineComponent({
   name: 'InterestSection',
   components: { InterestButton },
   props: {

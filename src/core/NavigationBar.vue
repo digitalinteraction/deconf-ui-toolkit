@@ -122,7 +122,6 @@ import { RouteLocationRaw } from 'vue-router';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { ConferenceConfig } from '@openlab/deconf-shared';
 import { SelectOption } from '../form/module';
-import { NavLink } from './nav-link';
 
 //
 // i18n
@@ -157,7 +156,7 @@ export default defineComponent({
     routes: { type: Array as PropType<AppRoute[]>, required: true },
     languages: { type: Array as PropType<SelectOption[]>, default: null },
     links: {
-      type: Array as PropType<NavLink[]>,
+      type: Array as PropType<string[]>,
       default: () => ['login', 'register', 'interpret', 'profile'],
     },
   },

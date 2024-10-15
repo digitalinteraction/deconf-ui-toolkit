@@ -1,4 +1,4 @@
-import { Module } from 'vuex';
+import { Module } from '../vuex.ts';
 import { createStateMapper } from '../../lib/module';
 
 export interface MetricsModuleState {

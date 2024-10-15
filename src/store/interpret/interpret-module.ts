@@ -1,5 +1,5 @@
 import { InterpretBooth, Interpreter } from '@openlab/deconf-shared';
-import { Module } from 'vuex';
+import { Module } from '../vuex.ts';
 import { createStateMapper } from '../../lib/module';
 
 export interface ActiveBooth {

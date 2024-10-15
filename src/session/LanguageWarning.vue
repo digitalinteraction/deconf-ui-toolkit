@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
@@ -31,7 +31,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'LanguageWarning',
   components: { FontAwesomeIcon },
   data() {
@@ -52,7 +52,7 @@ export default {
       this.isDismissed = true;
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

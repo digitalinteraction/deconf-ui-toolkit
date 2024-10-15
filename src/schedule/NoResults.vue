@@ -10,7 +10,7 @@
               <FontAwesomeIcon :icon="['fas', 'search']" />
             </span>
             <span>
-              <slot />
+              <slot></slot>
             </span>
           </span>
         </div>
@@ -21,6 +21,7 @@
 
 <script lang="ts">
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -33,10 +34,10 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'NoResults',
   components: { FontAwesomeIcon },
-};
+});
 </script>
 
 <style lang="scss">

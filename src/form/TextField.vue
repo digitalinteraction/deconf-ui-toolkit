@@ -9,7 +9,7 @@
         :type="type"
         class="input"
         :class="inputClass"
-        :value="value"
+        :value="modelValue"
         @input="onInput"
         @keyup.enter="onEnter"
         :placeholder="placeholder"
@@ -45,13 +45,14 @@ export default defineComponent({
   props: {
     name: { type: String, required: true },
     label: { type: String, required: true },
-    value: { type: String, required: true },
+    modelValue: { type: String, required: true },
     placeholder: { type: String, default: '' },
     help: { type: String, default: null },
     hasError: { type: Boolean, default: false },
     type: { type: String, default: 'text' },
     disabled: { type: Boolean, default: false },
   },
+  emits: ['update:modelValue', 'enter'],
   computed: {
     inputClass(): unknown {
       return {
@@ -62,7 +63,7 @@ export default defineComponent({
   methods: {
     onInput(event: Event): void {
       if (!(event.target instanceof HTMLInputElement)) return;
-      this.$emit('input', event.target.value);
+      this.$emit('update:modelValue', event.target.value);
     },
     onEnter(): void {
       this.$emit('enter');

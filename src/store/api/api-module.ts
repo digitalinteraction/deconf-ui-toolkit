@@ -1,4 +1,4 @@
-import { Module } from 'vuex';
+import { Module } from '../vuex.ts';
 import { deepSeal, createStateMapper, pause } from '../../lib/module';
 import {
   Attendance,
@@ -126,10 +126,10 @@ export function createApiStoreActions(
     //
     // Registration
     //
-    login(ctx, email) {
+    login(_ctx, email) {
       return api.startEmailLogin(email);
     },
-    register(ctx, body) {
+    register(_ctx, body) {
       return api.startRegister(body);
     },
     unregister(/* ctx, body */) {
@@ -150,7 +150,7 @@ export function createApiStoreActions(
     //
     // Conference
     //
-    fetchLinks(ctx, sessionId) {
+    fetchLinks(_ctx, sessionId) {
       return api.getLinks(sessionId);
     },
 
@@ -171,14 +171,14 @@ export function createApiStoreActions(
       const result = await api.getUserAttendance();
       commit('userAttendance', result?.attendance ?? []);
     },
-    fetchSessionAttendance(ctx, sessionId) {
+    fetchSessionAttendance(_ctx, sessionId) {
       return api.getSessionAttendance(sessionId);
     },
 
     //
     // Content
     //
-    fetchContent(ctx, { slug }) {
+    fetchContent(_ctx, { slug }) {
       return api.getContent(slug);
     },
 

@@ -145,22 +145,22 @@ export default {
     },
   },
   methods: {
-    getSessionType(session: Session): SessionType {
-      return this.sessionTypeMap.get(session.type) as SessionType;
-    },
-    getSessionSpeakers(session: Session): Speaker[] {
-      return session.speakers
-        .map((id) => this.speakerMap.get(id) as Speaker)
-        .filter((s) => Boolean(s));
-    },
-    getSessionTrack(session: Session): Track {
-      return this.trackMap.get(session.track) as Track;
-    },
-    getSessionThemes(session: Session): Theme[] {
-      return session.themes
-        .map((t) => this.themeMap.get(t) as Theme)
-        .filter((t) => Boolean(t));
-    },
+    // getSessionType(session: Session): SessionType {
+    //   return this.sessionTypeMap.get(session.type) as SessionType;
+    // },
+    // getSessionSpeakers(session: Session): Speaker[] {
+    //   return session.speakers
+    //     .map((id) => this.speakerMap.get(id) as Speaker)
+    //     .filter((s) => Boolean(s));
+    // },
+    // getSessionTrack(session: Session): Track {
+    //   return this.trackMap.get(session.track) as Track;
+    // },
+    // getSessionThemes(session: Session): Theme[] {
+    //   return session.themes
+    //     .map((t) => this.themeMap.get(t) as Theme)
+    //     .filter((t) => Boolean(t));
+    // },
   },
 };
 </script>

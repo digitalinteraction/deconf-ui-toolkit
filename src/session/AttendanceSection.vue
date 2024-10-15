@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { TranslateResult } from 'vue-i18n';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -44,7 +44,7 @@ import { Session, UserSessionAttendance } from '@openlab/deconf-shared';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'AttendanceSection',
   components: { FontAwesomeIcon },
   props: {
@@ -115,7 +115,7 @@ export default {
       this.$emit(this.isRegistered ? 'unattend' : 'attend');
     },
   },
-};
+});
 </script>
 
 <style lang="scss">
