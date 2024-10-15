@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export const BrandA = defineComponent({
   template: `
@@ -8,7 +8,7 @@ export const BrandA = defineComponent({
       height="28"
     />
   `,
-})
+});
 
 export const BrandB = defineComponent({
   template: `
@@ -18,7 +18,7 @@ export const BrandB = defineComponent({
       height="28"
     />
   `,
-})
+});
 
 export const BrandC = defineComponent({
   template: `
@@ -28,7 +28,7 @@ export const BrandC = defineComponent({
       height="64"
     />
   `,
-})
+});
 
 export const LanguageControl = defineComponent({
   template: `
@@ -41,7 +41,7 @@ export const LanguageControl = defineComponent({
       </select>
     </div>
   `,
-})
+});
 
 export const MockAppLayout = defineComponent({
   components: { BrandA },
@@ -57,7 +57,7 @@ export const MockAppLayout = defineComponent({
       </div>
     </div>
   `,
-})
+});
 
 export const TabIcon = defineComponent({
   template: `
@@ -65,4 +65,4 @@ export const TabIcon = defineComponent({
       <path d="M64,6.007 L69.357,15.286 L95.75,61 L122.143,106.714 L127.5,115.993 L0.5,115.993 L5.857,106.714 L32.25,61 L58.643,15.286 L64,6.007 z M64,30.751 L42.964,67.186 L21.928,103.621 L106.072,103.621 L64,30.751 z" fill="currentColor"/>
     </svg>
   `,
-})
+});

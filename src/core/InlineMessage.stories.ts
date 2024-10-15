@@ -1,10 +1,10 @@
-import { Meta, Story } from '@storybook/vue'
-import InlineMessage from './InlineMessage.vue'
+import { Meta, Story } from '@storybook/vue';
+import InlineMessage from './InlineMessage.vue';
 
 export default {
   title: 'Core/InlineMessage',
   component: InlineMessage,
-} as Meta
+} as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { InlineMessage },
@@ -14,7 +14,7 @@ const Template: Story = (args, { argTypes }) => ({
       This is a message
     </InlineMessage>
   `,
-})
+});
 
-export const Default = Template.bind({})
-Default.args = {}
+export const Default = Template.bind({});
+Default.args = {};

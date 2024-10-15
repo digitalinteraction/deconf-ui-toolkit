@@ -10,7 +10,7 @@ export interface Debounced<T extends unknown[]> extends Callback<T> {
 
 export function debounce<T extends unknown[]>(
   interval: number,
-  callback: Callback<T>
+  callback: Callback<T>,
 ): Debounced<T> {
   let timerId: number | null;
 

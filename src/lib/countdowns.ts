@@ -12,7 +12,7 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 export function getCountdown(
   currentDate: Date,
-  targetDate: Date
+  targetDate: Date,
 ): CountdownComponents {
   let remaining = targetDate.getTime() - currentDate.getTime();
 
@@ -40,7 +40,7 @@ export function getCountdown(
 export function getCountdownMessage(
   { days, hours, minutes, seconds }: CountdownComponents,
   tc: (key: string, value: number) => string,
-  seperator = ' '
+  seperator = ' ',
 ): string {
   const convert = (value: number, unit: string) => {
     if (!value) return null;

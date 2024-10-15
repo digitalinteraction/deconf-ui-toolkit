@@ -1,10 +1,10 @@
-import { Meta, Story } from '@storybook/vue'
-import BackButton from './BackButton.vue'
+import { Meta, Story } from '@storybook/vue';
+import BackButton from './BackButton.vue';
 
 export default {
   title: 'Core/BackButton',
   component: BackButton,
-} as Meta
+} as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { BackButton },
@@ -12,14 +12,14 @@ const Template: Story = (args, { argTypes }) => ({
   template: `
     <BackButton to="/">{{ text }}</BackButton>
   `,
-})
+});
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});
 Default.args = {
   text: 'Go home',
-}
+};
 Default.parameters = {
   controls: {
     exclude: ['to', 'default'],
   },
-}
+};

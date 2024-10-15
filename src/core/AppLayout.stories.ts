@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/vue'
-import AppLayout from './AppLayout.vue'
+import { Meta, Story } from '@storybook/vue';
+import AppLayout from './AppLayout.vue';
 import {
   mockSettings,
   Content,
@@ -8,20 +8,20 @@ import {
   BrandA,
   LanguageControl,
   TabIcon,
-} from '../story-lib/module'
-import { AuthToken } from '@openlab/deconf-shared'
+} from '../story-lib/module';
+import { AuthToken } from '@openlab/deconf-shared';
 
 export default {
   title: 'Core/AppLayout',
   component: AppLayout,
-} as Meta
+} as Meta;
 
 const user: AuthToken = {
   kind: 'auth',
   sub: 1,
   user_roles: ['attendee', 'interpreter'],
   user_lang: 'en',
-}
+};
 
 const Template: Story = (args, { argTypes }) => ({
   components: { AppLayout, Content, BrandA, BrandB, BrandC, LanguageControl },
@@ -63,7 +63,7 @@ const Template: Story = (args, { argTypes }) => ({
   }),
   computed: {
     user() {
-      return this.isLoggedIn ? user : null
+      return this.isLoggedIn ? user : null;
     },
   },
   template: `
@@ -85,32 +85,32 @@ const Template: Story = (args, { argTypes }) => ({
       </template>
     </AppLayout>
   `,
-})
+});
 
-export const Desktop = Template.bind({})
+export const Desktop = Template.bind({});
 Desktop.args = {
   isLoggedIn: true,
   contentSize: 3,
-}
+};
 Desktop.parameters = {
   layout: 'fullscreen',
-}
+};
 
-export const Short = Template.bind({})
+export const Short = Template.bind({});
 Short.args = {
   isLoggedIn: true,
   contentSize: 1,
-}
+};
 Short.parameters = {
   layout: 'fullscreen',
-}
+};
 
-export const Mobile = Template.bind({})
+export const Mobile = Template.bind({});
 Mobile.args = {
   isLoggedIn: true,
   contentSize: 3,
-}
+};
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile1' },
   layout: 'fullscreen',
-}
+};

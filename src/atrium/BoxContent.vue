@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -26,7 +26,7 @@ export default defineComponent({
   props: {
     title: { type: String, default: '' },
   },
-})
+});
 </script>
 
 <style lang="scss">

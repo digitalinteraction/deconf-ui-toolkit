@@ -9,25 +9,25 @@ import {
   Speaker,
   Theme,
   Track,
-} from '@openlab/deconf-shared'
-import { dates } from './dates'
-import { SelectOption } from '../form/module'
-import { Sponsor } from '../lib/module'
+} from '@openlab/deconf-shared';
+import { dates } from './dates';
+import { SelectOption } from '../form/module';
+import { Sponsor } from '../lib/module';
 
-const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 //
 // V2
 //
 
-const loremIpsumMarkdown = `We gotta burn the **rain forest**, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but _your_ scientists were so preoccupied with whether or not they could, they didn't stop to think if they [should](https://duck.com).`
+const loremIpsumMarkdown = `We gotta burn the **rain forest**, dump toxic waste, pollute the air, and rip up the OZONE! 'Cause maybe if we screw up this planet enough, they won't want it anymore! Eventually, you do plan to have dinosaurs on your dinosaur tour, right? Yeah, but _your_ scientists were so preoccupied with whether or not they could, they didn't stop to think if they [should](https://duck.com).`;
 
 function makeFixture<T>(base: T) {
-  return (options: Partial<T> = {}): T => ({ ...base, ...options })
+  return (options: Partial<T> = {}): T => ({ ...base, ...options });
 }
 
 function localise(text: string) {
-  return { en: text, fr: text, es: text, ar: text }
+  return { en: text, fr: text, es: text, ar: text };
 }
 
 export const mockSession = makeFixture<Session>({
@@ -54,13 +54,13 @@ export const mockSession = makeFixture<Session>({
   participantCap: null,
   proxyUrl: undefined,
   hideFromSchedule: false,
-})
+});
 
 export const mockSessionSlot = makeFixture<SessionSlot>({
   id: 'slot-a',
   start: dates.future,
   end: dates.past,
-})
+});
 
 export const mockSessionType = makeFixture<SessionType>({
   id: 'plenary',
@@ -68,7 +68,7 @@ export const mockSessionType = makeFixture<SessionType>({
   iconName: 'youtube',
   layout: 'plenary',
   title: { en: 'Plenary' },
-})
+});
 
 export const mockSpeaker = makeFixture<Speaker>({
   id: 'speaker-a',
@@ -76,17 +76,17 @@ export const mockSpeaker = makeFixture<Speaker>({
   role: localise('Speaker role'),
   bio: localise(loremIpsumMarkdown),
   headshot: '/headshot.svg',
-})
+});
 
 export const mockTrack = makeFixture<Track>({
   id: 'track-a',
   title: localise('Track Name'),
-})
+});
 
 export const mockTheme = makeFixture<Theme>({
   id: 'theme-a',
   title: localise('Theme Name'),
-})
+});
 
 export const mockSettings = makeFixture<ConferenceConfig>({
   atrium: { enabled: true, visible: true },
@@ -98,13 +98,13 @@ export const mockSettings = makeFixture<ConferenceConfig>({
   startDate: new Date(),
   endDate: new Date(),
   isStatic: false,
-})
+});
 
 export const mockSponsor = makeFixture<Sponsor>({
   title: 'Corp A',
   image: '/static/openlab.svg',
   href: 'https://openlab.ncl.ac.uk',
-})
+});
 
 export function defaultLanguages(): SelectOption[] {
   return [
@@ -112,7 +112,7 @@ export function defaultLanguages(): SelectOption[] {
     { value: 'fr', text: 'Français' },
     { value: 'es', text: 'Español' },
     { value: 'ar', text: 'عربى' },
-  ]
+  ];
 }
 
 //
@@ -122,7 +122,7 @@ export function defaultLanguages(): SelectOption[] {
 export function createSponsors(n: number): Sponsor[] {
   return Array.from({ length: n }, (_, i) =>
     mockSponsor({ title: `Corp ${ALPHABET[i % ALPHABET.length]}` }),
-  )
+  );
 }
 
 export function defaultSessionTypes(): SessionType[] {
@@ -141,7 +141,7 @@ export function defaultSessionTypes(): SessionType[] {
       layout: 'workshop',
       title: { en: 'Workshop' },
     },
-  ]
+  ];
 }
 
 export function defaultSpeakers(): Speaker[] {
@@ -191,7 +191,7 @@ export function defaultSpeakers(): Speaker[] {
       name: 'Farrell Rocha',
       role: localise('Human Paradigm Liason'),
     }),
-  ]
+  ];
 }
 
 export function defaultTracks(): Track[] {
@@ -202,7 +202,7 @@ export function defaultTracks(): Track[] {
       title: localise('Machine Learning with Fish'),
     }),
     mockTrack({ id: 'track-c', title: localise('Block Chain Horoscopes') }),
-  ]
+  ];
 }
 
 export function defaultThemes(): Theme[] {
@@ -210,7 +210,7 @@ export function defaultThemes(): Theme[] {
     mockTheme({ id: 'theme-a', title: localise('Inclusivity') }),
     mockTheme({ id: 'theme-b', title: localise('Awareness') }),
     mockTheme({ id: 'theme-c', title: localise('Engagement') }),
-  ]
+  ];
 }
 
 export function createSchedule(): ScheduleRecord {
@@ -238,29 +238,29 @@ export function createSchedule(): ScheduleRecord {
     types: defaultSessionTypes(),
     settings: mockSettings(),
     sessions: [],
-  }
+  };
 }
 
 export function randomNumber(min: number, max: number): number {
-  return min + Math.floor(Math.random() * (max - min))
+  return min + Math.floor(Math.random() * (max - min));
 }
 
 export function randomElement<T>(array: T[]): T {
-  return array[randomNumber(0, array.length)]
+  return array[randomNumber(0, array.length)];
 }
 
 export function randomElements<T>(array: T[], max = array.length): T[] {
-  const count = randomNumber(1, Math.min(max, array.length))
-  return array.slice(0, count).sort(() => (Math.random() > 0.5 ? -1 : 1))
+  const count = randomNumber(1, Math.min(max, array.length));
+  return array.slice(0, count).sort(() => (Math.random() > 0.5 ? -1 : 1));
 }
 
-let randomId = 1
+let randomId = 1;
 
 export function randomSession(
   schedule: ScheduleRecord,
   options: Partial<Session> = {},
 ): Session {
-  const langs = ['fr', 'es', 'ar']
+  const langs = ['fr', 'es', 'ar'];
   return mockSession({
     id: `session-${randomId++}`,
     type: randomElement(schedule.types).id,
@@ -270,5 +270,5 @@ export function randomSession(
     speakers: randomElements(schedule.speakers, 5).map((t) => t.id),
     hostLanguages: ['en', randomElement(langs)],
     ...options,
-  })
+  });
 }

@@ -309,7 +309,7 @@ export function parseSecondaryLink(link: string): SecondaryLink | null {
 export function getLocaleLinks(
   links: LocalisedLink[],
   locale: string,
-  fallback: string
+  fallback: string,
 ): LocalisedLink[] {
   // First add the specific language links
   const result = links.filter((l) => l.language === locale);

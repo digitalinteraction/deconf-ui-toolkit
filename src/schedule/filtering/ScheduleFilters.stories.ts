@@ -44,7 +44,7 @@ const Template: Story = (args, { argTypes }) => ({
   computed: {
     enabledFilters(): unknown[] {
       return ALL_FILTERS.map((k) =>
-        this[k] ? k.replace(/Filter$/, '') : undefined
+        this[k] ? k.replace(/Filter$/, '') : undefined,
       ).filter((v) => Boolean(v));
     },
     jsonFilters(): unknown {

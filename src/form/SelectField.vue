@@ -29,8 +29,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { SelectOption } from './select-option'
+import { defineComponent, PropType } from 'vue';
+import { SelectOption } from './select-option';
 
 //
 // Wraps a bulma select field
@@ -65,17 +65,17 @@ export default defineComponent({
       return {
         'is-danger': this.hasError,
         'is-fullwidth': this.fullwidth,
-      }
+      };
     },
   },
   methods: {
     onInput(e: Event) {
-      if (!(e.target instanceof HTMLSelectElement)) return
-      this.$emit('input', e.target.value)
+      if (!(e.target instanceof HTMLSelectElement)) return;
+      this.$emit('input', e.target.value);
     },
     stringify(input: unknown) {
-      return input as string
+      return input as string;
     },
   },
-})
+});
 </script>

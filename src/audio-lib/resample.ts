@@ -12,7 +12,7 @@ export function lerp(v0: number, v1: number, factor: number): number {
 export function getResampledLength(
   inputLength: number,
   inputRate: number,
-  outputRate: number
+  outputRate: number,
 ): number {
   return Math.round((outputRate * inputLength) / inputRate);
 }
@@ -38,7 +38,7 @@ export function linearResample<T extends ArrayLike<number>>(from: T, to: T): T {
 
 export function nearestNeighbourResample<T extends ArrayLike<number>>(
   from: T,
-  to: T
+  to: T,
 ): T {
   for (let i = 0; i < to.length; i++) {
     const j = Math.floor((i * from.length) / to.length);

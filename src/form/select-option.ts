@@ -1,4 +1,4 @@
 export interface SelectOption {
-  text: unknown
-  value: unknown
+  text: unknown;
+  value: unknown;
 }

@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { SelectOption } from './select-option'
+import { defineComponent, PropType } from 'vue';
+import { SelectOption } from './select-option';
 
 //
 // i18n
@@ -37,14 +37,14 @@ export default defineComponent({
     optionClasses(option: SelectOption): unknown {
       return {
         'is-primary': option.value === this.value,
-      }
+      };
     },
     onOption(option: SelectOption) {
-      this.$emit('input', option.value)
+      this.$emit('input', option.value);
     },
     stringify(value: unknown) {
-      return value as string
+      return value as string;
     },
   },
-})
+});
 </script>

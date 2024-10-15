@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, StyleValue } from 'vue'
+import { defineComponent, StyleValue } from 'vue';
 
 //
 // i18n
@@ -23,25 +23,25 @@ export default defineComponent({
   data() {
     return {
       windowHeight: window.innerHeight,
-    }
+    };
   },
   computed: {
     styles(): StyleValue {
       return {
         'min-height': `${this.windowHeight}px`,
-      }
+      };
     },
   },
   mounted() {
-    window.addEventListener('resize', this.update)
+    window.addEventListener('resize', this.update);
   },
   unmounted() {
-    window.removeEventListener('resize', this.update)
+    window.removeEventListener('resize', this.update);
   },
   methods: {
     update(): void {
-      this.windowHeight = window.innerHeight
+      this.windowHeight = window.innerHeight;
     },
   },
-})
+});
 </script>

@@ -22,9 +22,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { RouteLocationRaw } from 'vue-router'
-import { Routes } from '../lib/module.js'
+import { defineComponent } from 'vue';
+import { RouteLocationRaw } from 'vue-router';
+import { Routes } from '../lib/module.js';
 
 //
 // i18n
@@ -49,8 +49,8 @@ export default defineComponent({
   },
   computed: {
     loginRoute(): RouteLocationRaw {
-      return { name: Routes.Login }
+      return { name: Routes.Login };
     },
   },
-})
+});
 </script>

@@ -1,9 +1,9 @@
-import { getAudioContext } from './audio-context.js'
+import { getAudioContext } from './audio-context.js';
 import {
   float32ToInt16,
   getResampledLength,
   linearResample,
-} from './resample.js'
+} from './resample.js';
 
 export enum BroadcasterState {
   active = 'active',
@@ -11,51 +11,51 @@ export enum BroadcasterState {
 }
 
 interface OnChange {
-  (change: { state: BroadcasterState }): void
+  (change: { state: BroadcasterState }): void;
 }
 
 interface OnData {
-  (arrayBuffer: ArrayBuffer, sampleRate: number): void
+  (arrayBuffer: ArrayBuffer, sampleRate: number): void;
 }
 
 interface OnDebug {
-  (...args: unknown[]): void
+  (...args: unknown[]): void;
 }
 
 export interface AudioBroadcasterOptions {
-  audioTransportRate: number
-  onChange: OnChange
-  onData: OnData
-  onDebug: OnDebug
+  audioTransportRate: number;
+  onChange: OnChange;
+  onData: OnData;
+  onDebug: OnDebug;
   audioWorklet: {
-    name: string
-    path: string
-  }
+    name: string;
+    path: string;
+  };
 }
 
 export class AudioBroadcaster {
   static isSupported(): boolean {
-    return Boolean(getAudioContext())
+    return Boolean(getAudioContext());
   }
 
-  private _state = BroadcasterState.inactive
-  private stream: null | MediaStream = null
-  private recorder: null | AudioWorkletNode = null
-  private ctx: null | AudioContext = null
-  private source: null | MediaStreamAudioSourceNode = null
+  private _state = BroadcasterState.inactive;
+  private stream: null | MediaStream = null;
+  private recorder: null | AudioWorkletNode = null;
+  private ctx: null | AudioContext = null;
+  private source: null | MediaStreamAudioSourceNode = null;
 
   get state(): BroadcasterState {
-    return this._state
+    return this._state;
   }
   set state(newState: BroadcasterState) {
-    this._state = newState
-    this.emitChange()
+    this._state = newState;
+    this.emitChange();
   }
 
   private emitChange() {
     this.options.onChange({
       state: this.state,
-    })
+    });
   }
 
   constructor(public options: AudioBroadcasterOptions) {}
@@ -64,13 +64,13 @@ export class AudioBroadcaster {
     previousDeviceId: string | undefined,
   ): Promise<{ chosenDevice?: string }> {
     if (this.state === BroadcasterState.active) {
-      throw new Error('Already started')
+      throw new Error('Already started');
     }
 
-    const AudioContext = getAudioContext() as typeof window.AudioContext
+    const AudioContext = getAudioContext() as typeof window.AudioContext;
     this.ctx = new AudioContext({
       sampleRate: this.options.audioTransportRate,
-    })
+    });
 
     this.stream = await navigator.mediaDevices.getUserMedia({
       video: false,
@@ -79,13 +79,13 @@ export class AudioBroadcaster {
         sampleRate: { ideal: this.options.audioTransportRate },
         echoCancellation: { ideal: true },
       },
-    })
+    });
 
-    const { deviceId } = this.stream.getAudioTracks()[0].getSettings()
-    const { sampleRate } = this.ctx
+    const { deviceId } = this.stream.getAudioTracks()[0].getSettings();
+    const { sampleRate } = this.ctx;
 
     // Register the user's audio worklet
-    await this.ctx.audioWorklet.addModule(this.options.audioWorklet.path)
+    await this.ctx.audioWorklet.addModule(this.options.audioWorklet.path);
 
     // Create a recorder to process the oudio
     this.recorder = new AudioWorkletNode(
@@ -96,49 +96,49 @@ export class AudioBroadcaster {
         numberOfInputs: 1,
         numberOfOutputs: 0,
       },
-    )
+    );
     this.recorder.port.onmessage = (event) => {
-      const { kind, arrayBuffer } = event.data
+      const { kind, arrayBuffer } = event.data;
 
       if (kind === 'ondata' && arrayBuffer) {
         this.handleData(
           arrayBuffer,
           sampleRate,
           this.options.audioTransportRate,
-        )
-        return
+        );
+        return;
       }
 
-      console.error('Unknown AudioBroadcaster port message', event.data)
-    }
+      console.error('Unknown AudioBroadcaster port message', event.data);
+    };
 
     // Create a source to connect the stream to the recorder
-    this.source = this.ctx.createMediaStreamSource(this.stream)
-    this.source.connect(this.recorder)
+    this.source = this.ctx.createMediaStreamSource(this.stream);
+    this.source.connect(this.recorder);
 
-    this.state = BroadcasterState.active
+    this.state = BroadcasterState.active;
 
-    return { chosenDevice: deviceId }
+    return { chosenDevice: deviceId };
   }
   stop(): void {
     if (this.state !== BroadcasterState.active) {
-      throw new Error('Not recording')
+      throw new Error('Not recording');
     }
 
-    this.state = BroadcasterState.inactive
+    this.state = BroadcasterState.inactive;
 
     if (this.stream) {
-      this.stream.getTracks().forEach((t) => t.stop())
+      this.stream.getTracks().forEach((t) => t.stop());
     }
     if (this.source) {
-      this.source.disconnect()
+      this.source.disconnect();
     }
     if (this.recorder) {
-      this.recorder.port.onmessage = null
-      this.recorder.disconnect()
+      this.recorder.port.onmessage = null;
+      this.recorder.disconnect();
     }
     if (this.ctx) {
-      this.ctx.close()
+      this.ctx.close();
     }
   }
 
@@ -147,12 +147,12 @@ export class AudioBroadcaster {
     inputRate: number,
     outputRate: number,
   ): void {
-    const inputFloats = new Float32Array(arrayBuffer)
+    const inputFloats = new Float32Array(arrayBuffer);
     const targetLength = getResampledLength(
       inputFloats.length,
       inputRate,
       outputRate,
-    )
+    );
 
     this.options.onDebug(
       'AudioBroadcaster#handleData byteLength=%d inputRate=%d outputRate=%d outputLength=%d',
@@ -160,25 +160,25 @@ export class AudioBroadcaster {
       inputRate,
       outputRate,
       targetLength,
-    )
+    );
 
-    const outputFloats = new Float32Array(targetLength)
-    linearResample(inputFloats, outputFloats)
+    const outputFloats = new Float32Array(targetLength);
+    linearResample(inputFloats, outputFloats);
 
-    this.options.onData(float32ToInt16(outputFloats).buffer, outputRate)
+    this.options.onData(float32ToInt16(outputFloats).buffer, outputRate);
   }
   handleStreamError(error: Error): void {
     switch (error.name) {
       case 'NotFoundError':
-        alert('No microphones found')
-        break
+        alert('No microphones found');
+        break;
       case 'SecurityError':
       case 'PermissionDeniedError':
         // Do nothing; this is the same as the user canceling the call.
-        break
+        break;
       default:
-        alert('Error opening your microphone: ' + error.message)
-        break
+        alert('Error opening your microphone: ' + error.message);
+        break;
     }
   }
 }

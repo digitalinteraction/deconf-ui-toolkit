@@ -9,7 +9,7 @@
         target="_blank"
         rel="noopener"
       >
-        {{ link | cleanUrl }}
+        {{ cleanUrl(link) }}
       </a>
       <button
         class="sessionLink-copy button is-small is-dark"
@@ -53,11 +53,7 @@ export default {
     title: { type: String, required: true },
     link: { type: String, required: true },
   },
-  filters: {
-    cleanUrl(url: string): string {
-      return url.replace(/https?:\/\//, '');
-    },
-  },
+  filters: {},
   computed: {
     buttonClasses(): unknown {
       return {
@@ -77,6 +73,9 @@ export default {
       setTimeout(() => (this.didCopy = false), 5000);
 
       this.$emit('copy', this.link);
+    },
+    cleanUrl(url: string): string {
+      return url.replace(/https?:\/\//, '');
     },
   },
 };

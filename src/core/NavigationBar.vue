@@ -115,14 +115,14 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, Routes } from '../lib/module'
-import { defineComponent, PropType } from 'vue'
-import { RouteLocationRaw } from 'vue-router'
+import { AppRoute, Routes } from '../lib/module';
+import { defineComponent, PropType } from 'vue';
+import { RouteLocationRaw } from 'vue-router';
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { ConferenceConfig } from '@openlab/deconf-shared'
-import { SelectOption } from '../form/module'
-import { NavLink } from './nav-link'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { ConferenceConfig } from '@openlab/deconf-shared';
+import { SelectOption } from '../form/module';
+import { NavLink } from './nav-link';
 
 //
 // i18n
@@ -148,7 +148,7 @@ export default defineComponent({
   data() {
     return {
       isShowingMenu: false,
-    }
+    };
   },
   props: {
     appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
@@ -165,33 +165,33 @@ export default defineComponent({
     activeClasses(): unknown {
       return {
         'is-active': this.isShowingMenu,
-      }
+      };
     },
     homeRoute(): RouteLocationRaw {
-      return { name: Routes.Atrium }
+      return { name: Routes.Atrium };
     },
     interpretRoute(): RouteLocationRaw {
-      return { name: Routes.InterpretHome }
+      return { name: Routes.InterpretHome };
     },
     profileRoute(): RouteLocationRaw {
-      return { name: Routes.Profile }
+      return { name: Routes.Profile };
     },
     loginRoute(): RouteLocationRaw {
-      return { name: Routes.Login }
+      return { name: Routes.Login };
     },
     registerRoute(): RouteLocationRaw {
-      return { name: Routes.Register }
+      return { name: Routes.Register };
     },
   },
   methods: {
     toggleMenu(): void {
-      this.isShowingMenu = !this.isShowingMenu
+      this.isShowingMenu = !this.isShowingMenu;
     },
     showLink(link: string) {
-      return this.links.includes(link)
+      return this.links.includes(link);
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { AppRoute } from '../lib/module'
+import { defineComponent, PropType } from 'vue';
+import { AppRoute } from '../lib/module';
 
 //
 // i18n
@@ -50,16 +50,16 @@ export default defineComponent({
         return {
           to: { name: item.name },
           'active-class': 'is-active',
-        }
+        };
       } else {
         return {
           disabled: true,
           title: this.$t('deconf.sideTabs.unavailable'),
-        }
+        };
       }
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

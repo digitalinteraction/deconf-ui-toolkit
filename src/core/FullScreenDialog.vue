@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -24,7 +24,7 @@ import { defineComponent } from 'vue'
 // - $fullScreenDialig-small
 //
 
-const dialogSizes = ['small', 'regular']
+const dialogSizes = ['small', 'regular'];
 
 export default defineComponent({
   name: 'FullScreenDialog',
@@ -39,25 +39,25 @@ export default defineComponent({
     classes(): unknown {
       return {
         'is-small': this.size === 'small',
-      }
+      };
     },
   },
   mounted() {
     // Stop window scroll
-    document.documentElement.classList.add('has-dialog')
+    document.documentElement.classList.add('has-dialog');
   },
   unmounted() {
     // Stop window scroll
-    document.documentElement.classList.remove('has-dialog')
+    document.documentElement.classList.remove('has-dialog');
   },
   methods: {
     onBackgroundClick(event: MouseEvent) {
-      if (event.target !== this.$el) return
+      if (event.target !== this.$el) return;
 
-      this.$emit('close')
+      this.$emit('close');
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

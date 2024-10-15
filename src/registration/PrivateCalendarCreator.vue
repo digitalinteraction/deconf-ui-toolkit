@@ -36,9 +36,9 @@
 </template>
 
 <script lang="ts">
-import copyToClipboard from 'copy-to-clipboard'
-import { PrivateCalendar } from '@openlab/deconf-shared'
-import { namespaceForApi } from '../lib/module'
+import copyToClipboard from 'copy-to-clipboard';
+import { PrivateCalendar } from '@openlab/deconf-shared';
+import { namespaceForApi } from '../lib/module';
 
 //
 // i18n
@@ -64,28 +64,28 @@ import { namespaceForApi } from '../lib/module'
 //
 
 interface Data {
-  privateCal: PrivateCalendar | null
-  didCopy: boolean
-  timerId: number | null
+  privateCal: PrivateCalendar | null;
+  didCopy: boolean;
+  timerId: number | null;
 }
 
 export default {
   name: 'PrivateCalendarCreator',
   data(): Data {
-    return { privateCal: null, didCopy: false, timerId: null }
+    return { privateCal: null, didCopy: false, timerId: null };
   },
   computed: {
     copyClasses(): unknown {
       return {
         'is-dark': !this.didCopy,
         'is-success': this.didCopy,
-      }
+      };
     },
   },
-  destroyed() {
+  unmounted() {
     if (this.timerId) {
-      window.clearInterval(this.timerId)
-      this.timerId = null
+      window.clearInterval(this.timerId);
+      this.timerId = null;
     }
   },
   methods: {
@@ -93,22 +93,22 @@ export default {
       this.$deconf.trackMetric({
         eventName: 'profile/userCalendar',
         payload: {},
-      })
+      });
 
       this.privateCal = await this.$store.dispatch(
         namespaceForApi(this.$deconf, 'fetchUserCalendar'),
-      )
-      if (!this.privateCal) alert('Something went wrong')
+      );
+      if (!this.privateCal) alert('Something went wrong');
     },
     copyLink() {
-      if (!this.privateCal) return
-      copyToClipboard(this.privateCal.url.toString())
+      if (!this.privateCal) return;
+      copyToClipboard(this.privateCal.url.toString());
 
-      this.didCopy = true
-      this.timerId = window.setTimeout(() => (this.didCopy = false), 5000)
+      this.didCopy = true;
+      this.timerId = window.setTimeout(() => (this.didCopy = false), 5000);
     },
   },
-}
+};
 </script>
 
 <style lang="scss">

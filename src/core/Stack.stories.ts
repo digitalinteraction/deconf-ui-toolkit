@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/vue'
-import Stack from './Stack.vue'
+import { Meta, Story } from '@storybook/vue';
+import Stack from './Stack.vue';
 
 export default {
   title: 'Core/Stack',
@@ -24,7 +24,7 @@ export default {
       },
     },
   },
-} as Meta
+} as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { Stack },
@@ -46,28 +46,28 @@ const Template: Story = (args, { argTypes }) => ({
       </div>
     </Stack>
   `,
-})
+});
 
-export const Vertical = Template.bind({})
+export const Vertical = Template.bind({});
 Vertical.args = {
   direction: 'vertical',
   gap: 'regular',
   align: 'center',
-}
+};
 Vertical.parameters = {
   controls: {
     exclude: ['default'],
   },
-}
+};
 
-export const Horizontal = Template.bind({})
+export const Horizontal = Template.bind({});
 Horizontal.args = {
   direction: 'horizontal',
   gap: 'regular',
   align: 'center',
-}
+};
 Horizontal.parameters = {
   controls: {
     exclude: ['default'],
   },
-}
+};

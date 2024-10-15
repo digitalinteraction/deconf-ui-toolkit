@@ -34,9 +34,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import BidirectionalIcon from './BidirectionalIcon.vue'
-import { SlotState } from '../lib/module'
+import { defineComponent, PropType } from 'vue';
+import BidirectionalIcon from './BidirectionalIcon.vue';
+import { SlotState } from '../lib/module';
 
 //
 // i18n
@@ -64,19 +64,19 @@ export default defineComponent({
   },
   computed: {
     tagClasses(): string {
-      return `is-${this.slotState}`
+      return `is-${this.slotState}`;
     },
     tagI18nKey(): string | null {
-      if (this.slotState === 'past') return 'deconf.timeSlot.past'
-      if (this.slotState === 'present') return 'deconf.timeSlot.live'
-      return null
+      if (this.slotState === 'past') return 'deconf.timeSlot.past';
+      if (this.slotState === 'present') return 'deconf.timeSlot.live';
+      return null;
     },
     timezone(): string {
-      const intl = Intl.DateTimeFormat().resolvedOptions()
-      return intl.timeZoneName || intl.timeZone
+      const intl = Intl.DateTimeFormat().resolvedOptions();
+      return intl.timeZoneName || intl.timeZone;
     },
     isMultiDay(): boolean {
-      return this.endDate.getDate() !== this.startDate.getDate()
+      return this.endDate.getDate() !== this.startDate.getDate();
     },
   },
   methods: {
@@ -84,19 +84,19 @@ export default defineComponent({
       return new Date(date).toLocaleTimeString([], {
         hour: '2-digit',
         minute: '2-digit',
-      })
+      });
     },
     localeDate(date: Date): string {
-      return new Date(date).toLocaleString()
+      return new Date(date).toLocaleString();
     },
     localeDateShort(date: Date): string {
       return new Date(date).toLocaleDateString([], {
         month: 'long',
         day: 'numeric',
-      })
+      });
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

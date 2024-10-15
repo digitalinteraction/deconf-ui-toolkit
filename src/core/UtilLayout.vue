@@ -23,8 +23,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import FullHeight from './FullHeight.vue'
+import { defineComponent } from 'vue';
+import FullHeight from './FullHeight.vue';
 
 //
 // A wrapper for utility-like pages on the site, like login or privacy
@@ -60,10 +60,10 @@ export default defineComponent({
       return {
         'is-medium': this.width === 'medium',
         'is-large': this.width === 'large',
-      }
+      };
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

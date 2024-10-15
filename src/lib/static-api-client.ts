@@ -19,7 +19,7 @@ export type DeconfStaticFiles = {
 };
 
 export class StaticDeconfApiClient<
-  T extends DeconfStaticFiles = DeconfStaticFiles
+  T extends DeconfStaticFiles = DeconfStaticFiles,
 > extends DeconfApiClient {
   staticFiles = new Map<keyof T, unknown>();
 
@@ -40,7 +40,7 @@ export class StaticDeconfApiClient<
     return false;
   }
   override async getSessionAttendance(
-    sessionId: string
+    sessionId: string,
   ): Promise<UserSessionAttendance | null> {
     const attendance = await this.getStaticFile('attendance.json');
     return {

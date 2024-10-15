@@ -91,7 +91,7 @@ export default {
       if (!confirmed) return;
 
       const success = await this.$store.dispatch(
-        namespaceForApi(this.$deconf, 'unregister')
+        namespaceForApi(this.$deconf, 'unregister'),
       );
 
       if (!success) {

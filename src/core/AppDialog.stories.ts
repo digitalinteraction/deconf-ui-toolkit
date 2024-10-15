@@ -1,20 +1,20 @@
-import Vue, { Component } from 'vue'
-import { Meta, Story } from '@storybook/vue'
-import { DialogPlugin } from '../lib/dialog-plugin'
-import AppDialog from './AppDialog.vue'
+import Vue, { Component } from 'vue';
+import { Meta, Story } from '@storybook/vue';
+import { DialogPlugin } from '../lib/dialog-plugin';
+import AppDialog from './AppDialog.vue';
 
 export default {
   title: 'Core/AppDialog',
   component: AppDialog,
-} as Meta
+} as Meta;
 
-const dialogPlugin = new DialogPlugin(Vue)
+const dialogPlugin = new DialogPlugin(Vue);
 
 const MockDialog: Component = {
   props: ['name'],
   methods: {
     onClick() {
-      dialogPlugin.close()
+      dialogPlugin.close();
     },
   },
   template: `
@@ -23,14 +23,14 @@ const MockDialog: Component = {
       <p> <button @click="onClick">Close</button> </p>
     </div>
   `,
-}
+};
 
 const Template: Story = (args, { argTypes }) => ({
   components: { AppDialog },
   data: () => ({ dialogPlugin }),
   methods: {
     onClick() {
-      dialogPlugin.show(MockDialog, { name: 'Geoff' })
+      dialogPlugin.show(MockDialog, { name: 'Geoff' });
     },
   },
   template: `
@@ -39,7 +39,7 @@ const Template: Story = (args, { argTypes }) => ({
       <button @click="onClick">Show dialog</button>
     </div>
   `,
-})
+});
 
-export const Default = Template.bind({})
-Default.args = {}
+export const Default = Template.bind({});
+Default.args = {};

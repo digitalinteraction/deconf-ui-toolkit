@@ -51,10 +51,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { Session } from '@openlab/deconf-shared'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { createICalEvent } from '../../lib/module.js'
+import { defineComponent, PropType } from 'vue';
+import { Session } from '@openlab/deconf-shared';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { createICalEvent } from '../../lib/module.js';
 
 //
 // i18n
@@ -81,22 +81,22 @@ export default defineComponent({
   },
   computed: {
     icalLink(): string | null {
-      return this.$deconf.getCalendarLink(this.session, 'ical')
+      return this.$deconf.getCalendarLink(this.session, 'ical');
     },
     googleLink(): string | null {
-      return this.$deconf.getCalendarLink(this.session, 'google')
+      return this.$deconf.getCalendarLink(this.session, 'google');
     },
   },
   methods: {
     finish(kind: string) {
-      this.$deconf.trackMetric(createICalEvent(this.session.id, kind))
-      this.$deconf.closeDialog()
+      this.$deconf.trackMetric(createICalEvent(this.session.id, kind));
+      this.$deconf.closeDialog();
     },
     cancel() {
-      this.$deconf.closeDialog()
+      this.$deconf.closeDialog();
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

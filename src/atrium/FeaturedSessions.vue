@@ -25,11 +25,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { RouteLocationRaw } from 'vue-router'
-import { Routes, SessionAndSlot } from '../lib/module'
+import { defineComponent, PropType } from 'vue';
+import { RouteLocationRaw } from 'vue-router';
+import { Routes, SessionAndSlot } from '../lib/module';
 
-import MiniSession from './MiniSession.vue'
+import MiniSession from './MiniSession.vue';
 
 //
 // i18n
@@ -54,10 +54,10 @@ export default defineComponent({
   },
   computed: {
     scheduleRoute(): RouteLocationRaw {
-      return { name: Routes.Schedule }
+      return { name: Routes.Schedule };
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

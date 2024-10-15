@@ -11,18 +11,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { RouteLocationRaw } from 'vue-router'
+import { defineComponent, PropType } from 'vue';
+import { RouteLocationRaw } from 'vue-router';
 
-import { Routes, SlotState } from '../../lib/module.js'
-import BidirectionalIcon from '../BidirectionalIcon.vue'
+import { Routes, SlotState } from '../../lib/module.js';
+import BidirectionalIcon from '../BidirectionalIcon.vue';
 
 const actions: Record<SlotState, string> = {
   future: 'deconf.joinSession.future',
   soon: 'deconf.joinSession.present',
   present: 'deconf.joinSession.present',
   past: 'deconf.joinSession.past',
-}
+};
 
 //
 // i18n
@@ -49,16 +49,16 @@ export default defineComponent({
     classes(): Record<string, unknown> {
       return {
         'is-success': ['present', 'past'].includes(this.slotState),
-      }
+      };
     },
     action(): string {
-      return actions[this.slotState] || actions.past
+      return actions[this.slotState] || actions.past;
     },
     sessionRoute(): RouteLocationRaw {
-      return { name: Routes.Session, params: { sessionId: this.sessionId } }
+      return { name: Routes.Session, params: { sessionId: this.sessionId } };
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

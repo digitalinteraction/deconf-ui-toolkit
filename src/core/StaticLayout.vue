@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -39,10 +39,10 @@ export default defineComponent({
   name: 'StaticLayout',
   computed: {
     showLanguageControl(): boolean {
-      return false
+      return false;
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

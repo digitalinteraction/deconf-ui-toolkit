@@ -1,10 +1,10 @@
-import { Meta, Story } from '@storybook/vue'
-import SegmentControl from './SegmentControl.vue'
+import { Meta, Story } from '@storybook/vue';
+import SegmentControl from './SegmentControl.vue';
 
 export default {
   title: 'Form/SegmentControl',
   component: SegmentControl,
-} as Meta
+} as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { SegmentControl },
@@ -18,14 +18,14 @@ const Template: Story = (args, { argTypes }) => ({
       :options="options"
     />
   `,
-})
+});
 
-export const Default = Template.bind({})
+export const Default = Template.bind({});
 Default.args = {
   options: [
     { value: 'option-a', text: 'Option A' },
     { value: 'option-b', text: 'Option B' },
     { value: 'option-c', text: 'Option C' },
   ],
-}
-Default.parameters = {}
+};
+Default.parameters = {};

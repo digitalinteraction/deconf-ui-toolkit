@@ -91,10 +91,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { localiseFromObject } from '../../lib/module'
-import { Localised, Theme, Track } from '@openlab/deconf-shared'
+import { defineComponent, PropType } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { localiseFromObject } from '../../lib/module';
+import { Localised, Theme, Track } from '@openlab/deconf-shared';
 
 //
 // i18n
@@ -130,10 +130,10 @@ export default defineComponent({
   },
   methods: {
     localise(object: Localised): string | null {
-      return localiseFromObject(this.$i18n.locale, object)
+      return localiseFromObject(this.$i18n.locale, object);
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

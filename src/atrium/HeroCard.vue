@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, StyleValue } from 'vue'
+import { defineComponent, StyleValue } from 'vue';
 
 //
 // i18n
@@ -33,10 +33,10 @@ export default defineComponent({
   },
   computed: {
     style(): StyleValue {
-      return { 'background-image': `url(${this.coverImage})` }
+      return { 'background-image': `url(${this.coverImage})` };
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

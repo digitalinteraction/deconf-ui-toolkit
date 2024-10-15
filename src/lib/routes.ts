@@ -9,7 +9,7 @@ import { AppRoute } from './types';
 export function getDefaultRoutes(
   user: AuthToken | null,
   settings: ConferenceConfig,
-  t: (key: string) => string
+  t: (key: string) => string,
 ): AppRoute[] {
   const routes: AppRoute[] = [];
 
@@ -69,7 +69,7 @@ export function guardRoute<T extends Record<string, PageFlag>>(
   schedule: T | undefined,
   key: keyof T,
   user: AuthToken | null,
-  router: VueRouter
+  router: VueRouter,
 ): void {
   if (user && user.user_roles.includes('admin')) return;
   if (!schedule) return;
@@ -85,7 +85,7 @@ export function guardRoute<T extends Record<string, PageFlag>>(
 export function guardPage(
   flag: PageFlag | undefined,
   user: AuthToken | null,
-  router: VueRouter
+  router: VueRouter,
 ) {
   if (user && user.user_roles.includes('admin')) return;
   if (!flag) return;
@@ -116,7 +116,7 @@ export function getScrollBehaviour(scrollOffest: number) {
   return (
     to: Route,
     from: Route,
-    savedPosition: { x: number; y: number } | void
+    savedPosition: { x: number; y: number } | void,
   ) => {
     // If they clicked on a hash, scroll to that
     if (to.hash && to.name !== Routes.TokenCapture) {

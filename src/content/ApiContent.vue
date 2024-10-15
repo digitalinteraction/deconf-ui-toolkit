@@ -1,7 +1,7 @@
 <script lang="ts">
-import { defineComponent, h, VNode } from 'vue'
-import { Localised } from '@openlab/deconf-shared'
-import { localiseFromObject, namespaceForApi } from '../lib/module.js'
+import { defineComponent, h, VNode } from 'vue';
+import { Localised } from '@openlab/deconf-shared';
+import { localiseFromObject, namespaceForApi } from '../lib/module.js';
 
 //
 // i18n
@@ -19,7 +19,7 @@ import { localiseFromObject, namespaceForApi } from '../lib/module.js'
 //
 
 interface Data {
-  content: Localised | undefined
+  content: Localised | undefined;
 }
 
 export default defineComponent({
@@ -30,38 +30,38 @@ export default defineComponent({
   data(): Data {
     return {
       content: undefined,
-    }
+    };
   },
   computed: {
     domContent(): HTMLDivElement {
-      const html = document.createElement('div')
+      const html = document.createElement('div');
       if (this.content) {
-        const localeHtml = localiseFromObject(this.$i18n.locale, this.content)
-        if (localeHtml) html.innerHTML = localeHtml
+        const localeHtml = localiseFromObject(this.$i18n.locale, this.content);
+        if (localeHtml) html.innerHTML = localeHtml;
       }
-      return html
+      return html;
     },
   },
   mounted() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     async fetchData() {
       this.content = await this.$store.dispatch(
         namespaceForApi(this.$deconf, 'fetchContent'),
         { slug: this.slug },
-      )
+      );
     },
 
     /** Convert a HTML node to a Vue.js VNode */
     domToVue(node: Node): VNode | string {
-      if (node instanceof Text) return node.textContent || ''
+      if (node instanceof Text) return node.textContent || '';
 
       // Convert dom attributes to a plain record
-      const attrs: Record<string, unknown> = {}
+      const attrs: Record<string, unknown> = {};
       if (node instanceof Element) {
         for (const key of node.attributes) {
-          attrs[key.name] = key.value
+          attrs[key.name] = key.value;
         }
       }
 
@@ -69,21 +69,21 @@ export default defineComponent({
         node.nodeName,
         { attrs },
         Array.from(node.childNodes).map((child) => this.domToVue(child)),
-      )
+      );
     },
   },
   render(): VNode {
-    const dom = this.domContent as HTMLDivElement
+    const dom = this.domContent as HTMLDivElement;
     // Go through each child of the api content
     // if a <div id="xyz"> attempt to replace with a slot
     // otherwise, copy the dom node across
     const children = Array.from(dom.children).map((child) => {
       return child.id && this.$slots[child.id]
         ? (this.$slots[child.id] as VNode[])
-        : (this.domToVue(child) as VNode)
-    })
+        : (this.domToVue(child) as VNode);
+    });
 
-    return h('div', { staticClass: 'content' }, children)
+    return h('div', { staticClass: 'content' }, children);
   },
-})
+});
 </script>

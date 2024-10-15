@@ -102,7 +102,7 @@ export default {
       this.state = 'working';
       const success = await this.$store.dispatch(
         namespaceForApi(this.$deconf, 'login'),
-        this.email
+        this.email,
       );
 
       this.state = success ? 'success' : 'error';

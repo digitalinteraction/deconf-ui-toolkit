@@ -9,7 +9,10 @@
     "build:types": "npx vue-tsc --project tsconfig.npm.json",
     "build:storybook": "npx storybook build",
     "release": "npm run preversion && standard-version && git push --follow-tags origin main && npm publish",
-    "release:beta": "npm run preversion && standard-version --prerelease=beta"
+    "release:beta": "npm run preversion && standard-version --prerelease=beta",
+    "lint": "npx eslint",
+    "format": "npx prettier --write src",
+    "check": "npx vue-tsc --noEmit"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",

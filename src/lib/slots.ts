@@ -5,7 +5,7 @@ const oneHour = 60 * 60 * 1000;
 export function getSlotState(
   currentDate: Date,
   startDate: Date,
-  endDate: Date
+  endDate: Date,
 ): SlotState {
   const now = currentDate.getTime();
   const start = startDate.getTime();

@@ -21,8 +21,8 @@
 </template>
 
 <script lang="ts">
-import { Sponsor } from '../lib/module'
-import { defineComponent, PropType } from 'vue'
+import { Sponsor } from '../lib/module';
+import { defineComponent, PropType } from 'vue';
 
 //
 // i18n
@@ -38,7 +38,7 @@ import { defineComponent, PropType } from 'vue'
 // - $sponsorRow-smallHeight
 //
 
-const sizes = ['large', 'medium', 'regular', 'small']
+const sizes = ['large', 'medium', 'regular', 'small'];
 
 export default defineComponent({
   name: 'SponsorRow',
@@ -53,15 +53,15 @@ export default defineComponent({
   },
   computed: {
     classes(): string {
-      return `is-${this.size}`
+      return `is-${this.size}`;
     },
   },
   methods: {
     sponsorComponent(sponsor: Sponsor) {
-      return sponsor.href ? 'a' : 'span'
+      return sponsor.href ? 'a' : 'span';
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

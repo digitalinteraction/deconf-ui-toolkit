@@ -25,10 +25,10 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { defineComponent, PropType } from 'vue'
-import { Session } from '@openlab/deconf-shared'
-import AddToCalendarDialog from './AddToCalendarDialog.vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent, PropType } from 'vue';
+import { Session } from '@openlab/deconf-shared';
+import AddToCalendarDialog from './AddToCalendarDialog.vue';
 
 //
 // i18n
@@ -53,18 +53,18 @@ export default defineComponent({
   },
   methods: {
     onClickLink(event: MouseEvent): void {
-      this.$emit('click', event)
+      this.$emit('click', event);
     },
     onClickButton(event: MouseEvent): void {
-      this.$emit('click', event)
+      this.$emit('click', event);
       this.$deconf.showDialog(
         AddToCalendarDialog,
         { session: this.session },
         { size: 'small' },
-      )
+      );
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

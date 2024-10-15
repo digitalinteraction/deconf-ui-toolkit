@@ -32,7 +32,7 @@ export interface SessionAndSlot {
 /** Take a set of sessions and slots and group them by slot */
 export function groupSessionsBySlot(
   sessions: Session[],
-  sessionSlots: SessionSlot[]
+  sessionSlots: SessionSlot[],
 ): SlotWithSessions[] {
   const bySlot = new Map<string, Session[]>();
 
@@ -60,7 +60,7 @@ export interface DailySessions {
 
 export function groupSessionsByDay(
   sessions: Session[],
-  sessionSlots: SessionSlot[]
+  sessionSlots: SessionSlot[],
 ): DailySessions[] {
   // Group sessions by their slot
   const slottedSessions = groupSessionsBySlot(sessions, sessionSlots);
@@ -118,7 +118,7 @@ export function loadScheduleFilters(key: string): ScheduleFilterRecord {
     };
 
     return filters;
-  } catch (error) {
+  } catch {
     return decodeScheduleFilters({});
   }
 }
@@ -140,7 +140,7 @@ export type SessionPredicate = (session: Session) => boolean;
 export function createQueryPredicate(
   locale: string,
   query: string | undefined,
-  schedule: Omit<ScheduleRecord, 'settings'>
+  schedule: Omit<ScheduleRecord, 'settings'>,
 ): SessionPredicate | null {
   if (!query || !query.trim()) return null;
 
@@ -180,7 +180,7 @@ export function createQueryPredicate(
 export function createFilterPredicate(
   locale: string,
   filters: ScheduleFilterRecord,
-  schedule: Omit<ScheduleRecord, 'settings'>
+  schedule: Omit<ScheduleRecord, 'settings'>,
 ): SessionPredicate | null {
   if (!filtersAreSet(filters)) return null;
 
@@ -230,7 +230,7 @@ export function createFilterPredicate(
 /** Determine if the cofference is happening right now or not */
 export function isDuringConference(
   scheduleDate: Date,
-  appSettings: ConferenceConfig | null
+  appSettings: ConferenceConfig | null,
 ): boolean {
   if (!appSettings) return false;
   return (
@@ -243,7 +243,7 @@ export function getFeaturedSessions(
   schedule: Omit<ScheduleRecord, 'settings'> | null,
   daysInFuture: number,
   currentDate: Date,
-  predicate: (session: Session) => boolean
+  predicate: (session: Session) => boolean,
 ): SessionAndSlot[] | null {
   if (!schedule) return null;
 
@@ -261,13 +261,13 @@ export function getFeaturedSessions(
       (group) =>
         Boolean(group.slot) &&
         group.slot.end.getTime() > now &&
-        group.slot.start.getTime() < inTheFuture
+        group.slot.start.getTime() < inTheFuture,
     )
     .sort((a, b) => a.slot.start.getTime() - b.slot.start.getTime());
 }
 
 export function encodeScheduleFilters(
-  filters: ScheduleFilterRecord
+  filters: ScheduleFilterRecord,
 ): Record<Exclude<keyof ScheduleFilterRecord, 'viewMode'>, string> {
   return stripNulls({
     query: encoder.string(filters.query),
@@ -281,14 +281,14 @@ export function encodeScheduleFilters(
 }
 
 export function decodeUrlScheduleFilters(
-  input: Record<string, unknown>
+  input: Record<string, unknown>,
 ): ScheduleFilterRecord | null {
   if (Object.keys(input).length === 0) return null;
   return decodeScheduleFilters(input);
 }
 
 export function decodeScheduleFilters(
-  input: Record<string, unknown>
+  input: Record<string, unknown>,
 ): ScheduleFilterRecord {
   return {
     viewMode: 'all',
@@ -340,10 +340,10 @@ const decoder = {
 type NonNullRecord<T> = { [K in keyof T]: NonNullable<T[K]> };
 
 function stripNulls<T extends Record<string, unknown>>(
-  input: T
+  input: T,
 ): NonNullRecord<T> {
   return Object.fromEntries(
-    Object.entries(input).filter((pair) => pair[1] !== null)
+    Object.entries(input).filter((pair) => pair[1] !== null),
   ) as NonNullRecord<T>;
 }
 
@@ -364,7 +364,7 @@ export interface DateRange {
 /** Get the earliest and lastest dates based on a set of sessions */
 export function getScheduleStartAndEnd(
   sessions: Session[],
-  schedule: Omit<ScheduleRecord, 'settings'>
+  schedule: Omit<ScheduleRecord, 'settings'>,
 ): DateRange | null {
   const slots = new Map(schedule.slots.map((s) => [s.id, s]));
 
@@ -406,7 +406,7 @@ export function isInRange(range: DateRange, date: Date): boolean {
  * that existing on the provided sessions.
  */
 export function filterScheduleFromSessions<
-  T extends Omit<ScheduleRecord, 'settings'>
+  T extends Omit<ScheduleRecord, 'settings'>,
 >(schedule: T, sessions: Session[]): T {
   const slotIds = new Set<string>();
   const speakerIds = new Set<string>();

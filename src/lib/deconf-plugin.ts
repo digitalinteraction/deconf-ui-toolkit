@@ -17,7 +17,7 @@ export interface DeconfPlugin {
   showDialog(
     component: Component,
     props: Record<string, unknown>,
-    options?: ShowDialogOptions
+    options?: ShowDialogOptions,
   ): void;
   closeDialog(): void;
 

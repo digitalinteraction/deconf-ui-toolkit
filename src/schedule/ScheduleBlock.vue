@@ -123,7 +123,7 @@ export default {
       return new Set<string>(
         this.schedule.types
           .filter((t) => t.layout === 'plenary')
-          .map((t) => t.id)
+          .map((t) => t.id),
       );
     },
     plenarySessions(): Session[] {
@@ -136,7 +136,7 @@ export default {
       return getSlotState(
         this.currentDate,
         this.sessionSlot.start,
-        this.sessionSlot.end
+        this.sessionSlot.end,
       );
     },
     shouldOpenWorkshops(): boolean {

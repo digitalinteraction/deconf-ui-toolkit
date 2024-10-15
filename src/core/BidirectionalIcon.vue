@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { defineComponent, PropType } from 'vue';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
 // i18n
@@ -30,5 +30,5 @@ export default defineComponent({
     ltr: { type: Array as PropType<string[]>, required: true },
     rtl: { type: Array as PropType<string[]>, required: true },
   },
-})
+});
 </script>

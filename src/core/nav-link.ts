@@ -1,1 +1,1 @@
-export type NavLink = 'login' | 'register' | 'interpret' | 'profile'
+export type NavLink = 'login' | 'register' | 'interpret' | 'profile';

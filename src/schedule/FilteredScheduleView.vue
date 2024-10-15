@@ -12,9 +12,15 @@
     :is-during-conference="isDuringConference"
     :language-options="options.languages"
   >
-    <slot name="title" slot="title" />
-    <slot name="noResults" slot="noResults" />
-    <slot name="infoText" slot="infoText" />
+    <template v-slot:title>
+      <slot name="title" />
+    </template>
+    <template v-slot:noResults>
+      <slot name="noResults" />
+    </template>
+    <template v-slot:infoText>
+      <slot name="infoText" />
+    </template>
   </ScheduleView>
 </template>
 
@@ -84,13 +90,13 @@ export default {
   computed: {
     filteredSessions(): Session[] {
       return this.schedule.sessions.filter(
-        (s) => s.slot && this.options.predicate(s)
+        (s) => s.slot && this.options.predicate(s),
       );
     },
     isDuringConference(): boolean {
       const range = getScheduleStartAndEnd(
         this.filteredSessions,
-        this.schedule
+        this.schedule,
       );
       if (!range) return false;
       return isInRange(range, this.scheduleDate);

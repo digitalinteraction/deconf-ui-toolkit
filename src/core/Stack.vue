@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 //
 // A reusable component to quickly flex between items without needing styles
@@ -31,7 +31,7 @@ function enumProp(values: string[]) {
     type: String,
     validator: (v: string) => values.includes(v),
     required: true,
-  }
+  };
 }
 
 export default defineComponent({
@@ -48,10 +48,10 @@ export default defineComponent({
         `is-${this.gap}`,
         `is-${this.direction}`,
         `is-aligned-${this.align}`,
-      ]
+      ];
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

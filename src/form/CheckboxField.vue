@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 //
 // Wraps a bulma checkbox field
@@ -47,16 +47,16 @@ export default defineComponent({
     labelClass(): unknown {
       return {
         'is-danger': this.hasError,
-      }
+      };
     },
   },
   methods: {
     onInput(event: Event) {
-      if (!(event.target instanceof HTMLInputElement)) return
-      this.$emit('input', event.target.checked)
+      if (!(event.target instanceof HTMLInputElement)) return;
+      this.$emit('input', event.target.checked);
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

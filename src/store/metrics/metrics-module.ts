@@ -1,20 +1,20 @@
-import { Module } from 'vuex'
-import { createStateMapper } from '../../lib/module'
+import { Module } from 'vuex';
+import { createStateMapper } from '../../lib/module';
 
 export interface MetricsModuleState {
-  userId: number | null
-  socketId: string | null
-  siteVisitors: number | null
+  userId: number | null;
+  socketId: string | null;
+  siteVisitors: number | null;
 }
 
 export interface MetricsAuthenticateOptions {
-  userId: number | null
-  socketId: string | null
+  userId: number | null;
+  socketId: string | null;
 }
 
-export type MetricsStoreModule = Module<MetricsModuleState, unknown>
+export type MetricsStoreModule = Module<MetricsModuleState, unknown>;
 
-export const mapMetricsState = createStateMapper<MetricsModuleState>()
+export const mapMetricsState = createStateMapper<MetricsModuleState>();
 
 //
 // NOTE:
@@ -34,12 +34,12 @@ export function createMetricsStoreModule(): MetricsStoreModule {
     getters: {},
     mutations: {
       authenticate(state, options: MetricsAuthenticateOptions) {
-        state.userId = options.userId
-        state.socketId = options.socketId
+        state.userId = options.userId;
+        state.socketId = options.socketId;
       },
       siteVisitors(state, siteVisitors: number) {
-        state.siteVisitors = siteVisitors
+        state.siteVisitors = siteVisitors;
       },
     },
-  }
+  };
 }

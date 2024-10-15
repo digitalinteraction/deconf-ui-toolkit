@@ -208,7 +208,7 @@ export default {
         this.schedule.slots.map((s) => [
           startOfDay(s.start).toISOString(),
           s.start,
-        ])
+        ]),
       );
       return [...dates.entries()]
         .map(([start, date]) => ({
@@ -265,7 +265,7 @@ export default {
       this.updateFilter('query', value);
     });
   },
-  destroyed() {
+  unmounted() {
     if (this.queryHandler) {
       this.queryHandler.cancel();
     }
@@ -274,7 +274,7 @@ export default {
   methods: {
     updateFilter<K extends FilterKey>(
       key: K,
-      newValue: ScheduleFilterRecord[K]
+      newValue: ScheduleFilterRecord[K],
     ) {
       // eslint-disable-next-line vue/no-mutating-props
       this.filters[key] = newValue;

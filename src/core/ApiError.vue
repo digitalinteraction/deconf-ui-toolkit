@@ -17,9 +17,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { getCountdown, getCountdownMessage } from '../lib/module.js'
-import UtilLayout from './UtilLayout.vue'
+import { defineComponent } from 'vue';
+import { getCountdown, getCountdownMessage } from '../lib/module.js';
+import UtilLayout from './UtilLayout.vue';
 
 //
 // i18n
@@ -37,12 +37,12 @@ import UtilLayout from './UtilLayout.vue'
 // - n/a
 //
 
-const TICK_INTERVAL = 500
+const TICK_INTERVAL = 500;
 
 interface Data {
-  timerId: number | null
-  retryDate: Date
-  currentDate: Date
+  timerId: number | null;
+  retryDate: Date;
+  currentDate: Date;
 }
 
 export default defineComponent({
@@ -53,37 +53,37 @@ export default defineComponent({
     retry: { type: Number, default: 1 },
   },
   data(): Data {
-    const retryDate = new Date()
-    retryDate.setMinutes(retryDate.getMinutes() + this.retry)
+    const retryDate = new Date();
+    retryDate.setMinutes(retryDate.getMinutes() + this.retry);
 
     return {
       timerId: null,
       retryDate,
       currentDate: new Date(),
-    }
+    };
   },
   computed: {
     localeCountdown(): string | null {
       return getCountdownMessage(
         getCountdown(this.currentDate, this.retryDate),
         (key, value) => this.$tc(key, value),
-      )
+      );
     },
   },
   mounted(): void {
     this.timerId = window.setInterval(() => {
-      this.currentDate = new Date()
-      const timeLeft = this.retryDate.getTime() - this.currentDate.getTime()
+      this.currentDate = new Date();
+      const timeLeft = this.retryDate.getTime() - this.currentDate.getTime();
 
       if (timeLeft < 1500) {
-        window.location.reload()
+        window.location.reload();
       }
-    }, TICK_INTERVAL)
+    }, TICK_INTERVAL);
   },
   unmounted(): void {
     if (this.timerId) {
-      window.clearInterval(this.timerId)
+      window.clearInterval(this.timerId);
     }
   },
-})
+});
 </script>

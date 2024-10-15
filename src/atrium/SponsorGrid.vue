@@ -11,10 +11,10 @@
 </template>
 
 <script lang="ts">
-import { SponsorGroup } from '../lib/module'
-import { defineComponent, PropType } from 'vue'
+import { SponsorGroup } from '../lib/module';
+import { defineComponent, PropType } from 'vue';
 
-import SponsorRow from './SponsorRow.vue'
+import SponsorRow from './SponsorRow.vue';
 
 //
 // i18n
@@ -33,7 +33,7 @@ export default defineComponent({
   props: {
     groups: { type: Array as PropType<SponsorGroup[]>, required: true },
   },
-})
+});
 </script>
 
 <style lang="scss">

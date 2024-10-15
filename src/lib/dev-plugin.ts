@@ -57,11 +57,13 @@ export class DevPlugin {
 
   constructor(Vue: typeof _Vue) {
     this._vm = new Vue({
-      data: {
-        isEnabled: shouldInitiallyShowDevTools(),
-        isVisible: false,
-        slotState: undefined,
-        scheduleDate: undefined,
+      data: function () {
+        return {
+          isEnabled: shouldInitiallyShowDevTools(),
+          isVisible: false,
+          slotState: undefined,
+          scheduleDate: undefined,
+        };
       },
     });
 

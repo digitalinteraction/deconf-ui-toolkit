@@ -22,9 +22,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { BidirectionalIcon } from '../core/module'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { defineComponent } from 'vue';
+import { BidirectionalIcon } from '../core/module';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 //
 // i18n
@@ -47,7 +47,7 @@ export default defineComponent({
       type: String,
       required: true,
       validator(v: string) {
-        return ['primary', 'secondary', 'twitter', 'custom'].includes(v)
+        return ['primary', 'secondary', 'twitter', 'custom'].includes(v);
       },
     },
     icon: { type: [String, Array], required: true },
@@ -57,16 +57,16 @@ export default defineComponent({
   },
   computed: {
     rootComponent(): string {
-      return this.href ? 'a' : 'div'
+      return this.href ? 'a' : 'div';
     },
     extraArgs(): Record<string, unknown> {
-      return this.href ? { href: this.href } : {}
+      return this.href ? { href: this.href } : {};
     },
     classes(): string[] {
-      return [`is-${this.kind}`, this.href ? 'is-hoverable' : '']
+      return [`is-${this.kind}`, this.href ? 'is-hoverable' : ''];
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

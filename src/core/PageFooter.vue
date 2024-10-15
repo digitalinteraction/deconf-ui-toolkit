@@ -22,8 +22,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { PageFooterLink } from './page-footer-link'
+import { defineComponent, PropType } from 'vue';
+import { PageFooterLink } from './page-footer-link';
 
 //
 // i18n
@@ -44,7 +44,7 @@ export default defineComponent({
   props: {
     links: { type: Array as PropType<PageFooterLink[]>, required: true },
   },
-})
+});
 </script>
 
 <style lang="scss">

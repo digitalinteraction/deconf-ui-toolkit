@@ -1,21 +1,21 @@
-import { Meta, StoryObj } from '@storybook/vue3'
+import { Meta, StoryObj } from '@storybook/vue3';
 
-import AtriumLayout from './AtriumLayout.vue'
-import HeroCard from './HeroCard.vue'
-import ColorWidget from './ColorWidget.vue'
-import BoxContent from './BoxContent.vue'
-import SponsorGrid from './SponsorGrid.vue'
+import AtriumLayout from './AtriumLayout.vue';
+import HeroCard from './HeroCard.vue';
+import ColorWidget from './ColorWidget.vue';
+import BoxContent from './BoxContent.vue';
+import SponsorGrid from './SponsorGrid.vue';
 
-import { createSponsors, Content } from '../story-lib/module'
+import { createSponsors, Content } from '../story-lib/module';
 
 export default {
   title: 'Atrium/AtriumLayout',
   component: AtriumLayout,
 
   tags: ['autodocs'],
-} as Meta<typeof AtriumLayout>
+} as Meta<typeof AtriumLayout>;
 
-type Story = StoryObj<typeof AtriumLayout>
+type Story = StoryObj<typeof AtriumLayout>;
 
 const sponsors = [
   {
@@ -38,7 +38,7 @@ const sponsors = [
     title: 'Other Sponsors',
     sponsors: createSponsors(20),
   },
-]
+];
 
 export const Default: Story = {
   args: {},
@@ -97,4 +97,4 @@ export const Default: Story = {
       </AtriumLayout>
     `,
   }),
-}
+};

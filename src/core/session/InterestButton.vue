@@ -15,9 +15,9 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { defineComponent } from 'vue'
-import { TranslateResult } from 'vue-i18n'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent } from 'vue';
+import { TranslateResult } from 'vue-i18n';
 
 //
 // i18n
@@ -41,20 +41,20 @@ export default defineComponent({
   },
   computed: {
     classes(): string {
-      if (this.isProcessing) return 'is-loading'
-      if (this.isInterested) return 'is-danger is-outlined'
-      return 'is-primary'
+      if (this.isProcessing) return 'is-loading';
+      if (this.isInterested) return 'is-danger is-outlined';
+      return 'is-primary';
     },
     icon(): [string, string] {
-      return this.isInterested ? ['fas', 'times'] : ['fas', 'user-plus']
+      return this.isInterested ? ['fas', 'times'] : ['fas', 'user-plus'];
     },
     text(): TranslateResult {
       return this.$t(
         this.isInterested
           ? 'deconf.interestSection.unregisterButton'
           : 'deconf.interestSection.registerButton',
-      )
+      );
     },
   },
-})
+});
 </script>

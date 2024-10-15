@@ -5,9 +5,9 @@
 </template>
 
 <script lang="ts">
-import { AuthToken } from '@openlab/deconf-shared'
-import { createLoginFinishEvent, namespaceForApi } from '../lib/module'
-import { defineComponent } from 'vue'
+import { AuthToken } from '@openlab/deconf-shared';
+import { createLoginFinishEvent, namespaceForApi } from '../lib/module';
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -30,35 +30,35 @@ export default defineComponent({
     tokenKey: { type: String, required: true },
   },
   mounted() {
-    this.processHash(window.location.hash)
+    this.processHash(window.location.hash);
   },
   methods: {
     async processHash(hash: string) {
-      if (!hash || !hash.startsWith('#')) return this.$emit('failed')
+      if (!hash || !hash.startsWith('#')) return this.$emit('failed');
 
-      const params = new URLSearchParams(hash.slice(1))
-      const authToken = params.get('token')
+      const params = new URLSearchParams(hash.slice(1));
+      const authToken = params.get('token');
       if (!authToken) {
-        this.$emit('failed')
-        return
+        this.$emit('failed');
+        return;
       }
 
-      localStorage.setItem(this.tokenKey, authToken)
+      localStorage.setItem(this.tokenKey, authToken);
       await this.$store.dispatch(
         namespaceForApi(this.$deconf, 'authenticate'),
         { token: authToken },
-      )
+      );
 
-      const user: AuthToken = this.$store.state.api.user
+      const user: AuthToken = this.$store.state.api.user;
       if (!user) {
-        this.$emit('failed')
-        return
+        this.$emit('failed');
+        return;
       }
 
-      this.$deconf.trackMetric(createLoginFinishEvent())
+      this.$deconf.trackMetric(createLoginFinishEvent());
 
-      this.$emit('success', user, params)
+      this.$emit('success', user, params);
     },
   },
-})
+});
 </script>

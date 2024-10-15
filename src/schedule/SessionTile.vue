@@ -238,7 +238,7 @@ export default {
     async toggleInterest() {
       const action = namespaceForApi(
         this.$deconf,
-        this.isInterested ? 'unattend' : 'attend'
+        this.isInterested ? 'unattend' : 'attend',
       );
       this.isProcessing = true;
       await this.$store.dispatch(action, this.session.id);

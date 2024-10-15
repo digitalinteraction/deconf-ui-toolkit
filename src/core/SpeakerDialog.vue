@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import { marked } from 'marked'
-import { defineComponent, PropType } from 'vue'
-import { Speaker } from '@openlab/deconf-shared'
-import { localiseFromObject, stripMarkdown } from '../lib/module'
+import { marked } from 'marked';
+import { defineComponent, PropType } from 'vue';
+import { Speaker } from '@openlab/deconf-shared';
+import { localiseFromObject, stripMarkdown } from '../lib/module';
 
 //
 // i18n
@@ -42,20 +42,20 @@ export default defineComponent({
   },
   computed: {
     localeRole(): string | null {
-      const content = localiseFromObject(this.$i18n.locale, this.speaker.role)
-      return content ? stripMarkdown(content) : null
+      const content = localiseFromObject(this.$i18n.locale, this.speaker.role);
+      return content ? stripMarkdown(content) : null;
     },
     localeContent(): string | null {
-      const content = localiseFromObject(this.$i18n.locale, this.speaker.bio)
-      return content ? (marked(content) as string) : null
+      const content = localiseFromObject(this.$i18n.locale, this.speaker.bio);
+      return content ? (marked(content) as string) : null;
     },
   },
   methods: {
     onClose() {
-      this.$deconf.closeDialog()
+      this.$deconf.closeDialog();
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

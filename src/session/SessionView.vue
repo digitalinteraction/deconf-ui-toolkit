@@ -1,184 +1,192 @@
 <template>
   <SessionLayout class="sessionView">
     <!-- Back button -->
-    <slot name="backButton" slot="backButton" />
+    <template v-slot:backButton>
+      <slot name="backButton" />
+    </template>
 
     <!-- state bit -->
-    <SessionState
-      slot="state"
-      :slot-state="slotState"
-      :attendance="stateAttendance"
-    />
+    <template v-slot:state>
+      <SessionState :slot-state="slotState" :attendance="stateAttendance" />
+    </template>
 
     <!-- Main bit -->
-    <div slot="main" class="sessionView-main">
-      <slot name="beforeHeader" />
+    <template v-slot:main>
+      <div class="sessionView-main">
+        <slot name="beforeHeader" />
 
-      <!-- Session header -->
-      <div class="sessionView-header">
-        <SessionHeader v-if="sessionType" :session-type="sessionType" />
+        <!-- Session header -->
+        <div class="sessionView-header">
+          <SessionHeader v-if="sessionType" :session-type="sessionType" />
+        </div>
+
+        <!-- Title -->
+        <h1 class="sessionView-title">
+          {{ localeTitle }}
+        </h1>
+
+        <!-- Language warning -->
+        <div class="sessionView-langWarning" v-if="showLanguageWarning">
+          <LanguageWarning :available-languages="session.hostLanguages" />
+        </div>
+
+        <!-- Embed -->
+        <div class="sessionView-embed" v-if="showPrimaryLink">
+          <PrimaryEmbed
+            :link="primaryLink.url"
+            @click="trackLinkClick(primaryLink.url)"
+          />
+        </div>
+
+        <slot name="afterEmbed" />
+
+        <!-- Attributes -->
+        <div class="sessionView-attributes">
+          <SessionAttributes
+            :languages="session.hostLanguages"
+            :is-recorded="session.isRecorded"
+            :track="sessionTrack"
+            :themes="sessionThemes"
+            :organisation="localisedSessionOrg"
+          />
+        </div>
+
+        <slot name="afterAttributes" />
+
+        <div class="sessionView-content">
+          <slot name="content">
+            <div class="content" v-if="localeContent">
+              {{ localeContent }}
+            </div>
+          </slot>
+        </div>
+
+        <slot name="afterContent" />
       </div>
-
-      <!-- Title -->
-      <h1 class="sessionView-title">
-        {{ localeTitle }}
-      </h1>
-
-      <!-- Language warning -->
-      <div class="sessionView-langWarning" v-if="showLanguageWarning">
-        <LanguageWarning :available-languages="session.hostLanguages" />
-      </div>
-
-      <!-- Embed -->
-      <div class="sessionView-embed" v-if="showPrimaryLink">
-        <PrimaryEmbed
-          :link="primaryLink.url"
-          @click="trackLinkClick(primaryLink.url)"
-        />
-      </div>
-
-      <slot name="afterEmbed" />
-
-      <!-- Attributes -->
-      <div class="sessionView-attributes">
-        <SessionAttributes
-          :languages="session.hostLanguages"
-          :is-recorded="session.isRecorded"
-          :track="sessionTrack"
-          :themes="sessionThemes"
-          :organisation="localisedSessionOrg"
-        />
-      </div>
-
-      <slot name="afterAttributes" />
-
-      <div class="sessionView-content">
-        <slot name="content">
-          <div class="content" v-if="localeContent">
-            {{ localeContent }}
-          </div>
-        </slot>
-      </div>
-
-      <slot name="afterContent" />
-    </div>
+    </template>
 
     <!-- Sidebar -->
-    <div slot="sidebar" class="sessionView-sidebar">
-      <!-- Slot -->
-      <template v-if="sessionSlot">
-        <SidebarItem
-          :title="$t('deconf.session.slot')"
-          class="sessionView-slot"
-        >
-          <TimeSlot
-            :slot-state="slotState"
-            :start-date="sessionSlot.start"
-            :end-date="sessionSlot.end"
-          />
-        </SidebarItem>
-      </template>
-
-      <!-- Countdown -->
-      <template v-if="showCountdown">
-        <SidebarItem
-          :title="$t('deconf.session.countdown')"
-          class="sessionView-countdown"
-        >
-          <Countdown
-            :current-date="scheduleDate"
-            :target-date="sessionSlot.start"
-          />
-        </SidebarItem>
-      </template>
-
-      <!-- Link preview -->
-      <template v-if="showLinkPreview && !canShowLinks">
-        <SidebarItem
-          :title="$t('deconf.session.links')"
-          class="sessionView-links"
-        >
-          <div class="notification is-warning">
-            {{ $t('deconf.session.linkPreview') }}
-          </div>
-        </SidebarItem>
-      </template>
-
-      <!-- Links -->
-      <template v-if="showLinksSection">
-        <SidebarItem
-          :title="$t('deconf.session.links')"
-          class="sessionView-links"
-        >
-          <Stack direction="vertical" gap="regular" align="stretch">
-            <slot name="beforeLinks" />
-            <SecondaryEmbed v-if="secondaryLink" :link="secondaryLink.url" />
-            <SessionLink
-              v-for="link in otherLinks"
-              :key="link.url"
-              :link="link.url"
-              :title="link.title || getLinkName(link)"
-              @click="trackLinkClick(link.url)"
-              @copy="trackLinkCopy(link.url)"
+    <template v-slot:sidebar>
+      <div class="sessionView-sidebar">
+        <!-- Slot -->
+        <template v-if="sessionSlot">
+          <SidebarItem
+            :title="$t('deconf.session.slot')"
+            class="sessionView-slot"
+          >
+            <TimeSlot
+              :slot-state="slotState"
+              :start-date="sessionSlot.start"
+              :end-date="sessionSlot.end"
             />
-            <slot name="afterLinks" />
-          </Stack>
-        </SidebarItem>
-      </template>
+          </SidebarItem>
+        </template>
 
-      <!-- Session Actions -->
-      <template
-        v-if="showAttendance || showInterest || !loggedIn || showAddToCalendar"
-      >
-        <SidebarItem
-          :title="$t('deconf.session.actions')"
-          class="sessionView-actions"
-        >
-          <Stack direction="vertical" gap="regular" align="stretch">
-            <AttendanceSection
-              v-if="showAttendance"
-              :session="session"
-              :session-cap="session.participantCap"
-              :attendance="attendance"
-              :is-processing="isLoading"
-              @attend="attend"
-              @unattend="unattend"
+        <!-- Countdown -->
+        <template v-if="showCountdown">
+          <SidebarItem
+            :title="$t('deconf.session.countdown')"
+            class="sessionView-countdown"
+          >
+            <Countdown
+              :current-date="scheduleDate"
+              :target-date="sessionSlot.start"
             />
-            <InterestSection
-              v-if="showInterest"
-              :session="session"
-              :attendance="attendance"
-              :is-processing="isLoading"
-              @attend="attend"
-              @unattend="unattend"
-            />
-            <div class="notification is-danger is-light" v-if="!loggedIn">
-              <slot name="login">
-                {{ $t('deconf.session.logIn') }}
-              </slot>
+          </SidebarItem>
+        </template>
+
+        <!-- Link preview -->
+        <template v-if="showLinkPreview && !canShowLinks">
+          <SidebarItem
+            :title="$t('deconf.session.links')"
+            class="sessionView-links"
+          >
+            <div class="notification is-warning">
+              {{ $t('deconf.session.linkPreview') }}
             </div>
-            <AddToCalendar
-              v-if="showAddToCalendar"
-              class="is-fullwidth is-link"
-              :session="session"
-            />
-            <slot name="extraActions" />
-          </Stack>
-        </SidebarItem>
-      </template>
+          </SidebarItem>
+        </template>
 
-      <!-- Speakers -->
-      <template v-if="sessionSpeakers.length > 0">
-        <SidebarItem
-          :title="$t('deconf.session.speakers')"
-          class="sessionView-speakers"
+        <!-- Links -->
+        <template v-if="showLinksSection">
+          <SidebarItem
+            :title="$t('deconf.session.links')"
+            class="sessionView-links"
+          >
+            <Stack direction="vertical" gap="regular" align="stretch">
+              <slot name="beforeLinks" />
+              <SecondaryEmbed v-if="secondaryLink" :link="secondaryLink.url" />
+              <SessionLink
+                v-for="link in otherLinks"
+                :key="link.url"
+                :link="link.url"
+                :title="link.title || getLinkName(link)"
+                @click="trackLinkClick(link.url)"
+                @copy="trackLinkCopy(link.url)"
+              />
+              <slot name="afterLinks" />
+            </Stack>
+          </SidebarItem>
+        </template>
+
+        <!-- Session Actions -->
+        <template
+          v-if="
+            showAttendance || showInterest || !loggedIn || showAddToCalendar
+          "
         >
-          <SpeakerGrid :speakers="sessionSpeakers" />
-        </SidebarItem>
-      </template>
-    </div>
+          <SidebarItem
+            :title="$t('deconf.session.actions')"
+            class="sessionView-actions"
+          >
+            <Stack direction="vertical" gap="regular" align="stretch">
+              <AttendanceSection
+                v-if="showAttendance"
+                :session="session"
+                :session-cap="session.participantCap"
+                :attendance="attendance"
+                :is-processing="isLoading"
+                @attend="attend"
+                @unattend="unattend"
+              />
+              <InterestSection
+                v-if="showInterest"
+                :session="session"
+                :attendance="attendance"
+                :is-processing="isLoading"
+                @attend="attend"
+                @unattend="unattend"
+              />
+              <div class="notification is-danger is-light" v-if="!loggedIn">
+                <slot name="login">
+                  {{ $t('deconf.session.logIn') }}
+                </slot>
+              </div>
+              <AddToCalendar
+                v-if="showAddToCalendar"
+                class="is-fullwidth is-link"
+                :session="session"
+              />
+              <slot name="extraActions" />
+            </Stack>
+          </SidebarItem>
+        </template>
 
-    <slot name="footer" slot="footer" />
+        <!-- Speakers -->
+        <template v-if="sessionSpeakers.length > 0">
+          <SidebarItem
+            :title="$t('deconf.session.speakers')"
+            class="sessionView-speakers"
+          >
+            <SpeakerGrid :speakers="sessionSpeakers" />
+          </SidebarItem>
+        </template>
+      </div>
+    </template>
+
+    <template v-slot:footer>
+      <slot name="footer" />
+    </template>
   </SessionLayout>
 </template>
 
@@ -332,7 +340,7 @@ export default {
       const speakerMap = new Map(
         this.schedule.speakers
           .filter((s) => this.session.speakers.includes(s.id))
-          .map((s) => [s.id, s])
+          .map((s) => [s.id, s]),
       );
       return this.session.speakers
         .map((id) => speakerMap.get(id) as Speaker)
@@ -360,7 +368,7 @@ export default {
     otherLinks(): LocalisedLink[] | null {
       if (!this.localeLinks) return null;
       return this.localeLinks.filter(
-        (l) => l !== this.primaryLink && l !== this.secondaryLink
+        (l) => l !== this.primaryLink && l !== this.secondaryLink,
       );
     },
     slotState(): SlotState {
@@ -368,7 +376,7 @@ export default {
       return getSlotState(
         this.scheduleDate,
         this.sessionSlot.start,
-        this.sessionSlot.end
+        this.sessionSlot.end,
       );
     },
     localeTitle(): string | null {
@@ -440,7 +448,7 @@ export default {
       this.fetchLinks();
     }, LINKS_INTERVAL);
   },
-  destroyed() {
+  unmounted() {
     if (this.timerId) {
       window.clearInterval(this.timerId);
       this.timerId = null;
@@ -458,7 +466,7 @@ export default {
       if (!this.loggedIn) return;
       const result = await this.$store.dispatch(
         namespaceForApi(this.$deconf, 'fetchLinks'),
-        this.session.id
+        this.session.id,
       );
       this.links = result ? result.links : null;
       this.$emit('links', this.links);
@@ -466,7 +474,7 @@ export default {
     async fetchAttendance() {
       this.attendance = await this.$store.dispatch(
         namespaceForApi(this.$deconf, 'fetchSessionAttendance'),
-        this.session.id
+        this.session.id,
       );
       this.$emit('attendance', this.attendance);
     },
@@ -475,10 +483,10 @@ export default {
 
       await this.$store.dispatch(
         namespaceForApi(this.$deconf, 'attend'),
-        this.session.id
+        this.session.id,
       );
       this.$deconf.trackMetric(
-        createAttendanceEvent('attend', this.session.id)
+        createAttendanceEvent('attend', this.session.id),
       );
       this.fetchSessionData();
 
@@ -489,10 +497,10 @@ export default {
 
       await this.$store.dispatch(
         namespaceForApi(this.$deconf, 'unattend'),
-        this.session.id
+        this.session.id,
       );
       this.$deconf.trackMetric(
-        createAttendanceEvent('unattend', this.session.id)
+        createAttendanceEvent('unattend', this.session.id),
       );
       this.fetchSessionData();
 
@@ -513,12 +521,12 @@ export default {
     },
     trackLinkClick(link: string) {
       this.$deconf.trackMetric(
-        createSessionLinkEvent(this.session.id, 'click', link)
+        createSessionLinkEvent(this.session.id, 'click', link),
       );
     },
     trackLinkCopy(link: string) {
       this.$deconf.trackMetric(
-        createSessionLinkEvent(this.session.id, 'copy', link)
+        createSessionLinkEvent(this.session.id, 'copy', link),
       );
     },
     localise(object: Localised): string | null {

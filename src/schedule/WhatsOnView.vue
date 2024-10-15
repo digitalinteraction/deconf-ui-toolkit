@@ -112,7 +112,7 @@ export default {
       const predicate = createFilterPredicate(
         this.$i18n.locale,
         this.filters,
-        this.schedule
+        this.schedule,
       );
 
       if (!predicate) return this.sessions;

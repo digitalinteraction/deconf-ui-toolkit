@@ -36,7 +36,7 @@ type ComputedGenerator<T> = {
 
 function filterGroups(
   days: DailySessions[],
-  predicate: (group: SlotWithSessions) => boolean
+  predicate: (group: SlotWithSessions) => boolean,
 ): DailySessions[] {
   return days
     .map((day) => ({
@@ -53,7 +53,7 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
       return createFilterPredicate(
         this.$i18n.locale,
         this.filters,
-        this.schedule
+        this.schedule,
       );
     },
 
@@ -83,7 +83,7 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
 
       return filterGroups(
         this.sessionsByDay,
-        (group) => group.slot.end.getTime() < now
+        (group) => group.slot.end.getTime() < now,
       );
     },
     upcomingDays() {
@@ -94,7 +94,7 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
 
       return filterGroups(
         this.sessionsByDay,
-        (group) => group.slot.end.getTime() > now
+        (group) => group.slot.end.getTime() > now,
       );
     },
     searchResults() {
@@ -102,7 +102,7 @@ export function scheduleComputed(): ComputedGenerator<ScheduleComputed> {
 
       const result = groupSessionsByDay(
         this.filteredSessions,
-        this.schedule.slots
+        this.schedule.slots,
       );
 
       // Add "search result" text to each day's title

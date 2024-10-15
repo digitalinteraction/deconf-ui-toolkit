@@ -1,10 +1,10 @@
-import { Meta, Story } from '@storybook/vue'
-import BidirectionalIcon from './BidirectionalIcon.vue'
+import { Meta, Story } from '@storybook/vue';
+import BidirectionalIcon from './BidirectionalIcon.vue';
 
 export default {
   title: 'Core/BidirectionalIcon',
   component: BidirectionalIcon,
-} as Meta
+} as Meta;
 
 const Template: Story = (args, { argTypes }) => ({
   components: { BidirectionalIcon },
@@ -20,14 +20,14 @@ const Template: Story = (args, { argTypes }) => ({
   `,
   methods: {
     toggleDir() {
-      document.dir = document.dir === 'rtl' ? 'ltr' : 'rtl'
+      document.dir = document.dir === 'rtl' ? 'ltr' : 'rtl';
     },
   },
   destroyed() {
-    document.dir = 'ltr'
+    document.dir = 'ltr';
   },
-})
+});
 
-export const Default = Template.bind({})
-Default.args = {}
-Default.parameters = {}
+export const Default = Template.bind({});
+Default.args = {};
+Default.parameters = {};

@@ -37,14 +37,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import { ConferenceConfig, AuthToken } from '@openlab/deconf-shared'
+import { defineComponent, PropType } from 'vue';
+import { ConferenceConfig, AuthToken } from '@openlab/deconf-shared';
 
-import { AppRoute } from '../lib/module'
-import FullHeight from './FullHeight.vue'
-import NavigationBar from './NavigationBar.vue'
-import SideTabs from './SideTabs.vue'
-import { NavLink } from './nav-link'
+import { AppRoute } from '../lib/module';
+import FullHeight from './FullHeight.vue';
+import NavigationBar from './NavigationBar.vue';
+import SideTabs from './SideTabs.vue';
+import { NavLink } from './nav-link';
 
 //
 // i18n
@@ -71,17 +71,17 @@ export default defineComponent({
   },
   computed: {
     isLoggedIn(): boolean {
-      return Boolean(this.user)
+      return Boolean(this.user);
     },
     isInterpreter(): boolean {
-      if (!this.user) return false
+      if (!this.user) return false;
       return (
         this.user.user_roles.includes('interpreter') ||
         this.user.user_roles.includes('admin')
-      )
+      );
     },
   },
-})
+});
 </script>
 
 <style lang="scss">

@@ -6,7 +6,7 @@ export interface MetricsEvent {
 /** not passing `kind` is @deprecated */
 export function createICalEvent(
   sessionId: string,
-  kind?: string
+  kind?: string,
 ): MetricsEvent {
   return {
     eventName: `session/ical`,
@@ -16,7 +16,7 @@ export function createICalEvent(
 
 export function createAttendanceEvent(
   action: 'attend' | 'unattend',
-  sessionId: string
+  sessionId: string,
 ): MetricsEvent {
   return {
     eventName: `attendance/${action}`,
@@ -63,7 +63,7 @@ export function createUnregisterEvent(confirmed: boolean): MetricsEvent {
 
 export function createPageViewEvent(
   routeName: string,
-  params: unknown
+  params: unknown,
 ): MetricsEvent {
   return {
     eventName: 'general/pageView',
@@ -77,7 +77,7 @@ export function createPageViewEvent(
 export function createSessionLinkEvent(
   sessionId: string,
   action: 'click' | 'copy',
-  link: string
+  link: string,
 ): MetricsEvent {
   return {
     eventName: 'session/link',
