@@ -69,7 +69,7 @@ export default defineComponent({
 
       return h(
         node.nodeName,
-        { attrs },
+        { ...attrs },
         Array.from(node.childNodes).map((child) => this.domToVue(child)),
       );
     },
@@ -89,7 +89,9 @@ export default defineComponent({
       }
     }
 
-    return h('div', { staticClass: 'content' }, children);
+    console.log(children);
+
+    return h('div', { class: 'content' }, children);
   },
 });
 </script>
