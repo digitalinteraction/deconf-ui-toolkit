@@ -22,7 +22,9 @@
 </template>
 
 <script lang="ts">
-import { Routes } from '../lib/module';
+import { defineComponent } from 'vue'
+import { RouteLocationRaw } from 'vue-router'
+import { Routes } from '../lib/module.js'
 
 //
 // i18n
@@ -40,15 +42,15 @@ import { Routes } from '../lib/module';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'ApiMessage',
   props: {
     errorCode: { type: String, default: 'unknown' },
   },
   computed: {
-    loginRoute(): unknown {
-      return { name: Routes.Login };
+    loginRoute(): RouteLocationRaw {
+      return { name: Routes.Login }
     },
   },
-};
+})
 </script>

@@ -97,7 +97,7 @@
             <button
               @click="startTracking('fastBackward')"
               :disabled="disableButton('fastBackward')"
-              :class="trackClasses('fastBackward')"
+              class="button is-primary"
             >
               <span class="icon">
                 <FontAwesomeIcon :icon="['fas', 'fast-backward']" />
@@ -108,7 +108,7 @@
             <button
               @click="startTracking('backward')"
               :disabled="disableButton('backward')"
-              :class="trackClasses('backward')"
+              class="button is-primary"
             >
               <span class="icon">
                 <FontAwesomeIcon :icon="['fas', 'backward']" />
@@ -130,7 +130,7 @@
             <button
               @click="startTracking('play')"
               :disabled="disableButton('play')"
-              :class="trackClasses('play')"
+              class="button is-primary"
             >
               <span class="icon">
                 <FontAwesomeIcon :icon="['fas', 'play']" />
@@ -141,7 +141,7 @@
             <button
               @click="startTracking('forward')"
               :disabled="disableButton('forward')"
-              :class="trackClasses('forward')"
+              class="button is-primary"
             >
               <span class="icon">
                 <FontAwesomeIcon :icon="['fas', 'forward']" />
@@ -152,7 +152,7 @@
             <button
               @click="startTracking('fastForward')"
               :disabled="disableButton('fastForward')"
-              :class="trackClasses('fastForward')"
+              class="button is-primary"
             >
               <span class="icon">
                 <FontAwesomeIcon :icon="['fas', 'fast-forward']" />
@@ -176,9 +176,9 @@
 <script lang="ts">
 /* eslint-disable vue/no-mutating-props */
 
-import { PropType } from 'vue';
-import { DevPlugin, SlotState } from '../lib/module';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent, PropType } from 'vue'
+import { DevPlugin, SlotState } from '../lib/module'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 //
 // i18n
@@ -199,30 +199,30 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 //
 
 interface DateTimeObject {
-  date: string;
-  time: string;
+  date: string
+  time: string
 }
 
 // compose a real date from our date/time components from <input> elements
 function makeDate(date: string, time: string): Date | undefined {
-  const [fallbackDate, fallbackTime] = new Date().toISOString().split(/[TZ.]/);
+  const [fallbackDate, fallbackTime] = new Date().toISOString().split(/[TZ.]/)
 
   try {
     const result = new Date(
-      `${date || fallbackDate}T${time || fallbackTime}.000Z`
-    );
+      `${date || fallbackDate}T${time || fallbackTime}.000Z`,
+    )
     result.setMinutes(
       result.getMinutes() + result.getTimezoneOffset(),
       result.getSeconds(),
-      result.getMilliseconds()
-    );
+      result.getMilliseconds(),
+    )
     if (Number.isNaN(result)) {
-      console.error('Failed to create a date');
-      return undefined;
+      console.error('Failed to create a date')
+      return undefined
     }
-    return result;
-  } catch (error) {
-    return undefined;
+    return result
+  } catch {
+    return undefined
   }
 }
 
@@ -237,7 +237,7 @@ type TrackingSpeed =
   | 'backward'
   | 'play'
   | 'forward'
-  | 'fastForward';
+  | 'fastForward'
 
 const trackingSpeeds: Record<TrackingSpeed, number> = {
   fastBackward: -1000,
@@ -245,22 +245,22 @@ const trackingSpeeds: Record<TrackingSpeed, number> = {
   play: 1,
   forward: 200,
   fastForward: 1000,
-};
+}
 
 interface Data {
   tracking: null | {
-    timerId: number;
-    speed: TrackingSpeed;
-  };
+    timerId: number
+    speed: TrackingSpeed
+  }
 }
 
-export default {
+export default defineComponent({
   name: 'DevControl',
   components: { FontAwesomeIcon },
   data(): Data {
     return {
       tracking: null,
-    };
+    }
   },
   props: {
     devPlugin: { type: Object as PropType<DevPlugin>, required: true },
@@ -269,15 +269,15 @@ export default {
   },
   computed: {
     slotStateIsEnabled(): boolean {
-      return this.controls.includes('slotState');
+      return this.controls.includes('slotState')
     },
     scheduleDateIsEnabled(): boolean {
-      return this.controls.includes('scheduleDate');
+      return this.controls.includes('scheduleDate')
     },
     scheduleDate(): DateTimeObject {
-      const scheduleDate = new Date(this.devPlugin.scheduleDate as Date);
+      const scheduleDate = new Date(this.devPlugin.scheduleDate as Date)
 
-      const padStart = (n: number) => n.toString().padStart(2, '0');
+      const padStart = (n: number) => n.toString().padStart(2, '0')
 
       return {
         date: [
@@ -290,83 +290,77 @@ export default {
           padStart(scheduleDate.getMinutes()),
           padStart(scheduleDate.getSeconds()),
         ].join(':'),
-      };
+      }
     },
   },
   methods: {
     toggleExpanded(): void {
-      this.devPlugin.isVisible = !this.devPlugin.isVisible;
+      this.devPlugin.isVisible = !this.devPlugin.isVisible
     },
     updateSlotState(event: Event): void {
       if (this.devPlugin) {
         this.devPlugin.slotState =
-          ((event.target as HTMLSelectElement).value as SlotState) || undefined;
+          ((event.target as HTMLSelectElement).value as SlotState) || undefined
       }
     },
-    updateScheduleDate(event: InputEvent): void {
-      const target = event.target as HTMLInputElement;
-      console.debug('updateScheduleDate', target.value);
+    updateScheduleDate(event: Event): void {
+      const target = event.target as HTMLInputElement
+      console.debug('updateScheduleDate', target.value)
       this.devPlugin.scheduleDate = makeDate(
         target.value,
-        this.scheduleDate.time
-      );
+        this.scheduleDate.time,
+      )
     },
-    updateScheduleTime(event: InputEvent): void {
-      const target = event.target as HTMLInputElement;
-      console.debug('updateScheduleTime', target.value);
+    updateScheduleTime(event: Event): void {
+      const target = event.target as HTMLInputElement
+      console.debug('updateScheduleTime', target.value)
 
-      const [h = '00', m = '00', s = '00'] = target.value.split(':');
-      const newTime = [h, m, s].join(':');
+      const [h = '00', m = '00', s = '00'] = target.value.split(':')
+      const newTime = [h, m, s].join(':')
 
-      this.devPlugin.scheduleDate = makeDate(this.scheduleDate.date, newTime);
+      this.devPlugin.scheduleDate = makeDate(this.scheduleDate.date, newTime)
     },
     setScheduleDate(): void {
-      this.devPlugin.scheduleDate = new Date();
+      this.devPlugin.scheduleDate = new Date()
     },
     clearScheduleDate() {
-      this.devPlugin.scheduleDate = undefined;
+      this.devPlugin.scheduleDate = undefined
     },
     startTracking(speed: TrackingSpeed) {
-      this.stopTracking();
-      let lastTick = Date.now();
+      this.stopTracking()
+      let lastTick = Date.now()
 
       const timerId = window.setInterval(() => {
-        const date = this.devPlugin.scheduleDate;
+        const date = this.devPlugin.scheduleDate
         if (!date) {
-          this.stopTracking();
-          return;
+          this.stopTracking()
+          return
         }
-        const dt = Date.now() - lastTick;
-        lastTick = Date.now();
+        const dt = Date.now() - lastTick
+        lastTick = Date.now()
 
         this.devPlugin.scheduleDate = new Date(
-          date.getTime() + dt * trackingSpeeds[speed]
-        );
-      }, 250);
+          date.getTime() + dt * trackingSpeeds[speed],
+        )
+      }, 250)
 
-      this.tracking = { timerId, speed };
+      this.tracking = { timerId, speed }
     },
     stopTracking() {
-      if (!this.tracking) return;
+      if (!this.tracking) return
 
-      window.clearInterval(this.tracking.timerId);
-      this.tracking = null;
+      window.clearInterval(this.tracking.timerId)
+      this.tracking = null
     },
     disableButton(speed: TrackingSpeed) {
-      if (!this.devPlugin.scheduleDate) return true;
-      return this.tracking ? this.tracking.speed === speed : false;
-    },
-    trackClasses(/*speed: TrackingSpeed*/) {
-      return {
-        button: true,
-        'is-primary': true,
-      };
+      if (!this.devPlugin.scheduleDate) return true
+      return this.tracking ? this.tracking.speed === speed : false
     },
   },
-  destroyed() {
-    this.stopTracking();
+  unmounted() {
+    this.stopTracking()
   },
-};
+})
 </script>
 
 <style lang="scss">

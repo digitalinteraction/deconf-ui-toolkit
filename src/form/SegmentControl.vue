@@ -4,7 +4,7 @@
       class="button"
       :class="optionClasses(option)"
       v-for="option in options"
-      :key="option.value"
+      :key="stringify(option.value)"
       @click="onOption(option)"
     >
       {{ option.text }}
@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { SelectOption } from './select-option';
+import { defineComponent, PropType } from 'vue'
+import { SelectOption } from './select-option'
 
 //
 // i18n
@@ -27,7 +27,7 @@ import { SelectOption } from './select-option';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'SegmentControl',
   props: {
     value: { type: String, required: true },
@@ -37,11 +37,14 @@ export default {
     optionClasses(option: SelectOption): unknown {
       return {
         'is-primary': option.value === this.value,
-      };
+      }
     },
     onOption(option: SelectOption) {
-      this.$emit('input', option.value);
+      this.$emit('input', option.value)
+    },
+    stringify(value: unknown) {
+      return value as string
     },
   },
-};
+})
 </script>

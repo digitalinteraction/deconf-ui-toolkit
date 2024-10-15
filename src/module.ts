@@ -2,14 +2,14 @@
 // Package entry point
 //
 
-export * from './atrium/module';
-export * from './audio-lib/module';
-export * from './content/module';
-export * from './core/module';
-export * from './dev/module';
-export * from './form/module';
-export * from './lib/module';
-export * from './registration/module';
-export * from './schedule/module';
-export * from './session/module';
-export * from './store/module';
+export * from './atrium/module.js'
+export * from './audio-lib/module.js'
+export * from './content/module.js'
+export * from './core/module.js'
+export * from './dev/module.js'
+export * from './form/module.js'
+export * from './lib/module.js'
+export * from './registration/module.js'
+export * from './schedule/module.js'
+export * from './session/module.js'
+export * from './store/module.js'

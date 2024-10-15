@@ -3,7 +3,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <router-link :to="homeRoute" class="navbar-item" active-class="">
-          <slot name="brandA" />
+          <slot name="brandA"></slot>
         </router-link>
 
         <!-- Burger -->
@@ -34,7 +34,7 @@
             active-class="is-active"
           >
             <component :is="item.icon" class="navbar-item-icon" />
-            <span class="navbar-item-text" v-text="item.title" />
+            <span class="navbar-item-text" v-text="item.title"></span>
             <span v-if="!item.enabled">
               &nbsp;
               {{ $t('deconf.navigationBar.unavailable') }}
@@ -46,14 +46,14 @@
           Show the owner brand if provided
         -->
           <div v-if="$slots.brandB" class="navbar-item">
-            <slot name="brandB" />
+            <slot name="brandB"></slot>
           </div>
 
           <!-- 
             Language control
           -->
           <div class="navbar-item" v-if="$slots.languageControl">
-            <slot name="languageControl" />
+            <slot name="languageControl"></slot>
           </div>
 
           <!-- 
@@ -115,14 +115,14 @@
 </template>
 
 <script lang="ts">
-import { AppRoute, Routes } from '../lib/module';
-import { PropType } from 'vue';
-import { Location } from 'vue-router';
+import { AppRoute, Routes } from '../lib/module'
+import { defineComponent, PropType } from 'vue'
+import { RouteLocationRaw } from 'vue-router'
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { ConferenceConfig } from '@openlab/deconf-shared';
-import { SelectOption } from '../form/module';
-import { NavLink } from './nav-link';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { ConferenceConfig } from '@openlab/deconf-shared'
+import { SelectOption } from '../form/module'
+import { NavLink } from './nav-link'
 
 //
 // i18n
@@ -142,13 +142,13 @@ import { NavLink } from './nav-link';
 // - $navigationBar-mobileColor
 //
 
-export default {
+export default defineComponent({
   name: 'NavigationBar',
   components: { FontAwesomeIcon },
   data() {
     return {
       isShowingMenu: false,
-    };
+    }
   },
   props: {
     appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
@@ -165,33 +165,33 @@ export default {
     activeClasses(): unknown {
       return {
         'is-active': this.isShowingMenu,
-      };
+      }
     },
-    homeRoute(): Location {
-      return { name: Routes.Atrium };
+    homeRoute(): RouteLocationRaw {
+      return { name: Routes.Atrium }
     },
-    interpretRoute(): Location {
-      return { name: Routes.InterpretHome };
+    interpretRoute(): RouteLocationRaw {
+      return { name: Routes.InterpretHome }
     },
-    profileRoute(): Location {
-      return { name: Routes.Profile };
+    profileRoute(): RouteLocationRaw {
+      return { name: Routes.Profile }
     },
-    loginRoute(): Location {
-      return { name: Routes.Login };
+    loginRoute(): RouteLocationRaw {
+      return { name: Routes.Login }
     },
-    registerRoute(): Location {
-      return { name: Routes.Register };
+    registerRoute(): RouteLocationRaw {
+      return { name: Routes.Register }
     },
   },
   methods: {
     toggleMenu(): void {
-      this.isShowingMenu = !this.isShowingMenu;
+      this.isShowingMenu = !this.isShowingMenu
     },
     showLink(link: string) {
-      return this.links.includes(link);
+      return this.links.includes(link)
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

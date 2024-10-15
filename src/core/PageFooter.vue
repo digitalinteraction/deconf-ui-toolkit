@@ -1,12 +1,12 @@
 <template>
   <div class="pageFooter">
     <p class="pageFooter-line" v-if="$slots.beforeLinks">
-      <slot name="beforeLinks" />
+      <slot name="beforeLinks"></slot>
     </p>
 
     <p class="pageFooter-line">
       <!-- Render each link -->
-      <span v-for="(link, i) in links" :key="link.key">
+      <span v-for="(link, i) in links" :key="link.url">
         <a :href="link.url" target="_blank" rel="noopener">
           {{ link.title }}
         </a>
@@ -16,14 +16,14 @@
 
     <!-- Allow custom text -->
     <p class="pageFooter-line">
-      <slot />
+      <slot></slot>
     </p>
   </div>
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { PageFooterLink } from './page-footer-link';
+import { defineComponent, PropType } from 'vue'
+import { PageFooterLink } from './page-footer-link'
 
 //
 // i18n
@@ -39,12 +39,12 @@ import { PageFooterLink } from './page-footer-link';
 // - $pageFooter-anchorWeight
 //
 
-export default {
+export default defineComponent({
   name: 'PageFooter',
   props: {
     links: { type: Array as PropType<PageFooterLink[]>, required: true },
   },
-};
+})
 </script>
 
 <style lang="scss">

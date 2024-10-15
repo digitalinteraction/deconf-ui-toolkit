@@ -30,7 +30,7 @@ export const Default = Template.bind({});
 Default.args = {};
 Default.parameters = {
   layout: 'fullscreen',
-  actions: { argTypesRegex: '^on[A-Z].*' },
+  // actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     exclude: ['initialState', 'infoText', 'doneText'],
   },

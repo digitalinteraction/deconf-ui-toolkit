@@ -25,11 +25,11 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { Location } from 'vue-router';
-import { Routes, SessionAndSlot } from '../lib/module';
+import { defineComponent, PropType } from 'vue'
+import { RouteLocationRaw } from 'vue-router'
+import { Routes, SessionAndSlot } from '../lib/module'
 
-import MiniSession from './MiniSession.vue';
+import MiniSession from './MiniSession.vue'
 
 //
 // i18n
@@ -44,7 +44,7 @@ import MiniSession from './MiniSession.vue';
 // - $featuredSessions-titleWeight
 //
 
-export default {
+export default defineComponent({
   name: 'FeaturedSessions',
   components: { MiniSession },
   props: {
@@ -53,11 +53,11 @@ export default {
     showAction: { type: Boolean, default: true },
   },
   computed: {
-    scheduleRoute(): Location {
-      return { name: Routes.Schedule };
+    scheduleRoute(): RouteLocationRaw {
+      return { name: Routes.Schedule }
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

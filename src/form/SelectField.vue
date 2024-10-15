@@ -14,7 +14,7 @@
           <option disabled selected value="">{{ notSelected }}</option>
           <option
             v-for="option in options"
-            :key="option.value"
+            :key="stringify(option.value)"
             :value="option.value"
           >
             {{ option.text }}
@@ -29,8 +29,8 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { SelectOption } from './select-option';
+import { defineComponent, PropType } from 'vue'
+import { SelectOption } from './select-option'
 
 //
 // Wraps a bulma select field
@@ -47,7 +47,7 @@ import { SelectOption } from './select-option';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'SelectField',
   props: {
     name: { type: String, required: true },
@@ -65,14 +65,17 @@ export default {
       return {
         'is-danger': this.hasError,
         'is-fullwidth': this.fullwidth,
-      };
+      }
     },
   },
   methods: {
     onInput(e: Event) {
-      if (!(e.target instanceof HTMLSelectElement)) return;
-      this.$emit('input', e.target.value);
+      if (!(e.target instanceof HTMLSelectElement)) return
+      this.$emit('input', e.target.value)
+    },
+    stringify(input: unknown) {
+      return input as string
     },
   },
-};
+})
 </script>

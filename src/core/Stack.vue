@@ -1,10 +1,12 @@
 <template>
   <div class="stack" :class="classes">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // A reusable component to quickly flex between items without needing styles
 //
@@ -29,10 +31,10 @@ function enumProp(values: string[]) {
     type: String,
     validator: (v: string) => values.includes(v),
     required: true,
-  };
+  }
 }
 
-export default {
+export default defineComponent({
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Stack',
   props: {
@@ -46,10 +48,10 @@ export default {
         `is-${this.gap}`,
         `is-${this.direction}`,
         `is-aligned-${this.align}`,
-      ];
+      ]
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

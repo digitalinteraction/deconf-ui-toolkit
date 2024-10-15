@@ -1,1 +1,1 @@
-export { default as DevControl } from './DevControl.vue';
+export { default as DevControl } from './DevControl.vue'

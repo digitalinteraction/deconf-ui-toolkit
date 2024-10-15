@@ -1,6 +1,6 @@
-import { Meta, Story } from '@storybook/vue';
-import { Content } from '../story-lib/module';
-import FullScreenDialog from './FullScreenDialog.vue';
+import { Meta, Story } from '@storybook/vue'
+import { Content } from '../story-lib/module'
+import FullScreenDialog from './FullScreenDialog.vue'
 
 export default {
   title: 'Core/FullScreenDialog',
@@ -10,7 +10,7 @@ export default {
       action: 'clicked',
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { FullScreenDialog, Content },
@@ -29,25 +29,25 @@ const Template: Story = (args, { argTypes }) => ({
       </div>
     </div>
   `,
-});
+})
 
-export const Desktop = Template.bind({});
+export const Desktop = Template.bind({})
 Desktop.args = {
   open: true,
-};
-Desktop.parameters = {};
+}
+Desktop.parameters = {}
 
-export const DesktopSmall = Template.bind({});
+export const DesktopSmall = Template.bind({})
 DesktopSmall.args = {
   ...Desktop.args,
   size: 'small',
-};
-DesktopSmall.parameters = {};
+}
+DesktopSmall.parameters = {}
 
-export const Mobile = Template.bind({});
+export const Mobile = Template.bind({})
 Mobile.args = {
   open: true,
-};
+}
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
-};
+}

@@ -1,9 +1,9 @@
 // api/
-export * from './api/api-module';
-export * from './api/api-state';
+export * from './api/api-module.js'
+export * from './api/api-state.js'
 
 // interpret/
-export * from './interpret/interpret-module';
+export * from './interpret/interpret-module.js'
 
 // metrics/
-export * from './metrics/metrics-module';
+export * from './metrics/metrics-module.js'

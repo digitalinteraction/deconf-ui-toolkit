@@ -4,7 +4,7 @@
       <section class="section">
         <div class="staticLayout-header">
           <div class="staticLayout-backButton">
-            <slot name="backButton" />
+            <slot name="backButton"></slot>
           </div>
           <div
             class="staticLayout-languageControl"
@@ -13,7 +13,7 @@
         </div>
 
         <div class="staticLayout-main">
-          <slot name="main" />
+          <slot name="main"></slot>
         </div>
       </section>
     </div>
@@ -21,6 +21,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -33,14 +35,14 @@
 //
 
 /** @deprecated This wasn't used, a combination of `UtilLayout` and `ApiContent` work well */
-export default {
+export default defineComponent({
   name: 'StaticLayout',
   computed: {
     showLanguageControl(): boolean {
-      return false;
+      return false
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

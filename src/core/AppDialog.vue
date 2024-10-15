@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import FullScreenDialog from './FullScreenDialog.vue';
+import { defineComponent, PropType } from 'vue'
+import FullScreenDialog from './FullScreenDialog.vue'
 
-import type { DialogPlugin } from '../lib/module';
+import type { DialogPlugin } from '../lib/module'
 
 //
 // i18n
@@ -21,11 +21,11 @@ import type { DialogPlugin } from '../lib/module';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'AppDialog',
   components: { FullScreenDialog },
   props: {
     dialogPlugin: { type: Object as PropType<DialogPlugin>, required: true },
   },
-};
+})
 </script>

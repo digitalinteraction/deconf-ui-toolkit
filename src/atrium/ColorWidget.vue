@@ -22,8 +22,9 @@
 </template>
 
 <script lang="ts">
-import { BidirectionalIcon } from '../core/module';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { defineComponent } from 'vue'
+import { BidirectionalIcon } from '../core/module'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 //
 // i18n
@@ -38,15 +39,15 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'ColorWidget',
   components: { FontAwesomeIcon, BidirectionalIcon },
   props: {
     kind: {
       type: String,
       required: true,
-      validator(v) {
-        return ['primary', 'secondary', 'twitter', 'custom'].includes(v);
+      validator(v: string) {
+        return ['primary', 'secondary', 'twitter', 'custom'].includes(v)
       },
     },
     icon: { type: [String, Array], required: true },
@@ -56,16 +57,16 @@ export default {
   },
   computed: {
     rootComponent(): string {
-      return this.href ? 'a' : 'div';
+      return this.href ? 'a' : 'div'
     },
-    extraArgs(): unknown {
-      return this.href ? { href: this.href } : {};
+    extraArgs(): Record<string, unknown> {
+      return this.href ? { href: this.href } : {}
     },
     classes(): string[] {
-      return [`is-${this.kind}`, this.href ? 'is-hoverable' : ''];
+      return [`is-${this.kind}`, this.href ? 'is-hoverable' : '']
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

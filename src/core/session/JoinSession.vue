@@ -11,17 +11,18 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue'
+import { RouteLocationRaw } from 'vue-router'
 
-import { Routes, SlotState } from '../../lib/module';
-import BidirectionalIcon from '../BidirectionalIcon.vue';
+import { Routes, SlotState } from '../../lib/module.js'
+import BidirectionalIcon from '../BidirectionalIcon.vue'
 
 const actions: Record<SlotState, string> = {
   future: 'deconf.joinSession.future',
   soon: 'deconf.joinSession.present',
   present: 'deconf.joinSession.present',
   past: 'deconf.joinSession.past',
-};
+}
 
 //
 // i18n
@@ -37,7 +38,7 @@ const actions: Record<SlotState, string> = {
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'JoinSession',
   components: { BidirectionalIcon },
   props: {
@@ -45,19 +46,19 @@ export default {
     sessionId: { type: String, required: true },
   },
   computed: {
-    classes(): unknown {
+    classes(): Record<string, unknown> {
       return {
         'is-success': ['present', 'past'].includes(this.slotState),
-      };
+      }
     },
     action(): string {
-      return actions[this.slotState] || actions.past;
+      return actions[this.slotState] || actions.past
     },
-    sessionRoute(): unknown {
-      return { name: Routes.Session, params: { sessionId: this.sessionId } };
+    sessionRoute(): RouteLocationRaw {
+      return { name: Routes.Session, params: { sessionId: this.sessionId } }
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

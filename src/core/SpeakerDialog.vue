@@ -7,7 +7,7 @@
         <p class="speakerDialog-role">{{ localeRole }}</p>
       </div>
     </div>
-    <p class="speakerDialog-bio content" v-html="localeContent" />
+    <p class="speakerDialog-bio content" v-html="localeContent"></p>
     <div class="buttons">
       <button class="button is-link" @click="onClose">
         {{ $t('deconf.general.closeDialog') }}
@@ -17,10 +17,10 @@
 </template>
 
 <script lang="ts">
-import { marked } from 'marked';
-import { PropType } from 'vue';
-import { Speaker } from '@openlab/deconf-shared';
-import { localiseFromObject, stripMarkdown } from '../lib/module';
+import { marked } from 'marked'
+import { defineComponent, PropType } from 'vue'
+import { Speaker } from '@openlab/deconf-shared'
+import { localiseFromObject, stripMarkdown } from '../lib/module'
 
 //
 // i18n
@@ -35,27 +35,27 @@ import { localiseFromObject, stripMarkdown } from '../lib/module';
 // - $speakerDialog-nameFamily
 //
 
-export default {
+export default defineComponent({
   name: 'SpeakerDialog',
   props: {
     speaker: { type: Object as PropType<Speaker>, required: true },
   },
   computed: {
     localeRole(): string | null {
-      const content = localiseFromObject(this.$i18n.locale, this.speaker.role);
-      return content ? stripMarkdown(content) : null;
+      const content = localiseFromObject(this.$i18n.locale, this.speaker.role)
+      return content ? stripMarkdown(content) : null
     },
     localeContent(): string | null {
-      const content = localiseFromObject(this.$i18n.locale, this.speaker.bio);
-      return content ? marked(content) : null;
+      const content = localiseFromObject(this.$i18n.locale, this.speaker.bio)
+      return content ? (marked(content) as string) : null
     },
   },
   methods: {
     onClose() {
-      this.$deconf.closeDialog();
+      this.$deconf.closeDialog()
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

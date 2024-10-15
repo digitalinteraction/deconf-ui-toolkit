@@ -2,28 +2,29 @@
   <FullHeight class="utilLayout">
     <nav class="utilLayout-nav" role="navigation" aria-label="main navigation">
       <router-link :to="homeRoute" class="utilLayout-item" active-class="">
-        <slot name="brand" />
+        <slot name="brand"></slot>
       </router-link>
       <div class="utilLayout-item" v-if="$slots.languageControl">
-        <slot name="languageControl" />
+        <slot name="languageControl"></slot>
       </div>
     </nav>
     <div class="utilLayout-page" :class="pageClasses">
       <section class="section">
         <div class="buttons">
-          <slot name="backButton" />
+          <slot name="backButton"></slot>
         </div>
         <div class="box">
-          <slot name="main" />
+          <slot name="main"></slot>
         </div>
       </section>
     </div>
-    <slot name="footer" />
+    <slot name="footer"></slot>
   </FullHeight>
 </template>
 
 <script lang="ts">
-import FullHeight from './FullHeight.vue';
+import { defineComponent } from 'vue'
+import FullHeight from './FullHeight.vue'
 
 //
 // A wrapper for utility-like pages on the site, like login or privacy
@@ -43,7 +44,7 @@ import FullHeight from './FullHeight.vue';
 // - $utilLayout-large
 //
 
-export default {
+export default defineComponent({
   name: 'UtilLayout',
   components: { FullHeight },
   props: {
@@ -59,10 +60,10 @@ export default {
       return {
         'is-medium': this.width === 'medium',
         'is-large': this.width === 'large',
-      };
+      }
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

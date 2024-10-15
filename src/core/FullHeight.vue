@@ -1,10 +1,12 @@
 <template>
   <div class="fullHeight" :style="styles">
-    <slot />
+    <slot></slot>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent, StyleValue } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -16,30 +18,30 @@
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'FullHeight',
   data() {
     return {
       windowHeight: window.innerHeight,
-    };
+    }
   },
   computed: {
-    styles(): unknown {
+    styles(): StyleValue {
       return {
         'min-height': `${this.windowHeight}px`,
-      };
+      }
     },
   },
   mounted() {
-    window.addEventListener('resize', this.update);
+    window.addEventListener('resize', this.update)
   },
-  destroyed() {
-    window.removeEventListener('resize', this.update);
+  unmounted() {
+    window.removeEventListener('resize', this.update)
   },
   methods: {
     update(): void {
-      this.windowHeight = window.innerHeight;
+      this.windowHeight = window.innerHeight
     },
   },
-};
+})
 </script>

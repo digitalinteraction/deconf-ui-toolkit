@@ -23,6 +23,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // Wraps a bulma input field
 //
@@ -38,7 +40,7 @@
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'TextField',
   props: {
     name: { type: String, required: true },
@@ -54,17 +56,17 @@ export default {
     inputClass(): unknown {
       return {
         'is-danger': this.hasError,
-      };
+      }
     },
   },
   methods: {
     onInput(event: Event): void {
-      if (!(event.target instanceof HTMLInputElement)) return;
-      this.$emit('input', event.target.value);
+      if (!(event.target instanceof HTMLInputElement)) return
+      this.$emit('input', event.target.value)
     },
     onEnter(): void {
-      this.$emit('enter');
+      this.$emit('enter')
     },
   },
-};
+})
 </script>

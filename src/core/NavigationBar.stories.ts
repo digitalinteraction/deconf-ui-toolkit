@@ -1,16 +1,16 @@
-import { Meta, Story } from '@storybook/vue';
-import NavigationBar from './NavigationBar.vue';
+import { Meta, Story } from '@storybook/vue'
+import NavigationBar from './NavigationBar.vue'
 import {
   BrandA,
   BrandB,
   LanguageControl,
   mockSettings,
-} from '../story-lib/module';
+} from '../story-lib/module'
 
 export default {
   title: 'Core/NavigationBar',
   component: NavigationBar,
-} as Meta;
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   props: [
@@ -49,12 +49,12 @@ const Template: Story = (args, { argTypes }) => ({
   }),
   computed: {
     links(): string[] {
-      const links: string[] = [];
-      if (this.showInterpret) links.push('interpret');
-      if (this.showProfile) links.push('profile');
-      if (this.showLogin) links.push('login');
-      if (this.showRegister) links.push('register');
-      return links;
+      const links: string[] = []
+      if (this.showInterpret) links.push('interpret')
+      if (this.showProfile) links.push('profile')
+      if (this.showLogin) links.push('login')
+      if (this.showRegister) links.push('register')
+      return links
     },
   },
   template: `
@@ -70,9 +70,9 @@ const Template: Story = (args, { argTypes }) => ({
       <LanguageControl slot="languageControl" />
      </NavigationBar>
   `,
-});
+})
 
-export const Desktop = Template.bind({});
+export const Desktop = Template.bind({})
 Desktop.args = {
   isLoggedIn: true,
   isInterpreter: true,
@@ -81,22 +81,22 @@ Desktop.args = {
   showProfile: true,
   showRegister: true,
   showLogin: true,
-};
+}
 Desktop.parameters = {
   layout: 'fullscreen',
   controls: {
     exclude: ['appSettings', 'routes', 'brandA', 'brandB'],
   },
-};
+}
 
-export const Mobile = Template.bind({});
+export const Mobile = Template.bind({})
 Mobile.args = {
   ...Desktop.args,
-};
+}
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
   layout: 'fullscreen',
   controls: {
     exclude: ['appSettings', 'routes', 'brandA', 'brandB'],
   },
-};
+}

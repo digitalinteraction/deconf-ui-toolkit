@@ -17,10 +17,24 @@ $discord-blue: #5865f2 !default;
 //
 // Bulma cusomisations
 //
-$family-sans-serif: Avenir, -apple-system, system-ui, BlinkMacSystemFont,
-  'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji',
-  'Segoe UI Emoji', 'Segoe UI Symbol' !default;
-$family-monospace: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace !default;
+$family-sans-serif:
+  Avenir,
+  -apple-system,
+  system-ui,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Helvetica,
+  Arial,
+  sans-serif,
+  'Apple Color Emoji',
+  'Segoe UI Emoji',
+  'Segoe UI Symbol' !default;
+$family-monospace:
+  SFMono-Regular,
+  Consolas,
+  Liberation Mono,
+  Menlo,
+  monospace !default;
 $family-title: $family-sans-serif !default;
 
 $navbar-height: 3.5rem !default;
@@ -43,11 +57,12 @@ $radius-small: 6px !default;
 $tabbar-width: 5.5rem !default;
 
 // Box
-$box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.02),
+$box-shadow:
+  0 0.5em 1em -0.125em rgba(10, 10, 10, 0.02),
   0 0px 0 1px rgba(10, 10, 10, 0.01) !default;
 
 // Import bulma utils too
-@import '~bulma/sass/utilities/_all.sass';
+@import 'bulma/sass/utilities/_all.sass';
 
 @mixin insetInlineStart($value) {
   &:dir(ltr) {

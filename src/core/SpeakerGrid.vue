@@ -18,10 +18,10 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { localiseFromObject, stripMarkdown } from '../lib/module';
-import { Speaker } from '@openlab/deconf-shared';
-import SpeakerDialog from './SpeakerDialog.vue';
+import { defineComponent, PropType } from 'vue'
+import { localiseFromObject, stripMarkdown } from '../lib/module'
+import { Speaker } from '@openlab/deconf-shared'
+import SpeakerDialog from './SpeakerDialog.vue'
 
 //
 // i18n
@@ -35,21 +35,21 @@ import SpeakerDialog from './SpeakerDialog.vue';
 // - $speakerGrid-cellWidth
 //
 
-export default {
+export default defineComponent({
   name: 'SpeakerGrid',
   props: {
     speakers: { type: Array as PropType<Speaker[]>, required: true },
   },
   methods: {
     localiseRole(speaker: Speaker): string | null {
-      const str = localiseFromObject(this.$i18n.locale, speaker.role);
-      return str ? stripMarkdown(str) : null;
+      const str = localiseFromObject(this.$i18n.locale, speaker.role)
+      return str ? stripMarkdown(str) : null
     },
     showDialog(speaker: Speaker): void {
-      this.$deconf.showDialog(SpeakerDialog, { speaker });
+      this.$deconf.showDialog(SpeakerDialog, { speaker })
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

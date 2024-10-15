@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/vue';
-import ApiMessage from './ApiMessage.vue';
+import { Meta, Story } from '@storybook/vue'
+import ApiMessage from './ApiMessage.vue'
 
 export default {
   title: 'Core/ApiMessage',
@@ -12,7 +12,7 @@ export default {
       },
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { ApiMessage },
@@ -20,10 +20,10 @@ const Template: Story = (args, { argTypes }) => ({
   template: `
     <ApiMessage :error-code="errorCode" />
   `,
-});
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   errorCode: 'unknown',
-};
-Default.parameters = {};
+}
+Default.parameters = {}

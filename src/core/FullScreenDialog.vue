@@ -1,12 +1,14 @@
 <template>
   <div class="fullScreenDialog" @click="onBackgroundClick" :class="classes">
     <div class="fullScreenDialog-box">
-      <slot />
+      <slot></slot>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // i18n
 // - n/a
@@ -22,9 +24,9 @@
 // - $fullScreenDialig-small
 //
 
-const dialogSizes = ['small', 'regular'];
+const dialogSizes = ['small', 'regular']
 
-export default {
+export default defineComponent({
   name: 'FullScreenDialog',
   props: {
     size: {
@@ -37,25 +39,25 @@ export default {
     classes(): unknown {
       return {
         'is-small': this.size === 'small',
-      };
+      }
     },
   },
   mounted() {
     // Stop window scroll
-    document.documentElement.classList.add('has-dialog');
+    document.documentElement.classList.add('has-dialog')
   },
-  destroyed() {
+  unmounted() {
     // Stop window scroll
-    document.documentElement.classList.remove('has-dialog');
+    document.documentElement.classList.remove('has-dialog')
   },
   methods: {
     onBackgroundClick(event: MouseEvent) {
-      if (event.target !== this.$el) return;
+      if (event.target !== this.$el) return
 
-      this.$emit('close');
+      this.$emit('close')
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/vue';
-import PageFooter from './PageFooter.vue';
+import { Meta, Story } from '@storybook/vue'
+import PageFooter from './PageFooter.vue'
 
 export default {
   title: 'Core/PageFooter',
@@ -12,7 +12,7 @@ export default {
       },
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   props: ['beforeLinks'],
@@ -24,7 +24,7 @@ const Template: Story = (args, { argTypes }) => ({
         { title: 'Terms', url: '/terms' },
         { title: 'Privacy', url: '/privacy' },
       ],
-    };
+    }
   },
   template: `
     <PageFooter :links="links">
@@ -38,9 +38,9 @@ const Template: Story = (args, { argTypes }) => ({
       v1.2.3
     </PageFooter>
   `,
-});
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   beforeLinks: false,
-};
+}

@@ -1,43 +1,25 @@
-import { Meta, Story } from '@storybook/vue';
-import BoxContent from './BoxContent.vue';
-import { Content } from '../story-lib/module';
+import type { Meta, StoryObj } from '@storybook/vue3'
+import BoxContent from './BoxContent.vue'
+import { Content } from '../story-lib/module.js'
 
 export default {
   title: 'Atrium/BoxContent',
   component: BoxContent,
-} as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
-  components: { BoxContent, Content },
-  props: ['title'],
-  template: `
-    <BoxContent :title="title">
-      <Content class="content" />
-    </BoxContent>
-  `,
-});
+  tags: ['autodocs'],
+} satisfies Meta<typeof BoxContent>
 
-export const Desktop = Template.bind({});
-Desktop.args = {
-  title: 'Lorem ipsum sil dor amet',
-};
-Desktop.parameters = {
-  backgrounds: { default: 'dark' },
-  controls: {
-    exclude: ['default'],
+export const Default: StoryObj<typeof BoxContent> = {
+  args: {
+    title: 'Lorem ipsum sil dor amet',
   },
-};
-
-export const Mobile = Template.bind({});
-Mobile.args = {
-  title: 'Lorem ipsum sil dor amet',
-};
-Mobile.parameters = {
-  backgrounds: { default: 'dark' },
-  controls: {
-    exclude: ['default'],
-  },
-  viewport: {
-    defaultViewport: 'mobile2',
-  },
-};
+  render: (args) => ({
+    components: { BoxContent, Content },
+    setup: () => args,
+    template: `
+      <BoxContent :title="title">
+        <Content class="content" />
+      </BoxContent>
+    `,
+  }),
+}

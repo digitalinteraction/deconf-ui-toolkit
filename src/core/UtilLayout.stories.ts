@@ -1,9 +1,9 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta, Story } from '@storybook/vue'
 
-import UtilLayout from './UtilLayout.vue';
-import BackButton from './BackButton.vue';
+import UtilLayout from './UtilLayout.vue'
+import BackButton from './BackButton.vue'
 
-import { Content, BrandA, LanguageControl } from '../story-lib/module';
+import { Content, BrandA, LanguageControl } from '../story-lib/module'
 
 export default {
   title: 'Core/UtilLayout',
@@ -16,7 +16,7 @@ export default {
       },
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { UtilLayout, Content, BrandA, LanguageControl, BackButton },
@@ -35,19 +35,19 @@ const Template: Story = (args, { argTypes }) => ({
       <LanguageControl slot="languageControl" />
     </UtilLayout>
   `,
-});
+})
 
-export const Desktop = Template.bind({});
+export const Desktop = Template.bind({})
 Desktop.args = {
   width: 'regular',
-};
-Desktop.parameters = { layout: 'fullscreen' };
+}
+Desktop.parameters = { layout: 'fullscreen' }
 
-export const Mobile = Template.bind({});
+export const Mobile = Template.bind({})
 Mobile.args = {
   width: 'regular',
-};
+}
 Mobile.parameters = {
   viewport: { defaultViewport: 'mobile2' },
   layout: 'fullscreen',
-};
+}

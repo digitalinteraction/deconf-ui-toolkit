@@ -1,14 +1,14 @@
-import Vue from 'vue';
-import { Meta, Story } from '@storybook/vue';
-import { DevPlugin } from '../lib/module';
-import DevControl from './DevControl.vue';
+import Vue from 'vue'
+import { Meta, Story } from '@storybook/vue'
+import { DevPlugin } from '../lib/module'
+import DevControl from './DevControl.vue'
 
 export default {
   title: 'Dev/DevControl',
   component: DevControl,
-} as Meta;
+} as Meta
 
-const dev = new DevPlugin(Vue);
+const dev = new DevPlugin(Vue)
 
 const Template: Story = (args, { argTypes }) => ({
   props: ['enableSlotState', 'enableScheduleDate'],
@@ -18,10 +18,10 @@ const Template: Story = (args, { argTypes }) => ({
   }),
   computed: {
     controls(): string[] {
-      const result: string[] = [];
-      if (this.enableSlotState) result.push('slotState');
-      if (this.enableScheduleDate) result.push('scheduleDate');
-      return result;
+      const result: string[] = []
+      if (this.enableSlotState) result.push('slotState')
+      if (this.enableScheduleDate) result.push('scheduleDate')
+      return result
     },
     devData(): unknown {
       return JSON.stringify(
@@ -34,8 +34,8 @@ const Template: Story = (args, { argTypes }) => ({
             : 'null',
         },
         null,
-        2
-      );
+        2,
+      )
     },
   },
   template: `
@@ -54,11 +54,11 @@ const Template: Story = (args, { argTypes }) => ({
       </DevControl>
     </div>
   `,
-});
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   enableSlotState: true,
   enableScheduleDate: true,
-};
-Default.parameters = { layout: 'fullscreen' };
+}
+Default.parameters = { layout: 'fullscreen' }

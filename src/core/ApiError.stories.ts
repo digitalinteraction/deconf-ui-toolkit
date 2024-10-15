@@ -1,11 +1,11 @@
-import { Meta, Story } from '@storybook/vue';
-import { BrandA } from '../story-lib/module';
-import ApiError from './ApiError.vue';
+import { Meta, Story } from '@storybook/vue'
+import { BrandA } from '../story-lib/module'
+import ApiError from './ApiError.vue'
 
 export default {
   title: 'Core/ApiError',
   component: ApiError,
-} as Meta;
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { ApiError, BrandA },
@@ -18,13 +18,13 @@ const Template: Story = (args, { argTypes }) => ({
       <p class="footer" slot="footer">This is a footer</p>
     </ApiError>
   `,
-});
+})
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = Template.bind({})
+Default.args = {}
 Default.parameters = {
   layout: 'fullscreen',
   controls: {
     exclude: ['homeRoute', 'retry', 'brand', 'footer'],
   },
-};
+}

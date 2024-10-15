@@ -45,11 +45,11 @@ import {
   Routes,
   getCountdown,
   getCountdownMessage,
-} from '../lib/module';
-import { PropType } from 'vue';
-import { Location } from 'vue-router';
-import { Session, SessionSlot } from '@openlab/deconf-shared';
-import { BidirectionalIcon } from '../core/module';
+} from '../lib/module'
+import { defineComponent, PropType } from 'vue'
+import { RouteLocationRaw } from 'vue-router'
+import { Session, SessionSlot } from '@openlab/deconf-shared'
+import { BidirectionalIcon } from '../core/module'
 
 //
 // i18n
@@ -68,7 +68,7 @@ import { BidirectionalIcon } from '../core/module';
 // - $miniSession-titleWeight
 //
 
-export default {
+export default defineComponent({
   name: 'MiniSession',
   components: { BidirectionalIcon },
   props: {
@@ -81,7 +81,7 @@ export default {
   },
   computed: {
     localeTitle(): string | null {
-      return localiseFromObject(this.$i18n.locale, this.session.title);
+      return localiseFromObject(this.$i18n.locale, this.session.title)
     },
     localeDate(): string {
       return this.sessionSlot.start.toLocaleString(undefined, {
@@ -90,28 +90,28 @@ export default {
         month: 'long',
         day: 'numeric',
         year: 'numeric',
-      });
+      })
     },
-    sessionRoute(): Location {
+    sessionRoute(): RouteLocationRaw {
       return {
         name: Routes.Session,
         params: { sessionId: this.session.id },
-      };
+      }
     },
     isLive(): boolean {
       return (
         this.currentDate.getTime() > this.sessionSlot.start.getTime() &&
         this.currentDate.getTime() < this.sessionSlot.end.getTime()
-      );
+      )
     },
     localeCountdown(): string {
       return getCountdownMessage(
         getCountdown(this.currentDate, this.sessionSlot.start),
-        (key, value) => this.$tc(key, value)
-      );
+        (key, value) => this.$tc(key, value),
+      )
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

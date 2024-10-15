@@ -1,10 +1,10 @@
-import { Meta, Story } from '@storybook/vue';
-import FullHeight from './FullHeight.vue';
+import { Meta, Story } from '@storybook/vue'
+import FullHeight from './FullHeight.vue'
 
 export default {
   title: 'Core/FullHeight',
   component: FullHeight,
-} as Meta;
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { FullHeight },
@@ -14,10 +14,10 @@ const Template: Story = (args, { argTypes }) => ({
       </div>
     </FullHeight>
   `,
-});
+})
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = Template.bind({})
+Default.args = {}
 Default.parameters = {
   layout: 'fullscreen',
-};
+}

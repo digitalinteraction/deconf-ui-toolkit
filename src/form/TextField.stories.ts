@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/vue';
-import TextField from './TextField.vue';
+import { Meta, Story } from '@storybook/vue'
+import TextField from './TextField.vue'
 
 export default {
   title: 'Form/TextField',
@@ -12,7 +12,7 @@ export default {
       },
     },
   },
-} as Meta;
+} as Meta
 
 const Template: Story = (args, { argTypes }) => ({
   components: { TextField },
@@ -29,16 +29,16 @@ const Template: Story = (args, { argTypes }) => ({
       :disabled="disabled"
     />
   `,
-});
+})
 
-export const Default = Template.bind({});
+export const Default = Template.bind({})
 Default.args = {
   hasError: false,
   type: 'text',
   disabled: false,
-};
+}
 Default.parameters = {
   controls: {
     exclude: ['name', 'label', 'value', 'placeholder', 'help', 'notSelected'],
   },
-};
+}

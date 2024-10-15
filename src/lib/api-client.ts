@@ -7,12 +7,12 @@ import {
   UserAttendance,
   UserRegistration,
   UserSessionAttendance,
-} from '@openlab/deconf-shared';
+} from '@openlab/deconf-shared'
 
 export type DeconfEndpointRecord = Record<
   string,
   ((...keys: string[]) => string) | undefined
->;
+>
 
 // prettier-ignore
 export const deconfDefaultEndpoints: DeconfEndpointRecord = {
@@ -43,53 +43,53 @@ export const deconfDefaultEndpoints: DeconfEndpointRecord = {
   'RegistrationRoutes.unregister': () => `auth/unregister`,
 };
 
-const jsonHeaders = { 'Content-Type': 'application/json' };
+const jsonHeaders = { 'Content-Type': 'application/json' }
 
 export interface DeconfApiClientOptions {
-  endpointMap?: DeconfEndpointRecord;
+  endpointMap?: DeconfEndpointRecord
 }
 
 export class DeconfApiClient {
-  authToken: string | null = null;
+  authToken: string | null = null
 
   constructor(
     public baseUrl: string,
-    public options: DeconfApiClientOptions = {}
+    public options: DeconfApiClientOptions = {},
   ) {}
 
   //
   // Helpers
   //
   setAuthToken(token: string | null): void {
-    this.authToken = token;
+    this.authToken = token
   }
   applyAuthToken(init: RequestInit): void {
     if (this.authToken) {
-      const headers = (init.headers = new Headers(init.headers));
-      headers.append('Authorization', 'Bearer ' + this.authToken);
+      const headers = (init.headers = new Headers(init.headers))
+      headers.append('Authorization', 'Bearer ' + this.authToken)
     }
   }
   getEndpoint(key: string, ...args: string[]): string {
     const getter =
-      this.options?.endpointMap?.[key] ?? deconfDefaultEndpoints[key];
-    if (!getter) throw new Error(`Unknown endpoint '${key}'`);
-    return getter(...args);
+      this.options?.endpointMap?.[key] ?? deconfDefaultEndpoints[key]
+    if (!getter) throw new Error(`Unknown endpoint '${key}'`)
+    return getter(...args)
   }
   async fetch(endpoint: string, init: RequestInit = {}): Promise<boolean> {
-    this.applyAuthToken(init);
+    this.applyAuthToken(init)
     return fetch(new URL(endpoint, this.baseUrl).toString(), init).then(
-      (r) => r.ok
-    );
+      (r) => r.ok,
+    )
   }
   async fetchJson<T>(
     endpoint: string,
-    init: RequestInit = {}
+    init: RequestInit = {},
   ): Promise<T | null> {
-    this.applyAuthToken(init);
+    this.applyAuthToken(init)
     return fetch(new URL(endpoint, this.baseUrl).toString(), init).then(
       (r) => r.json() as Promise<T>,
-      (error) => (console.error(error), null)
-    );
+      (error) => (console.error(error), null),
+    )
   }
 
   //
@@ -98,32 +98,32 @@ export class DeconfApiClient {
   attend(sessionId: string): Promise<boolean> {
     return this.fetch(this.getEndpoint('AttendanceRoutes.attend', sessionId), {
       method: 'POST',
-    });
+    })
   }
   unattend(sessionId: string): Promise<boolean> {
     return this.fetch(
       this.getEndpoint('AttendanceRoutes.unattend', sessionId),
-      { method: 'POST' }
-    );
+      { method: 'POST' },
+    )
   }
   getSessionAttendance(
-    sessionId: string
+    sessionId: string,
   ): Promise<UserSessionAttendance | null> {
     return this.fetchJson(
-      this.getEndpoint('AttendanceRoutes.getSessionAttendance', sessionId)
-    );
+      this.getEndpoint('AttendanceRoutes.getSessionAttendance', sessionId),
+    )
   }
   getUserAttendance(): Promise<UserAttendance | null> {
     return this.fetchJson(
-      this.getEndpoint('AttendanceRoutes.getUserAttendance')
-    );
+      this.getEndpoint('AttendanceRoutes.getUserAttendance'),
+    )
   }
 
   //
   // Carbon
   //
   getCarbon(): Promise<CarbonCalculation | null> {
-    return this.fetchJson(this.getEndpoint('CarbonRoutes.getCarbon'));
+    return this.fetchJson(this.getEndpoint('CarbonRoutes.getCarbon'))
   }
 
   //
@@ -131,22 +131,22 @@ export class DeconfApiClient {
   //
   async createUserCalendar(): Promise<PrivateCalendar | null> {
     const result = await this.fetchJson<PrivateCalendar>(
-      this.getEndpoint('CalendarRoutes.createUserCalendar')
-    );
-    if (result) result.url = new URL(result.url);
-    return result;
+      this.getEndpoint('CalendarRoutes.createUserCalendar'),
+    )
+    if (result) result.url = new URL(result.url)
+    return result
   }
 
   //
   // Conference
   //
   getSchedule(): Promise<ScheduleRecord | null> {
-    return this.fetchJson(this.getEndpoint('ConferenceRoutes.getSchedule'));
+    return this.fetchJson(this.getEndpoint('ConferenceRoutes.getSchedule'))
   }
   getLinks(sessionId: string): Promise<SessionLinks | null> {
     return this.fetchJson(
-      this.getEndpoint('ConferenceRoutes.getLinks', sessionId)
-    );
+      this.getEndpoint('ConferenceRoutes.getLinks', sessionId),
+    )
   }
 
   //
@@ -154,9 +154,9 @@ export class DeconfApiClient {
   //
   async getContent(slug: string): Promise<LocalisedContent | null> {
     const raw = await this.fetchJson<{ content: LocalisedContent }>(
-      this.getEndpoint('ContentRoutes.getContent', slug)
-    );
-    return raw?.content ?? null;
+      this.getEndpoint('ContentRoutes.getContent', slug),
+    )
+    return raw?.content ?? null
   }
 
   //
@@ -164,24 +164,24 @@ export class DeconfApiClient {
   //
   getRegistration(): Promise<UserRegistration | null> {
     return this.fetchJson(
-      this.getEndpoint('RegistrationRoutes.getRegistration')
-    );
+      this.getEndpoint('RegistrationRoutes.getRegistration'),
+    )
   }
   startEmailLogin(email: string): Promise<boolean> {
     return this.fetch(this.getEndpoint('RegistrationRoutes.startEmailLogin'), {
       method: 'POST',
       body: JSON.stringify({ email }),
       headers: { ...jsonHeaders },
-    });
+    })
   }
   startRegister(body: Record<string, unknown>): Promise<boolean> {
     return this.fetch(this.getEndpoint('RegistrationRoutes.startRegister'), {
       method: 'POST',
       body: JSON.stringify(body),
       headers: { ...jsonHeaders },
-    });
+    })
   }
   unregister(): Promise<boolean> {
-    return this.fetch(this.getEndpoint('RegistrationRoutes.unregister'));
+    return this.fetch(this.getEndpoint('RegistrationRoutes.unregister'))
   }
 }

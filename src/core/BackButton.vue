@@ -5,13 +5,14 @@
       :rtl="['fas', 'arrow-right']"
     />
     <span>
-      <slot />
+      <slot></slot>
     </span>
   </router-link>
 </template>
 
 <script lang="ts">
-import BidirectionalIcon from './BidirectionalIcon.vue';
+import { defineComponent } from 'vue'
+import BidirectionalIcon from './BidirectionalIcon.vue'
 
 //
 // i18n
@@ -25,11 +26,11 @@ import BidirectionalIcon from './BidirectionalIcon.vue';
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'BackButton',
   components: { BidirectionalIcon },
   props: {
     to: { type: [String, Object], required: true },
   },
-};
+})
 </script>

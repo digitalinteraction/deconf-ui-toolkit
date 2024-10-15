@@ -16,6 +16,8 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue'
+
 //
 // Wraps a bulma checkbox field
 //
@@ -31,7 +33,7 @@
 // - n/a
 //
 
-export default {
+export default defineComponent({
   name: 'CheckboxField',
   props: {
     name: { type: String, required: true },
@@ -45,16 +47,16 @@ export default {
     labelClass(): unknown {
       return {
         'is-danger': this.hasError,
-      };
+      }
     },
   },
   methods: {
     onInput(event: Event) {
-      if (!(event.target instanceof HTMLInputElement)) return;
-      this.$emit('input', event.target.checked);
+      if (!(event.target instanceof HTMLInputElement)) return
+      this.$emit('input', event.target.checked)
     },
   },
-};
+})
 </script>
 
 <style lang="scss">

@@ -91,10 +91,10 @@
 </template>
 
 <script lang="ts">
-import { PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { localiseFromObject } from '../../lib/module';
-import { Theme, Track } from '@openlab/deconf-shared';
+import { defineComponent, PropType } from 'vue'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { localiseFromObject } from '../../lib/module'
+import { Localised, Theme, Track } from '@openlab/deconf-shared'
 
 //
 // i18n
@@ -118,7 +118,7 @@ import { Theme, Track } from '@openlab/deconf-shared';
 // - track
 //
 
-export default {
+export default defineComponent({
   name: 'SessionAttributes',
   components: { FontAwesomeIcon },
   props: {
@@ -129,11 +129,11 @@ export default {
     organisation: { type: String, default: null },
   },
   methods: {
-    localise(object: Record<string, string>): string | null {
-      return localiseFromObject(this.$i18n.locale, object);
+    localise(object: Localised): string | null {
+      return localiseFromObject(this.$i18n.locale, object)
     },
   },
-};
+})
 </script>
 
 <style lang="scss">
