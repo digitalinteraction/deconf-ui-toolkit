@@ -89,8 +89,6 @@ export default defineComponent({
       }
     }
 
-    console.log(children);
-
     return h('div', { class: 'content' }, children);
   },
 });
