@@ -1,6 +1,10 @@
 import { ConferenceConfig, AuthToken, PageFlag } from '@openlab/deconf-shared';
 import { VueI18n } from 'vue-i18n';
-import { Router, RouteLocationNormalized } from 'vue-router';
+import {
+  Router,
+  RouteLocationNormalized,
+  RouterScrollBehavior,
+} from 'vue-router';
 
 import { Routes } from './constants';
 import { AppRoute } from './types';
@@ -115,17 +119,13 @@ export function getRouteTitle(
 }
 
 /** Generate a normal-ish scroll-behaviour for a SPA that wants to act like a webpage */
-export function getScrollBehaviour(scrollOffest: number) {
-  return (
-    to: RouteLocationNormalized,
-    _from: RouteLocationNormalized,
-    savedPosition: { x: number; y: number } | void,
-  ) => {
+export function getScrollBehaviour(scrollOffest: number): RouterScrollBehavior {
+  return (to, _from, savedPosition) => {
     // If they clicked on a hash, scroll to that
     if (to.hash && to.name !== Routes.TokenCapture) {
       return {
-        selector: to.hash,
-        offset: { x: 0, y: scrollOffest },
+        el: to.hash,
+        offset: { left: 0, top: scrollOffest },
       };
     }
 
@@ -134,6 +134,6 @@ export function getScrollBehaviour(scrollOffest: number) {
     if (savedPosition) return savedPosition;
 
     // Otherwise, its a new page so go to the top
-    return { x: 0, y: 0 };
+    return { left: 0, top: 0 };
   };
 }
