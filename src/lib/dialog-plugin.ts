@@ -1,5 +1,5 @@
-import _Vue, { Component } from 'vue';
-import { CombinedVueInstance } from 'vue/types/vue';
+import { Component } from 'vue';
+import { reactive, App } from 'vue';
 
 interface Data {
   component: Component | null;
@@ -18,17 +18,18 @@ export class DialogPlugin {
 
   // Use an internal vue component to fake the reactivity of properties
   // so consumers can bind to $dev values
-  _vm: CombinedVueInstance<_Vue, Data, unknown, unknown, unknown>;
+  _vm: Data;
 
-  static install(Vue: typeof _Vue): void {
-    const plugin = new DialogPlugin(Vue);
-    Vue.prototype.$dialog = plugin;
+  static install(app: App): void {
+    const plugin = new DialogPlugin();
+    app.config.globalProperties.$dialog = plugin;
     DialogPlugin.shared = plugin;
   }
 
-  constructor(Vue: typeof _Vue) {
-    this._vm = new Vue({
-      data: () => ({ component: null, props: {} }),
+  constructor() {
+    this._vm = reactive({
+      component: null,
+      props: {},
     });
   }
 

@@ -1,5 +1,4 @@
-import _Vue from 'vue';
-import { CombinedVueInstance } from 'vue/types/vue';
+import { reactive, App } from 'vue';
 
 interface Data {
   date: Date;
@@ -12,13 +11,13 @@ interface Data {
  * It uses an internal Vue instance to with object getters to provide reactivity.
  */
 export class TemporalPlugin {
-  static install(Vue: typeof _Vue, interval = 1000): void {
-    Vue.prototype.$temporal = new TemporalPlugin(Vue, interval);
+  static install(app: App, interval = 1000): void {
+    app.config.globalProperties.$temporal = new TemporalPlugin(interval);
   }
 
   interval: number;
   timerId: number | null = null;
-  _vm: CombinedVueInstance<_Vue, Data, unknown, unknown, unknown>;
+  _vm: Data;
 
   get date(): Date {
     return this._vm.date;
@@ -27,12 +26,10 @@ export class TemporalPlugin {
     this._vm.date = newValue;
   }
 
-  constructor(Vue: typeof _Vue, interval: number) {
+  constructor(interval: number) {
     this.interval = interval;
-    this._vm = new Vue({
-      data: (): Data => ({
-        date: new Date(),
-      }),
+    this._vm = reactive({
+      date: new Date(),
     });
   }
 

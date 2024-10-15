@@ -1,5 +1,4 @@
-import _Vue from 'vue';
-import { CombinedVueInstance } from 'vue/types/vue';
+import { reactive, App } from 'vue';
 import { SlotState } from './types';
 
 interface Data {
@@ -19,13 +18,14 @@ function shouldInitiallyShowDevTools() {
 }
 
 export class DevPlugin {
-  static install(Vue: typeof _Vue): void {
-    Vue.prototype.$dev = new DevPlugin(Vue);
+  static install(app: App): void {
+    // Vue.prototype.$dev = new DevPlugin(Vue);
+    app.config.globalProperties.$dev = new DevPlugin();
   }
 
   // Use an internal vue component to fake the reactivity of properties
   // so consumers can bind to $dev values
-  _vm: CombinedVueInstance<_Vue, Data, unknown, unknown, unknown>;
+  _vm: Data;
 
   get slotState(): SlotState | undefined {
     return this._vm.slotState;
@@ -55,25 +55,25 @@ export class DevPlugin {
     this._vm.scheduleDate = newValue;
   }
 
-  constructor(Vue: typeof _Vue) {
-    this._vm = new Vue({
-      data: function () {
-        return {
-          isEnabled: shouldInitiallyShowDevTools(),
-          isVisible: false,
-          slotState: undefined,
-          scheduleDate: undefined,
-        };
-      },
+  constructor() {
+    this._vm = reactive({
+      isEnabled: shouldInitiallyShowDevTools(),
+      isVisible: false,
+      slotState: undefined,
+      scheduleDate: undefined,
     });
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any)._enableDevMode = () => {
+    this.vagueWindow()._enableDevMode = () => {
       this.isEnabled = true;
     };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (window as any)._disableDevMode = () => {
-      this.isEnabled = false;
+
+    this.vagueWindow()._disableDevMode = () => {
+      this.isEnabled = true;
     };
+  }
+
+  vagueWindow() {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return window as any as Record<string, unknown>;
   }
 }
