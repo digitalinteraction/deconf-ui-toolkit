@@ -2,7 +2,6 @@ import { Store } from 'vuex';
 import { VueI18n } from 'vue-i18n';
 import { DeconfPlugin } from '../lib/deconf-plugin';
 
-// declare module '@vue/runtime-core' {
 declare module 'vue' {
   // declare your own store states
   type State = Record<string, unknown>;

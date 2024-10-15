@@ -1,7 +1,11 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+// import { visualizer } from 'rollup-plugin-visualizer';
+
+// const appVersion = __APP_VERSION__;
+// const appName = __APP_NAME__;
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -24,7 +28,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
-        'deconf-ui': 'src/module.ts',
+        module: 'src/module.ts',
         atrium: 'src/atrium/module.ts',
         'audio-lib': 'src/audio-lib/module.ts',
         content: 'src/content/module.ts',
@@ -55,4 +59,4 @@ export default defineConfig({
       },
     },
   },
-})
+});

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, h, VNode } from 'vue';
+import { createTextVNode, defineComponent, h, VNode } from 'vue';
 import { Localised } from '@openlab/deconf-shared';
 import { localiseFromObject, namespaceForApi } from '../lib/module.js';
 
@@ -55,7 +55,9 @@ export default defineComponent({
 
     /** Convert a HTML node to a Vue.js VNode */
     domToVue(node: Node): VNode {
-      if (node instanceof Text) return h(Text, node.textContent ?? '');
+      if (node instanceof Text) {
+        return h(createTextVNode(node.textContent ?? ''));
+      }
 
       // Convert dom attributes to a plain record
       const attrs: Record<string, unknown> = {};

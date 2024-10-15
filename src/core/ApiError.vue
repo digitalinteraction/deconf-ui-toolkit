@@ -17,7 +17,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
+import { RouteLocationRaw } from 'vue-router';
 import { getCountdown, getCountdownMessage } from '../lib/module.js';
 import UtilLayout from './UtilLayout.vue';
 
@@ -49,7 +50,7 @@ export default defineComponent({
   name: 'ApiError',
   components: { UtilLayout },
   props: {
-    homeRoute: { type: Object, required: true },
+    homeRoute: { type: Object as PropType<RouteLocationRaw>, required: true },
     retry: { type: Number, default: 1 },
   },
   data(): Data {
