@@ -8,6 +8,7 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { NoResults },
+  setup: () => args,
   template: `
     <NoResults>
       There are no results
@@ -15,10 +16,7 @@ const Template = (args: unknown) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  controls: {
-    exclude: ['default'],
-  },
+export const Default = {
+  render: Template,
+  args: {},
 };

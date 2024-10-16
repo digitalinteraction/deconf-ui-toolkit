@@ -8,24 +8,9 @@ export default {
   component: SessionTile,
 } as Meta;
 
-const Template = (args: unknown) => ({
+const Template = (args: any) => ({
   components: { SessionTile },
-  props: [
-    'slotState',
-    'sessionSlot',
-    'readonly',
-    'headerType',
-    'headerTrack',
-    'headerThemes',
-    'attrLangs',
-    'attrRecorded',
-    'attrTrack',
-    'attrThemes',
-    'attrOrganisation',
-    'actionJoin',
-    'actionCalendar',
-    'actionMySchedule',
-  ],
+  setup: () => args,
   data() {
     const schedule = createSchedule();
     const session = randomSession(schedule, {});
@@ -39,19 +24,19 @@ const Template = (args: unknown) => ({
         tileActions: [],
       };
 
-      if (this.headerType) config.tileHeader.push('type');
-      if (this.headerTrack) config.tileHeader.push('track');
-      if (this.headerThemes) config.tileHeader.push('themes');
+      if (args.headerType) config.tileHeader.push('type');
+      if (args.headerTrack) config.tileHeader.push('track');
+      if (args.headerThemes) config.tileHeader.push('themes');
 
-      if (this.attrLangs) config.tileAttributes.push('languages');
-      if (this.attrRecorded) config.tileAttributes.push('recorded');
-      if (this.attrTrack) config.tileAttributes.push('track');
-      if (this.attrThemes) config.tileAttributes.push('themes');
-      if (this.attrOrganisation) config.tileAttributes.push('organisation');
+      if (args.attrLangs) config.tileAttributes.push('languages');
+      if (args.attrRecorded) config.tileAttributes.push('recorded');
+      if (args.attrTrack) config.tileAttributes.push('track');
+      if (args.attrThemes) config.tileAttributes.push('themes');
+      if (args.attrOrganisation) config.tileAttributes.push('organisation');
 
-      if (this.actionJoin) config.tileActions?.push('join');
-      if (this.actionCalendar) config.tileActions?.push('addToCalendar');
-      if (this.actionMySchedule) config.tileActions?.push('addToMySchedule');
+      if (args.actionJoin) config.tileActions?.push('join');
+      if (args.actionCalendar) config.tileActions?.push('addToCalendar');
+      if (args.actionMySchedule) config.tileActions?.push('addToMySchedule');
 
       return config;
     },
@@ -82,26 +67,22 @@ const baseArgs = {
   actionMySchedule: true,
 };
 
-export const Future = Template.bind({});
-Future.args = {
-  ...baseArgs,
-  slotState: 'future',
+export const Future = {
+  render: Template,
+  args: { ...baseArgs, slotState: 'future' },
 };
 
-export const Soon = Template.bind({});
-Soon.args = {
-  ...baseArgs,
-  slotState: 'soon',
+export const Soon = {
+  render: Template,
+  args: { ...baseArgs, slotState: 'soon' },
 };
 
-export const Present = Template.bind({});
-Present.args = {
-  ...baseArgs,
-  slotState: 'present',
+export const Present = {
+  render: Template,
+  args: { ...baseArgs, slotState: 'present' },
 };
 
-export const Past = Template.bind({});
-Past.args = {
-  ...baseArgs,
-  slotState: 'past',
+export const Past = {
+  render: Template,
+  args: { ...baseArgs, slotState: 'past' },
 };

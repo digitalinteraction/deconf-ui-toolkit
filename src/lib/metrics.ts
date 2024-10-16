@@ -76,7 +76,7 @@ export function createPageViewEvent(
 
 export function createSessionLinkEvent(
   sessionId: string,
-  action: 'click' | 'copy',
+  action: 'click' | 'copy' | 'qr',
   link: string,
 ): MetricsEvent {
   return {

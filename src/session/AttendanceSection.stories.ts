@@ -9,7 +9,7 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { AttendanceSection },
-  props: ['sessionCap', 'attendance', 'isProcessing'],
+  setup: () => args,
   data: () => ({
     session: mockSession(),
   }),
@@ -23,64 +23,63 @@ const Template = (args: unknown) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  sessionCap: 30,
-  attendance: {
-    isAttending: false,
-    attendance: {},
-    sessionCount: 12,
+export const Default = {
+  render: Template,
+  args: {
+    sessionCap: 30,
+    attendance: {
+      isAttending: false,
+      attendance: {},
+      sessionCount: 12,
+    },
+    isProcessing: false,
   },
 };
-Default.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
-};
 
-export const IsFull = Template.bind({});
-IsFull.args = {
-  sessionCap: 30,
-  attendance: {
-    isAttending: false,
-    attendance: {},
-    sessionCount: 30,
+export const Full = {
+  render: Template,
+  args: {
+    sessionCap: 30,
+    attendance: {
+      isAttending: false,
+      attendance: {},
+      sessionCount: 30,
+    },
+    isProcessing: false,
   },
 };
-IsFull.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
-};
 
-export const Attending = Template.bind({});
-Attending.args = {
-  sessionCap: 30,
-  attendance: {
-    isAttending: true,
-    attendance: {},
-    sessionCount: 12,
+export const Attending = {
+  render: Template,
+  args: {
+    sessionCap: 30,
+    attendance: {
+      isAttending: true,
+      attendance: {},
+      sessionCount: 12,
+    },
+    isProcessing: false,
   },
 };
-Attending.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
-};
 
-export const Loading = Template.bind({});
-Loading.args = {
-  sessionCap: 30,
-  attendance: null,
-};
-Loading.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
-};
-
-export const Processing = Template.bind({});
-Processing.args = {
-  sessionCap: 30,
-  attendance: {
-    isAttending: true,
-    attendance: {},
-    sessionCount: 12,
+export const Loading = {
+  render: Template,
+  args: {
+    sessionCap: 30,
+    attendance: null,
+    isProcessing: false,
   },
-  isProcessing: true,
 };
-Processing.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
+
+export const Processing = {
+  render: Template,
+  args: {
+    sessionCap: 30,
+    attendance: {
+      isAttending: true,
+      attendance: {},
+      sessionCount: 12,
+    },
+    isProcessing: true,
+  },
 };

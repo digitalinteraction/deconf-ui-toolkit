@@ -84,7 +84,8 @@
     },
     "sessionLink": {
       "copy": "copy",
-      "copied": "copied"
+      "copied": "copied",
+      "showQr": "qr"
     },
     "sessionState": {
       "liveNow": "Live Now",

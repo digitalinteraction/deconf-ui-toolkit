@@ -3,7 +3,6 @@ import {
   createSchedule,
   dates,
   defaultLanguages,
-  MockAppLayout,
   randomSession,
 } from '../story-lib/module';
 import ScheduleView from './ScheduleView.vue';
@@ -17,8 +16,8 @@ export default {
 } as Meta;
 
 const Template = (args: unknown) => ({
-  components: { MockAppLayout, ScheduleView },
-  props: ['isDuringConference', 'scheduleDate', 'urlFilters', 'onFilter'],
+  components: { ScheduleView },
+  setup: () => args,
   data() {
     const schedule = createSchedule();
     const sessions = [
@@ -45,79 +44,55 @@ const Template = (args: unknown) => ({
     };
   },
   template: `
-    <MockAppLayout>
-      <ScheduleView
-        :schedule="schedule"
-        :sessions="sessions"
-        :user-sessions="userSessions"
-        filters-key="schedule.filters"
-        :config="config"
-        :scheduleDate="scheduleDate"
-        :is-during-conference="isDuringConference"
-        :language-options="languages"
-        :url-filters="urlFilters"
-        @filter="onFilter"
-      >
-        <span slot="title">The Schedule</span>
-        <span slot="noResults">No results!</span>
-        <p slot="infoText">The sessions on at the conference</p>
-      </ScheduleView>
-    </MockAppLayout>
+    <ScheduleView
+      :schedule="schedule"
+      :sessions="sessions"
+      :user-sessions="userSessions"
+      filters-key="schedule.filters"
+      :config="config"
+      :scheduleDate="scheduleDate"
+      :is-during-conference="isDuringConference"
+      :language-options="languages"
+      :url-filters="urlFilters"
+      @filter="onFilter"
+    >
+      <template v-slot:title>The Schedule</template>
+      <template v-slot:noResults>No results!</template>
+      <template v-slot:infoText>The sessions on at the conference</template>
+    </ScheduleView>
   `,
 });
 
-export const Future = Template.bind({});
-Future.args = {
-  scheduleDate: dates.past,
-  isDuringConference: true,
-};
-Future.parameters = {
-  layout: 'fullscreen',
-  controls: {
-    exclude: [
-      'schedule',
-      'sessions',
-      'filtersKey',
-      'enabledFilters',
-      'infoText',
-      'config',
-    ],
+export const Future = {
+  render: Template,
+  args: {
+    scheduleDate: dates.past,
+    isDuringConference: true,
   },
 };
 
-export const Present = Template.bind({});
-Present.args = {
-  scheduleDate: dates.now,
-  isDuringConference: true,
-};
-Present.parameters = {
-  ...Future.parameters,
-};
-
-export const Past = Template.bind({});
-Past.args = {
-  scheduleDate: dates.future,
-  isDuringConference: false,
-};
-Past.parameters = {
-  ...Future.parameters,
-};
-
-export const PresetFilters = Template.bind({});
-PresetFilters.args = {
-  scheduleDate: dates.now,
-  isDuringConference: true,
-  urlFilters: {
-    query: 'plop',
-    sessionType: 'plenary',
-    track: 'track-a',
-    theme: 'theme-a',
-    date: dates.startOfDay(dates.now),
-    isRecorded: true,
-    viewMode: 'all',
-    language: 'en',
+export const Present = {
+  render: Template,
+  args: {
+    scheduleDate: dates.now,
+    isDuringConference: true,
   },
 };
-PresetFilters.parameters = {
-  ...Future.parameters,
+
+export const PresetFilters = {
+  render: Template,
+  args: {
+    scheduleDate: dates.now,
+    isDuringConference: true,
+    urlFilters: {
+      query: 'plop',
+      sessionType: 'plenary',
+      track: 'track-a',
+      theme: 'theme-a',
+      date: dates.startOfDay(dates.now),
+      isRecorded: true,
+      viewMode: 'all',
+      language: 'en',
+    },
+  },
 };

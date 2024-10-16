@@ -8,22 +8,21 @@ export default {
 } as Meta;
 
 const Template = (args: unknown) => ({
-  props: Object.keys(argTypes),
+  setup: () => args,
   components: { SidebarItem, Content },
   template: `
-    <div>
-      <SidebarItem title="First Item">
-        <Content :size="1" />
-      </SidebarItem>
-      <SidebarItem title="Second Item">
-        <Content :size="1" />
-      </SidebarItem>
-      <SidebarItem title="Third Item">
-        <Content :size="1" />
-      </SidebarItem>
-    </div>
+    <SidebarItem title="First Item">
+      <Content :size="1" />
+    </SidebarItem>
+    <SidebarItem title="Second Item">
+      <Content :size="1" />
+    </SidebarItem>
+    <SidebarItem title="Third Item">
+      <Content :size="1" />
+    </SidebarItem>
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = {
+  render: Template,
+};

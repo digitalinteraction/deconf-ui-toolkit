@@ -16,7 +16,7 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { SessionState },
-  props: ['attendance', 'slotState'],
+  setup: () => args,
   template: `
     <SessionState :attendance="attendance" :slot-state="slotState" />
   `,
@@ -27,37 +27,32 @@ const backgrounds = {
   values: [{ name: 'off-white', value: '#f2f2f2' }],
 };
 
-export const Future = Template.bind({});
-Future.parameters = { backgrounds };
-Future.args = {
-  attendance: 3,
-  slotState: 'future',
+export const Future = {
+  render: Template,
+  args: { attendance: 3, slotState: 'future' },
+  parameters: { backgrounds },
 };
 
-export const Soon = Template.bind({});
-Soon.parameters = { backgrounds };
-Soon.args = {
-  attendance: 11,
-  slotState: 'soon',
+export const Soon = {
+  render: Template,
+  args: { attendance: 11, slotState: 'soon' },
+  parameters: {},
 };
 
-export const Present = Template.bind({});
-Present.parameters = { backgrounds };
-Present.args = {
-  attendance: 11,
-  slotState: 'present',
+export const Present = {
+  render: Template,
+  args: { attendance: 11, slotState: 'present' },
+  parameters: { backgrounds },
 };
 
-export const Past = Template.bind({});
-Past.parameters = { backgrounds };
-Past.args = {
-  attendance: 11,
-  slotState: 'past',
+export const Past = {
+  render: Template,
+  args: { attendance: 11, slotState: 'past' },
+  parameters: { backgrounds },
 };
 
-export const NoAttendance = Template.bind({});
-NoAttendance.parameters = { backgrounds };
-NoAttendance.args = {
-  attendance: null,
-  slotState: 'present',
+export const NoAttendance = {
+  render: Template,
+  args: { attendance: null, slotState: 'present' },
+  parameters: { backgrounds },
 };

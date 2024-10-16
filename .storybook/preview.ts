@@ -36,6 +36,23 @@ const actions = {
   'api/fetchUserCalendar': () => ({
     url: new URL('https://example.com/calendar'),
   }),
+  'api/fetchLinks': () => ({
+    links: [
+      { type: '', url: 'https://youtu.be/yPYZpwSpKmA', language: 'fr' },
+      { type: '', url: 'https://youtu.be/dQw4w9WgXcQ', language: 'en' },
+      { type: '', url: 'https://miro.com/en', language: 'en' },
+      { type: '', url: 'https://miro.com/fr', language: 'fr' },
+      { type: '', url: 'https://docs.google.com/abcdef', language: 'en' },
+    ],
+  }),
+  'api/fetchSessionAttendance': () => ({
+    isAttending: true,
+    sessionCount: 14,
+  }),
+};
+const getters = {
+  'api/isSignedIn': true,
+  'api/userSessions': [],
 };
 
 setup((app) => {
@@ -46,6 +63,7 @@ setup((app) => {
       action('vuex-action')(k);
       return actions[k]?.();
     },
+    getters,
   };
   app.config.globalProperties.$deconf = {
     showDialog: action('$deconf.showDialog'),

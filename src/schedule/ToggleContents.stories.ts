@@ -9,7 +9,7 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { ToggleContents, Content },
-  props: ['title', 'showButton', 'hideButton', 'forceOpen'],
+  setup: () => args,
   template: `
     <ToggleContents
       :title="title"
@@ -22,40 +22,22 @@ const Template = (args: unknown) => ({
   `,
 });
 
-export const Desktop = Template.bind({});
-Desktop.args = {
-  title: '5 things',
-  showButton: 'Show',
-  hideButton: 'Hide',
-  forceOpen: false,
-};
-Desktop.parameters = {
-  controls: {
-    exclude: ['default'],
+export const Default = {
+  render: Template,
+  args: {
+    title: '5 things',
+    showButton: 'Show',
+    hideButton: 'Hide',
+    forceOpen: false,
   },
 };
 
-export const Mobile = Template.bind({});
-Mobile.args = {
-  title: '5 things',
-  showButton: 'Show',
-  hideButton: 'Hide',
-  forceOpen: false,
-};
-Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
-  controls: {
-    exclude: ['default'],
-  },
-};
-
-export const Opened = Template.bind({});
-Opened.args = {
-  ...Desktop.args,
-  forceOpen: true,
-};
-Opened.parameters = {
-  controls: {
-    exclude: ['default'],
+export const Opened = {
+  render: Template,
+  args: {
+    title: '5 things',
+    showButton: 'Show',
+    hideButton: 'Hide',
+    forceOpen: true,
   },
 };

@@ -1,5 +1,10 @@
 import { Meta } from '@storybook/vue3';
-import { BrandA, mockSettings, Content } from '../story-lib/module';
+import {
+  BrandA,
+  mockSettings,
+  Content,
+  MockAppLayout,
+} from '../story-lib/module';
 
 import StickyHeading from './StickyHeading.vue';
 import { AppLayout } from '../core/module';
@@ -18,48 +23,39 @@ export default {
 } as Meta;
 
 const Template = (args: unknown) => ({
-  components: { StickyHeading, Content, AppLayout, BrandA },
-  props: ['title', 'titleClass'],
+  components: { StickyHeading, Content, AppLayout, BrandA, MockAppLayout },
+  setup: () => args,
   data() {
     return {
       appSettings: mockSettings(),
     };
   },
   template: `
-    <div>
-      <AppLayout
-        :app-settings="appSettings"
-        :routes="[]"
-        :user="null"
+    <MockAppLayout>
+      <StickyHeading
+        :title="title"
+        :title-class="titleClass"
       >
-        <BrandA slot="brandA" />
-        <StickyHeading
-          :title="title"
-          :title-class="titleClass"
-          slot="main"
-        >
-          <section class="section">
-            <div class="content">
-              <Content />
-              <Content />
-              <Content />
-              <Content />
-            </div>
-          </section>
-        </StickyHeading>
-      </AppLayout>
-    </div>
+        <section class="section">
+          <div class="content">
+            <Content />
+            <Content />
+            <Content />
+            <Content />
+          </div>
+        </section>
+      </StickyHeading>
+    </MockAppLayout>
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  title: 'This is a title',
-  titleClass: 'is-primary',
-};
-Default.parameters = {
-  layout: 'fullscreen',
-  controls: {
-    exclude: ['default'],
+export const Default = {
+  render: Template,
+  args: {
+    title: 'This is a title',
+    titleClass: 'is-primary',
+  },
+  parameters: {
+    layout: 'fullscreen',
   },
 };

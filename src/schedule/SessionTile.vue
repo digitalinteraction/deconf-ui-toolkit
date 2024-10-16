@@ -142,7 +142,7 @@ export default defineComponent({
     userSessions(): string[] {
       return this.$store.getters[namespaceForApi(this.$deconf, 'userSessions')];
     },
-    isSignedIn(): string[] {
+    isSignedIn(): boolean {
       return this.$store.getters[namespaceForApi(this.$deconf, 'isSignedIn')];
     },
 

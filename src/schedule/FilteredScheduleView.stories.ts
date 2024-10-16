@@ -7,6 +7,7 @@ import {
 } from '../story-lib/module';
 import { FilteredScheduleOptions } from './filtered-schedule-options';
 import FilteredScheduleView from './FilteredScheduleView.vue';
+import { fn } from '@storybook/test';
 
 export default {
   title: 'Schedule/FilteredScheduleView',
@@ -15,7 +16,7 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { FilteredScheduleView, MockAppLayout },
-  props: ['onFilter'],
+  setup: () => args,
   data() {
     const schedule = createSchedule();
     schedule.sessions = [
@@ -56,27 +57,20 @@ const Template = (args: unknown) => ({
         :schedule-date="date"
         @filter="onFilter"
       >
-        <span slot="title">Title</span>
-        <p slot="infoText">Information text here</p>
-        <span slot="noResults">No results...</span>
+        <template v-slot:title>Title</template>
+        <template v-slot:infoText>Information text here</template>
+        <template v-slot:noResults>No results...</template>
       </FilteredScheduleView>
     </MockAppLayout>
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  onFilter: () => console.log('FilteredScheduleView@filter'),
-};
-Default.parameters = {
-  layout: 'fullscreen',
-  controls: {
-    exclude: [
-      'schedule',
-      'userSessions',
-      'options',
-      'scheduleDate',
-      'routeQuery',
-    ],
+export const Default = {
+  render: Template,
+  args: {
+    onFilter: fn(),
+  },
+  parameters: {
+    layout: 'fullscreen',
   },
 };

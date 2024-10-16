@@ -8,13 +8,15 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { LanguageWarning },
-  props: ['availableLanguages'],
+  setup: () => args,
   template: `
     <LanguageWarning :available-languages="availableLanguages" />
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  availableLanguages: ['EN', 'FR'],
+export const Default = {
+  render: Template,
+  args: {
+    availableLanguages: ['EN', 'FR'],
+  },
 };

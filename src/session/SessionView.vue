@@ -126,6 +126,7 @@
                 :title="link.title || getLinkName(link)"
                 @click="trackLinkClick(link.url)"
                 @copy="trackLinkCopy(link.url)"
+                @qr="trackQrCode(link.url)"
               />
               <slot name="afterLinks"></slot>
             </Stack>
@@ -530,6 +531,11 @@ export default defineComponent({
     trackLinkCopy(link: string) {
       this.$deconf.trackMetric(
         createSessionLinkEvent(this.session.id, 'copy', link),
+      );
+    },
+    trackQrCode(link: string) {
+      this.$deconf.trackMetric(
+        createSessionLinkEvent(this.session.id, 'qr', link),
       );
     },
     localise(object: Localised): string | null {

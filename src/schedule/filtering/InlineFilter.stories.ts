@@ -9,7 +9,7 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { InlineFilter },
-  props: ['label', 'offLabel', 'options'],
+  setup: () => args,
   data: () => ({
     value: null,
   }),
@@ -23,14 +23,15 @@ const Template = (args: unknown) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  label: 'This is a label',
-  offLabel: 'All Selected',
-  options: [
-    { text: 'Option A', value: 'OptionA' },
-    { text: 'Option B', value: 'OptionB' },
-    { text: 'Option C', value: 'OptionC' },
-  ] as FilterOption[],
+export const Default = {
+  render: Template,
+  args: {
+    label: 'This is a label',
+    offLabel: 'All Selected',
+    options: [
+      { text: 'Option A', value: 'OptionA' },
+      { text: 'Option B', value: 'OptionB' },
+      { text: 'Option C', value: 'OptionC' },
+    ] as FilterOption[],
+  },
 };
-Default.parameters = {};

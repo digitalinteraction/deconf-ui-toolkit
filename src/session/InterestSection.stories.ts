@@ -8,7 +8,7 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { InterestSection },
-  props: ['attendance', 'isProcessing'],
+  setup: () => args,
   data: () => ({ attending: false }),
   template: `
     <InterestSection
@@ -20,8 +20,7 @@ const Template = (args: unknown) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
+export const Default = {
+  render: Template,
+  args: {},
 };

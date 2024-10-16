@@ -24,9 +24,9 @@ function multiDaySchedule() {
   return schedule;
 }
 
-const Template = (args: unknown) => ({
+const Template = (args: any) => ({
   components: { ScheduleFilters },
-  props: [...ALL_FILTERS],
+  setup: () => args,
   data: () => ({
     schedule: multiDaySchedule(),
     filters: {
@@ -44,10 +44,10 @@ const Template = (args: unknown) => ({
   computed: {
     enabledFilters(): unknown[] {
       return ALL_FILTERS.map((k) =>
-        this[k] ? k.replace(/Filter$/, '') : undefined,
+        args[k] ? k.replace(/Filter$/, '') : undefined,
       ).filter((v) => Boolean(v));
     },
-    jsonFilters(): unknown {
+    jsonFilters(this: any): unknown {
       return JSON.stringify(this.filters, null, 2);
     },
   },
@@ -65,15 +65,16 @@ const Template = (args: unknown) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  queryFilter: true,
-  sessionTypeFilter: true,
-  trackFilter: true,
-  themeFilter: true,
-  dateFilter: true,
-  isRecordedFilter: true,
-  viewModeFilter: true,
-  languageFilter: true,
+export const Default = {
+  render: Template,
+  args: {
+    queryFilter: true,
+    sessionTypeFilter: true,
+    trackFilter: true,
+    themeFilter: true,
+    dateFilter: true,
+    isRecordedFilter: true,
+    viewModeFilter: true,
+    languageFilter: true,
+  },
 };
-Default.parameters = {};

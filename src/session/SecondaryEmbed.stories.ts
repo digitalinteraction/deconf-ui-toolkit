@@ -8,7 +8,7 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { SecondaryEmbed },
-  props: ['link'],
+  setup: () => args,
   template: `
     <div style="max-width: 400px">
       <SecondaryEmbed :link="link" />
@@ -16,17 +16,17 @@ const Template = (args: unknown) => ({
   `,
 });
 
-export const VimeoChat = Template.bind({});
-VimeoChat.args = {
-  link: 'https://vimeo.com/live-chat/622215885/',
+export const VimeoChat = {
+  render: Template,
+  args: { link: 'https://vimeo.com/live-chat/622215885/' },
 };
 
-export const VimeoEvent = Template.bind({});
-VimeoEvent.args = {
-  link: 'https://vimeo.com/event/1361742/chat/interaction/',
+export const VimeoEvent = {
+  render: Template,
+  args: { link: 'https://vimeo.com/event/1361742/chat/interaction/' },
 };
 
-export const VimeoEvent2 = Template.bind({});
-VimeoEvent2.args = {
-  link: 'https://vimeo.com/event/1361742/chat/',
+export const VimeoEvent2 = {
+  render: Template,
+  args: { link: 'https://vimeo.com/event/1361742/chat/' },
 };

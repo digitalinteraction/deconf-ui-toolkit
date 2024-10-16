@@ -20,36 +20,37 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { SessionLayout, BackButton, SessionState, Content },
-  props: ['slotState', 'attendance'],
+  setup: () => args,
   template: `
     <SessionLayout>
-      <BackButton slot="backButton" to="/">Back to Atrium</BackButton>
-      <SessionState slot="state" :slot-state="slotState" :attendance="attendance" />
-      <div slot="main" class="content">
-        <Content />
-      </div>
-      <div slot="sidebar">
+      <template v-slot:backButton>
+        <BackButton to="/">Back to Atrium</BackButton>
+      </template>
+      
+      <template v-slot:state>
+        <SessionState :slot-state="slotState" :attendance="attendance" />
+      </template>
+
+      <template v-slot:main>
+        <div class="content">
+          <Content />
+        </div>
+      </template>
+
+      <template v-slot:sidebar>
         <Content :size="1" />
-      </div>
+      </template>
+
+      <template v-slot:backButton>
+      </template>
     </SessionLayout>
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  slotState: 'future',
-  attendance: 123,
-};
-Default.parameters = {
-  layout: 'fullscreen',
-};
-
-export const Mobile = Template.bind({});
-Mobile.args = {
-  slotState: 'future',
-  attendance: 123,
-};
-Mobile.parameters = {
-  layout: 'fullscreen',
-  viewport: { defaultViewport: 'mobile2' },
+export const Default = {
+  render: Template,
+  args: {
+    slotState: 'future',
+    attendance: 123,
+  },
 };

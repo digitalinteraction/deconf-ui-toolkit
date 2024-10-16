@@ -7,29 +7,25 @@ export default {
 } as Meta;
 
 const Template = (args: unknown) => ({
-  props: Object.keys(argTypes),
+  setup: () => args,
   components: { ScheduleHeader },
   template: `
-    <ScheduleHeader class="${args.classes}">
+    <ScheduleHeader :class="classes">
       Lorem ipsum sil dor amet
     </ScheduleHeader>
   `,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  classes: 'is-primary',
+export const Primary = {
+  render: Template,
+  args: {
+    classes: 'is-primary',
+  },
 };
 
-export const Dark = Template.bind({});
-Dark.args = {
-  classes: 'is-dark',
-};
-
-export const Mobile = Template.bind({});
-Mobile.args = {
-  ...Primary.args,
-};
-Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
+export const Dark = {
+  render: Template,
+  args: {
+    classes: 'is-dark',
+  },
 };

@@ -13,6 +13,7 @@ export default {
 
 const Template = (args: unknown) => ({
   components: { WhatsOnView },
+  setup: () => args,
   data() {
     const schedule = createSchedule();
     return {
@@ -34,25 +35,21 @@ const Template = (args: unknown) => ({
     };
   },
   template: `
-    <div style="display: flex; min-height: 100vh; flex-direction: column">
-      <WhatsOnView
-        :schedule="schedule"
-        :sessions="sessions"
-        filters-key="whatsOn.filters"
-        :config="config"
-        slot-state="future"
-        :language-options="languages"
-      >
-        <span slot="title"> What is on </span>
-        <p slot="info">Here are the sessions that are going to happen</p>
-        <span slot="noResults"> Nothing matched your query 😢 </span>
-      </WhatsOnView>
-    </div>
+    <WhatsOnView
+      :schedule="schedule"
+      :sessions="sessions"
+      filters-key="whatsOn.filters"
+      :config="config"
+      slot-state="future"
+      :language-options="languages"
+    >
+      <span slot="title"> What is on </span>
+      <p slot="info">Here are the sessions that are going to happen</p>
+      <span slot="noResults"> Nothing matched your query 😢 </span>
+    </WhatsOnView>
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  layout: 'fullscreen',
+export const Default = {
+  render: Template,
 };
