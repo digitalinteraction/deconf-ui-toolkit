@@ -2,7 +2,7 @@
   <button
     class="interestButton button"
     :class="classes"
-    @click="$emit('click')"
+    @click="$emit('toggle')"
     :disabled="isProcessing"
   >
     <span class="icon">

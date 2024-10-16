@@ -14,7 +14,7 @@ const Template = (args: unknown) => ({
     <InterestButton
       :is-interested="isInterested"
       :is-processing="isProcessing"
-      @click="onClick"
+      @toggle="onToggle"
     />
   `,
 });
@@ -24,7 +24,7 @@ export const Default = {
   args: {
     isInterested: false,
     isProcessing: false,
-    onClick: fn(),
+    onToggle: fn(),
   },
   parameters: {},
 };

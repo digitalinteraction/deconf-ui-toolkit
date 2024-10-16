@@ -53,10 +53,10 @@ export default defineComponent({
   },
   methods: {
     onClickLink(event: MouseEvent): void {
+      // deprecated
       this.$emit('click', event);
     },
-    onClickButton(event: MouseEvent): void {
-      this.$emit('click', event);
+    onClickButton(): void {
       this.$deconf.showDialog(
         AddToCalendarDialog,
         { session: this.session },

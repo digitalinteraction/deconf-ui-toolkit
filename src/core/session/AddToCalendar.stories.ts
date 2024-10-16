@@ -15,7 +15,7 @@ const Template = (args: unknown) => ({
     <AddToCalendar
       :calendar-link="calendarLink"
       :session="session"
-      @click="onClick"
+      @toggle="onToggle"
     >
       Add to your calendar!
     </AddToCalendar>
@@ -27,7 +27,7 @@ export const Default = {
   args: {
     calendarLink: '#',
     session: null,
-    onClick: fn((e: Event) => e.preventDefault()),
+    onToggle: fn((e: Event) => e.preventDefault()),
   },
   parameters: {},
 };
@@ -37,7 +37,7 @@ export const Version2 = {
   args: {
     session: mockSession(),
     calendarLink: null,
-    onClick: fn((e: Event) => e.preventDefault()),
+    onToggle: fn((e: Event) => e.preventDefault()),
   },
   parameters: {},
 };

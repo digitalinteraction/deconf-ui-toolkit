@@ -34,7 +34,7 @@
             class="is-small"
             :is-interested="isInterested"
             :is-processing="isProcessing"
-            @click="toggleInterest"
+            @toggle="toggleInterest"
           />
         </template>
         <!-- 

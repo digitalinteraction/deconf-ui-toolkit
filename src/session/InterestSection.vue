@@ -7,7 +7,7 @@
     <InterestButton
       :is-interested="isRegistered"
       :is-processing="isProcessing"
-      @click="register"
+      @toggle="register"
     />
   </div>
 </template>
