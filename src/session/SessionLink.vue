@@ -76,7 +76,7 @@ export default defineComponent({
       });
     },
     onClick(): void {
-      this.$emit('click', this.link);
+      this.$emit('visit', this.link);
     },
     copyLink(): void {
       copy(this.link, { message: 'done' });

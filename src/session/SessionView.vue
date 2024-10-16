@@ -124,7 +124,7 @@
                 :key="link.url"
                 :link="link.url"
                 :title="link.title || getLinkName(link)"
-                @click="trackLinkClick(link.url)"
+                @visit="trackLinkClick(link.url)"
                 @copy="trackLinkCopy(link.url)"
                 @qr="trackQrCode(link.url)"
               />

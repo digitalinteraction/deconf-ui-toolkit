@@ -16,7 +16,7 @@ const Template = (args: unknown) => ({
         :title="title"
         :link="link" 
         @qr="onQr"
-        @click="onClick"
+        @visit="onClick"
         @copy="onCopy"
       />
     </div>
