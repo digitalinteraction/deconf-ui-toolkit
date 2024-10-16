@@ -33,6 +33,7 @@ export interface NewBoothMessage {
 
 export type InterpretStoreModule = Module<InterpretModuleState, unknown>;
 
+/** @deprecated clients should create their own with `createStateMapper` */
 export const mapInterpretState = createStateMapper<InterpretModuleState>();
 
 export function createInterpretStoreModule(): InterpretStoreModule {

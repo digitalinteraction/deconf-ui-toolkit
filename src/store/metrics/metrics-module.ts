@@ -14,6 +14,7 @@ export interface MetricsAuthenticateOptions {
 
 export type MetricsStoreModule = Module<MetricsModuleState, unknown>;
 
+/** @deprecated clients should create their own with `createStateMapper` */
 export const mapMetricsState = createStateMapper<MetricsModuleState>();
 
 //

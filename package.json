@@ -53,7 +53,7 @@
     "vuex": "^4.1.0"
   },
   "dependencies": {
-    "@openlab/deconf-shared": "^3.6.0"
+    "@openlab/deconf-shared": "^4.0.0"
   },
   "exports": {
     ".": {

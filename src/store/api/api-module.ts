@@ -7,7 +7,7 @@ import {
   Registration,
   ScheduleRecord,
 } from '@openlab/deconf-shared';
-import { ApiState } from './api-state';
+import { ApiState } from './api-state.js';
 import { DeconfApiClient } from '../../lib/api-client';
 
 const API_DELAY = 300;
@@ -27,10 +27,6 @@ export type ApiStoreModule = Module<ApiModuleState, unknown>;
 function hydrateSchedule(data: ApiModuleState['schedule']) {
   if (data === null) return null;
 
-  data.settings.startDate = new Date(data.settings.startDate);
-  data.settings.endDate = new Date(data.settings.endDate);
-  // data.settings.endDate.setHours(23, 59, 59);
-
   for (const slot of data.slots) {
     slot.start = new Date(slot.start);
     slot.end = new Date(slot.end);
@@ -42,6 +38,12 @@ function hydrateSchedule(data: ApiModuleState['schedule']) {
   return deepSeal(data);
 }
 
+// function hydrateSettings(settings: ConferenceConfig) {
+//   settings.startDate = new Date(settings.startDate);
+//   settings.endDate = new Date(settings.endDate);
+//   return deepSeal(settings);
+// }
+
 function hydrateProfile(profile: Registration | null) {
   if (profile === null) return null;
 
@@ -51,11 +53,7 @@ function hydrateProfile(profile: Registration | null) {
   });
 }
 
-//
-// NOTE:
-// I'm not sure what value this can add without concrete routes
-//
-
+/** @deprecated clients should create their own with `createStateMapper` */
 export const mapApiState = createStateMapper<ApiModuleState>();
 
 export function createApiStoreModule(): ApiStoreModule {
