@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import { createSchedule, defaultLanguages } from '../../story-lib/module';
 import ScheduleFilters from './ScheduleFilters.vue';
 
@@ -24,7 +24,7 @@ function multiDaySchedule() {
   return schedule;
 }
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { ScheduleFilters },
   props: [...ALL_FILTERS],
   data: () => ({

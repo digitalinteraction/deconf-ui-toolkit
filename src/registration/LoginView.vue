@@ -34,7 +34,11 @@
           </button>
         </div>
       </div>
+
+      <slot name="extraOptions"></slot>
+
       <hr />
+
       <div class="content">
         <p>
           {{ $t('deconf.login.registerLabel') }}

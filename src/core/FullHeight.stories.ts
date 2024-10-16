@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import FullHeight from './FullHeight.vue';
 
 export default {
@@ -6,18 +6,21 @@ export default {
   component: FullHeight,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { FullHeight },
+  setup: () => args,
   template: `
     <FullHeight>
-      <div style="width: 100%; height: 100%; background: #fafafa; position: absolute;">
+      <div style="width: 100%; height: 100%; background-image: linear-gradient(white, black); position: absolute;">
       </div>
     </FullHeight>
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  layout: 'fullscreen',
+export const Default = {
+  render: Template,
+  args: {},
+  parameters: {
+    layout: 'fullscreen',
+  },
 };

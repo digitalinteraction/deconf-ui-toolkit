@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import { BackButton } from '../core/module';
 import {
   createSchedule,
@@ -13,7 +13,7 @@ export default {
   component: SessionView,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { SessionView, MockAppLayout, BackButton },
   props: ['loggedIn', 'scheduleDate'],
   data() {

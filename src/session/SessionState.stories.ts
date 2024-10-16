@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import SessionState from './SessionState.vue';
 
 export default {
@@ -14,7 +14,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { SessionState },
   props: ['attendance', 'slotState'],
   template: `

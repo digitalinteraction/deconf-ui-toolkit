@@ -1,30 +1,27 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import AddToCalendarDialog from './AddToCalendarDialog.vue';
 import FullScreenDialog from '../FullScreenDialog.vue';
-import { mockSession, mockSessionSlot } from '../../story-lib/schedule';
-import { dates } from '../../story-lib/dates';
+import { mockSession } from '../../story-lib/schedule';
 
 export default {
-  title: 'Core/AddToCalendarDialog',
+  title: 'Core/Session/AddToCalendarDialog',
   component: AddToCalendarDialog,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { AddToCalendarDialog, FullScreenDialog },
-  props: Object.keys(argTypes),
+  setup: () => args,
   template: `
     <FullScreenDialog size="small">
-      <AddToCalendarDialog v-bind="$props" />
+      <AddToCalendarDialog :session="session" />
     </FullScreenDialog>
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  session: mockSession(),
-  sessionSlot: mockSessionSlot({
-    start: dates.addMinutes(dates.now, 15),
-    end: dates.addMinutes(dates.now, 45),
-  }),
+export const Default = {
+  render: Template,
+  args: {
+    session: mockSession(),
+  },
+  parameters: {},
 };
-Default.parameters = {};

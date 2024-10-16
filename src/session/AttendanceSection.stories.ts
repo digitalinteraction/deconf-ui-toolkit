@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import { mockSession } from '../story-lib/schedule';
 import AttendanceSection from './AttendanceSection.vue';
 
@@ -7,7 +7,7 @@ export default {
   component: AttendanceSection,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { AttendanceSection },
   props: ['sessionCap', 'attendance', 'isProcessing'],
   data: () => ({

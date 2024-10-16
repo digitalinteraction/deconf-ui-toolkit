@@ -75,7 +75,7 @@ export const mockSpeaker = makeFixture<Speaker>({
   name: 'Speaker Name',
   role: localise('Speaker role'),
   bio: localise(loremIpsumMarkdown),
-  headshot: '/headshot.svg',
+  headshot: '/static/headshot.svg',
 });
 
 export const mockTrack = makeFixture<Track>({

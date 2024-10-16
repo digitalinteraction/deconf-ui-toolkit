@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import InterestSection from './InterestSection.vue';
 
 export default {
@@ -6,7 +6,7 @@ export default {
   component: InterestSection,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { InterestSection },
   props: ['attendance', 'isProcessing'],
   data: () => ({ attending: false }),

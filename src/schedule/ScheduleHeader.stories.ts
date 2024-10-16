@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import ScheduleHeader from './ScheduleHeader.vue';
 
 export default {
@@ -6,7 +6,7 @@ export default {
   component: ScheduleHeader,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   props: Object.keys(argTypes),
   components: { ScheduleHeader },
   template: `

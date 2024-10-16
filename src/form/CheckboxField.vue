@@ -6,7 +6,7 @@
         type="checkbox"
         class="checkbox"
         :disabled="disabled"
-        :value="modelValue"
+        :checked="modelValue"
         @change="onInput"
       />
       {{ text }}
@@ -50,6 +50,9 @@ export default defineComponent({
         'is-danger': this.hasError,
       };
     },
+  },
+  mounted() {
+    console.log('cf', this.modelValue);
   },
   methods: {
     onInput(event: Event) {

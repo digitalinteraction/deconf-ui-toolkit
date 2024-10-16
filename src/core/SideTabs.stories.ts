@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import { TabIcon } from '../story-lib/module';
 import SideTabs from './SideTabs.vue';
 
@@ -7,9 +7,9 @@ export default {
   component: SideTabs,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { SideTabs },
-  props: [],
+  setup: () => args,
   data: () => ({
     routes: [
       {
@@ -61,10 +61,8 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  controls: {
-    exclude: ['routes', 'brand'],
-  },
+export const Default = {
+  render: Template,
+  args: {},
+  parameters: {},
 };

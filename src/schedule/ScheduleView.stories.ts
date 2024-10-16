@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import {
   createSchedule,
   dates,
@@ -16,7 +16,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { MockAppLayout, ScheduleView },
   props: ['isDuringConference', 'scheduleDate', 'urlFilters', 'onFilter'],
   data() {

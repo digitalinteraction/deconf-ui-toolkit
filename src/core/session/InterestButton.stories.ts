@@ -1,25 +1,30 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import InterestButton from './InterestButton.vue';
+import { fn } from '@storybook/test';
 
 export default {
-  title: 'Core/InterestButton',
+  title: 'Core/Session/InterestButton',
   component: InterestButton,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { InterestButton },
-  props: ['isInterested', 'isProcessing'],
+  setup: () => args,
   template: `
     <InterestButton
       :is-interested="isInterested"
       :is-processing="isProcessing"
+      @click="onClick"
     />
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  isInterested: false,
-  isProcessing: false,
+export const Default = {
+  render: Template,
+  args: {
+    isInterested: false,
+    isProcessing: false,
+    onClick: fn(),
+  },
+  parameters: {},
 };
-Default.parameters = {};

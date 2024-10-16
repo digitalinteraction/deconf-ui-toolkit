@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import PageFooter from './PageFooter.vue';
 
 export default {
@@ -14,9 +14,9 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
-  props: ['beforeLinks'],
+const Template = (args: unknown) => ({
   components: { PageFooter },
+  setup: () => args,
   data() {
     return {
       links: [
@@ -28,9 +28,10 @@ const Template: Story = (args, { argTypes }) => ({
   },
   template: `
     <PageFooter :links="links">
-    <template slot="beforeLinks" v-if="beforeLinks">
-      Text before the links
-    </template>
+      <template v-slot:beforeLinks v-if="prefix">
+        Text before the links
+      </template>
+      
       Made by
       <a href="https://openlab.ncl.ac.uk">Open Lab</a>
       /
@@ -40,7 +41,9 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  beforeLinks: false,
+export const Default = {
+  render: Template,
+  args: {
+    prefix: false,
+  },
 };

@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import Countdown from './Countdown.vue';
 import { dates } from '../story-lib/module';
 
@@ -7,7 +7,7 @@ export default {
   component: Countdown,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { Countdown },
   props: ['currentDate', 'targetDate'],
   template: `

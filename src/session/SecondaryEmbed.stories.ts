@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import SecondaryEmbed from './SecondaryEmbed.vue';
 
 export default {
@@ -6,7 +6,7 @@ export default {
   component: SecondaryEmbed,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { SecondaryEmbed },
   props: ['link'],
   template: `

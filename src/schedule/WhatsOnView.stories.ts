@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import {
   createSchedule,
   defaultLanguages,
@@ -11,7 +11,7 @@ export default {
   component: WhatsOnView,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { WhatsOnView },
   data() {
     const schedule = createSchedule();

@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import SessionTile from './SessionTile.vue';
 import { createSchedule, randomSession } from '../story-lib/module';
 import { ScheduleConfig } from '../lib/module';
@@ -8,7 +8,7 @@ export default {
   component: SessionTile,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { SessionTile },
   props: [
     'slotState',

@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import SessionLink from './SessionLink.vue';
 
 export default {
@@ -6,7 +6,7 @@ export default {
   component: SessionLink,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { SessionLink },
   props: ['title', 'link'],
   template: `

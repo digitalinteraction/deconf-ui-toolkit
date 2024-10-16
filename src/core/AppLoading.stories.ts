@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import AppLoading from './AppLoading.vue';
 
 export default {
@@ -6,20 +6,16 @@ export default {
   component: AppLoading,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { AppLoading },
+  setup: () => args,
   template: `
     <AppLoading />
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = { layout: 'fullscreen' };
-
-export const Mobile = Template.bind({});
-Mobile.args = {};
-Mobile.parameters = {
-  layout: 'fullscreen',
-  viewport: { defaultViewport: 'mobile2' },
+export const Default = {
+  render: Template,
+  args: {},
+  parameters: { layout: 'fullscreen' },
 };

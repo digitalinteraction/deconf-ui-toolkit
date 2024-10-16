@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import ToggleContents from './ToggleContents.vue';
 import { Content } from '../story-lib/module';
 
@@ -7,7 +7,7 @@ export default {
   component: ToggleContents,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { ToggleContents, Content },
   props: ['title', 'showButton', 'hideButton', 'forceOpen'],
   template: `

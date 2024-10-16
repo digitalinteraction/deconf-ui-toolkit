@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import { Content } from '../story-lib/module';
 import { BackButton } from '../core/module';
 
@@ -18,7 +18,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { SessionLayout, BackButton, SessionState, Content },
   props: ['slotState', 'attendance'],
   template: `

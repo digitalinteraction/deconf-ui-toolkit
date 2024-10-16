@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import {
   createSchedule,
   dates,
@@ -13,7 +13,7 @@ export default {
   component: FilteredScheduleView,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { FilteredScheduleView, MockAppLayout },
   props: ['onFilter'],
   data() {

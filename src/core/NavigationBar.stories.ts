@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import NavigationBar from './NavigationBar.vue';
 import {
   BrandA,
@@ -12,16 +12,9 @@ export default {
   component: NavigationBar,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
-  props: [
-    'isLoggedIn',
-    'isInterpreter',
-    'showProfile',
-    'showInterpret',
-    'showLogin',
-    'showRegister',
-  ],
+const Template = (args: any) => ({
   components: { NavigationBar, BrandA, BrandB, LanguageControl },
+  setup: () => args,
   data: () => ({
     appSettings: mockSettings(),
     routes: [
@@ -50,10 +43,10 @@ const Template: Story = (args, { argTypes }) => ({
   computed: {
     links(): string[] {
       const links: string[] = [];
-      if (this.showInterpret) links.push('interpret');
-      if (this.showProfile) links.push('profile');
-      if (this.showLogin) links.push('login');
-      if (this.showRegister) links.push('register');
+      if (args.showInterpret) links.push('interpret');
+      if (args.showProfile) links.push('profile');
+      if (args.showLogin) links.push('login');
+      if (args.showRegister) links.push('register');
       return links;
     },
   },
@@ -65,38 +58,34 @@ const Template: Story = (args, { argTypes }) => ({
       :is-interpreter="isInterpreter"
       :links="links"
     >
-      <BrandA slot="brandA" />
-      <BrandB slot="brandB" />
-      <LanguageControl slot="languageControl" />
+      <template v-slot:brandA>
+        <BrandA />
+      </template>
+      
+      <template v-slot:brandB>
+        <BrandB />
+      </template>
+
+      <template v-slot:languageControl>
+        <LanguageControl />
+      </template>
+
      </NavigationBar>
   `,
 });
 
-export const Desktop = Template.bind({});
-Desktop.args = {
-  isLoggedIn: true,
-  isInterpreter: true,
+export const Default = {
+  render: Template,
+  args: {
+    isLoggedIn: true,
+    isInterpreter: true,
 
-  showInterpret: true,
-  showProfile: true,
-  showRegister: true,
-  showLogin: true,
-};
-Desktop.parameters = {
-  layout: 'fullscreen',
-  controls: {
-    exclude: ['appSettings', 'routes', 'brandA', 'brandB'],
+    showInterpret: true,
+    showProfile: true,
+    showRegister: true,
+    showLogin: true,
   },
-};
-
-export const Mobile = Template.bind({});
-Mobile.args = {
-  ...Desktop.args,
-};
-Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
-  layout: 'fullscreen',
-  controls: {
-    exclude: ['appSettings', 'routes', 'brandA', 'brandB'],
+  parameters: {
+    layout: 'fullscreen',
   },
 };

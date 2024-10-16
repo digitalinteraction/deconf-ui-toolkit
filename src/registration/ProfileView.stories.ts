@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import ProfileView from './ProfileView.vue';
 import { BrandA } from '../story-lib/module';
 
@@ -9,8 +9,9 @@ export default {
   component: ProfileView,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { ProfileView, UtilLayout, BackButton, BrandA },
+  setup: () => args,
   data() {
     return {
       fields: [
@@ -25,16 +26,12 @@ const Template: Story = (args, { argTypes }) => ({
     };
   },
   template: `
-    <UtilLayout home-route="/">
-      <BrandA slot="brand" />
-      <BackButton to="/" slot="backButton">Go Back</BackButton>
-      <ProfileView slot="main" api-module="api" :fields="fields" />
-    </UtilLayout>
+    <ProfileView api-module="api" :fields="fields" />
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  layout: 'fullscreen',
+export const Default = {
+  render: Template,
+  args: {},
+  parameters: {},
 };

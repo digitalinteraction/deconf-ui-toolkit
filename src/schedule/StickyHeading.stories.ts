@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import { BrandA, mockSettings, Content } from '../story-lib/module';
 
 import StickyHeading from './StickyHeading.vue';
@@ -17,7 +17,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { StickyHeading, Content, AppLayout, BrandA },
   props: ['title', 'titleClass'],
   data() {

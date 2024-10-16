@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 export const BrandA = defineComponent({
   template: `
     <img
-      src="/brand.svg"
+      src="/static/brand.svg"
       width="160"
       height="28"
     />
@@ -13,7 +13,7 @@ export const BrandA = defineComponent({
 export const BrandB = defineComponent({
   template: `
     <img
-      src="/openlab.svg"
+      src="/static/openlab.svg"
       width="110"
       height="28"
     />
@@ -23,7 +23,7 @@ export const BrandB = defineComponent({
 export const BrandC = defineComponent({
   template: `
     <img
-      src="/square-brand.svg"
+      src="/static/square-brand.svg"
       width="64"
       height="64"
     />

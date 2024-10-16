@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import SpeakerGrid from './SpeakerGrid.vue';
 import { defaultSpeakers } from '../story-lib/module';
 
@@ -22,12 +22,12 @@ function moduloSlice<T>(array: T[], count: number) {
   return output;
 }
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: any) => ({
   components: { SpeakerGrid },
-  props: ['speakerCount'],
+  setup: () => args,
   computed: {
     speakers() {
-      return moduloSlice(defaultSpeakers(), this.speakerCount as number);
+      return moduloSlice(defaultSpeakers(), args.speakerCount as number);
     },
   },
   template: `
@@ -35,15 +35,10 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Desktop = Template.bind({});
-Desktop.args = {
-  speakerCount: 10,
-};
-
-export const Mobile = Template.bind({});
-Mobile.args = {
-  speakerCount: 10,
-};
-Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile1' },
+export const Default = {
+  render: Template,
+  args: {
+    speakerCount: 10,
+  },
+  parameters: {},
 };

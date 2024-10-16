@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import PrimaryEmbed from './PrimaryEmbed.vue';
 
 export default {
@@ -9,7 +9,7 @@ export default {
   ],
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { PrimaryEmbed },
   props: ['link'],
   template: `

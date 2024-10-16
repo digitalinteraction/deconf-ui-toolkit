@@ -1,38 +1,31 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import SessionHeader from './SessionHeader.vue';
 
 export default {
-  title: 'Core/SessionHeader',
+  title: 'Core/Session/SessionHeader',
   component: SessionHeader,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: any) => ({
   components: { SessionHeader },
-  props: [
-    'iconGroup',
-    'iconName',
-    'title',
-    'showType',
-    'showTrack',
-    'showThemes',
-  ],
+  setup: () => args,
   computed: {
     sessionType() {
-      if (!this.showType) return null;
+      if (!args.showType) return null;
       return {
         id: 'plenary',
-        iconGroup: this.iconGroup,
-        iconName: this.iconName,
+        iconGroup: args.iconGroup,
+        iconName: args.iconName,
         layout: 'plenary',
-        title: { en: this.title },
+        title: { en: args.title },
       };
     },
     track() {
-      if (!this.showTrack) return null;
+      if (!args.showTrack) return null;
       return { id: 'space', title: { en: 'Space' } };
     },
     themes() {
-      if (!this.showThemes) return null;
+      if (!args.showThemes) return null;
       return [
         { id: 'oss', title: { en: 'Open Source Software' } },
         { id: 'oss', title: { en: 'Open Source Software' } },
@@ -46,12 +39,15 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  iconGroup: 'fab',
-  iconName: 'youtube',
-  title: 'Plenary',
-  showType: true,
-  showTrack: true,
-  showThemes: true,
+export const Default = {
+  render: Template,
+  args: {
+    iconGroup: 'fab',
+    iconName: 'youtube',
+    title: 'Plenary',
+    showType: true,
+    showTrack: true,
+    showThemes: true,
+  },
+  parameters: {},
 };

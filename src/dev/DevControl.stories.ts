@@ -1,5 +1,4 @@
-import Vue from 'vue';
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import { DevPlugin } from '../lib/module';
 import DevControl from './DevControl.vue';
 
@@ -8,9 +7,9 @@ export default {
   component: DevControl,
 } as Meta;
 
-const dev = new DevPlugin(Vue);
+const dev = new DevPlugin();
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: any) => ({
   props: ['enableSlotState', 'enableScheduleDate'],
   components: { DevControl },
   data: () => ({
@@ -19,8 +18,8 @@ const Template: Story = (args, { argTypes }) => ({
   computed: {
     controls(): string[] {
       const result: string[] = [];
-      if (this.enableSlotState) result.push('slotState');
-      if (this.enableScheduleDate) result.push('scheduleDate');
+      if (args.enableSlotState) result.push('slotState');
+      if (args.enableScheduleDate) result.push('scheduleDate');
       return result;
     },
     devData(): unknown {
@@ -56,9 +55,11 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  enableSlotState: true,
-  enableScheduleDate: true,
+export const Default = {
+  render: Template,
+  args: {
+    enableSlotState: true,
+    enableScheduleDate: true,
+  },
+  parameters: { layout: 'fullscreen' },
 };
-Default.parameters = { layout: 'fullscreen' };

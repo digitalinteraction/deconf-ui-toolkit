@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import BidirectionalIcon from './BidirectionalIcon.vue';
 
 export default {
@@ -6,7 +6,7 @@ export default {
   component: BidirectionalIcon,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { BidirectionalIcon },
   template: `
     <p>
@@ -28,6 +28,6 @@ const Template: Story = (args, { argTypes }) => ({
   },
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {};
+export const Default = {
+  render: Template,
+};

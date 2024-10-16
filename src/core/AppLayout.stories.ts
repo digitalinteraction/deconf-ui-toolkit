@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import AppLayout from './AppLayout.vue';
 import {
   mockSettings,
@@ -10,6 +10,7 @@ import {
   TabIcon,
 } from '../story-lib/module';
 import { AuthToken } from '@openlab/deconf-shared';
+import { markRaw } from 'vue';
 
 export default {
   title: 'Core/AppLayout',
@@ -23,56 +24,64 @@ const user: AuthToken = {
   user_lang: 'en',
 };
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { AppLayout, Content, BrandA, BrandB, BrandC, LanguageControl },
-  props: ['isLoggedIn', 'contentSize'],
+  setup: () => args,
   data: () => ({
+    user,
     appSettings: mockSettings(),
     routes: [
       {
         title: 'Atrium',
         name: 'Atrium',
         enabled: true,
-        icon: TabIcon,
+        icon: markRaw(TabIcon),
       },
       {
         title: 'Whats On',
         name: 'WhatsOn',
         enabled: true,
-        icon: TabIcon,
+        icon: markRaw(TabIcon),
       },
       {
         title: 'Schedule',
         name: 'Schedule',
         enabled: true,
-        icon: TabIcon,
+        icon: markRaw(TabIcon),
       },
       {
         title: 'CoffeeChat',
         name: 'CoffeeChat',
         enabled: false,
-        icon: TabIcon,
+        icon: markRaw(TabIcon),
       },
       {
         title: 'HelpDesk',
         name: 'HelpDesk',
         enabled: false,
-        icon: TabIcon,
+        icon: markRaw(TabIcon),
       },
     ],
   }),
-  computed: {
-    user() {
-      return this.isLoggedIn ? user : null;
-    },
-  },
   template: `
-    <AppLayout :appSettings="appSettings" :user="user" :routes="routes">
-      <BrandA slot="brandA" />
-      <BrandB slot="brandB" />
-      <BrandC slot="brandC" />
-      <LanguageControl slot="languageControl" />
-      <template slot="main">
+    <AppLayout :appSettings="appSettings" :user="isLoggedIn ? user : null" :routes="routes">
+      <template v-slot:brandA>
+        <BrandA />
+      </template>
+
+      <template v-slot:brandB>
+        <BrandB />
+      </template>
+
+      <template v-slot:brandC>
+        <BrandC />
+      </template>
+      
+      <template v-slot:languageControl>
+        <LanguageControl />
+      </template>
+
+      <template v-slot:main>
         <p class="has-text-centered">Header</p>
         <div class="container appLayout-main">
           <section class="section">
@@ -87,30 +96,38 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Desktop = Template.bind({});
-Desktop.args = {
-  isLoggedIn: true,
-  contentSize: 3,
-};
-Desktop.parameters = {
-  layout: 'fullscreen',
-};
-
-export const Short = Template.bind({});
-Short.args = {
-  isLoggedIn: true,
-  contentSize: 1,
-};
-Short.parameters = {
-  layout: 'fullscreen',
+export const Desktop = {
+  render: Template,
+  args: {
+    isLoggedIn: true,
+    contentSize: 3,
+  },
+  parameters: {
+    viewport: { defaultViewport: 'desktop' },
+    layout: 'fullscreen',
+  },
 };
 
-export const Mobile = Template.bind({});
-Mobile.args = {
-  isLoggedIn: true,
-  contentSize: 3,
+export const Short = {
+  render: Template,
+  args: {
+    isLoggedIn: true,
+    contentSize: 1,
+  },
+  parameters: {
+    viewport: { defaultViewport: 'desktop' },
+    layout: 'fullscreen',
+  },
 };
-Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile1' },
-  layout: 'fullscreen',
+
+export const Mobile = {
+  render: Template,
+  args: {
+    isLoggedIn: true,
+    contentSize: 3,
+  },
+  parameters: {
+    viewport: { defaultViewport: 'mobile1' },
+    layout: 'fullscreen',
+  },
 };

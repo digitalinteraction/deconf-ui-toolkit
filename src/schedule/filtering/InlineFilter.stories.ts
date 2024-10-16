@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import InlineFilter from './InlineFilter.vue';
 import type { FilterOption } from './filter-option';
 
@@ -7,7 +7,7 @@ export default {
   component: InlineFilter,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { InlineFilter },
   props: ['label', 'offLabel', 'options'],
   data: () => ({

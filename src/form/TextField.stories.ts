@@ -1,5 +1,6 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import TextField from './TextField.vue';
+import { fn } from '@storybook/test';
 
 export default {
   title: 'Form/TextField',
@@ -14,31 +15,34 @@ export default {
   },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { TextField },
-  props: ['hasError', 'type', 'disabled'],
+  setup: () => args,
   template: `
     <TextField
       name="text-text-field"
       :type="type"
-      label="This is a label"
-      value=""
-      placeholder="This is a placeholder"
-      help="This is some help text"
+      :label="label"
+      :model-value="value"
+      :placeholder="placeholder"
+      :help="help"
       :has-error="hasError"
       :disabled="disabled"
+      @update:modelValue="onValue"
     />
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  hasError: false,
-  type: 'text',
-  disabled: false,
-};
-Default.parameters = {
-  controls: {
-    exclude: ['name', 'label', 'value', 'placeholder', 'help', 'notSelected'],
+export const Default = {
+  render: Template,
+  args: {
+    label: 'This is a label',
+    placeholder: 'This is a placeholder',
+    help: 'Useful help text',
+    value: '',
+    hasError: false,
+    type: 'text',
+    disabled: false,
+    onValue: fn(),
   },
 };

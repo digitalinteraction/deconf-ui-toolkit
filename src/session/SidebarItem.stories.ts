@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import SidebarItem from './SidebarItem.vue';
 import { Content } from '../story-lib/module';
 
@@ -7,7 +7,7 @@ export default {
   component: SidebarItem,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   props: Object.keys(argTypes),
   components: { SidebarItem, Content },
   template: `

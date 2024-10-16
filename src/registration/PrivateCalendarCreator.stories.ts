@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import PrivateCalendarCreator from './PrivateCalendarCreator.vue';
 
 export default {
@@ -6,16 +6,16 @@ export default {
   component: PrivateCalendarCreator,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { PrivateCalendarCreator },
-  props: [],
+  setup: () => args,
   template: `
     <PrivateCalendarCreator api-module="api" />
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  // ...
+export const Default = {
+  render: Template,
+  args: {},
+  parameters: {},
 };

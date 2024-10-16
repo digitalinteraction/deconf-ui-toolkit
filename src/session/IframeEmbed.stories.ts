@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import IframeEmbed from './IframeEmbed.vue';
 
 export default {
@@ -6,7 +6,7 @@ export default {
   component: IframeEmbed,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { IframeEmbed },
   props: ['src', 'allow'],
   template: `

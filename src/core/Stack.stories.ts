@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import Stack from './Stack.vue';
 
 export default {
@@ -6,29 +6,23 @@ export default {
   component: Stack,
   argTypes: {
     direction: {
-      control: {
-        type: 'select',
-        options: ['horizontal', 'vertical'],
-      },
+      control: 'select',
+      options: ['horizontal', 'vertical'],
     },
     gap: {
-      control: {
-        type: 'select',
-        options: ['none', 'small', 'regular', 'medium', 'large'],
-      },
+      control: 'select',
+      options: ['none', 'small', 'regular', 'medium', 'large'],
     },
     align: {
-      control: {
-        type: 'select',
-        options: ['start', 'end', 'center', 'stretch'],
-      },
+      control: 'select',
+      options: ['start', 'end', 'center', 'stretch'],
     },
   },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { Stack },
-  props: ['direction', 'gap', 'align'],
+  setup: () => args,
   template: `
     <Stack
       :direction="direction"
@@ -48,26 +42,20 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Vertical = Template.bind({});
-Vertical.args = {
-  direction: 'vertical',
-  gap: 'regular',
-  align: 'center',
-};
-Vertical.parameters = {
-  controls: {
-    exclude: ['default'],
+export const Vertical = {
+  render: Template,
+  args: {
+    direction: 'vertical',
+    gap: 'regular',
+    align: 'center',
   },
 };
 
-export const Horizontal = Template.bind({});
-Horizontal.args = {
-  direction: 'horizontal',
-  gap: 'regular',
-  align: 'center',
-};
-Horizontal.parameters = {
-  controls: {
-    exclude: ['default'],
+export const Horizontal = {
+  render: Template,
+  args: {
+    direction: 'horizontal',
+    gap: 'regular',
+    align: 'center',
   },
 };

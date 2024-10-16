@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import LoginView from './LoginView.vue';
 import { BrandA } from '../story-lib/module';
 import { UtilLayout, BackButton } from '../core/module';
@@ -8,30 +8,28 @@ export default {
   component: LoginView,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { LoginView, UtilLayout, BrandA, BackButton },
-
+  setup: () => args,
   template: `
-    <UtilLayout home-route="/">
-      <BrandA slot="brand" />
-      <BackButton to="/" slot="backButton">Go Back</BackButton>
-      <LoginView
-        slot="main"
-        api-module="api"
-      >
-        <p slot="infoText">Use this form to log in</p>
-        <p slot="doneText">Log in email sent!</p>
-      </LoginView>
-    </UtilLayout>
+    <LoginView api-module="api">
+      <template v-slot:infoText>
+        <p>Use this form to log in</p>
+      </template>
+      
+      <template v-slot:doneText>
+        <p>Log in email sent!</p>
+      </template>
+      
+      <template v-slot:extraOptions>
+        <p>More login options here...</p>
+      </template>
+    </LoginView>
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  layout: 'fullscreen',
-  // actions: { argTypesRegex: '^on[A-Z].*' },
-  controls: {
-    exclude: ['initialState', 'infoText', 'doneText'],
-  },
+export const Default = {
+  render: Template,
+  args: {},
+  parameters: {},
 };

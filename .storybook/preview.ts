@@ -33,6 +33,9 @@ const actions = {
   'api/fetchContent': () => ({
     en: `<p>Hello there</p><div id="featured_thing"></div>`,
   }),
+  'api/fetchUserCalendar': () => ({
+    url: new URL('https://example.com/calendar'),
+  }),
 };
 
 setup((app) => {
@@ -45,6 +48,10 @@ setup((app) => {
     },
   };
   app.config.globalProperties.$deconf = {
-    // ...
+    showDialog: action('$deconf.showDialog'),
+    closeDialog: action('$deconf.closeDialog'),
+    getCalendarLink: (session, kind) =>
+      `https://example.com/session/${session.id}/${kind}`,
+    trackMetric: action('$deconf.trackMetric'),
   };
 });

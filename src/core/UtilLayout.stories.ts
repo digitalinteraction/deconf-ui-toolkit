@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 
 import UtilLayout from './UtilLayout.vue';
 import BackButton from './BackButton.vue';
@@ -10,44 +10,51 @@ export default {
   component: UtilLayout,
   argTypes: {
     width: {
-      control: {
-        type: 'select',
-        options: ['regular', 'medium', 'large'],
-      },
+      control: 'select',
+      options: ['regular', 'medium', 'large'],
     },
   },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { UtilLayout, Content, BrandA, LanguageControl, BackButton },
-  props: ['width'],
+  setup: () => args,
   data: () => ({
     homeRoute: { name: 'HOME' },
   }),
   template: `
     <UtilLayout :home-route="homeRoute" :width="width">
-      <Content slot="main" />
-      <BackButton slot="backButton" to="#">Go Back</button>
-      <BrandA slot="brand" />
-      <div slot="footer" class="footer">
-        <p>This is a footer</p>
-      </div>
-      <LanguageControl slot="languageControl" />
+      <template v-slot:main>
+        <Content />
+      </template>
+        
+      <template v-slot:backButton>
+        <BackButton to="#">Go Back</button>
+      </template>
+        
+      <template v-slot:brand>
+        <BrandA />
+      </template>
+        
+      <template v-slot:footer>
+        <div class="footer">
+          <p>This is a footer</p>
+        </div>
+      </template>
+        
+      <template v-slot:languageControl>
+        <LanguageControl />
+      </template>
     </UtilLayout>
   `,
 });
 
-export const Desktop = Template.bind({});
-Desktop.args = {
-  width: 'regular',
-};
-Desktop.parameters = { layout: 'fullscreen' };
-
-export const Mobile = Template.bind({});
-Mobile.args = {
-  width: 'regular',
-};
-Mobile.parameters = {
-  viewport: { defaultViewport: 'mobile2' },
-  layout: 'fullscreen',
+export const Default = {
+  render: Template,
+  args: {
+    width: 'regular',
+  },
+  parameters: {
+    layout: 'fullscreen',
+  },
 };

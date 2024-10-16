@@ -1,18 +1,16 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
+import { fn } from '@storybook/test';
 import { mockSession } from '../../story-lib/module';
 import AddToCalendar from './AddToCalendar.vue';
 
 export default {
-  title: 'Core/AddToCalendar',
+  title: 'Core/Session/AddToCalendar',
   component: AddToCalendar,
-  argTypes: {
-    onClick: { control: 'action' },
-  },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { AddToCalendar },
-  props: ['calendarLink', 'session', 'onClick'],
+  setup: () => args,
   template: `
     <AddToCalendar
       :calendar-link="calendarLink"
@@ -24,14 +22,22 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  calendarLink: '#',
+export const Default = {
+  render: Template,
+  args: {
+    calendarLink: '#',
+    session: null,
+    onClick: fn((e: Event) => e.preventDefault()),
+  },
+  parameters: {},
 };
-Default.parameters = {};
 
-export const Version2 = Template.bind({});
-Version2.args = {
-  session: mockSession(),
+export const Version2 = {
+  render: Template,
+  args: {
+    session: mockSession(),
+    calendarLink: null,
+    onClick: fn((e: Event) => e.preventDefault()),
+  },
+  parameters: {},
 };
-Version2.parameters = {};
