@@ -120,8 +120,7 @@ import { defineComponent, PropType } from 'vue';
 import { RouteLocationRaw } from 'vue-router';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { ConferenceConfig } from '@openlab/deconf-shared';
-import { SelectOption } from '../form/module';
+import { SelectOption } from '../form/module.js';
 
 //
 // i18n
@@ -150,7 +149,6 @@ export default defineComponent({
     };
   },
   props: {
-    appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
     isLoggedIn: { type: Boolean, required: true },
     isInterpreter: { type: Boolean, required: true },
     routes: { type: Array as PropType<AppRoute[]>, required: true },

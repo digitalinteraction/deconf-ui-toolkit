@@ -2,7 +2,6 @@
   <FullHeight class="appLayout">
     <div class="appLayout-header">
       <NavigationBar
-        :app-settings="appSettings"
         :is-logged-in="isLoggedIn"
         :is-interpreter="isInterpreter"
         :routes="routes"
@@ -38,7 +37,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ConferenceConfig, AuthToken } from '@openlab/deconf-shared';
+import { AuthToken } from '@openlab/deconf-shared';
 
 import { AppRoute } from '../lib/module';
 import FullHeight from './FullHeight.vue';
@@ -63,7 +62,6 @@ export default defineComponent({
   name: 'AppLayout',
   components: { FullHeight, NavigationBar, SideTabs },
   props: {
-    appSettings: { type: Object as PropType<ConferenceConfig>, required: true },
     user: { type: Object as PropType<AuthToken>, default: null },
     routes: { type: Array as PropType<AppRoute[]>, required: true },
     navLinks: { type: Array as PropType<string[]>, required: false },
