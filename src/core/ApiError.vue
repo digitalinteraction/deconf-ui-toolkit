@@ -1,26 +1,15 @@
 <template>
-  <UtilLayout :home-route="homeRoute">
-    <template v-slot:brand>
-      <slot name="brand"></slot>
-    </template>
-    <template v-slot:main>
-      <div class="content">
-        <h1 class="title">{{ $t('deconf.apiError.title') }}</h1>
-        <p>{{ $t('deconf.apiError.content') }}</p>
-        <p>{{ $t('deconf.apiError.retry', [localeCountdown]) }}</p>
-      </div>
-    </template>
-    <template v-slot:footer>
-      <slot name="footer"></slot>
-    </template>
-  </UtilLayout>
+  <div class="content">
+    <h1 class="title">{{ $t('deconf.apiError.title') }}</h1>
+    <p>{{ $t('deconf.apiError.content') }}</p>
+    <p>{{ $t('deconf.apiError.retry', [localeCountdown]) }}</p>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { RouteLocationRaw } from 'vue-router';
 import { getCountdown, getCountdownMessage } from '../lib/module.js';
-import UtilLayout from './UtilLayout.vue';
 
 //
 // i18n
@@ -48,7 +37,6 @@ interface Data {
 
 export default defineComponent({
   name: 'ApiError',
-  components: { UtilLayout },
   props: {
     homeRoute: { type: Object as PropType<RouteLocationRaw>, required: true },
     retry: { type: Number, default: 1 },

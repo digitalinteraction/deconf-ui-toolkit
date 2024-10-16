@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import ColorWidget from './ColorWidget.vue';
 
 export default {
@@ -6,9 +6,9 @@ export default {
   component: 'ColorWidget',
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { ColorWidget },
-  props: ['kind', 'title', 'subtitle', 'icon', 'href'],
+  setup: () => args,
   template: `
     <ColorWidget
       :kind="kind"
@@ -20,41 +20,55 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  kind: 'primary',
-  title: 'Hello, world!',
-  subtitle: 'Now for something completely different',
-  icon: ['fas', 'user-friends'],
-  href: null,
+export const Primary = {
+  args: {
+    kind: 'primary',
+    title: 'Hello, world!',
+    subtitle: 'Now for something completely different',
+    icon: ['fas', 'user-friends'],
+    href: null,
+  },
+  render: Template,
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  ...Primary.args,
-  kind: 'secondary',
-  icon: ['fas', 'terminal'],
+export const Secondary = {
+  args: {
+    kind: 'secondary',
+    title: 'Hello, world!',
+    subtitle: 'Now for something completely different',
+    icon: ['fas', 'terminal'],
+    href: null,
+  },
+  render: Template,
 };
 
-export const Twitter = Template.bind({});
-Twitter.args = {
-  ...Primary.args,
-  kind: 'twitter',
-  icon: ['fab', 'twitter'],
-  href: 'https://duck.com',
+export const Twitter = {
+  args: {
+    kind: 'twitter',
+    title: 'Hello, world!',
+    subtitle: 'Now for something completely different',
+    icon: ['fab', 'twitter'],
+    href: 'https://duck.com',
+  },
+  render: Template,
 };
 
-export const Custom = Template.bind({});
-Custom.args = {
-  ...Primary.args,
-  kind: 'custom',
-  icon: ['fas', 'apple-alt'],
+export const Custom = {
+  args: {
+    kind: 'custom',
+    title: 'Hello, world!',
+    subtitle: 'Now for something completely different',
+    icon: ['fas', 'apple-alt'],
+    href: 'https://duck.com',
+  },
+  render: Template,
 };
 
-export const List: Story = () => ({
-  components: { ColorWidget },
-  template: `
-    <div>
+export const List = {
+  args: {},
+  render: () => ({
+    components: { ColorWidget },
+    template: `
       <ColorWidget
         kind="primary"
         title="Widget A"
@@ -74,6 +88,6 @@ export const List: Story = () => ({
         subtitle="Some long and less-interesting title"
         href="https://duck.com"
       />
-    </div>
-  `,
-});
+    `,
+  }),
+};

@@ -1,4 +1,4 @@
-import { Component } from 'vue';
+import { Component, markRaw } from 'vue';
 import { reactive, App } from 'vue';
 
 interface Data {
@@ -34,7 +34,7 @@ export class DialogPlugin {
   }
 
   show(component: Component, props = {}): void {
-    this._vm.component = component;
+    this._vm.component = markRaw(component);
     this._vm.props = props;
   }
   close(): void {

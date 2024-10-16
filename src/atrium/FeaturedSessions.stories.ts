@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import { dates, mockSession, mockSessionSlot } from '../story-lib/module';
 import FeaturedSessions from './FeaturedSessions.vue';
 
@@ -7,9 +7,9 @@ export default {
   component: FeaturedSessions,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { FeaturedSessions },
-  props: ['showAction'],
+  setup: () => args,
   data: () => ({
     currentDate: dates.now,
     featured: [
@@ -39,11 +39,9 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  showAction: true,
-};
-Default.parameters = {
-  layout: 'fullscreen',
-  viewport: { defaultViewport: 'mobile2' },
+export const Default = {
+  args: {
+    showAction: true,
+  },
+  render: Template,
 };

@@ -1,29 +1,29 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import ApiMessage from './ApiMessage.vue';
 
 export default {
   title: 'Core/ApiMessage',
   component: ApiMessage,
+
   argTypes: {
     errorCode: {
-      control: {
-        type: 'select',
-        options: ['unknown', 'login_expired'],
-      },
+      control: 'select',
+      options: ['unknown', 'login_expired'],
     },
   },
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { ApiMessage },
-  props: ['errorCode'],
+  setup: () => args,
   template: `
     <ApiMessage :error-code="errorCode" />
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {
-  errorCode: 'unknown',
+export const Default = {
+  render: Template,
+  args: {
+    errorCode: 'login_expired',
+  },
 };
-Default.parameters = {};

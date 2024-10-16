@@ -11,8 +11,6 @@ import { createSponsors, Content } from '../story-lib/module';
 export default {
   title: 'Atrium/AtriumLayout',
   component: AtriumLayout,
-
-  tags: ['autodocs'],
 } as Meta<typeof AtriumLayout>;
 
 type Story = StoryObj<typeof AtriumLayout>;

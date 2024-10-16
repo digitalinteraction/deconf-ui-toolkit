@@ -1,0 +1,198 @@
+{
+  "deconf": {
+    "appLayout": {
+      "atrium": "Atrium",
+      "whatsOn": "Whats On",
+      "schedule": "Schedule",
+      "coffeeChat": "Coffee Chat",
+      "helpDesk": "Help Desk"
+    },
+    "sideTabs": {
+      "unavailable": "Unavailable"
+    },
+    "apiError": {
+      "title": "Something went wrong",
+      "content": "We're having a bit of trouble, try refresing or coming back later.",
+      "retry": "Retrying in {0}"
+    },
+    "appLoading": {
+      "message": "Loading..."
+    },
+    "scheduleBlock": {
+      "workshopTitle": "Interactive workshops",
+      "workshopDescription": "Participate in one of the following interactive workshops.",
+      "showWorkshops": "Show all",
+      "hideWorkshops": "Hide all",
+      "workshops": "None | 1 workshop | {n} workshops"
+    },
+    "general": {
+      "days": "days | day | days",
+      "hours": "hours | hour | hours",
+      "minutes": "minutes | minute | minutes",
+      "seconds": "seconds | second | seconds",
+      "genericError": "Something went wrong, please try again",
+      "closeDialog": "Close",
+      "appName": "Deconf"
+    },
+    "miniSession": {
+      "view": "View",
+      "live": "Live!"
+    },
+    "featuredSessions": {
+      "title": "Featured Sessions",
+      "action": "View Schedule"
+    },
+    "scheduleFilters": {
+      "query": "Search",
+      "showFilters": "Show filters",
+      "hideFilters": "Hide filters",
+      "clearFilters": "Clear filters",
+      "dateFilter": "Date",
+      "typeFilter": "Type",
+      "trackFilter": "Track",
+      "themeFilter": "Theme",
+      "recordedFilter": "Is Recorded",
+      "languageFilter": "Language",
+      "offLabel": "All",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "attendanceSection": {
+      "loading": "Fetching attendance",
+      "processing": "Processing",
+      "registered": "You are registered for this session",
+      "full": "This session is full",
+      "spacesLeft": "{0}/{1} seats remaining.",
+      "registerButton": "Register now",
+      "unregisterButton": "Release my seat"
+    },
+    "timeSlot": {
+      "past": "Past",
+      "live": "Live"
+    },
+    "joinSession": {
+      "future": "Preview session",
+      "present": "Join session",
+      "past": "View session"
+    },
+    "sessionAttributes": {
+      "isRecorded": "Recorded",
+      "notRecorded": "Not recorded"
+    },
+    "addToCalendar": {
+      "action": "Add to calendar"
+    },
+    "sessionLink": {
+      "copy": "copy",
+      "copied": "copied"
+    },
+    "sessionState": {
+      "liveNow": "Live Now",
+      "sessionOver": "Session over",
+      "interest": "no interest | someone is interest | {n} people are interested"
+    },
+    "sessionEmbed": {
+      "openTeams": "Open Teams meeting",
+      "openZoom": "Open Zoom meeting",
+      "openZoomRegister": "Register for Zoom meeting",
+      "openGoogleMeet": "Open Google Meet",
+      "openHubs": "Open Mozilla Hub",
+      "openSpatial": "Open Spatial Chat",
+      "openDiscord": "Open Discord",
+      "noEmbed": "Something went wrong, there is nothing to show here"
+    },
+    "languageWarning": {
+      "message": "Please note this session is only available in {0}"
+    },
+    "navigationBar": {
+      "profile": "Your profile",
+      "login": "Login",
+      "interpret": "Interpret mode",
+      "register": "Register!",
+      "unavailable": " (Unavailable)"
+    },
+    "whatsOn": {
+      "title": "What's On",
+      "infoText": "Here is an overview of events are happening at this conference",
+      "noResults": "Nothing matched your query"
+    },
+    "login": {
+      "title": "Log in",
+      "infoText": "Use this form to log in to the conference.",
+      "email": {
+        "label": "Email",
+        "placeholder": "e.g. geoff@example.com",
+        "help": "The email address you registered to the conference with"
+      },
+      "badEmail": "Bad email",
+      "doneText": "Login code sent",
+      "submitButton": "Request login code",
+      "registerLabel": "Not registered yet?",
+      "registerAction": "Register here"
+    },
+    "profile": {
+      "title": "Your profile",
+      "actionLabel": "Actions",
+      "logoutButton": "Log out",
+      "dangerLabel": "Danger zone",
+      "deleteButton": "Delete account",
+      "deleteText": "This is permenant, are you sure?"
+    },
+    "schedule": {
+      "title": "Schedule",
+      "allSessions": "All",
+      "userSessions": "User",
+      "hidePast": "Hide previous sessions",
+      "showPast": "Show previous sessions",
+      "noResults": "Nothing matched your query",
+      "resultHeading": "Search results for {0}"
+    },
+    "session": {
+      "slot": "Schedule",
+      "countdown": "Countdown",
+      "links": "Session links",
+      "linkPreview": "Links will be available 15 minutes before the session starts",
+      "actions": "Actions",
+      "logIn": "Please log in to register for this session",
+      "speakers": "Speakers",
+      "zoomLink": "Zoom Room",
+      "teamsLink": "Teams Meeting",
+      "miroLink": "Miro Board",
+      "generalLink": "Link"
+    },
+    "interestSection": {
+      "message": "Register your interest",
+      "unregisterButton": "Remove from your sessions",
+      "registerButton": "Add to your sessions"
+    },
+    "addToCalendarDialog": {
+      "title": "Add session to calendar",
+      "info": "You can also get a personalised calendar link on the profile page.",
+      "ical": "Download event",
+      "google": "Google Calendar",
+      "cancel": "Cancel"
+    },
+    "addUserCalendar": {
+      "title": "Private calendar",
+      "generate": "Generate url",
+      "info": "Use this link to subscribe to \"My Schedule\" in your own calendar.",
+      "copy": "copy",
+      "copied": "copied"
+    },
+    "apiMessage": {
+      "loginExpired": {
+        "title": "Login expired",
+        "info": "Your log-in code has expired, please request a new one",
+        "action": "Log in"
+      },
+      "unknown": {
+        "title": "Something went wrong",
+        "info": "An unknown error occured, please try again or contact us",
+        "email": "support@example.com"
+      }
+    },
+    "tokenCaptureView": {
+      "message": "Processing login..."
+    }
+  }
+}

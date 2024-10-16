@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import SponsorGrid from './SponsorGrid.vue';
 import { createSponsors } from '../story-lib/module';
 
@@ -7,8 +7,9 @@ export default {
   component: SponsorGrid,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { SponsorGrid },
+  setup: () => args,
   data: () => ({
     groups: [
       {
@@ -38,10 +39,6 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  controls: {
-    exclude: ['groups'],
-  },
+export const Default = {
+  render: Template,
 };

@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/vue';
+import { Meta } from '@storybook/vue3';
 import { BrandA } from '../story-lib/module';
 import ApiError from './ApiError.vue';
 
@@ -7,8 +7,9 @@ export default {
   component: ApiError,
 } as Meta;
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { ApiError, BrandA },
+  setup: () => args,
   data: () => ({
     homeRoute: { name: 'HomeRoute' },
   }),
@@ -20,11 +21,7 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = {
-  layout: 'fullscreen',
-  controls: {
-    exclude: ['homeRoute', 'retry', 'brand', 'footer'],
-  },
+export const Default = {
+  render: Template,
+  args: {},
 };

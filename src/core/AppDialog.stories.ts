@@ -1,5 +1,5 @@
-import Vue, { Component } from 'vue';
-import { Meta, Story } from '@storybook/vue';
+import { Component } from 'vue';
+import { Meta } from '@storybook/vue3';
 import { DialogPlugin } from '../lib/dialog-plugin';
 import AppDialog from './AppDialog.vue';
 
@@ -8,7 +8,7 @@ export default {
   component: AppDialog,
 } as Meta;
 
-const dialogPlugin = new DialogPlugin(Vue);
+const dialogPlugin = new DialogPlugin();
 
 const MockDialog: Component = {
   props: ['name'],
@@ -25,8 +25,9 @@ const MockDialog: Component = {
   `,
 };
 
-const Template: Story = (args, { argTypes }) => ({
+const Template = (args: unknown) => ({
   components: { AppDialog },
+  setup: () => args,
   data: () => ({ dialogPlugin }),
   methods: {
     onClick() {
@@ -41,5 +42,6 @@ const Template: Story = (args, { argTypes }) => ({
   `,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Default = {
+  render: Template,
+};
