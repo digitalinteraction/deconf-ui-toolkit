@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.0.0...v3.0.1) (2024-10-16)
+
+**fixed** fixed the package build
+
 ## [3.0.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v2.35.0...v3.0.0) (2024-10-16)
 
 **Now with vue 3**
