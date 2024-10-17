@@ -1,0 +1,19 @@
+#
+# files to ignore from the NPM package
+#
+
+.git
+node_modules
+.github
+.nova
+.storybook
+build
+storybook-static
+example
+static
+.editorconfig
+.node-version
+.prettierignore
+.prettierrc
+eslint.config.js
+vite.config.ts
