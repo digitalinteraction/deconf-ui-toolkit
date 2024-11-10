@@ -29,7 +29,7 @@ import { getCountdown, getCountdownMessage } from '../lib/module.js';
 
 const TICK_INTERVAL = 500;
 
-interface Data {
+export interface _Data {
   timerId: number | null;
   retryDate: Date;
   currentDate: Date;
@@ -41,7 +41,7 @@ export default defineComponent({
     homeRoute: { type: Object as PropType<RouteLocationRaw>, required: true },
     retry: { type: Number, default: 1 },
   },
-  data(): Data {
+  data(): _Data {
     const retryDate = new Date();
     retryDate.setMinutes(retryDate.getMinutes() + this.retry);
 

@@ -1,6 +1,6 @@
 import { reactive, App } from 'vue';
 
-interface Data {
+export interface _Data {
   date: Date;
 }
 
@@ -17,7 +17,7 @@ export class TemporalPlugin {
 
   interval: number;
   timerId: number | null = null;
-  _vm: Data;
+  _vm: _Data;
 
   get date(): Date {
     return this._vm.date;

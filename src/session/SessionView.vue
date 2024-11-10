@@ -283,7 +283,7 @@ const LANGUAGES: Record<string, string | undefined> = {
 // - content
 //
 
-interface Data {
+export interface _Data {
   timerId: number | null;
   links: LocalisedLink[] | null;
   attendance: null | UserSessionAttendance;
@@ -316,7 +316,7 @@ export default defineComponent({
     schedule: { type: Object as PropType<ScheduleRecord>, required: true },
     scheduleDate: { type: Date as PropType<Date>, required: true },
   },
-  data(): Data {
+  data(): _Data {
     return {
       timerId: null,
       links: null,

@@ -76,6 +76,7 @@ export default defineComponent({
   props: {
     fields: { type: Array as PropType<ProfileField[]>, required: true },
   },
+  emits: ['logout', 'unregister'],
   methods: {
     logout() {
       this.$deconf.trackMetric(createLogoutEvent());

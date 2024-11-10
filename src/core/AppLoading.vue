@@ -26,7 +26,7 @@ import { defineComponent } from 'vue';
 // - n/a
 //
 
-interface Data {
+export interface _Data {
   hasWaited: boolean;
   timerId: number | null;
 }
@@ -36,7 +36,7 @@ const DEBOUNCE_MS = 500;
 export default defineComponent({
   name: 'AppLoading',
   components: { FontAwesomeIcon },
-  data(): Data {
+  data(): _Data {
     return { hasWaited: false, timerId: null };
   },
   mounted() {

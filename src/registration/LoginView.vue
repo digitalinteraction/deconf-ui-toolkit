@@ -81,7 +81,7 @@ import {
 
 type LoginState = 'pending' | 'working' | 'error' | 'success';
 
-interface Data {
+export interface _Data {
   email: string;
   state: LoginState;
 }
@@ -95,7 +95,7 @@ export default defineComponent({
       default: 'pending' as LoginState,
     },
   },
-  data(): Data {
+  data(): _Data {
     return {
       email: '',
       state: this.initialState,

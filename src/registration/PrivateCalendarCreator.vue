@@ -64,7 +64,7 @@ import { defineComponent } from 'vue';
 // - profile/userCalendar
 //
 
-interface Data {
+export interface _Data {
   privateCal: PrivateCalendar | null;
   didCopy: boolean;
   timerId: number | null;
@@ -72,7 +72,7 @@ interface Data {
 
 export default defineComponent({
   name: 'PrivateCalendarCreator',
-  data(): Data {
+  data(): _Data {
     return { privateCal: null, didCopy: false, timerId: null };
   },
   computed: {

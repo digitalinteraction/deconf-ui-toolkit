@@ -18,7 +18,7 @@ import { localiseFromObject, namespaceForApi } from '../lib/module.js';
 // - api/fetchContent { slug }
 //
 
-interface Data {
+export interface _Data {
   content: Localised | undefined;
 }
 
@@ -27,7 +27,7 @@ export default defineComponent({
   props: {
     slug: { type: String, required: true },
   },
-  data(): Data {
+  data(): _Data {
     return {
       content: undefined,
     };

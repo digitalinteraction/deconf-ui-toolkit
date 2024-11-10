@@ -53,7 +53,7 @@ import { FilteredScheduleOptions } from './filtered-schedule-options';
 // - filter — when the user changes the filter (useful to update URL parameters)
 //
 
-interface Data {
+export interface _Data {
   urlFilters: ScheduleFilterRecord | null;
 }
 
@@ -82,7 +82,7 @@ export default defineComponent({
       default: () => ({}),
     },
   },
-  data(): Data {
+  data(): _Data {
     return {
       urlFilters: decodeUrlScheduleFilters(this.routeQuery),
     };

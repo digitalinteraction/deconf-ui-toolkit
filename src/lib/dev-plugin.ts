@@ -1,7 +1,7 @@
 import { reactive, App } from 'vue';
 import { SlotState } from './types';
 
-interface Data {
+export interface _Data {
   isEnabled: boolean;
   isVisible: boolean;
   slotState: SlotState | undefined;
@@ -25,7 +25,7 @@ export class DevPlugin {
 
   // Use an internal vue component to fake the reactivity of properties
   // so consumers can bind to $dev values
-  _vm: Data;
+  _vm: _Data;
 
   get slotState(): SlotState | undefined {
     return this._vm.slotState;

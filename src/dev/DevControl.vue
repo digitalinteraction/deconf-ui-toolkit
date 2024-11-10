@@ -247,7 +247,7 @@ const trackingSpeeds: Record<TrackingSpeed, number> = {
   fastForward: 1000,
 };
 
-interface Data {
+export interface _Data {
   tracking: null | {
     timerId: number;
     speed: TrackingSpeed;
@@ -257,7 +257,7 @@ interface Data {
 export default defineComponent({
   name: 'DevControl',
   components: { FontAwesomeIcon },
-  data(): Data {
+  data(): _Data {
     return {
       tracking: null,
     };

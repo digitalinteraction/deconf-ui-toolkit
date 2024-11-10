@@ -1,7 +1,7 @@
 import { Component, markRaw } from 'vue';
 import { reactive, App } from 'vue';
 
-interface Data {
+export interface _Data {
   component: Component | null;
   props: Record<string, unknown>;
 }
@@ -18,7 +18,7 @@ export class DialogPlugin {
 
   // Use an internal vue component to fake the reactivity of properties
   // so consumers can bind to $dev values
-  _vm: Data;
+  _vm: _Data;
 
   static install(app: App): void {
     const plugin = new DialogPlugin();
