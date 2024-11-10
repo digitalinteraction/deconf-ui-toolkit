@@ -8,6 +8,7 @@
     "build:library": "npx vite build && node build/pull-theme.js",
     "build:types": "npx vue-tsc --project tsconfig.npm.json",
     "build:storybook": "npx storybook build && cp -R static storybook-static/static",
+    "preversion": "npm run lint && npm run check",
     "release": "npm run preversion && standard-version && git push --follow-tags origin main && npm publish",
     "release:beta": "npm run preversion && standard-version --prerelease=beta",
     "lint": "npx eslint",

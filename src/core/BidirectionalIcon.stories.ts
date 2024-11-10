@@ -6,7 +6,7 @@ export default {
   component: BidirectionalIcon,
 } as Meta;
 
-const Template = (args: unknown) => ({
+const Template = () => ({
   components: { BidirectionalIcon },
   template: `
     <p>
