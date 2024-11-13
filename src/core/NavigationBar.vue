@@ -28,7 +28,7 @@
             v-for="item in routes"
             :key="item.name"
             :to="{ name: item.name }"
-            :disabled="!item.enabled"
+            :disabled="!item.enabled || undefined"
             :title="item.title"
             class="navbar-item"
             active-class="is-active"
@@ -43,8 +43,8 @@
         </div>
         <div class="navbar-end">
           <!-- 
-          Show the owner brand if provided
-        -->
+            Show the owner brand if provided
+          -->
           <div v-if="$slots.brandB" class="navbar-item">
             <slot name="brandB"></slot>
           </div>
