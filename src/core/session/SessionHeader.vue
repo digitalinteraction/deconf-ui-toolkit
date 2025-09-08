@@ -39,7 +39,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import FontAwesomeIcon from '../FontAwesomeIcon.vue';
 import { localiseFromObject } from '../../lib/module';
 import { Localised, SessionType, Theme, Track } from '@openlab/deconf-shared';
 

@@ -20,8 +20,8 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineComponent } from 'vue';
+import { FontAwesomeIcon } from '../core/module';
 
 //
 // i18n

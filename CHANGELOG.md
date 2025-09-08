@@ -2,7 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [3.0.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.0.1...v3.0.2) (2024-11-13)
+## [3.1.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.0.3...v3.1.0) (2025-09-10) WIP
+
+**new** Added optional `DeconfPlugin#replaceIcon` to override which FontAwesome icons are used,
+along with `FontAwesomeIcon` that mimics the offical API while processing icon replacements.
+
+## [3.0.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.0.2...v3.0.3) (2024-11-13)
 
 **fixed** `NavigationBar` items are always disabled
 

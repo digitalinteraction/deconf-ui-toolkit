@@ -23,4 +23,6 @@ export interface DeconfPlugin {
 
   /** @experimental — stablise in next major-version */
   apiModule?: string;
+
+  renameIcon?(input: string[]): [string, string];
 }

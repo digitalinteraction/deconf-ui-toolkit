@@ -92,8 +92,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { localiseFromObject } from '../../lib/module';
+import FontAwesomeIcon from '../FontAwesomeIcon.vue';
 import { Localised, Theme, Track } from '@openlab/deconf-shared';
 
 //

@@ -233,7 +233,7 @@
 
 <script lang="ts">
 import IframeEmbed from './IframeEmbed.vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { FontAwesomeIcon } from '../core/module';
 import { parsePrimaryLink, PrimaryLink } from '../lib/module';
 import { defineComponent } from 'vue';
 

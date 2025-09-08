@@ -6,13 +6,14 @@ export { default as JoinSession } from './session/JoinSession.vue';
 export { default as SessionAttributes } from './session/SessionAttributes.vue';
 export { default as SessionHeader } from './session/SessionHeader.vue';
 
-export { default as AppDialog } from './AppDialog.vue';
-export { default as ApiMessage } from './ApiMessage.vue';
 export { default as ApiError } from './ApiError.vue';
+export { default as ApiMessage } from './ApiMessage.vue';
+export { default as AppDialog } from './AppDialog.vue';
 export { default as AppLayout } from './AppLayout.vue';
 export { default as AppLoading } from './AppLoading.vue';
 export { default as BackButton } from './BackButton.vue';
 export { default as BidirectionalIcon } from './BidirectionalIcon.vue';
+export { default as FontAwesomeIcon } from './FontAwesomeIcon.vue';
 export { default as FullHeight } from './FullHeight.vue';
 export { default as FullScreenDialog } from './FullScreenDialog.vue';
 export { default as InlineMessage } from './InlineMessage.vue';

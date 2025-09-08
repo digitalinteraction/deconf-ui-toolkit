@@ -178,7 +178,7 @@
 
 import { defineComponent, PropType } from 'vue';
 import { DevPlugin, SlotState } from '../lib/module';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { FontAwesomeIcon } from '../core/module';
 
 //
 // i18n

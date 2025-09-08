@@ -23,8 +23,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { BidirectionalIcon } from '../core/module';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { BidirectionalIcon, FontAwesomeIcon } from '../core/module';
 
 //
 // i18n

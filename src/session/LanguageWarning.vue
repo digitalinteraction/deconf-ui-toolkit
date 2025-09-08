@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { FontAwesomeIcon } from '../core/module';
 
 //
 // i18n

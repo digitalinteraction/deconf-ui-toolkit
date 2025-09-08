@@ -53,7 +53,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { Session } from '@openlab/deconf-shared';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import FontAwesomeIcon from '../FontAwesomeIcon.vue';
 import { createICalEvent } from '../../lib/module.js';
 
 //

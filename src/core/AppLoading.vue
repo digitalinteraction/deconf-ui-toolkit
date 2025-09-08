@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import FontAwesomeIcon from './FontAwesomeIcon.vue';
 import { defineComponent } from 'vue';
 
 //

@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import FontAwesomeIcon from '../FontAwesomeIcon.vue';
 import { defineComponent, PropType } from 'vue';
 import { Session } from '@openlab/deconf-shared';
 import AddToCalendarDialog from './AddToCalendarDialog.vue';

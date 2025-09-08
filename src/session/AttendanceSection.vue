@@ -22,9 +22,9 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { TranslateResult } from 'vue-i18n';
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import { Session, UserSessionAttendance } from '@openlab/deconf-shared';
+import { FontAwesomeIcon } from '../core/module';
 
 //
 // i18n

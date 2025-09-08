@@ -119,7 +119,7 @@ import { AppRoute, Routes } from '../lib/module';
 import { defineComponent, PropType } from 'vue';
 import { RouteLocationRaw } from 'vue-router';
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import FontAwesomeIcon from './FontAwesomeIcon.vue';
 import { SelectOption } from '../form/module.js';
 
 //

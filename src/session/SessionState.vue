@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { FontAwesomeIcon } from '../core/module';
 import { defineComponent } from 'vue';
 
 //

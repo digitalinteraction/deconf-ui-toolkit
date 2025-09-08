@@ -15,9 +15,9 @@
 </template>
 
 <script lang="ts">
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { defineComponent } from 'vue';
 import { TranslateResult } from 'vue-i18n';
+import FontAwesomeIcon from '../FontAwesomeIcon.vue';
 
 //
 // i18n
