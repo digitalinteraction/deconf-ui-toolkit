@@ -28,7 +28,7 @@
       </template>
     </p>
     <p class="timeSlot-timezone">
-      <span>{{ timezone }}</span>
+      <span>{{ timeZoneName }}</span>
     </p>
   </div>
 </template>
@@ -71,9 +71,15 @@ export default defineComponent({
       if (this.slotState === 'present') return 'deconf.timeSlot.live';
       return null;
     },
-    timezone(): string {
-      const intl = Intl.DateTimeFormat().resolvedOptions();
-      return intl.timeZoneName || intl.timeZone;
+    timeZone(): string | undefined {
+      const value = this.$temporal.timeZone;
+      return value === 'system' ? undefined : value;
+    },
+    timeZoneName(): string {
+      const intl = new Intl.DateTimeFormat(undefined, {
+        timeZone: this.timeZone,
+      }).resolvedOptions();
+      return intl.timeZone;
     },
     isMultiDay(): boolean {
       return this.endDate.getDate() !== this.startDate.getDate();
@@ -81,18 +87,22 @@ export default defineComponent({
   },
   methods: {
     shortTime(date: Date): string {
-      return new Date(date).toLocaleTimeString([], {
+      return new Date(date).toLocaleTimeString(undefined, {
         hour: '2-digit',
         minute: '2-digit',
+        timeZone: this.timeZone,
       });
     },
     localeDate(date: Date): string {
-      return new Date(date).toLocaleString();
+      return new Date(date).toLocaleString(undefined, {
+        timeZone: this.timeZone,
+      });
     },
     localeDateShort(date: Date): string {
-      return new Date(date).toLocaleDateString([], {
+      return new Date(date).toLocaleDateString(undefined, {
         month: 'long',
         day: 'numeric',
+        timeZone: this.timeZone,
       });
     },
   },

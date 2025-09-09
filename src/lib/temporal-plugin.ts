@@ -2,6 +2,7 @@ import { reactive, App } from 'vue';
 
 export interface _Data {
   date: Date;
+  timeZone: string;
 }
 
 /**
@@ -26,10 +27,18 @@ export class TemporalPlugin {
     this._vm.date = newValue;
   }
 
+  get timeZone(): string {
+    return this._vm.timeZone;
+  }
+  set timeZone(newValue: string) {
+    this._vm.timeZone = newValue;
+  }
+
   constructor(interval: number) {
     this.interval = interval;
     this._vm = reactive({
       date: new Date(),
+      timeZone: 'system',
     });
   }
 

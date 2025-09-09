@@ -7,8 +7,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { RouteLocationRaw } from 'vue-router';
+import { defineComponent } from 'vue';
 import { getCountdown, getCountdownMessage } from '../lib/module.js';
 
 //
@@ -38,7 +37,6 @@ export interface _Data {
 export default defineComponent({
   name: 'ApiError',
   props: {
-    homeRoute: { type: Object as PropType<RouteLocationRaw>, required: true },
     retry: { type: Number, default: 1 },
   },
   data(): _Data {

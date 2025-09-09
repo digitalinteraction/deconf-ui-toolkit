@@ -1,6 +1,7 @@
 import { Store } from 'vuex';
 import { VueI18n } from 'vue-i18n';
 import { DeconfPlugin } from '../lib/deconf-plugin';
+import { TemporalPlugin } from '../module';
 
 declare module 'vue' {
   // declare your own store states
@@ -11,5 +12,6 @@ declare module 'vue' {
     $store: Store<State>;
     $i18n: VueI18n;
     $deconf: DeconfPlugin;
+    $temporal: TemporalPlugin;
   }
 }

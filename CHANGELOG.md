@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 - **fix** load speakers headshots lazily
 - **fix** improve `FontAwesomeIcon` type
+- **new** add `timeZone` to TemporalPlugin + use within `TimeSlot`
 
 ## [3.1.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.0.3...v3.1.0) (2025-09-10)
 

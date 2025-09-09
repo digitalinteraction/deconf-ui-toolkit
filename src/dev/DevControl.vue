@@ -198,7 +198,7 @@ import { FontAwesomeIcon } from '../core/module';
 // - n/a
 //
 
-interface DateTimeObject {
+export interface DateTimeObject {
   date: string;
   time: string;
 }
