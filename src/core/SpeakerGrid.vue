@@ -7,7 +7,7 @@
       @click="showDialog(speaker)"
     >
       <div class="speakerGrid-headshot">
-        <img :src="speaker.headshot" width="42" height="42" />
+        <img :src="speaker.headshot" width="42" height="42" loading="lazy" />
       </div>
       <div class="speakerGrid-speakerInfo">
         <div class="speakerGrid-name">{{ speaker.name }}</div>

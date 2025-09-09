@@ -2,7 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [3.1.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.0.3...v3.1.0) (2025-09-10) WIP
+## WIP
+
+- **fix** load speakers headshots lazily
+- **fix** improve `FontAwesomeIcon` type
+
+## [3.1.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.0.3...v3.1.0) (2025-09-10)
 
 **new** Added optional `DeconfPlugin#replaceIcon` to override which FontAwesome icons are used,
 along with `FontAwesomeIcon` that mimics the offical API while processing icon replacements.

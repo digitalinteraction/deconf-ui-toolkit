@@ -7,7 +7,7 @@ import {
   FontAwesomeIcon,
   type FontAwesomeIconProps,
 } from '@fortawesome/vue-fontawesome';
-import { defineComponent, PropType } from 'vue';
+import { defineComponent } from 'vue';
 
 //
 // i18n
@@ -20,6 +20,8 @@ import { defineComponent, PropType } from 'vue';
 // - n/a
 //
 
+export type { FontAwesomeIconProps };
+
 export default defineComponent({
   name: 'DeconfFontAwesomeIcon',
   components: { FontAwesomeIcon },
@@ -29,13 +31,14 @@ export default defineComponent({
       required: true,
     },
     spin: { type: Boolean },
-    size: { type: String as PropType<FontAwesomeIconProps['size']> },
+    size: { type: String },
     fixedWidth: { type: Boolean },
   },
   computed: {
     iconProps(): FontAwesomeIconProps {
       return {
         ...this.$props,
+        size: this.size as FontAwesomeIconProps['size'],
         icon: this.iconify(this.icon),
       };
     },
