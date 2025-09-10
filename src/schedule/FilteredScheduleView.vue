@@ -1,27 +1,30 @@
 <template>
-  <ScheduleView
-    :schedule="filteredSchedule"
-    :sessions="filteredSessions"
-    :user-sessions="userSessions || []"
-    :schedule-date="scheduleDate"
-    :url-filters="urlFilters"
-    @filter="onFilter"
-    :filters-key="options.filtersKey"
-    :config="options.scheduleConfig"
-    :enabled-filters="options.enabledFilters"
-    :is-during-conference="isDuringConference"
-    :language-options="options.languages"
-  >
-    <template v-slot:title>
-      <slot name="title"></slot>
-    </template>
-    <template v-slot:noResults>
-      <slot name="noResults"></slot>
-    </template>
-    <template v-slot:infoText>
-      <slot name="infoText"></slot>
-    </template>
-  </ScheduleView>
+  <div>
+    <!-- this div is needed to stop filter propagating to the caller (?) -->
+    <ScheduleView
+      :schedule="filteredSchedule"
+      :sessions="filteredSessions"
+      :user-sessions="userSessions || []"
+      :schedule-date="scheduleDate"
+      :url-filters="urlFilters"
+      @filter="onFilter"
+      :filters-key="options.filtersKey"
+      :config="options.scheduleConfig"
+      :enabled-filters="options.enabledFilters"
+      :is-during-conference="isDuringConference"
+      :language-options="options.languages"
+    >
+      <template v-slot:title>
+        <slot name="title"></slot>
+      </template>
+      <template v-slot:noResults>
+        <slot name="noResults"></slot>
+      </template>
+      <template v-slot:infoText>
+        <slot name="infoText"></slot>
+      </template>
+    </ScheduleView>
+  </div>
 </template>
 
 <script lang="ts">

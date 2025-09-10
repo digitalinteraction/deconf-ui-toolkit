@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.2.2...v3.2.3) (2025-09-10)
+
+- **fix** stop `FilteredScheduleView` double emitting `@filter` (even though it shouldn't?)
+
 ## [3.2.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.2.1...v3.2.2) (2025-09-10)
 
 - **fix** `TimeSlot` shows the timeZone the event will be in, the the current timeZone
