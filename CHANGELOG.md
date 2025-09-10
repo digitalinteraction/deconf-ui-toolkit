@@ -2,9 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.2](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.2.1...v3.2.2) (2025-09-10)
+
+- **fix** `TimeSlot` shows the timeZone the event will be in, the the current timeZone
+
 ## [3.2.1](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.2.0...v3.2.1) (2025-09-10)
 
-- **tweak** show "short" timezone in `TimeSlot` if available
+- **tweak** show "short" timeZone in `TimeSlot` if available
 
 ## [3.2.0](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.1.0...v3.2.0) (2025-09-10)
 

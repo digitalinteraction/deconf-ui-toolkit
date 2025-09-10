@@ -80,7 +80,7 @@ export default defineComponent({
         timeZone: this.timeZone,
         timeZoneName: 'short',
       })
-        .formatToParts(new Date())
+        .formatToParts(this.startDate)
         .find((part) => part.type === 'timeZoneName');
       if (name) return name.value;
 
