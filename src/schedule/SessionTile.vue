@@ -68,6 +68,7 @@ import {
   stripMarkdown,
   ScheduleConfigAction,
   namespaceForApi,
+  createAttendanceEvent,
 } from '../lib/module';
 import {
   SessionHeader,
@@ -239,12 +240,11 @@ export default defineComponent({
       return localiseFromObject(this.$i18n.locale, object, { fallbacks });
     },
     async toggleInterest() {
-      const action = namespaceForApi(
-        this.$deconf,
-        this.isInterested ? 'unattend' : 'attend',
-      );
+      const verb = this.isInterested ? 'unattend' : 'attend';
+      const action = namespaceForApi(this.$deconf, verb);
       this.isProcessing = true;
       await this.$store.dispatch(action, this.session.id);
+      this.$deconf.trackMetric(createAttendanceEvent(verb, this.session.id));
       this.isProcessing = false;
     },
   },

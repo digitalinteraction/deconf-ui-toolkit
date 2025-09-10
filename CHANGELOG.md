@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## next
+
+- **fix** create attend/unattend events from `SessionTile`
+
 ## [3.2.3](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.2.2...v3.2.3) (2025-09-10)
 
 - **fix** stop `FilteredScheduleView` double emitting `@filter` (even though it shouldn't?)
