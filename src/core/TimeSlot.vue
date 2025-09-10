@@ -76,6 +76,14 @@ export default defineComponent({
       return value === 'system' ? undefined : value;
     },
     timeZoneName(): string {
+      const name = new Intl.DateTimeFormat(undefined, {
+        timeZone: this.timeZone,
+        timeZoneName: 'short',
+      })
+        .formatToParts(new Date())
+        .find((part) => part.type === 'timeZoneName');
+      if (name) return name.value;
+
       const intl = new Intl.DateTimeFormat(undefined, {
         timeZone: this.timeZone,
       }).resolvedOptions();
