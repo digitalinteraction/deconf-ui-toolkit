@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## next
+## [3.2.4](https://github.com/digitalinteraction/deconf-ui-toolkit/compare/v3.2.3...v3.2.4) (2025-09-11)
 
 - **fix** create attend/unattend events from `SessionTile`
 
